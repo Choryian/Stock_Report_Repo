@@ -1,0 +1,13 @@
+{
+  "reports": [
+    {
+      "id": "2026-05-16-welcome",
+      "title": "Stock Report Repository를 시작합니다",
+      "summary": "Chory & Rochet의 리서치 보고서 아카이브가 정식 오픈했습니다. 매일 발행되는 시황·종목 분석·섹터 모니터링 보고서가 이곳에 차곡차곡 쌓입니다.",
+      "category": "공지",
+      "date": "2026-05-16",
+      "path": "reports/2026-05-16-welcome.html",
+      "tags": ["사이트오픈", "welcome"]
+    }
+  ]
+}
