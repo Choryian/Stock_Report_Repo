@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-05-16 미국 야간 시황 및 한국 개장 대응 (주말판)</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif; background:#f6f5f1; color:#222; margin:0; padding:0; line-height:1.55; }
+  .wrap { max-width:880px; margin:0 auto; padding:18px 16px 60px; }
+  header { border-bottom:3px solid #c4622e; padding-bottom:14px; margin-bottom:18px; }
+  header h1 { margin:0 0 4px; font-size:22px; color:#222; }
+  header .sub { color:#666; font-size:13px; }
+  header .brand { color:#c4622e; font-weight:700; }
+  section { background:#fff; border:1px solid #e6e2d8; border-radius:8px; padding:16px 18px; margin-bottom:14px; }
+  section h2 { margin:0 0 12px; font-size:17px; border-left:5px solid #c4622e; padding-left:10px; display:flex; align-items:center; gap:8px; }
+  section h2 .num { background:#c4622e; color:#fff; width:24px; height:24px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:12px; }
+  section h3 { font-size:14px; margin:16px 0 8px; color:#444; }
+  .summary-box { background:#fef9f1; border:1px solid #f0d9b8; border-radius:6px; padding:12px 14px; }
+  .summary-box .label { color:#c4622e; font-weight:700; font-size:12px; margin-bottom:6px; }
+  .summary-box .body { font-size:15px; }
+  .grid { display:grid; gap:10px; }
+  .grid-2 { grid-template-columns:1fr 1fr; }
+  .grid-3 { grid-template-columns:1fr 1fr 1fr; }
+  @media (max-width:600px){ .grid-3 { grid-template-columns:1fr 1fr; } .grid-2 { grid-template-columns:1fr; } }
+  .kpi { background:#fafaf7; border:1px solid #ecead8; border-radius:6px; padding:10px 12px; }
+  .kpi .label { font-size:11px; color:#888; }
+  .kpi .value { font-size:17px; font-weight:700; margin:2px 0; }
+  .kpi .delta { font-size:12px; }
+  .up { color:#c0392b; } /* 한국식: 상승 빨강 */
+  .down { color:#1565c0; } /* 한국식: 하락 파랑 */
+  .neutral { color:#666; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th, td { border:1px solid #e0dccf; padding:7px 9px; text-align:left; vertical-align:top; }
+  th { background:#f3efe3; font-weight:700; }
+  .table-wrap { overflow-x:auto; }
+  .callout { background:#fef9f1; border-left:4px solid #c4622e; padding:10px 12px; margin:10px 0; font-size:13px; border-radius:4px; }
+  .callout.risk { background:#eaf2fb; border-left-color:#1565c0; }
+  .callout.bull { background:#fdecea; border-left-color:#c0392b; }
+  .scenario { padding:10px 12px; border-radius:6px; margin:8px 0; font-size:13px; border-left:4px solid; }
+  .scenario .head { font-weight:700; margin-bottom:4px; }
+  .scenario.A { background:#fdecea; border-color:#c0392b; }
+  .scenario.B { background:#fbf7e8; border-color:#b59935; }
+  .scenario.C { background:#eaf2fb; border-color:#1565c0; }
+  .pill { display:inline-block; padding:2px 7px; border-radius:11px; font-size:11px; font-weight:600; }
+  .pill-peak { background:#fdecea; color:#c0392b; }
+  .pill-growth { background:#fbf7e8; color:#8b6f12; }
+  .pill-emerging { background:#eaf2fb; color:#1565c0; }
+  ul.tight { margin:6px 0 6px 18px; padding:0; }
+  ul.tight li { margin-bottom:4px; font-size:13px; }
+  footer { margin-top:20px; padding-top:12px; border-top:1px solid #ddd; font-size:12px; color:#777; text-align:center; }
+  footer .disclaimer { margin-top:8px; font-size:11px; color:#999; }
+  small { color:#888; font-size:11px; }
+  .score-bar { background:#eaf2fb; border:1px solid #c5d8ed; border-radius:6px; padding:10px 12px; text-align:center; }
+  .score-bar .score { font-size:28px; font-weight:800; color:#1565c0; }
+  .score-bar .label { font-size:11px; color:#666; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>미국 야간 시황 및 한국 개장 대응 <span style="font-size:13px; color:#999; font-weight:400;">(주말판 · 다음 거래일 5/18 월)</span></h1>
+  <div class="sub">2026-05-16 (토) 07:30 KST · 발행: <span class="brand">Chory &amp; Rochet</span></div>
+</header>
+
+<!-- 1. 한 줄 요약 -->
+<section>
+  <h2><span class="num">1</span>한 줄 요약</h2>
+  <div class="summary-box">
+    <div class="label">SUMMARY</div>
+    <div class="body">트럼프-시진핑 정상회담 빈손 + 미 10년물 4.55%(연중 최고) + WTI $104 + 강한 매크로 인플레이션 우려에 美 3대지수 동반 하락 마감. 반도체 -3~5% 집단 폭락, Russell 2000 -2.6% 최악. 한국 주말 무휴장 + 월요일 추가 갭다운 압력 누적.</div>
+  </div>
+  <div class="grid grid-3" style="margin-top:12px;">
+    <div class="kpi"><div class="label">키워드 1</div><div class="value">시진핑 빈손</div></div>
+    <div class="kpi"><div class="label">키워드 2</div><div class="value">10Y 4.55%</div></div>
+    <div class="kpi"><div class="label">키워드 3</div><div class="value">반도체 투매</div></div>
+  </div>
+  <div class="score-bar" style="margin-top:10px;">
+    <div class="label">갭 예측 점수 (월요일 5/18 KOSPI 시초)</div>
+    <div class="score">-7</div>
+    <div class="label">→ 시나리오 C (갭하락) 우선 / KOSPI -0.7~-1.5% 갭다운 베이스</div>
+  </div>
+</section>
+
+<!-- 2. 미국 3대 지수·매크로 -->
+<section>
+  <h2><span class="num">2</span>미국 3대 지수 · 매크로</h2>
+  <div class="grid grid-2">
+    <div class="kpi"><div class="label">다우 (DJIA)</div><div class="value down">49,526.17</div><div class="delta down">-537.29p (-1.07%)</div></div>
+    <div class="kpi"><div class="label">S&amp;P 500</div><div class="value down">7,408.50</div><div class="delta down">-1.24%</div></div>
+    <div class="kpi"><div class="label">나스닥 종합</div><div class="value down">26,225.14</div><div class="delta down">-1.54%</div></div>
+    <div class="kpi"><div class="label">러셀 2000</div><div class="value down">2,787.50</div><div class="delta down">-2.60% (최악)</div></div>
+  </div>
+
+  <h3>SOX · 변동성 · 금리 · 환율</h3>
+  <div class="grid grid-3">
+    <div class="kpi"><div class="label">SOX (반도체)</div><div class="value down">≈11,624</div><div class="delta down">약 -3.7% · 한국 반도체 직격</div></div>
+    <div class="kpi"><div class="label">VIX</div><div class="value down">상승 전환</div><div class="delta down">전일 17.26 → 20대 추정</div></div>
+    <div class="kpi"><div class="label">美 10년물</div><div class="value down">4.55%</div><div class="delta down">+9bp · 1년 최고</div></div>
+    <div class="kpi"><div class="label">美 30년물</div><div class="value down">5.10%</div><div class="delta down">장기금리 5%대 굳히기</div></div>
+    <div class="kpi"><div class="label">DXY</div><div class="value down">강세 전환</div><div class="delta down">안전자산 선호 가속</div></div>
+    <div class="kpi"><div class="label">USD/KRW (현물)</div><div class="value down">1,497~1,499원</div><div class="delta neutral">전일 장중 1,500 돌파 후 약간 안정</div></div>
+  </div>
+
+  <div class="callout risk">
+    <strong>⚠ 핵심 시그널:</strong> 10년물 4.55% + 30년물 5.10%은 지난 1년 최고. CPI 3.8% + PPI 2022년 이후 최고 가속. 워시 신임 의장 동결 가능성 부각된 가운데 인플레이션 재점화 우려 → 성장주(특히 반도체) 직격탄. Russell 소형주가 -2.6%로 가장 큰 충격은 금리 민감도 + 마진 우려 반영.
+  </div>
+</section>
+
+<!-- 3. 섹터·종목 -->
+<section>
+  <h2><span class="num">3</span>섹터 · 종목 (한국 영향 중심)</h2>
+
+  <h3>📉 반도체 집단 투매 (한국 직결)</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>종목</th><th>등락</th><th>비고 / 한국 매핑</th></tr></thead>
+    <tbody>
+      <tr><td><strong>NVDA</strong></td><td class="down">-3.72%</td><td>고 232.01 · 저 224.25 → 5/20 (수) 어닝 대기 차익실현. 한국: SK하이닉스·한미반도체 직접 영향</td></tr>
+      <tr><td><strong>AVGO</strong></td><td class="down">-2.88%</td><td>커스텀 ASIC + HBM 수요. 한국: 삼성전자·SK하이닉스</td></tr>
+      <tr><td><strong>TSM</strong></td><td class="down">-2.59%</td><td>파운드리 대장. 한국: DB하이텍·SK하이닉스 (파운드리)</td></tr>
+      <tr><td><strong>ASML</strong></td><td class="down">-4.00%</td><td>EUV 장비. 한국: 원익IPS·동진쎄미켐·솔브레인 (장비/소재) 갭다운 가능성</td></tr>
+      <tr><td><strong>MU (마이크론)</strong></td><td class="down">-5.49%</td><td>D램·HBM 1차 동조. 한국: SK하이닉스 갭다운 베이스</td></tr>
+      <tr><td><strong>INTC</strong></td><td class="down">-6.86%</td><td>Foundry/AI 약세 + 구조조정 우려</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout">
+    <strong>한국 반도체 추가 갭다운 시나리오:</strong> 금요일 이미 삼성전자 -8.61%·SK하이닉스 -7.66%·한미반도체 -9.89% 폭락 후 SOX -3.7% 추가 약세. 월요일 시초가 -3~-5% 추가 갭다운 가능 → 단 이미 패닉 매도 충분히 진행된 만큼 시초 5분 매물 소화 후 V자 반등 시도 가능성도 병존.
+  </div>
+
+  <h3>매그니피센트 7 + 기타 핵심</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>종목</th><th>등락</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td><strong>MSFT</strong></td><td class="up">+3.91%</td><td>유일한 강세 — 빌 애크먼 Pershing 지분 공개</td></tr>
+      <tr><td><strong>NVDA</strong></td><td class="down">-3.72%</td><td>어닝 대기</td></tr>
+      <tr><td><strong>TSLA</strong></td><td class="down">~-2%</td><td>$420~436 변동, 시장 대비 부진. 한국: LG에너지솔루션·삼성SDI·에코프로비엠 동반 약세 우려</td></tr>
+      <tr><td><strong>AAPL/GOOG/META/AMZN</strong></td><td class="down">전반 약세</td><td>금리·달러 강세에 빅테크 동반 조정</td></tr>
+      <tr><td><strong>LMT</strong> (방산)</td><td class="neutral">≈ 보합</td><td>$515.26, 일중 변동성 — 한국 방산은 Iran 긴장으로 상대 강세 가능</td></tr>
+      <tr><td><strong>CEG</strong> (원전)</td><td class="neutral">$275.26</td><td>금리 부담 vs AI 수요 — 한국 원전 두산에너빌리티·한전기술 상대 견조 가능</td></tr>
+      <tr><td><strong>VST</strong> (전력)</td><td class="neutral">$141.90</td><td>가스+원자력 혼합 발전</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>한국 ADR</h3>
+  <div class="grid grid-3">
+    <div class="kpi"><div class="label">CPNG (쿠팡)</div><div class="value down">$16.14</div><div class="delta down">$16.07~$16.61 박스, 동반 약세</div></div>
+    <div class="kpi"><div class="label">KEP (한전 ADR)</div><div class="value down">$13.52</div><div class="delta down">-3.30% · 금리 부담</div></div>
+    <div class="kpi"><div class="label">신호 종합</div><div class="value down">전반 약세</div><div class="delta neutral">외인 시각 한국 비중 추가 축소 가능</div></div>
+  </div>
+</section>
+
+<!-- 4. 매크로 이벤트·어닝 -->
+<section>
+  <h2><span class="num">4</span>매크로 이벤트 · 어닝</h2>
+  <ul class="tight">
+    <li class="down"><strong>트럼프-시진핑 정상회담 빈손 종료:</strong> 무역·관세 프레임워크 합의 실패 → 시장 실망 매도. 트럼프 이란 강경 입장 재확인.</li>
+    <li class="down"><strong>美 10년물 4.55% 1년 최고:</strong> CPI 3.8% (4월) + PPI 2022년 이후 최고 가속에 금리 인하 기대 후퇴.</li>
+    <li class="down"><strong>WTI $104 (+$3) · Brent $108~109:</strong> 이란 긴장 + 미국 강경 전환에 유가 상방 압력. 4월 PCE 4% 근접 우려.</li>
+    <li class="down"><strong>금 -2% · Bitcoin $79,073 (-2.8%):</strong> 일반적인 안전자산 패턴과 달리 동반 약세 — 달러·국채 외 자산 일제 매도. 금 4일 연속 하락.</li>
+    <li class="up"><strong>MSFT +3.91%:</strong> Pershing Square 지분 공개. 빅테크 내 차별화 시작 신호.</li>
+    <li><strong>다음 주 핵심 어닝:</strong> 5/20 (수) NVDA — 한국 반도체 운명 가르는 이벤트. 가이던스 핵심.</li>
+  </ul>
+
+  <h3>다음 주 매크로 캘린더</h3>
+  <ul class="tight">
+    <li>5/18 (월): 美 5월 뉴욕 연은 제조업 지수, 워시 신임 의장 첫 공개발언 가능성</li>
+    <li>5/19 (화): 美 4월 주택착공·신규주택 매매</li>
+    <li>5/20 (수): NVDA 어닝 (장 마감 후, 한국 5/21 아침 발표) — 시장 최대 분수령</li>
+    <li>5/22 (금): 美 5월 PMI 잠정치, 일본 4월 CPI</li>
+    <li>5/24 (월): <strong>한국 휴장 — 부처님오신날</strong></li>
+  </ul>
+</section>
+
+<!-- 5. 한국 섹터·테마 매핑 -->
+<section>
+  <h2><span class="num">5</span>미국 → 한국 섹터 · 테마 매핑</h2>
+
+  <h3>📉 갭다운 우려 섹터 (대장/2등/소외 3종)</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>美 카테고리</th><th>美 등락</th><th>한국 섹터</th><th>대장주</th><th>2등주</th><th>소외주</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>AI·GPU·HBM</td>
+        <td class="down">NVDA -3.7% / AVGO -2.9% / MU -5.5%</td>
+        <td>반도체 (HBM)</td>
+        <td class="down">SK하이닉스</td>
+        <td class="down">한미반도체</td>
+        <td class="down">삼성전자 (메모리 회복 지연)</td>
+      </tr>
+      <tr>
+        <td>반도체 장비</td>
+        <td class="down">ASML -4.0%</td>
+        <td>반도체 장비·소재</td>
+        <td class="down">원익IPS</td>
+        <td class="down">동진쎄미켐</td>
+        <td class="down">솔브레인</td>
+      </tr>
+      <tr>
+        <td>전기차·배터리</td>
+        <td class="down">TSLA ~-2%</td>
+        <td>2차전지</td>
+        <td class="down">LG에너지솔루션</td>
+        <td class="down">삼성SDI</td>
+        <td class="down">에코프로비엠</td>
+      </tr>
+      <tr>
+        <td>빅테크 플랫폼</td>
+        <td class="down">GOOG/META 약세</td>
+        <td>인터넷 플랫폼</td>
+        <td class="down">네이버</td>
+        <td class="down">카카오</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>🔥 상대 강세 후보 섹터 (Iran 긴장 + 금리/원전 수혜)</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>美 카테고리</th><th>美 등락</th><th>한국 섹터</th><th>대장주</th><th>2등주</th><th>소외주</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>방산·우주</td>
+        <td class="neutral">LMT 보합 / 지정학 긴장↑</td>
+        <td>방산</td>
+        <td class="up">한화에어로스페이스</td>
+        <td class="up">LIG넥스원</td>
+        <td class="up">현대로템</td>
+      </tr>
+      <tr>
+        <td>원전·전력</td>
+        <td class="neutral">CEG $275 / VST $142 견조</td>
+        <td>원전</td>
+        <td class="up">두산에너빌리티</td>
+        <td class="up">한전기술</td>
+        <td class="up">한국전력</td>
+      </tr>
+      <tr>
+        <td>WTI $104 (Iran)</td>
+        <td class="up">유가 +$3</td>
+        <td>정유·화학</td>
+        <td class="up">S-Oil</td>
+        <td class="up">SK이노베이션</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>헤지 (S&amp;P -1.24%)</td>
+        <td class="up">VIX 상승</td>
+        <td>인버스 ETF</td>
+        <td class="up">KODEX 200선물인버스2X</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>전일 (5/15 금) 마감 보고서 Tier 1 인계 점검</h3>
+  <div class="callout risk">
+    <strong>금요일 Tier 1 → 월요일 5/18 인계:</strong>
+    <ul class="tight" style="margin-top:6px;">
+      <li><strong>LG전자 (066570) 240,500원:</strong> 美 빅테크 약세에도 로봇 테마는 독립 → 갭다운 시 235K 손절 유지, 233~236K 눌림목 분할 매수 유효. 단 단기 +10.83% 급등 → 추격 매수 금지.</li>
+      <li><strong>KODEX 200선물인버스2X (252670) 118원:</strong> 美 약세 + 환율 1,500 + 외인 매도 누적 → <span class="up">가장 견조한 후보로 부상</span>. 시초가 +2~3% 갭상승 시 일부 차익, 추가 약세 확신 시 보유.</li>
+      <li><strong>두산로보틱스 (454910) 127,400원:</strong> +19.29% 급등 후 차익 매물 부담 + Peak 테마 + 위험회피 국면 → 시초가 매수 금지, -7% 이상 눌림 시에만 110K~115K 분할.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 6. 환율·NDF -->
+<section>
+  <h2><span class="num">6</span>환율 · NDF</h2>
+  <div class="grid grid-3">
+    <div class="kpi"><div class="label">USD/KRW (5/15 종가)</div><div class="value down">1,497~1,499</div><div class="delta neutral">전일 장중 1,500 돌파 후 약간 안정</div></div>
+    <div class="kpi"><div class="label">DXY</div><div class="value down">강세 전환</div><div class="delta down">안전자산 → 원화 약세 압력 지속</div></div>
+    <div class="kpi"><div class="label">월요일 시초 예상</div><div class="value down">1,495~1,510</div><div class="delta down">갭상승(원화 약세) 가능성 우세</div></div>
+  </div>
+  <div class="callout">
+    <strong>참고:</strong> 야간 미선물 ES·NQ 미세 약세 + DXY 강세 + 10Y 4.55% 1년 최고 조합은 원화에 추가 약세 압력. 1,500원 돌파 재시도 가능. 단 한국 외환당국 구두개입 가능성도 1,510원선 전후로 부상.
+  </div>
+</section>
+
+<!-- 7. 한국 개장 시나리오 -->
+<section>
+  <h2><span class="num">7</span>한국 개장 (월요일 5/18) A/B/C 시나리오</h2>
+
+  <div class="scenario A">
+    <div class="head">A. 반등 갭상승 (강세) — 확률 15%</div>
+    <p>주말 中 추가 정책 호재(中 부양책·미·중 후속협상) + 환율 1,490원대 안정. <strong>대응:</strong> 반도체 낙폭과대 V자 반등 노린 분할 매수 (삼성전자·SK하이닉스 5% 손절폭). 단 거래량 동반 없이는 추격 매수 금지.</p>
+  </div>
+  <div class="scenario B">
+    <div class="head">B. 보합 출발 (중립) — 확률 25%</div>
+    <p>미선물 보합·환율 1,500원 유지. <strong>대응:</strong> 09:00~09:30 외인 시간외 수급 확인 후 진입. 인버스 헤지 50% 유지. 방산·원전 상대 강세 추세 진입 가능.</p>
+  </div>
+  <div class="scenario C">
+    <div class="head">C. 추가 갭다운 (약세) — 확률 60% [<span class="up">우선 시나리오</span>]</div>
+    <p>美 SOX -3.7% + 10Y 4.55% + 환율 1,500원 재돌파 + 트럼프-시진핑 빈손. <strong>대응:</strong> 현금 비중 60%↑, 인버스 ETF 추가 매수, 방산·원전·정유만 잔류. KOSPI 7,300선 1차 지지 확인 전까지 반도체·2차전지 신규 진입 금지. 시초가 -3%↓ 우량주에만 25% 분할.</p>
+  </div>
+
+  <h3>갭 점수 산출</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>항목</th><th>값</th><th>점수</th></tr></thead>
+    <tbody>
+      <tr><td>S&amp;P500</td><td class="down">-1.24%</td><td class="down">-2</td></tr>
+      <tr><td>나스닥</td><td class="down">-1.54%</td><td class="down">-2</td></tr>
+      <tr><td>SOX (반도체)</td><td class="down">≈-3.7%</td><td class="down">-2</td></tr>
+      <tr><td>야간 미선물 (ES)</td><td class="down">소폭 약세</td><td class="down">-1</td></tr>
+      <tr><td>원/달러 NDF</td><td class="neutral">1,498 (보합)</td><td class="neutral">0</td></tr>
+      <tr><td><strong>총점</strong></td><td><strong>—</strong></td><td class="down"><strong>-7</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 8. Tier 1 관심종목 -->
+<section>
+  <h2><span class="num">8</span>Tier 1 관심종목 (월요일 시초가 대응)</h2>
+  <div class="callout">
+    <strong>⚠ 위험회피 국면 — 보수 모드 유지:</strong> Tier 1을 3종목 + 신규 후보 2종으로 구성. 신규 매수보다 헤지·관망·낙폭과대 분할 매수 우선.
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>종목</th><th>금요일 종가</th><th>시초 대응</th><th>손절가</th><th>1차 목표</th><th>美 야간 근거</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>KODEX 200선물인버스2X (252670)</strong></td>
+        <td class="up">118</td>
+        <td>시초가 갭상승 +2~3% 시 30% 차익, 갭다운 시 추가 매수</td>
+        <td class="down">109 (-7%)</td>
+        <td class="up">135 (+14%)</td>
+        <td>美 SOX -3.7% + 10Y 4.55% + 시나리오 C 60% — 헤지 핵심 자산</td>
+      </tr>
+      <tr>
+        <td><strong>한화에어로스페이스</strong><br><small>(신규)</small></td>
+        <td class="up">—</td>
+        <td>시초 +1%↑ 출발 시 추격 자제, 눌림목 대기</td>
+        <td class="down">5% 손절</td>
+        <td class="up">+8~10%</td>
+        <td>트럼프 이란 강경 + WTI $104 + Brent $108~109 → 지정학 리스크 ↑, 방산 수혜</td>
+      </tr>
+      <tr>
+        <td><strong>두산에너빌리티</strong><br><small>(신규)</small></td>
+        <td class="up">—</td>
+        <td>시초 보합 출발 시 분할 매수</td>
+        <td class="down">5% 손절</td>
+        <td class="up">+8~10%</td>
+        <td>美 CEG $275 / VST $142 견조 + AI 전력 수요 + 금리 부담 헤지 (실물자산)</td>
+      </tr>
+      <tr>
+        <td><strong>LG전자 (066570)</strong></td>
+        <td class="up">240,500</td>
+        <td>갭상승 추격 금지, 233~236K 눌림 분할만</td>
+        <td class="down">222,000 (-5%)</td>
+        <td class="up">260,000 (+10%)</td>
+        <td>美 빅테크 약세 + 로봇 테마 독립성 — 갭다운 시 232K 부근 분할 진입 기회</td>
+      </tr>
+      <tr>
+        <td><strong>S-Oil (010950)</strong><br><small>(관찰)</small></td>
+        <td class="up">—</td>
+        <td>관찰 우선, 거래량 확인 후 시초 +1%↑ 시 진입</td>
+        <td class="down">5% 손절</td>
+        <td class="up">+7%</td>
+        <td>WTI +$3 / Iran 긴장 → 정제마진 + 원유 보유 가치 상승</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout risk">
+    <strong>제외 종목:</strong> 두산로보틱스 (Peak 테마 + 단기 급등 후 차익 매물 우려). 신규 매수 후보에서 잠정 제외, 110K 이하 눌림 시에만 분할 재고려.
+  </div>
+</section>
+
+<!-- 9. 시간대별 체크포인트 -->
+<section>
+  <h2><span class="num">9</span>시간대별 체크포인트 (월요일 5/18)</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>시각</th><th>체크 항목</th><th>판단 기준</th></tr></thead>
+    <tbody>
+      <tr><td>주말 (5/16~17)</td><td>중국 위안화 변동, 미·중 협상 후속, 이란/중동 보도</td><td>위안 약세 → 원화 동조 약세 추가 압력</td></tr>
+      <tr><td>일요일 22:00</td><td>아시아 야간선물 (CME ES/NQ) 재개</td><td>주말 뉴스 반영 흐름 확인</td></tr>
+      <tr><td>월 08:00~08:50</td><td>시간외 단일가 · 미 야간선물 · NDF 환율</td><td>NDF 1,500↑ 또는 ES -0.3%↓ 시 갭다운 확정</td></tr>
+      <tr><td>월 08:30~09:00</td><td>동시호가 예상가 · 외국인 시간외 수급</td><td>외인 매도 7거래일째 여부</td></tr>
+      <tr><td>월 09:00 시초가</td><td>갭 크기 · 5분 매물 소화 여부</td><td>-3% 갭다운에 거래량 적으면 V자 반등 신호</td></tr>
+      <tr><td>월 09:30~10:00</td><td>주도 테마 거래대금 (방산/원전/인버스)</td><td>인버스 ETF 거래대금 폭증 시 시나리오 C 확정</td></tr>
+      <tr><td>월 11:00~11:30</td><td>외인 · 기관 잠정 수급 발표</td><td>외인 매도 6일 → 7일 진입 여부</td></tr>
+      <tr><td>월 13:00 오후장</td><td>미선물 흐름 + 환율 변동 재점검</td><td>환율 1,510 돌파 시 외환당국 개입 경계</td></tr>
+      <tr><td>월 15:20 동시호가</td><td>KOSPI 7,300선 · 코스닥 1,100선 지지</td><td>이탈 시 주봉 패턴 추가 악화</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>핵심 리스크 시그널</h3>
+  <ul class="tight">
+    <li class="down">외인 코스피 7일 연속 순매도 (현재 5일 누적 24조+, 금요일 -4.37조)</li>
+    <li class="down">원/달러 1,510원 돌파 → 외인 환차손 가속 → 매도 확대</li>
+    <li class="down">SK하이닉스 13만원선 이탈 → 반도체 패닉 재확산</li>
+    <li class="down">KOSPI 7,300선 이탈 → 사이드카 재발동 가능</li>
+    <li class="down">코스닥 1,100선 이탈 → 중소형주 투매 재개</li>
+  </ul>
+
+  <h3>주말 모니터링 우선순위</h3>
+  <ul class="tight">
+    <li>5/16~17 미·중 후속 보도, 트럼프 이란 발언, 워시 신임 의장 동향</li>
+    <li>5/17 (일) 22:00 CME 야간선물 재개 — 갭 시그널 1차 확정</li>
+    <li>주말 한국 외환당국 구두개입 가능성 (1,500원 돌파 후 첫 주말)</li>
+  </ul>
+</section>
+
+<footer>
+  발행: <strong>Chory &amp; Rochet</strong> · 2026-05-16 (토) 07:30 KST · 주말판<br>
+  데이터: Yahoo Finance · Investing.com · CME · CNBC · The Street · 24/7 Wall St · Sunday Guardian · KRX
+  <div class="disclaimer">본 보고서는 정보 제공 목적이며 투자 권유가 아닙니다. 모든 투자 결정과 책임은 투자자 본인에게 있습니다. 미국 마감 데이터는 출처에 따라 ±0.2% 편차가 있을 수 있습니다.</div>
+</footer>
+
+</div>
+</body>
+</html>
