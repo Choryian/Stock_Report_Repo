@@ -1,6 +1,22 @@
 {
   "reports": [
     {
+      "id": "2026-05-17-439870-kodex-treasury-30y-dwave",
+      "title": "KODEX 국고채30년액티브 (439870) · 종합 Dwave 분석 v1 — 매파 일색 시장의 역설",
+      "summary": "매파 일색 시장에서 KODEX 국고채30년액티브(439870)가 12개월 −24.8% mark-to-market 손실로 NAV 디스카운트 영역 진입. 신현송 BOK 총재·4월 CPI 2.6%·oil shock으로 sell-side는 \"연말 policy rate 3.00%\"로 컨센서스 수렴. 듀레이션 18.5년이 이미 가격에 흡수했다면 역설적 medium-term entry. Dwave 130점 모델 74점 Tier B — Scaled entry permissible; patience required.",
+      "category": "종목분석",
+      "date": "2026-05-17",
+      "path": "reports/2026-05-17-439870-kodex-treasury-30y-dwave.html",
+      "tags": [
+        "KODEX국고채30년",
+        "439870",
+        "국고채ETF",
+        "Dwave",
+        "TierB",
+        "채권"
+      ]
+    },
+    {
       "id": "2017-11-14-lafon-rochet-first-love",
       "title": "와인은 이야기를 만들고 추억으로 마시는 술 — 나의 첫 사랑, Château Lafon-Rochet",
       "summary": "첫 사랑 같은 와인, 샤또 라퐁로쉐. 와인은 알코올이 아니라 사람과 시간을 담아 두는 그릇이다. 2017년 와인오케이닷컴 칼럼을 사진과 시를 곁들여 다시 싣다.",

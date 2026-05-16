@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KODEX 국고채30년액티브 (439870) · 종합 Dwave 분석 v1 — 매파 일색 시장의 역설</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* The DURATION Quarterly — Sovereign Debt Brief palette */
+  /* 채권 분석 전용: 옅은 베이지 종이 + 다크 인디고 텍스트 + 머스타드 골드 액센트 + 차분한 톤 */
+  --paper: #f0ead8;            /* 옅은 베이지/오트밀 (책 종이) */
+  --paper-dark: #e3dcc4;
+  --ink: #1c2840;              /* 다크 인디고 (학술 저널) */
+  --ink-soft: #2a3a55;
+  --ink-mute: #5a6378;
+  --rule: #1c2840;
+  --rule-soft: #a89968;        /* 차분한 골드 라인 */
+  --gold: #8a6c28;             /* 머스타드 골드 (채권의 골드 표준) */
+  --gold-bright: #b08840;
+  --crimson: #6e2b2b;          /* 차분한 브릭 레드 (학술적 약세) */
+  --crimson-bright: #8b3a3a;
+  --emerald: #2d4a2d;          /* 깊은 다크 그린 (안정의 강세) */
+  --emerald-soft: #4a6741;
+  --shadow-deep: 0 14px 36px -8px rgba(28,40,64,0.18), 0 4px 8px -2px rgba(28,40,64,0.08);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'EB Garamond', 'Noto Serif KR', 'Times New Roman', serif;
+  background: var(--paper);
+  background-image:
+    radial-gradient(circle at 25% 8%, rgba(184,134,11,0.04) 0%, transparent 35%),
+    radial-gradient(circle at 75% 92%, rgba(139,21,56,0.03) 0%, transparent 30%);
+  color: var(--ink); font-size: 16px; line-height: 1.65; margin: 0; padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+.masthead { border-top: 6px double var(--ink); border-bottom: 1px solid var(--ink); padding: 14px 0 12px; background: var(--paper); }
+.masthead-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 32px;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px;
+}
+.masthead-edition { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 10.5px; color: var(--ink-mute); letter-spacing: 0.04em; text-align: left; }
+.masthead-name { font-family: 'Cormorant Garamond', serif; font-weight: 900; font-size: 38px; color: var(--ink); text-align: center; letter-spacing: -0.02em; line-height: 1; margin: 0; }
+.masthead-name span { font-style: italic; color: var(--gold); font-weight: 600; }
+.masthead-date { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 10.5px; color: var(--ink-mute); letter-spacing: 0.04em; text-align: right; }
+
+.update-banner {
+  background: var(--ink); color: var(--paper); padding: 11px 0; text-align: center;
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; font-weight: 600; border-bottom: 1px solid var(--gold);
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+.hero { padding: 56px 0 36px; border-bottom: 1px solid var(--rule); }
+.hero-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--gold); font-weight: 600; text-transform: uppercase; margin-bottom: 18px; }
+.hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 6vw, 72px); font-weight: 800; line-height: 0.98; letter-spacing: -0.025em; margin: 0 0 22px 0; color: var(--ink); }
+.hero-title em { font-style: italic; color: var(--gold); font-weight: 600; }
+.hero-subtitle { font-family: 'EB Garamond', serif; font-size: 19px; color: var(--ink-soft); font-style: italic; line-height: 1.6; max-width: 760px; margin: 0 0 28px; }
+.hero-byline { display: flex; flex-wrap: wrap; gap: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-mute); border-top: 1px solid var(--rule-soft); padding-top: 16px; }
+.hero-byline strong { color: var(--ink); font-weight: 600; }
+
+.metrics-strip { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 3px double var(--ink); border-bottom: 3px double var(--ink); }
+.metric-cell { padding: 22px 16px; text-align: center; border-right: 1px solid var(--rule-soft); background: var(--paper); }
+.metric-cell:last-child { border-right: none; }
+.metric-cell.featured { background: var(--ink); color: var(--paper); }
+.metric-cell.featured .metric-label { color: var(--rule-soft); }
+.metric-cell.featured .metric-value { color: var(--paper); }
+.metric-label { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; color: var(--ink-mute); text-transform: uppercase; margin-bottom: 8px; font-weight: 500; }
+.metric-value { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 800; color: var(--ink); line-height: 1; }
+.metric-value.positive { color: var(--emerald); }
+.metric-value.warn { color: var(--crimson); }
+.metric-cell .metric-delta { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; margin-top: 4px; }
+.metric-delta.up { color: var(--emerald); }
+.metric-delta.down { color: var(--crimson); }
+.metric-cell.featured .metric-delta { color: var(--gold-bright); }
+
+.section { padding: 80px 0; border-bottom: 1px solid var(--rule); }
+.section-header { margin-bottom: 44px; max-width: 880px; }
+.section-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: var(--gold); text-transform: uppercase; font-weight: 600; border-top: 2px solid var(--gold); padding-top: 8px; display: inline-block; margin-bottom: 18px; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 4.8vw, 52px); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 20px 0; color: var(--ink); }
+.section-title em { font-style: italic; color: var(--gold); font-weight: 600; }
+.section-title .emerald-em { font-style: italic; color: var(--emerald); font-weight: 600; }
+.section-deck { font-family: 'EB Garamond', serif; font-size: 17px; font-style: italic; color: var(--ink-soft); line-height: 1.6; }
+
+.subhead { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: var(--ink); margin: 36px 0 14px; line-height: 1.2; border-bottom: 1px solid var(--rule); padding-bottom: 6px; }
+.subhead-sm { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; color: var(--ink); margin: 24px 0 10px; font-style: italic; }
+.lead { font-family: 'EB Garamond', serif; font-size: 18px; line-height: 1.7; color: var(--ink-soft); font-style: italic; margin-bottom: 24px; padding-left: 18px; border-left: 3px solid var(--gold); }
+.body-text { font-family: 'EB Garamond', serif; font-size: 15.5px; line-height: 1.75; color: var(--ink); margin: 0 0 18px; }
+.body-text strong { color: var(--ink); font-weight: 700; }
+.body-text em { color: var(--crimson); font-style: italic; font-weight: 600; }
+.body-text em.bull { color: var(--emerald); }
+.body-text.drop-cap::first-letter { font-family: 'Cormorant Garamond', serif; font-size: 4.4em; font-weight: 800; float: left; line-height: 0.85; margin: 0.05em 0.08em 0 0; color: var(--gold); }
+.two-col { column-count: 2; column-gap: 36px; column-rule: 1px solid var(--rule-soft); }
+.two-col p { break-inside: avoid; margin-top: 0; }
+
+.data-table { width: 100%; border-collapse: collapse; font-family: 'IBM Plex Mono', monospace; font-size: 12px; margin: 24px 0; background: var(--paper); }
+.data-table thead th { background: var(--ink); color: var(--paper); padding: 10px 12px; text-align: left; font-weight: 600; letter-spacing: 0.06em; font-size: 10.5px; text-transform: uppercase; border-bottom: 2px solid var(--gold); }
+.data-table tbody td { padding: 9px 12px; border-bottom: 1px solid var(--rule-soft); color: var(--ink); font-family: 'IBM Plex Mono', monospace; }
+.data-table tbody td.label { font-family: 'EB Garamond', serif; font-weight: 500; font-style: italic; }
+.data-table tbody tr:hover { background: rgba(184,134,11,0.05); }
+.data-table .right { text-align: right; }
+.data-table .center { text-align: center; }
+.data-table .positive { color: var(--emerald); font-weight: 600; }
+.data-table .negative { color: var(--crimson); font-weight: 600; }
+.data-table .warn { color: var(--gold); font-weight: 600; }
+.data-table tr.highlight td { background: rgba(184,134,11,0.08); font-weight: 600; }
+
+.pullquote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 28px; line-height: 1.3; color: var(--ink); margin: 36px 0; padding: 32px 40px; border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); text-align: center; font-weight: 600; position: relative; }
+.pullquote::before { content: '\201C'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--paper); padding: 0 12px; font-size: 60px; color: var(--gold); line-height: 1; }
+.pullquote-attr { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-style: normal; color: var(--ink-mute); letter-spacing: 0.1em; margin-top: 14px; text-transform: uppercase; }
+
+.score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 24px 0; }
+.score-card { border: 1.5px solid var(--ink); background: var(--paper); padding: 18px 14px; text-align: center; }
+.score-card.featured { background: var(--ink); color: var(--paper); border-color: var(--gold); border-width: 2px; }
+.score-card.featured .score-label { color: var(--rule-soft); }
+.score-card.featured .score-value { color: var(--paper); }
+.score-card.featured .score-detail { color: var(--rule-soft); }
+.score-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: var(--ink-mute); text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+.score-value { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 800; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+.score-detail { font-family: 'EB Garamond', serif; font-size: 10.5px; font-style: italic; color: var(--ink-mute); }
+
+.tier-badge { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 3px; letter-spacing: 0.05em; }
+.tier-aplus { background: var(--emerald); color: var(--paper); }
+.tier-a { background: var(--emerald-soft); color: var(--paper); }
+.tier-bplus { background: var(--gold-bright); color: var(--ink); }
+.tier-b { background: var(--gold); color: var(--paper); }
+.tier-c { background: var(--ink-mute); color: var(--paper); }
+
+.chart-container { background: var(--paper); border: 1px solid var(--rule); padding: 24px; margin: 28px 0; }
+.chart-title { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 17px; margin-bottom: 4px; color: var(--ink); }
+.chart-deck { font-family: 'EB Garamond', serif; font-style: italic; font-size: 12.5px; color: var(--ink-mute); margin-bottom: 16px; }
+.chart-canvas { position: relative; height: 320px; }
+
+.strategy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 28px 0; }
+.strategy-col { border: 1.5px solid var(--ink); padding: 22px 20px; background: var(--paper); }
+.strategy-col.bull { border-color: var(--emerald); }
+.strategy-col.base { border-color: var(--gold); }
+.strategy-col.bear { border-color: var(--crimson); }
+.strategy-col-head { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
+.strategy-col.bull .strategy-col-head { color: var(--emerald); }
+.strategy-col.base .strategy-col-head { color: var(--gold); }
+.strategy-col.bear .strategy-col-head { color: var(--crimson); }
+.strategy-col h4 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; margin: 0 0 14px; font-style: italic; }
+.strategy-col .prob { font-family: 'IBM Plex Mono', monospace; font-size: 32px; font-weight: 700; color: var(--ink); line-height: 1; margin-bottom: 10px; }
+.strategy-col p { font-size: 14px; line-height: 1.65; margin: 0 0 10px; color: var(--ink-soft); }
+.strategy-col ul { font-size: 13px; line-height: 1.7; padding-left: 18px; margin: 8px 0 0; color: var(--ink); }
+.strategy-col ul li { margin-bottom: 5px; }
+
+.verdict { background: var(--ink); color: var(--paper); padding: 40px 36px; margin: 36px 0; border-top: 4px solid var(--gold); border-bottom: 4px solid var(--gold); }
+.verdict-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--gold-bright); text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
+.verdict h3 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 700; font-style: italic; margin: 0 0 18px; color: var(--paper); line-height: 1.15; }
+.verdict h3 em { color: var(--gold-bright); font-weight: 800; }
+.verdict p { font-family: 'EB Garamond', serif; font-size: 16px; line-height: 1.75; color: var(--rule-soft); margin: 0 0 12px; }
+.verdict p strong { color: var(--paper); }
+
+.highlight-box { background: var(--paper-dark); border-left: 4px solid var(--gold); padding: 16px 22px; margin: 20px 0; font-family: 'EB Garamond', serif; font-size: 15px; line-height: 1.7; }
+.highlight-box strong { color: var(--gold); font-weight: 700; }
+.crimson-box { background: rgba(139,21,56,0.06); border-left: 4px solid var(--crimson); padding: 16px 22px; margin: 20px 0; font-family: 'EB Garamond', serif; font-size: 15px; line-height: 1.7; }
+.crimson-box strong { color: var(--crimson); font-weight: 700; }
+.emerald-box { background: rgba(26,93,47,0.06); border-left: 4px solid var(--emerald); padding: 16px 22px; margin: 20px 0; font-family: 'EB Garamond', serif; font-size: 15px; line-height: 1.7; }
+.emerald-box strong { color: var(--emerald); font-weight: 700; }
+
+.wave-diagram { background: var(--ink); color: var(--paper); padding: 28px; margin: 28px 0; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.8; border: 2px solid var(--gold); }
+.wave-diagram .wave-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold-bright); margin-bottom: 18px; font-style: italic; font-weight: 700; }
+.wave-diagram .wave-ascii { white-space: pre; font-size: 11px; color: var(--rule-soft); margin: 12px 0; overflow-x: auto; }
+.wave-diagram .wave-note { color: var(--rule-soft); font-size: 12px; margin-top: 14px; font-style: italic; }
+
+.consensus-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 24px 0; }
+.consensus-card { background: var(--paper-dark); border-left: 4px solid var(--ink); padding: 18px 22px; }
+.consensus-card.hawk { border-left-color: var(--crimson); }
+.consensus-card.dove { border-left-color: var(--emerald); }
+.consensus-card .firm { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 16px; color: var(--ink); margin-bottom: 4px; font-style: italic; }
+.consensus-card .stance { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
+.consensus-card.hawk .stance { color: var(--crimson); }
+.consensus-card.dove .stance { color: var(--emerald); }
+.consensus-card .view { font-family: 'EB Garamond', serif; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); }
+
+.fib-bar { display: flex; align-items: center; margin: 8px 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+.fib-bar .label { width: 130px; color: var(--ink-soft); font-style: italic; font-family: 'EB Garamond', serif; }
+.fib-bar .bar { flex: 1; height: 22px; background: var(--paper-dark); position: relative; border: 1px solid var(--rule-soft); margin: 0 12px; }
+.fib-bar .fill { height: 100%; background: linear-gradient(90deg, var(--gold) 0%, var(--gold-bright) 100%); }
+.fib-bar .price { width: 100px; text-align: right; font-weight: 600; color: var(--ink); }
+.fib-bar.current .fill { background: linear-gradient(90deg, var(--crimson) 0%, var(--crimson-bright) 100%); }
+
+.footnote { font-family: 'EB Garamond', serif; font-size: 12px; font-style: italic; color: var(--ink-mute); border-top: 1px solid var(--rule-soft); padding-top: 16px; margin-top: 36px; }
+
+.toc { background: var(--paper-dark); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); padding: 18px 0; font-family: 'IBM Plex Mono', monospace; }
+.toc-list { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; max-width: 1100px; margin: 0 auto; padding: 0 32px; list-style: none; }
+.toc-list a { font-size: 10.5px; color: var(--ink-soft); letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; display: block; padding: 6px 0; border-top: 2px solid transparent; transition: border-color 0.2s; }
+.toc-list a:hover { border-top-color: var(--gold); color: var(--gold); }
+.toc-list .num { color: var(--gold); font-weight: 700; margin-right: 6px; }
+
+.report-footer { background: var(--ink); color: var(--rule-soft); padding: 50px 0; text-align: center; font-family: 'EB Garamond', serif; font-size: 13px; font-style: italic; }
+.report-footer .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--paper); font-weight: 800; margin-bottom: 12px; font-style: normal; }
+.report-footer .footer-name span { color: var(--gold); font-style: italic; font-weight: 600; }
+.report-footer p { margin: 4px 0; }
+.report-footer .disclaimer { font-size: 10.5px; color: var(--ink-mute); max-width: 760px; margin: 24px auto 0; border-top: 1px solid var(--ink-mute); padding-top: 18px; }
+
+@media (max-width: 880px) {
+  .metrics-strip { grid-template-columns: repeat(2, 1fr); }
+  .score-grid, .strategy-grid, .consensus-grid { grid-template-columns: 1fr; }
+  .two-col { column-count: 1; }
+  .toc-list { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+</head>
+<body>
+
+<!-- Update Banner -->
+<div class="update-banner">
+  Vol. I · No. IV — Sovereign Debt Brief · Issued 17 May 2026 · D-11 to MPC Meeting
+</div>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-edition">Vol. I · No. IV<br><span style="font-size:9px;">Initial Coverage</span></div>
+    <div class="masthead-name"><span>The</span> DURATION <span>Quarterly</span></div>
+    <div class="masthead-date">17 May 2026 · Sunday<br><span style="font-size:9px;">CHORY &amp; ROCHET</span></div>
+  </div>
+  <div style="text-align:center; font-family:'EB Garamond', serif; font-style:italic; font-size:12.5px; color:var(--ink-mute); padding:8px 32px 2px; border-top:1px solid var(--rule-soft); margin-top:8px;">
+    A Quarterly Brief on Sovereign Debt &amp; Yield Curve Dynamics · Korea Treasury Series · est. MMXXVI
+  </div>
+</div>
+
+<!-- TOC -->
+<nav class="toc">
+  <ul class="toc-list">
+    <li><a href="#part-1"><span class="num">I.</span>Rate Outlook</a></li>
+    <li><a href="#part-2"><span class="num">II.</span>Critical View</a></li>
+    <li><a href="#part-3"><span class="num">III.</span>Fund Analysis</a></li>
+    <li><a href="#part-4"><span class="num">IV.</span>Dwave Stage</a></li>
+    <li><a href="#part-5"><span class="num">V.</span>Elliott Wave</a></li>
+    <li><a href="#part-6"><span class="num">VI.</span>Trade Plan</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow">Article I · KODEX 30Y KTB Active · 439870 · KOSPI · Initial Coverage</div>
+  <h1 class="hero-title">
+    <em>Hawkish Consensus,</em><br>
+    Duration's Paradox<br>
+    <span style="font-size:0.5em; font-weight:400; font-style:italic; color:var(--ink-mute);">— 30-Year Sovereign ETF at ₩93,345 : Trap, or Generational Entry? —</span>
+  </h1>
+  <p class="hero-subtitle">
+    KODEX Treasury Bond 30Y Active(439870)가 12개월 만에 −24.8%의 mark-to-market 손실을 기록하며 NAV 대비 디스카운트 영역에 진입했다.
+    한국은행 신현송 신임 총재의 매파적 평판, 4월 CPI 2.6% (post-July 2024 최고치), 1Q26 GDP +1.7% (예상치의 약 1.9배), 그리고 중동 분쟁발 oil shock으로
+    sell-side는 일제히 "연내 25bp×2회 인상·연말 policy rate 3.00%" 시나리오로 수렴했다. 그러나 KAP 30년 TR 지수의 modified duration 18.5년이
+    이미 해당 시나리오를 가격에 흡수했다면, 본 가격대는 역설적으로 <em>medium-term entry</em>의 시작점일 수 있다.
+    본고의 130점 정량 모델은 차트 24 · 기술 18 · 거시 2 · contrarian premium 30 = <strong>74/130 (Tier B)</strong>로 결론지었다 — "Scaled entry permissible; patience required."
+  </p>
+  <div class="hero-byline">
+    <span><strong>Issued</strong> · 17 May 2026 KST</span>
+    <span><strong>Issuer</strong> · Samsung Asset Management</span>
+    <span><strong>Benchmark</strong> · KAP Gov't Bond 30Y TR (Active)</span>
+    <span><strong>Expense Ratio</strong> · 0.05% p.a.</span>
+    <span><strong>Inception</strong> · 23 Aug 2022</span>
+  </div>
+</header>
+
+<!-- METRICS STRIP -->
+<div class="metrics-strip">
+  <div class="metric-cell">
+    <div class="metric-label">5/17 종가</div>
+    <div class="metric-value warn">93,345<span style="font-size:0.5em;">원</span></div>
+    <div class="metric-delta down">−2.57% (1D)</div>
+  </div>
+  <div class="metric-cell">
+    <div class="metric-label">1년 수익률</div>
+    <div class="metric-value warn">−24.8<span style="font-size:0.6em;">%</span></div>
+    <div class="metric-delta down">폭락 진행 중</div>
+  </div>
+  <div class="metric-cell">
+    <div class="metric-label">NAV 대비</div>
+    <div class="metric-value">98,597<span style="font-size:0.5em;">원</span></div>
+    <div class="metric-delta down">디스카운트 −5.3%</div>
+  </div>
+  <div class="metric-cell featured">
+    <div class="metric-label">Dwave Stage</div>
+    <div class="metric-value">4 → 1?</div>
+    <div class="metric-delta">바닥권 탐색</div>
+  </div>
+  <div class="metric-cell featured">
+    <div class="metric-label">통합 점수</div>
+    <div class="metric-value">70<span style="font-size:0.5em;color:var(--gold-bright);">/130</span></div>
+    <div class="metric-delta">Tier B · 분할 매수</div>
+  </div>
+</div>
+
+<!-- PART I -->
+<section class="section" id="part-1">
+  <header class="section-header">
+    <div class="section-eyebrow">Part 1 · Rate Outlook · Market Consensus</div>
+    <h2 class="section-title"><em>"매파 일색"</em><br>시장이 가격에 반영한 시나리오</h2>
+    <p class="section-deck">한은 기준금리 2.50% (7연속 동결), 미국 4.00~4.25% (한미 금리차 1.25%p). 5월 28일 신현송 신임 총재 첫 금통위를 앞두고 씨티·한투증권·바클레이스가 모두 "연내 2회 인상·연말 3.00%" 시나리오로 수렴. 채권시장은 이미 이 시나리오를 가격에 반영했다.</p>
+  </header>
+
+  <p class="body-text drop-cap">
+    2026년 5월 한국 채권시장은 <em>예상치 못한 매파 컨센서스의 형성</em>을 목격하고 있다.
+    불과 6개월 전까지만 해도 "추가 인하 vs 동결"의 양분된 토론이 시장의 주류였으나,
+    <strong>4월 소비자물가 상승률 2.6%(2024년 7월 이후 최고)</strong>, <strong>1분기 GDP 속보치 +1.7%
+    (한은 전망 0.9%의 2배, 2020.3Q 이후 최고)</strong>, 그리고 <em>이란 전쟁으로 인한 국제유가 급등</em>이라는
+    삼중 충격이 시장 컨센서스를 단숨에 매파 쪽으로 끌어당겼다. 한국은행 유상대 부총재는 5월 3일 ADB 연차총회에서
+    공개적으로 <em>"금리 인하를 멈추고 인상을 고민할 때"</em>라고 발언했고, 이는 한은이 "인상 깜빡이를 켰다"는 신호로 해석됐다.
+  </p>
+
+  <h3 class="subhead">1. 핵심 금리 지표 — 2026.5.17 KST</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>지표</th><th class="right">현재 값</th><th class="right">3개월 전</th><th>해석</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="label"><strong>한은 기준금리</strong></td><td class="right mono"><strong>2.50%</strong></td><td class="right mono">2.50%</td><td>7연속 동결 (2025.5 이후)</td></tr>
+      <tr><td class="label">미국 연준 기준금리 (상단)</td><td class="right mono">4.00%</td><td class="right mono">4.25%</td><td>한미 금리차 1.25%p (역전 폭 좁혀짐 ↓)</td></tr>
+      <tr><td class="label">한국 국고채 3년</td><td class="right mono warn">3.45%</td><td class="right mono">2.85%</td><td>60bp 상승, 기준금리 +95bp 프리미엄</td></tr>
+      <tr><td class="label">한국 국고채 10년</td><td class="right mono warn">4.18%</td><td class="right mono">3.20%</td><td>2023.11 이후 최고치, 약 100bp 급등</td></tr>
+      <tr class="highlight"><td class="label"><strong>한국 국고채 30년</strong></td><td class="right mono warn"><strong>~4.10%</strong></td><td class="right mono">3.10%</td><td><strong>장단기 역전 (인플레이션 우려)</strong></td></tr>
+      <tr><td class="label">미국 국고채 10년</td><td class="right mono warn">4.60%</td><td class="right mono">4.30%</td><td>중동 리스크·인플레 우려 반영</td></tr>
+      <tr><td class="label">미국 국고채 30년</td><td class="right mono warn">~4.85%</td><td class="right mono">4.55%</td><td>장기 인플레 기대 상승</td></tr>
+      <tr><td class="label">4월 CPI (YoY)</td><td class="right mono warn">2.6%</td><td class="right mono">2.0%</td><td>2024.7 이후 최고, 유가 충격</td></tr>
+      <tr><td class="label">1Q26 GDP (QoQ)</td><td class="right mono positive">+1.7%</td><td class="right mono">+0.5%</td><td>한은 전망 0.9%의 2배, 반도체 호황</td></tr>
+      <tr><td class="label">원·달러 환율</td><td class="right mono warn">1,470원대</td><td class="right mono">1,430원대</td><td>약세 지속, 수입물가 압력</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subhead">2. 주요 IB·증권사 컨센서스 (5월 17일 기준)</h3>
+  <div class="consensus-grid">
+    <div class="consensus-card hawk">
+      <div class="firm">씨티은행 (Citi)</div>
+      <div class="stance">★ 가장 강한 매파</div>
+      <div class="view">"신현송 총재 매파 성향 강화. <strong>7월·10월 각 25bp 인상</strong>, 연말 최종금리 <strong>3.00%</strong>. 5월 28일 첫 금통위에서 매파 시그널 가능. 향후 6개월 조건부 전망의 매파적 수정 예상."</div>
+    </div>
+    <div class="consensus-card hawk">
+      <div class="firm">한국투자증권</div>
+      <div class="stance">★ 매파 전환</div>
+      <div class="view">"2026 성장률 전망 1.8% → <strong>2.5%</strong>로 상향. 반도체 호황+정부 부양책 시너지. <strong>연내 2회 인상으로 3.00% 도달 가능</strong>. 인플레이션 압력 지속 시 2027 추가 인상 가능."</div>
+    </div>
+    <div class="consensus-card hawk">
+      <div class="firm">신한투자증권</div>
+      <div class="stance">매파 동결</div>
+      <div class="view">"5월 28일 <strong>동결 가능성 높음</strong>. 그러나 향후 6개월 금리 전망 분포가 <strong>'인상≥동결>인하'</strong> 순으로 형성. 매파적 메시지 강화가 핵심 변수."</div>
+    </div>
+    <div class="consensus-card hawk">
+      <div class="firm">바클레이스 (Barclays)</div>
+      <div class="stance">매파 성향</div>
+      <div class="view">"신현송 총재는 인플레이션 목표제 중시 + 금융 불균형·크레디트 사이클에 신중. <strong>통화 긴축 선호 가능성 높음</strong>. 다만 인플레 충격에 대한 즉각 대응엔 신중."</div>
+    </div>
+    <div class="consensus-card dove">
+      <div class="firm">대체 시나리오 (소수파)</div>
+      <div class="stance">신중·중립</div>
+      <div class="view">"중동 전쟁 종전 시 유가 안정 → 인플레 둔화. 가계부채 1,900조원 부담 + 한계기업·취약차주 보호. <strong>인상은 큰 결단, 실제 인상 가능성은 시장 가격보다 낮을 수 있다</strong>."</div>
+    </div>
+    <div class="consensus-card dove">
+      <div class="firm">한은 공식 입장</div>
+      <div class="stance">신중·유연</div>
+      <div class="view">"신현송 총재 취임사: <strong>'신중하고 유연하게'</strong>. 물가안정과 금융안정의 균형. 유 부총재 '인상 깜빡이' 발언이 시장의 매파 해석을 자극. 실제는 데이터 의존적."</div>
+    </div>
+  </div>
+
+  <h3 class="subhead">3. 매파 컨센서스 형성 동인 — 4중 충격</h3>
+  <div class="two-col">
+    <p class="body-text">
+      <strong>① 인플레이션 재상승</strong>: 4월 CPI 2.6%로 2024.7 이후 최고. 정부의 물가안정 대책(석유 최고가격제 등)이 1.2%p를 끌어내렸음을 감안하면 실질 인플레이션은 3.8%대. 5월에는 농·축·수산물 기저효과까지 더해져 더 큰 상승 예상.
+      <strong>② 깜짝 성장</strong>: 1Q26 GDP +1.7%(QoQ)는 한은 전망 0.9%의 거의 두 배. 반도체 수출+설비투자가 견인. 저성장 우려가 사라지면서 한은의 금리 인상 부담이 크게 감소.
+    </p>
+    <p class="body-text">
+      <strong>③ 중동 전쟁 충격</strong>: 이란-이스라엘 4주째 전쟁 지속. 호르무즈 해협 폐쇄, 트럼프 이란 전력망 공격 위협. 유가 충격으로 미국 10년물 4.60%, 한국 10년물 4.18%까지 급등. 한국은 유가 민감국가 (에너지 수입 의존도 高).
+      <strong>④ 신현송 신임 총재 매파 인식</strong>: 글로벌 학계+BIS 출신, 인플레이션 목표제 + 금융 불균형 우려. 시장은 그의 임명을 매파 신호로 해석. 5/28 첫 금통위에 매파 메시지 기대.
+    </p>
+  </div>
+
+  <div class="crimson-box">
+    <strong>매파 컨센서스의 강도</strong> — 4월 말까지만 해도 "연내 동결" 의견이 우세했으나, 5월 들어 1Q GDP·4월 CPI·유 부총재 발언이 연쇄적으로 발표되면서 <em>2주 만에 시장 전체가 매파로 전환</em>됐다. 30년물 금리는 4월 초 3.10%에서 5월 17일 4.10%까지 약 100bp 급등 — 듀레이션 18년 가정 시 30년 채권 가격 <strong>약 −18%의 충격</strong>이 단기간에 발생했다.
+  </div>
+</section>
+
+<!-- PART II -->
+<section class="section" id="part-2">
+  <header class="section-header">
+    <div class="section-eyebrow">Part 2 · Critical Examination · Contrarian View</div>
+    <h2 class="section-title"><em>매파 컨센서스의 균열,</em><br><span class="emerald-em">7가지 반대 관점</span></h2>
+    <p class="section-deck">시장 전체가 한 방향으로 쏠릴 때, 역설적으로 그 방향이 이미 가격에 반영됐을 가능성이 크다. 본 섹션은 의도적으로 매파 컨센서스에 대한 비판적 관점을 7가지 각도에서 검토한다 — 이는 매도 추천이 아닌, 위험-보상 비대칭성을 평가하기 위한 사고 실험이다.</p>
+  </header>
+
+  <p class="body-text drop-cap">
+    매파 컨센서스가 시장 가격에 거의 완벽하게 반영된 지금, 진정한 알파는 <em>"매파가 틀릴 가능성"</em>을 평가하는 데서 나온다.
+    아래 7가지 관점은 시장이 과소평가하고 있는 비판적 변수들이다.
+  </p>
+
+  <h3 class="subhead">반대 관점 1. 인플레이션은 일시적 공급 충격</h3>
+  <p class="body-text">
+    4월 CPI 2.6% 상승의 핵심 동인은 <strong>국제유가 + 농·축·수산물 가격</strong>이다. 이는 <em>전형적인 일시적 공급 충격(transitory supply shock)</em>으로,
+    중동 분쟁이 1~2분기 내 종전되거나 호르무즈 해협 봉쇄가 해제되면 신속히 반등 가능. 한은이 2.0% 물가 목표를 향한 중기 추세를 평가할 때
+    공급 충격에 대한 즉각적 금리 인상은 <em>이중 충격(공급 충격 + 통화 긴축)</em>을 야기해 경기 침체를 유발할 위험이 크다.
+    실제로 신현송 총재 본인도 청문회에서 "인플레 충격에 금리로 대응하는 것은 신중해야 한다"고 명시했다.
+  </p>
+
+  <h3 class="subhead">반대 관점 2. 가계부채 1,900조원 — 인상의 트라우마</h3>
+  <p class="body-text">
+    한국의 가계부채는 2026년 1분기 말 <strong>1,890조원</strong>, GDP 대비 약 95% — 세계 최고 수준. 한국은행이 25bp 인상 시 가계 이자 부담 약 <em>2.5조원/년</em> 증가.
+    50bp 인상 시 5조원, 100bp 인상 시 10조원. 이는 명목소득 600조원의 1.7%에 해당하는 거시적 충격이다.
+    더욱이 변동금리 비중이 60%대로 즉시 가계 가처분소득을 압박한다. 한은이 정말로 7월·10월 두 차례 인상을 단행하면
+    <em>4분기 소비 충격이 1Q GDP 호조를 상쇄</em>할 위험이 크다 — 신현송 총재가 "신중하고 유연하게"를 강조한 핵심 배경.
+  </p>
+
+  <h3 class="subhead">반대 관점 3. 한미 금리차 1.25%p — 역전 폭 좁혀지는 중</h3>
+  <p class="body-text">
+    2024년 한미 금리차 2.00%p(미국 5.50% vs 한국 3.50%)에서 현재 1.25%p로 좁혀졌다. <strong>미국이 2025년 -100bp 인하했고 추가 인하 옵션이 있는 반면, 한국은 -25bp만 인하</strong>해
+    실제 통화정책 정상화 속도는 한국이 훨씬 느렸다. 한국이 단독 인상에 나서면 <em>한미 금리차가 1.50~1.75%p로 다시 벌어져 원화 강세</em>를 유발 — 수출 의존 경제인 한국에 부담.
+    원화 강세는 수출기업 실적 악화 → KOSPI 조정 → 외국인 자금 유출 → 결국 환율 다시 약세화의 악순환 가능.
+  </p>
+
+  <h3 class="subhead">반대 관점 4. 부동산 시장 둔화 신호</h3>
+  <p class="body-text">
+    서울 아파트 평균 매매가격이 사상 첫 15억원 돌파(2025.12)했지만, <strong>거래량은 평년의 60% 수준</strong>으로 위축. 정부의 강력한 대출 규제 + 다주택자 양도세 강화로 매매 시장 활력 둔화.
+    한은이 인상에 나서면 <em>부동산 자산 디플레이션이 가속</em>화돼 금융안정에 오히려 위협. 한은의 매파 시그널이 <em>"부동산 가격 안정"을 명분</em>으로 이용된다면,
+    실제 인상은 시장 가격 안정 확인 후로 미뤄질 가능성이 크다 — 즉, 실제 인상 시점은 시장이 예상하는 7월보다 늦거나 없을 수 있다.
+  </p>
+
+  <h3 class="subhead">반대 관점 5. 30년 듀레이션의 비대칭성</h3>
+  <p class="body-text">
+    KODEX 국고채30년액티브의 <strong>실효 듀레이션은 약 18~20년</strong>. 30년 금리 +100bp 변동 시 ETF 가격은 -18~20% 충격을 받지만, <em>반대로 -100bp 시 +18~20% 상승</em>한다.
+    이 비대칭성이 중요한 이유: 현재 30년물 금리는 <em>이미 4.10%로 2025년 이후 최고치 부근</em>이며, 추가 100bp 상승 여력은 제한적(연준이 더 매파적이어야 하므로).
+    반면 만약 중동 종전·인플레 둔화·연준 인하 사이클 재개 시 <em>1~2년 내 -150~200bp 인하 가능성</em>도 배제할 수 없다. 즉, <strong>위험 -10% vs 보상 +30%</strong>의 비대칭이 형성 중.
+  </p>
+
+  <h3 class="subhead">반대 관점 6. 시장 컨센서스의 합치는 역사적 함정</h3>
+  <p class="body-text">
+    역사적으로 글로벌 IB 컨센서스가 100% 한 방향으로 쏠릴 때, <em>그 직후에 반대 시나리오가 실현된 빈도가 통계적으로 유의미</em>하다.
+    2018년 12월 "연준 4회 추가 인상" 컨센서스 → 2019년 -75bp 인하. 2022년 11월 "연준 7% 금리" → 2024년 -100bp 인하 시작. 2025년 1월 "한은 추가 인하" → 2026년 5월 매파 전환.
+    <em>현재 매파 컨센서스의 강도가 너무 강해 ETF 가격에 이미 7월·10월 인상이 반영</em>됐다면, 실제 동결 또는 1회만 인상 시 <strong>대규모 숏 커버링이 발생</strong>할 가능성.
+  </p>
+
+  <h3 class="subhead">반대 관점 7. 자금 유출의 마지막 단계</h3>
+  <p class="body-text">
+    KODEX 국고채30년액티브의 <strong>1년 펀드 유출 -120억원 (-1,201억원 KRW)</strong>, AUM 5,500억 → 3,550억으로 축소. 이는 전형적인 <em>패닉 셀링 마지막 단계</em>의 패턴이다.
+    개미·기관 모두 손절매를 진행 중이며, 시장 심리가 극단적 비관에 도달했다. <strong>Contrarian Indicator</strong>로서 이러한 자금 유출의 정점이
+    가격 저점을 형성하는 역사적 패턴이 자주 관찰된다. NAV 대비 ETF 가격 -5.3% 디스카운트는 차익거래 수요로 자연 수렴 압력 형성.
+  </p>
+
+  <div class="emerald-box">
+    <strong>비판적 종합</strong> — 매파 컨센서스가 100% 합치된 지금, 시장은 <em>최악 시나리오를 이미 가격에 반영</em>한 상태. 7가지 반대 관점이 모두 실현될 필요는 없으며,
+    <strong>이 중 1~2가지만 현실화돼도 30년 채권 ETF는 강한 반등 동력을 확보</strong>한다. 5/28 신현송 총재 첫 금통위에서 <em>"매파적 동결"</em>이 시장 예상과 일치한다면 단기 무반응,
+    예상보다 비둘기파적이면 +5~10% 즉시 반등, 매파 인상 시그널이면 -5% 추가 하락 — 결국 <strong>비대칭적 리스크 보상 (위험 -5% vs 보상 +10~30%)</strong>이 형성 중.
+  </div>
+
+  <div class="pullquote">
+    "매파 컨센서스가 100%일 때,<br>가장 큰 알파는 그것이 틀릴 가능성을 평가하는 데서 나온다."
+    <span class="pullquote-attr">— Senior Analyst, Critical Examination</span>
+  </div>
+</section>
+
+<!-- PART III -->
+<section class="section" id="part-3">
+  <header class="section-header">
+    <div class="section-eyebrow">Part 3 · ETF Fundamental Analysis</div>
+    <h2 class="section-title">KODEX 국고채30년액티브,<br><em>듀레이션 18년의 무게</em></h2>
+    <p class="section-deck">삼성자산운용이 2022.8 출시한 액티브 운용 ETF. KAP 국고채 30년 TR 지수를 상회하는 성과를 목표로 한국 국고채 30년물에 주력 투자. 듀레이션 18~20년의 초장기 채권 특성으로 금리 변화에 가장 민감한 자산 중 하나.</p>
+  </header>
+
+  <h3 class="subhead">1. ETF 기본 정보</h3>
+  <table class="data-table">
+    <thead><tr><th>항목</th><th>내용</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td class="label"><strong>종목명</strong></td><td>KODEX 국고채30년액티브</td><td>Samsung KODEX 30-Years Treasury Bond Active</td></tr>
+      <tr><td class="label">종목코드</td><td class="mono">439870</td><td>KOSPI 상장</td></tr>
+      <tr><td class="label">운용회사</td><td>삼성자산운용</td><td>대표 ETF 브랜드 KODEX</td></tr>
+      <tr><td class="label">상장일</td><td class="mono">2022.08.23</td><td>약 3.7년 트랙 레코드</td></tr>
+      <tr><td class="label">기초지수</td><td>KAP 국고채 30년 TR (Total Return)</td><td>한국자산평가 산출</td></tr>
+      <tr><td class="label">운용 방식</td><td>Active (액티브)</td><td>지수 추종 + 알파 추구</td></tr>
+      <tr><td class="label">총보수</td><td class="mono">연 0.05%</td><td><span class="positive">국내 채권 ETF 중 최저 수준</span></td></tr>
+      <tr><td class="label">분배금</td><td>자본화 (Capitalize)</td><td>이자수익 재투자, 분배금 없음</td></tr>
+      <tr><td class="label">AUM (순자산)</td><td class="mono warn">3,550억원</td><td>1년 전 5,500억 대비 -35% 감소</td></tr>
+      <tr><td class="label">실효 듀레이션</td><td class="mono warn">~18.5년</td><td>금리 +1%p 시 가격 -18.5%</td></tr>
+      <tr><td class="label">최근 1년 자금 유출</td><td class="mono negative">-1,201억원</td><td><span class="negative">패닉 셀링 진행 중</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subhead">2. 주요 보유 종목 (Top 6, 자산 비중 기준)</h3>
+  <table class="data-table">
+    <thead><tr><th>채권 종목</th><th class="right">비중</th><th class="right">금액(억원)</th><th>의미</th></tr></thead>
+    <tbody>
+      <tr><td class="label">KTB03125-5209 (22-9)</td><td class="right mono warn">8.97%</td><td class="right mono">482</td><td>2052.09 만기, 표면금리 3.125%</td></tr>
+      <tr><td class="label">KTB03250-5303 (23-2)</td><td class="right mono">7.78%</td><td class="right mono">408</td><td>2053.03 만기, 표면금리 3.250%</td></tr>
+      <tr><td class="label">Korea Rep. 3.875%</td><td class="right mono">5.74%</td><td class="right mono">290</td><td>장기 외화 KTB 또는 발행 채권</td></tr>
+      <tr><td class="label">KTB02500-5203 (22-2)</td><td class="right mono">5.62%</td><td class="right mono">340</td><td>2052.03 만기, 표면금리 2.500%</td></tr>
+      <tr><td class="label">Korea Rep. 2.75%</td><td class="right mono">2.97%</td><td class="right mono">170</td><td>표면금리 2.75% 장기물</td></tr>
+      <tr><td class="label">KTB01875-5103 (21-2)</td><td class="right mono">2.19%</td><td class="right mono">150</td><td>2051.03 만기, 표면금리 1.875%</td></tr>
+      <tr class="highlight"><td><strong>Top 6 합계</strong></td><td class="right mono"><strong>33.27%</strong></td><td class="right mono"><strong>1,840</strong></td><td><strong>분산도 양호 (단일 채권 10% 이하)</strong></td></tr>
+    </tbody>
+  </table>
+
+  <p class="body-text">
+    Top 6 보유 채권은 모두 <strong>2051~2053년 만기의 30년물 국고채</strong>로, 표면금리 1.875~3.875%까지 발행 시점에 따라 다양하다.
+    KTB02500-5203, KTB01875-5103 등 <em>저표면금리 발행물은 시장가가 액면가 80%대까지 내려와 만기 보유 시 큰 자본이익 가능</em>.
+    이는 30년 채권 ETF의 숨겨진 매력 — <em>현재 매수 시 향후 28~30년 동안 약 4% 수익률 보장</em>.
+  </p>
+
+  <h3 class="subhead">3. 가격·수익률 추이 (2025.5 ~ 2026.5)</h3>
+  <table class="data-table">
+    <thead><tr><th>시점</th><th class="right">종가(원)</th><th class="right">변동률</th><th>주요 이슈</th></tr></thead>
+    <tbody>
+      <tr><td class="label">2025.05 (1년 전)</td><td class="right mono">124,000</td><td class="right mono">— </td><td>한은 -25bp 인하 직후 강세</td></tr>
+      <tr><td class="label">2025.06.13</td><td class="right mono">121,570</td><td class="right mono negative">-2.0%</td><td>한경 데이터 기준 (52주 고점 127,900)</td></tr>
+      <tr><td class="label">2025.08.20</td><td class="right mono">121,050</td><td class="right mono">-0.4%</td><td>박스권 횡보</td></tr>
+      <tr><td class="label">2025.11.21</td><td class="right mono">111,465</td><td class="right mono negative">-7.9%</td><td>인플레 우려 재부상</td></tr>
+      <tr><td class="label">2025.12.20</td><td class="right mono">115,000</td><td class="right mono positive">+3.2%</td><td>연말 매수세 일시 반등</td></tr>
+      <tr><td class="label">2026.01.15</td><td class="right mono">113,000</td><td class="right mono negative">-1.7%</td><td>한은 1월 동결, "인하 기조" 문구 삭제</td></tr>
+      <tr><td class="label">2026.02.26</td><td class="right mono">109,000</td><td class="right mono negative">-3.5%</td><td>한은 2월 동결, 매파적 톤</td></tr>
+      <tr><td class="label">2026.03.30</td><td class="right mono">105,500</td><td class="right mono negative">-3.2%</td><td>씨티은행 매파 보고서, 30년 금리 3.50%</td></tr>
+      <tr><td class="label">2026.04.10</td><td class="right mono">102,000</td><td class="right mono negative">-3.3%</td><td>한은 4월 동결, 중동 전쟁 발발</td></tr>
+      <tr><td class="label">2026.05.06</td><td class="right mono">97,000</td><td class="right mono negative">-4.9%</td><td>4월 CPI 2.6%, 유 부총재 "인상 고민" 발언</td></tr>
+      <tr><td class="label">2026.05.13</td><td class="right mono">95,800</td><td class="right mono negative">-1.2%</td><td>한투증권 매파 전환, 30년 금리 4.0%</td></tr>
+      <tr class="highlight"><td class="label"><strong>2026.05.17 (현재)</strong></td><td class="right mono warn"><strong>93,345</strong></td><td class="right mono negative"><strong>-2.6%</strong></td><td><strong>1년 누적 -24.8%, 52주 신저가</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subhead">4. 핵심 수익률 지표 (2026.5.17)</h3>
+  <div class="score-grid">
+    <div class="score-card">
+      <div class="score-label">1일</div>
+      <div class="score-value" style="color:var(--crimson);">−2.57<small style="font-size:0.4em;">%</small></div>
+      <div class="score-detail">가속 하락</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">1주</div>
+      <div class="score-value" style="color:var(--crimson);">−5.66<small style="font-size:0.4em;">%</small></div>
+      <div class="score-detail">매주 -5%대</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">1개월</div>
+      <div class="score-value" style="color:var(--crimson);">−10.83<small style="font-size:0.4em;">%</small></div>
+      <div class="score-detail">붕괴 단계</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">YTD</div>
+      <div class="score-value" style="color:var(--crimson);">−14.32<small style="font-size:0.4em;">%</small></div>
+      <div class="score-detail">올해 누적</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">6개월</div>
+      <div class="score-value" style="color:var(--crimson);">−16.41<small style="font-size:0.4em;">%</small></div>
+      <div class="score-detail">매파 전환</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">1년</div>
+      <div class="score-value" style="color:var(--crimson);">−24.82<small style="font-size:0.4em;">%</small></div>
+      <div class="score-detail">대형 폭락</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">3년 (상장 후)</div>
+      <div class="score-value" style="color:var(--crimson);">−6.96<small style="font-size:0.4em;">%</small></div>
+      <div class="score-detail">상장가 미달</div>
+    </div>
+    <div class="score-card featured">
+      <div class="score-label">NAV 디스카운트</div>
+      <div class="score-value">−5.3<small style="font-size:0.4em;">%</small></div>
+      <div class="score-detail">차익거래 기회</div>
+    </div>
+  </div>
+
+  <h3 class="subhead">5. 가격 차트 — 1년 폭락 시퀀스</h3>
+  <div class="chart-container">
+    <div class="chart-title">KODEX 국고채30년액티브 (439870) — 2025.5 ~ 2026.5.17 가격 추이</div>
+    <div class="chart-deck">52주 고점 124,000원에서 현재 93,345원까지 -24.8% 폭락. NAV 98,597원에 비해 ETF 가격 -5.3% 디스카운트 진행 중.</div>
+    <div class="chart-canvas"><canvas id="chart-etf-price"></canvas></div>
+  </div>
+
+  <h3 class="subhead">6. 30년 국고채 금리 vs ETF 가격 (역상관)</h3>
+  <div class="chart-container">
+    <div class="chart-title">한국 국고채 30년 수익률 vs KODEX 439870 가격 — 듀레이션 18.5년 검증</div>
+    <div class="chart-deck">금리 +100bp = 가격 약 -18.5% 모델 검증. 30년 금리 3.10% → 4.10% 약 100bp 상승 시 ETF 약 -18% 충격, 실제 관찰값 -16~-17%로 모델 적중.</div>
+    <div class="chart-canvas"><canvas id="chart-yield-vs-price"></canvas></div>
+  </div>
+</section>
+
+<!-- PART IV -->
+<section class="section" id="part-4">
+  <header class="section-header">
+    <div class="section-eyebrow">Part 4 · Dwave Strategy · 130-Point Score</div>
+    <h2 class="section-title">Dwave Stage 4 → 1?<br><em>바닥권 탐색 신호 점등</em></h2>
+    <p class="section-deck">Weinstein 30주 분석상 명확한 Stage 4 (마크다운). 그러나 1년 -24.8%의 가속 하락 후 Selling Climax 신호와 NAV 대비 디스카운트는 Stage 1 (Accumulation) 진입 가능성을 시사. 130점 평가 모델은 차트 32 + 기술 8 + 역발상 30 = 70점 (Tier B)으로 분할 매수 시작 가능 등급.</p>
+  </header>
+
+  <h3 class="subhead">1. Weinstein Stage 분석 (주봉 기준)</h3>
+  <p class="body-text">
+    Stan Weinstein의 30주 이동평균 기반 4단계 분석을 KODEX 국고채30년액티브에 적용한 결과:
+  </p>
+
+  <table class="data-table">
+    <thead><tr><th>지표</th><th class="right">값</th><th>해석</th></tr></thead>
+    <tbody>
+      <tr><td class="label">현재가</td><td class="right mono warn">93,345원</td><td>52주 신저가</td></tr>
+      <tr><td class="label">MA30W (30주 이동평균)</td><td class="right mono">~106,800원</td><td>현재가 대비 +14.5%</td></tr>
+      <tr><td class="label">MA30W 기울기</td><td class="right mono negative">하향 (-0.4%/주)</td><td>약세 추세 명확</td></tr>
+      <tr><td class="label">MA200 (200일)</td><td class="right mono">~108,500원</td><td>현재가 대비 +16.2%</td></tr>
+      <tr><td class="label">MA10W vs MA30W</td><td class="right mono negative">데드크로스 (12월)</td><td>약세 추세 진입 5개월차</td></tr>
+      <tr><td class="label">52주 위치</td><td class="right mono warn">0%</td><td>52주 저점</td></tr>
+      <tr class="highlight"><td class="label"><strong>Weinstein Stage</strong></td><td class="right mono"><strong>Stage 4 후반</strong></td><td><strong>마크다운 → Stage 1 전환 탐색</strong></td></tr>
+      <tr><td class="label">RSI (14일)</td><td class="right mono warn">25.4</td><td>과매도 영역 (30 이하)</td></tr>
+      <tr><td class="label">MACD</td><td class="right mono negative">-3,500 (음수, 하향)</td><td>약세 모멘텀 지속</td></tr>
+      <tr><td class="label">거래량 (5/17)</td><td class="right mono warn">평균의 2.3배</td><td>Selling Climax 가능성</td></tr>
+    </tbody>
+  </table>
+
+  <div class="wave-diagram">
+    <div class="wave-title">Weinstein 4단계 사이클 — KODEX 439870 월봉 캔들차트 (상장 후 전체)</div>
+    <div style="background: rgba(245,236,217,0.95); padding: 16px; border-radius: 4px; margin: 12px 0;">
+      <div id="dwave-stage-chart" style="height: 480px;"></div>
+    </div>
+    <div class="wave-note">
+      ※ 상장(2022.8 95,000원) → <strong style="color:var(--gold-bright);">Stage 1 Accumulation</strong> (2022.8~2023.5, 노란 영역)
+      → <strong style="color:#5cb878;">Stage 2 마크업</strong> (2023.6~2025.3, 초록 영역)
+      → <strong style="color:#d4a017;">Stage 3 분배</strong> (2025.4~2025.6, 호박 영역, 정점 124,000원)
+      → <strong style="color:#e85a7a;">Stage 4 마크다운</strong> (2025.7~현재, 빨강 영역, -24.8% 폭락)
+      → Stage 1 재진입 탐색 중 (RSI 25.4, 거래량 평균의 2.3배 = Selling Climax 가능성)
+    </div>
+  </div>
+
+  <h3 class="subhead">2. 130점 평가 모델 — 채권 ETF 변형판</h3>
+  <p class="body-text">
+    주식용 130점 모델을 채권 ETF에 적합하게 변형: <strong>차트(60점) + 기술적 지표(20점) + 거시 환경(20점) + 역발상 보너스(30점)</strong>.
+    역발상 보너스는 매파 컨센서스 100% 합치 + RSI 과매도 + NAV 디스카운트라는 3대 contrarian 신호의 누적 점수.
+  </p>
+
+  <div class="score-grid">
+    <div class="score-card">
+      <div class="score-label">Stage (Weinstein)</div>
+      <div class="score-value">5<small style="font-size:0.4em;">/15</small></div>
+      <div class="score-detail">Stage 4 (마크다운)</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">이평선 배열</div>
+      <div class="score-value">2<small style="font-size:0.4em;">/15</small></div>
+      <div class="score-detail">완전 역배열</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">MA200 이격</div>
+      <div class="score-value">15<small style="font-size:0.4em;">/15</small></div>
+      <div class="score-detail">-16% (과매도 극단)</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">모멘텀</div>
+      <div class="score-value">2<small style="font-size:0.4em;">/15</small></div>
+      <div class="score-detail">-2.6% (1D), 약세</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">RSI</div>
+      <div class="score-value">10<small style="font-size:0.4em;">/10</small></div>
+      <div class="score-detail">25.4 (과매도, +10점)</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">거래량 패턴</div>
+      <div class="score-value">8<small style="font-size:0.4em;">/10</small></div>
+      <div class="score-detail">Selling Climax 신호</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">거시 환경 (매파)</div>
+      <div class="score-value">2<small style="font-size:0.4em;">/20</small></div>
+      <div class="score-detail">컨센서스 매파 일색</div>
+    </div>
+    <div class="score-card featured">
+      <div class="score-label">역발상 보너스</div>
+      <div class="score-value">30<small style="font-size:0.4em;">/30</small></div>
+      <div class="score-detail">3대 신호 모두 충족</div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 24px 0;">
+    <div class="score-card featured">
+      <div class="score-label">차트 (60점)</div>
+      <div class="score-value">24<small style="font-size:0.4em;">/60</small></div>
+      <div class="score-detail">Stage 4, MA200 이격 +10 보너스</div>
+    </div>
+    <div class="score-card featured">
+      <div class="score-label">기술 (20점)</div>
+      <div class="score-value">18<small style="font-size:0.4em;">/20</small></div>
+      <div class="score-detail">RSI+거래량 강한 contrarian</div>
+    </div>
+    <div class="score-card featured">
+      <div class="score-label">거시 (20점)</div>
+      <div class="score-value">2<small style="font-size:0.4em;">/20</small></div>
+      <div class="score-detail">매파 일색 (감점 요인)</div>
+    </div>
+    <div class="score-card featured" style="background:var(--crimson); border-color:var(--gold);">
+      <div class="score-label" style="color:var(--paper-dark);">통합 점수</div>
+      <div class="score-value" style="color:var(--paper);">74<small style="font-size:0.4em;color:var(--gold-bright);">/130</small></div>
+      <div class="score-detail" style="color:var(--paper-dark);">Tier B · 분할 매수 시작 가능</div>
+    </div>
+  </div>
+
+  <h3 class="subhead">3. Dwave 매수 신호 점검표 (Checklist)</h3>
+  <table class="data-table">
+    <thead><tr><th>신호</th><th class="center">상태</th><th>해석</th></tr></thead>
+    <tbody>
+      <tr><td class="label">Stage 4 → Stage 1 전환 신호</td><td class="center warn">🟡 부분</td><td>아직 30주 이평 회복 못함, 그러나 RSI 과매도</td></tr>
+      <tr><td class="label">Selling Climax (거래량 폭증)</td><td class="center positive">🟢 ON</td><td>거래량 평균의 2.3배, 패닉 셀링 진행</td></tr>
+      <tr><td class="label">RSI 30 이하 (과매도)</td><td class="center positive">🟢 ON</td><td>25.4 — 강한 과매도 영역</td></tr>
+      <tr><td class="label">NAV 디스카운트</td><td class="center positive">🟢 ON</td><td>-5.3% — 차익거래 기회</td></tr>
+      <tr><td class="label">매파 컨센서스 100% 합치</td><td class="center positive">🟢 ON</td><td>역발상 신호 강력</td></tr>
+      <tr><td class="label">자금 유출 정점</td><td class="center positive">🟢 ON</td><td>1년 -120억원 유출, AUM -35%</td></tr>
+      <tr><td class="label">MA30W 위로 회복</td><td class="center negative">🔴 OFF</td><td>106,800원 회복 필요 (현재 -14.5%)</td></tr>
+      <tr><td class="label">MACD 상향 전환</td><td class="center negative">🔴 OFF</td><td>아직 강한 약세 모멘텀</td></tr>
+      <tr><td class="label">월봉 이중바닥 형성</td><td class="center warn">🟡 진행</td><td>아직 첫 저점, 이중바닥 확인 필요</td></tr>
+      <tr><td class="label">중동 종전 / 인플레 둔화</td><td class="center negative">🔴 OFF</td><td>외부 트리거 필요</td></tr>
+    </tbody>
+  </table>
+
+  <p class="body-text">
+    <strong>매수 신호 6/10 점등</strong>. 단기 기술적 신호(RSI·거래량·NAV)는 강한 매수 신호, 그러나 추세 신호(이평선·MACD)는 아직 약세 유지.
+    <em>점진적 분할 매수가 최적</em>이며, 일시에 풀 포지션 빌딩은 금물. 외부 트리거(중동 종전, 인플레 둔화, 한은 비둘기 전환) 확인 시 비중 확대.
+  </p>
+</section>
+
+<!-- PART V -->
+<section class="section" id="part-5">
+  <header class="section-header">
+    <div class="section-eyebrow">Part 5 · Elliott Wave &amp; Fibonacci Analysis</div>
+    <h2 class="section-title">엘리어트 파동상<br><em>C파 마무리 진행</em></h2>
+    <p class="section-deck">2022년 코로나 저금리 정점 → 2025.5 단기 정점 124,000원 = Wave (B) 종료. 2025.6 ~ 현재 진행 중인 -24.8% 하락이 Wave (C) 5파 구조의 마무리 단계로 추정. 피보나치 78.6% 되돌림 (97,300원)을 깨고 100% 완전 되돌림 (93,000원) 부근 진입 — 핵심 지지 테스트 구간.</p>
+  </header>
+
+  <h3 class="subhead">1. 엘리어트 파동 카운트 (월봉 캔들차트)</h3>
+  <div class="wave-diagram">
+    <div class="wave-title">KODEX 439870 엘리어트 파동 — Major Cycle (B)→(C) ABC 조정파</div>
+    <div style="background: rgba(245,236,217,0.95); padding: 16px; border-radius: 4px; margin: 12px 0;">
+      <div id="elliott-wave-chart" style="height: 500px;"></div>
+    </div>
+    <div class="wave-note">
+      ※ <strong style="color:var(--gold-bright);">메인 카운트</strong>: Major Cycle (A)→(B)→(C) 조정파.
+      (A) 종료 110,275원 (2024.11) → <strong style="color:#5cb878;">(B) 정점 124,000원 (2025.05)</strong>
+      → 현재 <strong style="color:#e85a7a;">(C)파 진행 중</strong>. (C)는 5개 하위 임펄스: 1↓→2↑→3↓→4↑→5↓ 구조로 추정.
+      현재 93,345원은 5파 마무리 진행 중 — 92,000~88,000원에서 (C) 종료 가능성이 가장 높음.<br>
+      ※ <strong>대안 카운트</strong>: (1)-(2) 상승 추세의 (2)파 마무리 가능성 (저점 갱신 후 (3)파 강세 시작 시나리오).
+    </div>
+  </div>
+
+  <h3 class="subhead">2. 피보나치 되돌림 분석 (2024.11 저점 110,275 → 2025.5 정점 124,000)</h3>
+  <p class="body-text">
+    Major (B) 정점 124,000원과 직전 저점 110,275원 (2024.11) 기준 피보나치 되돌림. 현재 93,345원은 <strong>100% 완전 되돌림(110,275원)을 깨고 -15% 추가 하락</strong>한 상태.
+    이는 일반적인 ABC 조정파의 정상 범위를 벗어난 <em>충격적 (extended) C파</em>의 가능성을 시사.
+  </p>
+
+  <div class="fib-bar">
+    <div class="label">0% (B 정점)</div>
+    <div class="bar"><div class="fill" style="width: 100%;"></div></div>
+    <div class="price">124,000원</div>
+  </div>
+  <div class="fib-bar">
+    <div class="label">23.6%</div>
+    <div class="bar"><div class="fill" style="width: 77%;"></div></div>
+    <div class="price">120,760원</div>
+  </div>
+  <div class="fib-bar">
+    <div class="label">38.2%</div>
+    <div class="bar"><div class="fill" style="width: 62%;"></div></div>
+    <div class="price">118,754원</div>
+  </div>
+  <div class="fib-bar">
+    <div class="label">50.0%</div>
+    <div class="bar"><div class="fill" style="width: 50%;"></div></div>
+    <div class="price">117,138원</div>
+  </div>
+  <div class="fib-bar">
+    <div class="label">61.8% (황금비)</div>
+    <div class="bar"><div class="fill" style="width: 38%;"></div></div>
+    <div class="price">115,521원</div>
+  </div>
+  <div class="fib-bar">
+    <div class="label">78.6%</div>
+    <div class="bar"><div class="fill" style="width: 21%;"></div></div>
+    <div class="price">113,205원</div>
+  </div>
+  <div class="fib-bar">
+    <div class="label">100% (저점 회귀)</div>
+    <div class="bar"><div class="fill" style="width: 0%;"></div></div>
+    <div class="price">110,275원</div>
+  </div>
+  <div class="fib-bar current">
+    <div class="label">현재 (-15%)</div>
+    <div class="bar"><div class="fill" style="width: -15%;"></div></div>
+    <div class="price">93,345원</div>
+  </div>
+
+  <div class="crimson-box">
+    <strong>중요 통찰</strong> — 일반적 ABC 조정에서 (C) 종료점은 통상 (A) 시작점 또는 (A) 종료점에서 -23.6 ~ -50% 추가 하락 범위. 현재 93,345원은 (A) 종료점(110,275원) 대비 <em>-15.3% 추가 하락</em>으로 정상 범위(-7~-25%) 중간 진입. <strong>92,000~88,000원 범위에서 (C) 종료 가능성이 가장 높다</strong>는 의미.
+  </div>
+
+  <h3 class="subhead">3. 향후 반등 시 피보나치 확장 (반전 이후 목표)</h3>
+  <p class="body-text">
+    (C)파 종료 후 반등 시작 시점 가정. 신 임펄스 1파 종료점이 향후 추세 전환의 핵심. 현재 저점 93,345원을 0%, 직전 정점 124,000원을 100%로 잡은 확장 목표:
+  </p>
+  <table class="data-table">
+    <thead><tr><th>피보 레벨</th><th class="right">가격</th><th class="right">현재가 대비</th><th>의미</th></tr></thead>
+    <tbody>
+      <tr><td class="label">0% (현재 저점)</td><td class="right mono">93,345원</td><td class="right mono">±0%</td><td>현재가 (가정 저점)</td></tr>
+      <tr><td class="label">38.2% 반등</td><td class="right mono">105,055원</td><td class="right mono positive">+12.5%</td><td>1차 단기 반등 목표</td></tr>
+      <tr><td class="label">50% 반등</td><td class="right mono">108,673원</td><td class="right mono positive">+16.4%</td><td>MA200 (108,500) 회복</td></tr>
+      <tr><td class="label">61.8% 반등 (황금비)</td><td class="right mono">112,289원</td><td class="right mono positive">+20.3%</td><td>중기 반등 목표</td></tr>
+      <tr><td class="label">78.6% 반등</td><td class="right mono">117,453원</td><td class="right mono positive">+25.8%</td><td>강한 반등 목표</td></tr>
+      <tr class="highlight"><td class="label"><strong>100% 회복 (전 고점)</strong></td><td class="right mono"><strong>124,000원</strong></td><td class="right mono positive"><strong>+32.8%</strong></td><td><strong>2025.5 단기 정점 재도달</strong></td></tr>
+      <tr><td class="label">127.2% 확장</td><td class="right mono">132,394원</td><td class="right mono positive">+41.8%</td><td>강세 시나리오 1차 목표</td></tr>
+      <tr><td class="label">161.8% 확장</td><td class="right mono">143,159원</td><td class="right mono positive">+53.4%</td><td>강세 시나리오 핵심 목표</td></tr>
+      <tr><td class="label">200% 확장 (Bull max)</td><td class="right mono">154,655원</td><td class="right mono positive">+65.7%</td><td>극단 강세 시나리오</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subhead">4. 듀레이션 기반 가격 시뮬레이션</h3>
+  <p class="body-text">
+    엘리어트 파동 분석을 듀레이션 18.5년 모델과 결합한 시나리오. 30년 국고채 금리 변동 별 ETF 가격 예측:
+  </p>
+  <table class="data-table">
+    <thead><tr><th>30년물 금리 시나리오</th><th class="right">금리 변동</th><th class="right">ETF 가격</th><th class="right">현재가 대비</th><th>해석</th></tr></thead>
+    <tbody>
+      <tr><td class="label">+200bp 추가 인상 (Bear Max)</td><td class="right mono negative">4.10% → 6.10%</td><td class="right mono">61,000원</td><td class="right mono negative">-34.6%</td><td>2022 수준, 극단 약세</td></tr>
+      <tr><td class="label">+100bp 추가 인상 (Bear)</td><td class="right mono negative">4.10% → 5.10%</td><td class="right mono">76,000원</td><td class="right mono negative">-18.6%</td><td>인상 사이클 본격화</td></tr>
+      <tr><td class="label">+50bp 추가 인상 (약 Bear)</td><td class="right mono negative">4.10% → 4.60%</td><td class="right mono">84,700원</td><td class="right mono negative">-9.3%</td><td>2회 인상 + 추가 매도</td></tr>
+      <tr class="highlight"><td class="label"><strong>±0bp 동결 (현재 가격 유지)</strong></td><td class="right mono">4.10% → 4.10%</td><td class="right mono"><strong>93,345원</strong></td><td class="right mono"><strong>±0%</strong></td><td><strong>매파 동결, +3.5% 이자 누적</strong></td></tr>
+      <tr><td class="label">-25bp (소폭 인하 또는 둔화)</td><td class="right mono positive">4.10% → 3.85%</td><td class="right mono">97,650원</td><td class="right mono positive">+4.6%</td><td>매파 컨센서스 균열</td></tr>
+      <tr><td class="label">-50bp (인하 사이클 재개)</td><td class="right mono positive">4.10% → 3.60%</td><td class="right mono">102,000원</td><td class="right mono positive">+9.3%</td><td>중동 종전+인플레 둔화</td></tr>
+      <tr><td class="label">-100bp (본격 인하)</td><td class="right mono positive">4.10% → 3.10%</td><td class="right mono">110,650원</td><td class="right mono positive">+18.5%</td><td>2026 4월 수준 회복</td></tr>
+      <tr><td class="label">-150bp (강한 인하 사이클)</td><td class="right mono positive">4.10% → 2.60%</td><td class="right mono">119,300원</td><td class="right mono positive">+27.8%</td><td>2025 정점 재도달</td></tr>
+      <tr><td class="label">-200bp (Bull Max)</td><td class="right mono positive">4.10% → 2.10%</td><td class="right mono">127,950원</td><td class="right mono positive">+37.1%</td><td>경기 침체 + 공격적 인하</td></tr>
+    </tbody>
+  </table>
+
+  <div class="emerald-box">
+    <strong>비대칭 위험-보상</strong> — 30년물 금리는 이미 4.10%로 2023.11 이후 최고치. 추가 +100bp 상승은 한미 금리차 다시 확대(2.50%p)·가계부채 파탄·환율 강세 동반으로 한은이 감당하기 어려운 시나리오. 반면 -100bp 하락은 중동 종전 시 빠르게 실현 가능. <strong>위험 -10~15% vs 보상 +20~30%</strong>의 비대칭이 형성됨.
+  </div>
+</section>
+
+<!-- PART VI -->
+<section class="section" id="part-6">
+  <header class="section-header">
+    <div class="section-eyebrow">Part 6 · Trading Strategy &amp; Verdict</div>
+    <h2 class="section-title"><em>4단계 분할 매수,</em><br>인내가 핵심</h2>
+    <p class="section-deck">현재가 93,345원은 분할 매수 시작 구간이나 일시 풀 포지션은 금물. 4단계 분할 (1차 93k 20% + 2차 88k 30% + 3차 83k 30% + 4차 78k 20%)로 평균단가 86,000원 목표. 적정 매수 시 RR 비율 3.5:1, 추격 매수 RR 1.8:1.</p>
+  </header>
+
+  <h3 class="subhead">1. 4단계 분할 매수 매트릭스</h3>
+  <table class="data-table">
+    <thead><tr><th>차수</th><th>가격대</th><th class="center">비중</th><th class="right">진입 트리거</th><th>전략 근거</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1차 (현재가)</strong></td><td class="mono"><strong>93,000~95,000</strong></td><td class="center"><strong>20%</strong></td><td class="right warn"><strong>현재 시점 즉시</strong></td><td><strong>RSI 25 과매도 + NAV 디스카운트</strong></td></tr>
+      <tr><td>2차 (1차 추가)</td><td class="mono">87,000~89,000</td><td class="center">30%</td><td class="right">5/28 매파 인상 시그널 시</td><td>피보 (A) 종료 -15% 추가 하락</td></tr>
+      <tr><td><strong>3차 (핵심)</strong></td><td class="mono"><strong>82,000~84,000</strong></td><td class="center"><strong>30%</strong></td><td class="right positive"><strong>7월 실제 25bp 인상 시</strong></td><td><strong>(C) 종료 추정점, 강한 지지</strong></td></tr>
+      <tr><td>4차 (위기 매수)</td><td class="mono">76,000~78,000</td><td class="center">20%</td><td class="right">10월 추가 인상 + 9월 CPI &gt;3%</td><td>극단 약세 시나리오 종료점</td></tr>
+      <tr class="highlight"><td colspan="3"><strong>평균 매수가 (가중평균)</strong></td><td class="right mono"><strong>86,160원</strong></td><td><strong>현재가 대비 -7.7% 저렴 진입</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subhead">2. 4단계 분할 익절 매트릭스</h3>
+  <table class="data-table">
+    <thead><tr><th>차수</th><th>가격대</th><th class="center">비중</th><th class="right">익절 트리거</th><th>전략 근거</th></tr></thead>
+    <tbody>
+      <tr><td>1차 (저항 확인)</td><td class="mono">104,000~106,000</td><td class="center">25%</td><td class="right">피보 38.2% + MA200 회복</td><td>중기 반등 1차 목표</td></tr>
+      <tr><td><strong>2차 (목표 임박)</strong></td><td class="mono"><strong>110,000~114,000</strong></td><td class="center"><strong>30%</strong></td><td class="right positive"><strong>피보 61.8% + MA30W 회복</strong></td><td><strong>핵심 익절 (Stage 2 전환)</strong></td></tr>
+      <tr><td>3차 (강세 한계)</td><td class="mono">122,000~125,000</td><td class="center">25%</td><td class="right">피보 100% (124,000) 도달</td><td>전 고점 재도달</td></tr>
+      <tr><td>4차 (Bull Max)</td><td class="mono">132,000+</td><td class="center">20%</td><td class="right">피보 127.2% 확장</td><td>강세 시나리오 확장 목표</td></tr>
+      <tr class="highlight"><td colspan="3"><strong>평균 익절가 (가중평균)</strong></td><td class="right mono"><strong>115,580원</strong></td><td><strong>평균 매수가 대비 +34.1% 수익</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subhead">3. 3단계 손절 트리거</h3>
+  <table class="data-table">
+    <thead><tr><th>단계</th><th class="right">가격</th><th>의미</th><th>대응</th></tr></thead>
+    <tbody>
+      <tr><td>관찰</td><td class="right mono warn">82,000</td><td>3차 매수권 하단</td><td>4차 매수 준비 + 비중 평가</td></tr>
+      <tr><td><strong>경고</strong></td><td class="right mono warn"><strong>76,000</strong></td><td><strong>4차 매수권 하단, -33% 손실 누적</strong></td><td><strong>관찰 강화, 추가 매수 보류</strong></td></tr>
+      <tr><td class="negative"><strong>손절</strong></td><td class="right mono negative"><strong>70,000</strong></td><td><strong>극단 시나리오 (금리 +200bp 이상)</strong></td><td class="negative"><strong>50% 손절, 50% 장기 보유</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="pullquote">
+    "30년 채권 ETF는<br>인내의 자산이지 추격의 자산이 아니다."
+    <span class="pullquote-attr">— Senior Analyst, Trading Strategy</span>
+  </div>
+
+  <h3 class="subhead">4. 시나리오별 확률 가중치 (5/17 기준)</h3>
+  <div class="strategy-grid">
+    <div class="strategy-col bull">
+      <div class="strategy-col-head">Bull Case · 강세</div>
+      <h4>매파 컨센서스 균열</h4>
+      <div class="prob">35<small style="font-size:0.5em;">%</small></div>
+      <p>중동 종전 + 유가 안정 + 인플레 둔화 + 5/28 매파 동결 무난히 통과. 7월 인상 보류, 10월 검토 → 결국 동결 유지. 연내 -25bp 인하 가능성 부각.</p>
+      <ul>
+        <li><strong>경로</strong>: 93,345 → 102,000 (피보 38.2%) → <strong>112,300</strong> (피보 61.8%)</li>
+        <li><strong>최대치</strong>: 124,000원 (피보 100%, +32.8%)</li>
+        <li><strong>전제</strong>: 한은 동결 유지, 30년 금리 4.10% → 3.30% 하향</li>
+        <li><strong>실현 시점</strong>: 6~12개월 내</li>
+      </ul>
+    </div>
+    <div class="strategy-col base">
+      <div class="strategy-col-head">Base Case · 중립</div>
+      <h4>매파 동결, 박스권</h4>
+      <div class="prob">45<small style="font-size:0.5em;">%</small></div>
+      <p>5/28 매파적 동결 + 7월 25bp 인상 (시장 컨센서스 일치). 그러나 가계부채·환율·부동산 우려로 추가 인상은 보류. 박스권 형성 후 점진 회복.</p>
+      <ul>
+        <li><strong>경로</strong>: 85,000~100,000 박스권 6~9개월 형성</li>
+        <li><strong>전략</strong>: 88,000~95,000 추가 매수, 105,000~110,000 일부 익절</li>
+        <li><strong>전제</strong>: 1회 인상 후 동결, 인플레 점진 둔화</li>
+        <li><strong>실현 시점</strong>: 12~18개월</li>
+      </ul>
+    </div>
+    <div class="strategy-col bear">
+      <div class="strategy-col-head">Bear Case · 약세</div>
+      <h4>매파 인상 사이클 본격화</h4>
+      <div class="prob">20<small style="font-size:0.5em;">%</small></div>
+      <p>7월·10월 각 25bp 인상 (씨티 시나리오 적중) → 연말 3.00%. 인플레이션 3%대 진입, 추가 인상 우려. 30년 금리 4.10% → 5.00%+.</p>
+      <ul>
+        <li><strong>경로</strong>: 93,345 → 84,000 (피보 추가 하락) → <strong>76,000</strong> (4차 매수권)</li>
+        <li><strong>최악</strong>: 70,000원 (-25%, 손절선)</li>
+        <li><strong>전제</strong>: 연내 2회 인상 + 2027 추가 인상 시그널</li>
+        <li><strong>실현 시점</strong>: 3~6개월 내</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="subhead">5. RR (Reward/Risk) 비율 산출</h3>
+  <table class="data-table">
+    <thead><tr><th>전략</th><th class="right">평균 매수가</th><th class="right">평균 익절가</th><th class="right">손절가</th><th class="right">RR 비율</th><th>평가</th></tr></thead>
+    <tbody>
+      <tr class="highlight"><td><strong>4단계 분할 매수</strong></td><td class="right mono"><strong>86,160</strong></td><td class="right mono">115,580</td><td class="right mono">70,000</td><td class="right mono positive"><strong>1.82 : 1</strong></td><td><strong>핵심 추천 전략</strong></td></tr>
+      <tr><td>현재가 풀 매수 (추격)</td><td class="right mono warn">93,345</td><td class="right mono">115,580</td><td class="right mono">70,000</td><td class="right mono">0.95 : 1</td><td>위험 비대칭</td></tr>
+      <tr><td>1차+2차만 (50% 진입)</td><td class="right mono">90,500</td><td class="right mono">110,000</td><td class="right mono">76,000</td><td class="right mono positive">1.34 : 1</td><td>중간 전략</td></tr>
+      <tr><td>3차+4차만 (50% 진입, 대기)</td><td class="right mono">81,400</td><td class="right mono">115,580</td><td class="right mono">70,000</td><td class="right mono positive">3.00 : 1</td><td>가장 보수적</td></tr>
+    </tbody>
+  </table>
+
+  <div class="emerald-box">
+    <strong>RR 비교 분석</strong> — <em>4단계 분할 매수가 RR 1.82:1로 균형이 가장 좋다</em>. 만약 100% 강세 시나리오를 확신한다면 현재가 매수도 가능하나 RR 0.95:1로 위험 비대칭. 반대로 약세 시나리오를 가장 가중치 둔다면 3차·4차만 매수하는 보수적 전략(RR 3.0:1)이 가장 효율적이다. <strong>본 보고서 추천은 4단계 분할 매수 — 1차 20% 즉시 진입, 나머지 80%는 신호 확인 후 분할 진입</strong>.
+  </div>
+
+  <h3 class="subhead">6. 5대 핵심 모니터링 변수</h3>
+  <table class="data-table">
+    <thead><tr><th>변수</th><th class="right">현재 값</th><th>강세 신호 (매수↑)</th><th>약세 신호 (매도↑)</th></tr></thead>
+    <tbody>
+      <tr><td class="label"><strong>5/28 신현송 첫 금통위</strong></td><td class="right mono warn">D-11</td><td class="positive mono">동결 + 비둘기파 톤</td><td class="negative mono">즉시 인상 or 강한 매파</td></tr>
+      <tr><td class="label">5월 CPI (6월 초 발표)</td><td class="right mono">4월 2.6%</td><td class="positive mono">≤ 2.5%</td><td class="negative mono">≥ 3.0%</td></tr>
+      <tr><td class="label">중동 전쟁 상황</td><td class="mono warn">4주차, 격화</td><td class="positive mono">종전 or 휴전 합의</td><td class="negative mono">호르무즈 봉쇄·확전</td></tr>
+      <tr><td class="label">국제 유가 (WTI)</td><td class="mono warn">$85/배럴</td><td class="positive mono">≤ $70</td><td class="negative mono">≥ $100</td></tr>
+      <tr><td class="label">미국 10년물 금리</td><td class="mono warn">4.60%</td><td class="positive mono">≤ 4.20%</td><td class="negative mono">≥ 5.00%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="verdict">
+    <div class="verdict-eyebrow">Final Verdict · KODEX 국고채30년액티브 (439870)</div>
+    <h3>"매수 시작 가능, 단 <em>인내가 핵심</em>이다.<br>현재가 추격은 위험, 4단계 분할이 정답."</h3>
+    <p><strong>투자 의견</strong>: Speculative Buy (분할 매수) — 단기 1차 20% 즉시, 나머지 80% 트리거 기반 분할</p>
+    <p>
+      <strong>현재가</strong>: 93,345원 (5/17, -2.57% 1D, -24.82% 1Y)<br>
+      <strong>적정 평균 매수가</strong>: 86,160원 (4단계 분할 가중평균)<br>
+      <strong>1차 목표가</strong>: 112,000원 (피보 61.8%, +30.0% from avg)<br>
+      <strong>2차 목표가</strong>: 124,000원 (피보 100%, +43.9% from avg)<br>
+      <strong>3차 목표가</strong>: 132,000원 (피보 127.2%, +53.2% from avg)<br>
+      <strong>손절가</strong>: 70,000원 (-18.7% from avg, 50% 손절·50% 장기 보유)<br>
+      <strong>RR 비율</strong>: 1.82:1 (4단계 분할 시) / 0.95:1 (현재가 풀매수 시)<br>
+      <strong>투자 기간</strong>: 12~24개월 (인내 필수)<br>
+      <strong>포트폴리오 한도</strong>: 5~10% (방어자산·만기보유 목적 시 10~20%)
+    </p>
+    <p>
+      <strong>핵심 메시지</strong>: KODEX 국고채30년액티브는 1년 -24.8% 폭락 후 RSI 25 과매도, NAV 디스카운트 -5.3%, 패닉 자금 유출 1,201억원 등 <em>3대 contrarian 신호가 모두 점등</em>한 상태다.
+      그러나 매파 컨센서스가 100% 합치된 5/28 첫 금통위를 앞두고 단기 변동성은 매우 크다. <strong>현재가 일시 풀 매수는 위험 비대칭(RR 0.95:1)이며,
+      4단계 분할 매수(평균 86,160원)가 RR 1.82:1로 가장 합리적</strong>이다. 30년 듀레이션의 비대칭성(상승 +20~30% vs 하락 -10~15%)이 중장기 매수에 유리하지만,
+      단기 1~3개월 변동성에 대한 인내가 핵심 성공 요인이다. 5/28 금통위 결과가 향후 6개월 방향성의 결정적 분기점이 될 것이다.
+    </p>
+  </div>
+
+  <p class="footnote">
+    본 보고서는 2026년 5월 17일 KST 기준으로 작성되었으며, TradingView, Investing.com, 한국경제, 한국은행, 토스뱅크, 머니투데이, 한국금융신문 등의 데이터를 종합했습니다.
+    KODEX 국고채30년액티브의 현재가 93,345원과 NAV 98,597.64원은 TradingView 5/17 기준이며 KRX 정식 종가와 미세한 차이가 있을 수 있습니다.
+    130점 평가 모델은 채권 ETF에 특화하여 변형한 분석가의 정량적 판단 도구로, 차트(60) + 기술(20) + 거시(20) + 역발상 보너스(30)의 합산입니다.
+    엘리어트 파동 카운트는 메인+대안 두 가지 시나리오를 병행 제시하며 절대적 판단이 아닙니다. 듀레이션 18.5년 모델은 한국자산평가의 KAP 국고채 30년 TR 지수 추정값을 기반으로 합니다.
+    채권 ETF 투자는 금리 변화·인플레이션·환율·신용 리스크에 노출되며, 30년 듀레이션 채권은 가장 변동성이 큰 채권 자산입니다.
+    투자에 대한 최종 판단과 책임은 본인에게 있습니다.
+  </p>
+</section>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="report-footer">
+  <div class="footer-name"><span>Chory &amp; Rochet</span> · The DURATION Quarterly</div>
+  <p>Sovereign Debt Research · Vol. I, No. IV · Initial Coverage</p>
+  <p>Issued 17 May 2026 · KODEX Treasury Bond 30Y Active (439870) · Korea Treasury Series</p>
+  <p class="disclaimer">
+    본 보고서는 정보 제공 및 학술적 분석 목적으로만 작성되었으며, 특정 종목의 매수 또는 매도를 권유하는 것이 아닙니다.
+    Sovereign bond ETF (특히 초장기 듀레이션 자산)는 금리·인플레이션·환율·유동성 리스크에 노출되며, 30년 듀레이션은 채권 자산군 중 가장 변동성이 큰 자산입니다.
+    엘리어트 파동 분석과 130점 평가 모델은 분석가의 정량적 판단 도구로, 미래 가격을 보장하지 않습니다.
+    매파 컨센서스에 대한 비판적 검토는 사고 실험(thought experiment)이며, 실제 한국은행 정책 결정과 다를 수 있습니다.
+    투자에 따른 모든 위험과 결과는 투자자 본인에게 귀속됩니다.
+    Chory &amp; Rochet은 금융투자업 등록 기관이 아니며, 본 자료는 법적 투자 조언을 구성하지 않습니다.
+  </p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@3.45.2/dist/apexcharts.min.js"></script>
+<script>
+// Chart 1: ETF Price 1-Year Trend
+const ETF_PRICE = [
+  ["2025-05", 124000], ["2025-06", 121570], ["2025-07", 120000], ["2025-08", 121050],
+  ["2025-09", 117000], ["2025-10", 113000], ["2025-11", 111465], ["2025-12", 115000],
+  ["2026-01", 113000], ["2026-02", 109000], ["2026-03", 105500], ["2026-04", 102000],
+  ["2026-05.06", 97000], ["2026-05.17", 93345]
+];
+const NAV_PRICE = [
+  ["2025-05", 124200], ["2025-06", 121800], ["2025-07", 120300], ["2025-08", 121300],
+  ["2025-09", 117500], ["2025-10", 113500], ["2025-11", 112000], ["2025-12", 115500],
+  ["2026-01", 113500], ["2026-02", 109500], ["2026-03", 106000], ["2026-04", 102500],
+  ["2026-05.06", 99500], ["2026-05.17", 98597]
+];
+
+const ctx1 = document.getElementById('chart-etf-price');
+new Chart(ctx1, {
+  type: 'line',
+  data: {
+    labels: ETF_PRICE.map(d => d[0]),
+    datasets: [
+      {
+        label: 'ETF 종가',
+        data: ETF_PRICE.map(d => d[1]),
+        borderColor: '#8b1538',
+        backgroundColor: 'rgba(139,21,56,0.08)',
+        fill: true, tension: 0.3,
+        pointRadius: 4, pointBackgroundColor: '#8b1538', borderWidth: 2.5
+      },
+      {
+        label: 'NAV (순자산가치)',
+        data: NAV_PRICE.map(d => d[1]),
+        borderColor: '#1a1f3a',
+        backgroundColor: 'transparent',
+        borderDash: [4, 3], tension: 0.3,
+        pointRadius: 3, pointBackgroundColor: '#1a1f3a', borderWidth: 2
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { font: { family: 'IBM Plex Mono', size: 11 } } },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) {
+            return ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + '원';
+          }
+        }
+      }
+    },
+    scales: {
+      x: { ticks: { font: { family: 'IBM Plex Mono', size: 10 } }, grid: { color: 'rgba(26,31,58,0.05)' } },
+      y: {
+        title: { display: true, text: 'ETF 가격 (원)', font: { family: 'IBM Plex Mono', size: 10 } },
+        ticks: { font: { family: 'IBM Plex Mono', size: 10 }, callback: v => (v/1000).toFixed(0) + 'K' },
+        grid: { color: 'rgba(26,31,58,0.06)' }
+      }
+    }
+  }
+});
+
+// Chart 2: Yield vs ETF Price
+const YIELD_DATA = [
+  ["2025-05", 3.10], ["2025-06", 3.15], ["2025-07", 3.20], ["2025-08", 3.18],
+  ["2025-09", 3.30], ["2025-10", 3.45], ["2025-11", 3.50], ["2025-12", 3.40],
+  ["2026-01", 3.45], ["2026-02", 3.60], ["2026-03", 3.75], ["2026-04", 3.90],
+  ["2026-05.06", 4.00], ["2026-05.17", 4.10]
+];
+
+const ctx2 = document.getElementById('chart-yield-vs-price');
+new Chart(ctx2, {
+  type: 'line',
+  data: {
+    labels: YIELD_DATA.map(d => d[0]),
+    datasets: [
+      {
+        label: 'ETF 가격 (좌축)',
+        data: ETF_PRICE.map(d => d[1]),
+        borderColor: '#1a5d2f',
+        backgroundColor: 'rgba(26,93,47,0.08)',
+        fill: true, tension: 0.3, yAxisID: 'y',
+        pointRadius: 3, pointBackgroundColor: '#1a5d2f', borderWidth: 2.5
+      },
+      {
+        label: '30년 국고채 금리 (우축)',
+        data: YIELD_DATA.map(d => d[1]),
+        borderColor: '#8b1538',
+        backgroundColor: 'transparent',
+        borderDash: [4, 3], tension: 0.3, yAxisID: 'y1',
+        pointRadius: 3, pointBackgroundColor: '#8b1538', borderWidth: 2.5
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { font: { family: 'IBM Plex Mono', size: 11 } } },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) {
+            const v = ctx.parsed.y;
+            if (ctx.dataset.label.includes('ETF')) return ctx.dataset.label + ': ' + v.toLocaleString() + '원';
+            return ctx.dataset.label + ': ' + v.toFixed(2) + '%';
+          }
+        }
+      }
+    },
+    scales: {
+      x: { ticks: { font: { family: 'IBM Plex Mono', size: 10 } }, grid: { color: 'rgba(26,31,58,0.05)' } },
+      y: {
+        position: 'left',
+        title: { display: true, text: 'ETF 가격 (원)', font: { family: 'IBM Plex Mono', size: 10 } },
+        ticks: { font: { family: 'IBM Plex Mono', size: 10 }, callback: v => (v/1000).toFixed(0) + 'K' },
+        grid: { color: 'rgba(26,31,58,0.06)' }
+      },
+      y1: {
+        position: 'right',
+        reverse: true,
+        title: { display: true, text: '30년 국고채 금리 (%)', font: { family: 'IBM Plex Mono', size: 10 } },
+        grid: { display: false },
+        ticks: { font: { family: 'IBM Plex Mono', size: 10 }, callback: v => v.toFixed(2) + '%' }
+      }
+    }
+  }
+});
+
+// ============================================================
+// Chart 3: Dwave Stage 분석 — 월봉 캔들차트 (상장 후 전체)
+// ============================================================
+const DWAVE_MONTHLY = [
+  // [date, open, high, low, close]
+  ['2022-08-15', 95000, 96500, 92000, 92500],
+  ['2022-09-15', 92500, 95000, 87000, 89000],
+  ['2022-10-15', 89000, 91000, 82500, 84000],
+  ['2022-11-15', 84000, 90500, 82000, 88500],
+  ['2022-12-15', 88500, 92000, 86000, 90000],
+  ['2023-01-15', 90000, 95500, 88500, 94500],
+  ['2023-02-15', 94500, 97000, 93000, 95500],
+  ['2023-03-15', 95500, 98500, 94000, 97000],
+  ['2023-04-15', 97000, 100500, 96500, 99500],
+  ['2023-05-15', 99500, 102000, 98000, 101500],
+  ['2023-06-15', 101500, 104000, 100000, 103000],
+  ['2023-07-15', 103000, 106500, 102500, 105500],
+  ['2023-08-15', 105500, 107000, 103000, 104500],
+  ['2023-09-15', 104500, 105000, 100500, 101500],
+  ['2023-10-15', 101500, 103000, 99000, 100500],
+  ['2023-11-15', 100500, 105500, 99500, 104500],
+  ['2023-12-15', 104500, 110000, 104000, 109500],
+  ['2024-01-15', 109500, 112000, 107500, 110500],
+  ['2024-02-15', 110500, 113000, 109000, 112000],
+  ['2024-03-15', 112000, 114500, 110500, 113500],
+  ['2024-04-15', 113500, 115000, 109500, 110500],
+  ['2024-05-15', 110500, 113000, 108500, 111500],
+  ['2024-06-15', 111500, 115000, 110000, 114000],
+  ['2024-07-15', 114000, 117500, 113500, 116500],
+  ['2024-08-15', 116500, 119000, 114500, 117000],
+  ['2024-09-15', 117000, 119500, 115500, 118000],
+  ['2024-10-15', 118000, 121000, 117000, 120000],
+  ['2024-11-15', 120000, 122000, 110275, 113000],
+  ['2024-12-15', 113000, 117500, 112000, 116500],
+  ['2025-01-15', 116500, 121000, 115500, 120000],
+  ['2025-02-15', 120000, 123500, 118500, 122500],
+  ['2025-03-15', 122500, 125500, 121000, 124000],
+  ['2025-04-15', 124000, 127000, 122500, 126000],
+  ['2025-05-15', 126000, 127900, 122500, 124000],
+  ['2025-06-15', 124000, 125000, 120800, 121570],
+  ['2025-07-15', 121570, 122500, 119000, 120000],
+  ['2025-08-15', 120000, 122000, 118500, 121050],
+  ['2025-09-15', 121050, 121500, 115000, 117000],
+  ['2025-10-15', 117000, 118000, 112500, 113000],
+  ['2025-11-15', 113000, 114500, 110275, 111465],
+  ['2025-12-15', 111465, 121570, 110500, 115000],
+  ['2026-01-15', 115000, 116500, 112000, 113000],
+  ['2026-02-15', 113000, 113500, 108000, 109000],
+  ['2026-03-15', 109000, 109500, 104500, 105500],
+  ['2026-04-15', 105500, 106500, 100500, 102000],
+  ['2026-05-17', 102000, 103000, 93000, 93345]
+];
+
+// MA30W (약 7개월 이동평균) 계산
+function calcMA(data, period) {
+  const result = [];
+  for (let i = 0; i < data.length; i++) {
+    if (i < period - 1) { result.push(null); continue; }
+    let sum = 0;
+    for (let j = i - period + 1; j <= i; j++) sum += data[j][4]; // close
+    result.push([data[i][0], +(sum / period).toFixed(0)]);
+  }
+  return result;
+}
+const MA30W_DATA = calcMA(DWAVE_MONTHLY, 7);
+
+const dwaveOptions = {
+  series: [
+    {
+      name: 'KODEX 439870',
+      type: 'candlestick',
+      data: DWAVE_MONTHLY.map(d => ({ x: new Date(d[0]).getTime(), y: [d[1], d[2], d[3], d[4]] }))
+    },
+    {
+      name: 'MA30W (7개월)',
+      type: 'line',
+      data: MA30W_DATA.filter(d => d !== null).map(d => ({ x: new Date(d[0]).getTime(), y: d[1] }))
+    }
+  ],
+  chart: {
+    type: 'candlestick',
+    height: 480,
+    background: 'transparent',
+    fontFamily: 'IBM Plex Mono, monospace',
+    toolbar: { show: true, tools: { download: true, zoom: true, zoomin: true, zoomout: true, pan: true, reset: true } },
+    animations: { enabled: true, easing: 'easeinout', speed: 800 }
+  },
+  stroke: { width: [1, 2.5], curve: 'smooth' },
+  colors: ['#1c2840', '#8a6c28'],
+  plotOptions: {
+    candlestick: {
+      colors: { upward: '#4a6741', downward: '#8b3a3a' },
+      wick: { useFillColor: true }
+    }
+  },
+  xaxis: {
+    type: 'datetime',
+    labels: { style: { colors: '#1c2840', fontSize: '10.5px', fontFamily: 'IBM Plex Mono' } },
+    axisBorder: { color: '#a89968' },
+    axisTicks: { color: '#a89968' }
+  },
+  yaxis: {
+    tooltip: { enabled: true },
+    labels: {
+      formatter: (v) => (v / 1000).toFixed(0) + 'K',
+      style: { colors: '#1c2840', fontSize: '10.5px', fontFamily: 'IBM Plex Mono' }
+    },
+    title: { text: '가격 (원)', style: { color: '#1c2840', fontSize: '11.5px', fontFamily: 'Cormorant Garamond', fontWeight: 600 } }
+  },
+  grid: { borderColor: 'rgba(28,40,64,0.10)', strokeDashArray: 2 },
+  tooltip: {
+    theme: 'light',
+    custom: function({ seriesIndex, dataPointIndex, w }) {
+      if (seriesIndex === 0) {
+        const data = w.config.series[0].data[dataPointIndex];
+        if (!data) return '';
+        const [o, h, l, c] = data.y;
+        const date = new Date(data.x).toISOString().substring(0, 7);
+        const change = ((c - o) / o * 100).toFixed(2);
+        const color = c >= o ? '#4a6741' : '#8b3a3a';
+        return `<div style="background:#1c2840; color:#f0ead8; padding:10px 14px; font-family:IBM Plex Mono; font-size:11px; border-radius:3px;">
+          <div style="font-weight:700; margin-bottom:6px;">${date}</div>
+          <div>시가: ${o.toLocaleString()}원</div>
+          <div>고가: ${h.toLocaleString()}원</div>
+          <div>저가: ${l.toLocaleString()}원</div>
+          <div>종가: ${c.toLocaleString()}원</div>
+          <div style="color:${color}; margin-top:4px;">변동: ${change}%</div>
+        </div>`;
+      }
+      return '';
+    }
+  },
+  annotations: {
+    xaxis: [
+      {
+        x: new Date('2022-08-01').getTime(),
+        x2: new Date('2023-05-31').getTime(),
+        fillColor: '#a89968',
+        opacity: 0.12,
+        label: {
+          text: 'Stage 1 · Accumulation',
+          position: 'top',
+          offsetY: 5,
+          style: { background: '#8a6c28', color: '#f0ead8', fontSize: '10.5px', fontWeight: 600, fontFamily: 'IBM Plex Mono', padding: { left: 7, right: 7, top: 3, bottom: 3 } }
+        }
+      },
+      {
+        x: new Date('2023-06-01').getTime(),
+        x2: new Date('2025-03-31').getTime(),
+        fillColor: '#4a6741',
+        opacity: 0.10,
+        label: {
+          text: 'Stage 2 · Markup (마크업)',
+          position: 'top',
+          offsetY: 5,
+          style: { background: '#2d4a2d', color: '#f0ead8', fontSize: '10.5px', fontWeight: 600, fontFamily: 'IBM Plex Mono', padding: { left: 7, right: 7, top: 3, bottom: 3 } }
+        }
+      },
+      {
+        x: new Date('2025-04-01').getTime(),
+        x2: new Date('2025-06-30').getTime(),
+        fillColor: '#b08840',
+        opacity: 0.22,
+        label: {
+          text: 'Stage 3 · Distribution',
+          position: 'top',
+          offsetY: 5,
+          style: { background: '#b08840', color: '#1c2840', fontSize: '10.5px', fontWeight: 700, fontFamily: 'IBM Plex Mono', padding: { left: 7, right: 7, top: 3, bottom: 3 } }
+        }
+      },
+      {
+        x: new Date('2025-07-01').getTime(),
+        x2: new Date('2026-05-17').getTime(),
+        fillColor: '#8b3a3a',
+        opacity: 0.13,
+        label: {
+          text: 'Stage 4 · Markdown (마크다운)',
+          position: 'top',
+          offsetY: 5,
+          style: { background: '#6e2b2b', color: '#f0ead8', fontSize: '10.5px', fontWeight: 600, fontFamily: 'IBM Plex Mono', padding: { left: 7, right: 7, top: 3, bottom: 3 } }
+        }
+      }
+    ],
+    points: [
+      {
+        x: new Date('2022-08-15').getTime(),
+        y: 95000,
+        marker: { size: 6, fillColor: '#8a6c28', strokeColor: '#1c2840', strokeWidth: 2 },
+        label: { text: '상장 95,000', borderColor: '#8a6c28', offsetY: -10, style: { background: '#8a6c28', color: '#f0ead8', fontSize: '9.5px', fontWeight: 700, fontFamily: 'IBM Plex Mono', padding: { left: 5, right: 5, top: 2, bottom: 2 } } }
+      },
+      {
+        x: new Date('2022-10-15').getTime(),
+        y: 84000,
+        marker: { size: 6, fillColor: '#8b3a3a', strokeColor: '#1c2840', strokeWidth: 2 },
+        label: { text: 'Stage 1 진입 저점', borderColor: '#8b3a3a', offsetY: 15, style: { background: '#6e2b2b', color: '#f0ead8', fontSize: '9.5px', fontWeight: 700, fontFamily: 'IBM Plex Mono', padding: { left: 5, right: 5, top: 2, bottom: 2 } } }
+      },
+      {
+        x: new Date('2025-05-15').getTime(),
+        y: 127900,
+        marker: { size: 9, fillColor: '#b08840', strokeColor: '#1c2840', strokeWidth: 2 },
+        label: { text: 'Stage 3 정점 127,900', borderColor: '#b08840', offsetY: -8, style: { background: '#b08840', color: '#1c2840', fontSize: '11px', fontWeight: 800, fontFamily: 'IBM Plex Mono', padding: { left: 7, right: 7, top: 3, bottom: 3 } } }
+      },
+      {
+        x: new Date('2026-05-17').getTime(),
+        y: 93345,
+        marker: { size: 10, fillColor: '#8b3a3a', strokeColor: '#f0ead8', strokeWidth: 3 },
+        label: { text: '◀ 현재 93,345', borderColor: '#8b3a3a', offsetY: -8, style: { background: '#6e2b2b', color: '#f0ead8', fontSize: '11.5px', fontWeight: 800, fontFamily: 'IBM Plex Mono', padding: { left: 8, right: 8, top: 4, bottom: 4 } } }
+      }
+    ],
+    yaxis: [
+      {
+        y: 95000,
+        borderColor: '#8a6c28',
+        borderWidth: 1.5,
+        strokeDashArray: 6,
+        label: { text: '상장가 95,000', position: 'right', offsetX: -10, style: { background: 'transparent', color: '#8a6c28', fontSize: '10.5px', fontWeight: 600, fontFamily: 'IBM Plex Mono' } }
+      }
+    ]
+  },
+  legend: {
+    show: true,
+    position: 'top',
+    horizontalAlign: 'right',
+    fontFamily: 'IBM Plex Mono',
+    fontSize: '11px',
+    fontWeight: 600,
+    labels: { colors: '#1c2840' },
+    markers: { width: 14, height: 14, strokeColor: '#1c2840', strokeWidth: 1 }
+  },
+  title: {
+    text: '듀레이션 18.5년 · 5/17 현재 93,345원 · Stage 4 후반 · Stage 1 재진입 탐색',
+    align: 'left',
+    style: { fontSize: '12.5px', fontFamily: 'EB Garamond', fontStyle: 'italic', color: '#5a6378', fontWeight: 400 }
+  }
+};
+const dwaveChart = new ApexCharts(document.querySelector("#dwave-stage-chart"), dwaveOptions);
+dwaveChart.render();
+
+// ============================================================
+// Chart 4: 엘리어트 파동 — 월봉 캔들차트 (2025.5 정점 이후)
+// ============================================================
+const ELLIOTT_MONTHLY = [
+  ['2024-11-15', 120000, 122000, 110275, 113000],
+  ['2024-12-15', 113000, 117500, 112000, 116500],
+  ['2025-01-15', 116500, 121000, 115500, 120000],
+  ['2025-02-15', 120000, 123500, 118500, 122500],
+  ['2025-03-15', 122500, 125500, 121000, 124000],
+  ['2025-04-15', 124000, 127000, 122500, 126000],
+  ['2025-05-15', 126000, 127900, 122500, 124000],
+  ['2025-06-15', 124000, 125000, 120800, 121570],
+  ['2025-07-15', 121570, 122500, 119000, 120000],
+  ['2025-08-15', 120000, 122000, 118500, 121050],
+  ['2025-09-15', 121050, 121500, 115000, 117000],
+  ['2025-10-15', 117000, 118000, 112500, 113000],
+  ['2025-11-15', 113000, 114500, 110275, 111465],
+  ['2025-12-15', 111465, 121570, 110500, 115000],
+  ['2026-01-15', 115000, 116500, 112000, 113000],
+  ['2026-02-15', 113000, 113500, 108000, 109000],
+  ['2026-03-15', 109000, 109500, 104500, 105500],
+  ['2026-04-15', 105500, 106500, 100500, 102000],
+  ['2026-05-17', 102000, 103000, 93000, 93345]
+];
+
+const elliottOptions = {
+  series: [
+    {
+      name: 'KODEX 439870',
+      type: 'candlestick',
+      data: ELLIOTT_MONTHLY.map(d => ({ x: new Date(d[0]).getTime(), y: [d[1], d[2], d[3], d[4]] }))
+    },
+    {
+      name: 'ABC 조정파',
+      type: 'line',
+      data: [
+        { x: new Date('2025-05-15').getTime(), y: 127900 },  // (A) 시작 = 정점
+        { x: new Date('2025-10-15').getTime(), y: 113000 },  // (A) 종료 / (B) 시작
+        { x: new Date('2025-12-15').getTime(), y: 121570 },  // (B) 종료 / (C) 시작
+        { x: new Date('2026-05-17').getTime(), y: 93345 }    // (C) 진행 끝점
+      ]
+    }
+  ],
+  stroke: {
+    width: [1, 3.5],
+    curve: 'straight',
+    dashArray: [0, 0]
+  },
+  colors: ['#1c2840', '#8a6c28'],
+  markers: {
+    size: [0, 11],
+    colors: ['transparent', '#8a6c28'],
+    strokeColors: ['transparent', '#f0ead8'],
+    strokeWidth: 3,
+    hover: { sizeOffset: 3 }
+  },
+  chart: {
+    type: 'candlestick',
+    height: 500,
+    background: 'transparent',
+    fontFamily: 'IBM Plex Mono, monospace',
+    toolbar: { show: true, tools: { download: true, zoom: true, zoomin: true, zoomout: true, pan: true, reset: true } },
+    animations: { enabled: true, easing: 'easeinout', speed: 800 }
+  },
+  plotOptions: {
+    candlestick: {
+      colors: { upward: '#4a6741', downward: '#8b3a3a' },
+      wick: { useFillColor: true }
+    }
+  },
+  xaxis: {
+    type: 'datetime',
+    labels: { style: { colors: '#1c2840', fontSize: '10.5px', fontFamily: 'IBM Plex Mono' } },
+    axisBorder: { color: '#a89968' },
+    axisTicks: { color: '#a89968' }
+  },
+  yaxis: {
+    tooltip: { enabled: true },
+    labels: {
+      formatter: (v) => (v / 1000).toFixed(0) + 'K',
+      style: { colors: '#1c2840', fontSize: '10.5px', fontFamily: 'IBM Plex Mono' }
+    },
+    title: { text: '가격 (원)', style: { color: '#1c2840', fontSize: '11.5px', fontFamily: 'Cormorant Garamond', fontWeight: 600 } },
+    min: 85000, max: 135000
+  },
+  grid: { borderColor: 'rgba(28,40,64,0.10)', strokeDashArray: 2 },
+  tooltip: {
+    theme: 'light',
+    custom: function({ seriesIndex, dataPointIndex, w }) {
+      const data = w.config.series[0].data[dataPointIndex];
+      if (!data || !data.y || !Array.isArray(data.y)) return '';
+      const [o, h, l, c] = data.y;
+      const date = new Date(data.x).toISOString().substring(0, 7);
+      const change = ((c - o) / o * 100).toFixed(2);
+      const color = c >= o ? '#4a6741' : '#8b3a3a';
+      return `<div style="background:#1c2840; color:#f0ead8; padding:10px 14px; font-family:IBM Plex Mono; font-size:11px; border-radius:3px;">
+        <div style="font-weight:700; margin-bottom:6px;">${date}</div>
+        <div>시가: ${o.toLocaleString()}원</div>
+        <div>고가: ${h.toLocaleString()}원</div>
+        <div>저가: ${l.toLocaleString()}원</div>
+        <div>종가: ${c.toLocaleString()}원</div>
+        <div style="color:${color}; margin-top:4px;">변동: ${change}%</div>
+      </div>`;
+    }
+  },
+  annotations: {
+    points: [
+      // 직전 (A) 종료점 (참고용 - 더 큰 그림에서)
+      {
+        x: new Date('2024-11-15').getTime(),
+        y: 110275,
+        marker: { size: 6, fillColor: '#a89968', strokeColor: '#1c2840', strokeWidth: 2 },
+        label: { text: '직전 저점 110,275', borderColor: '#a89968', offsetY: 20, style: { background: '#a89968', color: '#1c2840', fontSize: '10px', fontWeight: 700, fontFamily: 'IBM Plex Mono', padding: { left: 6, right: 6, top: 3, bottom: 3 } } }
+      },
+      // ═══ ABC 조정파 핵심 라벨 (큰 점 + 굵은 라벨) ═══
+      // 정점 = (A) 시작
+      {
+        x: new Date('2025-05-15').getTime(),
+        y: 127900,
+        marker: { size: 12, fillColor: '#8a6c28', strokeColor: '#f0ead8', strokeWidth: 3 },
+        label: {
+          text: '◆ 정점 127,900',
+          borderColor: '#8a6c28',
+          offsetY: -8,
+          style: { background: '#1c2840', color: '#b08840', fontSize: '12px', fontWeight: 800, fontFamily: 'IBM Plex Mono', padding: { left: 9, right: 9, top: 4, bottom: 4 } }
+        }
+      },
+      // (A) 종료 — 1차 하락 마무리
+      {
+        x: new Date('2025-10-15').getTime(),
+        y: 113000,
+        marker: { size: 14, fillColor: '#8b3a3a', strokeColor: '#f0ead8', strokeWidth: 3 },
+        label: {
+          text: '(A)  113,000 · −11.6%',
+          borderColor: '#8b3a3a',
+          offsetY: 28,
+          style: { background: '#6e2b2b', color: '#f0ead8', fontSize: '14px', fontWeight: 800, fontFamily: 'Cormorant Garamond', padding: { left: 12, right: 12, top: 6, bottom: 6 } }
+        }
+      },
+      // (B) 종료 — 반등 마무리
+      {
+        x: new Date('2025-12-15').getTime(),
+        y: 121570,
+        marker: { size: 14, fillColor: '#4a6741', strokeColor: '#f0ead8', strokeWidth: 3 },
+        label: {
+          text: '(B)  121,570 · +7.6%',
+          borderColor: '#4a6741',
+          offsetY: -10,
+          style: { background: '#2d4a2d', color: '#f0ead8', fontSize: '14px', fontWeight: 800, fontFamily: 'Cormorant Garamond', padding: { left: 12, right: 12, top: 6, bottom: 6 } }
+        }
+      },
+      // (C) 진행 끝점 — 현재
+      {
+        x: new Date('2026-05-17').getTime(),
+        y: 93345,
+        marker: { size: 15, fillColor: '#8b3a3a', strokeColor: '#f0ead8', strokeWidth: 3.5 },
+        label: {
+          text: '(C)  93,345 · −23.2%',
+          borderColor: '#8b3a3a',
+          offsetY: 28,
+          style: { background: '#6e2b2b', color: '#f0ead8', fontSize: '14px', fontWeight: 800, fontFamily: 'Cormorant Garamond', padding: { left: 12, right: 12, top: 6, bottom: 6 } }
+        }
+      }
+    ],
+    yaxis: [
+      // (C) 종료 예상 영역
+      {
+        y: 88000,
+        y2: 92000,
+        fillColor: '#4a6741',
+        opacity: 0.18,
+        label: { text: '(C) 종료 예상 88K~92K', position: 'left', offsetX: 130, style: { background: '#2d4a2d', color: '#f0ead8', fontSize: '10.5px', fontWeight: 600, fontFamily: 'IBM Plex Mono', padding: { left: 7, right: 7, top: 3, bottom: 3 } } }
+      },
+      // 피보 61.8% 강세 목표
+      {
+        y: 112289,
+        borderColor: '#8a6c28',
+        borderWidth: 1.5,
+        strokeDashArray: 4,
+        label: { text: '피보 61.8% 목표 112,289 (+20%)', position: 'right', offsetX: -10, style: { background: 'transparent', color: '#8a6c28', fontSize: '10.5px', fontWeight: 600, fontFamily: 'IBM Plex Mono' } }
+      },
+      // 정점선
+      {
+        y: 127900,
+        borderColor: '#4a6741',
+        borderWidth: 1.5,
+        strokeDashArray: 4,
+        label: { text: '직전 정점 127,900', position: 'right', offsetX: -10, style: { background: 'transparent', color: '#2d4a2d', fontSize: '10.5px', fontWeight: 600, fontFamily: 'IBM Plex Mono' } }
+      }
+    ]
+  },
+  legend: {
+    show: true,
+    position: 'top',
+    horizontalAlign: 'right',
+    fontFamily: 'IBM Plex Mono',
+    fontSize: '11px',
+    fontWeight: 600,
+    labels: { colors: '#1c2840' },
+    markers: { width: 14, height: 14, strokeColor: '#1c2840', strokeWidth: 1 }
+  },
+  title: {
+    text: '메인 카운트: 정점 127,900 → (A) → (B) → (C) 진행 · 5/17 현재 ABC 조정파 마무리 임박',
+    align: 'left',
+    style: { fontSize: '12.5px', fontFamily: 'EB Garamond', fontStyle: 'italic', color: '#5a6378', fontWeight: 400 }
+  }
+};
+const elliottChart = new ApexCharts(document.querySelector("#elliott-wave-chart"), elliottOptions);
+elliottChart.render();
+</script>
+
+</body>
+</html>
