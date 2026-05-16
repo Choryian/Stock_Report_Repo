@@ -1,6 +1,22 @@
 {
   "reports": [
     {
+      "id": "2026-05-16-kospi-elliott-wave-counting",
+      "title": "KOSPI Elliott Wave Counting — 사십육 년 슈퍼사이클의 마지막 한 마디",
+      "summary": "1980년 출범 이후 46년 KOSPI 슈퍼사이클을 엘리어트 파동으로 카운팅한 Strategy Notes No.001. 현재 Super Cycle V파의 Cycle 4파 진입 국면이며, B 시나리오 기준 Cycle 5파 → Super Cycle V 종결점 9,500p 도달 가능성 분석 (2026 중기 전망).",
+      "category": "시황",
+      "date": "2026-05-16",
+      "path": "reports/2026-05-16-kospi-elliott-wave-counting.html",
+      "tags": [
+        "KOSPI",
+        "엘리어트파동",
+        "슈퍼사이클",
+        "중기전망",
+        "B시나리오",
+        "StrategyNotes"
+      ]
+    },
+    {
       "id": "2026-05-15-tnl-340570-1q26-earnings",
       "title": "티앤엘 (340570) 1Q26 어닝 서프라이즈 — 영익률 40.5%, 컨센 +64.6% 폭증",
       "summary": "1Q26 매출 450.7억(YoY -12.2%), 영업이익 182.7억(YoY -9.7%), 영익률 40.5%로 컨센서스 영익 111억 대비 +64.6% 폭증. 5/15 KOSPI -6.12% 폭락장에서 +11.68% 강세 마감(상대강도 +17.8%p), 12개월 목표가 96,800원.",

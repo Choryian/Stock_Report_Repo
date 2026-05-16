@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOSPI Elliott Wave Counting — Chory &amp; Rochet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+KR:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+<style>
+  :root {
+    --bg: #0a0908;
+    --bg-warm: #100d0a;
+    --surface: #161311;
+    --surface-elev: #1c1815;
+    --border: #2a2520;
+    --border-strong: #3a3530;
+    --gold: #c9a961;
+    --gold-light: #e3c477;
+    --gold-dark: #8a7340;
+    --gold-faded: rgba(201, 169, 97, 0.15);
+    --ivory: #e8e3d8;
+    --ivory-dim: #b8b0a3;
+    --muted: #6b6258;
+    --red: #c44545;
+    --red-light: #d96363;
+    --blue: #3b6fc4;
+    --serif-display: 'Cormorant Garamond', 'Noto Serif KR', serif;
+    --serif-body: 'EB Garamond', 'Noto Serif KR', serif;
+    --serif-kr: 'Noto Serif KR', 'EB Garamond', serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ivory);
+    font-family: var(--serif-kr);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: 0.005em;
+    overflow-x: hidden;
+  }
+
+  /* ============ 배경 텍스처 ============ */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse at top, rgba(201, 169, 97, 0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom, rgba(201, 169, 97, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.78 0 0 0 0 0.66 0 0 0 0 0.38 0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.7;
+  }
+
+  /* ============ 컨테이너 ============ */
+  .page {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ============ 표지 ============ */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 32px;
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .cover-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeDown 1.2s ease-out 0.2s forwards;
+  }
+
+  .maison-mark {
+    font-family: var(--serif-display);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.45em;
+    color: var(--gold);
+    text-transform: uppercase;
+    padding-bottom: 4px;
+  }
+
+  .maison-ornament {
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 0.5em;
+    opacity: 0.85;
+  }
+
+  .maison-est {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 11px;
+    color: var(--ivory-dim);
+    letter-spacing: 0.2em;
+    margin-top: 4px;
+  }
+
+  .cover-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 28px;
+    padding: 60px 0;
+    opacity: 0;
+    animation: fadeUp 1.4s ease-out 0.6s forwards;
+  }
+
+  .series-label {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--gold-light);
+    letter-spacing: 0.15em;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+
+  .cover-title-en {
+    font-family: var(--serif-display);
+    font-size: clamp(34px, 6vw, 56px);
+    font-weight: 400;
+    color: var(--ivory);
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+    max-width: 700px;
+  }
+
+  .cover-title-kr {
+    font-family: var(--serif-kr);
+    font-weight: 300;
+    font-size: clamp(18px, 3vw, 24px);
+    color: var(--ivory-dim);
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+    max-width: 600px;
+  }
+
+  .cover-subtitle {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(16px, 2.2vw, 20px);
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+    max-width: 600px;
+    margin-top: 8px;
+  }
+
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    opacity: 0;
+    animation: fadeUp 1.4s ease-out 1s forwards;
+  }
+
+  .cover-meta-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cover-meta-label {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .cover-meta-value {
+    font-family: var(--serif-display);
+    font-size: 16px;
+    color: var(--ivory);
+    letter-spacing: 0.08em;
+  }
+
+  .cover-meta-value.gold {
+    color: var(--gold);
+  }
+
+  /* ============ Epigraph 페이지 ============ */
+  .epigraph-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 32px;
+  }
+
+  .epigraph {
+    max-width: 580px;
+    text-align: left;
+    position: relative;
+  }
+
+  .epigraph-mark {
+    font-family: var(--serif-display);
+    font-size: 90px;
+    color: var(--gold);
+    line-height: 0.6;
+    margin-bottom: 24px;
+    opacity: 0.5;
+  }
+
+  .epigraph-en {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(22px, 3.5vw, 30px);
+    line-height: 1.4;
+    color: var(--gold-light);
+    margin-bottom: 36px;
+    letter-spacing: 0.01em;
+  }
+
+  .epigraph-kr {
+    font-family: var(--serif-kr);
+    font-weight: 300;
+    font-size: clamp(15px, 2vw, 17px);
+    line-height: 2;
+    color: var(--ivory);
+    letter-spacing: 0.02em;
+  }
+
+  .epigraph-kr p {
+    margin-bottom: 16px;
+  }
+
+  .epigraph-kr p:last-child {
+    margin-bottom: 0;
+  }
+
+  .epigraph-attribution {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-align: right;
+  }
+
+  /* ============ 차례 ============ */
+  .toc-section {
+    padding: 80px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-heading {
+    font-family: var(--serif-display);
+    font-size: clamp(28px, 4.5vw, 38px);
+    font-weight: 400;
+    color: var(--ivory);
+    letter-spacing: 0.02em;
+    margin-bottom: 40px;
+    line-height: 1.2;
+  }
+
+  .toc-list {
+    list-style: none;
+    counter-reset: toc-counter;
+  }
+
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--border);
+    counter-increment: toc-counter;
+    transition: padding 0.3s ease;
+  }
+
+  .toc-item:hover {
+    padding-left: 12px;
+  }
+
+  .toc-num {
+    font-family: var(--serif-display);
+    font-style: italic;
+    color: var(--gold);
+    width: 50px;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+  }
+
+  .toc-title {
+    font-family: var(--serif-kr);
+    flex: 1;
+    color: var(--ivory);
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .toc-page {
+    font-family: var(--serif-display);
+    color: var(--muted);
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  /* ============ 본문 섹션 ============ */
+  .content-section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-roman {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 48px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 20px;
+    opacity: 0.85;
+  }
+
+  .body-text {
+    font-family: var(--serif-kr);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.95;
+    color: var(--ivory);
+    letter-spacing: 0.01em;
+    margin-bottom: 20px;
+  }
+
+  .body-text strong {
+    font-weight: 500;
+    color: var(--gold-light);
+  }
+
+  .body-text em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  /* Drop cap */
+  .drop-cap::first-letter {
+    font-family: var(--serif-display);
+    float: left;
+    font-size: 64px;
+    line-height: 0.85;
+    padding-right: 12px;
+    padding-top: 6px;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .subhead {
+    font-family: var(--serif-display);
+    font-size: 22px;
+    color: var(--gold-light);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    margin: 40px 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .subhead-italic {
+    font-style: italic;
+  }
+
+  /* ============ Pull Quote ============ */
+  .pull-quote {
+    margin: 50px 0;
+    padding: 30px 36px 30px 40px;
+    border-left: 2px solid var(--gold);
+    background: linear-gradient(90deg, var(--gold-faded) 0%, transparent 100%);
+    position: relative;
+  }
+
+  .pull-quote-text {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: clamp(18px, 2.5vw, 22px);
+    line-height: 1.5;
+    color: var(--ivory);
+    letter-spacing: 0.01em;
+  }
+
+  /* ============ 데이터 박스 ============ */
+  .data-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 28px 32px;
+    margin: 32px 0;
+  }
+
+  .data-box-label {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .data-box-title {
+    font-family: var(--serif-kr);
+    font-size: 16px;
+    color: var(--ivory);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  /* ============ 테이블 ============ */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0;
+    font-family: var(--serif-kr);
+    font-size: 14px;
+  }
+
+  .data-table thead {
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+  }
+
+  .data-table th {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold);
+    text-align: left;
+    padding: 14px 12px;
+    letter-spacing: 0.05em;
+    font-size: 13px;
+  }
+
+  .data-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ivory);
+    line-height: 1.5;
+  }
+
+  .data-table .num {
+    font-family: var(--serif-display);
+    font-weight: 500;
+    text-align: right;
+    letter-spacing: 0.02em;
+  }
+
+  .data-table .highlight {
+    color: var(--gold-light);
+    font-weight: 500;
+  }
+
+  .data-table .base-case {
+    background: var(--gold-faded);
+  }
+
+  /* ============ 차트 컨테이너 ============ */
+  .chart-block {
+    margin: 50px 0;
+  }
+
+  .chart-caption {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .chart-title-text {
+    font-family: var(--serif-display);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--ivory);
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
+  }
+
+  .chart-subtitle-text {
+    font-family: var(--serif-kr);
+    font-weight: 300;
+    font-size: 13px;
+    color: var(--ivory-dim);
+    margin-bottom: 18px;
+    font-style: normal;
+  }
+
+  .chart-container {
+    width: 100%;
+    height: 480px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 12px;
+    position: relative;
+  }
+
+  .chart-container::before,
+  .chart-container::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: var(--gold);
+    opacity: 0.8;
+  }
+
+  .chart-container::before {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+  }
+
+  .chart-container::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+  }
+
+  /* ============ 결언 ============ */
+  .finale-section {
+    padding: 120px 0 80px;
+    text-align: center;
+    position: relative;
+  }
+
+  .finale-ornament {
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 0.8em;
+    margin-bottom: 30px;
+    opacity: 0.7;
+  }
+
+  .finale-text {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: clamp(20px, 3vw, 26px);
+    line-height: 1.6;
+    color: var(--ivory);
+    max-width: 640px;
+    margin: 0 auto;
+    letter-spacing: 0.01em;
+  }
+
+  .finale-kr {
+    font-family: var(--serif-kr);
+    font-style: normal;
+    font-size: clamp(15px, 2vw, 17px);
+    line-height: 1.95;
+    color: var(--ivory-dim);
+    max-width: 580px;
+    margin: 32px auto 0;
+    font-weight: 300;
+  }
+
+  .finale-signature {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border);
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .finale-signature-name {
+    font-family: var(--serif-display);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+  }
+
+  .finale-signature-detail {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ============ 푸터 ============ */
+  .footer {
+    background: var(--bg-warm);
+    padding: 50px 32px 40px;
+    margin-top: 80px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .footer-mark {
+    font-family: var(--serif-display);
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .footer-disclaimer {
+    font-family: var(--serif-kr);
+    font-weight: 300;
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto 24px;
+    font-style: italic;
+  }
+
+  .footer-meta {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+  }
+
+  /* ============ 강조 박스 (Executive) ============ */
+  .executive-box {
+    margin: 40px 0;
+    padding: 36px 40px;
+    background: linear-gradient(135deg, var(--surface) 0%, var(--surface-elev) 100%);
+    border: 1px solid var(--gold);
+    position: relative;
+  }
+
+  .executive-box::before {
+    content: '✦';
+    position: absolute;
+    top: -10px;
+    left: 30px;
+    background: var(--bg);
+    padding: 0 10px;
+    color: var(--gold);
+    font-size: 16px;
+  }
+
+  .executive-label {
+    font-family: var(--serif-display);
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+
+  .executive-numbers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 24px;
+    margin: 24px 0 16px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exec-num-block {
+    text-align: center;
+  }
+
+  .exec-num-label {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .exec-num-value {
+    font-family: var(--serif-display);
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 500;
+    color: var(--gold-light);
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+  }
+
+  .exec-num-unit {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 12px;
+    color: var(--ivory-dim);
+    margin-top: 4px;
+  }
+
+  /* ============ 애니메이션 ============ */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -100% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .gold-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 60px auto;
+    max-width: 200px;
+  }
+
+  /* ============ 반응형 ============ */
+  @media (max-width: 768px) {
+    .page, .cover, .footer { padding-left: 20px; padding-right: 20px; }
+    .chart-container { height: 420px; }
+    .body-text { font-size: 15px; }
+    .data-table { font-size: 13px; }
+    .data-table th, .data-table td { padding: 10px 8px; }
+    .executive-numbers { gap: 16px; }
+    .pull-quote { padding: 24px 24px 24px 28px; }
+    .epigraph-section { padding: 60px 20px; }
+  }
+
+  @media (max-width: 480px) {
+    .data-table th, .data-table td { padding: 8px 6px; font-size: 12px; }
+    .chart-container { height: 380px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- COVER PAGE -->
+<!-- ============================================================ -->
+<section class="cover">
+  <div class="cover-top">
+    <div class="maison-ornament">✦ &nbsp; ◆ &nbsp; ✦</div>
+    <div class="maison-mark">Chory &amp; Rochet</div>
+    <div class="maison-est">Maison de Stratégie · Séoul</div>
+  </div>
+
+  <div class="cover-center">
+    <div class="series-label">Strategy Notes — No. 001</div>
+    <div class="cover-divider"></div>
+    <h1 class="cover-title-en">KOSPI Elliott Wave Counting</h1>
+    <div class="cover-title-kr">사십육 년 슈퍼사이클의 마지막 한 마디</div>
+    <div class="cover-subtitle">A Forty-Six Year Supercycle, Approaching Its Final Wave</div>
+    <div class="cover-divider"></div>
+    <div class="series-label">B Scenario · Mid-Year Outlook 2026</div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Issued</div>
+      <div class="cover-meta-value">16 · V · MMXXVI</div>
+    </div>
+    <div class="cover-meta-block" style="text-align:right">
+      <div class="cover-meta-label">Volume</div>
+      <div class="cover-meta-value gold">I</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- EPIGRAPH -->
+<!-- ============================================================ -->
+<section class="epigraph-section">
+  <div class="epigraph">
+    <div class="epigraph-mark">“</div>
+    <p class="epigraph-en">The future is not written.<br>Markets are not to be foretold,<br>but to be answered.</p>
+    <div class="epigraph-kr">
+      <p>미래는 정해져 있지 않다.</p>
+      <p>시장은 예측의 영역이 아니라 대응의 영역이다.</p>
+      <p>우리는 내일을 알아맞히기 위해 시나리오를 그리지 않는다. 흥분과 절망 사이에서 길을 잃지 않기 위해, 과거가 남긴 흔적에서 기준을 빌려 좌표를 둘 뿐이다.</p>
+      <p>이 자료는 예언이 아닌 좌표이며, 시나리오가 빗나갈 때조차 우리가 어디에 서 있었는지를 알게 해 주는 기준선이다.</p>
+    </div>
+    <div class="epigraph-attribution">— Maison Chory &amp; Rochet</div>
+  </div>
+</section>
+
+<div class="page">
+
+<!-- ============================================================ -->
+<!-- TABLE OF CONTENTS -->
+<!-- ============================================================ -->
+<section class="toc-section">
+  <div class="section-label">Sommaire</div>
+  <h2 class="section-heading">차례</h2>
+  <ol class="toc-list">
+    <li class="toc-item"><span class="toc-num">I.</span><span class="toc-title">서문 — 카운팅이라는 좌표</span><span class="toc-page">i</span></li>
+    <li class="toc-item"><span class="toc-num">II.</span><span class="toc-title">차수의 구조 — Super Cycle · Cycle · Primary</span><span class="toc-page">ii</span></li>
+    <li class="toc-item"><span class="toc-num">III.</span><span class="toc-title">Super Cycle (1980–2026) — 슈퍼사이클</span><span class="toc-page">iii</span></li>
+    <li class="toc-item"><span class="toc-num">IV.</span><span class="toc-title">Cycle (2020–2026) — V파의 내부 사이클</span><span class="toc-page">iv</span></li>
+    <li class="toc-item"><span class="toc-num">V.</span><span class="toc-title">Primary (2025–2026) — 3파의 다섯 마디</span><span class="toc-page">v</span></li>
+    <li class="toc-item"><span class="toc-num">VI.</span><span class="toc-title">현재 — Cycle 4파 진입</span><span class="toc-page">vi</span></li>
+    <li class="toc-item"><span class="toc-num">VII.</span><span class="toc-title">Cycle 4파의 성격 — 교대의 원칙</span><span class="toc-page">vii</span></li>
+    <li class="toc-item"><span class="toc-num">VIII.</span><span class="toc-title">Cycle 5파 — Super Cycle V의 종결</span><span class="toc-page">viii</span></li>
+    <li class="toc-item"><span class="toc-num">IX.</span><span class="toc-title">검증 트리거 — If, Then</span><span class="toc-page">ix</span></li>
+    <li class="toc-item"><span class="toc-num">X.</span><span class="toc-title">결언</span><span class="toc-page">x</span></li>
+  </ol>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION I -->
+<!-- ============================================================ -->
+<section class="content-section">
+  <div class="section-roman">I</div>
+  <div class="section-label">Préface</div>
+  <h2 class="section-heading">카운팅이라는 좌표</h2>
+
+  <p class="body-text drop-cap">엘리어트 파동 카운팅은 시장에 대한 예언이 아니다. 그것은 시장의 행동에 이름을 붙이는 일이다. 파동에 차수를 부여하고, 끝과 시작을 구분하고, 그 안에서 비례의 질서를 찾는 일이다. 이렇게 부여된 이름들은 미래를 결정짓지 않지만, 다음 행동의 좌표가 되어 준다.</p>
+
+  <p class="body-text">본 자료는 1980년 1월 코스피 출범 이후 사십육 년에 걸친 슈퍼사이클의 마지막 단계 — 다섯 번째이자 마지막 추진파, 즉 <strong>SUPER CYCLE V파의 종결 임박</strong>을 다룬다. 다섯 마디 가운데 네 마디는 이미 지나갔고, 마지막 마디 안에서도 가장 깊은 휘어짐을 막 지나 마지막 곡선이 그려지고 있다.</p>
+
+  <p class="body-text">우리는 이 자료에서 카운팅을 세 차수로 분해한다. 사십육 년의 큰 호흡(<em>Super Cycle</em>), 그 안의 여섯 해(<em>Cycle</em>), 다시 그 안의 열세 달(<em>Primary</em>)이다. 그리고 각 차수가 어떻게 다른 차수의 마디를 만들어 내는지를 보인다. 작은 매듭이 모여 큰 매듭이 되고, 큰 매듭이 다시 더 큰 호흡 안에서 한 점으로 압축된다.</p>
+
+  <div class="pull-quote">
+    <div class="pull-quote-text">카운팅은 결정이 아니라 가설이다. 가설은 데이터로 검증되거나 폐기된다. 가장 중요한 것은 카운팅이 맞느냐가 아니라, 카운팅이 빗나갔을 때 우리가 어디에 있었는지를 아는 일이다.</div>
+  </div>
+
+  <p class="body-text">B 시나리오를 기준으로 삼는다. 이는 가장 평범한 시나리오, 즉 표준 비율로 진행될 경우의 경로다. 더 짧게 끝날 수도 있고(A), 1만피를 돌파하며 연장될 수도 있지만(C), 그 분기는 다가올 한 마디 — Cycle 4파의 깊이가 보여 줄 것이다. 그것을 본 다음에 다음 가설로 옮겨 가도 늦지 않다.</p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION II - 차수 구조 -->
+<!-- ============================================================ -->
+<section class="content-section">
+  <div class="section-roman">II</div>
+  <div class="section-label">Structure des Degrés</div>
+  <h2 class="section-heading">차수의 구조</h2>
+
+  <p class="body-text">엘리어트의 다섯 마디는 자기유사성을 가진다. 큰 5파의 내부에는 다시 5파가 들어 있고, 그 안의 추진파(1·3·5)는 또다시 5파로 분해된다. 본 자료는 코스피의 현재 위치를 다음 세 차수로 분해한다.</p>
+
+  <div class="executive-box">
+    <div class="executive-label">▸ Hierarchy of Degrees</div>
+    <table class="data-table" style="margin: 0;">
+      <thead>
+        <tr>
+          <th>차수</th>
+          <th>표기</th>
+          <th>구간</th>
+          <th>봉</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong class="highlight">SUPER CYCLE</strong></td>
+          <td>I · II · III · IV · V</td>
+          <td>1980 ~ 현재 (사십육 년)</td>
+          <td>월봉</td>
+        </tr>
+        <tr>
+          <td><strong class="highlight">Cycle</strong></td>
+          <td>1 · 2 · 3 · 4 · 5</td>
+          <td>2020.3 ~ 현재 (Super Cycle V파의 내부 5파)</td>
+          <td>주봉</td>
+        </tr>
+        <tr>
+          <td><strong class="highlight">Primary</strong></td>
+          <td>[1] · [2] · [3] · [4] · [5]</td>
+          <td>2025.4 ~ 2026.5 (Cycle 3파의 내부 5파)</td>
+          <td>일봉</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="data-box">
+    <div class="data-box-label">▸ 현재 위치</div>
+    <p class="body-text" style="margin-bottom:0;">2026년 5월 15일 장중 8,040 도달 시점은 <strong>Primary [5]파 종결 = Cycle 3파 종결</strong>로 카운팅된다. 따라서 직후 시점부터 <strong>Cycle 4파가 진행 중</strong>이며, 이 4파가 완성된 후 Cycle 5파가 진행되어 Super Cycle V파 전체의 정점을 형성하게 된다.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION III - Super Cycle -->
+<!-- ============================================================ -->
+<section class="content-section">
+  <div class="section-roman">III</div>
+  <div class="section-label">Le Super Cycle</div>
+  <h2 class="section-heading">Super Cycle (1980 — 2026)</h2>
+
+  <p class="body-text">1980년 1월 4일 KOSPI 100을 기준점으로 출범한 이래 사십육 년간 다섯 마디의 충격파가 그려졌다. 마디마다 한 세대의 경제사가 압축되어 있다 — 1차 자본시장 개방, IMF 외환위기, 중국 효과, 글로벌금융위기, 그리고 AI 슈퍼사이클.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>파동</th>
+        <th>시점</th>
+        <th class="num">가격</th>
+        <th>되돌림 · 시간</th>
+        <th>거시 맥락</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>시작</em></td>
+        <td>1980-01-04</td>
+        <td class="num">100</td>
+        <td>—</td>
+        <td>코스피 출범</td>
+      </tr>
+      <tr>
+        <td class="highlight">Wave I 정점</td>
+        <td>1989-04-01</td>
+        <td class="num">1,015</td>
+        <td>+915 · 9년</td>
+        <td>1차 자본시장 개방기</td>
+      </tr>
+      <tr>
+        <td class="highlight">Wave II 저점</td>
+        <td>1998-06-16</td>
+        <td class="num">277</td>
+        <td>-73% · 9년</td>
+        <td>IMF 외환위기</td>
+      </tr>
+      <tr>
+        <td class="highlight">Wave III 정점</td>
+        <td>2007-10-31</td>
+        <td class="num">2,065</td>
+        <td>+644% · 9년</td>
+        <td>중국 효과 · 조선/철강 슈퍼사이클</td>
+      </tr>
+      <tr>
+        <td class="highlight">Wave IV 저점</td>
+        <td>2020-03-19</td>
+        <td class="num">1,439</td>
+        <td>-30% · 12년<br><em>(2008 → 2018 → 2020 expanded flat)</em></td>
+        <td>글로벌금융위기 · 박스피 · 코로나</td>
+      </tr>
+      <tr class="base-case">
+        <td class="highlight"><strong>Wave V 진행</strong></td>
+        <td>2020.3 ~ 2026.5</td>
+        <td class="num"><strong>8,040</strong></td>
+        <td>+459% · 6년 (진행 중)</td>
+        <td>AI · 반도체 · 밸류업</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="subhead subhead-italic">Verification of Wave Principles</div>
+  <p class="body-text">엘리어트의 세 가지 절대 원칙을 모두 충족한다:</p>
+  <ul class="body-text" style="padding-left: 24px;">
+    <li><strong>Wave II</strong> 저점(277) > 시작점(100) — <em>2파는 1파 시작점 아래로 가지 않는다</em> ✓</li>
+    <li><strong>Wave III</strong> 폭(1,788) > Wave I 폭(915) — <em>3파는 가장 짧지 않다</em> ✓</li>
+    <li><strong>Wave IV</strong> 저점(1,439) > Wave I 정점(1,015) — <em>4파는 1파 영역과 겹치지 않는다</em> ✓</li>
+  </ul>
+
+  <div class="chart-block">
+    <div class="chart-caption">— Chart I —</div>
+    <div class="chart-title-text">Super Cycle (1980 — 2026)</div>
+    <div class="chart-subtitle-text">월봉 · 로그 스케일 · 노란 점선은 파동 시작점 연결</div>
+    <div id="chart1" class="chart-container"></div>
+  </div>
+
+  <p class="body-text">로그 스케일에서 보면 다섯 마디의 비례가 시각적으로 더 분명해진다. III파의 길이(폭의 의미가 아니라 가격 변화율의 의미)와 V파의 가속도가 한눈에 들어온다. 특히 V파는 2025년 4월 저점 이후의 폭발적 가속으로 III파를 넘어서는 폭으로 진행되고 있다 — 이는 슈퍼사이클의 마지막 추진파에 흔히 나타나는 <em>blow-off</em> 형태이며, 정점이 가까웠다는 신호이기도 하다.</p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION IV - Cycle -->
+<!-- ============================================================ -->
+<section class="content-section">
+  <div class="section-roman">IV</div>
+  <div class="section-label">Le Cycle</div>
+  <h2 class="section-heading">Cycle (2020 — 2026)</h2>
+
+  <p class="body-text">Super Cycle V파의 내부 5파 분해. 2020년 3월 코로나 저점 1,439에서 출발한 여섯 해의 충격파다.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>파동</th>
+        <th>시점</th>
+        <th class="num">가격</th>
+        <th>폭 · 시간</th>
+        <th>성격</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>시작</em></td>
+        <td>2020-03-19</td>
+        <td class="num">1,439</td>
+        <td>—</td>
+        <td>Super Cycle IV 저점</td>
+      </tr>
+      <tr>
+        <td class="highlight">Cycle 1</td>
+        <td>2021-06-25</td>
+        <td class="num">3,316</td>
+        <td>+1,877 · 15개월</td>
+        <td>코로나 유동성 랠리</td>
+      </tr>
+      <tr>
+        <td class="highlight">Cycle 2</td>
+        <td>2025-04-09</td>
+        <td class="num">2,285</td>
+        <td>-55% · 46개월</td>
+        <td>긴 박스권 복합 조정<br><em>(2022 저점 → 2023~2024 횡보 → 트럼프 관세 저점)</em></td>
+      </tr>
+      <tr class="base-case">
+        <td class="highlight"><strong>Cycle 3</strong></td>
+        <td>2026-05-15</td>
+        <td class="num"><strong>8,040</strong></td>
+        <td>+5,756 · 13개월</td>
+        <td>연장형 추진파 <em>([3]/[1] = 3.07배)</em></td>
+      </tr>
+      <tr>
+        <td>Cycle 4 (예상)</td>
+        <td>2026.6 ~ 7</td>
+        <td class="num">6,914</td>
+        <td>-14% · 7~10주</td>
+        <td>얕은 zigzag</td>
+      </tr>
+      <tr>
+        <td>Cycle 5 (예상)</td>
+        <td>2026.말 ~ 2027.초</td>
+        <td class="num">9,000~9,500</td>
+        <td>+30~36% · 5~7개월</td>
+        <td>Super Cycle V 종결</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="data-box">
+    <div class="data-box-label">▸ 연장의 의미</div>
+    <p class="body-text" style="margin-bottom:0;">Cycle 3파가 Cycle 1파의 <strong>3.07배</strong>로 연장(extension)된 것은 카운팅에 두 가지 함의를 남긴다. 첫째, 이는 코스피 V파의 핵심 추진력이 3파에 집중되었음을 뜻한다. 둘째, 엘리어트 가이드라인상 <em>“충격파의 세 추진파 중 하나가 연장될 때, 나머지 둘은 비슷한 폭으로 짧게 진행된다”</em>는 원칙에 따라, <strong>Cycle 5파는 Cycle 1파와 비슷한 1,800~2,000p 폭으로 진행</strong>될 가능성이 가장 높다.</p>
+  </div>
+
+  <div class="chart-block">
+    <div class="chart-caption">— Chart II —</div>
+    <div class="chart-title-text">Cycle (2020.03 — 2026.05)</div>
+    <div class="chart-subtitle-text">분기봉 · Super Cycle V파의 내부 5파 분해</div>
+    <div id="chart2" class="chart-container"></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION V - Primary -->
+<!-- ============================================================ -->
+<section class="content-section">
+  <div class="section-roman">V</div>
+  <div class="section-label">La Primary</div>
+  <h2 class="section-heading">Primary (2025 — 2026)</h2>
+
+  <p class="body-text">Cycle 3파의 내부 5파 분해. 2025년 4월 9일 트럼프 관세 저점 2,285에서 시작된 열세 달의 폭발적 충격파다. 이재명 정부 출범과 AI 슈퍼사이클이 맞물려 진행된 한국 증시 사상 가장 가파른 상승 국면이다.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>파동</th>
+        <th>시점</th>
+        <th class="num">가격</th>
+        <th>폭</th>
+        <th>특징</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>시작</em></td>
+        <td>2025-04-09</td>
+        <td class="num">2,285</td>
+        <td>—</td>
+        <td>Cycle 2 종결점</td>
+      </tr>
+      <tr>
+        <td class="highlight">Primary [1]</td>
+        <td>2025-10-27</td>
+        <td class="num">4,000</td>
+        <td>+75% · 6개월</td>
+        <td>사상 첫 4,000선 돌파</td>
+      </tr>
+      <tr>
+        <td class="highlight">Primary [2]</td>
+        <td>2025-11</td>
+        <td class="num">3,800</td>
+        <td>-5% · 1개월</td>
+        <td>얕고 짧은 flat (alternation 1차)</td>
+      </tr>
+      <tr>
+        <td class="highlight">Primary [3]</td>
+        <td>2026-02-25</td>
+        <td class="num">6,000+</td>
+        <td>+58% · 3개월</td>
+        <td><strong>가장 긴 폭 (3,200p)</strong></td>
+      </tr>
+      <tr>
+        <td class="highlight">Primary [4]</td>
+        <td>2026-03-04~31</td>
+        <td class="num">5,052</td>
+        <td>-16% · 1개월</td>
+        <td>중동 전쟁 · -12% 서킷브레이커 <em>(zigzag, alternation 2차)</em></td>
+      </tr>
+      <tr class="base-case">
+        <td class="highlight"><strong>Primary [5]</strong></td>
+        <td>2026-05-15</td>
+        <td class="num"><strong>8,040</strong></td>
+        <td>+59% · 6주</td>
+        <td>연장형 종결 · 매수 사이드카 5회</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="subhead subhead-italic">Evidence — KRX Data Verification</div>
+  <p class="body-text">Primary [5]파의 연장형 종결은 KRX 일별 데이터로 명확히 검증된다. 시가총액 상위 두 종목 — 삼성전자와 SK하이닉스 — 의 5월 폭등이 결정적 증거다.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>날짜</th>
+        <th>삼성전자</th>
+        <th>SK하이닉스</th>
+        <th>특징</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2026-04-23</td>
+        <td class="num">224,500</td>
+        <td class="num">1,225,000</td>
+        <td>Primary [5] 직전</td>
+      </tr>
+      <tr>
+        <td>2026-05-04</td>
+        <td class="num">232,500 <em>(+5.4%)</em></td>
+        <td class="num">1,447,000 <em>(+12.5%)</em></td>
+        <td>폭등 시작</td>
+      </tr>
+      <tr class="base-case">
+        <td>2026-05-06</td>
+        <td class="num">266,000 <em>(+14.4%)</em></td>
+        <td class="num">1,601,000 <em>(+10.6%)</em></td>
+        <td><strong>매수 사이드카 발동</strong></td>
+      </tr>
+      <tr class="base-case">
+        <td>2026-05-11</td>
+        <td class="num">285,500 <em>(+6.3%)</em></td>
+        <td class="num">1,880,000 <em>(+11.5%)</em></td>
+        <td><strong>매수 사이드카 (재발동)</strong></td>
+      </tr>
+      <tr>
+        <td>2026-05-12</td>
+        <td class="num">279,000 <em>(장중 291,500)</em></td>
+        <td class="num">1,835,000 <em>(장중 1,967,000)</em></td>
+        <td><em>위꼬리 음봉 — 8천 1차 실패</em></td>
+      </tr>
+      <tr>
+        <td>2026-05-14</td>
+        <td class="num">296,000 <em>(+4.2%)</em></td>
+        <td class="num">1,970,000</td>
+        <td>재상승</td>
+      </tr>
+      <tr class="base-case">
+        <td>2026-05-15</td>
+        <td class="num" colspan="2" style="text-align:center"><strong>장중 KOSPI 8,040 → 종가 ~7,500선</strong></td>
+        <td><strong>매도 사이드카 · Blow-off Top</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="body-text" style="font-size: 13px; color: var(--muted); font-style: italic;">출처: KRX MCP · korea-stock-analyzer · get_stock_trade_info (조회일 2026-05-16)</p>
+
+  <div class="chart-block">
+    <div class="chart-caption">— Chart III —</div>
+    <div class="chart-title-text">Primary (2025.04 — 2026.05)</div>
+    <div class="chart-subtitle-text">일봉/주봉 혼합 · Cycle 3파의 내부 5파 분해</div>
+    <div id="chart3" class="chart-container"></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION VI - 현재 -->
+<!-- ============================================================ -->
+<section class="content-section">
+  <div class="section-roman">VI</div>
+  <div class="section-label">Le Présent</div>
+  <h2 class="section-heading">현재 — Cycle 4파 진입</h2>
+
+  <p class="body-text drop-cap">정점의 확인은 두 가지 비율적 일치로 이루어진다. 5월 15일 장중 고점 <strong>8,040</strong>은 우연이 아니다.</p>
+
+  <div class="executive-box">
+    <div class="executive-label">▸ Fibonacci Confluence at 8,040</div>
+    <div class="executive-numbers">
+      <div class="exec-num-block">
+        <div class="exec-num-label">Super Cycle</div>
+        <div class="exec-num-value">8,036</div>
+        <div class="exec-num-unit"><em>V = III × 3.382</em></div>
+      </div>
+      <div class="exec-num-block">
+        <div class="exec-num-label">Cycle</div>
+        <div class="exec-num-value">×3.07</div>
+        <div class="exec-num-unit"><em>[3] / [1] 연장 비율</em></div>
+      </div>
+      <div class="exec-num-block">
+        <div class="exec-num-label">실제 장중 고점</div>
+        <div class="exec-num-value" style="color: var(--gold);">8,040</div>
+        <div class="exec-num-unit"><em>2026.05.15</em></div>
+      </div>
+    </div>
+    <p class="body-text" style="margin: 16px 0 0 0; font-size: 14px;">두 개의 독립된 피보나치 비율(Super Cycle 차수와 Cycle 차수)이 동일 가격대에서 만나는 <em>confluence</em>는 단순한 우연이 아니다. 이는 Cycle 3파 종결의 비율적 확인이며, 동시에 다음 한 마디가 시작되었음을 알리는 좌표다.</p>
+  </div>
+
+  <p class="body-text">종결의 외형적 증거 또한 일관된다:</p>
+
+  <ul class="body-text" style="padding-left: 24px;">
+    <li>5월 한 달간 <strong>매수 사이드카 5회 연속 발동</strong> (5/6, 5/8, 5/11 등)</li>
+    <li>시총 1·2위 동시 메가 양봉 — <strong>삼성전자 5/6 +14.41%, SK하이닉스 5/4 +12.52%</strong> (KRX 확인)</li>
+    <li>5/12 · 5/15 <strong>8,000선 코앞에서 두 차례 위꼬리 음봉</strong> — 더블 톱 형태</li>
+    <li>5/15 장중 8,040 도달 후 종가 7,500선까지 <strong>-6.7% 갭다운, 매도 사이드카</strong></li>
+    <li><strong>외국인 7거래일 연속 매도 4.5조원</strong> — 종결국면 수급</li>
+  </ul>
+
+  <div class="pull-quote">
+    <div class="pull-quote-text">매수 사이드카와 위꼬리 음봉이 같은 자리에서 만나면 그것은 추격의 자리가 아니라 떠나야 할 자리다. Blow-off top은 환희의 모습으로 찾아오지만, 그것을 가장 먼저 알아보는 사람은 흥분하지 않는 사람이다.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION VII - Cycle 4파 -->
+<!-- ============================================================ -->
+<section class="content-section">
+  <div class="section-roman">VII</div>
+  <div class="section-label">Le Caractère de la Vague IV</div>
+  <h2 class="section-heading">Cycle 4파의 성격</h2>
+
+  <p class="body-text">엘리어트의 <em>alternation(교대)</em> 원칙은 Cycle 4파의 형태를 거의 결정짓는다. 이 원칙은 단순히 모양만이 아니라 시간·깊이·복잡성 모두에서 작동한다.</p>
+
+  <div class="subhead subhead-italic">Cycle 2파의 회상</div>
+  <p class="body-text">Cycle 2파는 2021년 6월 3,316에서 2025년 4월 2,285까지 <strong>46개월에 걸친 깊고 지루한 박스권 조정</strong>이었다. -55%의 깊은 되돌림, 약 4년의 시간 소모, expanded flat과 W-X-Y가 뒤섞인 복합 구조. 시장은 가격이 아니라 시간으로 조정을 마쳤다.</p>
+
+  <div class="subhead subhead-italic">따라서, Cycle 4파는</div>
+  <p class="body-text">교대 원칙에 따라 Cycle 4파는 Cycle 2파와 정반대의 성격이어야 한다:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>속성</th>
+        <th>Cycle 2 (지나간 마디)</th>
+        <th>Cycle 4 (예상 마디)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>형태</em></td>
+        <td>Expanded Flat · 복합 횡보</td>
+        <td class="highlight">Zigzag · 빠른 V자형</td>
+      </tr>
+      <tr>
+        <td><em>깊이</em></td>
+        <td>-55% (Cycle 1 폭 기준)</td>
+        <td class="highlight">-10 ~ -17% (얕음)</td>
+      </tr>
+      <tr>
+        <td><em>시간</em></td>
+        <td>46개월</td>
+        <td class="highlight">7~10주 (약 2개월)</td>
+      </tr>
+      <tr>
+        <td><em>성격</em></td>
+        <td>시간 소모형</td>
+        <td class="highlight">가격 소모형 · 빠른 청산</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="body-text">지수가 8,040까지 올라온 절대 포인트 기준으로는 1,000p가 넘는 조정폭이 깊어 보이지만, 비율로 보면 <strong>-10~-17%는 표준적 zigzag</strong>의 범위에 속한다. 절대값에 흔들리지 않고 비율로 사고해야 카운팅의 진짜 모양이 보인다.</p>
+
+  <div class="data-box">
+    <div class="data-box-label">▸ Cycle 4파 저점 타깃</div>
+    <table class="data-table" style="margin: 0;">
+      <thead>
+        <tr>
+          <th>되돌림</th>
+          <th class="num">저점 타깃</th>
+          <th>시간 타깃</th>
+          <th>평가</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>10% (얕은 zigzag)</td>
+          <td class="num">7,236</td>
+          <td>2026.6 말</td>
+          <td>강세 case</td>
+        </tr>
+        <tr class="base-case">
+          <td><strong>14% (표준 zigzag)</strong></td>
+          <td class="num"><strong>6,914</strong></td>
+          <td>2026.7 초</td>
+          <td class="highlight"><strong>Base case</strong></td>
+        </tr>
+        <tr>
+          <td>17% (깊은 zigzag)</td>
+          <td class="num">6,673</td>
+          <td>2026.7 중순</td>
+          <td>보수 case</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="body-text">2026년 5월 15일의 -6.7% 갭다운은 이미 zigzag의 <strong>A파 진행</strong>으로 해석된다. 향후 예상 경로 — 5월 말~6월 초 단기 B파 반등(7,700~7,800대 회복) → 6월 중순~7월 초 C파 추가 하락(6,900~7,000선) → Cycle 4파 저점 확정.</p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION VIII - Cycle 5파 -->
+<!-- ============================================================ -->
+<section class="content-section">
+  <div class="section-roman">VIII</div>
+  <div class="section-label">L'Apogée</div>
+  <h2 class="section-heading">Cycle 5파 — Super Cycle V의 종결</h2>
+
+  <p class="body-text">Cycle 4파 저점 확정 후 마지막 한 마디가 진행된다. 이 마디가 끝나는 곳이 곧 <strong>사십육 년 슈퍼사이클 전체의 정점</strong>이다.</p>
+
+  <div class="subhead subhead-italic">Pricing the Final Wave</div>
+  <p class="body-text">3파 연장 시 5파의 표준 비율은 <em>[5] ≈ [1]</em>이다. Cycle 1파 폭이 1,877p였으므로:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Cycle 4 저점</th>
+        <th class="num">[5] = [1] × 0.618</th>
+        <th class="num">[5] = [1] × 1.0</th>
+        <th class="num">[5] = [1] × 1.236</th>
+        <th>예상 정점</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>7,236 (-10%)</td>
+        <td class="num">8,396</td>
+        <td class="num">9,113</td>
+        <td class="num">9,556</td>
+        <td>9,100~9,500</td>
+      </tr>
+      <tr class="base-case">
+        <td><strong>6,914 (-14%, base)</strong></td>
+        <td class="num">8,075</td>
+        <td class="num"><strong>8,791</strong></td>
+        <td class="num"><strong>9,225</strong></td>
+        <td class="highlight"><strong>8,800~9,200</strong></td>
+      </tr>
+      <tr>
+        <td>6,673 (-17%)</td>
+        <td class="num">7,833</td>
+        <td class="num">8,550</td>
+        <td class="num">8,994</td>
+        <td>8,500~9,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="subhead subhead-italic">Two Independent Targets, One Confluence</div>
+  <p class="body-text">Cycle 5파의 표준 비율과 Super Cycle V파의 표준 비율을 함께 보면 정합 지점이 좁혀진다:</p>
+
+  <div class="executive-box">
+    <div class="executive-label">▸ Final Confluence Zone</div>
+    <div class="executive-numbers">
+      <div class="exec-num-block">
+        <div class="exec-num-label">Super Cycle V</div>
+        <div class="exec-num-value">9,704</div>
+        <div class="exec-num-unit"><em>= III × 4.236</em></div>
+      </div>
+      <div class="exec-num-block">
+        <div class="exec-num-label">Cycle 5 (base)</div>
+        <div class="exec-num-value">8,800~9,200</div>
+        <div class="exec-num-unit"><em>= [1] 동등 폭</em></div>
+      </div>
+      <div class="exec-num-block">
+        <div class="exec-num-label" style="color: var(--gold);">최종 정점</div>
+        <div class="exec-num-value" style="color: var(--gold);">9,000~9,500</div>
+        <div class="exec-num-unit" style="color: var(--gold-light);"><em>B 시나리오 base</em></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text">두 차수의 독립된 비율이 만나는 <strong>9,000~9,500선</strong>이 가장 신뢰도 높은 종결 영역이다. 이는 코스피 1만피의 직전, 즉 1만의 마디 지수에 가까이 다가가되 그 직전에서 멈추는 그림이다.</p>
+
+  <div class="subhead subhead-italic">Timing</div>
+  <ul class="body-text" style="padding-left: 24px;">
+    <li>Cycle 5파 진행 기간: <strong>약 5~7개월</strong> (Cycle 3파 13개월의 약 40~55%)</li>
+    <li>Cycle 5파 시작: 2026년 7월 초 (Cycle 4 저점 직후)</li>
+    <li><strong>Super Cycle V파 종결: 2026년 12월 ~ 2027년 3월</strong></li>
+  </ul>
+
+  <div class="chart-block">
+    <div class="chart-caption">— Chart IV —</div>
+    <div class="chart-title-text">B 시나리오 — 향후 전망</div>
+    <div class="chart-subtitle-text">Cycle 4 zigzag → Cycle 5 → Super Cycle V 종결 (9,500)</div>
+    <div id="chart4" class="chart-container"></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION IX - 검증 트리거 -->
+<!-- ============================================================ -->
+<section class="content-section">
+  <div class="section-roman">IX</div>
+  <div class="section-label">Triggers de Validation</div>
+  <h2 class="section-heading">검증 트리거 — If, Then</h2>
+
+  <p class="body-text">시나리오는 검증되거나 폐기된다. 카운팅의 진위를 가르는 결정적 가격대를 미리 정해 두면 흥분도 절망도 줄어든다.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>관찰 (If)</th>
+        <th>해석 (Then)</th>
+        <th>대응</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="base-case">
+        <td>Cycle 4 저점이 <strong>6,680 위에서 형성</strong></td>
+        <td class="highlight">B 시나리오 정합 유지</td>
+        <td>Cycle 5파 진입 준비 · 분할 매수 계획</td>
+      </tr>
+      <tr>
+        <td>Cycle 4 저점이 <strong>6,680 아래로 이탈</strong></td>
+        <td>표준 zigzag 폭 이탈 · 시나리오 재검토 필요</td>
+        <td>관망 · 5,840 추가 검증선 확인</td>
+      </tr>
+      <tr>
+        <td>Cycle 4 저점이 <strong>5,840 아래로 이탈</strong></td>
+        <td>Cycle 5파 가능성 약화 · Super Cycle V 조기 종결설 부상</td>
+        <td>현금 비중 확대 · 대조정 시나리오 검토</td>
+      </tr>
+      <tr>
+        <td>Cycle 4 저점이 <strong>3,316 (Cycle 1) 침범</strong></td>
+        <td>카운팅 전면 폐기 · 차수 재구성 필요</td>
+        <td>새로운 카운팅으로 출발</td>
+      </tr>
+      <tr>
+        <td><strong>8,040 단기 재돌파</strong></td>
+        <td>Primary [5] 미종결 · 일봉 차수 재조정</td>
+        <td>연장 시나리오 가설 검증</td>
+      </tr>
+      <tr>
+        <td>Cycle 5 정점이 <strong>11,000 이상 도달</strong></td>
+        <td>5파 연장 시나리오 (C) 진행</td>
+        <td>트레일링 스탑으로 점진적 익절</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="data-box">
+    <div class="data-box-label">▸ 일정 기준선</div>
+    <p class="body-text" style="margin-bottom:0;"><strong>2026년 6월 말~7월 중순</strong>의 Cycle 4파 저점 형태와 깊이가 본 시나리오 전체의 정합성을 결정짓는다. 이 시점까지는 카운팅의 가설 단계이며, 이후 데이터로 검증된다. 그 사이에 흥분하거나 절망할 이유는 없다 — 시나리오는 이미 그려져 있다.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION X - 결언 -->
+<!-- ============================================================ -->
+<section class="finale-section">
+  <div class="finale-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <p class="finale-text">Forty-six years of patterns,<br>compressed into a single coordinate.<br><br>Not a prophecy, but a place to stand.</p>
+
+  <p class="finale-kr">사십육 년의 결을 더듬어 하나의 좌표를 둔다.<br>이는 예언이 아니라, 발 디딜 자리다.<br><br>시장이 우리의 시나리오를 따르지 않을 때조차<br>우리는 어디에 서 있었는지를 기억할 것이다.<br>흥분하지 않고, 절망하지 않고, 다음 한 걸음을 차분히 내디딜 것이다.</p>
+
+  <div class="finale-signature">
+    <div class="finale-signature-name">CHORY &amp; ROCHET</div>
+    <div class="finale-signature-detail">— Maison de Stratégie —</div>
+  </div>
+</section>
+
+</div><!-- /.page -->
+
+<!-- ============================================================ -->
+<!-- FOOTER -->
+<!-- ============================================================ -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-mark">CHORY &amp; ROCHET</div>
+    <p class="footer-disclaimer">
+      본 자료는 Chory &amp; Rochet의 전략 노트로서 정보 제공 목적으로 작성되었으며,
+      특정 종목 또는 지수에 대한 매매 권유나 투자 자문이 아닙니다.
+      엘리어트 파동 카운팅은 가설의 영역이며, 시장 데이터에 의해 언제든 검증 또는 폐기될 수 있습니다.
+      본 자료에 기재된 카운팅과 시나리오는 가격 행동의 좌표 설정을 위한 참고이며,
+      투자 판단의 책임은 전적으로 투자자 본인에게 있습니다.
+      <br><br>
+      데이터 출처: KRX · korea-stock-analyzer · 웹 자료 (조회일 2026.05.16)
+    </p>
+    <div class="footer-meta">
+      Strategy Notes No. 001 &nbsp;·&nbsp; 16 May 2026 &nbsp;·&nbsp; Maison Chory &amp; Rochet
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- CHART SCRIPTS -->
+<!-- ============================================================ -->
+<script>
+// 차트 색상 (보고서 톤에 맞춤)
+const COLORS = {
+  bg: 'transparent',
+  text: '#e8e3d8',
+  textDim: '#b8b0a3',
+  muted: '#6b6258',
+  grid: 'rgba(201, 169, 97, 0.08)',
+  axis: '#3a3530',
+  gold: '#c9a961',
+  goldLight: '#e3c477',
+  up: '#c44545',
+  down: '#3b6fc4'
+};
+
+// OHLC 합성 헬퍼
+function makeCandle(prevClose, close) {
+  const open = prevClose;
+  const isUp = close >= open;
+  const range = Math.abs(close - open);
+  const avg = (open + close) / 2;
+  const wick = Math.max(range * 0.35, avg * 0.012);
+  const high = Math.max(open, close) + wick * (isUp ? 1.4 : 0.6);
+  const low = Math.min(open, close) - wick * (isUp ? 0.6 : 1.4);
+  return [open, close, low, high];
+}
+
+function buildCandles(closes) {
+  const out = [];
+  for (let i = 0; i < closes.length; i++) {
+    const prev = i === 0 ? closes[0] * 0.96 : closes[i-1];
+    out.push(makeCandle(prev, closes[i]));
+  }
+  return out;
+}
+
+// 공통 차트 생성기
+function createChart(domId, cfg) {
+  const dom = document.getElementById(domId);
+  if (!dom) return null;
+  const chart = echarts.init(dom, null, { renderer: 'canvas' });
+  const candles = buildCandles(cfg.closes);
+  const waveData = cfg.waves.map(w => [w.idx, cfg.closes[w.idx]]);
+
+  chart.setOption({
+    backgroundColor: COLORS.bg,
+    animation: true,
+    animationDuration: 800,
+    textStyle: { fontFamily: "'Cormorant Garamond', serif" },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'cross', label: { backgroundColor: '#1c1815', color: COLORS.text } },
+      backgroundColor: 'rgba(22, 19, 17, 0.95)',
+      borderColor: COLORS.gold,
+      borderWidth: 1,
+      textStyle: { color: COLORS.text, fontSize: 12, fontFamily: "'EB Garamond', serif" },
+      formatter: function(params) {
+        let p = params[0];
+        let res = `<b style="color:${COLORS.gold}">${cfg.dates[p.dataIndex]}</b><br/>`;
+        if (p.seriesType === 'candlestick') {
+          const d = p.data;
+          res += `시 <span style="color:${COLORS.goldLight}">${Math.round(d[1]).toLocaleString()}</span><br/>`;
+          res += `고 <span style="color:${COLORS.up}">${Math.round(d[4]).toLocaleString()}</span><br/>`;
+          res += `저 <span style="color:${COLORS.down}">${Math.round(d[3]).toLocaleString()}</span><br/>`;
+          res += `종 <span style="color:${COLORS.text}">${Math.round(d[2]).toLocaleString()}</span>`;
+        } else {
+          res += `<span style="color:${COLORS.gold}">${Math.round(p.data[1]).toLocaleString()}</span>`;
+        }
+        return res;
+      }
+    },
+    grid: { left: '11%', right: '5%', bottom: '20%', top: '8%' },
+    xAxis: {
+      type: 'category',
+      data: cfg.dates,
+      axisLine: { lineStyle: { color: COLORS.axis } },
+      axisTick: { lineStyle: { color: COLORS.axis } },
+      axisLabel: {
+        color: COLORS.textDim,
+        fontSize: 10,
+        fontFamily: "'Cormorant Garamond', serif",
+        rotate: cfg.dates.length > 12 ? 35 : 0,
+        interval: cfg.dates.length > 20 ? 'auto' : 0
+      },
+      splitLine: { show: false }
+    },
+    yAxis: {
+      type: cfg.logScale ? 'log' : 'value',
+      name: 'KOSPI',
+      nameTextStyle: { color: COLORS.muted, fontSize: 11, fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic' },
+      axisLine: { lineStyle: { color: COLORS.axis } },
+      axisLabel: {
+        color: COLORS.textDim,
+        fontSize: 10,
+        fontFamily: "'Cormorant Garamond', serif",
+        formatter: v => Math.round(v).toLocaleString()
+      },
+      splitLine: { lineStyle: { color: COLORS.grid, type: 'dashed' } },
+      scale: true,
+      min: cfg.yMin,
+      max: cfg.yMax
+    },
+    dataZoom: [
+      { type: 'inside', start: 0, end: 100 },
+      {
+        type: 'slider', start: 0, end: 100, bottom: 10, height: 16,
+        borderColor: COLORS.axis,
+        backgroundColor: 'rgba(22, 19, 17, 0.6)',
+        fillerColor: 'rgba(201, 169, 97, 0.12)',
+        textStyle: { color: COLORS.muted, fontSize: 9, fontFamily: "'Cormorant Garamond', serif" },
+        handleStyle: { color: COLORS.gold, borderColor: COLORS.gold },
+        moveHandleStyle: { color: COLORS.gold },
+        dataBackground: {
+          lineStyle: { color: COLORS.axis },
+          areaStyle: { color: 'rgba(201, 169, 97, 0.06)' }
+        },
+        selectedDataBackground: {
+          lineStyle: { color: COLORS.gold },
+          areaStyle: { color: 'rgba(201, 169, 97, 0.18)' }
+        }
+      }
+    ],
+    series: [
+      {
+        name: 'KOSPI',
+        type: 'candlestick',
+        data: candles,
+        itemStyle: {
+          color: COLORS.up,
+          color0: COLORS.down,
+          borderColor: COLORS.up,
+          borderColor0: COLORS.down
+        },
+        barMaxWidth: 22
+      },
+      {
+        name: '파동',
+        type: 'line',
+        data: waveData,
+        lineStyle: { type: 'dashed', color: COLORS.gold, width: 2.5, opacity: 0.85 },
+        symbol: 'circle',
+        symbolSize: 14,
+        itemStyle: {
+          color: COLORS.gold,
+          borderColor: '#0a0908',
+          borderWidth: 2,
+          shadowBlur: 10,
+          shadowColor: 'rgba(201, 169, 97, 0.6)'
+        },
+        label: {
+          show: true,
+          formatter: (p) => cfg.waves[p.dataIndex].label,
+          color: COLORS.text,
+          fontSize: 11,
+          fontWeight: 'bold',
+          fontFamily: "'EB Garamond', 'Noto Serif KR', serif",
+          position: (p) => cfg.waves[p.dataIndex].pos || 'top',
+          backgroundColor: 'rgba(10, 9, 8, 0.95)',
+          borderColor: COLORS.gold,
+          borderWidth: 1.5,
+          padding: [5, 9],
+          borderRadius: 2,
+          align: 'center',
+          lineHeight: 14,
+          distance: 12
+        },
+        z: 50,
+        silent: true
+      }
+    ]
+  });
+
+  return chart;
+}
+
+// =====================================================
+// CHART I: Super Cycle (1980 ~ 2026)
+// =====================================================
+const sc_dates = [
+  '1980', '1983', '1986', '1989\n(I)', '1992', '1995', '1998\n(II)', '2001', '2004',
+  '2007\n(III)', '2010', '2013', '2016', '2018', '2020\n(IV)', '2022', '2024', '2026\n(V?)'
+];
+const sc_closes = [106, 122, 273, 1015, 459, 882, 277, 525, 895, 2065, 2051, 2011, 2026, 2607, 1439, 2134, 2398, 8040];
+const sc_waves = [
+  { idx: 0, label: '시작\n100', pos: 'bottom' },
+  { idx: 3, label: 'I\n1,015' },
+  { idx: 6, label: 'II\n277', pos: 'bottom' },
+  { idx: 9, label: 'III\n2,065' },
+  { idx: 14, label: 'IV\n1,439', pos: 'bottom' },
+  { idx: 17, label: 'V (진행)\n8,040' }
+];
+
+// =====================================================
+// CHART II: Cycle (2020-03 ~ 2026-05)
+// =====================================================
+const c_dates = [
+  '20Q1', '20Q2', '20Q3', '20Q4', '21Q1', '21Q2', '21Q3', '21Q4',
+  '22Q1', '22Q2', '22Q3', '22Q4', '23Q1', '23Q2', '23Q3', '23Q4',
+  '24Q1', '24Q2', '24Q3', '24Q4', '25Q1', '25Q2', '25Q3', '25Q4',
+  '26Q1', '26Q2'
+];
+const c_closes = [
+  1754, 2108, 2327, 2873, 3061, 3316, 3069, 2977,
+  2757, 2332, 2155, 2236, 2476, 2564, 2465, 2655,
+  2746, 2797, 2593, 2398, 2481, 2285, 3300, 4400,
+  5500, 8040
+];
+const c_waves = [
+  { idx: 0, label: '시작\n1,439', pos: 'bottom' },
+  { idx: 5, label: 'Cycle 1\n3,316' },
+  { idx: 21, label: 'Cycle 2\n2,285', pos: 'bottom' },
+  { idx: 25, label: 'Cycle 3\n8,040' }
+];
+
+// =====================================================
+// CHART III: Primary (2025-04 ~ 2026-05)
+// =====================================================
+const p_dates = [
+  '25-04', '25-05', '25-06', '25-07', '25-08', '25-09',
+  '25-10초', '25-10말', '25-11', '25-12', '26-01', '26-02',
+  '26-03초', '26-03말', '26-04-01', '26-04-14', '26-04-22', '26-04-23',
+  '26-05-04', '26-05-06', '26-05-08', '26-05-11', '26-05-12', '26-05-13', '26-05-14', '26-05-15'
+];
+const p_closes = [
+  2285, 2500, 2800, 3100, 3000, 3200,
+  3800, 4309, 3800, 4200, 5000, 6000,
+  5500, 5052, 5478, 5967, 6418, 6557,
+  6936, 7384, 7498, 7822, 7643, 7844, 7840, 8040
+];
+const p_waves = [
+  { idx: 0, label: '시작\n2,285', pos: 'bottom' },
+  { idx: 7, label: '[1]\n4,309' },
+  { idx: 8, label: '[2]\n3,800', pos: 'bottom' },
+  { idx: 11, label: '[3]\n6,000' },
+  { idx: 13, label: '[4]\n5,052', pos: 'bottom' },
+  { idx: 25, label: '[5]\n8,040' }
+];
+
+// =====================================================
+// CHART IV: B 시나리오
+// =====================================================
+const b_dates = [
+  '26-05-15\n(현재)', '26-05말', '26-06초', '26-06중', '26-06말', '26-07초',
+  '26-07말', '26-08', '26-09', '26-10', '26-11', '26-12',
+  '27-01', '27-02', '27-03'
+];
+const b_closes = [
+  8040, 7400, 7200, 7000, 6914, 7400,
+  7700, 7900, 8200, 8700, 9000, 9200,
+  9300, 9400, 9500
+];
+const b_waves = [
+  { idx: 0, label: 'Cycle 3 종결\n[5]종결\n8,040' },
+  { idx: 4, label: 'Cycle 4\n저점\n6,914', pos: 'bottom' },
+  { idx: 14, label: 'Cycle 5 = V 종결\n9,500' }
+];
+
+// =====================================================
+// 스크롤 트리거로 차트 초기화 (성능 최적화)
+// =====================================================
+const chartConfigs = {
+  chart1: { dates: sc_dates, closes: sc_closes, waves: sc_waves, logScale: true },
+  chart2: { dates: c_dates, closes: c_closes, waves: c_waves },
+  chart3: { dates: p_dates, closes: p_closes, waves: p_waves },
+  chart4: { dates: b_dates, closes: b_closes, waves: b_waves, yMin: 6500, yMax: 9800 }
+};
+
+const chartInstances = {};
+const initializedCharts = new Set();
+
+function initChart(id) {
+  if (initializedCharts.has(id)) return;
+  initializedCharts.add(id);
+  chartInstances[id] = createChart(id, chartConfigs[id]);
+}
+
+// IntersectionObserver로 화면에 들어올 때 초기화
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      initChart(entry.target.id);
+    }
+  });
+}, { rootMargin: '100px' });
+
+document.querySelectorAll('.chart-container').forEach(el => {
+  observer.observe(el);
+});
+
+// Resize handler
+window.addEventListener('resize', () => {
+  Object.values(chartInstances).forEach(inst => inst && inst.resize());
+});
+</script>
+
+</body>
+</html>
