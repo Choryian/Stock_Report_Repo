@@ -61,6 +61,27 @@ $ErrorActionPreference = "Stop"
 
 $RepoRoot = "C:\Users\USER\Documents\Stock_Report_Repo"
 $SiteBase = "https://choryian.github.io/Stock_Report_Repo"
+$GaId     = "G-JN4GMS3HSY"  # Google Analytics 4 Measurement ID
+
+function Inject-GA {
+  param([string]$Path, [string]$Id)
+  $html = [IO.File]::ReadAllText($Path, [Text.UTF8Encoding]::new($false))
+  if ($html -match [regex]::Escape($Id)) { return $false }  # already present
+  if ($html -notmatch '(?i)</head>') { return $false }       # no </head>, skip
+  $snippet = @"
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=$Id"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '$Id');
+</script>
+"@
+  $html = [regex]::Replace($html, '(?i)</head>', "$snippet`n</head>", 1)
+  [IO.File]::WriteAllText($Path, $html, [Text.UTF8Encoding]::new($false))
+  return $true
+}
 
 # 1. Resolve source ---------------------------------------------------------
 if (-not (Test-Path $File)) { throw "File not found: $File" }
@@ -85,6 +106,11 @@ $relPath    = "$targetFolder/$targetName"
 # 3. Copy file --------------------------------------------------------------
 Copy-Item $src $targetPath -Force
 Write-Host "✓ Copied → $relPath" -ForegroundColor Green
+
+# 3b. Inject GA4 tracking if missing
+if (Inject-GA -Path $targetPath -Id $GaId) {
+  Write-Host "✓ Injected GA4 tag ($GaId)" -ForegroundColor Green
+}
 
 # 4. Update reports.json ----------------------------------------------------
 $jsonPath = Join-Path $RepoRoot "data\reports.json"
