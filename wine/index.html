@@ -6,7 +6,7 @@
 <title>Wine Notes · Chory &amp; Rochet</title>
 <meta name="description" content="Chory & Rochet의 와인 노트 — 시음기, 와인 에세이, 빈티지 메모">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/style.css?v=2">
 <style>
   /* Wine section local tweaks */
   .hero h1 { font-family: 'Pretendard', serif; }
@@ -76,13 +76,25 @@
       .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
+  function todayStr() {
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+  }
+
   function cardHtml(r) {
     const tags = (r.tags || []).slice(0, 5).map(t =>
       `<span class="card-tag">#${escapeHtml(t)}</span>`).join('');
     // path는 reports.json 기준이 repo 루트이므로, 와인 페이지에서는 ../ 붙임
     const href = '../' + r.path;
+    const isNew = r.date === todayStr();
+    const cls = isNew ? 'card is-new' : 'card';
+    const badge = isNew ? '<span class="new-badge">NEW</span>' : '';
     return `
-      <article class="card" data-href="${escapeHtml(href)}">
+      <article class="${cls}" data-href="${escapeHtml(href)}">
+        ${badge}
         <div class="card-meta">
           <span class="card-cat card-cat--wine">${escapeHtml(r.category || '와인')}</span>
           <span class="card-date">${escapeHtml(r.date || '')}</span>

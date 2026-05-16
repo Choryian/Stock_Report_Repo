@@ -12,3 +12,6 @@ desktop.ini
 *.tmp
 *.bak
 ~$*
+
+# Local prototypes (design previews — not for site)
+_proto/
