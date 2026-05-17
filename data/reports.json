@@ -1,6 +1,22 @@
 {
   "reports": [
     {
+      "id": "2026-05-17-0005D0-sol-solid-state-silicon-anode",
+      "title": "SOL 전고체배터리&실리콘음극재 (0005D0) — DWave v5.1 통합 분석",
+      "summary": "SOL 차세대전지 ETF(0005D0), 상장 16개월차 만에 +147% 임펄스 5파동 구조 완성형 도달. 현재 4파 조정 21,890원에서 Fib 0.236 얕은 되돌림. 구성종목 1Q26 실적 컨센 상회(대주전자재료 매출 +68%), 2027 삼성SDI 전고체 양산 가시화. DWave v5.1 4/6 점수 — 4파 마무리 5파 시작 분할매수, 5파 모멘텀 확인 필요.",
+      "category": "종목분석",
+      "date": "2026-05-17",
+      "path": "reports/2026-05-17-0005D0-sol-solid-state-silicon-anode.html",
+      "tags": [
+        "SOL전고체배터리",
+        "0005D0",
+        "전고체배터리",
+        "실리콘음극재",
+        "DWave",
+        "ETF"
+      ]
+    },
+    {
       "id": "2026-05-17-439870-kodex-treasury-30y-dwave",
       "title": "KODEX 국고채30년액티브 (439870) · 종합 Dwave 분석 v1 — 매파 일색 시장의 역설",
       "summary": "매파 일색 시장에서 KODEX 국고채30년액티브(439870)가 12개월 −24.8% mark-to-market 손실로 NAV 디스카운트 영역 진입. 신현송 BOK 총재·4월 CPI 2.6%·oil shock으로 sell-side는 \"연말 policy rate 3.00%\"로 컨센서스 수렴. 듀레이션 18.5년이 이미 가격에 흡수했다면 역설적 medium-term entry. Dwave 130점 모델 74점 Tier B — Scaled entry permissible; patience required.",
