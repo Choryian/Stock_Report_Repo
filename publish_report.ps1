@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
   Publish a stock or wine report to the Chory & Rochet Stock_Report_Repo
   GitHub Pages site.
