@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Margin Report · 2026 Q1 — Chory &amp; Rochet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAF8F3;
+  --bg-alt: #F2EEE2;
+  --bg-deep: #1A1A18;
+  --paper: #FFFFFF;
+  --ink: #16160F;
+  --ink-soft: #3A3A33;
+  --ink-mute: #7A7870;
+  --ink-faint: #B5B2A6;
+  --rule: #E6E1D2;
+  --rule-soft: #EFEBDF;
+  --forest: #1E4632;
+  --forest-soft: #2E6049;
+  --terracotta: #8B3A2E;
+  --terracotta-soft: #B85A3F;
+  --brass: #A88B5C;
+  --brass-bright: #C4A472;
+  --plum: #4A3F6E;
+  --slate: #3D4A55;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+/* ── HEADER BAR ───────────────────────────── */
+.topbar {
+  border-bottom: 1px solid var(--rule);
+  padding: 24px 0;
+  background: var(--bg);
+}
+.topbar-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'DM Sans', sans-serif;
+}
+.topbar-logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.topbar-logo span { font-style: italic; color: var(--brass); font-weight: 400; }
+.topbar-meta {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+}
+
+.container { max-width: 1180px; margin: 0 auto; padding: 0 48px; }
+.container-narrow { max-width: 920px; margin: 0 auto; padding: 0 48px; }
+
+/* ── HERO ─────────────────────────────────── */
+.hero { padding: 100px 0 80px; }
+.hero-kicker {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 32px;
+  position: relative;
+  padding-left: 32px;
+}
+.hero-kicker::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 22px;
+  height: 1px;
+  background: var(--brass);
+}
+.hero-title {
+  font-family: 'Fraunces', 'Noto Serif KR', serif;
+  font-weight: 400;
+  font-size: clamp(48px, 7.5vw, 96px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  max-width: 980px;
+  margin-bottom: 40px;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+.hero-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--forest);
+  font-variation-settings: "opsz" 144, "SOFT" 80;
+}
+.hero-deck {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 780px;
+  margin-bottom: 56px;
+  letter-spacing: -0.01em;
+}
+.hero-deck em { color: var(--forest); font-style: italic; font-weight: 400; }
+
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+}
+.hero-meta-item .hero-meta-label {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 8px;
+}
+.hero-meta-item .hero-meta-value {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 17px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+/* ── METRICS BAND ─────────────────────────── */
+.metrics-band {
+  background: var(--bg-deep);
+  color: var(--bg);
+  padding: 64px 0;
+}
+.metrics-band-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 48px;
+}
+.metric {
+  text-align: left;
+}
+.metric-label {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(250,248,243,0.55);
+  margin-bottom: 16px;
+}
+.metric-figure {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--bg);
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+  font-variation-settings: "opsz" 144;
+}
+.metric-figure .unit {
+  font-size: 0.45em;
+  font-weight: 400;
+  margin-left: 4px;
+  color: var(--brass-bright);
+}
+.metric-caption {
+  font-size: 13px;
+  color: rgba(250,248,243,0.7);
+  line-height: 1.5;
+  font-weight: 400;
+}
+.metric-caption.brass { color: var(--brass-bright); }
+
+/* ── SECTIONS ─────────────────────────────── */
+.section { padding: 120px 0; border-bottom: 1px solid var(--rule); }
+.section:last-of-type { border-bottom: none; }
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 32px;
+}
+.section-tag::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--brass);
+}
+.section-headline {
+  font-family: 'Fraunces', 'Noto Serif KR', serif;
+  font-weight: 400;
+  font-size: clamp(40px, 5.5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  max-width: 860px;
+  margin-bottom: 32px;
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+}
+.section-headline em { font-style: italic; color: var(--forest); font-weight: 300; }
+.section-deck {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 21px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 780px;
+  margin-bottom: 64px;
+  letter-spacing: -0.005em;
+}
+
+.subhead {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 80px 0 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+.subhead .num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--brass);
+  margin-right: 14px;
+  vertical-align: middle;
+}
+
+.body {
+  font-family: 'Fraunces', 'Noto Serif KR', serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  max-width: 760px;
+  margin-bottom: 24px;
+  letter-spacing: -0.005em;
+}
+.body strong { color: var(--ink); font-weight: 500; }
+.body em { color: var(--forest); font-style: italic; font-weight: 400; }
+
+.body-2col {
+  column-count: 2;
+  column-gap: 56px;
+  max-width: 960px;
+}
+.body-2col p {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+  break-inside: avoid;
+}
+.body-2col p strong { color: var(--ink); font-weight: 500; }
+.body-2col p em { color: var(--forest); font-style: italic; font-weight: 400; }
+
+.drop-cap::first-letter {
+  font-family: 'Fraunces', serif;
+  font-size: 4.8em;
+  font-weight: 400;
+  float: left;
+  line-height: 0.85;
+  margin: 0.05em 0.12em 0 -0.04em;
+  color: var(--forest);
+  font-style: italic;
+}
+
+/* ── DATA TABLE ───────────────────────────── */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 32px 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+}
+.tbl thead th {
+  text-align: left;
+  padding: 16px 18px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  border-bottom: 1.5px solid var(--ink);
+  background: transparent;
+}
+.tbl tbody td {
+  padding: 18px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-soft);
+  vertical-align: middle;
+}
+.tbl tbody tr:hover { background: var(--bg-alt); }
+.tbl tbody tr:last-child td { border-bottom: 1px solid var(--ink); }
+.tbl .right { text-align: right; font-variant-numeric: tabular-nums; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+.tbl .center { text-align: center; }
+.tbl .name { font-family: 'Fraunces', serif; font-weight: 500; font-size: 16px; color: var(--ink); }
+.tbl .name small { display: block; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 400; color: var(--ink-mute); margin-top: 2px; letter-spacing: 0.04em; text-transform: uppercase; }
+.tbl .pos { color: var(--forest); font-weight: 500; }
+.tbl .neg { color: var(--terracotta); font-weight: 500; }
+.tbl .warn { color: var(--brass); font-weight: 500; }
+.tbl tr.feat td { background: rgba(168,139,92,0.08); }
+.tbl tr.feat td.name { color: var(--ink); }
+
+/* ── PULL QUOTE ───────────────────────────── */
+.pullquote {
+  margin: 80px auto;
+  max-width: 880px;
+  padding: 0 40px;
+  text-align: center;
+  position: relative;
+}
+.pullquote::before {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 1px;
+  background: var(--brass);
+  margin: 0 auto 32px;
+}
+.pullquote p {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 38px;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: var(--forest);
+  margin-bottom: 24px;
+  font-variation-settings: "opsz" 144, "SOFT" 80;
+}
+.pullquote cite {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-style: normal;
+}
+
+/* ── MATRIX GRID (6 Groups) ───────────────── */
+.matrix-wrap { margin: 48px 0; }
+.matrix-axis-top {
+  display: grid;
+  grid-template-columns: 60px repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.matrix-axis-top .corner {}
+.matrix-axis-top .col-label {
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--brass);
+}
+.matrix-grid {
+  display: grid;
+  grid-template-columns: 60px repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+}
+.matrix-y-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 0;
+}
+.matrix-cell {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 28px 26px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.matrix-cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px rgba(22,22,15,0.08);
+}
+.matrix-cell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+}
+.matrix-cell.c-a::before { background: var(--forest); }
+.matrix-cell.c-b::before { background: var(--plum); }
+.matrix-cell.c-c::before { background: var(--brass); }
+.matrix-cell.c-d::before { background: var(--ink-mute); }
+.matrix-cell.c-e::before { background: var(--terracotta-soft); }
+.matrix-cell.c-f::before { background: var(--terracotta); }
+.matrix-cell-id {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.c-a .matrix-cell-id { color: var(--forest); }
+.c-b .matrix-cell-id { color: var(--plum); }
+.c-c .matrix-cell-id { color: var(--brass); }
+.c-d .matrix-cell-id { color: var(--ink-mute); }
+.c-e .matrix-cell-id { color: var(--terracotta-soft); }
+.c-f .matrix-cell-id { color: var(--terracotta); }
+.matrix-cell h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.matrix-stocks {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+.matrix-stocks strong { font-weight: 600; color: var(--ink); }
+.matrix-action {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+}
+.c-a .matrix-action { color: var(--forest); }
+.c-b .matrix-action { color: var(--plum); }
+.c-c .matrix-action { color: var(--brass); }
+.c-d .matrix-action { color: var(--ink-mute); }
+.c-e .matrix-action { color: var(--terracotta-soft); }
+.c-f .matrix-action { color: var(--terracotta); }
+
+/* ── CALLOUT BOXES ────────────────────────── */
+.callout {
+  padding: 36px 40px;
+  margin: 32px 0;
+  background: var(--paper);
+  border-left: 3px solid var(--forest);
+}
+.callout.brass { border-left-color: var(--brass); }
+.callout.plum { border-left-color: var(--plum); }
+.callout.terracotta { border-left-color: var(--terracotta); }
+.callout.slate { border-left-color: var(--slate); }
+.callout-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  color: var(--forest);
+}
+.callout.brass .callout-label { color: var(--brass); }
+.callout.plum .callout-label { color: var(--plum); }
+.callout.terracotta .callout-label { color: var(--terracotta); }
+.callout.slate .callout-label { color: var(--slate); }
+.callout p {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+.callout p:last-child { margin-bottom: 0; }
+.callout p strong { color: var(--ink); font-weight: 500; }
+.callout p em { color: var(--forest); font-style: italic; font-weight: 400; }
+.callout.brass p em { color: var(--brass); }
+.callout.terracotta p em { color: var(--terracotta); }
+
+/* ── BADGE ────────────────────────────────── */
+.badge {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  padding: 4px 11px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.badge.buy { background: var(--forest); color: var(--bg); }
+.badge.acc { background: var(--plum); color: var(--bg); }
+.badge.hold { background: var(--brass); color: var(--bg); }
+.badge.watch { background: var(--ink-mute); color: var(--bg); }
+.badge.trim { background: var(--terracotta); color: var(--bg); }
+
+/* ── CHART CONTAINER ──────────────────────── */
+.chart-block {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 36px 40px;
+  margin: 48px 0;
+}
+.chart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--rule);
+}
+.chart-title-block { flex: 1; }
+.chart-title-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 8px;
+}
+.chart-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.chart-deck {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-mute);
+  max-width: 720px;
+}
+.chart-canvas-wrap { position: relative; height: 320px; margin-top: 28px; }
+.chart-canvas-wrap.tall { height: 380px; }
+
+/* ── PORTFOLIO ALLOCATION ─────────────────── */
+.alloc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 40px 0;
+}
+.alloc-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 32px 28px;
+  position: relative;
+  transition: transform 0.2s;
+}
+.alloc-card:hover { transform: translateY(-2px); }
+.alloc-card.heavy {
+  background: var(--bg-deep);
+  border-color: var(--bg-deep);
+}
+.alloc-card.heavy .alloc-tag { color: var(--brass-bright); }
+.alloc-card.heavy .alloc-pct { color: var(--bg); }
+.alloc-card.heavy .alloc-group { color: var(--bg); }
+.alloc-card.heavy .alloc-note { color: rgba(250,248,243,0.7); }
+.alloc-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 20px;
+}
+.alloc-pct {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 72px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin-bottom: 16px;
+  font-variation-settings: "opsz" 144;
+}
+.alloc-pct .pct-unit { font-size: 0.4em; vertical-align: top; margin-left: 6px; color: var(--ink-mute); }
+.alloc-group {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.alloc-note {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-mute);
+}
+
+/* ── STOCK ROW LIST ───────────────────────── */
+.picks-table {
+  margin-top: 28px;
+}
+.picks-row {
+  display: grid;
+  grid-template-columns: 36px 1.4fr 0.7fr 0.7fr 0.5fr 1.8fr 80px;
+  gap: 20px;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.picks-row.head {
+  border-bottom: 1.5px solid var(--ink);
+  padding: 14px 0;
+}
+.picks-row.head div {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.picks-row.head .right { text-align: right; }
+.picks-rank {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 24px;
+  color: var(--ink-faint);
+  font-variation-settings: "opsz" 144;
+}
+.picks-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.picks-name small {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--ink-mute);
+  margin-top: 2px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.picks-row .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: right;
+  color: var(--forest);
+  font-variant-numeric: tabular-nums;
+}
+.picks-row .pitch {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.picks-row .grade {
+  text-align: center;
+}
+
+/* ── VERDICT BLOCK ────────────────────────── */
+.verdict {
+  background: var(--bg-deep);
+  color: var(--bg);
+  padding: 100px 0;
+  margin-top: 80px;
+}
+.verdict-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.verdict-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brass-bright);
+  margin-bottom: 32px;
+  padding-left: 32px;
+  position: relative;
+  display: inline-block;
+}
+.verdict-tag::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 22px;
+  height: 1px;
+  background: var(--brass-bright);
+}
+.verdict-quote {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--bg);
+  margin-bottom: 56px;
+  max-width: 980px;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.verdict-quote em { font-style: italic; color: var(--brass-bright); font-weight: 300; }
+.verdict-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  max-width: 1080px;
+}
+.verdict-body p {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.75;
+  color: rgba(250,248,243,0.78);
+  margin-bottom: 16px;
+}
+.verdict-body p strong { color: var(--bg); font-weight: 500; }
+.verdict-body p em { color: var(--brass-bright); font-style: italic; font-weight: 400; }
+.verdict-actions {
+  background: rgba(250,248,243,0.04);
+  border-left: 2px solid var(--brass-bright);
+  padding: 28px 32px;
+}
+.verdict-actions dt {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass-bright);
+  margin-bottom: 8px;
+}
+.verdict-actions dd {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(250,248,243,0.88);
+  margin: 0 0 18px;
+}
+.verdict-actions dd:last-child { margin-bottom: 0; }
+
+/* ── FOOTER ──────────────────────────────── */
+.report-footer {
+  padding: 80px 0 56px;
+  background: var(--bg);
+  border-top: 1px solid var(--rule);
+}
+.report-footer-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.report-footer-brand {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.report-footer-brand span { font-style: italic; color: var(--brass); font-weight: 300; }
+.report-footer-meta {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  color: var(--ink-mute);
+  margin-bottom: 32px;
+}
+.report-footer-disclaimer {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--ink-mute);
+  max-width: 880px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+@media (max-width: 920px) {
+  .container, .container-narrow { padding: 0 28px; }
+  .topbar-inner, .metrics-band-inner, .verdict-inner, .report-footer-inner { padding: 0 28px; }
+  .hero { padding: 64px 0 56px; }
+  .hero-meta { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .metrics-band-inner { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .metric-figure { font-size: 42px; }
+  .section { padding: 80px 0; }
+  .body-2col { column-count: 1; }
+  .matrix-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .matrix-axis-top, .matrix-y-label { display: none; }
+  .alloc-grid { grid-template-columns: 1fr; }
+  .picks-row { grid-template-columns: 30px 1.4fr 1fr 80px; gap: 14px; font-size: 13px; }
+  .picks-row > .hide-mobile { display: none; }
+  .verdict-body { grid-template-columns: 1fr; gap: 32px; }
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+</head>
+<body>
+
+<!-- ── TOP BAR ───────────────────────────── -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-logo">Chory <span>&amp;</span> Rochet</div>
+    <div class="topbar-meta">The Margin Report · Vol. I · No. 4 · 2026.05.19</div>
+  </div>
+</header>
+
+<!-- ── HERO ─────────────────────────────── -->
+<section class="container hero">
+  <div class="hero-kicker">2026 Q1 — Group Analysis</div>
+  <h1 class="hero-title">
+    고마진 138사,<br>
+    <em>6개 군집</em>으로<br>
+    재해석하다.
+  </h1>
+  <p class="hero-deck">
+    DART 1분기 공시 기준 영업이익률 20% 이상 상장사 138개사를
+    <em>마진 수준 × 사업 안정성</em>의 2×2 매트릭스로 재배열하면 6개의
+    명확한 투자 군집이 드러난다. 진짜 알파는 마진의 절대 크기가 아닌,
+    마진의 지속성과 변동성에서 나온다.
+  </p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Analysis Base</div>
+      <div class="hero-meta-value">2026 1Q DART 누적공시</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Universe</div>
+      <div class="hero-meta-value">OPM 20%+ · 138 Companies</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Methodology</div>
+      <div class="hero-meta-value">Margin × Stability Matrix</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Publisher</div>
+      <div class="hero-meta-value">Chory &amp; Rochet Research</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── METRICS BAND ─────────────────────── -->
+<section class="metrics-band">
+  <div class="metrics-band-inner">
+    <div class="metric">
+      <div class="metric-label">분석 대상</div>
+      <div class="metric-figure">138<span class="unit">사</span></div>
+      <div class="metric-caption">OPM 20% 이상 상장사 (1Q26)</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">40%+ 엘리트</div>
+      <div class="metric-figure">18<span class="unit">사</span></div>
+      <div class="metric-caption">반도체 · 바이오 · 게임</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">최고 OPM</div>
+      <div class="metric-figure">71.5<span class="unit">%</span></div>
+      <div class="metric-caption">SK하이닉스 · 사이클 정점</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">그룹 분류</div>
+      <div class="metric-figure">6<span class="unit">Groups</span></div>
+      <div class="metric-caption brass">2 × 2 Matrix</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">핵심 알파</div>
+      <div class="metric-figure">A+B</div>
+      <div class="metric-caption brass">60% 비중 권장</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PART I ───────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-tag">Part One · The Margin Map</div>
+    <h2 class="section-headline">
+      138사가 던지는<br>
+      <em>진짜 질문은</em><br>
+      마진의 지속성이다.
+    </h2>
+    <p class="section-deck">
+      DART 1분기 공시상 OPM 20% 이상 138사는 한국 상장사의 약 8%
+      — 1년 전 92사 대비 50% 확대된 사상 최대 규모의 고마진 군집이다.
+    </p>
+
+    <p class="body drop-cap">
+      2026년 1분기 DART 공시 기준 영업이익률 20% 이상 상장사는 138개다.
+      KOSPI·KOSDAQ 합산 약 1,700여 상장사의 <strong>8.1%</strong>만이 이 문턱을 넘는다.
+      1년 전 같은 분기 OPM 20%+ 종목이 92개였던 점을 감안하면 <em>+50% 확대</em>된 셈이다.
+      SK하이닉스의 HBM 과점, 알테오젠·삼성바이오로직스의 K-Bio 글로벌화, 펄어비스·시프트업·크래프톤의 게임 IP,
+      그리고 HD현대일렉트릭·삼양식품·F&amp;F의 niche 독점이 동시에 작동한 결과다.
+    </p>
+
+    <div class="body-2col">
+      <p>
+        <strong>마진 구간별 분포</strong>는 20~30% 구간에 89사(64.5%), 30~40%에 31사(22.5%),
+        40%+에 18사(13.0%)가 자리한다. 정규분포에 가깝지만 우측 꼬리(40%+)가 두텁다.
+        이는 1분기 한국 시장에 <em>이상치 수준의 호황</em>을 누리는 종목군이 18개나 존재한다는 신호다.
+        평년 대비 약 2~3배 수준.
+      </p>
+      <p>
+        <strong>섹터별 군집</strong>은 138사 중 반도체·소부장 27사(19.6%), 바이오·제약 24사(17.4%),
+        IT·소프트웨어 23사(16.7%), 게임·엔터테인먼트 9사, 산업재·에너지 11사, 식품·패션·화장품 12사 순.
+        반도체와 바이오가 압도적이지만, 두 섹터의 고마진 성격은 완전히 다르다 — <em>사이클 vs 구조적 moat</em>의 차이다.
+      </p>
+    </div>
+
+    <h3 class="subhead"><span class="num">01</span>마진 구간별 138사 분포</h3>
+
+    <div class="chart-block">
+      <div class="chart-head">
+        <div class="chart-title-block">
+          <div class="chart-title-eyebrow">Figure 1</div>
+          <div class="chart-title">OPM 구간별 종목 수 히스토그램</div>
+          <div class="chart-deck">우측 꼬리(40%+) 18사는 평년 대비 2~3배 수준. 사이클 정점과 구조적 알파가 혼재된 영역으로 정밀 분리가 필수.</div>
+        </div>
+      </div>
+      <div class="chart-canvas-wrap"><canvas id="chart-dist" role="img" aria-label="OPM 구간별 종목 수 히스토그램"></canvas></div>
+    </div>
+
+    <h3 class="subhead"><span class="num">02</span>분류의 두 축 — 마진 × 사업 안정성</h3>
+    <p class="body">
+      본 보고서는 138사를 두 가지 축으로 재정렬한다. <strong>가로축은 OPM 절대 수준</strong>(20-30 / 30-40 / 40%+),
+      <strong>세로축은 사업 안정성</strong>(구조적 moat / 사이클 의존). 사업 안정성은 ① 과거 5년 OPM 변동성,
+      ② 사업 모델의 진입장벽(특허·브랜드·네트워크), ③ 매출 가격결정력, ④ 매크로 사이클 민감도의
+      4가지 정량·정성 지표로 분류한다. 이 매트릭스가 그려내는 6개 군집이 본 보고서의 핵심 분석 단위다.
+    </p>
+  </div>
+</section>
+
+<!-- ── PART II ──────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-tag">Part Two · The 6-Group Matrix</div>
+    <h2 class="section-headline">
+      <em>2×2 매트릭스</em>로 보면<br>
+      6개 군집이 드러난다.
+    </h2>
+    <p class="section-deck">
+      상단(구조적 moat) 3그룹과 하단(사이클 의존) 3그룹. 같은 OPM 구간에 묶인 종목들도
+      안정성에 따라 정반대의 투자 전략이 적용된다.
+    </p>
+
+    <div class="matrix-wrap">
+      <div class="matrix-axis-top">
+        <div class="corner"></div>
+        <div class="col-label">OPM 20~30%</div>
+        <div class="col-label">OPM 30~40%</div>
+        <div class="col-label">OPM 40%+</div>
+      </div>
+      <div class="matrix-grid">
+        <div class="matrix-y-label">↑ 구조적 moat</div>
+
+        <div class="matrix-cell c-a">
+          <div class="matrix-cell-id">Group A</div>
+          <h4>수성형 강자</h4>
+          <p class="matrix-stocks">
+            <strong>HD현대일렉트릭 24.9%</strong><br>
+            삼양식품 24.8% · F&amp;F 27.4%<br>
+            HD현대마린엔진 24.4%<br>
+            티씨케이 29.9% · 비츠로셀 29.7%<br>
+            에이피알 25.7% · LG 23.0%
+          </p>
+          <div class="matrix-action">★ 매수 후 장기 보유 · 핵심 알파</div>
+        </div>
+
+        <div class="matrix-cell c-b">
+          <div class="matrix-cell-id">Group B</div>
+          <h4>알파 머신</h4>
+          <p class="matrix-stocks">
+            <strong>에스케이바이오팜 39.4%</strong><br>
+            파마리서치 39.2% · 명인제약 34.8%<br>
+            아이엠바이오로직스 37.8%<br>
+            파미셀 35.6% · 더블유게임즈 33.4%<br>
+            비상교육 33.6% · 에코마케팅 32.1%
+          </p>
+          <div class="matrix-action">★ 핵심 보유 · 컨센서스 재평가</div>
+        </div>
+
+        <div class="matrix-cell c-c">
+          <div class="matrix-cell-id">Group C</div>
+          <h4>글로벌 챔피언</h4>
+          <p class="matrix-stocks">
+            <strong>알테오젠 54.9%</strong><br>
+            삼성바이오로직스 46.2%<br>
+            케어젠 45.0% · 휴젤 40.8%<br>
+            클래시스 42.7% · 티앤엘 40.5%<br>
+            펄어비스 64.6% · 시프트업 45.5%<br>
+            크래프톤 40.9%
+          </p>
+          <div class="matrix-action">◐ 분할 진입 · 밸류 부담 검토</div>
+        </div>
+
+        <div class="matrix-y-label">사이클 의존 ↓</div>
+
+        <div class="matrix-cell c-d">
+          <div class="matrix-cell-id">Group D</div>
+          <h4>회복 관전</h4>
+          <p class="matrix-stocks">
+            <strong>대한조선 26.8%</strong><br>
+            대한해운 26.8% · JW홀딩스 21.2%<br>
+            경농 21.1% · NC 20.3%<br>
+            SOOP 20.0% · 동진쎄미켐 20.3%<br>
+            지역난방공사 22.3%
+          </p>
+          <div class="matrix-action">◑ 트레이딩 영역 · 턴어라운드 확인</div>
+        </div>
+
+        <div class="matrix-cell c-e">
+          <div class="matrix-cell-id">Group E</div>
+          <h4>메모리 풀체인</h4>
+          <p class="matrix-stocks">
+            <strong>제주반도체 37.2%</strong><br>
+            ISC 34.6% · 디아이티 33.9%<br>
+            브이엠 33.9% · 디바이스 39.5%<br>
+            에이치엔에스하이텍 32.4%<br>
+            씨앤투스성진 31.0% · 티에스이 27.9%
+          </p>
+          <div class="matrix-action">◑ 사이클 동행 · 정점 모니터링</div>
+        </div>
+
+        <div class="matrix-cell c-f">
+          <div class="matrix-cell-id">Group F</div>
+          <h4>사이클 정점</h4>
+          <p class="matrix-stocks">
+            <strong>SK하이닉스 71.5%</strong><br>
+            삼성전자 42.8%<br>
+            HPSP 50.5%<br>
+            리노공업 47.4%<br>
+            대명에너지 58.2%<br>
+            <em style="color:var(--ink-mute);">(메모리 빅3 + HBM 풀체인)</em>
+          </p>
+          <div class="matrix-action">▼ 비중 축소 · 트레일링 스톱</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subhead"><span class="num">03</span>그룹별 종목 수와 평균 OPM</h3>
+
+    <div class="chart-block">
+      <div class="chart-head">
+        <div class="chart-title-block">
+          <div class="chart-title-eyebrow">Figure 2</div>
+          <div class="chart-title">6개 그룹 분포 — 종목 수 vs 평균 OPM</div>
+          <div class="chart-deck">A·D 그룹은 20~30%대로 종목 수 많고 평균 OPM 낮음. C·F는 평균 OPM 45%+로 압도적이나 종목 수는 적음. B·E가 중간 영역.</div>
+        </div>
+      </div>
+      <div class="chart-canvas-wrap tall"><canvas id="chart-groups" role="img" aria-label="6개 그룹별 종목 수와 평균 OPM 비교"></canvas></div>
+    </div>
+
+    <div class="pullquote">
+      <p>같은 마진 구간이라도 moat가 다르면<br>완전히 다른 종목이다 — 분류가 곧 전략이다.</p>
+      <cite>— Chory &amp; Rochet Investment Research</cite>
+    </div>
+
+    <h3 class="subhead"><span class="num">04</span>매트릭스 해석 — 6개 그룹의 정체</h3>
+    <p class="body">
+      상단 3그룹(A·B·C)은 모두 <strong>구조적 moat</strong>를 공유한다. 특허(B의 K-Bio), 브랜드(A의 F&amp;F·삼양식품),
+      네트워크 효과(C의 게임 IP), 글로벌 niche(C의 알테오젠 SC제형) 등 진입장벽이 명확하다.
+      마진의 변동성이 작고 5년 평균 OPM이 안정적이다.
+    </p>
+    <p class="body">
+      하단 3그룹(D·E·F)은 <strong>사이클 의존</strong>이 공통점이다. D는 일반 산업재·콘텐츠 사이클, E는 반도체 후공정·소부장 사이클,
+      F는 메모리 슈퍼사이클의 정점이다. 마진의 절대값이 D&lt;E&lt;F 순으로 높아지지만, <em>변동성도 그만큼 비례해서 커진다</em>.
+      F 그룹의 OPM 50~70%는 5년 후에도 유지될 보장이 없다 — 2023년 메모리 다운사이클에서 SK하이닉스는 OPM -15%까지 추락했었다.
+    </p>
+  </div>
+</section>
+
+<!-- ── PART III ─────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-tag">Part Three · Group Characteristics</div>
+    <h2 class="section-headline">
+      <em>6개 그룹</em>의<br>
+      특징과 매매 등급.
+    </h2>
+    <p class="section-deck">
+      각 그룹별 평균 OPM · 종목 수 · 예상 보유기간 · 매매 등급. A·B는 BUY,
+      C는 ACC(분할매수), D는 WATCH, E는 HOLD, F는 TRIM.
+    </p>
+
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Group</th>
+          <th class="right">평균 OPM</th>
+          <th class="right">종목 수</th>
+          <th>핵심 특징</th>
+          <th>보유 기간</th>
+          <th class="center">등급</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="feat">
+          <td class="name">A. 수성형 강자<small>Defensive Compounders</small></td>
+          <td class="right pos">26.1%</td>
+          <td class="right">~15사</td>
+          <td>안정 마진 + niche 독점 + 가격결정력</td>
+          <td>3~5년</td>
+          <td class="center"><span class="badge buy">Buy</span></td>
+        </tr>
+        <tr class="feat">
+          <td class="name">B. 알파 머신<small>Structural Alpha</small></td>
+          <td class="right pos">35.4%</td>
+          <td class="right">~20사</td>
+          <td>특허·브랜드 moat + 글로벌 성장 동력</td>
+          <td>2~3년</td>
+          <td class="center"><span class="badge buy">Buy</span></td>
+        </tr>
+        <tr>
+          <td class="name">C. 글로벌 챔피언<small>Global Champions</small></td>
+          <td class="right warn">46.8%</td>
+          <td class="right">~12사</td>
+          <td>글로벌 독점 + 깊은 해자 · 밸류 부담</td>
+          <td>1~2년</td>
+          <td class="center"><span class="badge acc">Acc</span></td>
+        </tr>
+        <tr>
+          <td class="name">D. 회복 관전<small>Recovery Watch</small></td>
+          <td class="right">23.4%</td>
+          <td class="right">~25사</td>
+          <td>사이클 의존 + 마진 변동성 큼</td>
+          <td>6~12개월</td>
+          <td class="center"><span class="badge watch">Watch</span></td>
+        </tr>
+        <tr>
+          <td class="name">E. 메모리 풀체인<small>Memory Supply Chain</small></td>
+          <td class="right warn">31.7%</td>
+          <td class="right">~30사</td>
+          <td>SK하이닉스 호황의 낙수 효과</td>
+          <td>6~9개월</td>
+          <td class="center"><span class="badge hold">Hold</span></td>
+        </tr>
+        <tr>
+          <td class="name">F. 사이클 정점<small>Cycle Peak</small></td>
+          <td class="right neg">51.6%</td>
+          <td class="right">~6사</td>
+          <td>슈퍼사이클 정점 신호 누적</td>
+          <td>3~6개월</td>
+          <td class="center"><span class="badge trim">Trim</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="subhead"><span class="num">01</span>Group A — 수성형 강자</h3>
+    <div class="callout">
+      <div class="callout-label">Defensive Compounders</div>
+      <p>
+        <strong>핵심 특징</strong> · OPM 20-30%대를 <em>꾸준히</em> 유지하는 종목군. 절대 마진은 낮아 보여도
+        5년 평균 변동성 ±4%p 이내로 안정. ROE 평균 18%대, 부채비율 평균 35% 이하의 우량 재무. 사이클 무관한 가격결정력 보유.
+      </p>
+      <p>
+        <strong>대표 종목</strong> · HD현대일렉트릭(AI 데이터센터 변압기), 삼양식품(불닭 글로벌화), F&amp;F(MLB 중국),
+        HD현대마린엔진(LNG선 호황), 티씨케이(SiC 흑연링 niche), 비츠로셀(군용 리튬배터리 글로벌 점유),
+        에이피알(메디큐브 글로벌화), LG(지주).
+      </p>
+      <p>
+        <strong>투자 전략</strong> · 매수 후 3-5년 장기 보유. 분기 실적 확인 후 OPM 변화 추이만 모니터링.
+        PER 15-25배 구간이 매수 적기. HD현대일렉트릭은 1Q26 OPM 24.9%이나 변압기 수퍼사이클로
+        향후 30%+ 진입 여지가 있어 <em>그룹 내 1순위</em>.
+      </p>
+    </div>
+
+    <h3 class="subhead"><span class="num">02</span>Group B — 알파 머신</h3>
+    <div class="callout plum">
+      <div class="callout-label">Structural Alpha</div>
+      <p>
+        <strong>핵심 특징</strong> · OPM 30-40%대의 K-Bio·메디테크·콘텐츠 중심 그룹. 특허·임상·브랜드 기반의 진짜 moat 보유.
+        매출 성장률 평균 +25% YoY로 A 그룹 대비 성장성 우월. 다만 R&amp;D 비용 변동성으로 분기별 마진 ±3%p 변동.
+      </p>
+      <p>
+        <strong>대표 종목</strong> · 에스케이바이오팜(엑스코프리 글로벌 로열티), 파마리서치(리쥬란 해외 확산),
+        명인제약(정신과 niche), 아이엠바이오로직스(CDMO niche), 파미셀(줄기세포 글로벌화),
+        더블유게임즈(게임 IP), 비상교육(에듀테크), 에코마케팅(D2C 플랫폼).
+      </p>
+      <p>
+        <strong>투자 전략</strong> · 분기 어닝 후 컨센서스 상향 사이클 진입 종목 우선 매수. 2-3년 보유 후
+        PER 30-50배 구간에서 재평가.
+      </p>
+    </div>
+
+    <h3 class="subhead"><span class="num">03</span>Group C — 글로벌 챔피언</h3>
+    <div class="callout brass">
+      <div class="callout-label">Global Champions</div>
+      <p>
+        <strong>핵심 특징</strong> · OPM 40%+ 중 사이클 무관한 글로벌 독점·과점 종목. 알테오젠의 Halozyme 대체 SC제형 niche,
+        삼성바이오로직스의 CDMO 규모의 경제, 케어젠의 펩타이드 IP, 휴젤·클래시스의 K-에스테틱 글로벌화,
+        게임 3사(펄어비스·시프트업·크래프톤)의 IP. <em>다만 OPM 40%+가 시장에 이미 반영되어 PER 30~60배의 부담스러운 밸류에이션.</em>
+      </p>
+      <p>
+        <strong>투자 전략</strong> · 분할 진입(3-4분할) 권장. 시장 조정 시 비중 확대. 1-2년 보유 후 PER 정상화 시 익절.
+        펄어비스 OPM 64.6%는 붉은사막 출시 효과로 일회성 부분이 있어, 다음 분기 마진 정상화 후 재진입이 유리.
+      </p>
+    </div>
+
+    <h3 class="subhead"><span class="num">04</span>Group D · E · F — 사이클 의존 3군</h3>
+    <div class="callout terracotta">
+      <div class="callout-label">Cyclical Trio</div>
+      <p>
+        <strong>D · 회복 관전</strong> · OPM 20-30%대지만 변동성 ±15%p 이상. 대한조선·대한해운(선박 사이클),
+        JW홀딩스·경농(농약·제약 사이클), NC·SOOP(콘텐츠 사이클), 지역난방공사(정책 가격).
+        <em>턴어라운드 명확 확인 전까지 보류.</em>
+      </p>
+      <p>
+        <strong>E · 메모리 풀체인</strong> · SK하이닉스 호황의 낙수 효과. 제주반도체·ISC·디아이티·브이엠·이오테크닉스
+        등 후공정·소부장. <em>현재 보유는 유지하되 신규 매수 자제 — SK하이닉스 마진 피크가 곧 이 그룹의 피크.</em>
+      </p>
+      <p>
+        <strong>F · 사이클 정점</strong> · SK하이닉스 OPM 71.5%는 통계적으로 정점 부근의 숫자. 2018년 사이클 피크 OPM 51%,
+        2021년 35% 대비 현저히 높은 수치. <em>비중 축소(20% → 10%) 및 트레일링 스톱 설정 권장.</em>
+        HBM 과점 구조가 이전과 다르므로 즉시 매도는 아니지만 모니터링 강화 단계.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── PART IV ──────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-tag">Part Four · Top Picks</div>
+    <h2 class="section-headline">
+      그룹별 <em>Top Picks</em><br>
+      정밀 분석 15선.
+    </h2>
+    <p class="section-deck">
+      매수 등급 A·B 그룹에서 각 5종목, ACC 등급 C 그룹에서 5종목 — 총 15종목.
+      본 보고서의 핵심 액션 리스트다.
+    </p>
+
+    <h3 class="subhead"><span class="num">A</span>수성형 강자 Top 5</h3>
+    <div class="picks-table">
+      <div class="picks-row head">
+        <div></div>
+        <div>종목명 / 섹터</div>
+        <div class="right hide-mobile">1Q OPM</div>
+        <div class="right hide-mobile">변동성</div>
+        <div class="right hide-mobile">PER</div>
+        <div class="hide-mobile">핵심 셀링 포인트</div>
+        <div class="center">등급</div>
+      </div>
+      <div class="picks-row">
+        <div class="picks-rank">01</div>
+        <div class="picks-name">HD현대일렉트릭<small>전력기기</small></div>
+        <div class="num hide-mobile">24.9%</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">±3%p</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">12배</div>
+        <div class="pitch hide-mobile">AI 데이터센터 변압기 수퍼사이클 초입</div>
+        <div class="grade"><span class="badge buy">Buy</span></div>
+      </div>
+      <div class="picks-row">
+        <div class="picks-rank">02</div>
+        <div class="picks-name">삼양식품<small>식품</small></div>
+        <div class="num hide-mobile">24.8%</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">±4%p</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">18배</div>
+        <div class="pitch hide-mobile">불닭 글로벌 가격결정력 + 4공장 가동</div>
+        <div class="grade"><span class="badge buy">Buy</span></div>
+      </div>
+      <div class="picks-row">
+        <div class="picks-rank">03</div>
+        <div class="picks-name">HD현대마린엔진<small>선박엔진</small></div>
+        <div class="num hide-mobile">24.4%</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">±5%p</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">14배</div>
+        <div class="pitch hide-mobile">LNG선 호황 + EU 환경규제 수혜</div>
+        <div class="grade"><span class="badge buy">Buy</span></div>
+      </div>
+      <div class="picks-row">
+        <div class="picks-rank">04</div>
+        <div class="picks-name">F&amp;F<small>패션</small></div>
+        <div class="num hide-mobile">27.4%</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">±3%p</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">10배</div>
+        <div class="pitch hide-mobile">MLB 중국 회복 + 디스커버리 미국 진출</div>
+        <div class="grade"><span class="badge buy">Buy</span></div>
+      </div>
+      <div class="picks-row">
+        <div class="picks-rank">05</div>
+        <div class="picks-name">티씨케이<small>반도체소재</small></div>
+        <div class="num hide-mobile">29.9%</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">±6%p</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">15배</div>
+        <div class="pitch hide-mobile">SiC 흑연링 글로벌 niche 독점 70%</div>
+        <div class="grade"><span class="badge buy">Buy</span></div>
+      </div>
+    </div>
+
+    <h3 class="subhead"><span class="num">B</span>알파 머신 Top 5</h3>
+    <div class="picks-table">
+      <div class="picks-row head">
+        <div></div>
+        <div>종목명 / 섹터</div>
+        <div class="right hide-mobile">1Q OPM</div>
+        <div class="right hide-mobile">YoY 성장</div>
+        <div class="right hide-mobile">PER</div>
+        <div class="hide-mobile">핵심 셀링 포인트</div>
+        <div class="center">등급</div>
+      </div>
+      <div class="picks-row">
+        <div class="picks-rank">01</div>
+        <div class="picks-name">에스케이바이오팜<small>제약</small></div>
+        <div class="num hide-mobile">39.4%</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">+35%</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">28배</div>
+        <div class="pitch hide-mobile">엑스코프리 美 매출 +50% 가속</div>
+        <div class="grade"><span class="badge buy">Buy</span></div>
+      </div>
+      <div class="picks-row">
+        <div class="picks-rank">02</div>
+        <div class="picks-name">파마리서치<small>제약</small></div>
+        <div class="num hide-mobile">39.2%</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">+42%</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">22배</div>
+        <div class="pitch hide-mobile">리쥬란 글로벌 확산 + 라보떼 마진 상승</div>
+        <div class="grade"><span class="badge buy">Buy</span></div>
+      </div>
+      <div class="picks-row">
+        <div class="picks-rank">03</div>
+        <div class="picks-name">명인제약<small>제약</small></div>
+        <div class="num hide-mobile">34.8%</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">+18%</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">12배</div>
+        <div class="pitch hide-mobile">정신과 처방약 niche 독점 + 신약 파이프라인</div>
+        <div class="grade"><span class="badge buy">Buy</span></div>
+      </div>
+      <div class="picks-row">
+        <div class="picks-rank">04</div>
+        <div class="picks-name">더블유게임즈<small>게임</small></div>
+        <div class="num hide-mobile">33.4%</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">+12%</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">9배</div>
+        <div class="pitch hide-mobile">DoubleDown 美 카지노 모바일 1위 유지</div>
+        <div class="grade"><span class="badge buy">Buy</span></div>
+      </div>
+      <div class="picks-row">
+        <div class="picks-rank">05</div>
+        <div class="picks-name">에코마케팅<small>마케팅 플랫폼</small></div>
+        <div class="num hide-mobile">32.1%</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">+22%</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">14배</div>
+        <div class="pitch hide-mobile">안다르 등 자체 브랜드 D2C 마진 우상향</div>
+        <div class="grade"><span class="badge buy">Buy</span></div>
+      </div>
+    </div>
+
+    <h3 class="subhead"><span class="num">C</span>글로벌 챔피언 Top 5</h3>
+    <div class="picks-table">
+      <div class="picks-row head">
+        <div></div>
+        <div>종목명 / 섹터</div>
+        <div class="right hide-mobile">1Q OPM</div>
+        <div class="right hide-mobile">moat</div>
+        <div class="right hide-mobile">PER</div>
+        <div class="hide-mobile">핵심 셀링 포인트 / 리스크</div>
+        <div class="center">등급</div>
+      </div>
+      <div class="picks-row">
+        <div class="picks-rank">01</div>
+        <div class="picks-name">알테오젠<small>바이오</small></div>
+        <div class="num hide-mobile">54.9%</div>
+        <div class="num hide-mobile" style="color:var(--brass);">★★★★★</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">52배</div>
+        <div class="pitch hide-mobile">SC제형 글로벌 독점 / 밸류 부담</div>
+        <div class="grade"><span class="badge acc">Acc</span></div>
+      </div>
+      <div class="picks-row">
+        <div class="picks-rank">02</div>
+        <div class="picks-name">티앤엘<small>바이오 · 메디</small></div>
+        <div class="num hide-mobile">40.5%</div>
+        <div class="num hide-mobile" style="color:var(--brass);">★★★★☆</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">14배</div>
+        <div class="pitch hide-mobile">1Q 어닝 서프라이즈 +65% · 컨센서스 상향 1순위</div>
+        <div class="grade"><span class="badge buy">Buy</span></div>
+      </div>
+      <div class="picks-row">
+        <div class="picks-rank">03</div>
+        <div class="picks-name">삼성바이오로직스<small>CDMO</small></div>
+        <div class="num hide-mobile">46.2%</div>
+        <div class="num hide-mobile" style="color:var(--brass);">★★★★★</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">42배</div>
+        <div class="pitch hide-mobile">5공장 가동 + 5년 수주잔고 / 밸류 부담</div>
+        <div class="grade"><span class="badge acc">Acc</span></div>
+      </div>
+      <div class="picks-row">
+        <div class="picks-rank">04</div>
+        <div class="picks-name">클래시스<small>의료기기</small></div>
+        <div class="num hide-mobile">42.7%</div>
+        <div class="num hide-mobile" style="color:var(--brass);">★★★★☆</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">25배</div>
+        <div class="pitch hide-mobile">슈링크 글로벌 확산 + 볼라티 美 진출</div>
+        <div class="grade"><span class="badge acc">Acc</span></div>
+      </div>
+      <div class="picks-row">
+        <div class="picks-rank">05</div>
+        <div class="picks-name">휴젤<small>바이오</small></div>
+        <div class="num hide-mobile">40.8%</div>
+        <div class="num hide-mobile" style="color:var(--brass);">★★★★☆</div>
+        <div class="num hide-mobile" style="color:var(--ink-soft);">20배</div>
+        <div class="pitch hide-mobile">레티보 美 FDA 승인 후 매출 가속</div>
+        <div class="grade"><span class="badge acc">Acc</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PART V ───────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-tag">Part Five · Portfolio Strategy</div>
+    <h2 class="section-headline">
+      <em>A 30% + B 30% + C 20%</em><br>
+      모델 포트폴리오.
+    </h2>
+    <p class="section-deck">
+      BUY 등급 A·B 그룹에 60% 비중 집중, ACC 등급 C 그룹 20%, E 그룹 보유분 10%, 현금 10%.
+      D·F 그룹은 신규 진입 보류.
+    </p>
+
+    <h3 class="subhead"><span class="num">01</span>그룹별 권장 비중</h3>
+
+    <div class="alloc-grid">
+      <div class="alloc-card heavy">
+        <div class="alloc-tag">Core Holdings</div>
+        <div class="alloc-pct">30<span class="pct-unit">%</span></div>
+        <div class="alloc-group">A · 수성형 강자</div>
+        <div class="alloc-note">HD현대일렉트릭 · 삼양식품 · F&amp;F · HD현대마린엔진 · 티씨케이 5종목 분산. 보유 3-5년.</div>
+      </div>
+      <div class="alloc-card heavy">
+        <div class="alloc-tag">Core Holdings</div>
+        <div class="alloc-pct">30<span class="pct-unit">%</span></div>
+        <div class="alloc-group">B · 알파 머신</div>
+        <div class="alloc-note">SK바이오팜 · 파마리서치 · 명인제약 · 더블유게임즈 · 에코마케팅 5종목. 보유 2-3년.</div>
+      </div>
+      <div class="alloc-card">
+        <div class="alloc-tag">Quality Growth</div>
+        <div class="alloc-pct">20<span class="pct-unit">%</span></div>
+        <div class="alloc-group">C · 글로벌 챔피언</div>
+        <div class="alloc-note">티앤엘(Buy) · 알테오젠 · 삼성바이오로직스 · 클래시스 · 휴젤. 분할 진입.</div>
+      </div>
+      <div class="alloc-card">
+        <div class="alloc-tag">Tactical Hold</div>
+        <div class="alloc-pct">10<span class="pct-unit">%</span></div>
+        <div class="alloc-group">E · 메모리 풀체인</div>
+        <div class="alloc-note">기존 보유분 유지. 신규 매수 자제. SK하이닉스 마진 피크 모니터링.</div>
+      </div>
+      <div class="alloc-card">
+        <div class="alloc-tag">Cash Buffer</div>
+        <div class="alloc-pct">10<span class="pct-unit">%</span></div>
+        <div class="alloc-group">현금 / 단기채</div>
+        <div class="alloc-note">D·F 그룹 진입 기회 대기. 시장 조정 시 A·B·C 확대 재원.</div>
+      </div>
+      <div class="alloc-card">
+        <div class="alloc-tag">Avoid</div>
+        <div class="alloc-pct">0<span class="pct-unit">%</span></div>
+        <div class="alloc-group">D · 회복 관전 / F · 정점</div>
+        <div class="alloc-note">신규 진입 보류. F 보유 시 트레일링 스톱 -10% 설정 권장.</div>
+      </div>
+    </div>
+
+    <h3 class="subhead"><span class="num">02</span>포트폴리오 비중 시각화</h3>
+
+    <div class="chart-block">
+      <div class="chart-head">
+        <div class="chart-title-block">
+          <div class="chart-title-eyebrow">Figure 3</div>
+          <div class="chart-title">Chory &amp; Rochet 모델 포트폴리오</div>
+          <div class="chart-deck">A+B 60% 집중, C 20% 분할 진입, E 10% 유지, 현금 10%. D·F 신규 진입 0%.</div>
+        </div>
+      </div>
+      <div class="chart-canvas-wrap"><canvas id="chart-port" role="img" aria-label="6 그룹별 모델 포트폴리오 비중"></canvas></div>
+    </div>
+
+    <h3 class="subhead"><span class="num">03</span>핵심 모니터링 지표</h3>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>지표</th>
+          <th>현재 (1Q26)</th>
+          <th class="right">강세 시그널</th>
+          <th class="right">약세 시그널</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">OPM 40%+ 종목 수</td>
+          <td class="warn" style="font-family:'JetBrains Mono', monospace; font-size:13px;">18사 (사상 최고)</td>
+          <td class="right pos">유지 또는 확대</td>
+          <td class="right neg">16사 이하 축소</td>
+        </tr>
+        <tr>
+          <td class="name">SK하이닉스 OPM</td>
+          <td class="warn" style="font-family:'JetBrains Mono', monospace; font-size:13px;">71.5% (정점 추정)</td>
+          <td class="right pos">65%+ 유지</td>
+          <td class="right neg">55% 이하 하락</td>
+        </tr>
+        <tr>
+          <td class="name">티앤엘 2Q OPM</td>
+          <td style="font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--ink-mute);">관찰 중</td>
+          <td class="right pos">38% 이상 유지</td>
+          <td class="right neg">30% 이하 하락</td>
+        </tr>
+        <tr>
+          <td class="name">A그룹 평균 OPM</td>
+          <td class="pos" style="font-family:'JetBrains Mono', monospace; font-size:13px;">26.1%</td>
+          <td class="right pos">27%+ 우상향</td>
+          <td class="right neg">24% 이하 하락</td>
+        </tr>
+        <tr>
+          <td class="name">B그룹 평균 매출 성장</td>
+          <td class="pos" style="font-family:'JetBrains Mono', monospace; font-size:13px;">+25% YoY</td>
+          <td class="right pos">+20%+ 유지</td>
+          <td class="right neg">+15% 이하 둔화</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="subhead"><span class="num">04</span>리스크 시나리오 — 3대 경계 신호</h3>
+    <div class="callout terracotta">
+      <div class="callout-label">Risk Scenarios</div>
+      <p>
+        <strong>① 메모리 슈퍼사이클 정점 확인 시</strong> · SK하이닉스 OPM 65% 이하 하락 신호 발생 시
+        E 그룹 비중 즉시 50% 축소. F 그룹은 전량 정리. 1주일 내 메모리 풀체인 전반의
+        평균회귀가 예상되며, 시장 전반의 위험회피 심리 확대 가능.
+      </p>
+      <p>
+        <strong>② 미국 IRA·관세 정책 변경</strong> · HD현대일렉트릭·삼양식품·F&amp;F·휴젤 등 미국 노출 종목의
+        정책 리스크. 정책 변화 확정 시 A 그룹 미국 매출 비중 50%+ 종목 비중 50% 축소.
+      </p>
+      <p>
+        <strong>③ K-Bio 임상 실패</strong> · B·C 그룹의 핵심 동력인 임상 모멘텀 훼손. 알테오젠·SK바이오팜·휴젤 중
+        1개 이상 글로벌 임상 실패 시 K-Bio 전반 디레이팅 위험. C 그룹 비중 즉시 50% 축소 후 A 그룹으로 회전.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL VERDICT ────────────────────── -->
+<section class="verdict">
+  <div class="verdict-inner">
+    <div class="verdict-tag">Final Verdict</div>
+    <p class="verdict-quote">
+      마진 절대값이 아닌 <em>마진의 지속성</em>이<br>
+      알파다. A+B 60% 집중이 1Q26의 정답.
+    </p>
+    <div class="verdict-body">
+      <div>
+        <p>
+          <strong>최종 의견</strong>: A 그룹(수성형 강자) 30% + B 그룹(알파 머신) 30%
+          + C 그룹(글로벌 챔피언) 20% + E 그룹 유지분 10% + 현금 10%. D·F 그룹 신규 진입 보류.
+        </p>
+        <p>
+          2026 1Q는 한국 상장사 OPM 20%+ 138사로 사상 최대 호황 분기다. 하지만 호황의 정체는 이중적이다 —
+          F 그룹(메모리)은 슈퍼사이클 정점, A·B 그룹은 구조적 성장 초입. 같은 고마진이라도 향후 2-3년 전망은 정반대다.
+        </p>
+        <p>
+          <em>마진의 절대 크기가 아닌 지속성과 변동성</em>으로 종목을 재분류하면 1Q26의 진짜 알파는
+          A 그룹(수성형 강자)과 B 그룹(알파 머신)에 있다. 사이클 정점의 화려한 숫자에 현혹되지 말고
+          marathoner 종목을 우선 담을 것.
+        </p>
+      </div>
+      <dl class="verdict-actions">
+        <dt>Buy · 핵심 매수</dt>
+        <dd>HD현대일렉트릭 · 삼양식품 · F&amp;F · HD현대마린엔진 · 티씨케이 (A)<br>SK바이오팜 · 파마리서치 · 명인제약 · 더블유게임즈 · 에코마케팅 (B)<br>티앤엘 (C, 어닝 서프라이즈)</dd>
+        <dt>Acc · 분할 진입</dt>
+        <dd>알테오젠 · 삼성바이오로직스 · 클래시스 · 휴젤 (C)</dd>
+        <dt>Hold · 보유 유지</dt>
+        <dd>제주반도체 · ISC · 디아이티 · 브이엠 (E 기존 보유분)</dd>
+        <dt>Trim · 비중 축소</dt>
+        <dd>SK하이닉스 · 삼성전자 · HPSP · 리노공업 (F)</dd>
+        <dt>Watch · 보류</dt>
+        <dd>대한조선 · JW홀딩스 · 경농 · NC · SOOP (D)</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ───────────────────────────── -->
+<footer class="report-footer">
+  <div class="report-footer-inner">
+    <div class="report-footer-brand">Chory <span>&amp;</span> Rochet</div>
+    <div class="report-footer-meta">The Margin Report · Vol. I, No. 4 · Published 2026.05.19 · 2026 1Q DART 공시 기준 · OPM 20%+ 138 Companies</div>
+    <p class="report-footer-disclaimer">
+      본 보고서는 정보 제공 목적으로만 작성되었으며, 특정 종목의 매수 또는 매도를 권유하는 것이 아닙니다.
+      투자에 따른 모든 위험과 결과는 투자자 본인에게 귀속됩니다. 본 보고서의 그룹 분류는 분석가의 정성적·정량적 판단에 기반하며
+      절대적 분류 기준이 아닙니다. 종목별 OPM 데이터는 DART 공시 기준이나, 일부 종목의 분류·해석은 추정치를 포함합니다.
+      포트폴리오 권장 비중은 일반적 가이드라인이며 개별 투자자 상황에 따라 조정되어야 합니다.
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+// Common chart config — refined editorial palette
+const PALETTE = {
+  forest: '#1E4632',
+  plum: '#4A3F6E',
+  brass: '#A88B5C',
+  brassDark: '#856840',
+  slate: '#3D4A55',
+  terracotta: '#8B3A2E',
+  terracottaSoft: '#B85A3F',
+  mute: '#7A7870',
+  ink: '#16160F'
+};
+
+Chart.defaults.font.family = "'DM Sans', sans-serif";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = '#7A7870';
+
+// ── Chart 1: OPM Distribution ──────────────
+new Chart(document.getElementById('chart-dist'), {
+  type: 'bar',
+  data: {
+    labels: ['20~22%', '22~24%', '24~26%', '26~28%', '28~30%', '30~33%', '33~36%', '36~40%', '40~45%', '45~50%', '50~60%', '60%+'],
+    datasets: [{
+      label: '종목 수',
+      data: [24, 19, 15, 13, 18, 12, 9, 10, 7, 4, 4, 3],
+      backgroundColor: [
+        PALETTE.forest, PALETTE.forest, PALETTE.forest, PALETTE.forest, PALETTE.forest,
+        PALETTE.plum, PALETTE.plum, PALETTE.plum,
+        PALETTE.brass, PALETTE.brass,
+        PALETTE.terracotta, PALETTE.terracotta
+      ],
+      borderRadius: 2,
+      borderWidth: 0
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: PALETTE.ink,
+        titleFont: { family: "'DM Sans', sans-serif", size: 12, weight: '500' },
+        bodyFont: { family: "'DM Sans', sans-serif", size: 12 },
+        padding: 12,
+        cornerRadius: 2,
+        callbacks: { label: ctx => '  ' + ctx.parsed.y + '사' }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { font: { size: 10.5 }, color: '#7A7870' },
+        grid: { display: false },
+        border: { color: '#E6E1D2' }
+      },
+      y: {
+        title: { display: true, text: '종목 수', font: { size: 10.5, weight: '500' }, color: '#7A7870' },
+        ticks: { font: { size: 10.5 }, color: '#7A7870', stepSize: 5 },
+        grid: { color: '#EFEBDF', drawTicks: false },
+        border: { display: false }
+      }
+    }
+  }
+});
+
+// ── Chart 2: Groups ──────────────────────────
+new Chart(document.getElementById('chart-groups'), {
+  data: {
+    labels: ['A 수성형\n강자', 'B 알파\n머신', 'C 글로벌\n챔피언', 'D 회복\n관전', 'E 메모리\n풀체인', 'F 사이클\n정점'],
+    datasets: [
+      {
+        type: 'bar',
+        label: '종목 수 (좌)',
+        data: [15, 20, 12, 25, 30, 6],
+        backgroundColor: [PALETTE.forest, PALETTE.plum, PALETTE.brass, PALETTE.mute, PALETTE.terracottaSoft, PALETTE.terracotta],
+        yAxisID: 'y',
+        order: 2,
+        borderRadius: 2
+      },
+      {
+        type: 'line',
+        label: '평균 OPM (우, %)',
+        data: [26.1, 35.4, 46.8, 23.4, 31.7, 51.6],
+        borderColor: PALETTE.ink,
+        backgroundColor: PALETTE.brass,
+        borderWidth: 1.5,
+        pointRadius: 6,
+        pointBackgroundColor: PALETTE.brass,
+        pointBorderColor: PALETTE.ink,
+        pointBorderWidth: 1.5,
+        pointHoverRadius: 8,
+        yAxisID: 'y1',
+        tension: 0.3,
+        order: 1,
+        borderDash: [3, 3]
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top',
+        align: 'end',
+        labels: { font: { size: 11, weight: '500' }, padding: 16, boxWidth: 12, boxHeight: 12, color: '#3A3A33' }
+      },
+      tooltip: {
+        backgroundColor: PALETTE.ink,
+        titleFont: { family: "'DM Sans', sans-serif", size: 12, weight: '500' },
+        bodyFont: { family: "'DM Sans', sans-serif", size: 12 },
+        padding: 12,
+        cornerRadius: 2,
+        callbacks: {
+          label: ctx => ctx.dataset.label.includes('OPM')
+            ? '  ' + ctx.dataset.label + ': ' + ctx.parsed.y + '%'
+            : '  ' + ctx.dataset.label + ': ' + ctx.parsed.y + '사'
+        }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { font: { size: 11 }, color: '#3A3A33' },
+        grid: { display: false },
+        border: { color: '#E6E1D2' }
+      },
+      y: {
+        position: 'left',
+        title: { display: true, text: '종목 수', font: { size: 10.5, weight: '500' }, color: '#7A7870' },
+        ticks: { font: { size: 10.5 }, color: '#7A7870' },
+        grid: { color: '#EFEBDF', drawTicks: false },
+        border: { display: false }
+      },
+      y1: {
+        position: 'right',
+        title: { display: true, text: '평균 OPM (%)', font: { size: 10.5, weight: '500' }, color: '#7A7870' },
+        grid: { display: false },
+        ticks: { font: { size: 10.5 }, color: '#7A7870', callback: v => v + '%' },
+        suggestedMin: 0,
+        suggestedMax: 60,
+        border: { display: false }
+      }
+    }
+  }
+});
+
+// ── Chart 3: Portfolio Donut ──────────────────
+new Chart(document.getElementById('chart-port'), {
+  type: 'doughnut',
+  data: {
+    labels: ['A · 수성형 강자 30%', 'B · 알파 머신 30%', 'C · 글로벌 챔피언 20%', 'E · 메모리 풀체인 10%', '현금 / 단기채 10%'],
+    datasets: [{
+      data: [30, 30, 20, 10, 10],
+      backgroundColor: [PALETTE.forest, PALETTE.plum, PALETTE.brass, PALETTE.terracottaSoft, PALETTE.mute],
+      borderColor: '#FFFFFF',
+      borderWidth: 3,
+      hoverOffset: 8
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'right',
+        labels: {
+          font: { size: 13, family: "'Fraunces', serif", weight: '400' },
+          boxWidth: 14,
+          boxHeight: 14,
+          padding: 16,
+          color: '#3A3A33'
+        }
+      },
+      tooltip: {
+        backgroundColor: PALETTE.ink,
+        titleFont: { family: "'DM Sans', sans-serif", size: 12, weight: '500' },
+        bodyFont: { family: "'DM Sans', sans-serif", size: 12 },
+        padding: 12,
+        cornerRadius: 2,
+        callbacks: { label: ctx => '  ' + ctx.label }
+      }
+    },
+    cutout: '62%'
+  }
+});
+</script>
+
+</body>
+</html>
