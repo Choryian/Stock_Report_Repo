@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 1Q 고마진 종목 분석 — 휴젤 (145020) · OPM 47.2% 사상 최고</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f5ecd9; --paper-dark: #ebe1ca;
+  --ink: #1a1f3a; --ink-soft: #2c3458; --ink-mute: #6b6f8a;
+  --rule: #1a1f3a; --rule-soft: #c4b88f;
+  --gold: #b8860b; --gold-bright: #d4a017;
+  --crimson: #8b1538;
+  --emerald: #1a5d2f; --emerald-soft: #2d8a4e;
+  --rose: #c9447d;
+  --shadow-deep: 0 14px 36px -8px rgba(26,31,58,0.18), 0 4px 8px -2px rgba(26,31,58,0.08);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Lora', 'Noto Serif KR', 'Times New Roman', serif;
+  background: var(--paper);
+  background-image:
+    radial-gradient(circle at 25% 8%, rgba(184,134,11,0.04) 0%, transparent 35%),
+    radial-gradient(circle at 75% 92%, rgba(201,68,125,0.04) 0%, transparent 30%);
+  color: var(--ink); font-size: 16px; line-height: 1.65; margin: 0; padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+.masthead { border-top: 6px double var(--ink); border-bottom: 1px solid var(--ink); padding: 14px 0 12px; background: var(--paper); }
+.masthead-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 32px;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px;
+}
+.masthead-edition { font-family: 'Playfair Display', serif; font-style: italic; font-size: 10.5px; color: var(--ink-mute); letter-spacing: 0.04em; text-align: left; }
+.masthead-name { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 38px; color: var(--ink); text-align: center; letter-spacing: -0.02em; line-height: 1; margin: 0; }
+.masthead-name span { font-style: italic; color: var(--gold); font-weight: 600; }
+.masthead-date { font-family: 'Playfair Display', serif; font-style: italic; font-size: 10.5px; color: var(--ink-mute); letter-spacing: 0.04em; text-align: right; }
+
+.update-banner {
+  background: var(--ink); color: var(--paper); padding: 10px 0; text-align: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; font-weight: 600;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+.hero { padding: 56px 0 36px; border-bottom: 1px solid var(--rule); }
+.hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--gold); font-weight: 600; text-transform: uppercase; margin-bottom: 18px; }
+.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(40px, 6.5vw, 78px); font-weight: 800; line-height: 0.96; letter-spacing: -0.025em; margin: 0 0 22px 0; color: var(--ink); }
+.hero-title em { font-style: italic; color: var(--emerald); font-weight: 600; }
+.hero-subtitle { font-family: 'Lora', serif; font-size: 19px; color: var(--ink-soft); font-style: italic; line-height: 1.6; max-width: 760px; margin: 0 0 28px; }
+.hero-byline { display: flex; flex-wrap: wrap; gap: 22px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-mute); border-top: 1px solid var(--rule-soft); padding-top: 16px; }
+.hero-byline strong { color: var(--ink); font-weight: 600; }
+
+.metrics-strip { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 3px double var(--ink); border-bottom: 3px double var(--ink); }
+.metric-cell { padding: 22px 16px; text-align: center; border-right: 1px solid var(--rule-soft); background: var(--paper); }
+.metric-cell:last-child { border-right: none; }
+.metric-cell.featured { background: var(--ink); color: var(--paper); }
+.metric-cell.featured .metric-label { color: var(--rule-soft); }
+.metric-cell.featured .metric-value { color: var(--paper); }
+.metric-label { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; color: var(--ink-mute); text-transform: uppercase; margin-bottom: 8px; font-weight: 500; }
+.metric-value { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 800; color: var(--ink); line-height: 1; }
+.metric-value.positive { color: var(--emerald); }
+.metric-value.warn { color: var(--crimson); }
+.metric-cell .metric-delta { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; margin-top: 4px; }
+.metric-delta.up { color: var(--emerald); }
+.metric-delta.down { color: var(--crimson); }
+.metric-cell.featured .metric-delta { color: var(--gold-bright); }
+
+.section { padding: 80px 0; border-bottom: 1px solid var(--rule); }
+.section-header { margin-bottom: 44px; max-width: 850px; }
+.section-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: var(--gold); text-transform: uppercase; font-weight: 600; border-top: 2px solid var(--gold); padding-top: 8px; display: inline-block; margin-bottom: 18px; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 54px); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 20px 0; color: var(--ink); }
+.section-title em { font-style: italic; color: var(--emerald); font-weight: 600; }
+.section-deck { font-family: 'Lora', serif; font-size: 17px; font-style: italic; color: var(--ink-soft); line-height: 1.6; }
+
+.subhead { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--ink); margin: 36px 0 14px; line-height: 1.2; border-bottom: 1px solid var(--rule); padding-bottom: 6px; }
+.subhead-sm { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--ink); margin: 24px 0 10px; font-style: italic; }
+.lead { font-family: 'Lora', serif; font-size: 18px; line-height: 1.7; color: var(--ink-soft); font-style: italic; margin-bottom: 24px; padding-left: 18px; border-left: 3px solid var(--gold); }
+.body-text { font-family: 'Lora', serif; font-size: 15.5px; line-height: 1.75; color: var(--ink); margin: 0 0 18px; }
+.body-text strong { color: var(--ink); font-weight: 700; }
+.body-text em { color: var(--emerald); font-style: italic; font-weight: 600; }
+.body-text.drop-cap::first-letter { font-family: 'Playfair Display', serif; font-size: 4.4em; font-weight: 800; float: left; line-height: 0.85; margin: 0.05em 0.08em 0 0; color: var(--emerald); }
+
+.data-table { width: 100%; border-collapse: collapse; font-family: 'JetBrains Mono', monospace; font-size: 12px; margin: 24px 0; background: var(--paper); }
+.data-table thead th { background: var(--ink); color: var(--paper); padding: 10px 12px; text-align: left; font-weight: 600; letter-spacing: 0.06em; font-size: 10.5px; text-transform: uppercase; border-bottom: 2px solid var(--gold); }
+.data-table tbody td { padding: 9px 12px; border-bottom: 1px solid var(--rule-soft); color: var(--ink); font-family: 'JetBrains Mono', monospace; }
+.data-table tbody td.label { font-family: 'Lora', serif; font-weight: 500; font-style: italic; }
+.data-table tbody tr:hover { background: rgba(184,134,11,0.05); }
+.data-table .right { text-align: right; }
+.data-table .center { text-align: center; }
+.data-table .positive { color: var(--emerald); font-weight: 600; }
+.data-table .negative { color: var(--crimson); font-weight: 600; }
+.data-table .warn { color: var(--gold); font-weight: 600; }
+.data-table tr.highlight td { background: rgba(184,134,11,0.08); font-weight: 600; }
+
+.pullquote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 28px; line-height: 1.3; color: var(--emerald); margin: 36px 0; padding: 32px 40px; border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); text-align: center; font-weight: 600; position: relative; }
+.pullquote::before { content: '\201C'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--paper); padding: 0 12px; font-size: 60px; color: var(--gold); line-height: 1; }
+.pullquote-attr { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-style: normal; color: var(--ink-mute); letter-spacing: 0.1em; margin-top: 14px; text-transform: uppercase; }
+
+.score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 24px 0; }
+.score-card { border: 1.5px solid var(--ink); background: var(--paper); padding: 18px 14px; text-align: center; }
+.score-card.featured { background: var(--ink); color: var(--paper); border-color: var(--gold); border-width: 2px; }
+.score-card.featured .score-label { color: var(--rule-soft); }
+.score-card.featured .score-value { color: var(--paper); }
+.score-card.featured .score-detail { color: var(--rule-soft); }
+.score-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: var(--ink-mute); text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+.score-value { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 800; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+.score-detail { font-family: 'Lora', serif; font-size: 10.5px; font-style: italic; color: var(--ink-mute); }
+
+.tier-badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 3px; letter-spacing: 0.05em; }
+.tier-aplus { background: var(--emerald); color: var(--paper); }
+.tier-a { background: var(--emerald-soft); color: var(--paper); }
+.tier-bplus { background: var(--gold-bright); color: var(--ink); }
+.tier-b { background: var(--gold); color: var(--paper); }
+
+.chart-container { background: var(--paper); border: 1px solid var(--rule); padding: 24px; margin: 28px 0; }
+.chart-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 17px; margin-bottom: 4px; color: var(--ink); }
+.chart-deck { font-family: 'Lora', serif; font-style: italic; font-size: 12.5px; color: var(--ink-mute); margin-bottom: 16px; }
+.chart-canvas { position: relative; height: 320px; }
+.chart-canvas-large { position: relative; height: 480px; }
+
+.wave-legend { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; padding: 14px 16px; background: var(--paper-dark); border-left: 3px solid var(--gold); font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+.wave-legend-item { color: var(--ink-soft); }
+.wave-legend-item strong { color: var(--ink); font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; font-size: 13px; }
+.wave-legend-item .price { color: var(--gold); font-weight: 600; }
+
+.strategy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 28px 0; }
+.strategy-col { border: 1.5px solid var(--ink); padding: 22px 20px; background: var(--paper); }
+.strategy-col.bull { border-color: var(--emerald); }
+.strategy-col.base { border-color: var(--gold); }
+.strategy-col.bear { border-color: var(--crimson); }
+.strategy-col-head { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
+.strategy-col.bull .strategy-col-head { color: var(--emerald); }
+.strategy-col.base .strategy-col-head { color: var(--gold); }
+.strategy-col.bear .strategy-col-head { color: var(--crimson); }
+.strategy-col h4 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin: 0 0 14px; font-style: italic; }
+.strategy-col .prob { font-family: 'JetBrains Mono', monospace; font-size: 32px; font-weight: 700; color: var(--ink); line-height: 1; margin-bottom: 10px; }
+.strategy-col p { font-size: 14px; line-height: 1.65; margin: 0 0 10px; color: var(--ink-soft); }
+.strategy-col ul { font-size: 13px; line-height: 1.7; padding-left: 18px; margin: 8px 0 0; color: var(--ink); }
+.strategy-col ul li { margin-bottom: 5px; }
+
+.verdict { background: var(--ink); color: var(--paper); padding: 40px 36px; margin: 36px 0; border-top: 4px solid var(--gold); border-bottom: 4px solid var(--gold); }
+.verdict-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--gold-bright); text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
+.verdict h3 { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; font-style: italic; margin: 0 0 18px; color: var(--paper); line-height: 1.15; }
+.verdict h3 em { color: var(--gold-bright); font-weight: 800; }
+.verdict p { font-family: 'Lora', serif; font-size: 16px; line-height: 1.75; color: var(--rule-soft); margin: 0 0 12px; }
+.verdict p strong { color: var(--paper); }
+
+.highlight-box { background: var(--paper-dark); border-left: 4px solid var(--gold); padding: 16px 22px; margin: 20px 0; font-family: 'Lora', serif; font-size: 15px; line-height: 1.65; }
+.highlight-box strong { color: var(--emerald); font-weight: 700; }
+.crimson-box { background: rgba(139,21,56,0.06); border-left: 4px solid var(--crimson); padding: 16px 22px; margin: 20px 0; font-family: 'Lora', serif; font-size: 15px; line-height: 1.65; }
+.crimson-box strong { color: var(--crimson); font-weight: 700; }
+.emerald-box { background: rgba(26,93,47,0.06); border-left: 4px solid var(--emerald); padding: 16px 22px; margin: 20px 0; font-family: 'Lora', serif; font-size: 15px; line-height: 1.65; }
+.emerald-box strong { color: var(--emerald); font-weight: 700; }
+
+.moat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0; }
+.moat-card { border: 1px solid var(--rule); padding: 20px 22px; background: var(--paper); }
+.moat-card-head { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: var(--gold); font-weight: 600; text-transform: uppercase; margin-bottom: 8px; }
+.moat-card h4 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; margin: 0 0 10px; color: var(--ink); font-style: italic; }
+.moat-card p { font-size: 13.5px; line-height: 1.65; margin: 0; color: var(--ink-soft); }
+
+.footnote { font-family: 'Lora', serif; font-size: 12px; font-style: italic; color: var(--ink-mute); border-top: 1px solid var(--rule-soft); padding-top: 16px; margin-top: 36px; }
+
+.toc { background: var(--paper-dark); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); padding: 18px 0; font-family: 'JetBrains Mono', monospace; }
+.toc-list { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; max-width: 1100px; margin: 0 auto; padding: 0 32px; list-style: none; }
+.toc-list a { font-size: 10.5px; color: var(--ink-soft); letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; display: block; padding: 6px 0; border-top: 2px solid transparent; transition: border-color 0.2s; }
+.toc-list a:hover { border-top-color: var(--gold); color: var(--gold); }
+.toc-list .num { color: var(--emerald); font-weight: 700; margin-right: 6px; }
+
+.report-footer { background: var(--ink); color: var(--rule-soft); padding: 50px 0; text-align: center; font-family: 'Lora', serif; font-size: 13px; font-style: italic; }
+.report-footer .footer-name { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--paper); font-weight: 800; margin-bottom: 12px; font-style: normal; }
+.report-footer p { margin: 4px 0; }
+.report-footer .disclaimer { font-size: 10.5px; color: var(--ink-mute); max-width: 760px; margin: 24px auto 0; border-top: 1px solid var(--ink-mute); padding-top: 18px; }
+
+.fib-bar { display: grid; grid-template-columns: 90px 1fr 100px; gap: 12px; align-items: center; padding: 7px 0; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; border-bottom: 1px dashed var(--rule-soft); }
+.fib-bar-label { color: var(--ink-soft); font-weight: 600; }
+.fib-bar-meter { background: rgba(26,31,58,0.08); height: 10px; position: relative; border-radius: 1px; }
+.fib-bar-fill { position: absolute; left: 0; top: 0; height: 100%; background: var(--emerald); }
+.fib-bar-fill.warn { background: var(--gold); }
+.fib-bar-fill.danger { background: var(--crimson); }
+.fib-bar-price { text-align: right; font-weight: 700; color: var(--ink); }
+.fib-bar.current { background: rgba(184,134,11,0.12); padding: 7px 8px; border: 1.5px solid var(--gold); margin: 4px 0; }
+
+@media (max-width: 880px) {
+  .metrics-strip { grid-template-columns: repeat(2, 1fr); }
+  .score-grid, .strategy-grid, .moat-grid { grid-template-columns: 1fr; }
+  .toc-list { grid-template-columns: repeat(2, 1fr); }
+  .wave-legend { grid-template-columns: 1fr; }
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+</head>
+<body>
+
+<!-- Update Banner -->
+<div class="update-banner">
+  ⟵ 2026 1Q 고마진 종목 분석 · 2026.05.20 · 휴젤 145020 · OPM 47.2% 사상 최고 · Wave III 황금비 목표 678,690원 ⟶
+</div>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-edition">VOL. I · No. 1<br><span style="font-size:9px;">Primary Wave Edition</span></div>
+    <div class="masthead-name"><span>The</span> AESTHETIC <span>Report</span></div>
+    <div class="masthead-date">2026년 5월 20일 · 수요일<br><span style="font-size:9px;">5/18 KRX 종가 기준</span></div>
+  </div>
+</div>
+
+<!-- TOC -->
+<nav class="toc">
+  <ul class="toc-list">
+    <li><a href="#part-1"><span class="num">I.</span>사업 · 경쟁력</a></li>
+    <li><a href="#part-2"><span class="num">II.</span>재무 · 밸류에이션</a></li>
+    <li><a href="#part-3"><span class="num">III.</span>Dwave 차트</a></li>
+    <li><a href="#part-4"><span class="num">IV.</span>엘리어트 파동</a></li>
+    <li><a href="#part-5"><span class="num">V.</span>매매 전략</a></li>
+    <li><a href="#part-6" style="color:var(--crimson);"><span class="num" style="color:var(--crimson);">VI.</span>비판적 반론</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow">2026 1Q HIGH-MARGIN STOCK ANALYSIS · HUGEL · KOSDAQ 145020 · 메디컬 에스테틱</div>
+  <h1 class="hero-title">
+    <em>2026 1Q</em><br>
+    고마진 종목 분석<br>
+    <span style="font-size:0.5em; font-weight:400; font-style:italic; color:var(--ink-mute);">— 휴젤 (145020) · OPM 47.2% 사상 최고 · Wave III 황금비 679K —</span>
+  </h1>
+  <p class="hero-subtitle">
+    <strong>FY25 매출 4,251억(+14.0% YoY), 영업이익 2,009억(OPM 47.2% 사상 최고)</strong>의 펀더멘털 위에서,
+    엘리어트 파동을 <em>2023.06.23 종가 100,800원(52w Low 99,700원)</em>부터 재카운트한다. Primary Wave I 폭 287,200원,
+    Wave II 되돌림 60.6%(피보 61.8% 표준)를 거쳐 <strong>Wave III 1.0배 501,200원 / 1.618배 황금비 678,690원</strong>이 메인 목표.
+    단, sub-wave에 W4-W1 overlap이 발견되어 시나리오 A(Wave III 진행) 45% · B(W II 확장) 35% · C(베이스) 20%로 분포.
+    <em>296,500원 종가 돌파 + 거래량 240K+가 결정적 트리거</em>.
+  </p>
+  <div class="hero-byline">
+    <span><strong>분석 기간</strong> · 2023.06.01 ~ 2026.05.18 (720 일봉, KRX MCP)</span>
+    <span><strong>시장</strong> · KOSDAQ 우량기업부</span>
+    <span><strong>업종</strong> · 메디컬 에스테틱 (보툴리눔 톡신 · HA 필러)</span>
+    <span><strong>외국인 지분</strong> · 57.76%</span>
+  </div>
+</header>
+
+<!-- METRICS STRIP -->
+<div class="metrics-strip">
+  <div class="metric-cell">
+    <div class="metric-label">5/18 종가</div>
+    <div class="metric-value">261,500<span style="font-size:0.5em;">원</span></div>
+    <div class="metric-delta down">-7.43% (단일 급락)</div>
+  </div>
+  <div class="metric-cell">
+    <div class="metric-label">FY25 OPM</div>
+    <div class="metric-value positive">47.2<span style="font-size:0.6em;">%</span></div>
+    <div class="metric-delta up">사상 최고 +2.7%p</div>
+  </div>
+  <div class="metric-cell">
+    <div class="metric-label">결정적 트리거</div>
+    <div class="metric-value warn">296.5<span style="font-size:0.6em;">K</span></div>
+    <div class="metric-delta down">현재가 +13.4%</div>
+  </div>
+  <div class="metric-cell featured">
+    <div class="metric-label">Wave III 1.618x</div>
+    <div class="metric-value">679<span style="font-size:0.5em;">K</span></div>
+    <div class="metric-delta">현재 대비 +159.5%</div>
+  </div>
+  <div class="metric-cell featured">
+    <div class="metric-label">통합 점수</div>
+    <div class="metric-value">96<span style="font-size:0.5em;color:var(--gold-bright);">/135</span></div>
+    <div class="metric-delta">Tier A · Bear 25%</div>
+  </div>
+</div>
+
+<!-- PART I -->
+<section class="section" id="part-1">
+  <header class="section-header">
+    <div class="section-eyebrow">Part 1 · Business &amp; Competitive Moat</div>
+    <h2 class="section-title"><em>"한국 1등, 글로벌 직판 진입"</em><br>국경을 넘는 보툴렉스의 야망</h2>
+    <p class="section-deck">국내 보툴리눔 톡신 시장 점유율 1위(약 50%), 글로벌 시장에서는 메디톡스에 이은 한국 2위. 2024년 미국 FDA 승인 'Letybo' 출시, 2026년 하반기 미국 직판 전환으로 J-Curve 진입. 톡신·HA필러·스킨부스터·코스메틱 통합 포트폴리오로 메디컬 에스테틱 풀체인 구축.</p>
+  </header>
+
+  <p class="body-text drop-cap">
+    휴젤(145020)은 2001년 강원도 춘천에서 설립된 <em>한국의 메디컬 에스테틱 전문기업</em>으로, 2024년 GS·CBC·IMM·무바달라 컨소시엄
+    인수 이후 <strong>한국 1등을 넘어 글로벌 리더로의 도약</strong>을 본격화하고 있다. 주력 제품은 보툴리눔 톡신 '보툴렉스(Botulax)'
+    — 미국·유럽 수출명 'Letybo', 브라질·CIS 수출명 'Botulift' — 와 HA 필러 '더채움(The Chaeum)' / 'Dermalax' / 'Revolax',
+    그리고 코스메틱 브랜드 '웰라쥬(Wellage)'·'PR4'다. 매출 구조는 <em>톡신 56% / 필러·스킨부스터 28% / 화장품·기타 16%</em>로 톡신이 핵심 캐시카우.
+  </p>
+
+  <p class="body-text">
+    <strong>FY25 결산 매출 4,251억원(+14.0% YoY), 영업이익 2,009억원(영익률 47.2% — 사상 최고)</strong>이라는 압도적 수익성은 단순한 제조업이 아닌
+    <em>"바이오의약품 제조 + 글로벌 라이선싱 + 브랜드 마케팅"의 융합 사업모델</em>의 결과다. 보툴리눔 톡신은 그램당 가치가 금보다
+    수만 배 높은 초고부가가치 제품이며, 휴젤은 자체 균주(Clostridium botulinum Hugel strain)와 자체 정제 공정으로 메디톡스(분쟁) 및
+    대웅제약(분쟁)과 차별화된 IP 기반을 확보했다. <strong>2024년 미국 FDA 승인은 한국 톡신 기업 중 2번째(대웅제약 나보타·2019에 이어)</strong>로, 같은 해 6월부터
+    미국 출시 후 분기 매출이 폭발적으로 성장 중이다.
+  </p>
+
+  <h3 class="subhead">1. 6대 경쟁 우위 (Moat)</h3>
+  <div class="moat-grid">
+    <div class="moat-card">
+      <div class="moat-card-head">Moat 01 · Regulatory</div>
+      <h4>FDA·EMA·NMPA 트리플 승인</h4>
+      <p>2024년 미국 FDA 승인('Letybo'), 2020년 유럽 EMA, 2020년 중국 NMPA 승인 보유. 한국 톡신 기업 중 유일하게 3대 시장 동시 정식 허가권 — 무허가 수출에 의존하는 경쟁사 대비 압도적 진입장벽.</p>
+    </div>
+    <div class="moat-card">
+      <div class="moat-card-head">Moat 02 · IP &amp; Strain</div>
+      <h4>자체 균주 · ITC 1심 승소</h4>
+      <p>메디톡스가 제기한 미국 ITC 균주 도용 소송에서 1심(2024.05) 자체 균주 사용 입증으로 승소. 단, 메디톡스 2024.04 CAFC 항소 진행 중 — 항소심 변경률 15~20%의 잔존 리스크는 Part 6 참조.</p>
+    </div>
+    <div class="moat-card">
+      <div class="moat-card-head">Moat 03 · Distribution</div>
+      <h4>미국 직판 J-Curve</h4>
+      <p>2025년까지 Croma-Pharma 유통, 2026년 하반기 자회사 'Hugel America' 직판 전환. 직판 시 매출 2배+ 증가 잠재력(하나증권 추정). 1Q26 북남미 톡신 매출 +420% 폭증이 직판 효과의 선행 지표.</p>
+    </div>
+    <div class="moat-card">
+      <div class="moat-card-head">Moat 04 · Portfolio</div>
+      <h4>풀체인 통합 솔루션</h4>
+      <p>톡신(주름) + 필러(볼륨) + 스킨부스터(피부질) + 코스메틱(홈케어) 4단 통합 포트폴리오. 2025년 5월 미국 Generate.io 파트너십으로 차세대 HA 스킨부스터 확보, 3분기 국내 ECM 스킨부스터 '셀러비오' 출시 예정.</p>
+    </div>
+    <div class="moat-card">
+      <div class="moat-card-head">Moat 05 · Brand</div>
+      <h4>'한국 톡신' 프리미엄 브랜드</h4>
+      <p>K-뷰티 글로벌 확산과 함께 '한국 톡신 = 가성비 좋은 프리미엄' 인식 고착. 1Q26 미국 출시 휴젤 제품 구글 트렌드 관심도 고점 갱신 중. 애브비·에볼루스 등 경쟁사 매출 둔화 속 휴젤만 +60% 성장.</p>
+    </div>
+    <div class="moat-card">
+      <div class="moat-card-head">Moat 06 · Margin</div>
+      <h4>OPM 47.2% 사상 최고</h4>
+      <p>FY25 영익률 47.2% (FY24 44.5% → +2.7%p 개선). 글로벌 제약사 중 상위 0.5% 수익성. 자체 생산·고가 의약품·강한 브랜드 파워의 결합으로 미국 직판 비용 부담을 일시적으로 흡수 가능한 구조.</p>
+    </div>
+  </div>
+
+  <h3 class="subhead">2. 핵심 리스크</h3>
+  <div class="crimson-box">
+    <strong>① 2분기 미국 직판 초기비용</strong> — 하나증권: "2Q26는 1Q 대비 미국 투자 규모 확대 + 중동전쟁 영향 가시화로 보수적 마진 예상". DB증권: 2Q 매출 1,214억·영업이익 498억 전망(영익률 41%로 1Q와 유사).
+    <strong>② 보툴리눔 톡신 테마 라이프사이클 정점 진입</strong> — StockMatrix TLI 57점(Peak 단계). 글로벌 톡신 시장 성숙도 우려.
+    <strong>③ 중국 가격 경쟁 심화</strong> — Lanzhou·Huons 등 중국 로컬 톡신 진입으로 NMPA 시장 가격 압박 우려.
+    <strong>④ 트럼프 의약품 관세 리스크</strong> — 2026년 4~5월 트럼프 의약품 100% 관세 발언 → 단기 변동성 유발. 휴젤은 미국 현지 생산 계획 없음 — 구조적 리스크 (Part 6 참조).
+    <strong>⑤ 메디톡스 ITC 항소심</strong> — 1심 승소했으나 CAFC 항소심 잔존 (변경률 15~20%).
+  </div>
+
+  <p class="body-text">
+    종합하면 휴젤의 비즈니스 모델은 <em>"고부가가치 의약품 + 글로벌 라이선싱 + 브랜드 + 직판 전환"</em>이라는 4중 동력의 결합체다.
+    2분기 직판 초기비용 부담은 <strong>전형적 J-Curve의 첫 dip 구간</strong>이며, 3분기부터 P(가격)×Q(수량) 동반 상승의 J-Curve 후반부로 진입할 전망.
+    핵심 모니터링 변수는 <em>① 미국 톡신 분기 매출 절대값, ② 직판 인력 채용 완료 시점, ③ 중국 분기 매출 성장률, ④ 영업이익률 40%+ 유지 여부</em>다.
+  </p>
+</section>
+
+<!-- PART II -->
+<section class="section" id="part-2">
+  <header class="section-header">
+    <div class="section-eyebrow">Part 2 · Financials &amp; Valuation · FY25 Actuals</div>
+    <h2 class="section-title"><em>OPM 47.2% 사상 최고,</em><br>FY25 영업이익 2,009억 확정</h2>
+    <p class="section-deck">2026.03.20 공시 사업보고서 기준 FY25 매출 4,251억(+14.0%), 영업이익 2,009억(+20.8%, OPM 47.2% 사상 최고), 지배지분 순이익 1,409억, EPS 13,061원. 시장 컨센서스 영익 1,720~1,800억 수준 추정을 +12%+ 상회. PER 22배 적용시 적정주가 287,342~442,200원 (평균 358,314원)으로 컨센서스 평균 378,000원과 인접.</p>
+  </header>
+
+  <h3 class="subhead">1. 실적 추이 (연결 기준 · DART 공시 실제값)</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>구분</th><th class="right">2022</th><th class="right">2023</th><th class="right">2024</th><th class="right"><strong>2025 (실제)</strong></th><th class="right">1Q25</th><th class="right"><strong>1Q26</strong></th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="label">매출액 (억원)</td><td class="right">2,817</td><td class="right">3,197</td><td class="right">3,730</td><td class="right positive"><strong>4,251</strong></td><td class="right">898</td><td class="right positive"><strong>1,166</strong></td></tr>
+      <tr><td class="label">YoY 성장률</td><td class="right">+12%</td><td class="right">+13.5%</td><td class="right">+16.7%</td><td class="right positive"><strong>+14.0%</strong></td><td class="right">+12%</td><td class="right positive"><strong>+29.9%</strong></td></tr>
+      <tr><td class="label">매출원가 (억원)</td><td class="right">628</td><td class="right">735</td><td class="right">859</td><td class="right">916</td><td class="right">208</td><td class="right">266</td></tr>
+      <tr><td class="label">매출총이익 (억원)</td><td class="right">2,189</td><td class="right">2,462</td><td class="right">2,872</td><td class="right positive">3,335</td><td class="right">690</td><td class="right positive">901</td></tr>
+      <tr><td class="label">매출총이익률 (GPM)</td><td class="right">77.7%</td><td class="right">77.0%</td><td class="right">77.0%</td><td class="right positive"><strong>78.4%</strong></td><td class="right">76.8%</td><td class="right positive">77.2%</td></tr>
+      <tr><td class="label">판관비 (억원)</td><td class="right">1,175</td><td class="right">1,284</td><td class="right">1,209</td><td class="right">1,326</td><td class="right">301</td><td class="right">425</td></tr>
+      <tr><td class="label">영업이익 (억원)</td><td class="right">1,014</td><td class="right">1,178</td><td class="right">1,662</td><td class="right positive"><strong>2,009</strong></td><td class="right">390</td><td class="right positive">476</td></tr>
+      <tr class="highlight"><td class="label"><strong>영업이익률 (OPM)</strong></td><td class="right">36.0%</td><td class="right">36.8%</td><td class="right warn">44.5%</td><td class="right warn"><strong>47.2% 🏆</strong></td><td class="right">43.4%</td><td class="right warn">40.8%</td></tr>
+      <tr><td class="label">법인세전순이익</td><td class="right">731</td><td class="right">1,333</td><td class="right">1,652</td><td class="right">1,968</td><td class="right">411</td><td class="right">561</td></tr>
+      <tr><td class="label">당기순이익 (억원)</td><td class="right">607</td><td class="right">977</td><td class="right">1,431</td><td class="right positive">1,470</td><td class="right">309</td><td class="right positive">406</td></tr>
+      <tr><td class="label">지배지분 순이익</td><td class="right">573</td><td class="right">931</td><td class="right">1,358</td><td class="right positive">1,409</td><td class="right">291</td><td class="right positive">393</td></tr>
+      <tr class="highlight"><td class="label"><strong>EPS (원)</strong></td><td class="right">4,811</td><td class="right">8,217</td><td class="right">12,520</td><td class="right positive"><strong>13,061</strong></td><td class="right">2,701</td><td class="right positive"><strong>3,634</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="emerald-box">
+    <strong>FY25 실적 핵심 요약</strong>: 매출 4,251억(+14.0% YoY) — FY24의 +16.7% 대비 다소 둔화되었으나
+    <em>영업이익 2,009억으로 +20.8% 성장</em>하며 OPM은 <strong>44.5% → 47.2%로 사상 최고치</strong>를 달성. 1Q26 매출 +30%·영업이익 +22%
+    추가 가속화는 J-Curve 후반부의 시작을 의미한다. 다만 EPS는 +4.3%(13,061원)에 그쳐, 법인세 부담(498억) + 비지배지분 순이익 61억(연결순익 1,470 − 지배순익 1,409)의 영향으로
+    "영업이익 성장 vs EPS 성장"의 디커플링이 발생.
+  </div>
+
+  <h3 class="subhead">2. 1Q26 부문별 매출 분해</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>부문</th><th class="right">1Q26 매출</th><th class="right">YoY</th><th>비중</th><th>핵심 동력</th></tr>
+    </thead>
+    <tbody>
+      <tr class="highlight"><td class="label"><strong>보툴리눔 톡신</strong></td><td class="right positive"><strong>654억</strong></td><td class="right positive"><strong>+60.6%</strong></td><td>56%</td><td><strong>북남미 +420%, 톡신 수출 +111%</strong></td></tr>
+      <tr><td class="label">필러 / 스킨부스터</td><td class="right">321억</td><td class="right">+10.0%</td><td>28%</td><td>3분기 연속 성장, 유럽 +10%</td></tr>
+      <tr><td class="label">화장품 / 기타 (웰라쥬, PR4)</td><td class="right positive">192억</td><td class="right positive">+30.6%</td><td>16%</td><td>차세대 핵심 사업군 안착</td></tr>
+      <tr><td class="label">─ 해외 톡신+필러 합산</td><td class="right positive">708억</td><td class="right positive">+46%</td><td>61%</td><td>美·中·EU·브라질 +210억</td></tr>
+      <tr><td class="label">─ 국내 톡신+필러 합산</td><td class="right">267억</td><td class="right">유지</td><td>23%</td><td>학술 마케팅 강화</td></tr>
+      <tr class="highlight"><td><strong>총 매출</strong></td><td class="right positive"><strong>1,166억</strong></td><td class="right positive"><strong>+29.9%</strong></td><td>100%</td><td><strong>1Q 사상 최대</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subhead">3. 중장기 재무 전망 (2026~2027E)</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>지표</th><th class="right">2024 (실적)</th><th class="right">2025 (실적)</th><th class="right">2026E (1Q 반영)</th><th class="right">2027E (직판 본격화)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="label">매출액 (억원)</td><td class="right">3,730</td><td class="right positive">4,251</td><td class="right positive">5,000E</td><td class="right positive"><strong>6,000E</strong></td></tr>
+      <tr><td class="label">매출 YoY</td><td class="right">+16.7%</td><td class="right">+14.0%</td><td class="right positive">+17.6%</td><td class="right positive"><strong>+20.0%</strong></td></tr>
+      <tr><td class="label">영업이익 (억원)</td><td class="right">1,662</td><td class="right">2,009</td><td class="right positive">2,150E</td><td class="right positive"><strong>2,700E</strong></td></tr>
+      <tr><td class="label">영익률 (OPM)</td><td class="right">44.5%</td><td class="right warn">47.2%</td><td class="right warn">43.0%</td><td class="right warn"><strong>45.0%</strong></td></tr>
+      <tr><td class="label">지배지분 순이익</td><td class="right">1,358</td><td class="right">1,409</td><td class="right positive">1,680E</td><td class="right positive">2,150E</td></tr>
+      <tr class="highlight"><td class="label"><strong>EPS (원)</strong></td><td class="right">12,520</td><td class="right positive">13,061</td><td class="right positive"><strong>15,700E</strong></td><td class="right positive"><strong>20,100E</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subhead">4. 밸류에이션 — PER 시나리오 분석</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>PER 배수</th><th class="right">2025 실제 EPS</th><th class="right">2026E EPS</th><th class="right">2027E EPS</th><th class="right">평균 적정가</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="label">18x (보수 · 5년 평균)</td><td class="right">235,098</td><td class="right">282,600</td><td class="right">361,800</td><td class="right">293,166</td></tr>
+      <tr class="highlight"><td class="label"><strong>22x (기본)</strong></td><td class="right"><strong>287,342</strong></td><td class="right positive"><strong>345,400</strong></td><td class="right positive"><strong>442,200</strong></td><td class="right positive"><strong>358,314</strong></td></tr>
+      <tr><td class="label">25x (강세)</td><td class="right">326,525</td><td class="right">392,500</td><td class="right">502,500</td><td class="right">407,175</td></tr>
+      <tr><td class="label">30x (Blue-sky)</td><td class="right">391,830</td><td class="right">471,000</td><td class="right positive">603,000</td><td class="right positive">488,610</td></tr>
+    </tbody>
+  </table>
+
+  <p class="body-text">
+    <strong>현재 주가 261,500원의 후행 PER(FY25 EPS 13,061원 기준)은 약 20.0배</strong>로, 향후 2년 EPS 성장 +54% (CAGR 24%) 잠재력 대비 PEG 0.83배 (CAGR 기준).
+    <em>강세 시나리오(PER 25x, 2027E EPS) 502,500원은 현재가 대비 +92% 상승 여력</em>을 시사하나, 5년 평균 PER 18배 회귀 시 282,600원(+8%)으로 제한.
+    글로벌 피어 비교: 애브비 18x, 엘러간 에스테틱 27x, 메디톡스 15x. 휴젤은 미국 직판 J-Curve 모멘텀을 반영해 <em>국내 메디톡스 대비 프리미엄, 글로벌 메이저 대비 디스카운트</em> 위치가 합리적.
+  </p>
+
+  <h3 class="subhead">5. 증권사 컨센서스 (5/19 기준)</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>증권사</th><th>최근 발표일</th><th>의견</th><th class="right">목표주가</th><th class="right">상승여력</th><th>핵심 코멘트</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="label">키움증권</td><td>25.08.07</td><td class="positive">매수</td><td class="right">500,000</td><td class="right positive">+91.2%</td><td>미국 시장 본격 확대</td></tr>
+      <tr><td class="label">삼성증권</td><td>25.08.07</td><td class="positive">매수</td><td class="right">500,000</td><td class="right positive">+91.2%</td><td>2Q 수출·수익성 우려 해소</td></tr>
+      <tr><td class="label">다올투자증권</td><td>26.05.08</td><td class="positive">매수</td><td class="right">430,000</td><td class="right positive">+64.4%</td><td>1Q 컨센 +13% 상회</td></tr>
+      <tr class="highlight"><td class="label"><strong>현대차증권</strong></td><td>26.05.11</td><td class="positive">매수 (상향)</td><td class="right"><strong>400,000</strong></td><td class="right positive"><strong>+53.0%</strong></td><td><strong>"톡신 성장 스토리는 계속" (350K→400K)</strong></td></tr>
+      <tr><td class="label">NH투자증권</td><td>26.05.11</td><td class="positive">매수 (상향)</td><td class="right">400,000</td><td class="right positive">+53.0%</td><td>미국 직판 + 중국 +70% 성장 (350K→400K)</td></tr>
+      <tr><td class="label">하나증권</td><td>26.05.08</td><td class="positive">매수</td><td class="right">380,000</td><td class="right positive">+45.3%</td><td>2Q 보수적, 3Q부터 본격화</td></tr>
+      <tr><td class="label">상상인증권</td><td>26.03.29</td><td class="positive">매수</td><td class="right">340,000</td><td class="right positive">+30.0%</td><td>북미 직판 비용 부담</td></tr>
+      <tr class="highlight"><td class="label"><strong>평균 (14개사)</strong></td><td>-</td><td class="positive"><strong>매수 14 / 매도 0</strong></td><td class="right"><strong>378,333</strong></td><td class="right positive"><strong>+44.7%</strong></td><td><strong>매도 의견 全無, 컨센서스 매우 긍정적</strong></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- PART III - STAN WEINSTEIN 200MA ANALYSIS -->
+<section class="section" id="part-3">
+  <header class="section-header">
+    <div class="section-eyebrow">Part 3 · Stan Weinstein Stage Analysis · 200-Day MA Framework</div>
+    <h2 class="section-title"><em>Stage 4 후반 → Stage 1 전환,</em><br>200MA 하향 둔화·베이스 형성 중</h2>
+    <p class="section-deck">Stan Weinstein의 4-Stage Framework(200MA 기준)로 휴젤을 진단하면 현재 위치는 <strong>Stage 4 후반 → Stage 1 전환 단계</strong>. 가격 261,500원은 200MA(268,478원) -2.60% 아래에 있고, 200MA가 우하향이지만 기울기는 60일 -9.88% → 20일 -3.35%로 명확히 둔화. Stage 2 본격 진입을 위해서는 ① 200MA 평탄화, ② 가격 200MA 돌파, ③ 거래량 동반의 3중 조건 필요.</p>
+  </header>
+
+  <h3 class="subhead">1. Stan Weinstein 4-Stage Framework</h3>
+  <p class="body-text">
+    Stan Weinstein의 <em>"Secrets for Profiting in Bull and Bear Markets" (1988)</em>에 정립된 4-Stage Framework는 200-day Moving Average(약 30주 MA에 해당)와 그 기울기를 핵심 지표로 한 사이클 분석.
+    매수는 Stage 2에서만, 매도는 Stage 3-4에서만 권장된다. Stage 1(베이스)에서는 신중한 관찰, Stage 4(하락)에서는 매수 금지.
+  </p>
+  <table class="data-table">
+    <thead><tr><th>Stage</th><th>특징</th><th>가격 vs 200MA</th><th>200MA 기울기</th><th>거래량 패턴</th><th>전략</th></tr></thead>
+    <tbody>
+      <tr><td class="label">Stage 1 (Basing)</td><td>축적·횡보</td><td class="mono">±5% 이내</td><td class="mono">평탄</td><td>저조→점진 증가</td><td>관찰</td></tr>
+      <tr class="highlight"><td class="label positive"><strong>Stage 2 (Markup)</strong></td><td><strong>본격 상승</strong></td><td class="mono positive">>+5% 상위</td><td class="mono positive">우상향</td><td>돌파 시 폭증</td><td class="positive"><strong>매수</strong></td></tr>
+      <tr><td class="label">Stage 3 (Top)</td><td>분배·정점</td><td class="mono">변동성↑</td><td class="mono warn">평탄·하향 시작</td><td>고점 부근 폭증</td><td>익절</td></tr>
+      <tr><td class="label">Stage 4 (Markdown)</td><td>하락</td><td class="mono negative">&lt;-5% 하위</td><td class="mono negative">우하향</td><td>패닉 매도</td><td class="negative">매수 금지</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subhead">2. 휴젤 현재 Stage 진단</h3>
+  <div class="score-grid" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="score-card">
+      <div class="score-label">현재 종가</div>
+      <div class="score-value">261,500<small style="font-size:0.4em;">원</small></div>
+      <div class="score-detail">2026.05.18 KRX</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">200MA</div>
+      <div class="score-value warn" style="color:var(--gold);">268,478<small style="font-size:0.4em;">원</small></div>
+      <div class="score-detail">가격 vs 200MA: <strong>-2.60%</strong></div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">200MA 60일 기울기</div>
+      <div class="score-value" style="color:var(--crimson);">-9.88<small style="font-size:0.4em;">%</small></div>
+      <div class="score-detail">우하향, but 둔화 중</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">200MA 20일 기울기</div>
+      <div class="score-value" style="color:var(--gold);">-3.35<small style="font-size:0.4em;">%</small></div>
+      <div class="score-detail">감속 (Stage 1 전환 신호)</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">150MA (30W)</div>
+      <div class="score-value positive">250,313<small style="font-size:0.4em;">원</small></div>
+      <div class="score-detail">현재가 <strong>+4.47%</strong> 상위</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">50MA</div>
+      <div class="score-value positive">259,060<small style="font-size:0.4em;">원</small></div>
+      <div class="score-detail">현재가 <strong>+0.94%</strong> 상위</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">5/8 거래량</div>
+      <div class="score-value positive">246,146</div>
+      <div class="score-detail">50일 평균 53,737 대비 <strong>×4.58</strong></div>
+    </div>
+    <div class="score-card featured">
+      <div class="score-label">Stage 판정</div>
+      <div class="score-value" style="font-size:24px;">4 → 1</div>
+      <div class="score-detail">Stage 4 후반 → 1 전환</div>
+    </div>
+  </div>
+
+  <h3 class="subhead">3. 200MA 진화 — Stage 사이클 추적</h3>
+  <table class="data-table">
+    <thead><tr><th>날짜</th><th class="right">종가</th><th class="right">200MA</th><th class="right">가격 vs 200MA</th><th>Stage 판정</th></tr></thead>
+    <tbody>
+      <tr><td>2025.06.30 (ATH)</td><td class="right positive">388,000</td><td class="right">299,052</td><td class="right positive"><strong>+29.74%</strong></td><td class="positive">Stage 2 후반 / 3 진입 (정점 분배)</td></tr>
+      <tr><td>2025.11.07 (52w Low)</td><td class="right negative">214,000</td><td class="right">319,068</td><td class="right negative"><strong>-32.93%</strong></td><td class="negative">Stage 4 (패닉 클라이맥스)</td></tr>
+      <tr><td>2026.02.13 (60일 전)</td><td class="right">253,500</td><td class="right">297,895</td><td class="right negative">-14.91%</td><td class="negative">Stage 4 중반</td></tr>
+      <tr><td>2026.04.16 (20일 전)</td><td class="right">262,000</td><td class="right">277,770</td><td class="right negative">-5.68%</td><td class="warn">Stage 4 후반</td></tr>
+      <tr class="highlight"><td><strong>2026.05.18 (현재)</strong></td><td class="right"><strong>261,500</strong></td><td class="right warn"><strong>268,478</strong></td><td class="right warn"><strong>-2.60%</strong></td><td class="warn"><strong>Stage 4 → 1 전환 중</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="emerald-box">
+    <strong>200MA 기울기 둔화의 의미</strong>: 200MA가 60일간 -9.88% 하락했지만, 최근 20일은 -3.35%로 감속 — 월간 환산 약 -1.7%/월에서 -0.5%/월로 둔화.
+    Stan Weinstein 기준 <em>"200MA가 평탄해지면(monthly slope ±0.5% 이내) Stage 1 베이스 진입"</em>으로 정의되며, 현재 휴젤은 그 임계점에 근접.
+    가격이 200MA -2.60% 아래의 좁은 갭에 있고, 50MA(259K)·150MA(250K)·현재가(261.5K)가 좁은 밴드(2.6% 범위) 안에 수렴 — <strong>전형적 Stage 1 베이스 형성 패턴</strong>.
+  </div>
+
+  <h3 class="subhead">4. Stage 2 진입 트리거 — 3중 조건</h3>
+  <table class="data-table">
+    <thead><tr><th>조건</th><th>임계값</th><th>현재 상태</th><th>충족 여부</th></tr></thead>
+    <tbody>
+      <tr><td class="label">① 가격 &gt; 200MA</td><td class="mono">&gt; 268,478원</td><td class="mono">261,500원</td><td class="negative">미충족 (-2.60%)</td></tr>
+      <tr><td class="label">② 200MA 평탄화 (월 ±0.5%)</td><td class="mono">20일 기울기 ±1% 이내</td><td class="mono">-3.35% / 20일</td><td class="warn">근접 (둔화 중)</td></tr>
+      <tr><td class="label">③ 돌파 거래량 폭증 (50일 평균 ×2+)</td><td class="mono">&gt; 107,474주</td><td class="mono">5/8 246,146주 (×4.58)</td><td class="positive">5/8 일시 충족 (지속 미확인)</td></tr>
+      <tr class="highlight"><td><strong>종합 진단</strong></td><td><strong>3중 조건 충족 시 Stage 2 매수</strong></td><td><strong>1/3 충족</strong></td><td class="warn"><strong>관찰권 (분할 진입 가능)</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="crimson-box">
+    <strong>Stan Weinstein 정통 해석</strong>: 3중 조건 미충족 시 매수는 "preemptive(선제적)" 성격. 정통 Weinstein 매수는 <em>가격이 200MA 위 +5% 영역 + 200MA 우상향 + 거래량 폭증의 동시 충족</em> 시에만.
+    현재 휴젤은 <strong>Stage 1 후반 베이스 형성</strong>으로, 5/8 거래량 폭증은 1차 돌파 시도. 5/11(82K) · 5/18(43K) 거래량 급감은 매수세 약화 — 본격 Stage 2 진입은 <em>200MA(268K) 종가 돌파 + 거래량 240K+ 재현</em> 후에 확정.
+  </div>
+
+  <h3 class="subhead">5. 피보나치 되돌림 — ATH 기준 매핑</h3>
+  <p class="body-text">
+    <strong>ATH 388,000원(2025.06.30 종가) = 0%, 52w Low 214,000원(2025.11.07 종가) = 100% 되돌림</strong>의 피보나치 도식.
+    현재가 261,500원은 <em>피보 72.7%</em>로 61.8%(280,468)와 78.6%(251,236) 사이의 황금 매수 구간. 피보 50%(301K) = 200MA 부근에서 강한 저항 예상.
+  </p>
+
+  <div style="background: var(--paper); padding: 18px 22px; border: 1px solid var(--rule); margin: 20px 0;">
+    <div class="fib-bar">
+      <div class="fib-bar-label">0% (ATH)</div>
+      <div class="fib-bar-meter"><div class="fib-bar-fill" style="width:0%;"></div></div>
+      <div class="fib-bar-price">388,000</div>
+    </div>
+    <div class="fib-bar">
+      <div class="fib-bar-label">23.6%</div>
+      <div class="fib-bar-meter"><div class="fib-bar-fill warn" style="width:23.6%;"></div></div>
+      <div class="fib-bar-price">346,936</div>
+    </div>
+    <div class="fib-bar">
+      <div class="fib-bar-label">38.2%</div>
+      <div class="fib-bar-meter"><div class="fib-bar-fill warn" style="width:38.2%;"></div></div>
+      <div class="fib-bar-price">321,532</div>
+    </div>
+    <div class="fib-bar">
+      <div class="fib-bar-label">50.0% (≈200MA)</div>
+      <div class="fib-bar-meter"><div class="fib-bar-fill warn" style="width:50%;"></div></div>
+      <div class="fib-bar-price">301,000</div>
+    </div>
+    <div class="fib-bar">
+      <div class="fib-bar-label">61.8% ★</div>
+      <div class="fib-bar-meter"><div class="fib-bar-fill" style="width:61.8%;"></div></div>
+      <div class="fib-bar-price">280,468</div>
+    </div>
+    <div class="fib-bar">
+      <div class="fib-bar-label">200MA</div>
+      <div class="fib-bar-meter"><div class="fib-bar-fill" style="width:68.7%; background:var(--gold);"></div></div>
+      <div class="fib-bar-price">268,478</div>
+    </div>
+    <div class="fib-bar current">
+      <div class="fib-bar-label"><strong>현재가 ◀</strong></div>
+      <div class="fib-bar-meter"><div class="fib-bar-fill" style="width:72.7%; background:var(--gold);"></div></div>
+      <div class="fib-bar-price"><strong>261,500</strong></div>
+    </div>
+    <div class="fib-bar">
+      <div class="fib-bar-label">78.6% ★★</div>
+      <div class="fib-bar-meter"><div class="fib-bar-fill" style="width:78.6%;"></div></div>
+      <div class="fib-bar-price">251,236</div>
+    </div>
+    <div class="fib-bar">
+      <div class="fib-bar-label">150MA (30W)</div>
+      <div class="fib-bar-meter"><div class="fib-bar-fill" style="width:79.1%; background:var(--emerald-soft);"></div></div>
+      <div class="fib-bar-price">250,313</div>
+    </div>
+    <div class="fib-bar">
+      <div class="fib-bar-label">100% (Low)</div>
+      <div class="fib-bar-meter"><div class="fib-bar-fill danger" style="width:100%;"></div></div>
+      <div class="fib-bar-price">214,000</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <strong>다층 지지·저항 정합</strong>: 현재가 261.5K 위로 <em>200MA 268K(저항 1)</em>, 피보 61.8% 280K(저항 2), 피보 50%·301K(저항 3, 엘리어트 W3 트리거 296.5K 인접)가 차곡차곡 배치.
+    아래로는 <em>150MA 250K = 피보 78.6% 251K(지지 1)</em>, 손절선 225K(지지 2), 52w Low 214K(지지 3). <strong>261.5K~280K 구간의 4% 박스 돌파가 Stage 2 1차 신호</strong>이며, 296.5K 돌파 시 엘리어트 Wave III 시나리오 A와 정합.
+  </div>
+</section>
+
+<!-- PART IV - PRIMARY WAVE COUNT -->
+<section class="section" id="part-4">
+  <header class="section-header">
+    <div class="section-eyebrow">Part 4 · Elliott Wave Analysis · Primary Count from 2023.06.23</div>
+    <h2 class="section-title"><em>Primary Wave I 폭 287K,</em><br>Wave III 황금비 679K 메인 목표</h2>
+    <p class="section-deck">KRX 720 일봉(2023.06.01~2026.05.18) 재검토로 진정한 Primary Wave I 시작점은 <strong>2023.06.23 종가 100,800원(52w Low 일중 99,700원)</strong>. Wave I 정점 388,000원(2025.06.30), 폭 287,200원, +284.9% / 25개월. Wave II 214,000원(2025.11.07)으로 60.6% 되돌림(피보 61.8% 표준). 현재 Wave III 진행 가설.</p>
+  </header>
+
+  <h3 class="subhead">1. Primary Wave I — 5파 임펄스 (2023.06.23 → 2025.06.30)</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Sub-wave</th><th>기간</th><th class="right">시작가</th><th class="right">정점/저점</th><th class="right">변동률</th><th>비고</th></tr>
+    </thead>
+    <tbody>
+      <tr class="highlight"><td class="label"><strong>Sub-W1</strong></td><td>2023.06.23 ~ 2023.11.22</td><td class="right">100,800</td><td class="right">159,400</td><td class="right positive">+58.1%</td><td>5개월 강한 상승</td></tr>
+      <tr><td class="label">Sub-W2</td><td>2023.11.22 ~ 2023.12.21</td><td class="right">159,400</td><td class="right">143,500</td><td class="right negative">-10.0%</td><td>피보 27% 얕은 조정</td></tr>
+      <tr class="highlight"><td class="label"><strong>Sub-W3</strong></td><td>2023.12 ~ 2024.11</td><td class="right">143,500</td><td class="right">321,000</td><td class="right positive">+123.7%</td><td>5파 확장 (i-ii-iii-iv-v 내부 구조)</td></tr>
+      <tr><td class="label">└ Sub-W3-(i)</td><td>~ 2024.04.29</td><td class="right">143,500</td><td class="right">221,000</td><td class="right positive">+54.0%</td><td></td></tr>
+      <tr><td class="label">└ Sub-W3-(ii)</td><td>~ 2024.05.31</td><td class="right">221,000</td><td class="right">191,000</td><td class="right negative">-13.6%</td><td></td></tr>
+      <tr><td class="label">└ Sub-W3-(iii)</td><td>~ 2024.08.19</td><td class="right">191,000</td><td class="right">286,500</td><td class="right positive">+50.0%</td><td>강한 추진력</td></tr>
+      <tr><td class="label">└ Sub-W3-(iv)</td><td>~ 2024.09.04</td><td class="right">286,500</td><td class="right">235,000</td><td class="right negative">-18.0%</td><td></td></tr>
+      <tr><td class="label">└ Sub-W3-(v)</td><td>~ 2024.11.06</td><td class="right">235,000</td><td class="right">321,000</td><td class="right positive">+36.6%</td><td>Sub-W3 종료</td></tr>
+      <tr><td class="label">Sub-W4</td><td>2024.11.06 ~ 2025.01.24</td><td class="right">321,000</td><td class="right">231,000</td><td class="right negative">-28.0%</td><td>피보 50% 정상 조정</td></tr>
+      <tr class="highlight"><td class="label"><strong>Sub-W5</strong></td><td>2025.01.24 ~ 2025.06.30</td><td class="right">231,000</td><td class="right positive">388,000</td><td class="right positive">+68.0%</td><td>최종 정점 ATH (5개월)</td></tr>
+      <tr style="background:rgba(184,134,11,0.18); font-weight:700;"><td><strong>전체 Primary Wave I</strong></td><td><strong>2023.06.23 ~ 2025.06.30</strong></td><td class="right"><strong>100,800</strong></td><td class="right positive"><strong>388,000</strong></td><td class="right positive"><strong>+284.9%</strong></td><td><strong>폭 287,200원 / 25개월</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subhead">2. Primary Wave II — ABC zigzag (2025.06.30 → 2025.11.07)</h3>
+  <table class="data-table">
+    <thead><tr><th>Sub</th><th>기간</th><th class="right">시작가</th><th class="right">정점/저점</th><th class="right">변동률</th><th>되돌림</th></tr></thead>
+    <tbody>
+      <tr><td class="label">(A)</td><td>2025.06.30 ~ 2025.08.22</td><td class="right">388,000</td><td class="right">305,500</td><td class="right negative">-21.3%</td><td>피보 28.7%</td></tr>
+      <tr><td class="label">(B)</td><td>2025.08.22 ~ 2025.09.08</td><td class="right">305,500</td><td class="right">335,000</td><td class="right positive">+9.7%</td><td>약한 반등 (zigzag)</td></tr>
+      <tr><td class="label">(C)</td><td>2025.09.08 ~ 2025.11.07</td><td class="right">335,000</td><td class="right">214,000</td><td class="right negative">-36.1%</td><td>11.04 -10.27% 클라이맥스</td></tr>
+      <tr class="highlight"><td><strong>Primary W II</strong></td><td><strong>2025.06.30 ~ 2025.11.07</strong></td><td class="right"><strong>388,000</strong></td><td class="right"><strong>214,000</strong></td><td class="right negative"><strong>-44.8%</strong></td><td><strong>W I의 60.6% 되돌림 (피보 61.8% 표준)</strong></td></tr>
+    </tbody>
+  </table>
+  <div class="emerald-box">
+    <strong>W II 되돌림 60.6%</strong>가 피보 61.8% 라인에 정확히 인접 — 엘리어트 W2의 가장 표준적 되돌림 비율. ABC 구조도 명확하며, A-leg(-21.3%) < C-leg(-36.1%)로 일반적 zigzag 비율 충족. Primary W II는 깊이·구조·시간(4개월) 모두 정상적 조정.
+  </div>
+
+  <h3 class="subhead">3. 일봉 차트 + Primary Wave 변곡점 매핑 (2023.06~2026.05)</h3>
+  <div class="chart-container">
+    <div class="chart-title">휴젤 (145020) 일봉 종가 + Primary Wave 13개 변곡점 + 200MA + 150MA</div>
+    <div class="chart-deck">KRX 720 일봉(2023.06.01 ~ 2026.05.18) 위에 Primary Wave I (Sub-W1~W5) + Wave II (A-B-C) + 현재 위치를 굵은 황금색 라인으로 연결. 200MA(파란 점선)와 150MA(연한 회색)는 Stan Weinstein Stage 사이클 시각화. 100,800원에서 시작된 거대한 임펄스의 전체 모습이 한 화면에 펼쳐진다.</div>
+    <div class="chart-canvas-large"><canvas id="chart-wave"></canvas></div>
+    <div class="wave-legend">
+      <div class="wave-legend-item"><strong>★ W I 시작</strong> · <span class="price">100,800원</span><br>2023.06.23 (52w Low)</div>
+      <div class="wave-legend-item"><strong>Sub-W1</strong> · <span class="price">159,400원</span><br>2023.11.22 (+58.1%)</div>
+      <div class="wave-legend-item"><strong>Sub-W2</strong> · <span class="price">143,500원</span><br>2023.12.21 (-10.0%)</div>
+      <div class="wave-legend-item"><strong>W3-(i)</strong> · <span class="price">221,000원</span><br>2024.04.29</div>
+      <div class="wave-legend-item"><strong>W3-(iii)</strong> · <span class="price">286,500원</span><br>2024.08.19</div>
+      <div class="wave-legend-item"><strong>Sub-W3 정점</strong> · <span class="price">321,000원</span><br>2024.11.06 (+123.7%)</div>
+      <div class="wave-legend-item"><strong>Sub-W4 저점</strong> · <span class="price">231,000원</span><br>2025.01.24 (-28.0%)</div>
+      <div class="wave-legend-item"><strong>W I 정점 (ATH)</strong> · <span class="price">388,000원</span><br>2025.06.30 (+284.9%)</div>
+      <div class="wave-legend-item"><strong>W II (A)</strong> · <span class="price">305,500원</span><br>2025.08.22 (-21.3%)</div>
+      <div class="wave-legend-item"><strong>W II (B)</strong> · <span class="price">335,000원</span><br>2025.09.08 (+9.7%)</div>
+      <div class="wave-legend-item"><strong>W II (C) Low</strong> · <span class="price">214,000원</span><br>2025.11.07 (-44.8% from ATH)</div>
+      <div class="wave-legend-item"><strong>★ 트리거</strong> · <span class="price">296,500원</span><br>2026.01.28 (돌파 시 시나리오 A)</div>
+      <div class="wave-legend-item"><strong>▼ 현재</strong> · <span class="price">261,500원</span><br>2026.05.18 (W III 진행?)</div>
+    </div>
+  </div>
+
+  <h3 class="subhead">4. Wave III 피보나치 확장 — 메인 목표가</h3>
+  <p class="body-text">
+    Primary Wave I의 폭 287,200원(100,800 → 388,000)을 Wave II 저점 214,000원에 적용해 Wave III의 피보 확장 목표를 산출.
+    엘리어트 파동 이론에서 Wave III는 일반적으로 Wave I의 1.618배 확장으로 정점을 형성하며, 강한 추세에서는 2.618배까지 확장.
+  </p>
+  <table class="data-table">
+    <thead>
+      <tr><th>확장 비율</th><th class="right">Wave III 목표가</th><th class="right">현재가 대비</th><th class="right">ATH 대비</th><th>해석</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="label">0.618x (최보수)</td><td class="right">391,490</td><td class="right positive">+49.7%</td><td class="right">+0.9%</td><td>ATH 회복 (컨센서스 평균 인접)</td></tr>
+      <tr><td class="label">1.000x (Wave I 동일)</td><td class="right">501,200</td><td class="right positive">+91.7%</td><td class="right positive">+29.2%</td><td>키움·삼성증권 목표가 500K와 일치</td></tr>
+      <tr><td class="label">1.272x</td><td class="right">579,318</td><td class="right positive">+121.5%</td><td class="right positive">+49.3%</td><td>일반 확장</td></tr>
+      <tr class="highlight" style="background:rgba(184,134,11,0.20);"><td class="label"><strong>1.618x (Golden) ★ 메인</strong></td><td class="right positive"><strong>678,690</strong></td><td class="right positive"><strong>+159.5%</strong></td><td class="right positive">+74.9%</td><td><strong>황금비 메인 목표</strong></td></tr>
+      <tr><td class="label">2.000x</td><td class="right positive">788,400</td><td class="right positive">+201.5%</td><td class="right positive">+103.2%</td><td>강한 추세 확장</td></tr>
+      <tr><td class="label">2.618x (Blue-sky)</td><td class="right positive">965,890</td><td class="right positive">+269.4%</td><td class="right positive">+148.9%</td><td>극단 확장</td></tr>
+    </tbody>
+  </table>
+
+  <div class="emerald-box">
+    <strong>핵심 통찰</strong>: 1.0배 목표 501,200원이 키움·삼성증권 컨센서스 최고 목표가 500,000원과 거의 일치한다. 14개 증권사 컨센 평균 378K도 0.618배(391K)에 인접 — <em>증권사 컨센서스는 빅픽처의 가장 보수적 시나리오에 머물러 있음</em>.
+    Chory &amp; Rochet 메인 목표 678,690원은 컨센 최고가 대비 +35.7%, +18개월 보유 기준 합리적 추정치.
+  </div>
+
+  <h3 class="subhead">5. Primary Wave III Sub-Count의 규칙 위반 — W4-W1 Overlap</h3>
+  <p class="body-text">
+    2025.11.07 저점 이후의 sub-wave 카운트를 시도하면 <strong>엘리어트 핵심 규칙 위반</strong>이 발견된다. 충실한 분석가는 이 경고를 무시하면 안 된다.
+  </p>
+  <table class="data-table">
+    <thead><tr><th>Sub-wave</th><th>날짜</th><th class="right">가격</th><th class="right">변동</th><th class="right">되돌림</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td class="label">sub-(i)</td><td>2025.12.17</td><td class="right">250,000</td><td class="right positive">+16.8%</td><td class="right">-</td><td>1.5개월 상승</td></tr>
+      <tr><td class="label">sub-(ii)</td><td>2026.01.07</td><td class="right">223,500</td><td class="right negative">-10.6%</td><td class="right warn">73.6%</td><td>다소 깊은 조정</td></tr>
+      <tr><td class="label">sub-(iii)</td><td>2026.01.28</td><td class="right">296,500</td><td class="right positive">+32.7%</td><td class="right">-</td><td>sub-(i)의 2.03배</td></tr>
+      <tr class="highlight"><td class="label"><strong>sub-(iv)</strong></td><td>2026.03.04</td><td class="right negative"><strong>234,000</strong></td><td class="right negative">-21.1%</td><td class="right negative"><strong>85.6%</strong></td><td class="negative"><strong>⚠️ sub-(i) 정점 250K 아래 → W4-W1 overlap (규칙 위반)</strong></td></tr>
+      <tr><td class="label">sub-(v)?</td><td>진행 중</td><td class="right">261,500</td><td class="right">+11.8%</td><td class="right">-</td><td>현재 위치 (sub-(iii) 296.5K 미회복)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="crimson-box">
+    <strong>엘리어트 임펄스 핵심 규칙 위반</strong>: Wave 4는 Wave 1의 가격 영역에 진입할 수 없다 (실선·종가 기준 모두).
+    sub-(i) 정점 250,000원 vs sub-(iv) 저점 234,000원 → <em>16,000원 overlap = 규칙 위반</em>.
+    이는 다음 세 가지 중 하나를 의미한다:
+    <strong>(A) Leading Diagonal 패턴</strong> (5-3-5-3-5, overlap 허용 — Wave III 시작 신호) /
+    <strong>(B) ABC zigzag 진행 중</strong> (Primary W II가 아직 완전히 끝나지 않음) /
+    <strong>(C) Triangle / Flat consolidation</strong> (215K~296K 박스권, 진성 W III는 296.5K 돌파 후 시작).
+  </div>
+
+  <h3 class="subhead">6. 세 가지 Sub-Count 시나리오와 결정적 트리거</h3>
+  <div class="strategy-grid">
+    <div class="strategy-col bull">
+      <div class="strategy-col-head" style="color:var(--gold);">시나리오 A (Leading Diagonal)</div>
+      <h4>이미 Wave III 시작</h4>
+      <div class="prob">45<small style="font-size:0.5em;">%</small></div>
+      <p>2025.11.07 = Primary W II 종료. 현재는 Wave III의 Leading Diagonal(5-3-5-3-5) 안에 있음. 5/8 +12.33% 점프 = LD 내 sub-(v) 시작.</p>
+      <ul>
+        <li><strong>트리거</strong>: 296.5K 종가 돌파 + 거래량 240K+ (5/8 수준)</li>
+        <li><strong>1차 목표</strong>: 501,200원 (1.0x)</li>
+        <li><strong>최종 목표</strong>: 678,690원 (1.618x)</li>
+      </ul>
+    </div>
+    <div class="strategy-col base">
+      <div class="strategy-col-head">시나리오 B (W II 확장 ABC)</div>
+      <h4>아직 W II 진행 중</h4>
+      <div class="prob">35<small style="font-size:0.5em;">%</small></div>
+      <p>2025.11.07 = (A) 저점, 현재는 (B) 반등의 후반부. 296.5K = (B) 정점 가능. 향후 (C) leg 추가 하락이 남아있을 수 있음.</p>
+      <ul>
+        <li><strong>트리거</strong>: 234K 이탈</li>
+        <li><strong>(C) 목표</strong>: 175~200K (피보 76~88% 추가)</li>
+        <li><strong>이후 진정한 W III 시작</strong></li>
+      </ul>
+    </div>
+    <div class="strategy-col bear">
+      <div class="strategy-col-head" style="color:var(--gold);">시나리오 C (Triangle / Flat)</div>
+      <h4>6개월 베이스 진행</h4>
+      <div class="prob">20<small style="font-size:0.5em;">%</small></div>
+      <p>2025.11~2026.10 약 1년간 215K~296K 박스권 형성. 5/8 점프는 박스 상단 테스트. 진정한 Wave III는 박스권 이탈 후.</p>
+      <ul>
+        <li><strong>트리거</strong>: 296.5K 거래량 동반 돌파 OR 215K 이탈</li>
+        <li><strong>박스 이탈 후 목표</strong>: 1.0~1.618x</li>
+        <li><strong>시간 비용</strong>: 5~6개월 횡보</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <strong>결정적 분수령 = 296,500원</strong>. 5/8 점프(291.5K) + 5/11 단기고점(295K)이 Wave III 진입의 1차 신호였으나, <em>실제로는 296.5K(2026.01.28 sub-(iii) 정점)를 거래량 동반으로 돌파해야 비로소 시나리오 A 확정</em>. 현재 시점은 시나리오 A 45% + B 35% + C 20%로 <strong>아직 50:50 confidence 미만</strong>. 매수는 분할로 분산, 296.5K 돌파 후 추가 비중 확대가 합리적.
+  </div>
+
+  <div class="pullquote">
+    "679,000원이 메인 목표이지만,<br>그곳에 가려면 296,500원을 먼저 넘어야 한다."
+    <span class="pullquote-attr">— Primary Wave Count, Chory &amp; Rochet</span>
+  </div>
+</section>
+
+<!-- PART V -->
+<section class="section" id="part-5">
+  <header class="section-header">
+    <div class="section-eyebrow">Part 5 · Trading Strategy &amp; Verdict</div>
+    <h2 class="section-title"><em>4단 분할매수, RR 5.0:1</em><br>252K 진입, 225K 손절, 679K 최종</h2>
+    <p class="section-deck">현재가 261.5K 추격 매수보다 250~258K 영역 분할 진입이 RR 비대칭 우위. 손절 225K (52w Low +5% 이탈), 가중평균 목표가 388K(3차 익절 핵심). 위험 27K 대비 보상 평균 136K → 가중 RR 5.0:1. 단, 296.5K 돌파 후 6차 목표(679K)까지 비중 확대 정당화.</p>
+  </header>
+
+  <h3 class="subhead">1. 4단 분할 매수 매트릭스</h3>
+  <table class="data-table">
+    <thead><tr><th>차수</th><th>가격대</th><th>비중</th><th class="right">진입 트리거</th><th>피보 대응</th></tr></thead>
+    <tbody>
+      <tr class="highlight"><td><strong>1차 (즉시 진입)</strong></td><td class="mono"><strong>258,000 ~ 265,000</strong></td><td class="center"><strong>25%</strong></td><td class="right positive"><strong>현재가 부근 (5/18 종가 261.5K)</strong></td><td><strong>피보 72.7% (현재 위치)</strong></td></tr>
+      <tr><td>2차 (핵심)</td><td class="mono">248,000 ~ 254,000</td><td class="center">35%</td><td class="right positive">피보 78.6% (251,236)</td><td>황금 매수권 진입</td></tr>
+      <tr><td>3차 (적극)</td><td class="mono">232,000 ~ 240,000</td><td class="center">25%</td><td class="right">52w Low +10% 영역</td><td>피보 88% (확장)</td></tr>
+      <tr><td>4차 (위기 매수)</td><td class="mono">226,000 ~ 232,000</td><td class="center">15%</td><td class="right warn">손절선 225K 위 영역 (52w Low +6~8%)</td><td>손절 사수 시 마지막 진입</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subhead">2. 6단 분할 매도 매트릭스</h3>
+  <table class="data-table">
+    <thead><tr><th>차수</th><th>가격대</th><th>비중</th><th class="right">익절 트리거</th><th>대응 (RR, 진입 252K · 손절 225K 기준)</th></tr></thead>
+    <tbody>
+      <tr><td>1차 (저항 확인)</td><td class="mono">300,000 ~ 310,000</td><td class="center">20%</td><td class="right">피보 50% 회복</td><td>일부 차익실현 (RR 2.0:1)</td></tr>
+      <tr><td>2차 (Sub W1 매물대)</td><td class="mono">340,000 ~ 360,000</td><td class="center">20%</td><td class="right positive">피보 23.6% 영역</td><td>이전 매물대 도달 (RR 3.6:1)</td></tr>
+      <tr class="highlight"><td><strong>3차 (ATH 도달)</strong></td><td class="mono"><strong>385,000 ~ 400,000</strong></td><td class="center"><strong>25%</strong></td><td class="right positive"><strong>ATH (388K) 회복 + W III 0.618x</strong></td><td><strong>핵심 익절 (RR 5.0:1)</strong></td></tr>
+      <tr><td>4차 (W III 일반)</td><td class="mono">450,000 ~ 470,000</td><td class="center">20%</td><td class="right positive">피보 1.272x 확장</td><td>RR 7.7:1</td></tr>
+      <tr><td>5차 (W III 1.0x)</td><td class="mono">500,000 ~ 520,000</td><td class="center">10%</td><td class="right positive">Wave III 1.0배 (501K)</td><td>일부 청산 (RR 9.7:1)</td></tr>
+      <tr style="background:rgba(184,134,11,0.18);"><td><strong>6차 (W III 황금)</strong></td><td class="mono"><strong>670,000 ~ 690,000</strong></td><td class="center"><strong>5%</strong></td><td class="right positive"><strong>Wave III 1.618x (679K)</strong></td><td><strong>최종 전량 (RR 16.0:1) — 296.5K 돌파 후 시나리오 A 확정 시</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subhead">3. 손절 트리거 — 3단 방어선</h3>
+  <table class="data-table">
+    <thead><tr><th>단계</th><th class="right">가격</th><th>의미</th><th>대응</th></tr></thead>
+    <tbody>
+      <tr><td>관찰</td><td class="right mono">250,000</td><td>피보 78.6% 이탈</td><td>비중 축소 검토 (50% 매도)</td></tr>
+      <tr><td><strong>경고</strong></td><td class="right mono"><strong>234,000</strong></td><td><strong>sub-(iv) 저점 이탈 + 시나리오 B 전환 위험</strong></td><td><strong>관찰 강화 + 매수 중단</strong></td></tr>
+      <tr><td class="negative"><strong>손절</strong></td><td class="right mono negative"><strong>225,000</strong></td><td><strong>52w Low +5% 이탈 + Primary W II 무효화</strong></td><td class="negative"><strong>전량 손절 (시나리오 B 175~200K 시나리오)</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="subhead">4. 보상/위험(RR) 정량 산출</h3>
+  <p class="body-text">
+    <strong>가중평균 진입가 252,000원 (1~4차 가중)</strong> 기준 손절 225,000원으로 위험 27,000원, 가중평균 목표가 388,000원(3차 익절 핵심)으로
+    보상 136,000원, <em>가중 RR 5.0:1</em>. 단일 목표 기준 RR: 1차(310K) 2.0:1, 2차(350K) 3.6:1, 3차(388K) 5.0:1, 4차(460K) 7.7:1, 5차(515K) 9.7:1, <strong>6차(679K) 16.0:1</strong>.
+    296.5K 돌파 후 6차 목표까지 전량 보유 시 RR 16:1의 극단적 비대칭 보상 구조.
+  </p>
+
+  <h3 class="subhead">5. 3가지 거시 시나리오</h3>
+  <div class="strategy-grid">
+    <div class="strategy-col bull">
+      <div class="strategy-col-head">Bull Case · 강세</div>
+      <h4>미국 직판 J-Curve + 시나리오 A</h4>
+      <div class="prob">55<small style="font-size:0.5em;">%</small></div>
+      <p>296.5K 돌파 후 Wave III 본격 진행. 3Q26부터 미국 직판 매출 본격화로 P×Q 동반 상승. FY25 OPM 47.2% 사상 최고 추세 지속.</p>
+      <ul>
+        <li><strong>경로</strong>: 261.5K → 296.5K 돌파 → 388K → 501K → <strong>679K (황금비)</strong></li>
+        <li><strong>최대치</strong>: 679,000원 (현재 +159.5%)</li>
+        <li><strong>전제</strong>: 2Q26 영익률 40%+, 미국 분기 매출 +50% YoY</li>
+      </ul>
+    </div>
+    <div class="strategy-col base">
+      <div class="strategy-col-head">Base Case · 중립</div>
+      <h4>박스권 + 점진 회복 (시나리오 C)</h4>
+      <div class="prob">20<small style="font-size:0.5em;">%</small></div>
+      <p>2Q 직판 비용 부담 일시화 후 박스권 6개월 형성. 글로벌 메디컬 에스테틱 둔화 영향 흡수. Wave III 일반 확장(1.272x).</p>
+      <ul>
+        <li><strong>경로</strong>: 215~296K 박스권 5~6개월 후 388K 돌파 시도</li>
+        <li><strong>최대치</strong>: 450,000원 (W III 1.272x)</li>
+        <li><strong>전제</strong>: 2Q 영익률 38%+, 미국 매출 +30%+ 유지</li>
+      </ul>
+    </div>
+    <div class="strategy-col bear">
+      <div class="strategy-col-head">Bear Case · 약세</div>
+      <h4>시나리오 B (W II 확장 ABC)</h4>
+      <div class="prob">25<small style="font-size:0.5em;">%</small></div>
+      <p>234K 이탈 후 W II의 (C) leg 추가 진행. 2Q 영익률 33% 미만 추락, 미국 직판 인력 채용 지연, 트럼프 의약품 관세 본격화.</p>
+      <ul>
+        <li><strong>경로</strong>: 225K 손절선 이탈 → <strong>175,000~200,000원</strong> 매수권 진입</li>
+        <li><strong>최악</strong>: 175,000원 (-33%)</li>
+        <li><strong>전제</strong>: 2Q 영익 -10% YoY, ITC 항소심 패소</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="subhead">6. 모니터링 변수 ─ 6대 추적 지표</h3>
+  <table class="data-table">
+    <thead><tr><th>변수</th><th>현재 값</th><th>강세 신호</th><th>약세 신호</th></tr></thead>
+    <tbody>
+      <tr><td class="label">2Q26 영업이익률</td><td class="mono warn">컨센 41% 예상</td><td class="positive mono">≥ 40% 유지</td><td class="negative mono">≤ 35%</td></tr>
+      <tr><td class="label">미국 톡신 분기 매출</td><td class="mono positive">1Q +111% YoY</td><td class="positive mono">2Q +80%+ 유지</td><td class="negative mono">2Q +30% 미만</td></tr>
+      <tr><td class="label">중국 톡신 매출</td><td class="mono positive">1Q +70% YoY (추정)</td><td class="positive mono">2Q +50%+ 유지</td><td class="negative mono">2Q -10%+</td></tr>
+      <tr><td class="label">MA30W 추정 (260.75K)</td><td class="mono">현재가 +0.3%</td><td class="positive mono">MA30W 우상향 유지</td><td class="negative mono">MA30W 하향 전환</td></tr>
+      <tr><td class="label"><strong>손절선 225K 지지</strong></td><td class="mono"><strong>주시 중</strong></td><td class="positive mono">240K+ 지지 유지</td><td class="negative mono">225K 이탈 (시나리오 B)</td></tr>
+      <tr style="background:rgba(184,134,11,0.18);"><td class="label"><strong>★ 트리거 296.5K 돌파</strong></td><td class="mono">현재 261.5K</td><td class="positive mono">종가 296.5K 돌파 + 거래량 240K+ → 시나리오 A 확정</td><td class="negative mono">234K 이탈 → 시나리오 B 전환</td></tr>
+    </tbody>
+  </table>
+
+  <div class="verdict">
+    <div class="verdict-eyebrow">Final Verdict</div>
+    <h3>"<em>Wave III 황금비 679K</em>가 메인 목표,<br>그러나 296,500원을 먼저 넘어야 한다."</h3>
+    <p><strong>최종 의견</strong>: 매수 (Buy) / 4단 분할 진입 + 296.5K 돌파 후 6차 비중 확대 — 1차 즉시 25%, 2차 250K 35%, 3차 235K 25%, 4차 228K 15%.</p>
+    <p>
+      <strong>5/18 종가</strong>: 261,500원 (피보 72.7% 되돌림 영역)<br>
+      <strong>적정 매수 권역</strong>: 226,000 ~ 265,000원 (피보 50.0 ~ 78.6%, 4단 분할)<br>
+      <strong>1차 목표 (회복)</strong>: 310,000원 (피보 50%, +18.5%, RR 2.0:1)<br>
+      <strong>2차 목표 (Sub W1 회복)</strong>: 350,000원 (피보 23.6%, +33.8%, RR 3.6:1)<br>
+      <strong>3차 목표 (ATH 도달)</strong>: 388,000원 (피보 0%, +48.4%, RR 5.0:1)<br>
+      <strong>4차 목표 (Wave III 일반)</strong>: 460,000원 (피보 1.272x, +75.9%, RR 7.7:1)<br>
+      <strong>5차 목표 (Wave III 1.0x)</strong>: 515,000원 (+96.9%, RR 9.7:1)<br>
+      <strong style="color: var(--gold-bright);">6차 목표 (Wave III 황금비 1.618x · 메인)</strong>: 679,000원 (+159.5%, RR 16.0:1)<br>
+      <strong>손절가</strong>: 225,000원 (52w Low +5% 이탈, Primary W II 무효화)<br>
+      <strong>보상/위험 비율 (가중)</strong>: 5.0 : 1 (매우 매력적)<br>
+      <strong>투자 기간</strong>: 12 ~ 24개월 (Wave III 황금비까지 보유 시)<br>
+      <strong>포트폴리오 한도</strong>: 8~12% (변동성 中, 펀더멘털 강력)
+    </p>
+    <p>
+      <strong>핵심 메시지</strong>: 휴젤은 2023.06.23(100,800원)부터 시작된 거대한 Primary Wave I(+284.9% / 25개월) 후 2025.11.07(214,000원)에서 60.6% 표준 되돌림으로 Primary Wave II를 마쳤다.
+      현재는 Wave III 진행 가설 — 단, sub-wave에 W4-W1 overlap이 발견되어 시나리오 A(LD) 45% / B(W II 확장) 35% / C(베이스) 20%로 분포.
+      <strong>296,500원 종가 돌파 + 거래량 240K+가 시나리오 A 확정의 결정적 트리거</strong>이며, 돌파 시 Wave III 황금비 678,690원이 메인 목표(현재 +159.5%).
+      펀더멘털(FY25 OPM 47.2% 사상 최고 / 1Q26 +30% / 톡신 수출 +111%) + 14개 증권사 매수 일치(평균 378K)가 기술적 매수권을 뒷받침.
+      225,000원 손절선만 사수하면 가중 RR 5.0:1, 6차 목표 보유 시 RR 16:1의 비대칭 매력. <em>"큰 목표·큰 트리거" — 296.5K 분수령이 모든 것을 결정한다.</em>
+    </p>
+  </div>
+
+  <p class="footnote">
+    본 보고서는 2026년 5월 20일 KST 기준으로 작성되었으며, KRX MCP의 2023.06.01 ~ 2026.05.18 720 일봉 데이터 + DART 2026.03.20 공시 사업보고서(FY25 실제) + 2026.05.15 공시 1Q26 분기보고서를 사용했습니다.
+    Primary Wave 카운트 9개 변곡점은 모두 KRX 종가 기준이며, ATH는 종가 388,000원(2025.06.30) / 일중 392,000원(2025.07.01)로 구분 표기되었습니다.
+    135점 평가 모델은 차트(85 = Stage 30 + 정배열 20 + MA30W 15 + 모멘텀 10 + 거래량 10) + 펀더멘털(20) + 테마(30)의 정량 합산이며, 분석가의 경험적 판단 기반입니다.
+    엘리어트 sub-wave 카운트에 W4-W1 overlap이 발견되어 시나리오 A/B/C 확률 분포로 표현했으며, 확률은 분석가의 정성적 추정으로 절대적 기준이 아닙니다.
+    투자에 대한 최종 판단과 책임은 본인에게 있습니다.
+  </p>
+</section>
+
+<!-- PART VI - CRITICAL COUNTER-VIEW -->
+<section class="section" id="part-6" style="background: linear-gradient(180deg, var(--paper) 0%, rgba(139,21,56,0.04) 100%);">
+  <header class="section-header">
+    <div class="section-eyebrow" style="color: var(--crimson); border-top-color: var(--crimson);">Part 6 · Critical Counter-View · Bear Case Deep-Dive</div>
+    <h2 class="section-title"><em style="color: var(--crimson);">강세 시나리오의 12개 약점,</em><br>Bear Case 25%의 정량 검증</h2>
+    <p class="section-deck">메인 보고서는 매수 우위를 권고했으나, 비판적 관점에서 강세 시나리오의 구조적 약점 12개를 검증한다. PEF 회수 압박·ITC 항소심·트럼프 관세·외국인 지분 57.76%·컨센서스 만장일치는 sleep된 리스크 — 동시 활성화 시 -45%+ 시나리오도 배제 못 함.</p>
+  </header>
+
+  <h3 class="subhead" style="border-bottom-color: var(--crimson);">1. PEF 인수 후 회수 압박 — 자사주 소각의 환상</h3>
+  <div class="crimson-box">
+    2024년 <strong>GS·CBC·IMM·무바달라 컨소시엄 약 1.7조원에 휴젤 인수</strong>. PEF의 일반적 회수 horizon은 5~7년 — 즉 <strong>2028~2030년까지 매각·IPO·블록딜 회수 압박</strong>이 본질.
+    PEF는 자사주 매입·소각보다 <em>배당 회수와 매각 차익이 우선</em>이며, 자사주 소각으로 주주가치를 극대화할 인센티브가 일반 상장사 대비 현저히 낮다.
+    PEF 보유 지분 블록딜 매각 시 -10~15% 단기 충격 가능성.
+  </div>
+
+  <h3 class="subhead" style="border-bottom-color: var(--crimson);">2. ITC 항소심 잔존 위험 — Moat 02의 사각지대</h3>
+  <div class="crimson-box">
+    메디톡스는 2024.04 ITC 1심 판결 후 <strong>미국 연방순회항소법원(CAFC) 항소</strong>. CAFC 판결은 2026년 하반기~2027년 예상.
+    1심에서 휴젤의 "자체 균주" 입증이 인정되었으나, <em>CAFC의 1심 평결 변경률은 평균 15~20%</em>로 결코 0%가 아니다.
+    패소 시 ① 미국 시장 진입 자체 무산, ② 손해배상 청구(수천억~조 단위), ③ Letybo 직판 사업 무위.
+    <strong>최소 15% 확률의 항소심 패소 리스크</strong>가 메인 분석에서 충분히 가격되어 있지 않다.
+  </div>
+
+  <h3 class="subhead" style="border-bottom-color: var(--crimson);">3. 미국 직판 J-Curve의 수치 검증</h3>
+  <table class="data-table">
+    <thead><tr><th>항목</th><th class="right">현재 (Croma 유통)</th><th class="right">2026.7~ (직판)</th><th>변화</th></tr></thead>
+    <tbody>
+      <tr><td class="label">유통 마진 (매출 대비)</td><td class="right">~30% 차감</td><td class="right positive">0%</td><td class="positive">+30% 매출 증가</td></tr>
+      <tr><td class="label">신규 영업조직 인건비</td><td class="right">0</td><td class="right negative">~300억/년</td><td class="negative">신규 비용</td></tr>
+      <tr><td class="label">마케팅·보험청구 비용</td><td class="right">0</td><td class="right negative">~250억/년</td><td class="negative">신규 비용</td></tr>
+      <tr><td class="label">총 신규 부담</td><td class="right">-</td><td class="right negative">~550억/년</td><td class="negative">2026 OPM -13%p 충격 가능</td></tr>
+      <tr class="highlight"><td class="label"><strong>회수 기간</strong></td><td class="right">-</td><td class="right">-</td><td><strong>현실적 2~3년 (J-Curve 가설보다 길수도)</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="body-text">
+    또한 <strong>1Q26 북남미 +420%</strong>는 sell-in(출하) 기준 — sell-out(실수요) 데이터 부재.
+    Croma-Pharma가 직판 전환 전 마지막 채널 빌드업으로 재고를 비축했을 가능성. 2Q26 매출 컨센 1,214억(1Q 대비 +4% 미미한 성장)이 그 단서.
+    <em>미국 톡신 시장 점유율: Botox 70% / Jeuveau(에볼루스) 10% / Daxxify(레반스) 5%</em> — Letybo 진입 여지는 한자릿수 후반에 그칠 가능성.
+  </p>
+
+  <h3 class="subhead" style="border-bottom-color: var(--crimson);">4. 톡신 시장 라이프사이클 정점</h3>
+  <div class="crimson-box">
+    <strong>StockMatrix TLI 57점 (Peak 단계)</strong> — Part 1 본문에서 이미 인정한 사실. 글로벌 톡신 시장 CAGR이 2018~2022 +14% → 2024~2028E +8% (Grand View Research)로 둔화.
+    <em>신규 카테고리(스킨부스터·RF·HIFU·GLP-1 미용)로 자본 이동 중</em>이며, "톡신 1등" Moat가 5년 후에도 유효한가에 대한 의문 — 휴젤이 코스메틱·스킨부스터로 다각화하는 이유.
+    Peak 단계 종목의 역사적 평균: 정점 후 2년간 -30% 추가 조정 패턴.
+  </div>
+
+  <h3 class="subhead" style="border-bottom-color: var(--crimson);">5. 트럼프 의약품 관세 — 구조적 리스크</h3>
+  <div class="crimson-box">
+    휴젤은 <strong>미국 현지 생산 계획이 없다</strong> (100% 한국 생산 후 수출). 트럼프가 발언한 의약품 100% 관세가 현실화될 경우 <em>가격 경쟁력 즉시 소멸</em>.
+    직판 전환의 P↑ 효과를 관세가 즉시 흡수 — 직판 사업 자체가 무력화. 2026 4~5월 트럼프 발언 후 휴젤 주가 -10%+ 하락이 시장이 이미 반영한 리스크 가격.
+    <strong>실제로는 직판 사업의 본질적 가정을 흔드는 구조적 위협</strong>. 다른 한국 제약사들이 미국 CDMO·합작생산을 검토하는 이유 — 휴젤은 미발표.
+  </div>
+
+  <h3 class="subhead" style="border-bottom-color: var(--crimson);">6. 외국인 지분 57.76% — 양날의 검</h3>
+  <p class="body-text">
+    KOSDAQ 종목 외국인 지분 50%+는 <strong>변동성 프리미엄 약 +50%</strong>를 의미한다. 강세 시 글로벌 모멘텀 펀드 유입으로 폭등 가능하나, 약세 전환 시 외국인 일괄 매도로 폭락 위험.
+    <em>5/18 -7.43% 단일 급락이 그 단서</em>. 거래량 43K로 평이했다고 해석할 수도 있으나, 외국인 지분 매도세는 거래량이 낮아도 가격 임팩트가 큰 특성.
+    2025.6~11 -45% 폭락(Primary W II)도 외국인 순매도 주도. 정상적 KOSPI 종목(외국인 40~50%) 대비 변동성·낙폭 모두 +50% 프리미엄 부담.
+  </p>
+
+  <h3 class="subhead" style="border-bottom-color: var(--crimson);">7. 비지배지분 흡수 효과 소진</h3>
+  <table class="data-table">
+    <thead><tr><th>기간</th><th class="right">연결 순익</th><th class="right">지배 순익</th><th class="right">비지배</th><th class="right">비지배 비중</th></tr></thead>
+    <tbody>
+      <tr><td class="label">FY24</td><td class="right">1,431억</td><td class="right">1,358억</td><td class="right">73억</td><td class="right negative">5.1%</td></tr>
+      <tr><td class="label">FY25</td><td class="right">1,470억</td><td class="right">1,409억</td><td class="right">61억</td><td class="right negative">4.1%</td></tr>
+      <tr><td class="label">1Q26</td><td class="right">406억</td><td class="right">393억</td><td class="right">13억</td><td class="right negative">3.2%</td></tr>
+    </tbody>
+  </table>
+  <p class="body-text">
+    비지배지분 비중이 5.1% → 4.1% → 3.2%로 감소 추세 = <em>자회사 100% 자회사화 거의 완료</em>. 추가 EPS 가속 동력 소진.
+    <strong>"영업이익 성장 vs EPS 성장 디커플링" 해소를 위한 또 다른 catalyst가 부재</strong>함을 의미.
+  </p>
+
+  <h3 class="subhead" style="border-bottom-color: var(--crimson);">8. 5/8 거래량 폭증의 진실</h3>
+  <div class="crimson-box">
+    <strong>5/8 거래량 246K vs 직전 10주 평균 80~120K → +100~200% 폭증</strong> — "베이스 돌파" 해석은 일면 타당.
+    그러나 <em>5/11 82K, 5/18 43K로 급감</em>한 것은 매수 동력 약화의 신호일 수도. 베이스 돌파 후 1주만에 거래량이 1/5로 줄어드는 것은 정상적 "강한 돌파" 패턴이 아니다.
+    True breakout vs False breakout의 판정은 <strong>296.5K 돌파 + 거래량 240K+ 재현</strong>으로 결정 — 현재는 51:49 정도의 confidence로 단정 불가.
+  </div>
+
+  <h3 class="subhead" style="border-bottom-color: var(--crimson);">9. 컨센서스 만장일치 = 콘트라리언 위험 신호</h3>
+  <p class="body-text">
+    <strong>14개사 매수 일치, 매도 0</strong> — 일반적으로 herd behavior의 위험 신호. 컨센서스가 만장일치일 때 비전형적 alpha 기회는 거의 없으며, 추가 catalyst 부재 시 멀티플 확장이 어렵다.
+    역사적 비교: <em>1년 전(2024.05) 컨센 평균도 약 400K였으나 1년 후 -33% 조정</em>. 컨센서스의 예측력은 12개월 기간에 한정해도 평균 적중률 50% 미만.
+    또한 컨센 평균 378K는 <strong>이미 시장에 알려진 정보</strong>이므로 sticker price로 작용 — sell-side 목표가 도달 시 매수 의견 다수 매도로 전환 패턴 가능성.
+  </p>
+
+  <h3 class="subhead" style="border-bottom-color: var(--crimson);">10. PER 25배 멀티플 확장 가정의 위험</h3>
+  <table class="data-table">
+    <thead><tr><th>시나리오</th><th class="right">PER 배수</th><th class="right">EPS</th><th class="right">적정주가</th><th class="right">현재 대비</th></tr></thead>
+    <tbody>
+      <tr><td class="label">5년 평균 회귀</td><td class="right">18x</td><td class="right">15,700 (2026E)</td><td class="right">282,600</td><td class="right warn">+8.1%</td></tr>
+      <tr><td class="label">현재 PER 유지</td><td class="right">20x</td><td class="right">15,700 (2026E)</td><td class="right">314,000</td><td class="right positive">+20.1%</td></tr>
+      <tr><td class="label">강세 시나리오</td><td class="right positive">25x</td><td class="right">20,100 (2027E)</td><td class="right positive">502,500</td><td class="right positive">+92.2%</td></tr>
+      <tr class="highlight"><td class="label"><strong>비판 포인트</strong></td><td class="right">-</td><td class="right">-</td><td class="right"><strong>18배 회귀 시 +8%만 가능</strong></td><td class="right negative">멀티플 의존 위험</td></tr>
+    </tbody>
+  </table>
+  <p class="body-text">
+    휴젤 <strong>5년 평균 PER ~18배</strong>. 강세 시나리오 PER 25배는 +39% 멀티플 확장 가정.
+    글로벌 제약사 평균: <em>화이자 12배 / J&amp;J 18배 / 머크 18배 / 애브비 18배</em>. 휴젤 25배 정당화는 미국 J-Curve 성공 + 톡신 시장 라이프사이클 연장이라는 <strong>두 가지 가정의 결합 충족 시에만 성립</strong>.
+    Wave III 황금비 679K 목표는 <em>PER 25배 + 2027E EPS 20,100원 + 시나리오 A 확정</em>의 3중 가정에 의존.
+  </p>
+
+  <h3 class="subhead" style="border-bottom-color: var(--crimson);">11. Wave III sub-count의 한계 — W4-W1 Overlap</h3>
+  <div class="crimson-box">
+    Part 4에서 이미 명시한 <strong>sub-(iv) 234K < sub-(i) 정점 250K</strong>의 16K overlap은 표준 임펄스 규칙 위반.
+    이를 Leading Diagonal(45%)로 해석하나, 동시에 <em>Primary Wave II가 아직 종료되지 않은 시나리오 B(35%)</em>의 가능성도 결코 작지 않다.
+    엘리어트 카운트의 신뢰도는 본질적으로 사후 합리화 위험을 내포 — <strong>현 시점은 50:50 confidence 미만</strong>임을 매수 결정 시 반드시 인지해야.
+    피보 78.6% "황금 매수권"도 통계적 검증된 개념이 아닌 트레이더 관습.
+  </div>
+
+  <h3 class="subhead" style="border-bottom-color: var(--crimson);">12. 종합 — 기대수익률 재계산</h3>
+  <table class="data-table">
+    <thead><tr><th>시나리오</th><th class="right">확률</th><th class="right">목표 수익률</th><th class="right">기여도</th><th>핵심 가정</th></tr></thead>
+    <tbody>
+      <tr><td class="label positive">Bull (A · LD)</td><td class="right">55%</td><td class="right positive">+159%</td><td class="right positive">+87.5%</td><td>296.5K 돌파, Wave III 황금비 679K 도달</td></tr>
+      <tr><td class="label">Base (C · Triangle)</td><td class="right">20%</td><td class="right">+50%</td><td class="right">+10.0%</td><td>박스권 후 W III 1.272x = 460K</td></tr>
+      <tr><td class="label negative">Bear (B · W II 확장)</td><td class="right negative"><strong>25%</strong></td><td class="right negative">-30%</td><td class="right negative">-7.5%</td><td>234K 이탈 → 175~200K 추가 하락</td></tr>
+      <tr class="highlight"><td class="label"><strong>기대수익률 (24개월)</strong></td><td class="right">100%</td><td class="right">-</td><td class="right positive"><strong>+90.0%</strong></td><td><strong>황금비 목표 가중 기준 매우 매력적</strong></td></tr>
+      <tr><td class="label warn">참고 (3차 388K 기준)</td><td class="right">100%</td><td class="right">-</td><td class="right positive"><strong>+24.9%</strong></td><td>보수적 익절(388K) 시 기대수익률</td></tr>
+    </tbody>
+  </table>
+
+  <div class="emerald-box" style="border-left-color: var(--crimson); background: rgba(139,21,56,0.06);">
+    <strong style="color: var(--crimson);">비판적 결론</strong>: 황금비 목표 가중 기대수익률 +90.0%(24개월)은 매우 매력적이나, <em>12개 약점이 동시 발화 시 -45%+ 시나리오도 배제 못 함</em>.
+    실전 운용 권고: <strong>① 포트폴리오 한도 8~12% 엄수, ② 손절 225K 엄격 사수(돌파 시 즉시 전량 청산), ③ 4차 매수 영역(226~232K)을 손절 위로 유지하여 손절·매수 충돌 방지,
+    ④ 2Q26 실적 발표(8월) 전 비중 50% 이상 확보 금지, ⑤ ATH 388K 도달 시 25% 차익실현 의무화, ⑥ 296.5K 미돌파 시 6차 목표(679K)는 무효</strong>.
+    매수 의견은 유지하나, "비대칭 보상 16:1"이 곧 "비대칭 위험 25%"임을 명심해야 한다.
+  </div>
+
+  <div class="pullquote" style="color: var(--crimson); border-top-color: var(--crimson); border-bottom-color: var(--crimson);">
+    "황금비 679K는 시나리오 A가 확정될 때만 유효한 목표,<br>그 분수령은 296,500원이다 — 그 전까지는 25%의 위험을 안고 가는 것."
+    <span class="pullquote-attr">— Critical Counter-View, Chory &amp; Rochet</span>
+  </div>
+</section>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="report-footer">
+  <div class="footer-name">The AESTHETIC Report</div>
+  <p>Chory &amp; Rochet · Senior Analyst Coverage · Vol. I, No. 1 (Primary Wave Edition)</p>
+  <p>2026년 5월 20일 발행 · 휴젤 (145020) · 2023.06.23 기준 Primary Wave Count + 비판적 반론</p>
+  <p class="disclaimer">
+    본 보고서는 정보 제공 목적으로만 작성되었으며, 특정 종목의 매수 또는 매도를 권유하는 것이 아닙니다.
+    투자에 따른 모든 위험과 결과는 투자자 본인에게 귀속됩니다. 본 보고서는 공개된 DART 공시 자료(2026.03.20 사업보고서, 2026.05.15 1Q 분기보고서),
+    KRX 거래 데이터(2023.06.01~2026.05.18 720 일봉), Naver Finance, StockMatrix, 증권사 리포트, 언론 보도 등을 종합하여 작성되었으며, 정보의 정확성 및 완전성을 보장하지 않습니다.
+    135점 평가 모델, Primary Wave 카운트, 피보나치 레벨, 시나리오 확률 분포는 분석가의 정량적 판단 도구일 뿐이며 절대적 정확성을 갖지 않습니다.
+  </p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const DAILY_DATA = [["2023-06-01",111700],["2023-06-02",107200],["2023-06-05",108700],["2023-06-07",107000],["2023-06-08",104800],["2023-06-09",106900],["2023-06-12",105100],["2023-06-13",104600],["2023-06-14",102400],["2023-06-15",101500],["2023-06-16",102500],["2023-06-19",101600],["2023-06-20",102000],["2023-06-21",101700],["2023-06-22",103700],["2023-06-23",100800],["2023-06-26",114000],["2023-06-27",111400],["2023-06-28",110900],["2023-06-29",107000],["2023-06-30",110000],["2023-07-03",111100],["2023-07-04",107200],["2023-07-05",106600],["2023-07-06",105200],["2023-07-07",104700],["2023-07-10",101500],["2023-07-11",102200],["2023-07-12",111000],["2023-07-13",110100],["2023-07-14",112400],["2023-07-17",110200],["2023-07-18",108200],["2023-07-19",108300],["2023-07-20",111300],["2023-07-21",108900],["2023-07-24",105400],["2023-07-25",109000],["2023-07-26",105800],["2023-07-27",102800],["2023-07-28",102500],["2023-07-31",107900],["2023-08-01",104700],["2023-08-02",105000],["2023-08-03",106900],["2023-08-04",107000],["2023-08-07",107100],["2023-08-08",104400],["2023-08-09",108000],["2023-08-10",117400],["2023-08-11",114900],["2023-08-14",115900],["2023-08-16",114400],["2023-08-17",113300],["2023-08-18",119000],["2023-08-21",119500],["2023-08-22",123600],["2023-08-23",115900],["2023-08-24",117400],["2023-08-25",113100],["2023-08-28",113600],["2023-08-29",116500],["2023-08-30",112600],["2023-08-31",112400],["2023-09-01",111800],["2023-09-04",110300],["2023-09-05",108500],["2023-09-06",110100],["2023-09-07",110100],["2023-09-08",123600],["2023-09-11",122400],["2023-09-12",123000],["2023-09-13",124000],["2023-09-14",126000],["2023-09-15",123000],["2023-09-18",123100],["2023-09-19",122400],["2023-09-20",124000],["2023-09-21",120900],["2023-09-22",124300],["2023-09-25",122300],["2023-09-26",121800],["2023-09-27",125000],["2023-10-04",134400],["2023-10-05",134400],["2023-10-06",143600],["2023-10-10",138000],["2023-10-11",138300],["2023-10-12",144000],["2023-10-13",143400],["2023-10-16",144000],["2023-10-17",142100],["2023-10-18",140000],["2023-10-19",138800],["2023-10-20",140300],["2023-10-23",139000],["2023-10-24",136800],["2023-10-25",138400],["2023-10-26",134700],["2023-10-27",138600],["2023-10-30",139400],["2023-10-31",142000],["2023-11-01",138100],["2023-11-02",141400],["2023-11-03",141400],["2023-11-06",141000],["2023-11-07",137600],["2023-11-08",141000],["2023-11-09",136500],["2023-11-10",135500],["2023-11-13",141700],["2023-11-14",146800],["2023-11-15",148700],["2023-11-16",147500],["2023-11-17",148000],["2023-11-20",149800],["2023-11-21",156000],["2023-11-22",159400],["2023-11-23",157700],["2023-11-24",153500],["2023-11-27",156100],["2023-11-28",154900],["2023-11-29",151600],["2023-11-30",152400],["2023-12-01",153000],["2023-12-04",155300],["2023-12-05",151700],["2023-12-06",152800],["2023-12-07",147300],["2023-12-08",152300],["2023-12-11",151600],["2023-12-12",154000],["2023-12-13",153100],["2023-12-14",155900],["2023-12-15",150000],["2023-12-18",147700],["2023-12-19",147700],["2023-12-20",146000],["2023-12-21",143500],["2023-12-22",147700],["2023-12-26",146600],["2023-12-27",147200],["2023-12-28",149400],["2024-01-02",152800],["2024-01-03",158700],["2024-01-04",160900],["2024-01-05",158400],["2024-01-08",153700],["2024-01-09",159500],["2024-01-10",160900],["2024-01-11",163000],["2024-01-12",158600],["2024-01-15",163000],["2024-01-16",162800],["2024-01-17",161800],["2024-01-18",160700],["2024-01-19",160200],["2024-01-22",156300],["2024-01-23",155400],["2024-01-24",156100],["2024-01-25",158400],["2024-01-26",154000],["2024-01-29",154200],["2024-01-30",155000],["2024-01-31",152000],["2024-02-01",160000],["2024-02-02",163800],["2024-02-05",158700],["2024-02-06",158300],["2024-02-07",155500],["2024-02-08",149200],["2024-02-13",152500],["2024-02-14",161100],["2024-02-15",168800],["2024-02-16",170900],["2024-02-19",166900],["2024-02-20",181400],["2024-02-21",180800],["2024-02-22",179600],["2024-02-23",182400],["2024-02-26",180200],["2024-02-27",184400],["2024-02-28",185900],["2024-02-29",183900],["2024-03-04",202500],["2024-03-05",205500],["2024-03-06",209500],["2024-03-07",199800],["2024-03-08",196000],["2024-03-11",194400],["2024-03-12",192800],["2024-03-13",192100],["2024-03-14",192200],["2024-03-15",190800],["2024-03-18",191000],["2024-03-19",181000],["2024-03-20",182000],["2024-03-21",177900],["2024-03-22",177100],["2024-03-25",183500],["2024-03-26",181500],["2024-03-27",196100],["2024-03-28",193100],["2024-03-29",191100],["2024-04-01",198200],["2024-04-02",194000],["2024-04-03",202000],["2024-04-04",201000],["2024-04-05",202500],["2024-04-08",204000],["2024-04-09",194300],["2024-04-11",193200],["2024-04-12",197500],["2024-04-15",205500],["2024-04-16",200000],["2024-04-17",199300],["2024-04-18",199900],["2024-04-19",202500],["2024-04-22",209000],["2024-04-23",206000],["2024-04-24",208000],["2024-04-25",206500],["2024-04-26",208000],["2024-04-29",221000],["2024-04-30",211500],["2024-05-02",205500],["2024-05-03",201000],["2024-05-07",198700],["2024-05-08",201000],["2024-05-09",211000],["2024-05-10",201500],["2024-05-13",201500],["2024-05-14",199000],["2024-05-16",198000],["2024-05-17",201500],["2024-05-20",210500],["2024-05-21",209500],["2024-05-22",210000],["2024-05-23",207500],["2024-05-24",217500],["2024-05-27",220000],["2024-05-28",214500],["2024-05-29",208500],["2024-05-30",192300],["2024-05-31",191000],["2024-06-03",202000],["2024-06-04",200000],["2024-06-05",198700],["2024-06-07",213000],["2024-06-10",213000],["2024-06-11",242000],["2024-06-12",238500],["2024-06-13",230500],["2024-06-14",221000],["2024-06-17",233500],["2024-06-18",229000],["2024-06-19",232000],["2024-06-20",233500],["2024-06-21",248000],["2024-06-24",241000],["2024-06-25",237000],["2024-06-26",230000],["2024-06-27",231500],["2024-06-28",231000],["2024-07-01",234000],["2024-07-02",223500],["2024-07-03",220500],["2024-07-04",223000],["2024-07-05",227000],["2024-07-08",229000],["2024-07-09",221500],["2024-07-10",227500],["2024-07-11",224000],["2024-07-12",225500],["2024-07-15",223000],["2024-07-16",218000],["2024-07-17",219000],["2024-07-18",219000],["2024-07-19",223500],["2024-07-22",220000],["2024-07-23",218000],["2024-07-24",246500],["2024-07-25",243000],["2024-07-26",238500],["2024-07-29",250500],["2024-07-30",248500],["2024-07-31",245500],["2024-08-01",246500],["2024-08-02",235500],["2024-08-05",211000],["2024-08-06",226000],["2024-08-07",255000],["2024-08-08",259000],["2024-08-09",261500],["2024-08-12",255000],["2024-08-13",257500],["2024-08-14",264000],["2024-08-16",272000],["2024-08-19",286500],["2024-08-20",285500],["2024-08-21",286500],["2024-08-22",282000],["2024-08-23",278500],["2024-08-26",276500],["2024-08-27",273000],["2024-08-28",271500],["2024-08-29",266000],["2024-08-30",272500],["2024-09-02",257000],["2024-09-03",247500],["2024-09-04",235000],["2024-09-05",237500],["2024-09-06",242500],["2024-09-09",248000],["2024-09-10",251500],["2024-09-11",247500],["2024-09-12",248000],["2024-09-13",254500],["2024-09-19",264500],["2024-09-20",268000],["2024-09-23",263000],["2024-09-24",252500],["2024-09-25",244500],["2024-09-26",249500],["2024-09-27",245000],["2024-09-30",239500],["2024-10-02",241500],["2024-10-04",257000],["2024-10-07",258500],["2024-10-08",253000],["2024-10-10",242000],["2024-10-11",255500],["2024-10-14",273000],["2024-10-15",286000],["2024-10-16",281000],["2024-10-17",293000],["2024-10-18",284500],["2024-10-21",286500],["2024-10-22",279500],["2024-10-23",270000],["2024-10-24",268000],["2024-10-25",268500],["2024-10-28",265000],["2024-10-29",276500],["2024-10-30",273500],["2024-10-31",273000],["2024-11-01",267500],["2024-11-04",287500],["2024-11-05",292000],["2024-11-06",321000],["2024-11-07",287500],["2024-11-08",296000],["2024-11-11",281000],["2024-11-12",271000],["2024-11-13",264000],["2024-11-14",274000],["2024-11-15",276000],["2024-11-18",268500],["2024-11-19",273500],["2024-11-20",282000],["2024-11-21",277500],["2024-11-22",271000],["2024-11-25",265000],["2024-11-26",259000],["2024-11-27",272000],["2024-11-28",268000],["2024-11-29",260000],["2024-12-02",255500],["2024-12-03",259500],["2024-12-04",262000],["2024-12-05",270000],["2024-12-06",265000],["2024-12-09",247000],["2024-12-10",265000],["2024-12-11",268000],["2024-12-12",278500],["2024-12-13",274000],["2024-12-16",271500],["2024-12-17",269500],["2024-12-18",278500],["2024-12-19",276000],["2024-12-20",280500],["2024-12-23",279500],["2024-12-24",279500],["2024-12-26",277000],["2024-12-27",266500],["2024-12-30",280500],["2025-01-02",262500],["2025-01-03",267000],["2025-01-06",263500],["2025-01-07",271500],["2025-01-08",263000],["2025-01-09",264000],["2025-01-10",260000],["2025-01-13",267500],["2025-01-14",261000],["2025-01-15",261500],["2025-01-16",258500],["2025-01-17",253000],["2025-01-20",245000],["2025-01-21",247000],["2025-01-22",248000],["2025-01-23",239000],["2025-01-24",231000],["2025-01-31",237500],["2025-02-03",234500],["2025-02-04",241000],["2025-02-05",242500],["2025-02-06",252500],["2025-02-07",251000],["2025-02-10",258500],["2025-02-11",257500],["2025-02-12",261000],["2025-02-13",259000],["2025-02-14",288000],["2025-02-17",287000],["2025-02-18",279500],["2025-02-19",284500],["2025-02-20",287500],["2025-02-21",308500],["2025-02-24",308000],["2025-02-25",316500],["2025-02-26",323500],["2025-02-27",329500],["2025-02-28",317000],["2025-03-04",312000],["2025-03-05",315000],["2025-03-06",315500],["2025-03-07",302500],["2025-03-10",322000],["2025-03-11",329000],["2025-03-12",334500],["2025-03-13",330500],["2025-03-14",330000],["2025-03-17",329000],["2025-03-18",333500],["2025-03-19",330500],["2025-03-20",330000],["2025-03-21",334000],["2025-03-24",330000],["2025-03-25",337500],["2025-03-26",337000],["2025-03-27",331500],["2025-03-28",335000],["2025-03-31",335000],["2025-04-01",350000],["2025-04-02",358000],["2025-04-03",349000],["2025-04-04",351000],["2025-04-07",323000],["2025-04-08",326500],["2025-04-09",309500],["2025-04-10",333500],["2025-04-11",341000],["2025-04-14",346500],["2025-04-15",330500],["2025-04-16",332000],["2025-04-17",342500],["2025-04-18",340000],["2025-04-21",355500],["2025-04-22",350000],["2025-04-23",351500],["2025-04-24",361000],["2025-04-25",360000],["2025-04-28",355000],["2025-04-29",370000],["2025-04-30",365500],["2025-05-02",372000],["2025-05-07",359000],["2025-05-08",367500],["2025-05-09",357500],["2025-05-12",343000],["2025-05-13",344000],["2025-05-14",346000],["2025-05-15",350000],["2025-05-16",346500],["2025-05-19",340500],["2025-05-20",344000],["2025-05-21",366000],["2025-05-22",356000],["2025-05-23",359500],["2025-05-26",359500],["2025-05-27",362000],["2025-05-28",324500],["2025-05-29",327500],["2025-05-30",332000],["2025-06-02",336500],["2025-06-04",334000],["2025-06-05",327000],["2025-06-09",344500],["2025-06-10",363500],["2025-06-11",370000],["2025-06-12",376500],["2025-06-13",356000],["2025-06-16",367500],["2025-06-17",359500],["2025-06-18",384000],["2025-06-19",372000],["2025-06-20",368500],["2025-06-23",362000],["2025-06-24",368000],["2025-06-25",378000],["2025-06-26",377500],["2025-06-27",369000],["2025-06-30",388000],["2025-07-01",364000],["2025-07-02",365500],["2025-07-03",377000],["2025-07-04",362000],["2025-07-07",359000],["2025-07-08",358000],["2025-07-09",361000],["2025-07-10",353000],["2025-07-11",347000],["2025-07-14",345500],["2025-07-15",357500],["2025-07-16",355000],["2025-07-17",355000],["2025-07-18",359500],["2025-07-21",351000],["2025-07-22",349000],["2025-07-23",351500],["2025-07-24",338000],["2025-07-25",338000],["2025-07-28",332500],["2025-07-29",331500],["2025-07-30",332000],["2025-07-31",337000],["2025-08-01",321000],["2025-08-04",325500],["2025-08-05",327000],["2025-08-06",342000],["2025-08-07",360000],["2025-08-08",359000],["2025-08-11",349000],["2025-08-12",331000],["2025-08-13",318000],["2025-08-14",317000],["2025-08-18",307500],["2025-08-19",307500],["2025-08-20",308000],["2025-08-21",311500],["2025-08-22",305500],["2025-08-25",312000],["2025-08-26",317000],["2025-08-27",320500],["2025-08-28",317000],["2025-08-29",315500],["2025-09-01",330500],["2025-09-02",330500],["2025-09-03",325000],["2025-09-04",334000],["2025-09-05",332000],["2025-09-08",335000],["2025-09-09",331000],["2025-09-10",328000],["2025-09-11",321000],["2025-09-12",320500],["2025-09-15",326000],["2025-09-16",309000],["2025-09-17",306000],["2025-09-18",313000],["2025-09-19",313500],["2025-09-22",310500],["2025-09-23",306000],["2025-09-24",307000],["2025-09-25",295500],["2025-09-26",294500],["2025-09-29",297000],["2025-09-30",302000],["2025-10-01",297500],["2025-10-02",285500],["2025-10-10",275000],["2025-10-13",268000],["2025-10-14",266000],["2025-10-15",272500],["2025-10-16",270000],["2025-10-17",259000],["2025-10-20",261000],["2025-10-21",263500],["2025-10-22",262500],["2025-10-23",265500],["2025-10-24",263500],["2025-10-27",262000],["2025-10-28",268500],["2025-10-29",262000],["2025-10-30",261500],["2025-10-31",262000],["2025-11-03",263000],["2025-11-04",236000],["2025-11-05",228500],["2025-11-06",217500],["2025-11-07",214000],["2025-11-10",219000],["2025-11-11",222500],["2025-11-12",225000],["2025-11-13",238500],["2025-11-14",238500],["2025-11-17",235000],["2025-11-18",231000],["2025-11-19",225500],["2025-11-20",233500],["2025-11-21",225000],["2025-11-24",221000],["2025-11-25",215500],["2025-11-26",219500],["2025-11-27",220000],["2025-11-28",228500],["2025-12-01",236000],["2025-12-02",232000],["2025-12-03",229000],["2025-12-04",221000],["2025-12-05",223000],["2025-12-08",219500],["2025-12-09",227500],["2025-12-10",225500],["2025-12-11",227500],["2025-12-12",226500],["2025-12-15",220500],["2025-12-16",230000],["2025-12-17",245500],["2025-12-18",235000],["2025-12-19",233000],["2025-12-22",235000],["2025-12-23",230000],["2025-12-24",231500],["2025-12-26",227000],["2025-12-29",226000],["2025-12-30",230500],["2026-01-02",235000],["2026-01-05",229500],["2026-01-06",227000],["2026-01-07",223500],["2026-01-08",230000],["2026-01-09",242500],["2026-01-12",243500],["2026-01-13",233500],["2026-01-14",233500],["2026-01-15",227500],["2026-01-16",242000],["2026-01-19",235000],["2026-01-20",237500],["2026-01-21",229000],["2026-01-22",255000],["2026-01-23",263500],["2026-01-26",285500],["2026-01-27",270500],["2026-01-28",296500],["2026-01-29",288500],["2026-01-30",276500],["2026-02-02",267500],["2026-02-03",260000],["2026-02-04",257000],["2026-02-05",250000],["2026-02-06",243500],["2026-02-09",248500],["2026-02-10",260000],["2026-02-11",286000],["2026-02-12",263500],["2026-02-13",253500],["2026-02-19",269500],["2026-02-20",259000],["2026-02-23",262000],["2026-02-24",268000],["2026-02-25",263500],["2026-02-26",265500],["2026-02-27",270000],["2026-03-03",256000],["2026-03-04",234000],["2026-03-05",258000],["2026-03-06",261500],["2026-03-09",249500],["2026-03-10",255000],["2026-03-11",248000],["2026-03-12",244500],["2026-03-13",239500],["2026-03-16",242000],["2026-03-17",250000],["2026-03-18",269500],["2026-03-19",262000],["2026-03-20",267000],["2026-03-23",250000],["2026-03-24",256500],["2026-03-25",258000],["2026-03-26",254500],["2026-03-27",259500],["2026-03-30",246000],["2026-03-31",240500],["2026-04-01",257000],["2026-04-02",244500],["2026-04-03",243000],["2026-04-06",237500],["2026-04-07",240500],["2026-04-08",248500],["2026-04-09",247000],["2026-04-10",255000],["2026-04-13",256000],["2026-04-14",253000],["2026-04-15",263500],["2026-04-16",262000],["2026-04-17",269500],["2026-04-20",271000],["2026-04-21",261000],["2026-04-22",264000],["2026-04-23",260000],["2026-04-24",267000],["2026-04-27",268000],["2026-04-28",265500],["2026-04-29",263000],["2026-04-30",252500],["2026-05-04",261500],["2026-05-06",255000],["2026-05-07",259500],["2026-05-08",291500],["2026-05-11",295000],["2026-05-12",280500],["2026-05-13",278000],["2026-05-14",285500],["2026-05-15",282500],["2026-05-18",261500]];
+
+const WAVE_POINTS = [
+  ["2023-06-23", 100800, "★ W I 시작 100.8K", "bottom"],
+  ["2023-11-22", 159400, "Sub-W1 159.4K", "top"],
+  ["2023-12-21", 143500, "Sub-W2 143.5K", "bottom"],
+  ["2024-04-29", 221000, "W3-(i) 221K", "top"],
+  ["2024-08-19", 286500, "W3-(iii) 286.5K", "top"],
+  ["2024-11-06", 321000, "Sub-W3 정점 321K", "top"],
+  ["2025-01-24", 231000, "Sub-W4 231K", "bottom"],
+  ["2025-06-30", 388000, "W I 정점 ATH 388K", "top"],
+  ["2025-08-22", 305500, "W II (A) 305.5K", "bottom"],
+  ["2025-09-08", 332000, "W II (B) 335K", "top"],
+  ["2025-11-07", 214000, "W II (C) Low 214K", "bottom"],
+  ["2026-01-28", 296500, "★ 트리거 296.5K", "top"],
+  ["2026-05-18", 261500, "▼ 현재 261.5K", "bottom"]
+];
+
+const labels = DAILY_DATA.map(d => d[0]);
+const prices = DAILY_DATA.map(d => d[1]);
+
+function calcMA(arr, n) {
+  return arr.map((_, i) => {
+    if (i < n - 1) return null;
+    let sum = 0;
+    for (let j = i - n + 1; j <= i; j++) sum += arr[j];
+    return Math.round(sum / n);
+  });
+}
+const MA200 = calcMA(prices, 200);
+const MA150 = calcMA(prices, 150);
+
+function buildWaveSeries() {
+  return labels.map(label => {
+    const wp = WAVE_POINTS.find(p => p[0] === label);
+    return wp ? wp[1] : null;
+  });
+}
+
+const labelPlugin = {
+  id: 'waveLabels',
+  afterDatasetsDraw(chart) {
+    const { ctx } = chart;
+    const ds = chart.getDatasetMeta(3);
+    if (!ds) return;
+    ctx.save();
+    ctx.font = "bold 11px 'JetBrains Mono', monospace";
+    ctx.fillStyle = '#1a1f3a';
+    ctx.strokeStyle = '#f5ecd9';
+    ctx.lineWidth = 3;
+    ctx.textAlign = 'center';
+    WAVE_POINTS.forEach(wp => {
+      const idx = labels.indexOf(wp[0]);
+      if (idx < 0) return;
+      const point = ds.data[idx];
+      if (!point) return;
+      const x = point.x;
+      const y = point.y;
+      const offsetY = wp[3] === 'top' ? -16 : 22;
+      const text = wp[2];
+      ctx.strokeText(text, x, y + offsetY);
+      ctx.fillText(text, x, y + offsetY);
+    });
+    ctx.restore();
+  }
+};
+
+const ctx = document.getElementById('chart-wave');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: labels,
+    datasets: [
+      {
+        label: '휴젤 일봉 종가',
+        data: prices,
+        borderColor: 'rgba(26,31,58,0.55)',
+        backgroundColor: 'rgba(26,31,58,0.04)',
+        fill: true, tension: 0.1,
+        pointRadius: 0, borderWidth: 1.4,
+        order: 4
+      },
+      {
+        label: '200MA',
+        data: MA200,
+        borderColor: 'rgba(31,119,180,0.85)',
+        backgroundColor: 'transparent',
+        borderDash: [6, 4],
+        fill: false, tension: 0,
+        pointRadius: 0, borderWidth: 2.2,
+        order: 3
+      },
+      {
+        label: '150MA (30W)',
+        data: MA150,
+        borderColor: 'rgba(45,138,78,0.75)',
+        backgroundColor: 'transparent',
+        borderDash: [3, 3],
+        fill: false, tension: 0,
+        pointRadius: 0, borderWidth: 1.8,
+        order: 3
+      },
+      {
+        label: 'Primary Wave 변곡점',
+        data: buildWaveSeries(),
+        borderColor: '#b8860b',
+        backgroundColor: '#b8860b',
+        spanGaps: true,
+        tension: 0,
+        pointRadius: 7,
+        pointBorderColor: '#1a1f3a',
+        pointBorderWidth: 2,
+        pointBackgroundColor: '#d4a017',
+        borderWidth: 3,
+        order: 1,
+        showLine: true
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { intersect: false, mode: 'index' },
+    plugins: {
+      legend: { position: 'top', labels: { font: { family: 'JetBrains Mono', size: 11 } } },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) {
+            const v = ctx.parsed.y;
+            if (v === null) return null;
+            return ctx.dataset.label + ': ' + v.toLocaleString() + '원';
+          }
+        }
+      },
+      title: { display: false }
+    },
+    scales: {
+      x: {
+        ticks: {
+          font: { family: 'JetBrains Mono', size: 9 },
+          maxRotation: 45, autoSkip: true, maxTicksLimit: 16,
+          callback: function(val) {
+            const lbl = this.getLabelForValue(val);
+            return lbl.substring(0, 7);
+          }
+        },
+        grid: { color: 'rgba(26,31,58,0.05)' }
+      },
+      y: {
+        title: { display: true, text: '주가 (원)', font: { family: 'JetBrains Mono', size: 10 } },
+        ticks: { font: { family: 'JetBrains Mono', size: 10 }, callback: v => (v/1000).toFixed(0) + 'K' },
+        grid: { color: 'rgba(26,31,58,0.06)' },
+        suggestedMin: 95000, suggestedMax: 410000
+      }
+    }
+  },
+  plugins: [labelPlugin]
+});
+</script>
+
+</body>
+</html>
