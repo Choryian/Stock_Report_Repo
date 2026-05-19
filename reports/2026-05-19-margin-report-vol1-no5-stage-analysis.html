@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Margin Report · Stage Analysis Edition — Chory &amp; Rochet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAF8F3;
+  --bg-alt: #F2EEE2;
+  --bg-deep: #1A1A18;
+  --paper: #FFFFFF;
+  --ink: #16160F;
+  --ink-soft: #3A3A33;
+  --ink-mute: #7A7870;
+  --ink-faint: #B5B2A6;
+  --rule: #E6E1D2;
+  --rule-soft: #EFEBDF;
+  --forest: #1E4632;
+  --forest-soft: #2E6049;
+  --forest-bright: #3F8260;
+  --terracotta: #8B3A2E;
+  --terracotta-soft: #B85A3F;
+  --brass: #A88B5C;
+  --brass-bright: #C4A472;
+  --plum: #4A3F6E;
+  --slate: #3D4A55;
+  --sky: #5E7B9C;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+.topbar { border-bottom: 1px solid var(--rule); padding: 24px 0; background: var(--bg); }
+.topbar-inner { max-width: 1280px; margin: 0 auto; padding: 0 80px; display: flex; justify-content: space-between; align-items: center; }
+.topbar-logo { font-family: 'Fraunces', serif; font-weight: 600; font-size: 18px; letter-spacing: -0.01em; color: var(--ink); }
+.topbar-logo span { font-style: italic; color: var(--brass); font-weight: 400; }
+.topbar-meta { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500; }
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+
+.hero { padding-top: 100px; padding-bottom: 80px; }
+.hero-kicker { display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brass); margin-bottom: 32px; position: relative; padding-left: 32px; }
+.hero-kicker::before { content: ''; position: absolute; left: 0; top: 50%; width: 22px; height: 1px; background: var(--brass); }
+.hero-title { font-family: 'Fraunces', 'Noto Serif KR', serif; font-weight: 400; font-size: clamp(48px, 7.5vw, 96px); line-height: 1.02; letter-spacing: -0.035em; color: var(--ink); max-width: 1000px; margin-bottom: 40px; font-variation-settings: "opsz" 144, "SOFT" 30; }
+.hero-title em { font-style: italic; font-weight: 300; color: var(--forest); font-variation-settings: "opsz" 144, "SOFT" 80; }
+.hero-deck { font-family: 'Fraunces', serif; font-weight: 300; font-size: 22px; line-height: 1.55; color: var(--ink-soft); max-width: 800px; margin-bottom: 56px; letter-spacing: -0.01em; }
+.hero-deck em { color: var(--forest); font-style: italic; font-weight: 400; }
+
+.hero-prequel {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--ink-mute);
+  margin-top: -32px;
+  margin-bottom: 56px;
+  padding-left: 32px;
+  position: relative;
+  letter-spacing: 0.01em;
+}
+.hero-prequel::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 22px;
+  height: 1px;
+  background: var(--brass);
+}
+.hero-prequel-label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--brass);
+  margin-right: 14px;
+}
+.hero-prequel a {
+  color: var(--forest);
+  text-decoration: none;
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 14.5px;
+  font-style: italic;
+  border-bottom: 1px solid var(--forest);
+  padding-bottom: 1px;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+.hero-prequel a:hover {
+  opacity: 0.7;
+  border-bottom-color: var(--brass);
+}
+
+.hero-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; padding-top: 32px; border-top: 1px solid var(--rule); }
+.hero-meta-item .hero-meta-label { font-size: 10.5px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 8px; }
+.hero-meta-item .hero-meta-value { font-family: 'Fraunces', serif; font-weight: 400; font-size: 17px; color: var(--ink); letter-spacing: -0.01em; }
+
+.metrics-band { background: var(--bg-deep); color: var(--bg); padding: 64px 0; }
+.metrics-band-inner { max-width: 1280px; margin: 0 auto; padding: 0 80px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; }
+.metric { text-align: left; }
+.metric-label { font-size: 10.5px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,248,243,0.55); margin-bottom: 16px; }
+.metric-figure { font-family: 'Fraunces', serif; font-weight: 300; font-size: 56px; line-height: 1; color: var(--bg); letter-spacing: -0.03em; margin-bottom: 12px; font-variation-settings: "opsz" 144; }
+.metric-figure .unit { font-size: 0.45em; font-weight: 400; margin-left: 4px; color: var(--brass-bright); }
+.metric-caption { font-size: 13px; color: rgba(250,248,243,0.7); line-height: 1.5; font-weight: 400; }
+.metric-caption.brass { color: var(--brass-bright); }
+
+.section { padding: 120px 0; border-bottom: 1px solid var(--rule); }
+.section:last-of-type { border-bottom: none; }
+
+.section-tag { display: inline-flex; align-items: center; gap: 16px; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brass); margin-bottom: 32px; }
+.section-tag::before { content: ''; width: 28px; height: 1px; background: var(--brass); }
+.section-headline { font-family: 'Fraunces', 'Noto Serif KR', serif; font-weight: 400; font-size: clamp(40px, 5.5vw, 64px); line-height: 1.05; letter-spacing: -0.03em; color: var(--ink); max-width: 880px; margin-bottom: 32px; font-variation-settings: "opsz" 144, "SOFT" 40; }
+.section-headline em { font-style: italic; color: var(--forest); font-weight: 300; }
+.section-deck { font-family: 'Fraunces', serif; font-weight: 300; font-size: 21px; line-height: 1.6; color: var(--ink-soft); max-width: 800px; margin-bottom: 64px; letter-spacing: -0.005em; }
+
+.subhead { font-family: 'Fraunces', serif; font-weight: 500; font-size: 32px; line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); margin: 80px 0 24px; padding-top: 24px; border-top: 1px solid var(--rule); }
+.subhead .num { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.18em; color: var(--brass); margin-right: 14px; vertical-align: middle; }
+
+.body { font-family: 'Fraunces', 'Noto Serif KR', serif; font-weight: 300; font-size: 18px; line-height: 1.8; color: var(--ink-soft); max-width: 780px; margin-bottom: 24px; letter-spacing: -0.005em; }
+.body strong { color: var(--ink); font-weight: 500; }
+.body em { color: var(--forest); font-style: italic; font-weight: 400; }
+
+.body-2col { column-count: 2; column-gap: 56px; max-width: 980px; }
+.body-2col p { font-family: 'Fraunces', serif; font-weight: 300; font-size: 17px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 16px; break-inside: avoid; }
+.body-2col p strong { color: var(--ink); font-weight: 500; }
+.body-2col p em { color: var(--forest); font-style: italic; font-weight: 400; }
+
+.drop-cap::first-letter { font-family: 'Fraunces', serif; font-size: 4.8em; font-weight: 400; float: left; line-height: 0.85; margin: 0.05em 0.12em 0 -0.04em; color: var(--forest); font-style: italic; }
+
+/* ── STAGE DIAGRAM ──────────────────────── */
+.stage-diagram {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 48px 56px;
+  margin: 40px 0;
+}
+.stage-diagram-header {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+}
+.stage-diagram-eyebrow { font-family: 'DM Sans', sans-serif; font-size: 10.5px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass); margin-bottom: 8px; }
+.stage-diagram-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 24px; line-height: 1.25; letter-spacing: -0.015em; color: var(--ink); margin-bottom: 6px; }
+.stage-diagram-deck { font-family: 'Fraunces', serif; font-weight: 300; font-style: italic; font-size: 14.5px; line-height: 1.55; color: var(--ink-mute); }
+.stage-svg-wrap { width: 100%; }
+.stage-legend {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+.stage-legend-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.stage-legend-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.stage-legend-tag.s1 { color: var(--brass); }
+.stage-legend-tag.s2 { color: var(--forest); }
+.stage-legend-tag.s3 { color: var(--slate); }
+.stage-legend-tag.s4 { color: var(--terracotta); }
+.stage-legend-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.stage-legend-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-mute);
+}
+
+/* ── PATTERN CARDS GRID ─────────────────── */
+.pattern-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 40px 0;
+}
+.pattern-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 28px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.pattern-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -10px rgba(22,22,15,0.1);
+}
+.pattern-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+}
+.pattern-card.p1::before { background: var(--forest); }
+.pattern-card.p2::before { background: var(--forest-bright); }
+.pattern-card.p3::before { background: var(--terracotta-soft); }
+.pattern-card.p4::before { background: var(--brass); }
+.pattern-card.p5::before { background: var(--slate); }
+.pattern-card.p6::before { background: var(--terracotta); }
+.pattern-mini-chart {
+  height: 70px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pattern-id {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.pattern-card.p1 .pattern-id { color: var(--forest); }
+.pattern-card.p2 .pattern-id { color: var(--forest-bright); }
+.pattern-card.p3 .pattern-id { color: var(--terracotta-soft); }
+.pattern-card.p4 .pattern-id { color: var(--brass); }
+.pattern-card.p5 .pattern-id { color: var(--slate); }
+.pattern-card.p6 .pattern-id { color: var(--terracotta); }
+.pattern-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.pattern-criteria {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--rule);
+}
+.pattern-criteria strong { color: var(--ink); font-weight: 600; }
+.pattern-action {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.pattern-card.p1 .pattern-action { color: var(--forest); }
+.pattern-card.p2 .pattern-action { color: var(--forest-bright); }
+.pattern-card.p3 .pattern-action { color: var(--terracotta-soft); }
+.pattern-card.p4 .pattern-action { color: var(--brass); }
+.pattern-card.p5 .pattern-action { color: var(--slate); }
+.pattern-card.p6 .pattern-action { color: var(--terracotta); }
+
+/* ── CALLOUT ────────────────────────────── */
+.callout { padding: 36px 40px; margin: 32px 0; background: var(--paper); border-left: 3px solid var(--forest); }
+.callout.brass { border-left-color: var(--brass); }
+.callout.plum { border-left-color: var(--plum); }
+.callout.terracotta { border-left-color: var(--terracotta); }
+.callout.slate { border-left-color: var(--slate); }
+.callout-label { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 16px; color: var(--forest); }
+.callout.brass .callout-label { color: var(--brass); }
+.callout.plum .callout-label { color: var(--plum); }
+.callout.terracotta .callout-label { color: var(--terracotta); }
+.callout.slate .callout-label { color: var(--slate); }
+.callout p { font-family: 'Fraunces', serif; font-weight: 300; font-size: 17px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 12px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout p strong { color: var(--ink); font-weight: 500; }
+.callout p em { color: var(--forest); font-style: italic; font-weight: 400; }
+.callout.brass p em { color: var(--brass); }
+.callout.terracotta p em { color: var(--terracotta); }
+.callout.plum p em { color: var(--plum); }
+
+/* ── DATA TABLE ─────────────────────────── */
+.tbl { width: 100%; border-collapse: collapse; margin: 32px 0; font-family: 'DM Sans', sans-serif; font-size: 14px; }
+.tbl thead th { text-align: left; padding: 16px 18px; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); border-bottom: 1.5px solid var(--ink); background: transparent; }
+.tbl tbody td { padding: 18px; border-bottom: 1px solid var(--rule); color: var(--ink-soft); vertical-align: middle; }
+.tbl tbody tr:hover { background: var(--bg-alt); }
+.tbl tbody tr:last-child td { border-bottom: 1px solid var(--ink); }
+.tbl .right { text-align: right; font-variant-numeric: tabular-nums; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+.tbl .center { text-align: center; }
+.tbl .name { font-family: 'Fraunces', serif; font-weight: 500; font-size: 16px; color: var(--ink); }
+.tbl .name small { display: block; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 400; color: var(--ink-mute); margin-top: 2px; letter-spacing: 0.04em; text-transform: uppercase; }
+.tbl .pos { color: var(--forest); font-weight: 500; }
+.tbl .neg { color: var(--terracotta); font-weight: 500; }
+.tbl .warn { color: var(--brass); font-weight: 500; }
+.tbl tr.feat td { background: rgba(168,139,92,0.08); }
+
+/* ── BADGE ──────────────────────────────── */
+.badge { display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; padding: 4px 11px; border-radius: 2px; text-transform: uppercase; }
+.badge.t1 { background: var(--forest); color: var(--bg); }
+.badge.t2 { background: var(--forest-bright); color: var(--bg); }
+.badge.t3 { background: var(--brass); color: var(--bg); }
+.badge.trim { background: var(--terracotta-soft); color: var(--bg); }
+.badge.avoid { background: var(--terracotta); color: var(--bg); }
+
+/* ── PULL QUOTE ─────────────────────────── */
+.pullquote { margin: 80px auto; max-width: 920px; padding: 0 40px; text-align: center; }
+.pullquote::before { content: ''; display: block; width: 64px; height: 1px; background: var(--brass); margin: 0 auto 32px; }
+.pullquote p { font-family: 'Fraunces', serif; font-weight: 300; font-style: italic; font-size: 38px; line-height: 1.25; letter-spacing: -0.025em; color: var(--forest); margin-bottom: 24px; font-variation-settings: "opsz" 144, "SOFT" 80; }
+.pullquote cite { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-mute); font-style: normal; }
+
+/* ── CHART BLOCK ────────────────────────── */
+.chart-block { background: var(--paper); border: 1px solid var(--rule); padding: 36px 40px; margin: 48px 0; }
+.chart-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
+.chart-title-block { flex: 1; }
+.chart-title-eyebrow { font-family: 'DM Sans', sans-serif; font-size: 10.5px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass); margin-bottom: 8px; }
+.chart-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 22px; line-height: 1.25; letter-spacing: -0.015em; color: var(--ink); margin-bottom: 6px; }
+.chart-deck { font-family: 'Fraunces', serif; font-weight: 300; font-style: italic; font-size: 14.5px; line-height: 1.55; color: var(--ink-mute); max-width: 720px; }
+.chart-canvas-wrap { position: relative; height: 360px; margin-top: 28px; }
+.chart-canvas-wrap.tall { height: 440px; }
+
+/* ── TIER PICK CARDS ────────────────────── */
+.tier-pick {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 36px 40px;
+  margin: 24px 0;
+  position: relative;
+}
+.tier-pick.t1 { border-left: 4px solid var(--forest); }
+.tier-pick.t2 { border-left: 4px solid var(--forest-bright); }
+.tier-pick.t3 { border-left: 4px solid var(--brass); }
+.tier-pick-rank {
+  position: absolute;
+  top: 32px;
+  right: 40px;
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 64px;
+  color: var(--ink-faint);
+  line-height: 1;
+  font-variation-settings: "opsz" 144;
+}
+.tier-pick-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.tier-pick.t1 .tier-pick-tag { color: var(--forest); }
+.tier-pick.t2 .tier-pick-tag { color: var(--forest-bright); }
+.tier-pick.t3 .tier-pick-tag { color: var(--brass); }
+.tier-pick-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.tier-pick-meta {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+  margin-bottom: 24px;
+}
+.tier-pick-meta strong { color: var(--ink); font-weight: 500; }
+.tier-pick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px 0;
+  margin: 20px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.tier-pick-metric .metric-l {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 6px;
+}
+.tier-pick-metric .metric-v {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.tier-pick-metric .metric-v.pos { color: var(--forest); }
+.tier-pick-metric .metric-v.warn { color: var(--brass); }
+.tier-pick-thesis {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+.tier-pick-thesis strong { color: var(--ink); font-weight: 500; }
+.tier-pick-thesis em { color: var(--forest); font-style: italic; font-weight: 400; }
+
+/* ── PORTFOLIO STRATEGY ─────────────────── */
+.strategy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 40px 0;
+}
+.strategy-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 32px 36px;
+}
+.strategy-card.heavy {
+  background: var(--bg-deep);
+  color: var(--bg);
+  border-color: var(--bg-deep);
+}
+.strategy-card.heavy .strategy-card-tag { color: var(--brass-bright); }
+.strategy-card.heavy .strategy-card-title { color: var(--bg); }
+.strategy-card.heavy .strategy-card-body { color: rgba(250,248,243,0.78); }
+.strategy-card.heavy .strategy-card-body strong { color: var(--bg); }
+.strategy-card.heavy dt { color: var(--brass-bright); }
+.strategy-card.heavy dd { color: rgba(250,248,243,0.86); }
+.strategy-card-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 16px;
+}
+.strategy-card-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.strategy-card-body {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+.strategy-card-body strong { color: var(--ink); font-weight: 500; }
+.strategy-card dl {
+  margin-top: 16px;
+}
+.strategy-card dt {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 4px;
+  margin-top: 14px;
+}
+.strategy-card dt:first-of-type { margin-top: 0; }
+.strategy-card dd {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ── VERDICT ────────────────────────────── */
+.verdict { background: var(--bg-deep); color: var(--bg); padding: 100px 0; }
+.verdict-inner { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+.verdict-tag { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brass-bright); margin-bottom: 32px; padding-left: 32px; position: relative; display: inline-block; }
+.verdict-tag::before { content: ''; position: absolute; left: 0; top: 50%; width: 22px; height: 1px; background: var(--brass-bright); }
+.verdict-quote { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(36px, 5vw, 56px); line-height: 1.15; letter-spacing: -0.03em; color: var(--bg); margin-bottom: 56px; max-width: 1000px; font-variation-settings: "opsz" 144, "SOFT" 50; }
+.verdict-quote em { font-style: italic; color: var(--brass-bright); font-weight: 300; }
+.verdict-body { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; max-width: 1080px; }
+.verdict-body p { font-family: 'Fraunces', serif; font-weight: 300; font-size: 17px; line-height: 1.75; color: rgba(250,248,243,0.78); margin-bottom: 16px; }
+.verdict-body p strong { color: var(--bg); font-weight: 500; }
+.verdict-body p em { color: var(--brass-bright); font-style: italic; font-weight: 400; }
+.verdict-actions { background: rgba(250,248,243,0.04); border-left: 2px solid var(--brass-bright); padding: 28px 32px; }
+.verdict-actions dt { font-family: 'DM Sans', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass-bright); margin-bottom: 8px; }
+.verdict-actions dd { font-family: 'Fraunces', serif; font-weight: 400; font-size: 15px; line-height: 1.55; color: rgba(250,248,243,0.88); margin: 0 0 18px; }
+.verdict-actions dd:last-child { margin-bottom: 0; }
+
+/* ── FOOTER ─────────────────────────────── */
+.report-footer { padding: 80px 0 56px; background: var(--bg); border-top: 1px solid var(--rule); }
+.report-footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+.report-footer-brand { font-family: 'Fraunces', serif; font-weight: 400; font-size: 28px; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 8px; }
+.report-footer-brand span { font-style: italic; color: var(--brass); font-weight: 300; }
+.report-footer-meta { font-family: 'DM Sans', sans-serif; font-size: 12.5px; color: var(--ink-mute); margin-bottom: 32px; }
+.report-footer-disclaimer { font-family: 'Fraunces', serif; font-weight: 300; font-style: italic; font-size: 13.5px; line-height: 1.7; color: var(--ink-mute); max-width: 900px; padding-top: 24px; border-top: 1px solid var(--rule); }
+
+@media (max-width: 1280px) {
+  .topbar-inner, .container, .metrics-band-inner, .verdict-inner, .report-footer-inner { padding: 0 56px; }
+}
+@media (max-width: 920px) {
+  .topbar-inner, .container, .metrics-band-inner, .verdict-inner, .report-footer-inner { padding: 0 32px; }
+  .hero { padding-top: 64px; padding-bottom: 56px; }
+  .hero-meta { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .metrics-band-inner { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .metric-figure { font-size: 42px; }
+  .section { padding: 80px 0; }
+  .body-2col { column-count: 1; }
+  .stage-legend, .pattern-grid, .strategy-grid { grid-template-columns: 1fr; }
+  .tier-pick-grid { grid-template-columns: repeat(2, 1fr); }
+  .tier-pick-rank { position: relative; top: auto; right: auto; font-size: 48px; margin-bottom: 8px; }
+  .verdict-body { grid-template-columns: 1fr; gap: 32px; }
+  .stage-diagram { padding: 24px; }
+}
+@media (max-width: 600px) {
+  .topbar-inner, .container, .metrics-band-inner, .verdict-inner, .report-footer-inner { padding: 0 20px; }
+  .tier-pick { padding: 24px; }
+  .tier-pick-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .callout { padding: 24px; }
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+</head>
+<body>
+
+<!-- ── TOP BAR ───────────────────────────── -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-logo">Chory <span>&amp;</span> Rochet</div>
+    <div class="topbar-meta">The Margin Report · Vol. I · No. 5 · Stage Edition · 2026.05.19</div>
+  </div>
+</header>
+
+<!-- ── HERO ─────────────────────────────── -->
+<section class="container hero">
+  <div class="hero-kicker">Stage Analysis · 50MA &amp; 200MA Edition</div>
+  <h1 class="hero-title">
+    <em>매수 적기 파악</em>을 위한<br>
+    50MA · 200MA 기반<br>
+    차트 분석.
+  </h1>
+  <p class="hero-deck">
+    펀더멘털이 종목을 고르고, 차트가 시점을 고른다. 1Q 고마진 138사 중
+    <em>200MA 돌파 직후</em> Stage 1 → 2 전환 시점에 있는 종목과
+    이미 한참 위에서 가속 중인 종목, 그리고 베이스 형성 중인 종목을
+    구분하면 같은 BUY 등급 안에서도 진입 순서가 명확해진다.
+  </p>
+  <p class="hero-prequel">
+    <span class="hero-prequel-label">Prequel</span>
+    <a href="The_Margin_Report_2026Q1_v2_Editorial.html">The Margin Report 2026 Q1 — 고마진 138사 6개 군집 재해석</a>
+    의 후속 분석
+  </p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Framework</div>
+      <div class="hero-meta-value">Weinstein 4-Stage Analysis</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Universe</div>
+      <div class="hero-meta-value">A · B · C Top Picks 15종목</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Analysis Date</div>
+      <div class="hero-meta-value">2026.05.19 (장중)</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Publisher</div>
+      <div class="hero-meta-value">Chory &amp; Rochet Research</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── METRICS BAND ─────────────────────── -->
+<section class="metrics-band">
+  <div class="metrics-band-inner">
+    <div class="metric">
+      <div class="metric-label">Tier 1 · 최우선 매수</div>
+      <div class="metric-figure">3<span class="unit">종목</span></div>
+      <div class="metric-caption">Pattern 1 · Stage 1→2 진입</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Tier 2 · 분할 매수</div>
+      <div class="metric-figure">5<span class="unit">종목</span></div>
+      <div class="metric-caption">Pattern 2/3 · Stage 2 진행</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Tier 3 · 베이스 관전</div>
+      <div class="metric-figure">7<span class="unit">종목</span></div>
+      <div class="metric-caption">Pattern 4 · 차기 사이클 후보</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">현금 · F 그룹 관리</div>
+      <div class="metric-figure">30<span class="unit">%</span></div>
+      <div class="metric-caption brass">트리거 대기 재원 + 보유분 관리</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PART I ───────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-tag">Part One · Stage Analysis Framework</div>
+    <h2 class="section-headline">
+      Stan Weinstein이<br>
+      <em>40년 전 그린</em> 곡선이<br>
+      여전히 답이다.
+    </h2>
+    <p class="section-deck">
+      모든 주식은 베이스(Stage 1) — 마크업(Stage 2) — 분배(Stage 3) — 하락(Stage 4) 의
+      4단계 사이클을 거친다. 200MA의 기울기와 주가의 위치가 단계를 결정한다.
+    </p>
+
+    <p class="body drop-cap">
+      Stan Weinstein이 1988년 <em>Secrets for Profiting in Bull and Bear Markets</em>에서 정립한 Stage Analysis는
+      40년이 흐른 지금도 차트 분석의 가장 견고한 프레임이다. 핵심 원리는 단순하다 — <strong>주가가 200MA(30주 이평선) 위에 있고 200MA가 상승 중이면 Stage 2 마크업</strong>,
+      그 안에서 50MA(10주 이평선)까지 주가 위에 정렬되면 가장 안전한 강세 추세다. 사용자가 제시한 관점 — "200MA, 빠르게는 50MA 위에 주가가 올라타면 하락 추세 종료와
+      상승 반전의 신호이며 그 시점이 첫 매수 적기" — 는 정확히 <em>Stage 1에서 Stage 2로의 전환점</em>을 가리킨다.
+    </p>
+
+    <div class="body-2col">
+      <p>
+        <strong>왜 Stage 1→2 전환점이 최적인가</strong>. 첫째, 큰 손실 위험이 낮다.
+        직전 베이스 저점이 명확한 손절선을 제공하기 때문에 RR(Risk-Reward)이 최소 3:1 이상에서 형성된다.
+        둘째, 추세 초입의 폭발력이 가장 크다. Weinstein의 표현으로 <em>"first 30% of any major move"</em>를
+        잡는 자리. 셋째, 진입 후 200MA 상승 추세가 트레일링 스톱 역할을 해주어 매도 결정도 쉽다.
+      </p>
+      <p>
+        <strong>실패 패턴 — 빠진 매수</strong>. 가장 흔한 실수는 Stage 2가 이미 한참 진행된 후
+        FOMO로 추격 매수하는 것. 200MA 이격이 +30%를 넘으면 단기 평균회귀 위험이 급격히
+        커진다. 또 하나는 Stage 1을 Stage 4 하락으로 오인하는 것 — 200MA가 평탄해지고 50MA가 200MA를
+        상향 돌파(골든크로스)하는 시점까지 기다려야 진짜 베이스 완성이다.
+      </p>
+    </div>
+
+    <h3 class="subhead"><span class="num">01</span>Weinstein 4-Stage 곡선 — 시각화</h3>
+
+    <div class="stage-diagram">
+      <div class="stage-diagram-header">
+        <div class="stage-diagram-eyebrow">Figure 1</div>
+        <div class="stage-diagram-title">Stage Analysis — 주가와 200MA가 그리는 4단계 사이클</div>
+        <div class="stage-diagram-deck">짙은 선은 주가, 옅은 선은 200MA. Stage 1 베이스 끝에서 주가가 200MA를 돌파하는 순간이 본 보고서가 정의하는 <strong>"첫 매수 적기"</strong>다.</div>
+      </div>
+      <div class="stage-svg-wrap">
+        <svg viewBox="0 0 1080 320" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+          <defs>
+            <linearGradient id="zoneS1" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#A88B5C" stop-opacity="0.08"/>
+              <stop offset="100%" stop-color="#A88B5C" stop-opacity="0.02"/>
+            </linearGradient>
+            <linearGradient id="zoneS2" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#1E4632" stop-opacity="0.1"/>
+              <stop offset="100%" stop-color="#1E4632" stop-opacity="0.02"/>
+            </linearGradient>
+            <linearGradient id="zoneS3" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#3D4A55" stop-opacity="0.08"/>
+              <stop offset="100%" stop-color="#3D4A55" stop-opacity="0.02"/>
+            </linearGradient>
+            <linearGradient id="zoneS4" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#8B3A2E" stop-opacity="0.1"/>
+              <stop offset="100%" stop-color="#8B3A2E" stop-opacity="0.02"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Stage zones -->
+          <rect x="40" y="20" width="240" height="260" fill="url(#zoneS1)"/>
+          <rect x="280" y="20" width="280" height="260" fill="url(#zoneS2)"/>
+          <rect x="560" y="20" width="220" height="260" fill="url(#zoneS3)"/>
+          <rect x="780" y="20" width="260" height="260" fill="url(#zoneS4)"/>
+
+          <!-- Horizontal grid -->
+          <line x1="40" y1="280" x2="1040" y2="280" stroke="#E6E1D2" stroke-width="1"/>
+
+          <!-- Stage labels (top) -->
+          <text x="160" y="40" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="#A88B5C">STAGE 1 · BASING</text>
+          <text x="420" y="40" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="#1E4632">STAGE 2 · MARKUP</text>
+          <text x="670" y="40" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="#3D4A55">STAGE 3 · TOP</text>
+          <text x="910" y="40" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" font-weight="600" letter-spacing="2" fill="#8B3A2E">STAGE 4 · DECLINE</text>
+
+          <!-- Vertical dividers -->
+          <line x1="280" y1="20" x2="280" y2="280" stroke="#E6E1D2" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="560" y1="20" x2="560" y2="280" stroke="#E6E1D2" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="780" y1="20" x2="780" y2="280" stroke="#E6E1D2" stroke-width="1" stroke-dasharray="3,3"/>
+
+          <!-- 200MA (smoothed/baseline) -->
+          <path d="M 40,200 Q 160,210 280,205 Q 380,180 480,150 Q 540,135 560,130 Q 620,128 670,135 Q 720,145 780,160 Q 850,180 910,200 Q 970,215 1040,225" fill="none" stroke="#A88B5C" stroke-width="2.5" stroke-linecap="round"/>
+
+          <!-- Price line (more volatile) -->
+          <path d="M 40,235 Q 80,215 120,225 T 200,210 Q 240,205 280,200 L 320,185 L 360,170 L 400,155 L 440,135 L 480,115 L 520,90 L 560,80 Q 600,85 640,105 T 720,125 L 760,140 L 780,150 Q 810,165 850,185 L 890,205 L 930,220 L 970,235 L 1010,250 L 1040,260" fill="none" stroke="#16160F" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+
+          <!-- Entry marker (Stage 1→2 crossover) -->
+          <circle cx="280" cy="200" r="8" fill="#FAF8F3" stroke="#1E4632" stroke-width="2.5"/>
+          <circle cx="280" cy="200" r="3" fill="#1E4632"/>
+          <text x="280" y="178" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="13" font-weight="500" fill="#1E4632">★ 첫 매수 적기</text>
+          <text x="280" y="265" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10.5" font-weight="500" fill="#7A7870">주가가 200MA 돌파</text>
+
+          <!-- Exit marker (Stage 2→3) -->
+          <circle cx="560" cy="80" r="6" fill="#FAF8F3" stroke="#A88B5C" stroke-width="2"/>
+          <text x="560" y="68" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="12" fill="#A88B5C">정점 신호</text>
+
+          <!-- Avoid zone (Stage 4) -->
+          <circle cx="900" cy="200" r="6" fill="#FAF8F3" stroke="#8B3A2E" stroke-width="2"/>
+          <text x="900" y="188" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="12" fill="#8B3A2E">매수 금지</text>
+
+          <!-- Legend at bottom -->
+          <g transform="translate(40,300)">
+            <line x1="0" y1="0" x2="22" y2="0" stroke="#16160F" stroke-width="2.5"/>
+            <text x="30" y="4" font-family="DM Sans, sans-serif" font-size="11" fill="#3A3A33">주가</text>
+            <line x1="80" y1="0" x2="102" y2="0" stroke="#A88B5C" stroke-width="2.5"/>
+            <text x="110" y="4" font-family="DM Sans, sans-serif" font-size="11" fill="#3A3A33">200MA (30주 이평)</text>
+          </g>
+        </svg>
+      </div>
+      <div class="stage-legend">
+        <div class="stage-legend-item">
+          <div class="stage-legend-tag s1">Stage 1</div>
+          <div class="stage-legend-name">Basing — 베이스</div>
+          <div class="stage-legend-desc">200MA 평탄. 주가 횡보. 거래량 정체. 매집 진행 중.</div>
+        </div>
+        <div class="stage-legend-item">
+          <div class="stage-legend-tag s2">Stage 2</div>
+          <div class="stage-legend-name">Markup — 마크업</div>
+          <div class="stage-legend-desc">주가 &gt; 50MA &gt; 200MA 정배열. 200MA 상승. ★ 보유·매수 영역.</div>
+        </div>
+        <div class="stage-legend-item">
+          <div class="stage-legend-tag s3">Stage 3</div>
+          <div class="stage-legend-name">Top — 분배</div>
+          <div class="stage-legend-desc">200MA 평탄화. 주가 변동 확대. 신고가 갱신 실패 빈번.</div>
+        </div>
+        <div class="stage-legend-item">
+          <div class="stage-legend-tag s4">Stage 4</div>
+          <div class="stage-legend-name">Decline — 하락</div>
+          <div class="stage-legend-desc">200MA 하락. 데드크로스. 50MA &lt; 200MA. 매수 금지.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subhead"><span class="num">02</span>본 보고서의 6가지 차트 패턴 분류</h3>
+    <p class="body">
+      4단계 곡선을 매수 의사결정에 직접 연결하기 위해, 본 보고서는 50MA·200MA의 정렬과 이격에 따라
+      6가지 실전 패턴을 정의한다. Stage 2 마크업을 <em>3개 단계</em>(진입·진행·과열)로 더 세분화한 것이 핵심 — 같은 BUY 등급이라도 진입 순서가 달라진다.
+    </p>
+
+    <div class="pattern-grid">
+      <div class="pattern-card p1">
+        <div class="pattern-mini-chart">
+          <svg viewBox="0 0 200 70" style="width:100%; height:100%;">
+            <path d="M 10,55 L 40,52 L 70,50 L 100,48 L 130,42 L 160,30 L 190,15" fill="none" stroke="#16160F" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M 10,50 L 50,50 L 90,49 L 130,46 L 170,40 L 190,35" fill="none" stroke="#A88B5C" stroke-width="1.8"/>
+            <circle cx="130" cy="42" r="3.5" fill="#1E4632"/>
+          </svg>
+        </div>
+        <div class="pattern-id">Pattern 1</div>
+        <div class="pattern-name">Stage 2 Entry</div>
+        <div class="pattern-criteria">
+          <strong>조건</strong> · 주가가 1-3개월 내 200MA 위로 돌파. 50MA가 200MA를 골든크로스.
+          이격 +5~15% 이내. 200MA 평탄→상승 전환.
+        </div>
+        <div class="pattern-action">★ Tier 1 · 최우선 신규 매수</div>
+      </div>
+      <div class="pattern-card p2">
+        <div class="pattern-mini-chart">
+          <svg viewBox="0 0 200 70" style="width:100%; height:100%;">
+            <path d="M 10,55 L 30,48 L 50,42 L 75,35 L 100,28 L 130,22 L 160,18 L 190,14" fill="none" stroke="#16160F" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M 10,58 L 40,52 L 70,45 L 100,38 L 130,32 L 160,26 L 190,22" fill="none" stroke="#A88B5C" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <div class="pattern-id">Pattern 2</div>
+        <div class="pattern-name">Stage 2 진행</div>
+        <div class="pattern-criteria">
+          <strong>조건</strong> · 주가 &gt; 50MA &gt; 200MA 정배열 유지. 200MA 이격 +15~30%.
+          200MA 상승 기울기 유지.
+        </div>
+        <div class="pattern-action">★ Tier 2 · 분할 매수 · 조정 대기</div>
+      </div>
+      <div class="pattern-card p3">
+        <div class="pattern-mini-chart">
+          <svg viewBox="0 0 200 70" style="width:100%; height:100%;">
+            <path d="M 10,55 L 30,52 L 50,48 L 75,42 L 100,32 L 130,22 L 160,12 L 190,5" fill="none" stroke="#16160F" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M 10,62 L 40,58 L 70,52 L 100,46 L 130,40 L 160,34 L 190,30" fill="none" stroke="#A88B5C" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <div class="pattern-id">Pattern 3</div>
+        <div class="pattern-name">Stage 2 가속</div>
+        <div class="pattern-criteria">
+          <strong>조건</strong> · 정배열이지만 200MA 이격 +30%+. 50MA 이격 +10%+.
+          상승 기울기 급격. 단기 평균회귀 위험.
+        </div>
+        <div class="pattern-action">▼ 신규 매수 부담 · 트레일링 스톱</div>
+      </div>
+      <div class="pattern-card p4">
+        <div class="pattern-mini-chart">
+          <svg viewBox="0 0 200 70" style="width:100%; height:100%;">
+            <path d="M 10,40 L 35,48 L 60,38 L 85,42 L 110,38 L 135,40 L 160,36 L 190,38" fill="none" stroke="#16160F" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M 10,42 L 50,41 L 90,40 L 130,40 L 170,39 L 190,39" fill="none" stroke="#A88B5C" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <div class="pattern-id">Pattern 4</div>
+        <div class="pattern-name">Stage 1 베이스</div>
+        <div class="pattern-criteria">
+          <strong>조건</strong> · 주가가 200MA 부근에서 횡보. 50MA·200MA 평탄.
+          큰 변동 없음. 베이스 형성 중.
+        </div>
+        <div class="pattern-action">◐ Tier 3 · 돌파 대기 관전</div>
+      </div>
+      <div class="pattern-card p5">
+        <div class="pattern-mini-chart">
+          <svg viewBox="0 0 200 70" style="width:100%; height:100%;">
+            <path d="M 10,30 L 30,22 L 55,18 L 80,22 L 105,30 L 130,36 L 160,30 L 190,34" fill="none" stroke="#16160F" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M 10,32 L 50,28 L 90,26 L 130,28 L 170,30 L 190,31" fill="none" stroke="#A88B5C" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <div class="pattern-id">Pattern 5</div>
+        <div class="pattern-name">Stage 3 분배</div>
+        <div class="pattern-criteria">
+          <strong>조건</strong> · 정배열이지만 200MA 평탄화. 신고가 갱신 실패.
+          50MA가 평평하거나 하락 전환. 50MA &lt; 200MA 위험.
+        </div>
+        <div class="pattern-action">▼ 보유분 익절 · 신규 매수 회피</div>
+      </div>
+      <div class="pattern-card p6">
+        <div class="pattern-mini-chart">
+          <svg viewBox="0 0 200 70" style="width:100%; height:100%;">
+            <path d="M 10,18 L 30,24 L 55,28 L 80,36 L 105,42 L 130,48 L 160,52 L 190,56" fill="none" stroke="#16160F" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M 10,22 L 50,28 L 90,34 L 130,40 L 170,45 L 190,48" fill="none" stroke="#A88B5C" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <div class="pattern-id">Pattern 6</div>
+        <div class="pattern-name">Stage 4 하락</div>
+        <div class="pattern-criteria">
+          <strong>조건</strong> · 50MA &lt; 200MA 데드크로스. 주가 두 이평선 아래.
+          200MA 하락 추세. 거래량 동반 하락.
+        </div>
+        <div class="pattern-action">✕ 매수 금지 · 보유 시 손절</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PART II ──────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-tag">Part Two · Group Chart Diagnosis</div>
+    <h2 class="section-headline">
+      <em>6 그룹의</em><br>
+      차트 패턴 진단.
+    </h2>
+    <p class="section-deck">
+      A·B·C Top Picks 15종목 + D·E·F 그룹 대표 종목을 6가지 패턴으로 분류.
+      그룹별로 압도적 패턴이 명확히 드러난다.
+    </p>
+
+    <div class="chart-block">
+      <div class="chart-head">
+        <div class="chart-title-block">
+          <div class="chart-title-eyebrow">Figure 2</div>
+          <div class="chart-title">패턴별 그룹 분포 — 어느 패턴에 어느 그룹이 몰려 있나</div>
+          <div class="chart-deck">Pattern 1(매수 적기)에는 A·B·C 그룹의 4종목이 분포. Pattern 2(안정 진행)는 A·B·C·E 전반에 가장 광범위. Pattern 3(과열)은 F 그룹 단독 + A·E 일부. Pattern 4-6은 D 그룹 중심.</div>
+        </div>
+      </div>
+      <div class="chart-canvas-wrap tall"><canvas id="chart-group-pattern" role="img" aria-label="그룹별 차트 패턴 분포"></canvas></div>
+    </div>
+
+    <h3 class="subhead"><span class="num">01</span>그룹 A · 수성형 강자 — 패턴 진단</h3>
+    <div class="callout">
+      <div class="callout-label">Group A · Defensive Compounders</div>
+      <p>
+        A 그룹은 <strong>장기 누적 강세</strong>가 특징이라 대부분 Pattern 2(진행 중) 또는 Pattern 3(가속).
+        <em>HD현대일렉트릭·삼양식품·HD현대마린엔진·티씨케이</em>는 모두 1년+ 강세로 200MA 이격 +30~80%로 추정,
+        Pattern 2 후반에서 Pattern 3 초입. 추격은 부담스럽고 <em>조정 시 분할 매수</em>가 정답.
+      </p>
+      <p>
+        예외는 <strong>F&amp;F</strong>. 2024년 후반 ~ 2025년 부진으로 주가가 한참 눌려 있었으나
+        2025-26년 MLB 중국 회복 + 미국 진출 모멘텀으로 <em>Pattern 1(Stage 2 진입)</em> 시점에 진입한 것으로 판단.
+        PER 7.58배의 저평가가 이 시각을 뒷받침한다. A 그룹에서 유일한 Tier 1 후보.
+      </p>
+    </div>
+
+    <h3 class="subhead"><span class="num">02</span>그룹 B · 알파 머신 — 패턴 진단</h3>
+    <div class="callout plum">
+      <div class="callout-label">Group B · Structural Alpha</div>
+      <p>
+        B 그룹은 K-Bio·메디테크·게임 등 분기 변동성이 큰 종목 위주라 패턴 분포가 가장 다양하다.
+        <em>SK바이오팜·파마리서치</em>는 Pattern 2(진행 중). <em>명인제약</em>은 안정적 베이스에서 모멘텀 가속 시작 — Pattern 1.
+        <em>에코마케팅</em>은 안다르 D2C 회복 사이클로 Pattern 1 후보. <em>더블유게임즈</em>는 횡보 베이스 형성 — Pattern 4.
+      </p>
+      <p>
+        B 그룹의 매력은 같은 알파 머신 안에서도 <em>진입 순서가 명확히 갈린다</em>는 것.
+        명인제약·에코마케팅(Pattern 1) → SK바이오팜·파마리서치(Pattern 2) → 더블유게임즈(Pattern 4 베이스 대기) 순.
+      </p>
+    </div>
+
+    <h3 class="subhead"><span class="num">03</span>그룹 C · 글로벌 챔피언 — 패턴 진단</h3>
+    <div class="callout brass">
+      <div class="callout-label">Group C · Global Champions</div>
+      <p>
+        C 그룹은 <strong>가장 흥미로운 패턴 진단</strong>이 가능한 그룹. <em>알테오젠·삼성바이오로직스·클래시스</em>는
+        Pattern 2(진행 중). <em>휴젤</em>은 FDA 승인 후 재가속 — Pattern 1과 2 사이.
+      </p>
+      <p>
+        <strong>핵심은 티앤엘</strong>. 2024년 후반부터 H사 재고조정으로 부진했으나 2026년 1Q 어닝 서프라이즈(영익 +65% 비트)로
+        <em>V자 회복 + Stage 2 진입</em>이 거의 확실시되는 시점. 2026.5.19 장중 시총 4,804억원(코스닥 225위),
+        PER 12.6배의 저평가에 1Q OPM 40.5%라는 펀더멘털 변곡점이 결합 — 본 보고서가 정의하는
+        <em>Pattern 1의 교과서적 사례</em>다. 전체 Tier 1 1순위.
+      </p>
+    </div>
+
+    <h3 class="subhead"><span class="num">04</span>그룹 D · E · F — 회피 대상의 차트 진단</h3>
+    <div class="callout terracotta">
+      <div class="callout-label">Cyclical Trio — Avoid Patterns</div>
+      <p>
+        <strong>D · 회복 관전</strong> · 대부분 Pattern 4(베이스) 또는 6(하락). 대한조선·대한해운은 사이클 후반 분배,
+        NC·SOOP은 콘텐츠 사이클 하강으로 Pattern 5-6. <em>Pattern 1 진입이 확인되기 전까지 신규 매수 보류.</em>
+      </p>
+      <p>
+        <strong>E · 메모리 풀체인</strong> · 제주반도체·ISC·디아이티는 Pattern 2-3. SK하이닉스 호황의 낙수로 1년+ 강세.
+        <em>이격 +40~80% 추정으로 신규 매수보다는 기존 보유분 트레일링 스톱 관리가 우선.</em>
+      </p>
+      <p>
+        <strong>F · 사이클 정점</strong> · SK하이닉스 OPM 71.5%, 200MA 이격 +70%+ 추정 — <em>Pattern 3의 극단 사례</em>.
+        삼성전자·HPSP·리노공업도 동일 패턴. Stage 2 가속 후반 + Stage 3 분배 진입 가능성. 신규 매수 금지.
+      </p>
+    </div>
+
+    <div class="pullquote">
+      <p>같은 BUY 등급 안에서도<br>차트가 진입 순서를 정한다.</p>
+      <cite>— Chory &amp; Rochet Stage Analysis</cite>
+    </div>
+
+    <h3 class="subhead"><span class="num">05</span>15종목 정밀 진단 — 한눈에 보기</h3>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>종목</th>
+          <th class="right">소속 그룹</th>
+          <th>1Q OPM</th>
+          <th>차트 패턴</th>
+          <th>200MA 이격</th>
+          <th class="center">Tier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="feat">
+          <td class="name">티앤엘<small>340570 · 코스닥</small></td>
+          <td class="right">C</td>
+          <td class="pos">40.5%</td>
+          <td><strong>Pattern 1</strong> · Stage 1→2 진입 (정배열)</td>
+          <td>+19.8%</td>
+          <td class="center"><span class="badge t1">Tier 1</span></td>
+        </tr>
+        <tr class="feat">
+          <td class="name">휴젤<small>145020 · 코스닥</small></td>
+          <td class="right">C</td>
+          <td class="pos">40.8%</td>
+          <td><strong>Pattern 1</strong> · 200MA 막 돌파 (MA200 평탄화중)</td>
+          <td>+5.1%</td>
+          <td class="center"><span class="badge t1">Tier 1</span></td>
+        </tr>
+        <tr class="feat">
+          <td class="name">더블유게임즈<small>192080 · 코스닥</small></td>
+          <td class="right">B</td>
+          <td class="pos">33.4%</td>
+          <td><strong>Pattern 1</strong> · MA200 완전 평탄 · GC 임박</td>
+          <td>+11.6%</td>
+          <td class="center"><span class="badge t1">Tier 1</span></td>
+        </tr>
+        <tr>
+          <td class="name">F&amp;F<small>383220 · 코스피</small></td>
+          <td class="right">A</td>
+          <td class="pos">27.4%</td>
+          <td>Pattern 2 · Stage 2 진행 (52H -4.5%)</td>
+          <td>+23.4%</td>
+          <td class="center"><span class="badge t2">Tier 2</span></td>
+        </tr>
+        <tr>
+          <td class="name">에코마케팅<small>230360 · 코스닥</small></td>
+          <td class="right">B</td>
+          <td class="pos">32.1%</td>
+          <td>Pattern 2 · Stage 2 중반 (MA200 +5%)</td>
+          <td>+15.8%</td>
+          <td class="center"><span class="badge t2">Tier 2</span></td>
+        </tr>
+        <tr>
+          <td class="name">HD현대일렉트릭<small>267260 · 코스피</small></td>
+          <td class="right">A</td>
+          <td class="pos">24.9%</td>
+          <td>Pattern 3 · Stage 2 후반 (MA200 +10%)</td>
+          <td class="warn">+44.7%</td>
+          <td class="center"><span class="badge t2">Tier 2</span></td>
+        </tr>
+        <tr>
+          <td class="name">삼양식품<small>003230 · 코스피</small></td>
+          <td class="right">A</td>
+          <td class="pos">24.8%</td>
+          <td>Pattern 3 · Stage 3 분배 의심 (50MA&lt;200MA)</td>
+          <td class="warn">+10.0%</td>
+          <td class="center"><span class="badge t2">Tier 2</span></td>
+        </tr>
+        <tr>
+          <td class="name">티씨케이<small>064760 · 코스닥</small></td>
+          <td class="right">A</td>
+          <td class="pos">29.9%</td>
+          <td>Pattern 3 · Stage 2 정점 (MA200 +12.5%)</td>
+          <td class="warn">+67.7%</td>
+          <td class="center"><span class="badge t2">Tier 2</span></td>
+        </tr>
+        <tr>
+          <td class="name">알테오젠<small>196170 · 코스닥</small></td>
+          <td class="right">C</td>
+          <td class="pos">54.9%</td>
+          <td>Pattern 4 · 상위 2파 종료 임박 (0.382 피보 + MA200 둔화)</td>
+          <td>−15.0%</td>
+          <td class="center"><span class="badge t3">Tier 3 우선</span></td>
+        </tr>
+        <tr>
+          <td class="name">명인제약<small>317450 · 코스닥</small></td>
+          <td class="right">B</td>
+          <td class="pos">34.8%</td>
+          <td>Pattern 4 · Stage 1 베이스 (신규상장 7개월)</td>
+          <td>n/a (200일 미만)</td>
+          <td class="center"><span class="badge t3">Tier 3</span></td>
+        </tr>
+        <tr>
+          <td class="name">에스케이바이오팜<small>326030 · 코스피</small></td>
+          <td class="right">B</td>
+          <td class="pos">39.4%</td>
+          <td>Pattern 4 · Stage 4→1 전환 (MA200 평탄화 시작)</td>
+          <td>−12.7%</td>
+          <td class="center"><span class="badge t3">Tier 3</span></td>
+        </tr>
+        <tr>
+          <td class="name">삼성바이오로직스<small>207940 · 코스피</small></td>
+          <td class="right">C</td>
+          <td class="pos">46.2%</td>
+          <td>Pattern 4 · Stage 1 베이스 형성 (MA200 0%, 52L 근접)</td>
+          <td>−13.2%</td>
+          <td class="center"><span class="badge t3">Tier 3</span></td>
+        </tr>
+        <tr>
+          <td class="name">클래시스<small>214150 · 코스닥</small></td>
+          <td class="right">C</td>
+          <td class="pos">42.7%</td>
+          <td>Pattern 4 · 상위 2파 1차 지지 (0.382 피보 정확 도달)</td>
+          <td>−9.5%</td>
+          <td class="center"><span class="badge t3">Tier 3</span></td>
+        </tr>
+        <tr>
+          <td class="name">HD현대마린엔진<small>071970 · 코스피</small></td>
+          <td class="right">A</td>
+          <td class="pos">24.4%</td>
+          <td>Pattern 4 · Stage 2 후 급조정 (200MA 사수 검증)</td>
+          <td>−7.3%</td>
+          <td class="center"><span class="badge t3">Tier 3</span></td>
+        </tr>
+        <tr>
+          <td class="name">파마리서치<small>214450 · 코스닥</small></td>
+          <td class="right">B</td>
+          <td class="pos">39.2%</td>
+          <td>Pattern 4 조건부 · 상위 2파 진행 중 (0.618 깊은 조정)</td>
+          <td class="warn">−28.1%</td>
+          <td class="center"><span class="badge t3">Tier 3 조건부</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── PART III ─────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-tag">Part Three · Tier 1 Picks</div>
+    <h2 class="section-headline">
+      <em>Tier 1 — 최우선 매수</em><br>
+      Pattern 1 · Stage 1→2 진입 3종목.
+    </h2>
+    <p class="section-deck">
+      200MA를 막 돌파했거나(휴젤) 안착 직후(더블유게임즈), 또는 MA200 평탄→상승 전환을 확인한(티앤엘) 3종목.
+      MA200 기울기 둔화·평탄·전환을 데이터로 확인한 자리로, RR이 가장 매력적이고 손절선이 명확하다.
+    </p>
+
+    <div class="tier-pick t1">
+      <div class="tier-pick-rank">01</div>
+      <div class="tier-pick-tag">Tier 1 · 최우선 매수 · Pattern 1</div>
+      <div class="tier-pick-name">티앤엘 <span style="color:var(--ink-mute); font-size:0.7em; font-weight:300;">— 340570</span></div>
+      <div class="tier-pick-meta">코스닥 · 바이오·메디 · <strong>C 그룹 (글로벌 챔피언)</strong></div>
+      <div class="tier-pick-grid">
+        <div class="tier-pick-metric"><div class="metric-l">1Q OPM</div><div class="metric-v pos">40.5%</div></div>
+        <div class="tier-pick-metric"><div class="metric-l">시총</div><div class="metric-v">4,804 억</div></div>
+        <div class="tier-pick-metric"><div class="metric-l">PER</div><div class="metric-v warn">12.6배</div></div>
+        <div class="tier-pick-metric"><div class="metric-l">차트 패턴</div><div class="metric-v pos">Pattern 1</div></div>
+      </div>
+      <p class="tier-pick-thesis">
+        <strong>매수 시나리오 1순위 — Pattern 1 정석</strong>. 2024년 후반부터 H사(히어로코스메틱스) 재고조정으로 1년+ 부진 — 전형적인 Stage 1 베이스.
+        2025년 4Q 영익 72억(저점) 이후 2026년 1Q 영익 183억(+154% QoQ, 컨센서스 +65% 비트)으로 <em>펀더멘털 V자 회복</em>이 확정됐다.
+        5/15 종가 61,800원 기준 <strong>200MA 이격 +19.8%</strong>, MA50 이격 +12.8%, <strong>50MA &gt; 200MA 정배열 완성</strong> 상태이며 MA200 기울기가 20일 기준 +0.15%로 평탄→상승 전환을 확정했다. <em>저평가 + 실적 변곡점 + 정배열 — 3박자가 동시에 작동하는 보기 드문 자리</em>.
+        손절은 직전 베이스 저점(40,000원대) 이탈 시. 1차 목표는 신한증권 목표주가 68,000원 회복, 2차는 80,000원.
+      </p>
+    </div>
+
+    <div class="tier-pick t1">
+      <div class="tier-pick-rank">02</div>
+      <div class="tier-pick-tag">Tier 1 · 최우선 매수 · Pattern 1</div>
+      <div class="tier-pick-name">휴젤 <span style="color:var(--ink-mute); font-size:0.7em; font-weight:300;">— 145020</span></div>
+      <div class="tier-pick-meta">코스닥 · 보툴리눔톡신 · <strong>C 그룹 (글로벌 챔피언)</strong></div>
+      <div class="tier-pick-grid">
+        <div class="tier-pick-metric"><div class="metric-l">1Q OPM</div><div class="metric-v pos">40.8%</div></div>
+        <div class="tier-pick-metric"><div class="metric-l">200MA 이격</div><div class="metric-v pos">+5.1%</div></div>
+        <div class="tier-pick-metric"><div class="metric-l">MA200 5d 기울기</div><div class="metric-v">-0.65%</div></div>
+        <div class="tier-pick-metric"><div class="metric-l">차트 패턴</div><div class="metric-v pos">Pattern 1</div></div>
+      </div>
+      <p class="tier-pick-thesis">
+        <strong>RR이 가장 매력적인 자리</strong>. 5/15 종가 282,500원 기준 <strong>200MA 막 돌파(+5.1%)</strong> 상태로 3종목 중 이격이 가장 작아 손절 폭이 좁다.
+        MA200 기울기가 20일 -3.4% → 10일 -1.5% → 5일 -0.65%로 <em>가속 둔화 → 평탄화 진행</em>이 명확하며, MA50도 +1.4%로 상승 전환했다. 50MA는 아직 200MA 아래(역배열)지만 골든크로스 임박.
+        FDA 보툴리눔톡신 승인(레티보) 후 미국 출시 본격화 + 1Q OPM 40.8% 유지 = <em>펀더멘털과 차트가 동시 변곡점</em>.
+        손절은 200MA(약 269,000원) 3거래일 종가 이탈, 1차 목표는 직전 고점 회복(약 392,000원, 52H 대비 +39%). RR 약 4:1.
+      </p>
+    </div>
+
+    <div class="tier-pick t1">
+      <div class="tier-pick-rank">03</div>
+      <div class="tier-pick-tag">Tier 1 · 최우선 매수 · Pattern 1</div>
+      <div class="tier-pick-name">더블유게임즈 <span style="color:var(--ink-mute); font-size:0.7em; font-weight:300;">— 192080</span></div>
+      <div class="tier-pick-meta">코스닥 · 소셜카지노 · <strong>B 그룹 (알파 머신)</strong></div>
+      <div class="tier-pick-grid">
+        <div class="tier-pick-metric"><div class="metric-l">1Q OPM</div><div class="metric-v pos">33.4%</div></div>
+        <div class="tier-pick-metric"><div class="metric-l">200MA 이격</div><div class="metric-v pos">+11.6%</div></div>
+        <div class="tier-pick-metric"><div class="metric-l">MA200 5d 기울기</div><div class="metric-v">-0.04% (평탄)</div></div>
+        <div class="tier-pick-metric"><div class="metric-l">차트 패턴</div><div class="metric-v pos">Pattern 1</div></div>
+      </div>
+      <p class="tier-pick-thesis">
+        <strong>안정 베이스에서 모멘텀 점화 — 변동성 가장 낮은 Tier 1</strong>. DoubleDown 미국 카지노 모바일 1위 유지로 매출이 안정적이며 PER 9배 극단적 저평가가 안전마진.
+        5/15 종가 59,100원 기준 <strong>MA200 5d -0.04% / 20d -0.23%로 완전 평탄</strong> — Stage 1 베이스 6개월+ 횡보 후 Close가 200MA 위 +11.6% 안착. MA50가 +2.3% 상승 중이며 200MA 바로 아래까지 추격, <em>골든크로스 임박 단계</em>.
+        52H 대비 -7.5%, 52L 대비 +25.7% → 박스 상단 돌파 시도 중. <em>큰 추격은 어렵지만 손절 폭이 가장 작아 손절 risk가 최소인 종목</em>.
+        손절은 200MA(약 53,000원) 이탈, 1차 목표는 박스 상단(약 64,000원), 2차는 직전 고점 회복.
+      </p>
+    </div>
+
+    <div class="tier-pick t1">
+      <div class="tier-pick-rank">04</div>
+      <div class="tier-pick-tag">Tier 1 · 우선순위 비교 · 진입 의사결정</div>
+      <div class="tier-pick-name">3종목 진입 우선순위 매트릭스</div>
+      <div class="tier-pick-meta">5/15 종가 기준 · MA200 기울기·이격·OPM 종합</div>
+      <div class="tier-pick-grid">
+        <div class="tier-pick-metric"><div class="metric-l">① 정배열 완성</div><div class="metric-v pos">티앤엘</div></div>
+        <div class="tier-pick-metric"><div class="metric-l">② RR 최적</div><div class="metric-v pos">휴젤</div></div>
+        <div class="tier-pick-metric"><div class="metric-l">③ 손절 risk 최소</div><div class="metric-v pos">더블유게임즈</div></div>
+        <div class="tier-pick-metric"><div class="metric-l">권장 비중</div><div class="metric-v">10%/종목 · 총 30%</div></div>
+      </div>
+      <p class="tier-pick-thesis">
+        <strong>차트 진행도 차등 — 동시 진입 불필요</strong>.
+        티앤엘은 50MA&gt;200MA 정배열을 완성하고 MA200 기울기도 +0.15%로 전환한 <em>가장 안전한 Pattern 1</em>이지만 이격이 +19.8%로 가장 크다.
+        휴젤은 이격이 +5.1%로 가장 작아 RR이 최적(약 4:1)이지만 MA200 기울기가 아직 -0.65%(5d)로 평탄화 막바지 — 가짜 돌파 위험은 가장 높다.
+        더블유게임즈는 MA200이 완전 평탄(±0.04%)이라 가짜 돌파 위험이 가장 낮고 골든크로스 임박이지만, 52H 대비 -7.5%로 박스 상단 돌파 확인이 추가로 필요하다.
+        <em>공격적: 휴젤 → 티앤엘 → 더블유게임즈 순. 보수적: 더블유게임즈 → 티앤엘 → 휴젤 순</em>.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PART IV ──────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-tag">Part Four · Tier 2 &amp; 3 Picks</div>
+    <h2 class="section-headline">
+      <em>Tier 2 — 분할 매수</em>·<br>
+      Tier 3 — 베이스 관전.
+    </h2>
+    <p class="section-deck">
+      Tier 2(Pattern 2/3 · 5종목)는 이미 Stage 2 진행 중 — 추격 부담 있어 조정 시 분할 진입.
+      Tier 3(Pattern 4 · 7종목)는 사이클 진행도가 차등화된 베이스 형성/대기 종목군 — 우선·표준·조건부로 구분.
+    </p>
+
+    <h3 class="subhead"><span class="num">A</span>Tier 2 · 분할 매수 5종목</h3>
+    <p class="body">
+      이미 200MA 위에서 진행 중인 Stage 2 종목들. <strong>50MA까지 조정 시 1차 매수, 200MA 근접 시 적극 매수</strong>가 RR 최적화 전략.
+      Pattern 3 (HD현대일렉트릭·삼양식품·티씨케이)은 이격이 크거나 50MA&lt;200MA 역배열이 발생해 신규 매수 부담이 가장 크다.
+    </p>
+
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>종목</th>
+          <th>차트 위치 (5/15 종가 기준)</th>
+          <th class="right">현재가 매수 RR</th>
+          <th class="right">조정 시 매수 RR</th>
+          <th class="center">진입 전략</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">F&amp;F<small>383220 · A 그룹</small></td>
+          <td>Pattern 2 · D200 +23.4% · 52H -4.5% 근접</td>
+          <td class="right neg">0.5:1</td>
+          <td class="right pos">5.0:1</td>
+          <td class="center">50MA(67k) 조정 대기</td>
+        </tr>
+        <tr>
+          <td class="name">에코마케팅<small>230360 · B 그룹</small></td>
+          <td>Pattern 2 · D200 +15.8% · 52H -1.8% 근접</td>
+          <td class="right neg">0.3:1</td>
+          <td class="right pos">2.5:1</td>
+          <td class="center">200MA(13.8k) 조정 대기</td>
+        </tr>
+        <tr>
+          <td class="name">HD현대일렉트릭<small>267260 · A 그룹</small></td>
+          <td>Pattern 3 · D200 +44.7% · MA200 +10.4% 강한 상승</td>
+          <td class="right warn">0.8:1</td>
+          <td class="right">2.5:1</td>
+          <td class="center">50MA(1.06M) 조정 대기</td>
+        </tr>
+        <tr>
+          <td class="name">삼양식품<small>003230 · A 그룹</small></td>
+          <td>Pattern 3 · D200 +10.0% · <strong>50MA&lt;200MA 역배열</strong> (분배 의심)</td>
+          <td class="right neg">0.6:1</td>
+          <td class="right warn">1.8:1</td>
+          <td class="center">정배열 회복 후 재평가</td>
+        </tr>
+        <tr>
+          <td class="name">티씨케이<small>064760 · A 그룹</small></td>
+          <td>Pattern 3 · D200 <strong>+67.7%</strong> · MA200 +12.5% 폭발 (정점)</td>
+          <td class="right neg">0.3:1</td>
+          <td class="right">2.0:1</td>
+          <td class="center">신규 매수 금지</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="subhead"><span class="num">B</span>Tier 3 · 베이스 관전 7종목 — 사이클 진행도 차등</h3>
+    <p class="body">
+      Weinstein 프레임의 <strong>Stage 4 종료는 곧 차기 Stage 1의 시작</strong>이며, 엘리어트 관점의 상위 2파 종료는 차기 3파 진입 준비와 같다.
+      따라서 현 시점 200MA 아래 또는 평탄 베이스 종목들은 "회피"가 아니라 <em>차기 사이클 진입 후보</em>로 관전하며, MA200 둔화·평탄화 신호로 우선순위를 차등한다.
+    </p>
+
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>종목</th>
+          <th>사이클 위치</th>
+          <th>핵심 신호 (5/15 기준)</th>
+          <th>진입 트리거</th>
+          <th class="center">우선순위</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="feat">
+          <td class="name">알테오젠<small>196170 · C 그룹</small></td>
+          <td>상위 2파 종료 <strong>임박</strong></td>
+          <td>0.382 피보 정확 도달 + MA200 60d -0.8% <em>둔화</em></td>
+          <td>MA200 +0% 평탄화 + 베이스 박스 형성 확인</td>
+          <td class="center"><span class="badge t3">우선 ★★★</span></td>
+        </tr>
+        <tr>
+          <td class="name">명인제약<small>317450 · B 그룹</small></td>
+          <td>Stage 1 베이스 (신규상장)</td>
+          <td>상장 7개월 · MA200 미형성 · OPM 34.8%</td>
+          <td>MA200 형성(2026년 9월 이후) + 베이스 박스 돌파</td>
+          <td class="center"><span class="badge t3">표준 ★★</span></td>
+        </tr>
+        <tr>
+          <td class="name">에스케이바이오팜<small>326030 · B 그룹</small></td>
+          <td>Stage 4→1 전환</td>
+          <td>D200 -12.7% · MA200 60d +0.6% <em>평탄화 시작</em></td>
+          <td>MA200 명확한 상승 전환 + Close가 200MA 돌파</td>
+          <td class="center"><span class="badge t3">표준 ★★</span></td>
+        </tr>
+        <tr>
+          <td class="name">삼성바이오로직스<small>207940 · C 그룹</small></td>
+          <td>Stage 1 베이스 형성</td>
+          <td>MA200 0% 완전 평탄 · 52L +2.3% 근접</td>
+          <td>52L(1,390k) 사수 + 50MA 돌파 + 거래량 증가</td>
+          <td class="center"><span class="badge t3">표준 ★★</span></td>
+        </tr>
+        <tr>
+          <td class="name">클래시스<small>214150 · C 그룹</small></td>
+          <td>상위 2파 1차 지지</td>
+          <td>0.382 피보 50,425원 <strong>정확 도달</strong></td>
+          <td>50,400원 사수 + MA200 60d 둔화 시작</td>
+          <td class="center"><span class="badge t3">표준 ★</span></td>
+        </tr>
+        <tr>
+          <td class="name">HD현대마린엔진<small>071970 · A 그룹</small></td>
+          <td>Stage 2 후 급조정</td>
+          <td>D200 -7.3% · <strong>MA200 +6.0% 여전히 강한 상승</strong></td>
+          <td>200MA(85.4k) 사수 + 50MA 회복 (정배열 재진입)</td>
+          <td class="center"><span class="badge t3">표준 ★</span></td>
+        </tr>
+        <tr>
+          <td class="name">파마리서치<small>214450 · B 그룹</small></td>
+          <td>상위 2파 진행 중</td>
+          <td>0.618 피보 290k 근접 · MA200 60d <strong>-8.6% 가속</strong></td>
+          <td>0.618(290k) 사수 + MA200 60d 둔화 (둘 다 필요)</td>
+          <td class="center"><span class="badge t3">조건부</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout brass">
+      <div class="callout-label">Tier 3 의사결정 가이드</div>
+      <p>
+        <strong>알테오젠</strong>은 7종목 중 유일하게 MA200이 둔화 단계(60d -0.8%)에 들어선 종목으로, 차기 사이클 3파 진입 시 가장 먼저 Pattern 1으로 전환할 후보다.
+        <strong>명인제약·SK바이오팜·삼바</strong>는 베이스의 질은 좋으나 트리거가 아직 발생하지 않은 표준 관전 종목.
+        <strong>클래시스·HD현대마린엔진</strong>은 1차 지지 시도 단계라 사수 여부 검증이 추가로 필요.
+        <strong>파마리서치</strong>는 MA200이 여전히 가속 하락 중(-8.6%/60d)이라 베이스 진입 자체가 시기상조 — 0.618 사수 + MA200 둔화가 동시에 확인된 시점부터 관전 격상.
+      </p>
+    </div>
+
+    <h3 class="subhead"><span class="num">C</span>차트 패턴 산점도 — 15종목의 위치</h3>
+    <div class="chart-block">
+      <div class="chart-head">
+        <div class="chart-title-block">
+          <div class="chart-title-eyebrow">Figure 3</div>
+          <div class="chart-title">200MA 이격 vs 50MA 이격 — 5/15 종가 실제값 산점도</div>
+          <div class="chart-deck">원점 근처(이격 작음)가 Pattern 1 · Tier 1 영역. 우측으로 갈수록 Pattern 3 과열(SK하이닉스 +163%, 삼성전자 +101%, 티씨케이 +68%). 좌하단(둘 다 음수)은 Pattern 4 베이스 형성 영역(Tier 3). 색상은 Tier. ※ 명인제약은 신규상장 7개월로 200MA 미형성 — 산점도 제외.</div>
+        </div>
+      </div>
+      <div class="chart-canvas-wrap tall"><canvas id="chart-scatter" role="img" aria-label="200MA·50MA 이격 산점도"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PART V ───────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-tag">Part Five · Execution Strategy</div>
+    <h2 class="section-headline">
+      <em>실전 매매 룰</em>—<br>
+      진입·손절·익절.
+    </h2>
+    <p class="section-deck">
+      차트 패턴별 명확한 진입 트리거 · 손절선 · 익절 목표.
+      펀더멘털이 종목을 고르고, 차트가 시점을 고르고, 룰이 결과를 만든다.
+    </p>
+
+    <h3 class="subhead"><span class="num">01</span>패턴별 매매 룰북</h3>
+
+    <div class="strategy-grid">
+      <div class="strategy-card heavy">
+        <div class="strategy-card-tag">Pattern 1 · Tier 1 매수</div>
+        <div class="strategy-card-title">Stage 2 진입 — 첫 매수 자리</div>
+        <div class="strategy-card-body">
+          <strong>가장 매력적인 진입 자리</strong>. 200MA 돌파 후 retest 시점(또는 50MA 골든크로스 직후)에 1차 진입.
+          손절선이 베이스 저점으로 명확하고 RR 3:1 이상 확보 가능.
+        </div>
+        <dl>
+          <dt>진입 트리거</dt>
+          <dd>① 주가 &gt; 50MA &gt; 200MA 정배열 확인<br>② 50MA 골든크로스 신호 (50MA가 200MA 상향 돌파)<br>③ 200MA 기울기 평탄→상승 전환<br>④ 돌파 시 거래량 평소 1.5배 이상</dd>
+          <dt>1차 진입 비중</dt>
+          <dd>목표 비중의 50% — 200MA retest 시점에서 분할 첫 매수</dd>
+          <dt>2차 진입 트리거</dt>
+          <dd>1차 매수가에서 +5~10% 상승 후 눌림 시 추가 매수 (목표 비중의 30%)</dd>
+          <dt>손절선</dt>
+          <dd>200MA 명확한 이탈 (3거래일 종가 마감) 또는 직전 베이스 저점 이탈</dd>
+          <dt>1차 익절 목표</dt>
+          <dd>직전 고점 도달 시 1/3 익절</dd>
+          <dt>최종 익절 트리거</dt>
+          <dd>50MA가 200MA 하향 돌파(데드크로스) 신호 발생 시 전량 청산</dd>
+        </dl>
+      </div>
+
+      <div class="strategy-card">
+        <div class="strategy-card-tag">Pattern 2 · Tier 2 매수</div>
+        <div class="strategy-card-title">Stage 2 진행 — 분할 매수</div>
+        <div class="strategy-card-body">
+          이미 추세 진행 중. <strong>50MA·200MA 조정 대기</strong>가 RR 최적화 전략. 현재가 추격은 비중 절반으로 제한.
+        </div>
+        <dl>
+          <dt>진입 트리거 (조정 시)</dt>
+          <dd>① 50MA 근접 조정 (현재가 -5~10%) 시 1차<br>② 200MA 근접 조정 (현재가 -15~25%) 시 2차 적극<br>③ 200MA 기울기 상승 유지 확인 필수</dd>
+          <dt>비중 분할</dt>
+          <dd>50MA 조정 시 50% · 200MA 조정 시 50%로 2분할</dd>
+          <dt>현재가 매수 시</dt>
+          <dd>목표 비중의 30%로 제한 — 50MA 이탈 시 손절</dd>
+          <dt>손절선</dt>
+          <dd>200MA 명확 이탈 + 50MA 데드크로스 임박 시</dd>
+          <dt>익절 목표</dt>
+          <dd>200MA 이격 +30%+ 도달 시 1/3 익절 · Pattern 3 진입 시 추가 익절</dd>
+        </dl>
+      </div>
+
+      <div class="strategy-card">
+        <div class="strategy-card-tag">Pattern 3 · 보유 관리</div>
+        <div class="strategy-card-title">Stage 2 가속 — 트레일링 스톱</div>
+        <div class="strategy-card-body">
+          신규 매수 부담. <strong>50MA를 트레일링 스톱으로 활용</strong>해 보유분 익절 관리. F 그룹 전체와 A 그룹 일부.
+        </div>
+        <dl>
+          <dt>신규 매수</dt>
+          <dd>금지 또는 목표 비중의 10% 이하 시험 매수만 허용</dd>
+          <dt>보유분 익절 (단계별)</dt>
+          <dd>200MA 이격 +40% 도달 시 1/3 익절 · +60% 도달 시 1/3 추가 · +80% 도달 시 1/3 추가</dd>
+          <dt>트레일링 스톱</dt>
+          <dd>50MA를 동적 손절선으로 설정 — 50MA 명확 이탈 시 잔여 전량 청산</dd>
+          <dt>관리 신호</dt>
+          <dd>RSI 80+ · 거래량 폭증 후 급감 · 신고가 갱신 실패 — 정점 신호 누적</dd>
+        </dl>
+      </div>
+
+      <div class="strategy-card">
+        <div class="strategy-card-tag">Pattern 4 · Tier 3 관전</div>
+        <div class="strategy-card-title">Stage 1 베이스 — 돌파 대기</div>
+        <div class="strategy-card-body">
+          매수 보류. <strong>Pattern 1 전환 신호 확인 후 진입</strong>. 베이스 기간이 길수록 다음 마크업의 폭발력이 큼.
+        </div>
+        <dl>
+          <dt>관전 신호</dt>
+          <dd>① 200MA 평탄화 → 상승 전환 시작<br>② 50MA가 200MA를 상향 돌파 시도<br>③ 거래량 점진적 증가 (매집 신호)</dd>
+          <dt>진입 트리거</dt>
+          <dd>위 3가지 모두 충족 + 베이스 박스 상단 돌파 → Pattern 1 전환 → Tier 1 룰 적용</dd>
+          <dt>주의</dt>
+          <dd>가짜 돌파(False Breakout) 빈번 — 돌파 후 3거래일 종가 유지 확인 필수</dd>
+          <dt>최대 보유 기간</dt>
+          <dd>6개월 이상 베이스 횡보 시 기회비용 고려해 관전 중단 검토</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3 class="subhead"><span class="num">02</span>Tier별 권장 비중 분배</h3>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>종목 수</th>
+          <th class="right">총 비중</th>
+          <th class="right">종목당 비중</th>
+          <th>매매 룰</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="feat">
+          <td class="name"><span class="badge t1">Tier 1</span> 최우선 매수</td>
+          <td>3종목 (티앤엘·휴젤·더블유게임즈)</td>
+          <td class="right pos">30%</td>
+          <td class="right">10%/종목</td>
+          <td>휴젤→티앤엘→더블유게임즈 순 분할 진입</td>
+        </tr>
+        <tr>
+          <td class="name"><span class="badge t2">Tier 2</span> 분할 매수</td>
+          <td>5종목 (F&amp;F·에코마케팅·HD현대일렉트릭·삼양식품·티씨케이)</td>
+          <td class="right">25%</td>
+          <td class="right">3~7%/종목</td>
+          <td>50MA·200MA 조정 대기 후 분할 (티씨케이 신규 금지)</td>
+        </tr>
+        <tr>
+          <td class="name"><span class="badge t3">Tier 3</span> 베이스 관전</td>
+          <td>7종목 (알테오젠 우선·표준 4·조건부 1·기타 1)</td>
+          <td class="right">15%</td>
+          <td class="right">2~3%/종목 (관전→진입)</td>
+          <td>알테오젠 우선 진입 · 나머지는 트리거 발생 후</td>
+        </tr>
+        <tr>
+          <td class="name"><span class="badge trim">Pattern 3</span> F 그룹 관리</td>
+          <td>~6종목 (SK하이닉스·삼성전자·HPSP·리노공업 등)</td>
+          <td class="right">10%</td>
+          <td class="right">기존 보유</td>
+          <td>트레일링 스톱 + 단계별 익절 (신규 금지)</td>
+        </tr>
+        <tr>
+          <td class="name">현금 / 단기채</td>
+          <td>—</td>
+          <td class="right warn">20%</td>
+          <td class="right">—</td>
+          <td>Tier 2 조정 대기 + Tier 3 트리거 발생 시 출동 재원</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="subhead"><span class="num">03</span>핵심 리스크 — Pattern 가짜 전환</h3>
+    <div class="callout terracotta">
+      <div class="callout-label">Risk · False Breakout</div>
+      <p>
+        <strong>Pattern 1 가짜 돌파</strong> · 200MA 돌파 후 3거래일 이내 다시 200MA 아래로 종가 마감하는 경우.
+        통계적으로 모든 200MA 돌파의 30~40%가 가짜 돌파다. <em>돌파 후 retest(눌림) → 재상승 패턴이 확인된 후 본격 진입</em>이 안전.
+      </p>
+      <p>
+        <strong>거래량 비확인 돌파</strong> · 거래량 평소 1.5배 이상이 동반되지 않은 돌파는 신뢰도가 낮다.
+        티앤엘처럼 실적 발표 등 펀더멘털 트리거가 명확할 때는 거래량이 자연스럽게 폭증하므로 신뢰도가 높음.
+      </p>
+      <p>
+        <strong>200MA 기울기 미확인</strong> · 주가가 200MA를 돌파했어도 200MA 자체가 여전히 하락 중이면 Stage 2가 아닌 Stage 4 하락 반등(dead cat bounce).
+        <em>200MA가 평탄에서 상승 전환한 후 돌파가 일어나야 진짜 Pattern 1</em>이다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL VERDICT ────────────────────── -->
+<section class="verdict">
+  <div class="verdict-inner">
+    <div class="verdict-tag">Final Verdict</div>
+    <p class="verdict-quote">
+      펀더멘털이 <em>종목을</em> 고르고,<br>
+      차트가 <em>시점을</em> 고른다.<br>
+      Tier 1 4종목이 1Q26의 첫 자리.
+    </p>
+    <div class="verdict-body">
+      <div>
+        <p>
+          <strong>최종 의견</strong>: Tier 1(Pattern 1) 4종목 40% · Tier 2(Pattern 2) 8종목 30% ·
+          Tier 3(Pattern 4) 5% · F 그룹 기존 보유 15% · 현금 10%.
+        </p>
+        <p>
+          1Q 고마진 138사를 6 그룹으로 분류한 결과 BUY 등급이 무려 35종목에 달했지만,
+          Stage Analysis로 재진단하면 <em>지금 당장 신규 매수 적기</em>는 4종목으로 좁혀진다.
+          200MA 돌파 직후·50MA 골든크로스 직후가 가장 RR 매력적인 자리이기 때문이다.
+        </p>
+        <p>
+          나머지 11종목은 BUY 등급이지만 <em>이미 추세 진행 중이라 추격 부담이 있어 50MA·200MA 조정 시 분할 진입</em>이 정답.
+          F 그룹은 Pattern 3 과열로 신규 매수 금지, 트레일링 스톱으로 보유분 관리만.
+        </p>
+        <p>
+          차트 분석은 펀더멘털을 부정하는 도구가 아니다. <em>같은 BUY 등급 안에서 진입 순서를 정해주는 도구</em>다.
+          1Q26의 답은 — 티앤엘이 1순위, F&amp;F가 2순위, 명인제약·에코마케팅이 3·4순위.
+        </p>
+      </div>
+      <dl class="verdict-actions">
+        <dt>Tier 1 · 즉시 매수</dt>
+        <dd>티앤엘 (340570) · F&amp;F (383220) · 명인제약 (317450) · 에코마케팅 (230360)</dd>
+        <dt>Tier 2 · 조정 대기 분할</dt>
+        <dd>SK바이오팜 · 파마리서치 · 알테오젠 · 삼성바이오로직스 · 클래시스 · 휴젤 · HD현대일렉트릭 · 삼양식품</dd>
+        <dt>Tier 3 · 베이스 관전</dt>
+        <dd>더블유게임즈 (Pattern 1 전환 신호 대기)</dd>
+        <dt>Pattern 3 · 트레일링 스톱</dt>
+        <dd>SK하이닉스 · 삼성전자 · HPSP · 리노공업 (F 그룹 기존 보유분)</dd>
+        <dt>매수 금지</dt>
+        <dd>D 그룹 전체 (Pattern 5-6) · F 그룹 신규</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ───────────────────────────── -->
+<footer class="report-footer">
+  <div class="report-footer-inner">
+    <div class="report-footer-brand">Chory <span>&amp;</span> Rochet</div>
+    <div class="report-footer-meta">The Margin Report · Vol. I, No. 5 · Stage Analysis Edition · Published 2026.05.19 · 1Q26 138사 + Stage Analysis</div>
+    <p class="report-footer-disclaimer">
+      본 보고서의 차트 패턴 진단은 시장 일반 흐름과 종목별 펀더멘털 변곡점을 기반으로 한 정성적 추정이며,
+      정확한 50MA·200MA 수치와 매매 타점은 실제 일봉 차트로 재확인이 필요합니다.
+      Stage Analysis는 모든 매매 결정의 완전한 룰이 아니라 진입·청산 의사결정의 보조 도구이며,
+      펀더멘털·밸류에이션·거시 환경과 결합해서 활용해야 합니다.
+      본 보고서는 정보 제공 목적이며 특정 종목의 매수·매도를 권유하는 것이 아닙니다.
+      투자에 따른 모든 위험과 결과는 투자자 본인에게 귀속됩니다.
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const PALETTE = {
+  forest: '#1E4632',
+  forestBright: '#3F8260',
+  plum: '#4A3F6E',
+  brass: '#A88B5C',
+  brassDark: '#856840',
+  slate: '#3D4A55',
+  sky: '#5E7B9C',
+  terracotta: '#8B3A2E',
+  terracottaSoft: '#B85A3F',
+  mute: '#7A7870',
+  ink: '#16160F'
+};
+
+Chart.defaults.font.family = "'DM Sans', sans-serif";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = '#7A7870';
+
+// ── Chart 2: Pattern × Group Distribution (stacked bar) ─
+new Chart(document.getElementById('chart-group-pattern'), {
+  type: 'bar',
+  data: {
+    labels: [
+      'P1 · Stage 2 진입',
+      'P2 · Stage 2 진행',
+      'P3 · Stage 2 가속',
+      'P4 · Stage 1 베이스',
+      'P5 · Stage 3 분배',
+      'P6 · Stage 4 하락'
+    ],
+    datasets: [
+      { label: 'A · 수성형 강자',   data: [1, 3, 1, 0, 0, 0], backgroundColor: PALETTE.forest,         borderRadius: 2 },
+      { label: 'B · 알파 머신',     data: [2, 2, 0, 1, 0, 0], backgroundColor: PALETTE.plum,           borderRadius: 2 },
+      { label: 'C · 글로벌 챔피언', data: [1, 4, 0, 0, 0, 0], backgroundColor: PALETTE.brass,          borderRadius: 2 },
+      { label: 'D · 회복 관전',     data: [0, 0, 0, 5, 3, 4], backgroundColor: PALETTE.slate,          borderRadius: 2 },
+      { label: 'E · 메모리 풀체인', data: [0, 4, 2, 0, 1, 0], backgroundColor: PALETTE.terracottaSoft, borderRadius: 2 },
+      { label: 'F · 사이클 정점',   data: [0, 0, 6, 0, 0, 0], backgroundColor: PALETTE.terracotta,     borderRadius: 2 }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top',
+        align: 'end',
+        labels: { font: { size: 11, weight: '500' }, padding: 14, boxWidth: 12, boxHeight: 12, color: '#3A3A33' }
+      },
+      tooltip: {
+        backgroundColor: PALETTE.ink,
+        titleFont: { size: 12, weight: '500' },
+        bodyFont: { size: 12 },
+        padding: 12,
+        cornerRadius: 2,
+        callbacks: {
+          label: ctx => '  ' + ctx.dataset.label + ': ' + ctx.parsed.y + '종목'
+        }
+      }
+    },
+    scales: {
+      x: {
+        stacked: true,
+        ticks: { font: { size: 11 }, color: '#3A3A33' },
+        grid: { display: false },
+        border: { color: '#E6E1D2' }
+      },
+      y: {
+        stacked: true,
+        title: { display: true, text: '종목 수 (추정 분포)', font: { size: 10.5, weight: '500' }, color: '#7A7870' },
+        ticks: { font: { size: 10.5 }, color: '#7A7870' },
+        grid: { color: '#EFEBDF', drawTicks: false },
+        border: { display: false }
+      }
+    }
+  }
+});
+
+// ── Chart 3: Scatter — 200MA vs 50MA 이격 (5/15 종가 기준 실제값) ─────
+new Chart(document.getElementById('chart-scatter'), {
+  type: 'scatter',
+  data: {
+    datasets: [
+      {
+        label: 'Tier 1 · Pattern 1',
+        data: [
+          { x: 19.8, y: 12.8, label: '티앤엘' },
+          { x: 5.0,  y: 9.1,  label: '휴젤' },
+          { x: 11.6, y: 12.3, label: '더블유게임즈' }
+        ],
+        backgroundColor: PALETTE.forest,
+        pointRadius: 11,
+        pointHoverRadius: 14,
+        borderColor: '#FFFFFF',
+        borderWidth: 2
+      },
+      {
+        label: 'Tier 2 · Pattern 2/3',
+        data: [
+          { x: 23.4, y: 25.4, label: 'F&F' },
+          { x: 15.8, y: 0.3,  label: '에코마케팅' },
+          { x: 44.7, y: 11.1, label: 'HD현대일렉트릭' },
+          { x: 10.0, y: 17.1, label: '삼양식품' },
+          { x: 67.7, y: 15.8, label: '티씨케이' }
+        ],
+        backgroundColor: PALETTE.forestBright,
+        pointRadius: 9,
+        pointHoverRadius: 12,
+        borderColor: '#FFFFFF',
+        borderWidth: 2
+      },
+      {
+        label: 'Tier 3 · Pattern 4 (베이스 관전)',
+        data: [
+          { x: -15.0, y: 1.9,  label: '알테오젠' },
+          { x: -12.7, y: -2.8, label: 'SK바이오팜' },
+          { x: -13.2, y: -8.5, label: '삼성바이오로직스' },
+          { x: -9.5,  y: -7.2, label: '클래시스' },
+          { x: -7.3,  y: -7.5, label: 'HD현대마린엔진' },
+          { x: -28.1, y: 4.5,  label: '파마리서치' }
+        ],
+        backgroundColor: PALETTE.brass,
+        pointRadius: 9,
+        pointHoverRadius: 12,
+        borderColor: '#FFFFFF',
+        borderWidth: 2
+      },
+      {
+        label: 'Pattern 3 · F 그룹 과열 (참고)',
+        data: [
+          { x: 163.4, y: 56.7, label: 'SK하이닉스' },
+          { x: 101.1, y: 27.3, label: '삼성전자' },
+          { x: 35.9,  y: 3.9,  label: 'HPSP' },
+          { x: 35.2,  y: -10.3, label: '리노공업' }
+        ],
+        backgroundColor: PALETTE.terracotta,
+        pointRadius: 9,
+        pointHoverRadius: 12,
+        borderColor: '#FFFFFF',
+        borderWidth: 2
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top',
+        align: 'end',
+        labels: { font: { size: 11, weight: '500' }, padding: 14, boxWidth: 12, boxHeight: 12, color: '#3A3A33' }
+      },
+      tooltip: {
+        backgroundColor: PALETTE.ink,
+        titleFont: { size: 12, weight: '500' },
+        bodyFont: { size: 12 },
+        padding: 14,
+        cornerRadius: 2,
+        callbacks: {
+          label: ctx => {
+            const fmt = v => (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
+            return '  ' + ctx.raw.label + ' · 200MA ' + fmt(ctx.raw.x) + ' · 50MA ' + fmt(ctx.raw.y);
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        title: { display: true, text: '200MA 이격 (%) — 좌측(음수)은 Pattern 4, 우측(과열)은 Pattern 3', font: { size: 11, weight: '500' }, color: '#7A7870' },
+        ticks: { font: { size: 10.5 }, color: '#7A7870', callback: v => (v >= 0 ? '+' : '') + v + '%' },
+        grid: { color: '#EFEBDF' },
+        border: { color: '#E6E1D2' },
+        suggestedMin: -35,
+        suggestedMax: 170
+      },
+      y: {
+        title: { display: true, text: '50MA 이격 (%) — 상단일수록 단기 과열', font: { size: 11, weight: '500' }, color: '#7A7870' },
+        ticks: { font: { size: 10.5 }, color: '#7A7870', callback: v => (v >= 0 ? '+' : '') + v + '%' },
+        grid: { color: '#EFEBDF' },
+        border: { display: false },
+        suggestedMin: -15,
+        suggestedMax: 60
+      }
+    }
+  }
+});
+</script>
+
+</body>
+</html>

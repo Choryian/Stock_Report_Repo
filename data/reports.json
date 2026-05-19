@@ -1,6 +1,23 @@
 {
   "reports": [
     {
+      "id": "2026-05-19-margin-report-vol1-no5-stage-analysis",
+      "title": "The Margin Report Vol.1 No.5 — 50MA·200MA 기반 15종목 Stage 재분류",
+      "summary": "Weinstein Stage Analysis 프레임으로 1Q 고마진 15종목의 200MA·50MA 이격을 5/15 종가 기준 정밀 산출. Pattern 5(회피)를 폐기하고 엘리어트 관점에서 Pattern 4(베이스 관전)로 통합 — Tier 1 3종목(티앤엘·휴젤·더블유게임즈), Tier 2 5종목(F&F·에코마케팅 등), Tier 3 7종목(알테오젠 우선)으로 재분류.",
+      "category": "종목분석",
+      "date": "2026-05-19",
+      "path": "reports/2026-05-19-margin-report-vol1-no5-stage-analysis.html",
+      "tags": [
+        "Stage Analysis",
+        "Weinstein",
+        "200MA",
+        "50MA",
+        "Pattern분석",
+        "Tier재분류",
+        "엘리어트"
+      ]
+    },
+    {
       "id": "2026-05-19-kr-midday",
       "title": "2026-05-19 KR 오전장 정리 및 오후장 대응",
       "summary": "갭하락 + 사이드카 발동 (3거래일 연속), KOSPI -0.6%대 회복, 외인 9거래일 연속 매도 -1.1조. 인계: 개장 보고서 B 우선이었으나 실제 C 발동 (반도체 갭하락 경고는 적중). 오후 시나리오 C 우선 (강도 -8). 방산·해운·방어주 단독 강세.",
