@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>외국인 수급 분석 — 13거래일 (2026.04.30~05.20, 코스피+코스닥)</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1115; --card:#181b22; --line:#262b35; --txt:#e8eaed; --sub:#9aa3b2;
+    --sell:#e5484d; --sellSoft:#7d2c2f; --buy:#2f9e6e; --accent:#c9a86a; --grid:#222730;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:'Segoe UI','Malgun Gothic',sans-serif;line-height:1.6;padding:32px 18px}
+  .wrap{max-width:1080px;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:26px}
+  .brand{color:var(--accent);font-size:13px;letter-spacing:2px;font-weight:600}
+  h1{font-size:25px;margin:6px 0 4px;font-weight:700}
+  .meta{color:var(--sub);font-size:13px}
+  h2{font-size:18px;margin:34px 0 14px;padding-left:10px;border-left:3px solid var(--accent)}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:8px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .kpi .l{color:var(--sub);font-size:12px}
+  .kpi .v{font-size:22px;font-weight:700;margin-top:4px}
+  .kpi .s{font-size:12px;color:var(--sub);margin-top:2px}
+  .red{color:var(--sell)} .green{color:var(--buy)} .gold{color:var(--accent)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 18px 8px;margin-bottom:8px}
+  .chartbox{position:relative;height:340px}
+  .note{color:var(--sub);font-size:12px;margin:10px 2px 0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line)}
+  th{color:var(--sub);font-weight:600;font-size:12px}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:20px;border:1px solid var(--line);color:var(--sub);margin-left:6px}
+  .analysis p{margin-bottom:12px;font-size:14.5px}
+  .analysis b{color:var(--txt)}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+  .pill h3{font-size:14px;margin-bottom:6px}
+  footer{margin-top:34px;border-top:1px solid var(--line);padding-top:16px;color:var(--sub);font-size:12px}
+  footer a{color:var(--accent);text-decoration:none}
+  @media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">CHORY &amp; ROCHET · MARKET FLOW</div>
+    <h1>외국인 수급 분석 — 매수에서 매도로 (13거래일)</h1>
+    <div class="meta">분석기간 2026.04.30 ~ 2026.05.20 (13거래일) · 코스피+코스닥 합산 · 작성 2026.05.21</div>
+  </header>
+
+  <div class="kpis">
+    <div class="kpi"><div class="l">순매수 정점 (5/6)</div><div class="v green">+4.9조</div><div class="s">5/4~5/6 이틀 +6.5조 매수</div></div>
+    <div class="kpi"><div class="l">매도전환 후 합산 (5/7~5/20)</div><div class="v red">-43.0조</div><div class="s">10거래일 연속 순매도</div></div>
+    <div class="kpi"><div class="l">단일일 최대 매도</div><div class="v red">-6.55조</div><div class="s">5/7 (코스피 -6.72조)</div></div>
+    <div class="kpi"><div class="l">코스닥은 순매수</div><div class="v green">+1.4조</div><div class="s">5/7~5/20, 코스피와 반대</div></div>
+  </div>
+
+  <h2>1. 일별 순매수·순매도 + 외국인보유비율 (이중 축)</h2>
+  <div class="card">
+    <div class="chartbox"><canvas id="daily"></canvas></div>
+  </div>
+  <p class="note"><b>막대(좌축)</b> 일별 순매수(+)/순매도(−) <b>합산(코스피+코스닥)</b> — 초록 = 순매수일(5/4·5/6), 빨강 = 순매도일(4/30·5/7~5/20). 전부 사용자 제공 확정치(단위 조). 막대에 마우스를 올리면 코스피/코스닥 분해 표시.<br>
+  <b>금색 라인(우축)</b> 외국인보유비율(%, 코스피·상장주식 수량 기준) — INDEXerGO(출처 KRX·KOFIA) 일별 확정치. 4/30 37.80% → 5/6 38.90% → 5/20 39.48%로 <b>매도 전환 후에도 39%대 횡보</b>(밴드 37.80~39.58%).<br>
+  검증 — 코스피 단독 5/7~5/20 순매도 <b>-44.4조</b>(언론 보도치와 일치), 코스닥은 같은 기간 <b>+1.4조 순매수</b> → 합산 -43.0조.</p>
+
+  <h2>2. 순누적 흐름 (4/30 기준, 합산)</h2>
+  <div class="card">
+    <div class="chartbox"><canvas id="cum"></canvas></div>
+  </div>
+  <p class="note">5/4~5/6 매수로 <b>+4.9조</b>까지 쌓였다가 5/7 매도 전환 후 5/20 <b>-38.2조</b>로 급반전. 고점(5/6 +4.9조)→저점 낙폭이 약 43조. ● 초록 = 순누적 (+) 구간, ● 빨강 = 순누적 (−) 구간.</p>
+
+  <h2>3. 지속 순매도 / 지속 순매수 종목</h2>
+  <div class="grid2">
+    <div class="card" style="padding-bottom:18px">
+      <table>
+        <thead><tr><th>지속 순매도 (반도체 클러스터)</th><th class="num">5/7~13 누적</th></tr></thead>
+        <tbody>
+          <tr><td>삼성전자 <span class="tag">전 기간 1위</span></td><td class="num red">-11.39조</td></tr>
+          <tr><td>SK하이닉스 <span class="tag">전 기간 2위</span></td><td class="num red">-10.01조</td></tr>
+          <tr><td>삼성전자우</td><td class="num red">-1.02조</td></tr>
+          <tr><td>SK스퀘어</td><td class="num red">-0.66조</td></tr>
+          <tr><td>삼성전기 · 한미반도체</td><td class="num red">반도체 후공정 동반</td></tr>
+          <tr><td>현대모비스 <span class="tag">5/20 신규 상위</span></td><td class="num red">-0.17조</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card" style="padding-bottom:18px">
+      <table>
+        <thead><tr><th>지속 순매수 (로테이션 수혜)</th><th class="num">5/7~13 누적</th></tr></thead>
+        <tbody>
+          <tr><td>두산로보틱스 <span class="tag">전 기간 1위</span></td><td class="num green">+0.29조</td></tr>
+          <tr><td>POSCO홀딩스 · 포스코퓨처엠</td><td class="num green">+0.13조</td></tr>
+          <tr><td>현대건설 · 대우건설</td><td class="num green">+0.11조</td></tr>
+          <tr><td>삼성SDI · 대한전선</td><td class="num green">+0.18조</td></tr>
+          <tr><td>LG전자(전장) · 현대차 · 기아</td><td class="num green">+0.11조</td></tr>
+          <tr><td>산일전기 · 한화엔진(전력·조선)</td><td class="num green">선별 매수</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="note">순매도 규모(조 단위)가 순매수 규모(천억 단위)를 압도 — 외국인은 "대형 반도체를 팔아 마련한 현금의 일부만" 다른 섹터로 재배분하는 중. 순(net) 자금은 강하게 유출.</p>
+
+  <h2>4. 해석</h2>
+  <div class="analysis">
+    <div class="pill">
+      <h3 class="red">① 무엇을 팔았나 — 반도체 차익실현</h3>
+      <p>5/4~5/6 외국인은 <b>+6.5조 순매수</b>로 코스피를 7,384(5/6)까지 끌어올렸으나(4/30은 이미 -1.7조 매도), 5/7 돌연 <b>-6.55조(합산·코스피 -6.72조, 역대 최대급)</b> 순매도로 전환. 이후 매도의 <b>약 90%가 삼성전자·SK하이닉스 두 종목</b>에 집중됐습니다. 4월 초~5/6 삼성전자 +59%, SK하이닉스 +105% 폭등에 따른 차익실현 성격이 뚜렷합니다.</p>
+    </div>
+    <div class="pill">
+      <h3 class="green">② 무엇을 샀나 — 섹터 로테이션</h3>
+      <p>반도체에서 뺀 자금의 일부가 <b>로봇(두산로보틱스), 철강·소재(POSCO홀딩스·포스코퓨처엠), 2차전지(삼성SDI), 전장(LG전자), 자동차(현대차·기아), 건설·전력기기·전선(현대건설·대한전선·산일전기)</b>로 선별 이동. <b>시장 단위로도 뚜렷</b> — 외국인은 코스피 대형주를 던지는 동안 <b>코스닥은 5/7~5/20 +1.4조 순매수</b>로, 매도세가 코스피(특히 반도체)에 집중됐음을 보여줍니다. 다만 종목당 수백~수천억 규모로 코스피 매도(조 단위)를 상쇄하진 못함.</p>
+    </div>
+    <div class="pill">
+      <h3 class="gold">③ 추세 전환 신호</h3>
+      <p>일별 합산 순매도는 5/7(-6.55조) → 5/12(-5.10조)·5/15(-5.28조)·5/19(-5.62조) 고강도 지속 → 5/20(-2.74조)으로 둔화. <b>5/21 장중에는 매도가 더 급감하고 코스피가 +4%대 반등</b>(AI 메모리·금융주 주도)해 정점 통과 가능성을 시사하나, 5/21 수치는 본 집계(~5/20)에 미포함입니다.</p>
+    </div>
+    <div class="pill">
+      <h3>④ "비율"로 보면 외국인은 거의 안 줄었다 <span class="tag">확정 데이터</span></h3>
+      <p>외국인보유비율(상장주식 수량 기준)은 매수·급등기였던 <b>4/30 37.80% → 5/6 38.90%</b>로 올라선 뒤, 매도 전환 이후에도 <b>5/20 39.48%</b>로 39%대를 유지했습니다(전 구간 밴드 37.80~39.58%). 매도 국면에 코스피서 -44조를 던졌는데도 지분율(코스피 기준)이 거의 안 줄어든 것은 ⑴ 그 규모가 외국인 총보유액(약 2,200~2,400조)의 2% 안팎이고 ⑵ 잔여 보유분 가치가 받쳐줬기 때문 — <b>"대탈출"이 아니라 반도체 비중 조절 + 차익실현</b>임을 수량 지분율이 확증합니다.</p>
+    </div>
+  </div>
+
+  <footer>
+    <b>데이터 출처:</b> 일별 코스피·코스닥 외국인 순매수 금액 및 외국인보유비율(INDEXerGO/KRX·KOFIA) — 모두 사용자 제공. 코스피 일별 종가 Investing.com. 종목 랭킹·시황 맥락은 머니투데이·서울경제·한국투자증권 등.<br>
+    <b>순매수/순매도:</b> 4/30~5/20 코스피·코스닥 일별 모두 사용자 제공 확정치(단위 조). <b>합계 = 코스피 + 코스닥</b>(보고서 자동 계산). 검증 — 코스피 5/7~5/20 합 -44.43조로 언론 보도 누적치와 일치.<br>
+    <b>외국인보유비율(%) 라인은 코스피·상장주식 수량 기준 확정치</b>로, 시총가치(금액) 기준과는 개념이 다릅니다. 5/21은 미집계.<br><br>
+    © 2026 Chory &amp; Rochet · Market Flow Report
+  </footer>
+</div>
+
+<script>
+const daily = {
+  labels: ['4/30','5/4','5/6','5/7','5/8','5/11','5/12','5/13','5/14','5/15','5/18','5/19','5/20'],
+  // 외국인 순매수(조원), 음수=순매도 — 사용자 제공 확정치
+  kospi:  [-1.462,2.946,3.110,-6.7173,-5.312,-2.837,-5.626,-3.759,-2.168,-5.661,-3.652,-5.747,-2.948],
+  kosdaq: [-0.217,0.556,-0.063,0.169,0.4,0.106,0.522,-0.594,-0.148,0.38,0.23,0.125,0.204],
+  // 외국인보유비율(%, 코스피·상장주식 수량 기준) — 일별 확정치(INDEXerGO/KRX·KOFIA)
+  ratio:  [37.80,38.17,38.90,39.08,38.99,39.45,39.40,39.58,39.54,39.31,39.49,39.43,39.48],
+  idx:    [6599,6937,7385,7490,7498,7822,7643,7844,7981,7493,7516,7272,7209]
+};
+daily.total = daily.kospi.map((v,i)=>+(v+daily.kosdaq[i]).toFixed(3));
+Chart.defaults.color = '#9aa3b2';
+Chart.defaults.font.family = "'Segoe UI','Malgun Gothic',sans-serif";
+
+new Chart(document.getElementById('daily'), {
+  data:{ labels:daily.labels, datasets:[
+    { type:'bar', label:'일별 순매수(+)/순매도(−) 합산 (조원, 좌축)', order:2,
+      data: daily.total,
+      backgroundColor: daily.total.map(v=>v>=0?'#2f9e6e':'#e5484d'),
+      borderRadius:4, barPercentage:0.72, yAxisID:'y' },
+    { type:'line', label:'외국인보유비율(코스피, %, 우축)', order:1, yAxisID:'yR',
+      data: daily.ratio, borderColor:'#c9a86a', borderWidth:2.4,
+      backgroundColor:'#c9a86a', tension:0.3,
+      pointRadius:4, pointBackgroundColor:'#0f1115', pointBorderColor:'#c9a86a', pointBorderWidth:2 }
+  ]},
+  options:{ responsive:true, maintainAspectRatio:false,
+    interaction:{mode:'index',intersect:false},
+    plugins:{ legend:{display:true, labels:{usePointStyle:true,boxWidth:8,padding:14}},
+      tooltip:{callbacks:{label:c=>{
+        if(c.dataset.type==='line')
+          return ' 외국인보유비율 '+c.parsed.y.toFixed(2)+'% (코스피, 지수 '+daily.idx[c.dataIndex].toLocaleString()+')';
+        const i=c.dataIndex, t=daily.total[i];
+        const side=t>=0?'순매수 +':'순매도 ';
+        return ' 합계 '+side+t.toFixed(2)+'조  (코스피 '+daily.kospi[i].toFixed(3)+' · 코스닥 '+daily.kosdaq[i].toFixed(3)+')';
+      }}}},
+    scales:{
+      y:{ position:'left', title:{display:true,text:'일별 순매수(+)/순매도(−) 합산 (조원)'}, grid:{color:'#222730'} },
+      yR:{ position:'right', title:{display:true,text:'외국인보유비율 (%)'},
+        grid:{drawOnChartArea:false}, suggestedMin:37, suggestedMax:40,
+        ticks:{color:'#c9a86a', callback:v=>v.toFixed(1)+'%'} },
+      x:{ grid:{display:false} } }
+  }
+});
+
+let run=0; const cum = daily.total.map(v=>{run+=v; return +run.toFixed(2);});
+new Chart(document.getElementById('cum'), {
+  type:'line',
+  data:{ labels:daily.labels, datasets:[{
+    data:cum, fill:false, borderColor:'#c9a86a', borderWidth:2.2, tension:0.25,
+    pointRadius:4,
+    pointBackgroundColor:cum.map(v=>v>=0?'#2f9e6e':'#e5484d'),
+    pointBorderColor:cum.map(v=>v>=0?'#2f9e6e':'#e5484d')
+  }]},
+  options:{ responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{display:false},
+      tooltip:{callbacks:{label:c=>' 순누적 '+(c.parsed.y>=0?'+':'')+c.parsed.y.toFixed(1)+'조'}}},
+    scales:{ y:{ title:{display:true,text:'순누적 순매수(+)/순매도(−) 합산 (조원)'}, grid:{color:'#222730'} },
+      x:{ grid:{display:false} } }
+  }
+});
+</script>
+</body>
+</html>
