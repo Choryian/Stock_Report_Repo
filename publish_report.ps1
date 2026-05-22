@@ -49,7 +49,7 @@ param(
   [Parameter(Mandatory = $true)][string]$Title,
   [Parameter(Mandatory = $true)][string]$Summary,
   [Parameter(Mandatory = $true)]
-  [ValidateSet("시황", "종목분석", "섹터·테마", "공지", "와인")]
+  [ValidateSet("시황", "종목분석", "섹터·테마", "공지", "와인", "로드맵리뷰")]
   [string]$Category,
   [string]$Slug = "",
   [string]$Tags = "",
@@ -142,6 +142,18 @@ $json.reports = @($newEntry) + $kept
 $out = [ordered]@{ reports = $json.reports } | ConvertTo-Json -Depth 6
 [IO.File]::WriteAllText($jsonPath, $out, [Text.UTF8Encoding]::new($false))
 Write-Host "✓ Updated data/reports.json (id=$id)" -ForegroundColor Green
+
+# 4b. Roadmap figure sync (로드맵리뷰 전용) --------------------------------
+# 같은 커밋(git add -A)에 포함되도록 commit 직전에 로드맵 그림을 동기화한다.
+if ($Category -eq "로드맵리뷰") {
+  $syncScript = Join-Path $RepoRoot "sync_roadmap.ps1"
+  if (Test-Path $syncScript) {
+    & $syncScript -Date $Date | Out-Null
+    Write-Host "✓ Synced roadmap figure → roadmap/index.html" -ForegroundColor Green
+  } else {
+    Write-Host "⚠ sync_roadmap.ps1 없음 — 로드맵 그림 동기화 건너뜀" -ForegroundColor Yellow
+  }
+}
 
 # 5. Git add / commit / push -----------------------------------------------
 Push-Location $RepoRoot
