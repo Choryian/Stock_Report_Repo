@@ -1,6 +1,21 @@
 {
   "reports": [
     {
+      "id": "2026-05-22-us-quantum-computing-sector",
+      "title": "미국 양자컴퓨팅 시장 종합 분석 보고서",
+      "summary": "2026.5.21 미국 정부의 양자 9사 $2B 지분참여 정책을 분석하고, IBM·IONQ·QBTS·RGTI·INFQ·QUBT 6종목을 실시간 일봉 기반 엘리어트 파동으로 재카운트. 섹터 OVERWEIGHT, Top Pick은 IBM. 정책은 다운사이드 플로어이나 매출 베이스가 작아 펀더멘털 갭이 큼.",
+      "category": "섹터·테마",
+      "date": "2026-05-22",
+      "path": "reports/2026-05-22-us-quantum-computing-sector.html",
+      "tags": [
+        "양자컴퓨팅",
+        "미국정책",
+        "IBM",
+        "엘리어트파동",
+        "섹터분석"
+      ]
+    },
+    {
       "id": "2026-05-22-kospi-weekly-roadmap-review",
       "title": "코스피 주간 로드맵 & 파동 리뷰 — 1회차 (2026-W21)",
       "summary": "5/18~5/22 실측 검증. 정점 8,047 → 저점 7,054(-12.3%) → 2거래일 반등으로 84% 되돌림. 조정 종료 임박 vs 8,040 미돌파. 외국인 주간 −약15조 순매도, 반등은 기관·개인 주도. 다음주 가이드 포함.",
