@@ -83,6 +83,17 @@ function Inject-GA {
   return $true
 }
 
+function Inject-Header {
+  param([string]$Path)
+  $html = [IO.File]::ReadAllText($Path, [Text.UTF8Encoding]::new($false))
+  if ($html -match 'assets/report-header\.js') { return $false }  # already present
+  if ($html -notmatch '(?i)</head>') { return $false }            # no </head>, skip
+  $snippet = '<script defer src="../assets/report-header.js"></script>'
+  $html = [regex]::Replace($html, '(?i)</head>', "$snippet`n</head>", 1)
+  [IO.File]::WriteAllText($Path, $html, [Text.UTF8Encoding]::new($false))
+  return $true
+}
+
 # 1. Resolve source ---------------------------------------------------------
 if (-not (Test-Path $File)) { throw "File not found: $File" }
 $src = (Resolve-Path $File).Path
@@ -110,6 +121,11 @@ Write-Host "✓ Copied → $relPath" -ForegroundColor Green
 # 3b. Inject GA4 tracking if missing
 if (Inject-GA -Path $targetPath -Id $GaId) {
   Write-Host "✓ Injected GA4 tag ($GaId)" -ForegroundColor Green
+}
+
+# 3c. Inject shared site header bar if missing
+if (Inject-Header -Path $targetPath) {
+  Write-Host "✓ Injected site header bar" -ForegroundColor Green
 }
 
 # 4. Update reports.json ----------------------------------------------------
