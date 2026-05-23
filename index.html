@@ -44,26 +44,49 @@
     <p class="hero-sub">시황 브리핑, 종목 분석, 섹터·테마 모니터링 — 매일 업데이트되는 리서치 자료실</p>
   </section>
 
-  <section class="toolbar">
-    <div class="filters" id="filters">
-      <button class="chip active" data-cat="all">전체</button>
-      <button class="chip" data-cat="시황">시황</button>
-      <button class="chip" data-cat="종목분석">종목분석</button>
-      <button class="chip" data-cat="섹터·테마">섹터·테마</button>
-      <button class="chip" data-cat="공지">공지</button>
-    </div>
-    <div class="search">
-      <input type="search" id="search" placeholder="제목·태그·요약 검색…" autocomplete="off">
-    </div>
-  </section>
+  <div class="layout">
 
-  <section class="report-grid" id="reportGrid">
-    <!-- JS가 렌더링 -->
-  </section>
+    <!-- ===== 좌측 메인: 분석·종목·섹터 등 보고서 ===== -->
+    <div class="main-col">
+      <section class="toolbar">
+        <div class="filters" id="filters">
+          <button class="chip active" data-cat="all">전체</button>
+          <button class="chip" data-cat="종목분석">종목분석</button>
+          <button class="chip" data-cat="섹터·테마">섹터·테마</button>
+          <button class="chip" data-cat="로드맵리뷰">로드맵리뷰</button>
+          <button class="chip" data-cat="공지">공지</button>
+        </div>
+        <div class="search">
+          <input type="search" id="search" placeholder="제목·태그·요약 검색…" autocomplete="off">
+        </div>
+      </section>
 
-  <section class="empty" id="empty" hidden>
-    <p>조건에 맞는 보고서가 없습니다.</p>
-  </section>
+      <section class="report-grid" id="reportGrid">
+        <!-- JS가 렌더링 -->
+      </section>
+
+      <section class="empty" id="empty" hidden>
+        <p>조건에 맞는 보고서가 없습니다.</p>
+      </section>
+    </div>
+
+    <!-- ===== 우측 사이드바: 시황 자료 ===== -->
+    <aside class="side-col">
+      <div class="side-panel">
+        <div class="side-head">
+          <h2>시황 자료</h2>
+          <span class="side-count" id="briefCount"></span>
+        </div>
+        <div class="brief-list" id="briefList">
+          <!-- JS가 렌더링 -->
+        </div>
+        <div class="brief-empty" id="briefEmpty" hidden>
+          <p>시황 보고서가 없습니다.</p>
+        </div>
+      </div>
+    </aside>
+
+  </div>
 
   <section id="about" class="about">
     <h2>About</h2>

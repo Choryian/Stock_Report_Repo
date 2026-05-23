@@ -4,6 +4,13 @@
   const empty = document.getElementById('empty');
   const filters = document.getElementById('filters');
   const search = document.getElementById('search');
+  const briefList = document.getElementById('briefList');
+  const briefEmpty = document.getElementById('briefEmpty');
+  const briefCount = document.getElementById('briefCount');
+
+  // 우측 사이드바로 분리되는 카테고리(시황)와, 별도 페이지가 있어 메인에서 제외할 카테고리(와인)
+  const SIDE_CAT = '시황';
+  const EXCLUDE_FROM_MAIN = ['와인'];
 
   let reports = [];
   let activeCat = 'all';
@@ -29,8 +36,7 @@
       .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
-  function matches(r) {
-    if (activeCat !== 'all' && r.category !== activeCat) return false;
+  function matchesQuery(r) {
     if (!query) return true;
     const q = query.toLowerCase();
     const hay = [
@@ -38,6 +44,14 @@
       (r.tags || []).join(' ')
     ].join(' ').toLowerCase();
     return hay.includes(q);
+  }
+
+  // 메인 그리드용: 시황·와인 제외 + 카테고리/검색 필터
+  function matchesMain(r) {
+    if (r.category === SIDE_CAT) return false;
+    if (EXCLUDE_FROM_MAIN.includes(r.category)) return false;
+    if (activeCat !== 'all' && r.category !== activeCat) return false;
+    return matchesQuery(r);
   }
 
   function todayStr() {
@@ -67,8 +81,18 @@
       </article>`;
   }
 
-  function render() {
-    const filtered = reports.filter(matches);
+  function briefItemHtml(r) {
+    const isNew = r.date === todayStr();
+    const badge = isNew ? '<span class="brief-new">NEW</span>' : '';
+    return `
+      <a class="brief-item" href="${escapeHtml(r.path)}">
+        <div class="brief-date">${escapeHtml(r.date || '')}${badge}</div>
+        <div class="brief-title">${escapeHtml(r.title || '제목 없음')}</div>
+      </a>`;
+  }
+
+  function renderMain() {
+    const filtered = reports.filter(matchesMain);
     if (filtered.length === 0) {
       grid.innerHTML = '';
       empty.hidden = false;
@@ -76,6 +100,24 @@
     }
     empty.hidden = true;
     grid.innerHTML = filtered.map(cardHtml).join('');
+  }
+
+  function renderBrief() {
+    // 시황은 검색어에는 반응하지만 좌측 카테고리 필터에는 영향받지 않음
+    const briefs = reports.filter(r => r.category === SIDE_CAT && matchesQuery(r));
+    briefCount.textContent = briefs.length ? `${briefs.length}건` : '';
+    if (briefs.length === 0) {
+      briefList.innerHTML = '';
+      briefEmpty.hidden = false;
+      return;
+    }
+    briefEmpty.hidden = true;
+    briefList.innerHTML = briefs.map(briefItemHtml).join('');
+  }
+
+  function render() {
+    renderMain();
+    renderBrief();
   }
 
   filters.addEventListener('click', (e) => {
