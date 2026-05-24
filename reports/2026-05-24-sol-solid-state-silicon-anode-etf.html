@@ -1,0 +1,2092 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOL 전고체배터리&실리콘음극재 ETF 종합 분석 보고서</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0d1b3e;
+  --navy-deep: #061027;
+  --blue: #1a3a7c;
+  --blue-light: #3b5fa0;
+  --green: #0a5c2f;
+  --green-light: #e8f5ed;
+  --red: #8b0000;
+  --red-light: #fde8e8;
+  --amber: #b45309;
+  --amber-light: #fef3c7;
+  --gray-light: #f0f2f8;
+  --gray-mid: #e2e6f0;
+  --gray-text: #5b6378;
+  --gold: #c9a64e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f7f8fc;
+  color: #1a1a1a;
+  line-height: 1.65;
+  font-size: 14.5px;
+  font-weight: 400;
+}
+.mono { font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+.container { max-width: 1180px; margin: 0 auto; background: #fff; box-shadow: 0 2px 24px rgba(0,0,0,0.08); }
+
+/* Header */
+.hero {
+  background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 45%, var(--blue) 100%);
+  color: #fff;
+  padding: 48px 50px 42px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  right: -80px; top: -80px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(201,166,78,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2.5px;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 5px 12px;
+  border-radius: 3px;
+  margin-bottom: 18px;
+}
+.hero h1 {
+  font-size: 33px; font-weight: 800;
+  margin-bottom: 6px;
+  letter-spacing: -0.7px;
+  line-height: 1.25;
+}
+.hero .subtitle {
+  font-size: 15px;
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 26px;
+  font-weight: 400;
+}
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+.hero-meta-item .label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.hero-meta-item .value {
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+}
+.hero-meta-item .value.mono { font-size: 19px; }
+
+/* Decision Banner */
+.decision-banner {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr 1fr;
+  gap: 0;
+}
+.decision-cell {
+  padding: 26px 28px;
+  color: #fff;
+  position: relative;
+}
+.decision-cell .label {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  margin-bottom: 8px;
+  opacity: 0.85;
+}
+.decision-cell .value {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+.decision-cell .sub {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 5px;
+}
+.decision-cell:nth-child(1) { background: var(--green); }
+.decision-cell:nth-child(2) { background: var(--navy); }
+.decision-cell:nth-child(3) { background: var(--blue); }
+.decision-cell:nth-child(4) { background: var(--navy-deep); }
+
+/* Section */
+.section { padding: 42px 50px; border-bottom: 1px solid var(--gray-mid); }
+.section:last-child { border-bottom: none; }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 26px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--navy);
+}
+.section-num {
+  background: var(--navy);
+  color: #fff;
+  width: 36px; height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 3px;
+}
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.4px;
+}
+.section-title-en {
+  font-size: 12px;
+  color: var(--gray-text);
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  margin-top: 2px;
+}
+
+/* Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.info-cell {
+  background: var(--gray-light);
+  padding: 18px 20px;
+  border-left: 3px solid var(--blue);
+  border-radius: 0 4px 4px 0;
+}
+.info-cell .label {
+  font-size: 11.5px;
+  color: var(--gray-text);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.info-cell .value {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.info-cell .value.mono { font-size: 18px; }
+.info-cell .sub { font-size: 11.5px; color: var(--gray-text); margin-top: 2px; }
+
+/* Holdings Table */
+.holdings-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+  font-size: 13.5px;
+}
+.holdings-table thead th {
+  background: var(--navy);
+  color: #fff;
+  padding: 13px 12px;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-size: 12.5px;
+}
+.holdings-table tbody td {
+  padding: 11px 12px;
+  border-bottom: 1px solid var(--gray-mid);
+  vertical-align: middle;
+}
+.holdings-table tbody tr:nth-child(even) { background: #fafbfd; }
+.holdings-table tbody tr:hover { background: #f0f4fa; }
+.weight-bar {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--blue) 0%, var(--blue-light) 100%);
+  height: 18px;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.market-badge {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+.market-badge.kospi { background: #1a3a7c; color: #fff; }
+.market-badge.kosdaq { background: #b45309; color: #fff; }
+
+/* Theme cards */
+.theme-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0;
+}
+.theme-card {
+  background: linear-gradient(135deg, #fff 0%, var(--gray-light) 100%);
+  border: 1px solid var(--gray-mid);
+  border-left: 4px solid var(--navy);
+  padding: 22px 24px;
+  border-radius: 4px;
+}
+.theme-card h4 {
+  color: var(--navy);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.theme-card h4::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 12px;
+}
+.theme-card p {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #2a2a2a;
+}
+.theme-card .stat {
+  display: inline-block;
+  background: var(--navy);
+  color: #fff;
+  padding: 3px 9px;
+  border-radius: 3px;
+  font-size: 11.5px;
+  font-weight: 700;
+  margin-top: 10px;
+  letter-spacing: 0.4px;
+}
+
+/* Stock Card */
+.stock-card {
+  background: #fff;
+  border: 1px solid var(--gray-mid);
+  border-radius: 6px;
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+.stock-card-header {
+  background: linear-gradient(90deg, var(--navy) 0%, var(--blue) 100%);
+  color: #fff;
+  padding: 16px 22px;
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr 1fr 1.4fr;
+  gap: 14px;
+  align-items: center;
+}
+.stock-card-header .name {
+  font-size: 17px;
+  font-weight: 700;
+}
+.stock-card-header .name small {
+  font-size: 11.5px;
+  font-weight: 500;
+  opacity: 0.75;
+  margin-left: 6px;
+}
+.stock-card-header .item .l {
+  font-size: 10.5px;
+  opacity: 0.75;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+}
+.stock-card-header .item .v {
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 1px;
+}
+.stock-card-header .item .v.mono { font-family: 'JetBrains Mono', monospace; }
+.stock-card-body { padding: 20px 22px 22px; }
+.stock-card-body h5 {
+  color: var(--navy);
+  font-size: 13.5px;
+  font-weight: 700;
+  margin: 12px 0 7px;
+  letter-spacing: -0.2px;
+}
+.stock-card-body h5:first-child { margin-top: 0; }
+.stock-card-body p { font-size: 13px; line-height: 1.68; color: #2c2c2c; }
+.stock-card-body ul { list-style: none; padding: 0; margin: 6px 0; }
+.stock-card-body ul li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 13px;
+  margin-bottom: 4px;
+  line-height: 1.6;
+}
+.stock-card-body ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--blue);
+  font-weight: 700;
+}
+
+/* Price history table */
+.price-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  margin: 14px 0;
+}
+.price-history-table thead th {
+  background: var(--navy);
+  color: #fff;
+  padding: 9px 7px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 0.3px;
+}
+.price-history-table thead th:first-child {
+  text-align: left;
+  padding-left: 14px;
+}
+.price-history-table tbody td {
+  padding: 9px 7px;
+  border-bottom: 1px solid var(--gray-mid);
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 12px;
+}
+.price-history-table tbody td:first-child {
+  text-align: left;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+  padding-left: 14px;
+  color: var(--navy);
+}
+.price-history-table tbody tr:nth-child(even) { background: #fafbfd; }
+.price-history-table .pos { color: var(--green); font-weight: 700; }
+.price-history-table .neg { color: var(--red); font-weight: 700; }
+.price-history-table .highlight { background: var(--amber-light); }
+
+/* Elliott Wave */
+.wave-block {
+  background: var(--navy-deep);
+  color: #e8eaf0;
+  padding: 22px 26px;
+  border-radius: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.85;
+  margin: 14px 0;
+  overflow-x: auto;
+  border-left: 4px solid var(--gold);
+}
+.wave-block .key { color: var(--gold); font-weight: 700; }
+.wave-block .num { color: #88c0d0; font-weight: 600; }
+.wave-block .up { color: #a3e635; font-weight: 600; }
+.wave-block .down { color: #f87171; font-weight: 600; }
+.wave-block .comment { color: #94a3b8; font-style: italic; }
+
+/* Fibonacci Bar */
+.fib-section {
+  background: var(--gray-light);
+  padding: 22px 26px;
+  border-radius: 5px;
+  margin: 14px 0;
+}
+.fib-section h5 {
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.fib-bar {
+  display: grid;
+  grid-template-columns: 90px 1fr 110px 90px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-size: 12.5px;
+}
+.fib-bar .level { font-weight: 700; color: var(--navy); }
+.fib-bar .price {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  text-align: right;
+  color: #1a1a1a;
+}
+.fib-bar .visual {
+  height: 22px;
+  background: var(--gray-mid);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+.fib-bar .visual .fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  border-radius: 2px;
+}
+.fib-bar .tag {
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+.fib-bar.r236 .fill { background: linear-gradient(90deg, #fde047, #facc15); width: 23.6%; }
+.fib-bar.r382 .fill { background: linear-gradient(90deg, #fbbf24, #f59e0b); width: 38.2%; }
+.fib-bar.r500 .fill { background: linear-gradient(90deg, #f59e0b, #d97706); width: 50%; }
+.fib-bar.r618 .fill { background: linear-gradient(90deg, #ea580c, #dc2626); width: 61.8%; }
+.fib-bar.r786 .fill { background: linear-gradient(90deg, #dc2626, #991b1b); width: 78.6%; }
+.fib-bar.e100 .fill { background: linear-gradient(90deg, #4ade80, #22c55e); width: 100%; }
+.fib-bar.e1272 .fill { background: linear-gradient(90deg, #22c55e, #15803d); width: 100%; }
+.fib-bar.e1382 .fill { background: linear-gradient(90deg, #16a34a, #15803d); width: 100%; }
+.fib-bar.e1618 .fill { background: linear-gradient(90deg, #15803d, #14532d); width: 100%; }
+.fib-bar.e2000 .fill { background: linear-gradient(90deg, #14532d, #052e16); width: 100%; }
+
+.fib-bar.r236 .tag { background: #fde047; color: #713f12; }
+.fib-bar.r382 .tag { background: #fbbf24; color: #78350f; }
+.fib-bar.r500 .tag { background: #f59e0b; color: #fff; }
+.fib-bar.r618 .tag { background: #dc2626; color: #fff; }
+.fib-bar.r786 .tag { background: #991b1b; color: #fff; }
+.fib-bar.e100 .tag, .fib-bar.e1272 .tag, .fib-bar.e1382 .tag, .fib-bar.e1618 .tag, .fib-bar.e2000 .tag { background: var(--green); color: #fff; }
+
+/* Scenarios */
+.scenario-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  margin: 20px 0;
+}
+.scenario {
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid var(--gray-mid);
+}
+.scenario-head {
+  padding: 14px 20px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.scenario-body { padding: 18px 20px 20px; }
+.scenario-body .target {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 4px 0 10px;
+}
+.scenario-body .return {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 12.5px;
+  margin-bottom: 12px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.scenario-body p { font-size: 13px; line-height: 1.65; color: #2c2c2c; }
+.scenario.bull .scenario-head { background: var(--green); }
+.scenario.bull .return { background: var(--green-light); color: var(--green); }
+.scenario.neutral .scenario-head { background: var(--blue); }
+.scenario.neutral .return { background: #e0e9f8; color: var(--blue); }
+.scenario.bear .scenario-head { background: var(--red); }
+.scenario.bear .return { background: var(--red-light); color: var(--red); }
+.scenario-prob {
+  background: rgba(255,255,255,0.18);
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Strategy */
+.strategy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  margin: 20px 0;
+}
+.strategy-card {
+  background: linear-gradient(180deg, #fff 0%, var(--gray-light) 100%);
+  border: 1px solid var(--gray-mid);
+  border-radius: 5px;
+  padding: 20px 22px;
+  border-top: 4px solid var(--navy);
+}
+.strategy-card h4 {
+  color: var(--navy);
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--gray-mid);
+}
+.strategy-card.buy { border-top-color: var(--green); }
+.strategy-card.sell { border-top-color: var(--blue); }
+.strategy-card.stop { border-top-color: var(--red); }
+.strategy-step {
+  display: grid;
+  grid-template-columns: 70px 1fr 85px;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--gray-mid);
+  align-items: center;
+  font-size: 12.5px;
+}
+.strategy-step:last-child { border-bottom: none; }
+.strategy-step .stage { font-weight: 700; color: var(--gray-text); font-size: 11.5px; }
+.strategy-step .desc { font-size: 12px; line-height: 1.5; }
+.strategy-step .price {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  text-align: right;
+  color: var(--navy);
+  font-size: 12.5px;
+}
+
+/* Risk Cards */
+.risk-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 18px 0;
+}
+.risk-card {
+  background: #fef9f4;
+  border-left: 4px solid var(--amber);
+  padding: 16px 20px;
+  border-radius: 0 4px 4px 0;
+}
+.risk-card h5 {
+  color: var(--amber);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.risk-card p { font-size: 12.8px; line-height: 1.65; color: #2c2c2c; }
+
+/* Final Box */
+.final-box {
+  background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 50%, var(--blue) 100%);
+  color: #fff;
+  padding: 40px 50px;
+  position: relative;
+}
+.final-box::before {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--gold);
+}
+.final-box h3 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 22px;
+  letter-spacing: -0.3px;
+}
+.final-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 26px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+}
+.final-cell .label {
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 1.2px;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.final-cell .value {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+}
+.final-cell .value.txt { font-family: 'Noto Sans KR', sans-serif; color: #fff; font-size: 19px; }
+.final-summary ul { list-style: none; padding: 0; }
+.final-summary ul li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 8px;
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+.final-summary ul li::before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+.star-rating {
+  margin-top: 18px;
+  font-size: 16px;
+  color: var(--gold);
+  letter-spacing: 3px;
+}
+
+/* Disclaimer */
+.disclaimer {
+  background: #f0f2f8;
+  padding: 22px 50px;
+  font-size: 11.5px;
+  color: #6b7280;
+  line-height: 1.65;
+}
+.disclaimer strong { color: #374151; }
+
+/* Print */
+@media print {
+  body { background: #fff; }
+  .container { box-shadow: none; max-width: 100%; }
+  .section { page-break-inside: avoid; }
+  .stock-card { page-break-inside: avoid; }
+}
+
+@media (max-width: 900px) {
+  .info-grid, .scenario-grid, .strategy-grid, .theme-grid, .risk-grid { grid-template-columns: 1fr; }
+  .hero-meta { grid-template-columns: repeat(2, 1fr); }
+  .decision-banner { grid-template-columns: 1fr 1fr; }
+  .stock-card-header { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .final-grid { grid-template-columns: 1fr 1fr; }
+  .section { padding: 28px 22px; }
+  .hero { padding: 32px 22px; }
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+<div class="container">
+
+<!-- =========== HERO =========== -->
+<header class="hero">
+  <span class="hero-tag">ETF · 종합 투자 분석 보고서</span>
+  <h1>SOL 전고체배터리&실리콘음극재 ETF</h1>
+  <p class="subtitle">KOSPI 0005D0 · 신한자산운용 · 2차전지 차세대 소재 밸류체인 집중 투자 · FnGuide 전고체배터리&실리콘음극재 지수 추종</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="label">기준일</div>
+      <div class="value mono">2026-05-24</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="label">종가 (5/22)</div>
+      <div class="value mono">22,975원</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="label">전고점 (5/7)</div>
+      <div class="value mono">25,930원</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="label">상장 후 누적</div>
+      <div class="value">+117%</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="label">총보수</div>
+      <div class="value mono">0.45%</div>
+    </div>
+  </div>
+</header>
+
+<!-- =========== DECISION BANNER =========== -->
+<section class="decision-banner">
+  <div class="decision-cell">
+    <div class="label">투자의견</div>
+    <div class="value">매수 (BUY)</div>
+    <div class="sub">4파 조정 후 분할 매수 / 추세추종</div>
+  </div>
+  <div class="decision-cell">
+    <div class="label">1차 목표가</div>
+    <div class="value">25,900원</div>
+    <div class="sub">+12.7% (전고점 회복)</div>
+  </div>
+  <div class="decision-cell">
+    <div class="label">2차 목표가</div>
+    <div class="value">30,000원</div>
+    <div class="sub">+30.6% (Wave 5 · 1.618x 확장)</div>
+  </div>
+  <div class="decision-cell">
+    <div class="label">손절선</div>
+    <div class="value">19,400원</div>
+    <div class="sub">−15.6% (Wave 4 저점·38.2% 이탈)</div>
+  </div>
+</section>
+
+<!-- =========== SECTION 1 : ETF 개요 =========== -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div>
+      <div class="section-title">ETF 개요 및 구성종목</div>
+      <div class="section-title-en">ETF PROFILE & PORTFOLIO COMPOSITION</div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-cell">
+      <div class="label">정식명칭</div>
+      <div class="value">SOL 전고체배터리&실리콘음극재</div>
+      <div class="sub">신한자산운용 · KOSPI</div>
+    </div>
+    <div class="info-cell">
+      <div class="label">티커 / ISIN</div>
+      <div class="value mono">0005D0</div>
+      <div class="sub">KR70005D0004</div>
+    </div>
+    <div class="info-cell">
+      <div class="label">기초지수</div>
+      <div class="value" style="font-size:14px">FnGuide 전고체배터리&실리콘음극재 지수(PR)</div>
+      <div class="sub">상위 10종목 유사도 스코어링</div>
+    </div>
+    <div class="info-cell">
+      <div class="label">상장일</div>
+      <div class="value mono">2025-01-07</div>
+      <div class="sub">상장 후 약 16개월 경과</div>
+    </div>
+    <div class="info-cell">
+      <div class="label">52주 고가 / 저가</div>
+      <div class="value mono">25,930 / 8,848원</div>
+      <div class="sub">고가 2026-05-07 · 저가 2025-05-27</div>
+    </div>
+    <div class="info-cell">
+      <div class="label">상장 이후 누적수익률</div>
+      <div class="value" style="color:var(--green)">+117%</div>
+      <div class="sub">상장 종가 10,581 → 22,975 (5/22)</div>
+    </div>
+  </div>
+
+  <h4 style="color:var(--navy); font-size:15px; margin:22px 0 12px;">▣ 구성종목 비중 (10종목 + 현금 · 2026.05.22 PDF 기준)</h4>
+  <table class="holdings-table">
+    <thead>
+      <tr>
+        <th style="width:17%">종목명</th>
+        <th style="width:8%">코드</th>
+        <th style="width:7%">시장</th>
+        <th style="width:8%">비중</th>
+        <th style="width:23%">비중 시각화</th>
+        <th>핵심 사업 / 역할</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>삼성SDI</strong></td>
+        <td class="mono">006400</td>
+        <td><span class="market-badge kospi">KOSPI</span></td>
+        <td class="mono"><strong>26.19%</strong></td>
+        <td><span class="weight-bar" style="width:236px;"></span></td>
+        <td>ETF 내 유일 셀 메이커 · 국내 최초 2027년 전고체 양산 목표</td>
+      </tr>
+      <tr>
+        <td><strong>에코프로비엠</strong></td>
+        <td class="mono">247540</td>
+        <td><span class="market-badge kosdaq">KOSDAQ</span></td>
+        <td class="mono"><strong>16.80%</strong></td>
+        <td><span class="weight-bar" style="width:151px;"></span></td>
+        <td>하이니켈 양극재 국내 1위 · 전고체/건식전극 차세대 양극 소재 개발</td>
+      </tr>
+      <tr>
+        <td><strong>이수스페셜티케미컬</strong></td>
+        <td class="mono">457190</td>
+        <td><span class="market-badge kospi">KOSPI</span></td>
+        <td class="mono"><strong>16.78%</strong></td>
+        <td><span class="weight-bar" style="width:151px;"></span></td>
+        <td>황화리튬(Li₂S) 마더플랜트 · 황화물계 고체전해질 핵심 원료</td>
+      </tr>
+      <tr>
+        <td><strong>대주전자재료</strong></td>
+        <td class="mono">078600</td>
+        <td><span class="market-badge kosdaq">KOSDAQ</span></td>
+        <td class="mono"><strong>12.60%</strong></td>
+        <td><span class="weight-bar" style="width:113px;"></span></td>
+        <td>실리콘 산화물(SiOx) 음극재 국내 독점 양산 · 포르쉐/테슬라 공급</td>
+      </tr>
+      <tr>
+        <td><strong>롯데에너지머티리얼즈</strong></td>
+        <td class="mono">020150</td>
+        <td><span class="market-badge kospi">KOSPI</span></td>
+        <td class="mono"><strong>10.99%</strong></td>
+        <td><span class="weight-bar" style="width:99px;"></span></td>
+        <td>동박/회로박 · AI 데이터센터 HVLP 회로박 · 황화물 전해질 70톤 파일럿</td>
+      </tr>
+      <tr>
+        <td><strong>나노신소재</strong></td>
+        <td class="mono">121600</td>
+        <td><span class="market-badge kosdaq">KOSDAQ</span></td>
+        <td class="mono"><strong>4.41%</strong></td>
+        <td><span class="weight-bar" style="width:40px;"></span></td>
+        <td>음극재용 CNT 도전재 글로벌 유일 · 美/폴란드 신공장 가동</td>
+      </tr>
+      <tr>
+        <td><strong>레이크머티리얼즈</strong></td>
+        <td class="mono">281740</td>
+        <td><span class="market-badge kosdaq">KOSDAQ</span></td>
+        <td class="mono"><strong>4.34%</strong></td>
+        <td><span class="weight-bar" style="width:39px;"></span></td>
+        <td>황화리튬 양산 설비 120톤/년 · 유기금속 화합물 소재</td>
+      </tr>
+      <tr>
+        <td><strong>피엔티</strong></td>
+        <td class="mono">137400</td>
+        <td><span class="market-badge kosdaq">KOSDAQ</span></td>
+        <td class="mono"><strong>3.54%</strong></td>
+        <td><span class="weight-bar" style="width:32px;"></span></td>
+        <td>2차전지 롤투롤 장비 1위 · 전고체/건식전극 공정장비 수혜</td>
+      </tr>
+      <tr>
+        <td><strong>포스코퓨처엠</strong></td>
+        <td class="mono">003670</td>
+        <td><span class="market-badge kospi">KOSPI</span></td>
+        <td class="mono"><strong>2.18%</strong></td>
+        <td><span class="weight-bar" style="width:20px;"></span></td>
+        <td>양극재·음극재 동시 양산 종합 소재사 · 실리콘음극재 사업화 추진</td>
+      </tr>
+      <tr>
+        <td><strong>씨아이에스</strong></td>
+        <td class="mono">222080</td>
+        <td><span class="market-badge kosdaq">KOSDAQ</span></td>
+        <td class="mono"><strong>2.04%</strong></td>
+        <td><span class="weight-bar" style="width:18px;"></span></td>
+        <td>전극 코터 등 2차전지 전공정 장비 · 전고체 파일럿 라인 공급</td>
+      </tr>
+      <tr>
+        <td>현금성자산</td>
+        <td class="mono">—</td>
+        <td>—</td>
+        <td class="mono">0.13%</td>
+        <td><span class="weight-bar" style="width:2px; background:#9aa5bd;"></span></td>
+        <td>원화예금 등 (KRD010010001)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:11.5px; color:var(--gray-text); margin-top:-4px;">※ 신한자산운용 PDF(납입자산구성내역) 2026-05-22 기준 · 비중은 평가금액 기준. 상위 4종목(삼성SDI·에코프로비엠·이수스페셜티·대주전자재료) 합계 <strong>72.4%</strong>, 상위 2종목 43.0%.</p>
+
+  <div class="info-grid" style="margin-top:18px;">
+    <div class="info-cell" style="border-left-color:var(--red);">
+      <div class="label">최근 1개월 수익률</div>
+      <div class="value" style="color:var(--red);">−7.0%</div>
+      <div class="sub">5/7 전고점(25,930) 후 조정</div>
+    </div>
+    <div class="info-cell" style="border-left-color:var(--green);">
+      <div class="label">2026년 YTD</div>
+      <div class="value" style="color:var(--green);">+83.2%</div>
+      <div class="sub">2025말 12,540 → 22,975</div>
+    </div>
+    <div class="info-cell" style="border-left-color:var(--amber);">
+      <div class="label">투자위험 등급</div>
+      <div class="value" style="color:var(--amber);">2등급</div>
+      <div class="sub">높은 위험 · 변동성 큼</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== SECTION 2 : 산업 / 테마 분석 =========== -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div>
+      <div class="section-title">산업 분석 · 전고체배터리 & 실리콘음극재</div>
+      <div class="section-title-en">INDUSTRY THESIS</div>
+    </div>
+  </div>
+
+  <p style="margin-bottom:18px; font-size:14px; line-height:1.75;">
+    전고체배터리는 액체 전해질을 고체로 대체하여 <strong>안전성·에너지밀도·충전속도</strong>를 동시 개선하는 '꿈의 배터리'다.
+    실리콘 음극재는 흑연 대비 리튬이온 저장량이 10배 높아 5분 급속충전과 800km 주행거리의 핵심 소재로 부상.
+    국내외 셀 메이커들은 2027~2030년 본격 양산을 목표로 소재 공급망 구축에 본격 진입한 상태이며,
+    동 ETF는 그 밸류체인의 핵심 10개 기업에 집중투자한다.
+  </p>
+
+  <div class="theme-grid">
+    <div class="theme-card">
+      <h4>2027년 양산 D-Day 임박 — 셀 메이커 본격 가동</h4>
+      <p>
+        삼성SDI는 국내 셀업체 중 가장 빠른 2027년 전고체 상용화를 명시했고,
+        LG에너지솔루션·SK온도 2030년 전후 로드맵을 수립. 일본 도요타와 이데미츠고산은 2027~2028년 양산설비를 동시 건설 중.
+        미국 솔리드파워는 한국 내 연 500톤 합작투자를 추진하는 등 <strong>글로벌 기술–자본 분업이 가시화</strong>되고 있다.
+      </p>
+      <span class="stat">D-Day 2027 · 1.5년</span>
+    </div>
+    <div class="theme-card">
+      <h4>실리콘음극재 침투율 2026년 44%까지 확대</h4>
+      <p>
+        포르쉐 타이칸·아우디 e-tron GT 등 고급 차종에서 시작된 실리콘음극재가 2024년부터 테슬라(모델Y 주니퍼),
+        현대차(아이오닉3·5·9), BMW·폭스바겐·스텔란티스 등 약 10종 볼륨급 차종에 본격 탑재.
+        한국투자증권은 2026년 매출 비중이 <strong>44%까지 확대</strong>될 것으로 전망.
+      </p>
+      <span class="stat">CAGR +60% 이상</span>
+    </div>
+    <div class="theme-card">
+      <h4>황화리튬(Li₂S) 글로벌 공급망 병목</h4>
+      <p>
+        황화물계 고체전해질 상업화의 최대 병목은 황화리튬 안정 공급. 국내에서는 이수스페셜티케미컬이 2026년말 190톤/년,
+        레이크머티리얼즈가 120톤/년, 롯데에너지머티리얼즈가 70톤 파일럿을 확보. 일본 미쓰이·이데미츠가 양산을 준비 중이며,
+        <strong>국내 3사가 동시에 글로벌 공급망 한 축</strong>으로 부상.
+      </p>
+      <span class="stat">2030년 본격 매출</span>
+    </div>
+    <div class="theme-card">
+      <h4>ESS·AI 데이터센터 보조 모멘텀 추가</h4>
+      <p>
+        미국 ESS 설치량이 2026년 2월 누적 전년동기 +119% 폭증. 삼성SDI·롯데에너지머티리얼즈는 EV→ESS·회로박으로
+        라인 전환을 선제 단행. AI 가속기용 HVLP3·4 회로박, 데이터센터 BBU 배터리 수요가 동 ETF의 사업 포트폴리오를 다각화시켜
+        <strong>EV 수요 변동성 리스크를 분산</strong>한다.
+      </p>
+      <span class="stat">ESS YoY +119%</span>
+    </div>
+  </div>
+
+  <h4 style="color:var(--navy); font-size:16px; margin:30px 0 6px;">📰 지난 주(5/18~5/24) 주요 뉴스 스크랩 &amp; 산업 트렌드 영향</h4>
+  <p style="font-size:12.5px; color:var(--gray-text); margin-bottom:12px;">
+    네이버 뉴스 검색 기준 지난 한 주간 동 ETF·구성종목 관련 핵심 기사를 발췌했다. 영향도 표기 —
+    <span style="background:var(--green-light); color:var(--green); font-weight:700; padding:1px 7px; border-radius:3px; font-size:11px;">▲ 호재</span>
+    <span style="background:var(--amber-light); color:var(--amber); font-weight:700; padding:1px 7px; border-radius:3px; font-size:11px;">◆ 경쟁/혼재</span>
+    <span style="background:var(--gray-light); color:var(--gray-text); font-weight:700; padding:1px 7px; border-radius:3px; font-size:11px;">● 중립</span>
+  </p>
+
+  <table class="holdings-table">
+    <thead>
+      <tr>
+        <th style="width:9%">날짜</th>
+        <th style="width:15%">대상</th>
+        <th>핵심 내용 (출처)</th>
+        <th style="width:11%">영향</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mono">5/22</td>
+        <td><strong>삼성SDI</strong></td>
+        <td>이재용·정의선 '배터리 동맹' 첫 결실 — 삼성SDI, 현대차 <strong>아이오닉3 배터리 공급</strong> 확정(양산 단계 진입). 46파이에 SCN(실리콘카본나노복합) 음극재 적용 (뉴스핌·ZDNet)</td>
+        <td><span style="color:var(--green); font-weight:700;">▲ 호재</span></td>
+      </tr>
+      <tr>
+        <td class="mono">5/22</td>
+        <td><strong>에코프로비엠</strong></td>
+        <td>헝가리 양극재 공장 2분기 양산 개시, 에코프로이노 글로벌 완성차 <strong>20만대 분량 수주</strong>·수산화리튬 1.2만톤 공급. LFP 양극재 개발 완료(중국산 전구체 배제) (더일렉·헤럴드)</td>
+        <td><span style="color:var(--green); font-weight:700;">▲ 호재</span></td>
+      </tr>
+      <tr>
+        <td class="mono">5/22</td>
+        <td><strong>대주전자재료</strong></td>
+        <td>5/22 <strong>+17~18% 급등</strong> — 실리콘음극재 + 페로브스카이트(차세대 태양전지) + MLCC 업황 개선(삼화콘덴서 상한가 동반)의 3중 테마 부각 (핀포인트뉴스·뉴스웍스)</td>
+        <td><span style="color:var(--green); font-weight:700;">▲ 호재</span></td>
+      </tr>
+      <tr>
+        <td class="mono">5/22</td>
+        <td><strong>포스코퓨처엠</strong></td>
+        <td><strong>실리콘음극재 양산기술 확보</strong>, 2028년 공급 목표. 양극재·음극재·리사이클 수직계열화 (페로타임즈·겟뉴스) — 대주전자재료엔 경쟁 진입 신호</td>
+        <td><span style="color:var(--amber); font-weight:700;">◆ 경쟁</span></td>
+      </tr>
+      <tr>
+        <td class="mono">5/20</td>
+        <td><strong>이수스페셜티<br>·레이크머티</strong></td>
+        <td>이수스페셜티, <strong>국민성장펀드 1,000억원 저리대출</strong>로 황화리튬 공장 설립. 단 "현재 수요 부진·증설 마무리 국면" 지적도. 레이크머티 CB에 기관 수요 집중 (ZDNet·조선비즈)</td>
+        <td><span style="color:var(--amber); font-weight:700;">◆ 혼재</span></td>
+      </tr>
+      <tr>
+        <td class="mono">5/22~24</td>
+        <td><strong>롯데에너지<br>머티리얼즈</strong></td>
+        <td>롯데에코월 매각 — <strong>AI 데이터센터 회로박·반도체 초극박·ESS 전지박</strong> 등 고부가 동박에 집중 투자. 두산 전자BG와 AI용 고성능 PCB 소재 개발 (EBN·아시아타임)</td>
+        <td><span style="color:var(--green); font-weight:700;">▲ 호재</span></td>
+      </tr>
+      <tr>
+        <td class="mono">5/22</td>
+        <td>전고체 산업</td>
+        <td>LG엔솔 건식전극 앞세워 전고체 상용화 박차. 中 간펑리튬 <strong>500Wh/kg 전고체 시험생산</strong>, 中 SVOLT 9월 반고체 양산(일정 단축) — <strong>중국 추격 가속</strong> (뉴스1·디지털투데이)</td>
+        <td><span style="color:var(--amber); font-weight:700;">◆ 경쟁</span></td>
+      </tr>
+      <tr>
+        <td class="mono">5/23</td>
+        <td>수급 (코스닥)</td>
+        <td>이번 주 외국인이 에코프로·<strong>에코프로비엠·대주전자재료</strong> 집중 순매수. 반면 기관은 대주전자재료 차익실현 순매도 (핀포인트뉴스)</td>
+        <td><span style="color:var(--gray-text); font-weight:700;">● 중립</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="background:var(--gray-light); padding:16px 20px; border-radius:5px; margin-top:14px;">
+    <p style="font-size:13px; line-height:1.75;">
+      <strong style="color:var(--navy);">▸ 산업 트렌드 종합:</strong>
+      ① <strong>대형주 모멘텀 우위</strong> — ETF 비중 1·2위 삼성SDI(아이오닉3 공급)·에코프로비엠(유럽 양산·수주)에서 실질 사업 진전이 나와, 지수 방향성을 좌우하는 두 축이 동시에 호재를 받았다.
+      ② <strong>'테마 확장 vs 경쟁 심화'의 양면</strong> — 실리콘음극재(포스코퓨처엠 진입)·황화리튬(이수·레이크)·전고체(중국 간펑·SVOLT 추격) 모두 시장 외연은 커지지만 <strong>독점 프리미엄은 약화</strong>되는 방향. 양산 속도·가격경쟁력이 차별화 변수.
+      ③ <strong>수요 회복 신호 vs 단기 과열</strong> — MLCC·AI 데이터센터·ESS 등 EV 외 수요가 대주전자재료·롯데에너지의 실적 다각화를 견인하나, 5/22 급등 후 기관 차익실현이 동반돼 단기 변동성 확대 구간임에 유의.
+      ④ 전고체 상용화 시점(2027~2030)은 변함없어, 이번 주 강세는 <strong>실적보다 기대·수급 주도</strong> 성격 — 앞서 파동 분석의 '조정 후 반등' 국면 해석과 부합.
+    </p>
+  </div>
+</section>
+
+<!-- =========== SECTION 3 : 구성종목 분석 =========== -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div>
+      <div class="section-title">핵심 구성종목 7선 — 사업 & 실적 분석</div>
+      <div class="section-title-en">TOP 7 HOLDINGS — BUSINESS & EARNINGS</div>
+    </div>
+  </div>
+
+  <!-- 1. 삼성SDI -->
+  <div class="stock-card">
+    <div class="stock-card-header">
+      <div class="name">① 삼성SDI <small>006400 · KOSPI · 비중 26.19%</small></div>
+      <div class="item"><div class="l">현재가</div><div class="v mono">647,000원</div></div>
+      <div class="item"><div class="l">시가총액</div><div class="v">52.1조원</div></div>
+      <div class="item"><div class="l">5/22 등락</div><div class="v" style="color:#a3e635;">+5.03%</div></div>
+      <div class="item"><div class="l">상장 후 누적</div><div class="v" style="color:#a3e635;">+168%</div></div>
+    </div>
+    <div class="stock-card-body">
+      <h5>사업 현황</h5>
+      <p>
+        EV 셀·소형 배터리·ESS·전자재료의 4대 축. ETF 내 유일한 셀 메이커이자 <strong>2027년 전고체 양산을 공식화</strong>한 국내 1위.
+        2026 1Q 가동률 45% → 하반기 65% 회복 전망. ESS 수요 폭증에 대응해 미국 라인을 EV → ESS·LFP로 전환,
+        대형 전력사 LFP 프로젝트 + 데이터센터용 BBU 고출력 배터리 공급 계약을 1Q에 동시 확보.
+      </p>
+      <h5>재무 / 1Q26 실적</h5>
+      <ul>
+        <li>매출 3조 5,764억원 (YoY +12.6%, QoQ −7.3%)</li>
+        <li>영업손실 −1,556억원 (전년동기 −4,341억 대비 <strong>적자 64.2% 축소</strong>)</li>
+        <li>당기순이익 +561억원 — <strong>흑자전환</strong></li>
+        <li>전자재료 부문 영업이익 +15% YoY (반도체 호황 수혜)</li>
+        <li>하반기 분기 흑자전환 가이던스 제시</li>
+      </ul>
+      <h5>투자 포인트</h5>
+      <p>ETF 비중 1위(26.2%). 2025년 5월 저점 157,700원 → 2026년 4월 고점 723,000원으로 <strong>+359% 상승</strong>한 K-2차전지 대표 회복 종목.
+        AMPC 보조금 확대 + ESS 수주 확대 + 2027년 전고체 양산이라는 <strong>3중 모멘텀</strong>.
+        단, 5/7 업종 고점 이후 5/20 570,000원까지 −21% 동반 조정 후 5/22 647,000원으로 반등.</p>
+    </div>
+  </div>
+
+  <!-- 2. 에코프로비엠 -->
+  <div class="stock-card">
+    <div class="stock-card-header">
+      <div class="name">② 에코프로비엠 <small>247540 · KOSDAQ · 비중 16.80%</small></div>
+      <div class="item"><div class="l">현재가</div><div class="v mono">216,000원</div></div>
+      <div class="item"><div class="l">시가총액</div><div class="v">21.1조원</div></div>
+      <div class="item"><div class="l">5/22 등락</div><div class="v" style="color:#a3e635;">+10.77%</div></div>
+      <div class="item"><div class="l">상장 후 누적</div><div class="v" style="color:#a3e635;">+86%</div></div>
+    </div>
+    <div class="stock-card-body">
+      <h5>사업 현황</h5>
+      <p>
+        에코프로 그룹 핵심 계열사로 <strong>하이니켈 양극재(NCM·NCA) 국내 1위</strong>. 양극재는 전고체·실리콘음극재 전환기에도
+        셀 에너지밀도를 좌우하는 핵심 소재로, 동사는 <strong>건식전극·단결정 양극·전고체 대응 양극</strong> 차세대 라인업을 개발 중이다.
+        ETF 내 2위 비중(16.8%)으로 삼성SDI에 이어 ETF 변동성에 큰 영향을 준다.
+      </p>
+      <h5>재무 / 전망</h5>
+      <ul>
+        <li>EV 수요 둔화·메탈가 하락으로 2024~2025년 실적 부진을 겪었으나 2026년 가동률·판가 회복 국면</li>
+        <li>52주 고점 260,000원(2026-01-29) 기록 후 2~3월 조정, 5월 재반등</li>
+        <li>하이니켈 양극재 글로벌 점유율과 그룹 수직계열화(전구체·리사이클)가 구조적 강점</li>
+      </ul>
+      <h5>투자 포인트</h5>
+      <p>ETF 2위 비중으로 사실상 <strong>핵심 동인</strong>. 5/22 <strong>+10.77%</strong>로 핵심 종목 중 삼성SDI와 함께 강한 반등 주도.
+        다만 양극재는 전고체 직접 수혜라기보다 2차전지 전반 사이클에 연동 → EV 수요 회복 속도가 관건.</p>
+    </div>
+  </div>
+
+  <!-- 3. 이수스페셜티케미컬 -->
+  <div class="stock-card">
+    <div class="stock-card-header">
+      <div class="name">③ 이수스페셜티케미컬 <small>457190 · KOSPI · 비중 16.78%</small></div>
+      <div class="item"><div class="l">현재가</div><div class="v mono">102,500원</div></div>
+      <div class="item"><div class="l">시가총액</div><div class="v">3.10조원</div></div>
+      <div class="item"><div class="l">5/22 등락</div><div class="v" style="color:#a3e635;">+6.22%</div></div>
+      <div class="item"><div class="l">상장 후 누적</div><div class="v" style="color:#a3e635;">+194%</div></div>
+    </div>
+    <div class="stock-card-body">
+      <h5>사업 현황</h5>
+      <p>
+        2023년 이수화학에서 인적분할 재상장한 정밀화학 전문기업. TDM·NDM·IPA 등 기존 정밀화학 사업과 함께,
+        <strong>전고체전지용 황화리튬(Li₂S) 양산</strong>이 핵심 신성장 동력. 2026년 상반기 마더플랜트 500톤/년 기반 설비 준공 예정,
+        2026년말 황화리튬 생산능력 190톤 확대(파일럿 포함). 미국 솔리드파워, 도요타향 공급망 진입 협의 진행.
+      </p>
+      <h5>재무 / 전망 (신한·현대차·IBK 종합)</h5>
+      <ul>
+        <li>2025년: 매출 4,115억원(+23.9% YoY), 영업이익 13.8억원(−90.3%), 순이익 적자전환 −49억원</li>
+        <li>2026E: 영업이익 <strong>166억원(+1,105% YoY)</strong> — ABS 가동률 상승 + TDM 증설 효과</li>
+        <li>현재 황화리튬 매출은 샘플 수준, 2030년 전후 본격 매출 발생 예상</li>
+        <li>신한투자증권 <strong>전고체 Top Pick</strong> 선정(2026.02)</li>
+      </ul>
+      <h5>투자 포인트</h5>
+      <p>비중 3위·황화리튬 마더플랜트 본격 가동 시점이 2026년 하반기로 단기 모멘텀 보유.
+        단, 본격 매출은 2030년 이후 시현되므로 <strong>기대감 선반영 → 변동성 큼</strong>. 4월 고점 131,800원 후 약 22% 조정 후 102,500원.</p>
+    </div>
+  </div>
+
+  <!-- 4. 대주전자재료 -->
+  <div class="stock-card">
+    <div class="stock-card-header">
+      <div class="name">④ 대주전자재료 <small>078600 · KOSDAQ · 비중 12.60%</small></div>
+      <div class="item"><div class="l">현재가</div><div class="v mono">156,800원</div></div>
+      <div class="item"><div class="l">시가총액</div><div class="v">2.44조원</div></div>
+      <div class="item"><div class="l">5/22 등락</div><div class="v" style="color:#a3e635;">+18.34%</div></div>
+      <div class="item"><div class="l">상장 후 누적</div><div class="v" style="color:#a3e635;">+93%</div></div>
+    </div>
+    <div class="stock-card-body">
+      <h5>사업 현황</h5>
+      <p>
+        국내에서 유일하게 <strong>실리콘 산화물(SiOx) 음극재를 양산</strong>하는 기업. 도전재료(MLCC·태양전지용 페이스트),
+        실리콘음극재, 형광체 3개 사업부. 2026년말 실리콘음극재 연산 2만톤 이상 구축 로드맵.
+        포르쉐·테슬라(모델Y 주니퍼)·현대차(아이오닉3·5·9)·삼성SDI(전동공구) 공급 확장. 스페이스X향 HJT 페이스트 협의 진행.
+      </p>
+      <h5>재무 / 1Q26 실적 (서프라이즈)</h5>
+      <ul>
+        <li>매출 909억원 (YoY <strong>+68%</strong>, 컨센서스 723억 상회)</li>
+        <li>영업이익 92억원 (컨센서스 76억 상회)</li>
+        <li>도전재료 매출 610억원 (YoY <strong>+156%</strong>) — 전사 실적 견인</li>
+        <li>2026E 매출 3,026억원(+19%), 영업이익 311억원(+48%), 도전재료 2,500억(+92%)</li>
+        <li>NH투자증권 목표가 16만→<strong>20만원 상향</strong> (5/15)</li>
+      </ul>
+      <h5>투자 포인트</h5>
+      <p>5월 22일 <strong>+18.34% 급반등</strong>으로 ETF 내 가장 강한 단기 모멘텀. 4월 고점 183,300원 후 −14% 조정 상태.
+        MLCC·태양전지·실리콘음극재·전고체 4중 성장 스토리. 스페이스X HJT 성사 시 매출 1.4조 추가 시나리오까지 보유.
+        다만 高PER(2026E 기준 부담) 구간으로 실적 가시화 지연 시 변동성 확대.</p>
+    </div>
+  </div>
+
+  <!-- 5. 롯데에너지머티리얼즈 -->
+  <div class="stock-card">
+    <div class="stock-card-header">
+      <div class="name">⑤ 롯데에너지머티리얼즈 <small>020150 · KOSPI · 비중 10.99%</small></div>
+      <div class="item"><div class="l">현재가</div><div class="v mono">60,100원</div></div>
+      <div class="item"><div class="l">시가총액</div><div class="v">3.15조원</div></div>
+      <div class="item"><div class="l">5/22 등락</div><div class="v" style="color:#a3e635;">+4.16%</div></div>
+      <div class="item"><div class="l">상장 후 누적</div><div class="v" style="color:#a3e635;">+146%</div></div>
+    </div>
+    <div class="stock-card-body">
+      <h5>사업 현황</h5>
+      <p>
+        국내 1위 동박 메이커. 사업 포트폴리오를 EV용 전지박 → <strong>AI용 HVLP 회로박·ESS용 초극박·전고체 황화전해질</strong>로 다각화 중.
+        익산공장 회로박 캐파: 2025년 3,700톤 → 2026년 6,700톤 → 2027년 16,000톤. AI 데이터센터 HVLP3·4 양산평가 진행 중.
+        2024년 9월 황화물계 고체전해질 익산2공장 파일럿(150억원 투자) 완공, 70톤/년 캐파 보유.
+      </p>
+      <h5>재무 / 1Q26 실적</h5>
+      <ul>
+        <li>매출 1,598억원 (YoY +1%)</li>
+        <li>영업손실 −50억원 (전년동기 −460억 대비 <strong>적자 89% 축소</strong>)</li>
+        <li>부채비율 22.2% — 매우 양호한 재무</li>
+        <li>2026E: 매출 9,257억원(+37%), 영업적자 −473억(전년 −1,452억 대비 큰 폭 축소)</li>
+        <li>회로박 매출: 2025년 600억 → 2026년 1,200억(2배)</li>
+      </ul>
+      <h5>투자 포인트</h5>
+      <p>5월 초 <strong>83,100원(5/4) 고점 후 −28% 급조정</strong>, 5/20 53,800원 저점 → 5/22 60,100원 반등(변동성 매우 큼).
+        AI 회로박·ESS 회복·전고체 황화전해질의 <strong>3중 성장</strong>. 가공마진이 높은 회로박이 2027년 영업이익률 회복의 핵심.</p>
+    </div>
+  </div>
+
+  <!-- 6. 나노신소재 -->
+  <div class="stock-card">
+    <div class="stock-card-header">
+      <div class="name">⑥ 나노신소재 <small>121600 · KOSDAQ · 비중 4.41%</small></div>
+      <div class="item"><div class="l">현재가</div><div class="v mono">72,600원</div></div>
+      <div class="item"><div class="l">시가총액</div><div class="v">8,896억원</div></div>
+      <div class="item"><div class="l">5/22 등락</div><div class="v" style="color:#a3e635;">+4.46%</div></div>
+      <div class="item"><div class="l">상장 후 누적</div><div class="v" style="color:#a3e635;">+15%</div></div>
+    </div>
+    <div class="stock-card-body">
+      <h5>사업 현황</h5>
+      <p>
+        2차전지용 <strong>CNT(탄소나노튜브) 도전재</strong> 글로벌 유일 음극재용 수계분산 양산 업체.
+        CNT 도전재 캐파: 2023년 13,000톤 → 2024년 31,000톤 → 2025년 52,000톤 → <strong>2026년 80,000톤</strong>.
+        미국·폴란드·중국 글로벌 생산기지 보유. AI/HBM용 CMP 슬러리, 디스플레이용 중공실리카 부수 사업.
+      </p>
+      <h5>재무 / 전망</h5>
+      <ul>
+        <li>2025년: 매출 +27.3% YoY, 영업이익 +56.7%, 순이익 흑자전환</li>
+        <li>2026E: 매출 1,764억원(+41%), 영업이익 206억원(+199%)</li>
+        <li>미국/폴란드 신공장 가동 안정화로 두 자릿수 영업이익률 달성 전망</li>
+        <li>유안타·iM증권 매수 유지, 목표가 65,000~80,000원</li>
+      </ul>
+      <h5>투자 포인트</h5>
+      <p>음극재용 CNT 슬러리 글로벌 독점. 다만 실리콘음극재 침투 본격화 지연으로 핵심 종목 대비 상승률 부진(상장 후 +15%).
+        4월 고점 95,300원 후 −24% 조정 중. <strong>저평가·낙폭과대 회복 기대</strong> 종목.</p>
+    </div>
+  </div>
+
+  <!-- 7. 레이크머티리얼즈 -->
+  <div class="stock-card">
+    <div class="stock-card-header">
+      <div class="name">⑦ 레이크머티리얼즈 <small>281740 · KOSDAQ · 비중 4.34%</small></div>
+      <div class="item"><div class="l">현재가</div><div class="v mono">20,450원</div></div>
+      <div class="item"><div class="l">시가총액</div><div class="v">1.34조원</div></div>
+      <div class="item"><div class="l">5/22 등락</div><div class="v" style="color:#a3e635;">+8.55%</div></div>
+      <div class="item"><div class="l">상장 후 누적</div><div class="v" style="color:#a3e635;">+74%</div></div>
+    </div>
+    <div class="stock-card-body">
+      <h5>사업 현황</h5>
+      <p>
+        초고순도 유기금속 화합물 전문기업. 반도체·태양광·LED·석유화학 촉매·이차전지 소재 공급. 자회사 레이크테크놀로지가
+        <strong>황화리튬(Li₂S) 120톤/년 양산설비</strong> 완공(2023말). 이온전도도·순도·입자 균일도에서 고객사 호평.
+        하프늄 등 반도체 소재 사업도 동시 확장.
+      </p>
+      <h5>재무 / 전망</h5>
+      <ul>
+        <li>상반기 실적 기대 미달 · 전고체 양산 지연으로 주가 부진했으나 1월 폭등 후 박스권</li>
+        <li>2026년 황화리튬 의미있는 매출 발생 기대 (그로쓰리서치 분석)</li>
+        <li>하프늄 반도체 소재 + 석유화학 + 황화리튬 3중 확장 잠재력</li>
+      </ul>
+      <h5>투자 포인트</h5>
+      <p>2월 고점 28,700원 후 박스권 형성. 5월 22일 <strong>+8.55% 반등</strong>으로 박스 상단 돌파 시도.
+        이수스페셜티 대비 황화리튬 사업 후발주자이나 시총·밸류에이션 부담은 적음. 박스권 돌파 시 단기 추세 전환 가능.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =========== SECTION 4 : 가격 / 수익률 추이 =========== -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div>
+      <div class="section-title">가격 / 수익률 시계열 추이 (16개월 트랙 레코드)</div>
+      <div class="section-title-en">PRICE & RETURN TIME SERIES</div>
+    </div>
+  </div>
+
+  <p style="margin-bottom:16px; font-size:13.5px; line-height:1.7;">
+    상장일(2025-01-07 종가 10,581) 이후 약 16개월간 ETF는 <strong>+117%</strong>(전고점 25,930 기준 +145%)를 시현했다.
+    이 과정은 ①2025-02 단기 고점 → ②2025-05-27 저점 8,848(−34%) → ③2026-05-07 전고점 25,930(+193%) →
+    ④2026-05-20 저점 19,540(−24.6% 조정)의 임펄스–조정 사이클로 요약된다. <strong>핵심: 5/7이 ETF 전고점이며 5/22(22,975)는 신고가가 아니라 조정 후 반등 국면</strong>이다.
+    아래 표는 <strong>파동 변곡점 날짜</strong> 기준 종가(KRX 실측, FinanceDataReader)이다.
+  </p>
+
+  <table class="price-history-table">
+    <thead>
+      <tr>
+        <th style="width:13%">기준일</th>
+        <th>삼성SDI<br>(006400)</th>
+        <th>에코프로비엠<br>(247540)</th>
+        <th>이수스페셜티<br>(457190)</th>
+        <th>대주전자<br>(078600)</th>
+        <th>롯데에너지<br>(020150)</th>
+        <th>나노신소재<br>(121600)</th>
+        <th>레이크머티<br>(281740)</th>
+        <th>ETF<br>(0005D0)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>2025-01-07 <small>상장</small></td><td>241,300</td><td>116,000</td><td>34,850</td><td>81,200</td><td>24,450</td><td>62,900</td><td>11,780</td><td>10,581</td></tr>
+      <tr><td>2025-02-26 <small>(1)고점</small></td><td>232,500</td><td>138,600</td><td>60,000</td><td>115,500</td><td>28,950</td><td>77,300</td><td>19,120</td><td>13,529</td></tr>
+      <tr class="highlight"><td>2025-05-27 <small>(2)저점</small></td><td>160,200</td><td>81,200</td><td>39,950</td><td>70,200</td><td>19,900</td><td>44,400</td><td>11,750</td><td><strong>8,848</strong></td></tr>
+      <tr><td>2025-08-29</td><td>207,000</td><td>121,200</td><td>44,650</td><td>69,300</td><td>25,950</td><td>52,500</td><td>12,040</td><td>10,591</td></tr>
+      <tr><td>2025-10-31</td><td>322,000</td><td>160,000</td><td>55,400</td><td>75,600</td><td>26,000</td><td>65,900</td><td>14,630</td><td>13,629</td></tr>
+      <tr><td>2025-12-19 <small>(ii)저점</small></td><td>279,500</td><td>155,000</td><td>54,900</td><td>66,500</td><td>31,600</td><td>52,600</td><td>14,040</td><td>12,670</td></tr>
+      <tr><td>2026-01-30</td><td>390,000</td><td>232,000</td><td>106,400</td><td>75,800</td><td>38,850</td><td>69,100</td><td>26,750</td><td>18,285</td></tr>
+      <tr><td>2026-02-27 <small>(iii)고점</small></td><td>466,000</td><td>221,500</td><td>115,200</td><td>100,700</td><td>44,700</td><td>71,400</td><td>23,650</td><td>20,530</td></tr>
+      <tr><td>2026-03-04 <small>(iv)저점</small></td><td>351,000</td><td>165,600</td><td>85,000</td><td>77,700</td><td>33,250</td><td>53,400</td><td>18,000</td><td>15,480</td></tr>
+      <tr class="highlight"><td>2026-05-07 <small>(3)전고점</small></td><td><strong>694,000</strong></td><td>235,500</td><td>117,700</td><td>150,700</td><td>74,000</td><td>81,800</td><td>22,800</td><td><strong>25,930</strong></td></tr>
+      <tr class="highlight"><td>2026-05-20 <small>(4)저점</small></td><td>570,000</td><td>176,700</td><td>91,300</td><td>135,800</td><td>53,800</td><td>64,500</td><td>17,800</td><td><strong>19,540</strong></td></tr>
+      <tr class="highlight"><td><strong>2026-05-22 (최신)</strong></td><td><strong>647,000</strong><br><span class="pos">+5.03%</span></td><td><strong>216,000</strong><br><span class="pos">+10.77%</span></td><td><strong>102,500</strong><br><span class="pos">+6.22%</span></td><td><strong>156,800</strong><br><span class="pos">+18.34%</span></td><td><strong>60,100</strong><br><span class="pos">+4.16%</span></td><td><strong>72,600</strong><br><span class="pos">+4.46%</span></td><td><strong>20,450</strong><br><span class="pos">+8.55%</span></td><td><strong>22,975</strong><br><span class="pos">+8.37%</span></td></tr>
+      <tr style="background:var(--green-light); font-weight:700;">
+        <td>상장 후 누적</td>
+        <td class="pos">+168%</td>
+        <td class="pos">+86%</td>
+        <td class="pos">+194%</td>
+        <td class="pos">+93%</td>
+        <td class="pos">+146%</td>
+        <td class="pos">+15%</td>
+        <td class="pos">+74%</td>
+        <td class="pos">+117%</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:11.5px; color:var(--gray-text); margin-top:2px;">※ 종가는 배당·액면 조정 반영(FinanceDataReader). (3)전고점·(4)저점 행의 ETF 값은 해당 구간 일중 고가 25,930 / 저가 19,540을 표기. 삼성SDI 2025-05-07 전고점일 종가 694,000(52주 장중 고가 723,000은 4/30).</p>
+
+  <div style="background:var(--amber-light); padding:16px 20px; border-left:4px solid var(--amber); border-radius:0 4px 4px 0; margin-top:16px;">
+    <p style="font-size:13px; line-height:1.7;">
+      <strong style="color:var(--amber);">▣ 핵심 관찰 (정정)</strong><br>
+      ETF는 <strong>5/7 전고점 25,930원</strong>을 기록한 뒤 5/20 19,540원까지 <strong>−24.6% 조정</strong>(Wave 4)을 거쳤고,
+      5/22 +8.37%(22,975원)는 <em>신고가 돌파가 아니라 조정 저점 부근에서의 반등</em>이다.
+      이날 핵심 7종목이 일제히 +4~18% 양봉을 낸 것은 <strong>낙폭과대 반등(오버솔드 바운스)</strong> 성격이 강하며,
+      추세 재개 여부는 전고점 25,930원 회복(돌파) 확인이 필요하다.
+    </p>
+  </div>
+</section>
+
+<!-- =========== SECTION 5 : 엘리어트 파동 분석 =========== -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div>
+      <div class="section-title">엘리어트 파동 분석 — ETF & 주요 종목</div>
+      <div class="section-title-en">ELLIOTT WAVE ANALYSIS</div>
+    </div>
+  </div>
+
+  <h4 style="color:var(--navy); font-size:16px; margin:6px 0 12px;">🌊 ETF (0005D0) 상장 후 주봉 캔들차트 & 파동 카운트</h4>
+
+  <p style="font-size:13px; color:var(--gray-text); margin-bottom:10px;">
+    상장(2025-01-07)부터 2026-05-22까지 <strong>주봉</strong> 캔들(상승=청록, 하락=적색) 위에
+    <span style="color:#b8852e;">■</span> <strong>금색 실선=주요 파동 (1)~(5)</strong>,
+    <span style="color:#5b8def;">┄</span> <strong>파란 점선=(3)파 내부 보조파동 i·ii·iii·iv</strong>를 변곡점끼리 직접 연결해 표시했다. 가격·날짜는 KRX 실측치.
+  </p>
+
+  <div style="margin:8px 0 6px; padding:10px; background:#0b1430; border-radius:6px; border-left:4px solid var(--gold);">
+<svg viewBox="0 0 1080 540" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans KR, sans-serif" style="width:100%;height:auto;background:#0b1430;border-radius:6px;">
+<line x1="64" y1="464.3" x2="1010" y2="464.3" stroke="#1c2a4d" stroke-width="1"/>
+<text x="56" y="468.3" fill="#5f6e92" font-size="11" text-anchor="end">9,000</text>
+<line x1="64" y1="390.4" x2="1010" y2="390.4" stroke="#1c2a4d" stroke-width="1"/>
+<text x="56" y="394.4" fill="#5f6e92" font-size="11" text-anchor="end">12,000</text>
+<line x1="64" y1="316.6" x2="1010" y2="316.6" stroke="#1c2a4d" stroke-width="1"/>
+<text x="56" y="320.6" fill="#5f6e92" font-size="11" text-anchor="end">15,000</text>
+<line x1="64" y1="242.7" x2="1010" y2="242.7" stroke="#1c2a4d" stroke-width="1"/>
+<text x="56" y="246.7" fill="#5f6e92" font-size="11" text-anchor="end">18,000</text>
+<line x1="64" y1="168.8" x2="1010" y2="168.8" stroke="#1c2a4d" stroke-width="1"/>
+<text x="56" y="172.8" fill="#5f6e92" font-size="11" text-anchor="end">21,000</text>
+<line x1="64" y1="94.9" x2="1010" y2="94.9" stroke="#1c2a4d" stroke-width="1"/>
+<text x="56" y="98.9" fill="#5f6e92" font-size="11" text-anchor="end">24,000</text>
+<text x="70.6" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">25.01</text>
+<text x="123.1" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">25.02</text>
+<text x="175.7" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">25.03</text>
+<text x="228.2" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">25.04</text>
+<text x="280.8" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">25.05</text>
+<text x="333.3" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">25.06</text>
+<text x="438.5" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">25.07</text>
+<text x="491.0" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">25.08</text>
+<text x="543.6" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">25.09</text>
+<text x="596.1" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">25.10</text>
+<text x="648.7" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">25.11</text>
+<text x="701.2" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">25.12</text>
+<text x="753.8" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">26.01</text>
+<text x="806.3" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">26.02</text>
+<text x="858.9" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">26.03</text>
+<text x="911.5" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">26.04</text>
+<text x="964.0" y="506" fill="#5f6e92" font-size="10.5" text-anchor="middle">26.05</text>
+<line x1="70.6" y1="416.9" x2="70.6" y2="428.7" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="66.5" y="423.4" width="8.1" height="1.5" fill="#26a69a"/>
+<line x1="83.7" y1="407.0" x2="83.7" y2="429.6" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="79.6" y="411.7" width="8.1" height="13.5" fill="#26a69a"/>
+<line x1="96.8" y1="402.1" x2="96.8" y2="425.0" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="92.8" y="409.9" width="8.1" height="12.8" fill="#ef5350"/>
+<line x1="110.0" y1="424.4" x2="110.0" y2="431.5" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="105.9" y="424.4" width="8.1" height="3.7" fill="#ef5350"/>
+<line x1="123.1" y1="431.8" x2="123.1" y2="447.1" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="119.1" y="433.5" width="8.1" height="1.5" fill="#ef5350"/>
+<line x1="136.3" y1="398.7" x2="136.3" y2="438.8" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="132.2" y="409.9" width="8.1" height="25.0" fill="#26a69a"/>
+<line x1="149.4" y1="370.4" x2="149.4" y2="407.6" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="145.3" y="370.4" width="8.1" height="34.5" fill="#26a69a"/>
+<line x1="162.5" y1="352.8" x2="162.5" y2="375.4" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="158.5" y="369.3" width="8.1" height="3.9" fill="#26a69a"/>
+<line x1="175.7" y1="371.8" x2="175.7" y2="399.5" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="171.6" y="372.0" width="8.1" height="22.4" fill="#ef5350"/>
+<line x1="188.8" y1="381.3" x2="188.8" y2="404.1" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="184.7" y="394.4" width="8.1" height="1.5" fill="#ef5350"/>
+<line x1="202.0" y1="379.6" x2="202.0" y2="397.6" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="197.9" y="391.5" width="8.1" height="4.7" fill="#ef5350"/>
+<line x1="215.1" y1="392.5" x2="215.1" y2="420.9" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="211.0" y="395.4" width="8.1" height="25.1" fill="#ef5350"/>
+<line x1="228.2" y1="425.7" x2="228.2" y2="451.6" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="224.2" y="427.3" width="8.1" height="5.7" fill="#ef5350"/>
+<line x1="241.4" y1="440.1" x2="241.4" y2="461.8" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="237.3" y="441.1" width="8.1" height="2.5" fill="#26a69a"/>
+<line x1="254.5" y1="431.5" x2="254.5" y2="444.4" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="250.4" y="436.8" width="8.1" height="3.3" fill="#ef5350"/>
+<line x1="267.7" y1="422.4" x2="267.7" y2="442.5" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="263.6" y="428.1" width="8.1" height="13.0" fill="#26a69a"/>
+<line x1="280.8" y1="424.9" x2="280.8" y2="443.6" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="276.7" y="427.6" width="8.1" height="12.2" fill="#ef5350"/>
+<line x1="293.9" y1="436.3" x2="293.9" y2="445.9" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="289.9" y="436.8" width="8.1" height="7.9" fill="#ef5350"/>
+<line x1="307.1" y1="435.1" x2="307.1" y2="455.1" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="303.0" y="443.6" width="8.1" height="11.3" fill="#ef5350"/>
+<line x1="320.2" y1="450.3" x2="320.2" y2="467.7" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="316.1" y="458.1" width="8.1" height="9.2" fill="#ef5350"/>
+<line x1="333.3" y1="446.6" x2="333.3" y2="468.0" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="329.3" y="451.6" width="8.1" height="15.7" fill="#26a69a"/>
+<line x1="346.5" y1="441.7" x2="346.5" y2="452.1" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="342.4" y="444.4" width="8.1" height="1.5" fill="#26a69a"/>
+<line x1="359.6" y1="437.0" x2="359.6" y2="451.9" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="355.6" y="445.0" width="8.1" height="3.3" fill="#ef5350"/>
+<line x1="372.8" y1="443.6" x2="372.8" y2="457.6" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="368.7" y="444.7" width="8.1" height="6.6" fill="#26a69a"/>
+<line x1="385.9" y1="431.8" x2="385.9" y2="455.5" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="381.8" y="445.3" width="8.1" height="3.2" fill="#26a69a"/>
+<line x1="399.0" y1="430.3" x2="399.0" y2="447.4" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="395.0" y="436.7" width="8.1" height="5.4" fill="#26a69a"/>
+<line x1="412.2" y1="434.2" x2="412.2" y2="447.0" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="408.1" y="434.2" width="8.1" height="3.2" fill="#ef5350"/>
+<line x1="425.3" y1="425.4" x2="425.3" y2="445.7" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="421.2" y="425.9" width="8.1" height="11.8" fill="#26a69a"/>
+<line x1="438.5" y1="416.3" x2="438.5" y2="430.2" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="434.4" y="423.8" width="8.1" height="1.6" fill="#26a69a"/>
+<line x1="451.6" y1="410.8" x2="451.6" y2="434.8" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="447.5" y="423.2" width="8.1" height="11.1" fill="#ef5350"/>
+<line x1="464.7" y1="402.8" x2="464.7" y2="435.2" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="460.7" y="407.3" width="8.1" height="26.0" fill="#26a69a"/>
+<line x1="477.9" y1="396.3" x2="477.9" y2="406.5" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="473.8" y="401.0" width="8.1" height="3.2" fill="#26a69a"/>
+<line x1="491.0" y1="402.7" x2="491.0" y2="419.3" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="486.9" y="403.5" width="8.1" height="12.1" fill="#ef5350"/>
+<line x1="504.2" y1="407.0" x2="504.2" y2="426.1" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="500.1" y="412.7" width="8.1" height="12.4" fill="#ef5350"/>
+<line x1="517.3" y1="426.5" x2="517.3" y2="435.4" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="513.2" y="426.5" width="8.1" height="5.0" fill="#ef5350"/>
+<line x1="530.4" y1="422.0" x2="530.4" y2="432.6" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="526.4" y="424.9" width="8.1" height="6.9" fill="#26a69a"/>
+<line x1="543.6" y1="417.5" x2="543.6" y2="427.5" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="539.5" y="421.9" width="8.1" height="1.5" fill="#26a69a"/>
+<line x1="556.7" y1="412.0" x2="556.7" y2="427.8" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="552.6" y="420.4" width="8.1" height="6.4" fill="#ef5350"/>
+<line x1="569.8" y1="420.7" x2="569.8" y2="428.1" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="565.8" y="423.2" width="8.1" height="1.5" fill="#26a69a"/>
+<line x1="583.0" y1="421.4" x2="583.0" y2="427.6" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="578.9" y="421.8" width="8.1" height="1.5" fill="#ef5350"/>
+<line x1="596.1" y1="373.2" x2="596.1" y2="430.0" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="592.1" y="380.2" width="8.1" height="47.4" fill="#26a69a"/>
+<line x1="609.3" y1="341.9" x2="609.3" y2="388.5" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="605.2" y="344.8" width="8.1" height="35.4" fill="#26a69a"/>
+<line x1="622.4" y1="327.3" x2="622.4" y2="356.2" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="618.3" y="329.2" width="8.1" height="21.2" fill="#ef5350"/>
+<line x1="635.5" y1="330.3" x2="635.5" y2="373.4" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="631.5" y="343.2" width="8.1" height="24.3" fill="#ef5350"/>
+<line x1="648.7" y1="326.5" x2="648.7" y2="371.3" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="644.6" y="347.7" width="8.1" height="18.8" fill="#26a69a"/>
+<line x1="661.8" y1="336.6" x2="661.8" y2="369.9" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="657.7" y="341.6" width="8.1" height="25.0" fill="#ef5350"/>
+<line x1="675.0" y1="348.0" x2="675.0" y2="372.6" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="670.9" y="353.4" width="8.1" height="8.2" fill="#26a69a"/>
+<line x1="688.1" y1="339.2" x2="688.1" y2="352.4" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="684.0" y="348.2" width="8.1" height="1.5" fill="#ef5350"/>
+<line x1="701.2" y1="315.7" x2="701.2" y2="348.8" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="697.2" y="335.8" width="8.1" height="11.4" fill="#26a69a"/>
+<line x1="714.4" y1="331.1" x2="714.4" y2="384.3" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="710.3" y="338.9" width="8.1" height="35.0" fill="#ef5350"/>
+<line x1="727.5" y1="363.2" x2="727.5" y2="373.7" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="723.4" y="369.0" width="8.1" height="1.7" fill="#ef5350"/>
+<line x1="740.7" y1="367.2" x2="740.7" y2="387.4" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="736.6" y="379.2" width="8.1" height="5.7" fill="#ef5350"/>
+<line x1="753.8" y1="363.3" x2="753.8" y2="386.4" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="749.7" y="382.7" width="8.1" height="1.5" fill="#ef5350"/>
+<line x1="766.9" y1="359.0" x2="766.9" y2="384.9" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="762.9" y="367.9" width="8.1" height="15.9" fill="#26a69a"/>
+<line x1="780.1" y1="246.9" x2="780.1" y2="367.8" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="776.0" y="275.3" width="8.1" height="91.6" fill="#26a69a"/>
+<line x1="793.2" y1="216.0" x2="793.2" y2="263.4" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="789.1" y="235.7" width="8.1" height="22.3" fill="#26a69a"/>
+<line x1="806.3" y1="203.2" x2="806.3" y2="264.1" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="802.3" y="250.1" width="8.1" height="2.5" fill="#ef5350"/>
+<line x1="819.5" y1="211.3" x2="819.5" y2="245.9" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="815.4" y="236.5" width="8.1" height="2.7" fill="#ef5350"/>
+<line x1="832.6" y1="216.2" x2="832.6" y2="243.2" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="828.6" y="227.4" width="8.1" height="8.6" fill="#26a69a"/>
+<line x1="845.8" y1="175.7" x2="845.8" y2="239.5" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="841.7" y="180.4" width="8.1" height="42.0" fill="#26a69a"/>
+<line x1="858.9" y1="183.2" x2="858.9" y2="307.1" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="854.8" y="198.5" width="8.1" height="7.3" fill="#ef5350"/>
+<line x1="872.0" y1="210.8" x2="872.0" y2="255.4" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="868.0" y="238.7" width="8.1" height="12.2" fill="#ef5350"/>
+<line x1="885.2" y1="235.5" x2="885.2" y2="267.3" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="881.1" y="239.2" width="8.1" height="11.9" fill="#26a69a"/>
+<line x1="898.3" y1="213.9" x2="898.3" y2="264.2" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="894.2" y="223.5" width="8.1" height="27.3" fill="#26a69a"/>
+<line x1="911.5" y1="202.1" x2="911.5" y2="241.7" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="907.4" y="233.9" width="8.1" height="6.0" fill="#26a69a"/>
+<line x1="924.6" y1="196.6" x2="924.6" y2="231.4" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="920.5" y="200.8" width="8.1" height="30.5" fill="#26a69a"/>
+<line x1="937.7" y1="152.0" x2="937.7" y2="214.5" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="933.7" y="160.0" width="8.1" height="45.6" fill="#26a69a"/>
+<line x1="950.9" y1="67.0" x2="950.9" y2="165.0" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="946.8" y="69.6" width="8.1" height="90.4" fill="#26a69a"/>
+<line x1="964.0" y1="52.7" x2="964.0" y2="91.6" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="959.9" y="69.6" width="8.1" height="6.6" fill="#ef5350"/>
+<line x1="977.2" y1="47.4" x2="977.2" y2="82.6" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="973.1" y="62.0" width="8.1" height="10.6" fill="#ef5350"/>
+<line x1="990.3" y1="72.9" x2="990.3" y2="156.5" stroke="#ef5350" stroke-width="1.1"/>
+<rect x="986.2" y="73.4" width="8.1" height="73.5" fill="#ef5350"/>
+<line x1="1003.4" y1="114.9" x2="1003.4" y2="204.8" stroke="#26a69a" stroke-width="1.1"/>
+<rect x="999.4" y="120.2" width="8.1" height="34.2" fill="#26a69a"/>
+<polyline points="320.2,468.0 648.7,326.5 714.4,384.3 845.8,175.7 845.8,307.1 977.2,47.4" fill="none" stroke="#5b8def" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.85"/>
+<text x="648.7" y="342.5" fill="#9bbcff" font-size="11" font-style="italic" text-anchor="middle">i</text>
+<text x="714.4" y="400.3" fill="#9bbcff" font-size="11" font-style="italic" text-anchor="middle">ii</text>
+<text x="845.8" y="165.7" fill="#9bbcff" font-size="11" font-style="italic" text-anchor="middle">iii</text>
+<text x="845.8" y="297.1" fill="#9bbcff" font-size="11" font-style="italic" text-anchor="middle">iv</text>
+<polyline points="70.6,425.4 149.4,352.8 320.2,468.0 977.2,47.4 990.3,204.8 1003.4,120.2" fill="none" stroke="#e6b54a" stroke-width="2.6"/>
+<circle cx="70.6" cy="425.4" r="5" fill="#0b1430" stroke="#e6b54a" stroke-width="2.2"/>
+<text x="70.6" y="409.4" fill="#f4d488" font-size="14" font-weight="700" text-anchor="middle">상장</text>
+<text x="70.6" y="422.4" fill="#c9d3ea" font-size="10" text-anchor="middle">10,581</text>
+<circle cx="149.4" cy="352.8" r="5" fill="#0b1430" stroke="#e6b54a" stroke-width="2.2"/>
+<text x="149.4" y="336.8" fill="#f4d488" font-size="14" font-weight="700" text-anchor="middle">(1)</text>
+<text x="149.4" y="349.8" fill="#c9d3ea" font-size="10" text-anchor="middle">13,529</text>
+<circle cx="320.2" cy="468.0" r="5" fill="#0b1430" stroke="#e6b54a" stroke-width="2.2"/>
+<text x="320.2" y="498.0" fill="#f4d488" font-size="14" font-weight="700" text-anchor="middle">(2)</text>
+<text x="320.2" y="511.0" fill="#c9d3ea" font-size="10" text-anchor="middle">8,848</text>
+<circle cx="977.2" cy="47.4" r="5" fill="#0b1430" stroke="#e6b54a" stroke-width="2.2"/>
+<text x="977.2" y="31.4" fill="#f4d488" font-size="14" font-weight="700" text-anchor="middle">(3)</text>
+<text x="977.2" y="44.4" fill="#c9d3ea" font-size="10" text-anchor="middle">25,930</text>
+<circle cx="990.3" cy="204.8" r="5" fill="#0b1430" stroke="#e6b54a" stroke-width="2.2"/>
+<text x="982.3" y="232.8" fill="#f4d488" font-size="14" font-weight="700" text-anchor="end">(4)</text>
+<text x="982.3" y="245.8" fill="#c9d3ea" font-size="10" text-anchor="end">19,540</text>
+<circle cx="1003.4" cy="120.2" r="5" fill="#0b1430" stroke="#e6b54a" stroke-width="2.2"/>
+<text x="1015.4" y="122.2" fill="#f4d488" font-size="14" font-weight="700" text-anchor="start">(5)?</text>
+<text x="1015.4" y="135.2" fill="#c9d3ea" font-size="10" text-anchor="start">22,975</text>
+</svg>
+  </div>
+
+  <table class="holdings-table" style="margin-top:6px;">
+    <thead>
+      <tr>
+        <th style="width:9%">파동</th>
+        <th style="width:24%">구간 (날짜 · 가격)</th>
+        <th style="width:10%">변동</th>
+        <th>메모 / 해석</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>(1)</strong></td>
+        <td class="mono">25-01-07 10,581 → 25-02-26 13,529</td>
+        <td style="color:var(--green); font-weight:700;">+27.9%</td>
+        <td>상장 직후 1차 임펄스. 1월 강세장과 동조.</td>
+      </tr>
+      <tr>
+        <td><strong>(2)</strong></td>
+        <td class="mono">25-02-26 13,529 → 25-05-27 8,848</td>
+        <td style="color:var(--red); font-weight:700;">−34.6%</td>
+        <td>깊은 ABC 조정. 52주 저점이자 (2)파 종점. 상장가 10,000 하회.</td>
+      </tr>
+      <tr style="background:#eef6ff;">
+        <td><strong>(3)</strong></td>
+        <td class="mono">25-05-27 8,848 → 26-05-07 25,930</td>
+        <td style="color:var(--green); font-weight:700;">+193%</td>
+        <td>가장 길고 강한 메인 임펄스. 내부 i→ii→iii→iv→v 5소파동 완성. <strong>(3)파 종점 = ETF 전고점</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>(4)</strong></td>
+        <td class="mono">26-05-07 25,930 → 26-05-20 19,540</td>
+        <td style="color:var(--red); font-weight:700;">−24.6%</td>
+        <td>급격한 조정. 저점 19,540 = Wave 3의 <strong>38.2% 되돌림(19,405)</strong>에 거의 정확히 안착 — 교과서적 4파 바닥 후보.</td>
+      </tr>
+      <tr class="highlight">
+        <td><strong>(5)?</strong></td>
+        <td class="mono">26-05-20 19,540 → 26-05-22 22,975 (진행)</td>
+        <td style="color:var(--green); font-weight:700;">+17.6%</td>
+        <td>4파 저점 후 반등(+8.37% 포함). <strong>아직 신고가 아님</strong>. 전고점 25,930 회복 시 5파 새 고점 시도, 19,540 이탈 시 대안(ABC 조정) 우세.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="background:var(--gray-light); padding:14px 18px; border-radius:5px; margin:12px 0 4px; font-size:12.8px; line-height:1.7;">
+    <strong style="color:var(--navy);">▸ 파동 결론:</strong> 주 시나리오는 <strong>(4)파 조정 종료 → (5)파 진행</strong>이다.
+    (5)파 목표는 (4)파 저점(19,540)에서 Wave 3 높이(17,082)의 0.382~0.618배 확장 → <strong>26,100 ~ 30,100원</strong>(전고점 25,930 돌파 동반).
+    <strong style="color:var(--amber);">대안 시나리오:</strong> 25,930이 상장 후 전체 임펄스의 최종 고점이고 현재는 더 큰 ABC 조정의 반등(B파)일 가능성 — <strong>19,540 이탈 시 이 시나리오로 전환</strong>.
+  </div>
+
+  <h4 style="color:var(--navy); font-size:16px; margin:24px 0 12px;">📐 ETF 피보나치 레벨 (Wave 3 구간 8,848 → 25,930 기준 · 현재 22,975)</h4>
+
+  <div class="fib-section">
+    <h5>되돌림 레벨 (Wave 3 조정 지지선 · 현재 4파 저점 19,540 도달)</h5>
+    <div class="fib-bar r236">
+      <div class="level">23.6%</div>
+      <div class="visual"><div class="fill"></div></div>
+      <div class="price">21,900원</div>
+      <div class="tag">얕은 조정</div>
+    </div>
+    <div class="fib-bar r382">
+      <div class="level">38.2%</div>
+      <div class="visual"><div class="fill"></div></div>
+      <div class="price">19,400원</div>
+      <div class="tag">4파 저점★</div>
+    </div>
+    <div class="fib-bar r500">
+      <div class="level">50.0%</div>
+      <div class="visual"><div class="fill"></div></div>
+      <div class="price">17,400원</div>
+      <div class="tag">강지지</div>
+    </div>
+    <div class="fib-bar r618">
+      <div class="level">61.8%</div>
+      <div class="visual"><div class="fill"></div></div>
+      <div class="price">15,400원</div>
+      <div class="tag">최후방어</div>
+    </div>
+    <div class="fib-bar r786">
+      <div class="level">78.6%</div>
+      <div class="visual"><div class="fill"></div></div>
+      <div class="price">12,500원</div>
+      <div class="tag">파동 무효</div>
+    </div>
+
+    <h5 style="margin-top:18px;">확장 레벨 (Wave 5 목표가 · 4파 저점 19,540 기준 확장)</h5>
+    <div class="fib-bar e100">
+      <div class="level">전고점</div>
+      <div class="visual"><div class="fill"></div></div>
+      <div class="price">25,930원</div>
+      <div class="tag">필수 회복</div>
+    </div>
+    <div class="fib-bar e1272">
+      <div class="level">0.382x</div>
+      <div class="visual"><div class="fill"></div></div>
+      <div class="price">26,100원</div>
+      <div class="tag">돌파 최소</div>
+    </div>
+    <div class="fib-bar e1382">
+      <div class="level">0.500x</div>
+      <div class="visual"><div class="fill"></div></div>
+      <div class="price">28,100원</div>
+      <div class="tag">단기 익절</div>
+    </div>
+    <div class="fib-bar e1618">
+      <div class="level">0.618x</div>
+      <div class="visual"><div class="fill"></div></div>
+      <div class="price">30,100원</div>
+      <div class="tag">메인 목표</div>
+    </div>
+    <div class="fib-bar e2000">
+      <div class="level">1.000x</div>
+      <div class="visual"><div class="fill"></div></div>
+      <div class="price">36,600원</div>
+      <div class="tag">초강세</div>
+    </div>
+  </div>
+
+  <h4 style="color:var(--navy); font-size:16px; margin:24px 0 12px;">🎯 개별 종목 파동 위치 요약</h4>
+
+  <table class="holdings-table">
+    <thead>
+      <tr>
+        <th style="width:13%">종목</th>
+        <th style="width:12%">현재 파동</th>
+        <th style="width:13%">파동 시작점</th>
+        <th style="width:11%">현재가</th>
+        <th>핵심 해석 / 단기 시그널</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>삼성SDI</strong></td>
+        <td>(4)파 반등</td>
+        <td class="mono">160,200원 (25.05)</td>
+        <td class="mono">647,000원</td>
+        <td>가장 명확한 임펄스. 5월 초 고점 723,000원 → 5/20 570,000원(−21%) 조정 후 반등. 전고점 회복 시 5파 새 고점, 미달 시 5파 마감.</td>
+      </tr>
+      <tr>
+        <td><strong>에코프로비엠</strong></td>
+        <td>(4)파 반등</td>
+        <td class="mono">81,200원 (25.05)</td>
+        <td class="mono">216,000원</td>
+        <td>1월 고점 260,000원 후 조정·박스. 5/22 +10.77% 강반등. ETF 2위 비중으로 지수 방향성에 직접 영향.</td>
+      </tr>
+      <tr>
+        <td><strong>이수스페셜티</strong></td>
+        <td>(4)파 반등</td>
+        <td class="mono">39,950원 (25.05)</td>
+        <td class="mono">102,500원</td>
+        <td>4월 고점 131,800원 후 −22% 조정 후 반등. 황화리튬 마더플랜트 가동(하반기)이 5파 모멘텀. 회복 시 1차 120K.</td>
+      </tr>
+      <tr>
+        <td><strong>대주전자재료</strong></td>
+        <td>(5)파 후보 (최강)</td>
+        <td class="mono">70,200원 (25.05)</td>
+        <td class="mono">156,800원</td>
+        <td>5/22 <strong>+18.34% 급반등</strong>으로 ETF 내 최강 모멘텀. 4월 고점 183,300원 회복(돌파) 시 신고가 → 200K 시도.</td>
+      </tr>
+      <tr>
+        <td><strong>롯데에너지</strong></td>
+        <td>(4)파 깊은 조정</td>
+        <td class="mono">19,900원 (25.05)</td>
+        <td class="mono">60,100원</td>
+        <td>5/4 고점 83,100원 후 −28% 급조정(변동성 최대), 5/20 53,800원 저점 후 반등. 50K대 지지 확인 후 분할.</td>
+      </tr>
+      <tr>
+        <td><strong>나노신소재</strong></td>
+        <td>(3)파 약세 / 부진</td>
+        <td class="mono">44,400원 (25.05)</td>
+        <td class="mono">72,600원</td>
+        <td>상장 후 +15%로 핵심 종목 중 최부진. 4월 고점 95,300원 후 −24%. 5/22 +4.46% 반등 — 저평가 회복 기대.</td>
+      </tr>
+      <tr>
+        <td><strong>레이크머티리얼즈</strong></td>
+        <td>박스권 (2)파 마무리</td>
+        <td class="mono">11,750원 (25.05)</td>
+        <td class="mono">20,450원</td>
+        <td>2월 고점 28,700원 후 박스권. 5/22 +8.55% 박스 상단 돌파 시도. 24,000원 돌파 시 (3)파 본격화.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- =========== SECTION 6 : 시나리오 분석 =========== -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div>
+      <div class="section-title">시나리오 분석 — 향후 3~6개월</div>
+      <div class="section-title-en">SCENARIO ANALYSIS</div>
+    </div>
+  </div>
+
+  <div class="scenario-grid">
+    <div class="scenario bull">
+      <div class="scenario-head">
+        <span>🚀 강세 시나리오 (메인)</span>
+        <span class="scenario-prob">확률 55%</span>
+      </div>
+      <div class="scenario-body">
+        <div class="target">26,100 ~ 30,100원</div>
+        <span class="return">+13.6% ~ +31.0%</span>
+        <p>
+          ▸ 4파 저점(19,540)이 38.2% 되돌림에서 지지 → (5)파 임펄스 전개<br>
+          ▸ 삼성SDI·에코프로비엠(합산 43%) 반등 주도, 대주전자재료 신고가 모멘텀<br>
+          ▸ <strong>전고점 25,930원 회복·돌파</strong>가 추세 재개의 핵심 관문<br>
+          ▸ 돌파 시 4파 저점 기준 0.382~0.618x 확장 → 26,100~30,100원<br>
+          ▸ 하반기 핵심 종목 실적 흑전 가시화가 촉매
+        </p>
+      </div>
+    </div>
+
+    <div class="scenario neutral">
+      <div class="scenario-head">
+        <span>⚖️ 중립 시나리오</span>
+        <span class="scenario-prob">확률 30%</span>
+      </div>
+      <div class="scenario-body">
+        <div class="target">20,000 ~ 25,900원</div>
+        <span class="return">−13.0% ~ +12.7%</span>
+        <p>
+          ▸ 전고점 25,930원 회복에 실패하고 박스권 횡보<br>
+          ▸ 19,540 ~ 25,930원 넓은 박스 — 2Q~3Q26 변동성 장세<br>
+          ▸ EV 수요 둔화·전고체 양산 일정 불확실성 상존<br>
+          ▸ 박스 하단 분할 매수 / 상단 분할 익절의 구간 매매 유리<br>
+          ▸ 추세 재개는 4Q26 실적·정책 모멘텀 이후
+        </p>
+      </div>
+    </div>
+
+    <div class="scenario bear">
+      <div class="scenario-head">
+        <span>⚠️ 약세 시나리오 (대안 카운트)</span>
+        <span class="scenario-prob">확률 20%</span>
+      </div>
+      <div class="scenario-body">
+        <div class="target">15,400 ~ 17,400원</div>
+        <span class="return">−33.0% ~ −24.3%</span>
+        <p>
+          ▸ <strong>4파 저점 19,540원 이탈</strong> = '4파' 가정 무효화<br>
+          ▸ 25,930원이 상장 후 전체 임펄스의 최종 고점, 현재는 더 큰 ABC 조정의 반등(B파)<br>
+          ▸ Wave 3의 50~61.8% 되돌림(15,400~17,400원)까지 하락<br>
+          ▸ 글로벌 EV 수요 급감 + 전고체 상용화 지연 우려 확산<br>
+          ▸ 19,540원 이탈 시 손절 트리거 발동, 전략 재수립
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== SECTION 7 : 매매 전략 =========== -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-num">07</div>
+    <div>
+      <div class="section-title">중기 매매전략 (3~6개월) — ETF + 개별종목</div>
+      <div class="section-title-en">MID-TERM TRADING STRATEGY</div>
+    </div>
+  </div>
+
+  <h4 style="color:var(--navy); font-size:16px; margin:6px 0 12px;">▣ ETF (0005D0) 핵심 전략</h4>
+
+  <div class="strategy-grid">
+    <div class="strategy-card buy">
+      <h4>📥 분할 매수 전략</h4>
+      <div class="strategy-step">
+        <div class="stage">1차 30%</div>
+        <div class="desc">반등 진입 (현재가 부근)</div>
+        <div class="price">22,500~23,000원</div>
+      </div>
+      <div class="strategy-step">
+        <div class="stage">2차 40%</div>
+        <div class="desc">4파 저점 눌림 시</div>
+        <div class="price">20,000~21,000원</div>
+      </div>
+      <div class="strategy-step">
+        <div class="stage">3차 30%</div>
+        <div class="desc">38.2% 저점 재시험 시</div>
+        <div class="price">19,500~19,900원</div>
+      </div>
+      <div class="strategy-step">
+        <div class="stage">평단가</div>
+        <div class="desc">→ 약 21,000원 추정</div>
+        <div class="price" style="color:var(--green);">21,000원</div>
+      </div>
+    </div>
+
+    <div class="strategy-card sell">
+      <h4>📤 분할 익절 전략</h4>
+      <div class="strategy-step">
+        <div class="stage">1차 25%</div>
+        <div class="desc">전고점 회복</div>
+        <div class="price">25,900원</div>
+      </div>
+      <div class="strategy-step">
+        <div class="stage">2차 25%</div>
+        <div class="desc">단기 익절 (0.5x)</div>
+        <div class="price">28,100원</div>
+      </div>
+      <div class="strategy-step">
+        <div class="stage">3차 25%</div>
+        <div class="desc">메인 목표 (0.618x)</div>
+        <div class="price">30,100원</div>
+      </div>
+      <div class="strategy-step">
+        <div class="stage">4차 25%</div>
+        <div class="desc">초강세 (1.0x)</div>
+        <div class="price" style="color:var(--green);">36,600원+</div>
+      </div>
+    </div>
+
+    <div class="strategy-card stop">
+      <h4>🛑 손절 / 리스크 관리</h4>
+      <div class="strategy-step">
+        <div class="stage">경고선</div>
+        <div class="desc">4파 저점 근접</div>
+        <div class="price" style="color:var(--amber);">20,000원</div>
+      </div>
+      <div class="strategy-step">
+        <div class="stage">손절선</div>
+        <div class="desc">38.2%·4파 저점 이탈</div>
+        <div class="price" style="color:var(--red);">19,400원</div>
+      </div>
+      <div class="strategy-step">
+        <div class="stage">파동 무효</div>
+        <div class="desc">50% 이탈 = 대안 카운트</div>
+        <div class="price" style="color:var(--red);">17,400원</div>
+      </div>
+      <div class="strategy-step">
+        <div class="stage">시간 손절</div>
+        <div class="desc">2026.12까지 전고점 미회복</div>
+        <div class="price" style="color:var(--gray-text);">3Q말 점검</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--gray-light); padding:18px 22px; border-radius:5px; margin:14px 0 24px;">
+    <p style="font-size:13px; line-height:1.75;">
+      <strong style="color:var(--navy);">▸ 핵심 매매 원칙:</strong>
+      ① 현재는 전고점(25,930) 후 −11% 조정·반등 국면이므로 풀베팅 금지, <strong>3분할 매수</strong> 권장.
+      ② 4파 저점(19,540) 재시험 가능성을 감안해 2~3차 매수 가격에 분할 주문 미리 설정.
+      ③ 추세 재개 확인 신호는 <strong>전고점 25,930원 회복(돌파)</strong> — 그 전까지는 박스 대응.
+      ④ ETF는 종목 분산이므로 변동성이 개별주 대비 낮음 → 추세추종 + 분할 매매에 적합.
+      ⑤ 손절선 <strong>19,400원 하회 시 즉시 70% 청산</strong>, 대안(ABC 조정) 카운트로 전환.
+    </p>
+  </div>
+
+  <h4 style="color:var(--navy); font-size:16px; margin:24px 0 12px;">▣ 개별 종목별 매매 가이드</h4>
+
+  <table class="holdings-table">
+    <thead>
+      <tr>
+        <th style="width:13%">종목</th>
+        <th style="width:8%">시그널</th>
+        <th style="width:15%">1차 매수가</th>
+        <th style="width:15%">2차 매수가</th>
+        <th style="width:13%">손절선</th>
+        <th style="width:18%">목표가 1·2·3</th>
+        <th>전략 메모</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>삼성SDI</strong></td>
+        <td style="color:var(--green);">매수</td>
+        <td class="mono">640,000~660,000</td>
+        <td class="mono">560,000~590,000</td>
+        <td class="mono" style="color:var(--red);">540,000</td>
+        <td class="mono">723K → 800K → 880K</td>
+        <td>전고점 723K 회복 여부가 분기점. 돌파 시 강한 추세.</td>
+      </tr>
+      <tr>
+        <td><strong>에코프로비엠</strong></td>
+        <td style="color:var(--green);">매수</td>
+        <td class="mono">205,000~218,000</td>
+        <td class="mono">175,000~185,000</td>
+        <td class="mono" style="color:var(--red);">165,000</td>
+        <td class="mono">235K → 260K → 290K</td>
+        <td>ETF 2위 비중, 지수와 동조. 1월 고점 260K 회복이 관문.</td>
+      </tr>
+      <tr>
+        <td><strong>이수스페셜티</strong></td>
+        <td style="color:var(--green);">매수</td>
+        <td class="mono">98,000~103,000</td>
+        <td class="mono">85,000~91,000</td>
+        <td class="mono" style="color:var(--red);">80,000</td>
+        <td class="mono">120K → 132K → 145K</td>
+        <td>황화리튬 마더플랜트 가동(하반기) 모멘텀 활용.</td>
+      </tr>
+      <tr>
+        <td><strong>대주전자재료</strong></td>
+        <td style="color:var(--green); font-weight:700;">강력매수</td>
+        <td class="mono">150,000~158,000</td>
+        <td class="mono">130,000~138,000</td>
+        <td class="mono" style="color:var(--red);">120,000</td>
+        <td class="mono">183K → 210K → 240K</td>
+        <td>ETF 내 최강 모멘텀. 전고점 183K 돌파 시 추세추종.</td>
+      </tr>
+      <tr>
+        <td><strong>롯데에너지</strong></td>
+        <td style="color:var(--amber);">관망 후 매수</td>
+        <td class="mono">58,000~62,000</td>
+        <td class="mono">50,000~54,000</td>
+        <td class="mono" style="color:var(--red);">46,000</td>
+        <td class="mono">74K → 83K → 95K</td>
+        <td>변동성 최대. 50,000원대 지지 확인 후 분할.</td>
+      </tr>
+      <tr>
+        <td><strong>나노신소재</strong></td>
+        <td style="color:var(--amber);">분할매수</td>
+        <td class="mono">70,000~74,000</td>
+        <td class="mono">60,000~64,000</td>
+        <td class="mono" style="color:var(--red);">55,000</td>
+        <td class="mono">85K → 95K → 110K</td>
+        <td>저평가 회복주. 인내심 필요.</td>
+      </tr>
+      <tr>
+        <td><strong>레이크머티</strong></td>
+        <td style="color:var(--green);">매수</td>
+        <td class="mono">19,500~21,000</td>
+        <td class="mono">17,000~18,000</td>
+        <td class="mono" style="color:var(--red);">15,500</td>
+        <td class="mono">24K → 28.7K → 32K</td>
+        <td>박스 상단 돌파 시도. 24,000원 돌파 시 추격.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- =========== SECTION 8 : 리스크 요인 =========== -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-num">08</div>
+    <div>
+      <div class="section-title">주요 리스크 요인</div>
+      <div class="section-title-en">KEY RISK FACTORS</div>
+    </div>
+  </div>
+
+  <div class="risk-grid">
+    <div class="risk-card">
+      <h5>① 전고체 양산 시점 지연 리스크</h5>
+      <p>
+        삼성SDI 2027년, 토요타 2027~28년 목표지만 기술적 난이도가 높아 1~2년 지연 가능성 존재.
+        지연 발생 시 황화리튬 매출 본격화도 2030년 이후로 밀려 단기 모멘텀 약화.
+      </p>
+    </div>
+    <div class="risk-card">
+      <h5>② 글로벌 EV 수요 둔화 / 중국 LFP 경쟁</h5>
+      <p>
+        북미·유럽 EV 판매 부진과 중국 LFP 배터리의 가격 경쟁력 강화로 국내 셀·소재 업체들의 마진 압박.
+        롯데에너지·나노신소재 등 EV용 매출 비중 높은 기업의 실적 회복 속도가 느려질 수 있음.
+      </p>
+    </div>
+    <div class="risk-card">
+      <h5>③ 종목 집중 리스크 (HHI 약 0.16)</h5>
+      <p>
+        상위 4종목 비중이 <strong>72.4%</strong>로 집중도 높음. 특히 삼성SDI·에코프로비엠 두 종목이
+        <strong>43.0%</strong>를 차지해 이 두 대형주의 변동이 ETF 전체를 좌우. 분산효과는 제한적.
+      </p>
+    </div>
+    <div class="risk-card">
+      <h5>④ 밸류에이션 부담 (高PER)</h5>
+      <p>
+        이수스페셜티·대주전자재료·나노신소재 등 다수 종목이 적자 또는 초고PER 구간에서 성장 기대를 선반영.
+        황화리튬·실리콘음극재 본격 매출은 2027~2030년에야 가시화되어, 실적 지연 시 멀티플 컨트랙션 위험.
+      </p>
+    </div>
+    <div class="risk-card">
+      <h5>⑤ 미국 관세 · 정책 리스크</h5>
+      <p>
+        美 IRA 보조금 / FEOC 규정 변화, 중국산 소재 관세 부과 등 정치적 리스크. AMPC 보조금 축소 시
+        삼성SDI를 비롯한 셀 메이커 수익성에 직접적 타격.
+      </p>
+    </div>
+    <div class="risk-card">
+      <h5>⑥ ETF 추적오차 / 유동성</h5>
+      <p>
+        순자산 약 2,000억원대의 중소형 ETF. 최근 거래대금 일평균 약 250~300억원으로 일반 매매에는 충분하나
+        대형 자금 진입 시 단기 NAV 괴리 발생 가능. iNAV 모니터링 필수.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =========== FINAL BOX =========== -->
+<div class="final-box">
+  <h3>🎯 최종 투자 의견 및 종합 결론</h3>
+
+  <div class="final-grid">
+    <div class="final-cell">
+      <div class="label">투자의견</div>
+      <div class="value txt">매수 (BUY)</div>
+    </div>
+    <div class="final-cell">
+      <div class="label">목표가 (메인)</div>
+      <div class="value">30,000원</div>
+    </div>
+    <div class="final-cell">
+      <div class="label">기대수익률</div>
+      <div class="value">+30.6%</div>
+    </div>
+    <div class="final-cell">
+      <div class="label">손절선</div>
+      <div class="value">19,400원</div>
+    </div>
+  </div>
+
+  <div class="final-summary">
+    <ul>
+      <li><strong>구조적 성장 스토리:</strong> 전고체 배터리 2027년 양산 로드맵 + 실리콘음극재 침투율 확대 + 황화리튬 글로벌 공급망 병목 = 3중 모멘텀이 작동하는 핵심 테마 ETF. 다만 본격 매출은 2027~2030년에 가시화.</li>
+      <li><strong>현재 위치(정정):</strong> ETF는 5/7 전고점 25,930원 후 5/20 19,540원까지 −24.6% 조정(Wave 4) → 5/22 22,975원(+8.37%) 반등. <strong>신고가가 아니라 조정 후 반등 국면</strong>이며, 추세 재개는 전고점 회복 확인이 필요.</li>
+      <li><strong>구성 핵심(정정):</strong> 비중 1위 삼성SDI 26.2%, 2위 에코프로비엠 16.8%, 3위 이수스페셜티 16.8% — 상위 4종목 72.4%. 대형 셀·양극재 2종(43%)이 사실상 지수 방향성을 좌우.</li>
+      <li><strong>분할 매수 전략:</strong> 1차 22,500~23,000원 / 2차 20,000~21,000원 / 3차 19,500~19,900원(4파 저점)의 3단계. 평단 약 21,000원 → 메인 목표 30,000원 도달 시 약 +43%.</li>
+      <li><strong>철저한 리스크 관리:</strong> 손절선 19,400원(38.2%·4파 저점) 이탈 시 즉시 70% 청산 → 대안(ABC 조정) 카운트로 전환. 시간 손절 2026년 12월말까지 전고점(25,930) 미회복 시 전략 재검토.</li>
+      <li><strong>대안 베타 전략:</strong> ETF 중심 + 모멘텀 강한 대주전자재료, 대형 비중의 삼성SDI를 결합한 혼합 포트가 변동성 감수 시 초과수익 가능(분산효과는 제한적).</li>
+    </ul>
+    <div class="star-rating">★ ★ ★ ☆ ☆ &nbsp;&nbsp; <span style="font-size:13px; opacity:0.85;">(3.5/5.0 — 전고점 후 조정 국면 · 분할 매수 / 전고점 회복 확인 권고)</span></div>
+  </div>
+</div>
+
+<!-- =========== DISCLAIMER =========== -->
+<div class="disclaimer">
+  <p><strong>면책 고지:</strong> 본 보고서는 투자 의사결정 참고를 위해 작성된 자료로, 어떠한 경우에도 투자결과에 대한 법적 책임 소재의 증빙자료로 활용될 수 없습니다.
+  구성종목 비중은 신한자산운용 PDF(납입자산구성내역, 2026-05-22) 기준이며, 가격·수익률 데이터는 KRX 실측치(FinanceDataReader)를 사용했습니다. 그 외 정보는
+  신뢰할 만한 자료(KRX 정보데이터시스템, 각 증권사 리서치 등)에서 얻은 것이나 Chory &amp; Rochet은 그 정확성이나 완전성을 보장할 수 없습니다.</p>
+  <p style="margin-top:8px;">엘리어트 파동 분석은 후행적 해석에 기반하며, 미래 가격을 예측하는 것이 아닌 확률적 시나리오를 제시하는 도구입니다.
+  실제 투자 결정은 본인의 위험 수용도, 투자 기간, 자금 사정을 충분히 고려한 후 본인 판단 하에 이루어져야 합니다.
+  ETF는 예금자보호법에 의해 보호되지 않으며, 자산 가격 변동에 따라 투자 원금의 손실(0~100%)이 발생할 수 있습니다.</p>
+  <p style="margin-top:8px;">본 보고서는 stock-analysis-kr 스킬의 ETF 확장 분석 워크플로우를 사용하여 생성되었으며, 분석 시점은 2026-05-24, 기준 가격은 2026-05-22 KRX 장마감 데이터입니다.</p>
+</div>
+
+</div>
+</body>
+</html>
