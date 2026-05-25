@@ -1,6 +1,22 @@
 {
   "reports": [
     {
+      "id": "2026-05-25-ace-us-smr-nuclear-top10-etf",
+      "title": "ACE 미국SMR원자력TOP10 ETF (0155M0) 종합 투자 분석",
+      "summary": "Oklo·NuScale 등 미국 SMR·원자력 밸류체인 10종목 농축형 ETF 분석. 4/8 ATL(7,871) 기점 임펄스의 Wave ③ 초입으로, 기준가 8,505원(5/21)은 Wave ② 저점 직후 분할 매수 권역. 구성종목 10개 개별 분석 + 엘리어트 파동 + 4단계 매매 플레이북 수록.",
+      "category": "섹터·테마",
+      "date": "2026-05-25",
+      "path": "reports/2026-05-25-ace-us-smr-nuclear-top10-etf.html",
+      "tags": [
+        "SMR",
+        "원자력",
+        "ETF",
+        "미국주식",
+        "Oklo",
+        "엘리어트파동"
+      ]
+    },
+    {
       "id": "2026-05-24-455850-sol-ai-semiconductor-etf",
       "title": "SOL AI반도체소부장 ETF (455850) 종합 투자 분석 — 11종목 엘리어트 파동 재검토",
       "summary": "신한 SOL AI반도체소부장 ETF(455850)와 구성 20종목을 실데이터로 정밀 분석. 11개 개별종목 파동을 제로베이스 재검토한 결과 한미·이수·이오 등 비중 약 52%가 Wave ③를 완성하고 ④ 조정에 진입 — ETF도 Wave IV 조정 진행 중. 조정 하단(27,500~28,500원) 분할 매수, 중기 Wave V 목표 35,500원.",
