@@ -1,6 +1,22 @@
 {
   "reports": [
     {
+      "id": "2026-05-25-ace-us-smr-nuclear-top10-etf",
+      "title": "ACE 미국SMR원자력TOP10 ETF · Solactive 지수 엘리어트 파동 카운트",
+      "summary": "Solactive US SMR Nuclear Top 10 지수(ACE ETF 추종)를 상위 6종목 가중합성으로 3년 복원해 엘리어트 파동 카운트. 상위 (1)파(2024.04→2025.10, ATH 9,543) 완성 후 상위 (2)파로 −47% 조정(저점 2026.03말, 지수 5,083), 2026.04부터 (3)파 상승(ⓐ) vs X복합조정(ⓑ) 갈림길. ACE ETF 시장가(4/2 8,120원→9,055원) 정합 오버레이 + 200MA 교차검증.",
+      "category": "섹터·테마",
+      "date": "2026-05-25",
+      "path": "reports/2026-05-25-ace-us-smr-nuclear-top10-etf.html",
+      "tags": [
+        "SMR",
+        "원자력",
+        "ETF",
+        "엘리어트파동",
+        "Solactive",
+        "미국주식"
+      ]
+    },
+    {
       "id": "2026-05-27-kr-daily-close",
       "title": "2026-05-27 일일 마감 정리 및 익일 준비",
       "summary": "외국인 주도 상승(대형 반도체). KOSPI +2.25%(8,228.70) 사상 최고 이틀 연속, KOSDAQ -3.36% 폭락 디커플링. 외인 14거래일만 코스피 매수 전환, 미 메모리 강세 동조. 강세: 반도체메모리, IT서비스·피지컬AI. Tier 1 3종목. 익일 한은 금통위·미 PCE, B(눌림목) 우선.",
@@ -68,22 +84,6 @@
         "오후대응",
         "반도체반등",
         "미이란휴전"
-      ]
-    },
-    {
-      "id": "2026-05-25-ace-us-smr-nuclear-top10-etf",
-      "title": "ACE 미국SMR원자력TOP10 ETF (0155M0) 종합 투자 분석",
-      "summary": "Oklo·NuScale 등 미국 SMR·원자력 밸류체인 10종목 농축형 ETF 분석. 4/8 ATL(7,871) 기점 임펄스의 Wave ③ 초입으로, 기준가 8,505원(5/21)은 Wave ② 저점 직후 분할 매수 권역. 구성종목 10개 개별 분석 + 엘리어트 파동 + 4단계 매매 플레이북 수록.",
-      "category": "섹터·테마",
-      "date": "2026-05-25",
-      "path": "reports/2026-05-25-ace-us-smr-nuclear-top10-etf.html",
-      "tags": [
-        "SMR",
-        "원자력",
-        "ETF",
-        "미국주식",
-        "Oklo",
-        "엘리어트파동"
       ]
     },
     {
