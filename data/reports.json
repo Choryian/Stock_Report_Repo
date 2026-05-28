@@ -1,6 +1,22 @@
 {
   "reports": [
     {
+      "id": "2026-05-29-us-overnight",
+      "title": "2026-05-29 미국 야간 시황 및 한국 개장 대응",
+      "summary": "S&P 500·나스닥 사상최고. 4월 Core PCE MoM +0.2%(예상 하회) 안도. 갭 점수 +5. S&P +0.58%, Nasdaq +0.91%, NDF 1,495원(-5원 강세). 매핑: 반도체·바이오(D&D EASL 성공). 시나리오 B 우선, A 일부 가중.",
+      "category": "시황",
+      "date": "2026-05-29",
+      "path": "reports/2026-05-29-us-overnight.html",
+      "tags": [
+        "미장",
+        "개장대응",
+        "반도체",
+        "바이오",
+        "EASL",
+        "PCE"
+      ]
+    },
+    {
       "id": "2026-05-28-tiger-us-space-tech-elliott-wave",
       "title": "Tiger 미국우주테크 ETF 합성지수 엘리어트 파동 분석",
       "summary": "Tiger 미국우주테크 ETF 10개 구성종목 비중 기반 합성지수(Base=100, 3Y)에 엘리어트 파동 분석을 적용. 확장 3파 임펄스 패턴이 식별되며 현재는 W3 내부 (v)-v-3 분출 진행 중. 6/12 SpaceX IPO와 6/14 ETF 편입(최대 25%)이라는 외부 촉매가 결합되어 4가지 시나리오로 재배분.",
