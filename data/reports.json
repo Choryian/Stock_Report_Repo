@@ -1,6 +1,21 @@
 {
   "reports": [
     {
+      "id": "2026-05-29-kr-daily-close",
+      "title": "2026-05-29 일일 마감 정리 및 익일 준비",
+      "summary": "기관 주도 상승·대형주 쏠림. KOSPI +3.55%(8,476.15) 사상 최고 재경신, KOSDAQ -2.68%(1,074.80) 양극화. 기관 단독 +2.37조 매수·외인 -1.07조 매도. 젠슨 황 6/5 방한·구광모 회동 기대로 LG그룹·AI부품·SI 폭발(LG전자 상한가). Tier 1 4종목. 익일 B(눌림목) 우선, 상한가 추격 금지.",
+      "category": "시황",
+      "date": "2026-05-29",
+      "path": "reports/2026-05-29-kr-daily-close.html",
+      "tags": [
+        "마감",
+        "젠슨황방한",
+        "LG그룹주",
+        "AI인프라",
+        "Tier1"
+      ]
+    },
+    {
       "id": "2026-05-29-ionq-elliott-wave-v8",
       "title": "IonQ (IONQ) 엘리어트 파동 분석 v8 — 차수 통일",
       "summary": "실시간 OHLC 일봉 기반 IonQ 파동 분석. Cycle/Primary/Intermediate/Minor 4단계 차수 통일 표기, 5/11 $58.54를 Int(1) 천정으로 정정. 현재 4단계 모두 3파 중첩(Cyc(3)→Pri[3]→Int(3)→Mn 3). Mn 3 메인 목표 $92.9, Cyc(3) 최종 $96(보수)/$115(메인)/$145(강세).",
