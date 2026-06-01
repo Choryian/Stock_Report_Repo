@@ -370,7 +370,8 @@
       const json = await res.json();
       const reviews = (json.reports || [])
         .filter(isReview)
-        .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+        .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+        .slice(0, 1); // 최신 1개만 표시
       if (!reviews.length) { empty.hidden = false; return; }
       empty.hidden = true;
       list.innerHTML = reviews.map(cardHtml).join('');
