@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-06-05 KR 오전장 정리 및 오후장 대응 | Chory &amp; Rochet</title>
+<style>
+  :root{
+    --up:#d11a2a; --down:#1457d1; --bg:#f6f7f9; --card:#ffffff;
+    --ink:#1d2330; --sub:#5b6472; --line:#e6e9ef; --accent:#16324f; --gold:#9a7b3f;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",sans-serif;
+    line-height:1.65;font-size:15px;}
+  .wrap{max-width:880px;margin:0 auto;padding:18px 14px 60px;}
+  header.top{background:linear-gradient(135deg,#16324f,#21507e);color:#fff;border-radius:14px;padding:22px 20px;margin-bottom:18px;}
+  header.top .kicker{font-size:12.5px;letter-spacing:.14em;opacity:.82;text-transform:uppercase;}
+  header.top h1{margin:6px 0 4px;font-size:21px;line-height:1.35;}
+  header.top .meta{font-size:12.5px;opacity:.9;}
+  .brand{color:var(--gold);font-weight:700;}
+  .lead{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--accent);
+    border-radius:12px;padding:16px 18px;margin-bottom:16px;}
+  .lead .tag{display:inline-block;background:#16324f;color:#fff;font-size:12px;font-weight:700;
+    padding:3px 10px;border-radius:20px;margin-bottom:8px;}
+  .lead p{margin:6px 0 0;font-size:15.5px;}
+  h2{font-size:17px;margin:26px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--accent);}
+  h3{font-size:14.5px;margin:16px 0 6px;color:var(--accent);}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .up{color:var(--up);font-weight:700;}
+  .down{color:var(--down);font-weight:700;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;}
+  .stat .lbl{font-size:12px;color:var(--sub);}
+  .stat .val{font-size:18px;font-weight:800;margin-top:2px;}
+  .stat .sub{font-size:12px;margin-top:2px;}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:13.5px;}
+  th,td{border:1px solid var(--line);padding:8px 9px;text-align:center;}
+  th{background:#eef2f7;color:var(--accent);font-weight:700;}
+  td.l,th.l{text-align:left;}
+  .pill{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:20px;}
+  .p-em{background:#fff3e0;color:#b15c00;}
+  .p-gr{background:#e8f5e9;color:#1b7a37;}
+  .p-pk{background:#fdecef;color:#b3132a;}
+  .p-de{background:#eceff3;color:#5b6472;}
+  ul{margin:6px 0;padding-left:20px;}
+  li{margin:3px 0;}
+  .warn{background:#fff7f7;border:1px solid #f3c9c9;border-radius:10px;padding:12px 14px;margin-bottom:12px;}
+  .scn{border-radius:10px;padding:12px 14px;margin-bottom:8px;}
+  .scn.a{background:#fdeef0;border:1px solid #f3c9cf;}
+  .scn.b{background:#f4f6f9;border:1px solid #dfe4ec;}
+  .scn.c{background:#eef3fc;border:1px solid #c9d8f3;}
+  .scn b{font-size:14px;}
+  .verify{font-size:12px;color:#1b7a37;font-weight:600;}
+  .note{font-size:12.5px;color:var(--sub);}
+  .score{display:inline-block;font-size:22px;font-weight:800;color:#1457d1;}
+  footer{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);text-align:center;color:var(--sub);font-size:12.5px;}
+  .disclaimer{font-size:11.5px;color:#8a93a2;margin-top:8px;line-height:1.5;}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="kicker">KR Midday Pivot · 오전장 정리 &amp; 오후장 대응</div>
+    <h1>2026-06-05 (금) KR 오전장 정리 및 오후장 대응</h1>
+    <div class="meta">발행: <span class="brand">Chory &amp; Rochet</span> · 작성 12:00 KST (오전장 분기점)</div>
+  </header>
+
+  <!-- 데이터 한계 고지 -->
+  <div class="warn">
+    <b>⚠️ 데이터 고지</b> — ① 오늘(6/5) <b>개장 보고서(us_overnight)가 미생성</b>되어 인계는 6/4 마감 보고서만으로 수행. ② <b>지수 정확 수치 미확보</b>: 네이버 실시간 인덱스·KRX 직접조회 차단 + 검색 인덱스 미반영으로, 코스피/코스닥 등락은 <b>12:01 KST 주요 구성종목 시세 기반 추정</b>(개별종목 가·등락률은 네이버페이증권 12:01 확정치). 확정 지수는 마감 보고서에서 확인. ③ StockMatrix 테마 API 장애(402) 지속 → 라이프사이클은 등락·순환 기반 추정.
+  </div>
+
+  <!-- 1. 한 줄 요약 -->
+  <div class="lead">
+    <span class="tag">오전 성격 · 갭하락 후 추세 약화 (반도체 직격 + 외인 매도 지속)</span>
+    <p>미 6/4장 <b>반도체주 급락</b>(나스닥 -0.09%, 브로드컴·엔비디아 약세) 여파로 <b>삼성전자 -4.3%·SK하이닉스 -6.5%</b> 동반 급락하며 코스피가 큰 폭 하락 출발·약세 지속. 어제 폭등한 소부장(주성엔 -13.6%)·로봇(두산로보틱스 -15.5%) 차익실현, 지주 급등주(삼성물산 -16.6%) 되돌림. 환율 1,530원 고공 + 외인 매도 지속이 압력. 역행 강세는 부품(삼성전기 +5%·LG이노텍 +3.9%)·일부 소부장(HPSP +12.8%)뿐. <b>오전 강도 <span class="score">-6</span> → 오후 시나리오 C(추세 약화) 우선.</b></p>
+  </div>
+
+  <!-- 2. 인계 평가 -->
+  <h2>2. 인계 평가 — 어제 Tier 1 &amp; 갭 시나리오 적중</h2>
+  <div class="card">
+    <h3>📋 6/4 마감 시나리오 적중 판정</h3>
+    <p>어제 익일 시나리오 중 <b>C(약세 갭)이 적중</b>. "미 -1%↓ 또는 반도체 투심 부담 + 외인 매도 지속" 조건이 미 반도체 급락·브로드컴 여파로 현실화. (다우는 +1.73%였으나 <b>나스닥 반도체만 급락</b>해 한국 반도체에 선별 타격.)</p>
+    <div class="scroll">
+    <table>
+      <tr><th class="l">어제 Tier 1</th><th>진입/손절/목표</th><th>오늘 시(始)/저(低)/현(12:01)</th><th>판정</th></tr>
+      <tr>
+        <td class="l">삼성전자 (005930)</td>
+        <td>345,000 / 335,000 / 366,000</td>
+        <td>333,500 / 325,000 / <b class="down">336,500 (-4.27%)</b></td>
+        <td class="down">손절 발동<br><span class="note">갭하락, 저가 325,000<br>손절 335,000 하회</span></td>
+      </tr>
+      <tr>
+        <td class="l">한미반도체 (042700)</td>
+        <td>295,000 / 278,000 / 325,000</td>
+        <td>294,000 / 278,000 / <b class="down">291,500 (-4.11%)</b></td>
+        <td class="down">손절가 정확히 터치<br><span class="note">저가 278,000=손절선<br>현재 소폭 반등</span></td>
+      </tr>
+      <tr>
+        <td class="l">삼성중공업 (010140)</td>
+        <td>28,000 / 26,800 / 30,150</td>
+        <td>28,150 / 27,300 / <b class="down">27,850 (-1.94%)</b></td>
+        <td class="up">손절 미발동<br><span class="note">진입 소폭 하회·방어<br>상대 선방</span></td>
+      </tr>
+    </table>
+    </div>
+    <p class="note">※ 자체검증: 어제 "상한가권 급등주 추격 금지·눌림목 대기" 권고가 적중(주성엔 -13.6%, 원익·브이엠 등 차익실현). 어제 Tier 1 3종 중 2종(반도체) 손절권, 방어주(삼성중공업)만 생존 → <b>약세장 방어주 우위 구도 확인</b>.</p>
+  </div>
+
+  <!-- 3. 오전 지수·수급 -->
+  <h2>3. 오전 지수 · 수급 · 환율 (12:00 기준)</h2>
+  <div class="grid">
+    <div class="stat"><div class="lbl">KOSPI (추정)</div><div class="val down">약 8,360~8,440</div><div class="sub down">▼약 2.3~3.2% <span class="note">(추정)</span></div></div>
+    <div class="stat"><div class="lbl">KOSDAQ (추정)</div><div class="val down">약 1,025~1,040</div><div class="sub down">▼약 1.0~2.3% <span class="note">(추정)</span></div></div>
+    <div class="stat"><div class="lbl">원/달러</div><div class="val down">1,530원대</div><div class="sub down">개장 1,529 → 장중 1,530.8 (17년래 최고권)</div></div>
+    <div class="stat"><div class="lbl">미 6/4 나스닥</div><div class="val down">26,830.96</div><div class="sub down">▼0.09% (반도체 급락)</div></div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <h3>수급 (오전 정황 — 확정치 아님)</h3>
+    <ul>
+      <li><b>외국인</b>: 6/4까지 19거래일 연속·최근 최대규모 코스피 순매도, 오늘도 반도체 대형주 중심 <b>매도 지속</b> 정황(삼전·하이닉스 동반 급락). 20거래일 연속 여부가 오후 분기점.</li>
+      <li><b>개인·기관</b>: 어제처럼 낙폭과대 대형주 방어 매수 가능성. 다만 반도체 매도 압력이 강해 코스피 낙폭 제한엔 한계.</li>
+      <li><b>환율</b>: 1,530원대 고착, 강달러 → 외인 이탈 압력 가중. 1,540 돌파 시 매도 가속 트리거.</li>
+    </ul>
+    <p class="note">※ 외인/기관 정확 순매수는 14:00 잠정·15:30 확정치로 마감 보고서에서 대조. 본 항목은 시세 정황 기반.</p>
+  </div>
+  <div class="card">
+    <h3>글로벌 (간밤 6/4 현지)</h3>
+    <ul>
+      <li>다우 <span class="up">+1.73%</span> 51,561.93 · S&amp;P500 <span class="up">+0.41%</span> 7,584.31 · <b>나스닥 <span class="down">-0.09%</span> 26,830.96</b> · 나스닥100 <span class="down">-0.54%</span></li>
+      <li>경기민감·금융·헬스케어 강세로 다우·S&amp;P 상승, 그러나 <b>반도체주 크게 약세</b>로 나스닥만 하락. VIX 하락(투심 일부 안정) → 한국엔 <b>반도체만 선별 타격</b>되는 구도</li>
+      <li>시간외: 오라클 +5.35% / 엔비디아·메타·테슬라·브로드컴 소폭 약세 → 한국 반도체 투심 부담 지속</li>
+    </ul>
+  </div>
+
+  <!-- 4. 섹터 -->
+  <h2>4. 오전 강세 / 약세 섹터</h2>
+  <div class="card">
+    <h3>🔥 역행 강세 (전체 약세장 속)</h3>
+    <ul>
+      <li><b>전자부품(MLCC·카메라모듈)</b> — 삼성전기 <span class="up">+5.01%</span>(180.2만), LG이노텍 <span class="up">+3.92%</span>(121.9만). 반도체 약세 자금의 부품주 순환</li>
+      <li><b>반도체 장비(고압 어닐링)</b> — HPSP <span class="up">+12.84%</span>(53,600). 어제 급등 소부장(주성엔·원익)에서 신규 종목으로 순환</li>
+      <li><b>일부 로봇 개별</b> — 코스모로보틱스 <span class="up">+7.75%</span> (두산로보틱스 폭락과 대조, 개별 모멘텀)</li>
+    </ul>
+    <h3>🧊 약세 섹터 — 반도체·로봇·지주 동반 조정</h3>
+    <ul>
+      <li><b>반도체 대형</b> — SK하이닉스 <span class="down">-6.48%</span>(214.9만), 삼성전자 <span class="down">-4.27%</span>(336,500) — 미 반도체 급락 직격</li>
+      <li><b>소부장 급등주 차익실현</b> — 주성엔지니어링 <span class="down">-13.57%</span>(어제 +27%→오늘 반납)</li>
+      <li><b>로봇·피지컬AI</b> — 두산로보틱스 <span class="down">-15.45%</span>(2일 연속 급락), 깐부주 LG전자 <span class="down">-7.47%</span>·LG씨엔에스 <span class="down">-7.91%</span>·삼성에스디에스 <span class="down">-5.78%</span></li>
+      <li><b>지주 급등주 되돌림</b> — 삼성물산 <span class="down">-16.64%</span>(어제 +10.2%→급반납), 자동차 현대모비스 <span class="down">-6.42%</span>·현대차 <span class="down">-3.29%</span></li>
+      <li><b>2차전지</b> — 에코프로 <span class="down">-6.44%</span>, 삼성SDI <span class="down">-5.68%</span></li>
+    </ul>
+  </div>
+
+  <!-- 5. 주도 테마 매핑 -->
+  <h2>5. 주도 테마 × 종목 매핑</h2>
+  <p class="note">⚠️ StockMatrix 테마 API 장애(402) 지속 → 단계는 당일 등락·순환 기반 추정.</p>
+  <div class="scroll">
+  <table>
+    <tr><th>테마</th><th>단계(추정)</th><th>대장주</th><th>2등주</th><th>소외/순환주</th></tr>
+    <tr>
+      <td class="l">전자부품(MLCC·모듈)</td>
+      <td><span class="pill p-em">Emerging(역행)</span></td>
+      <td>삼성전기 <span class="up">+5.0%</span></td>
+      <td>LG이노텍 <span class="up">+3.9%</span></td>
+      <td>대덕전자·이수페타시스(점검)</td>
+    </tr>
+    <tr>
+      <td class="l">반도체 소부장·장비</td>
+      <td><span class="pill p-de">Growth→차익실현</span></td>
+      <td>HPSP <span class="up">+12.8%</span>(신규)</td>
+      <td>주성엔 <span class="down">-13.6%</span>(반납)</td>
+      <td>한미반도체 <span class="down">-4.1%</span>·원익IPS(점검)</td>
+    </tr>
+    <tr>
+      <td class="l">조선</td>
+      <td><span class="pill p-gr">Growth(방어)</span></td>
+      <td>삼성중공업 <span class="down">-1.9%</span></td>
+      <td>한화오션 <span class="down">-2.4%</span></td>
+      <td>HD현대중공업·현대미포(점검)</td>
+    </tr>
+    <tr>
+      <td class="l">로봇·피지컬AI</td>
+      <td><span class="pill p-pk">Decline(가속)</span></td>
+      <td>두산로보틱스 <span class="down">-15.5%</span></td>
+      <td>—</td>
+      <td>코스모로보틱스 <span class="up">+7.8%</span>(개별 역행)</td>
+    </tr>
+  </table>
+  </div>
+  <p class="note">트리거: 미 반도체 급락 → 한국 반도체 대형 직격 + 어제 급등주(소부장·로봇·지주) 일제 차익실현. <b>강세는 부품주로의 좁은 순환</b>에 국한, 시장 폭(breadth) 매우 약함.</p>
+
+  <!-- 6. 신규 부상 / 약화 테마 -->
+  <h2>6. 신규 부상 · 약화 테마</h2>
+  <div class="card">
+    <ul>
+      <li><b>🆕 신규 부상</b>: 전자부품(삼성전기·LG이노텍) — 반도체 자금 순환 + 부품 사이클 기대. HPSP — 소부장 내 신규 순환 대장</li>
+      <li><b>📉 약화</b>: 어제 폭등 소부장(주성엔·원익·브이엠 차익실현), 로봇(두산로보틱스 2일 연속 급락 → Decline 가속), 깐부주(LG전자 등 차익실현 지속), 지주 단발성 급등(삼성물산 급반납)</li>
+      <li><b>⚖️ 추세 유지</b>: 조선(삼성중공업·한화오션, 약세장 상대 방어)</li>
+    </ul>
+  </div>
+
+  <!-- 7. 오후 시나리오 + 강도 -->
+  <h2>7. 오후장 대응 시나리오 + 강도 점수</h2>
+  <div class="card">
+    <h3>오전 시장 강도 점수: <span class="score">-6</span> / 10 (약세)</h3>
+    <div class="scroll">
+    <table>
+      <tr><th class="l">항목</th><th>판정</th><th>점수</th></tr>
+      <tr><td class="l">외인 오전 순매수</td><td class="down">매도 지속(반도체 중심)</td><td class="down">-2</td></tr>
+      <tr><td class="l">거래대금</td><td>변동성 확대·정황 보통</td><td>0</td></tr>
+      <tr><td class="l">상승종목 비율</td><td class="down">대형주 일제 하락·폭 약함</td><td class="down">-2</td></tr>
+      <tr><td class="l">미 야간선물(ES)</td><td>S&amp;P +0.4% 마감·중립</td><td>0</td></tr>
+      <tr><td class="l">원/달러</td><td class="down">1,530 고착·약세</td><td class="down">-2</td></tr>
+      <tr><td class="l"><b>합계</b></td><td></td><td class="down"><b>-6</b></td></tr>
+    </table>
+    </div>
+  </div>
+  <div class="scn c"><b>C. 추세 약화 (우선 · 강도 -6) ★</b> — 외인 반도체 매도 지속 + 환율 1,530 고착 → <b>현금비중 확대·익절 우선</b>. 신규 진입은 역행 강세 부품주·낙폭과대 우량주 분할만. 추격 절대 자제, 종가 베팅도 보수적.</div>
+  <div class="scn b"><b>B. 변동성 확대 (차선)</b> — 오후 외인 매도 진정 + 개인·기관 방어 강화 시 → 낙폭 일부 회복하나 박스 등락. 손절 라인 타이트, 거래대금 집중 종목(부품·조선)만 선별.</div>
+  <div class="scn a"><b>A. 추세 강화 (저확률)</b> — 환율 1,525 이하 안정 + 외인 매도 급감 동시 충족 시에만 → 반도체 낙폭 기술적 반등. 현 강도(-6)상 가능성 낮음, 확인 후 대응.</div>
+
+  <!-- 8. Tier 1 -->
+  <h2>8. 오후 Tier 1 관심종목 <span class="note">(진입 / 손절 / 1차 목표 — 약세장 방어·역행 한정)</span></h2>
+  <div class="scroll">
+  <table>
+    <tr><th class="l">종목(코드)</th><th>현재가</th><th>진입가</th><th>손절가</th><th>1차 목표</th><th class="l">근거</th></tr>
+    <tr>
+      <td class="l">삼성중공업 (010140)</td><td>27,850</td><td>27,500</td><td class="down">26,800</td><td class="up">28,950</td>
+      <td class="l">약세장 상대 방어 1순위(조선 추세 유지, 어제 Tier 1 중 유일 생존). 눌림목 분할, 손절선 어제와 동일 유지. 목표=당일 고가.</td>
+    </tr>
+    <tr>
+      <td class="l">삼성전기 (009150)</td><td>1,802,000</td><td>1,750,000</td><td class="down">1,690,000</td><td class="up">1,845,000</td>
+      <td class="l">역행 강세 대장(+5%, 부품 순환). 단 PER 부담 + 이미 급등 → <b>추격 금지·눌림목만</b>. 목표=당일 고가.</td>
+    </tr>
+    <tr>
+      <td class="l">HPSP (403870)</td><td>53,600</td><td>50,000</td><td class="down">47,000</td><td class="up">54,800</td>
+      <td class="l">소부장 신규 순환 대장(+12.8%). 급등 추격 위험 → 눌림목(5만 부근) 한정 소량. 손절 타이트. 목표=당일 고가.</td>
+    </tr>
+    <tr>
+      <td class="l">삼성전자 (005930)</td><td>336,500</td><td>330,000</td><td class="down">322,000</td><td class="up">345,000</td>
+      <td class="l">낙폭과대 대형 반도체, 저가 325,000 지지 점검. 추세반전 아닌 <b>기술적 반등·시나리오 C 방어용 분할</b>. 저가 하회 시 손절, 21:30 비농업 결과 대기.</td>
+    </tr>
+  </table>
+  </div>
+  <p class="note">※ 어제 손절권 종목(한미반도체) 및 폭락 종목(두산로보틱스·삼성물산·주성엔)은 추세 훼손·과변동으로 신규 진입 제외. 손절가 없는 종목은 Tier 1 미편입 원칙 준수.</p>
+
+  <!-- 9. 오후 체크포인트 -->
+  <h2>9. 오후 시간대별 체크포인트</h2>
+  <div class="card">
+    <ul>
+      <li><b>13:00~13:30</b> — 오후 재개 첫 30분: 외인 반도체 매도 가속/진정 여부, 삼전·하이닉스 저가(325,000·207.7만) 지지 확인</li>
+      <li><b>14:00</b> — 외인·기관 잠정 순매수 발표: 20거래일 연속 순매도 지속 여부가 추세 핵심 분기점</li>
+      <li><b>14:30~15:00</b> — 마감 1시간: 환율 1,530대 마감 흐름, 부품·조선 방어주 종가 베팅 흐름</li>
+      <li><b>15:20~15:30</b> — 동시호가/MOC: 외인 매도 연속 기록 갱신·중단 확인, 금요일 포지션 정리 수급</li>
+      <li><b>21:30 KST(오늘밤)</b> — <b>미 5월 비농업고용 발표</b>(컨센 +8.5만·실업률 4.3%, ADP +12.2만 호조). 호조 시 금리인하 후퇴·강달러·환율 추가 압력 → <b>한국장 6/8(월) 반영</b>. 주말 포지션 관리 변수.</li>
+    </ul>
+  </div>
+
+  <!-- 예정 이벤트 검증 -->
+  <h2>10. 예정 이벤트 재검증</h2>
+  <div class="card">
+    <ul>
+      <li><b>미 5월 비농업고용</b> <span class="verify">[검증: 6/5 21:30 KST(현지 08:30) 발표 예정 확정 — BLS 공식 일정. 컨센 +8.5만·실업률 4.3%, ADP 5월 +12.2만 호조. 현재(12:00) 발표 전, 결과 없음. 한국장 6/8 월 반영]</span></li>
+      <li><b>브로드컴 가이던스 실망</b> <span class="verify">[검증: 6/3 장후 -13% 확정 → 6/4 미 정규장 반도체주 급락(나스닥 -0.09%)으로 확산 → 오늘 한국 반도체 직격 현실화]</span></li>
+      <li><b>중동 미-이란 교전</b> <span class="verify">[검증: 미 6/4장 VIX 하락·경기민감주 강세 = 리스크 다소 완화 신호. 미-이란 자체는 지속. 오늘 한국장 핵심 변수는 중동보다 반도체 투심·외인·환율]</span></li>
+      <li><b>외인 연속 순매도</b> — 6/4까지 19거래일 → 오늘 20거래일 연속 여부가 추세 분기점, 14:00·15:30 확인</li>
+    </ul>
+  </div>
+
+  <footer>
+    본 보고서는 정보 제공 목적이며 투자 권유가 아닙니다. 모든 매매 판단과 책임은 투자자 본인에게 있습니다.<br>
+    발행: <span class="brand">Chory &amp; Rochet</span> · 2026-06-05
+    <div class="disclaimer">데이터 출처: 네이버페이증권(12:01 KST 종목 시세 확정치), 마감시황·장중시황 기사(서울신문·뉴시스·뉴스1 등 교차검증), BLS 일정. 지수 등락률은 구성종목 기반 추정(확정치 미확보), 외인 수급은 정황 기반(확정치는 마감 보고서). StockMatrix 테마 API 장애(402)·KRX 직접조회 차단으로 우회 추정.</div>
+  </footer>
+
+</div>
+</body>
+</html>
