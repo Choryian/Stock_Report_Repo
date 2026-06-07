@@ -317,7 +317,7 @@
 </div>
 <!-- RM-FIGURE:END -->
 
-  <p class="roadmap-updated">최종 업데이트: 2026-06-06 · Chory &amp; Rochet</p>
+  <p class="roadmap-updated">최종 업데이트: 2026-06-07 · Chory &amp; Rochet</p>
   </section>
 </main>
 
@@ -345,9 +345,9 @@
   }
   // 주간 로드맵 리뷰: category '로드맵리뷰' 또는 tag '로드맵리뷰'/'주간리뷰'
   function isReview(r) {
-    const cat = r.category || '';
+    // 주간 리뷰 전용 패널 — '주간리뷰' 태그가 있는 항목만 (전략노트 No.00x 등 제외)
     const tags = (r.tags || []).map(t => String(t));
-    return cat === '로드맵리뷰' || tags.includes('로드맵리뷰') || tags.includes('주간리뷰');
+    return tags.includes('주간리뷰');
   }
   function cardHtml(r) {
     const href = '../' + r.path;

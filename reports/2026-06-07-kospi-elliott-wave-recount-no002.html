@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOSPI Elliott Wave — Recount · Chory &amp; Rochet · Strategy Notes No.002</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0a0f1e; --navy2:#0f1628; --panel:#121a30; --line:#26314f;
+  --cream:#e9e4d6; --muted:#9aa3b8; --faint:#6b7488;
+  --gold:#c9a86a; --gold2:#e0c489;
+  --green:#4fb487; --red:#e0635f; --blue:#6ea3d8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--navy);
+  color:var(--cream);
+  font-family:'Noto Sans KR',sans-serif;
+  font-weight:300;
+  line-height:1.85;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+.page{max-width:860px;margin:0 auto;padding:72px 28px 96px}
+.serif{font-family:'Cormorant Garamond',serif}
+.mono{font-family:'JetBrains Mono',monospace}
+
+/* ---- masthead ---- */
+.crest{text-align:center;color:var(--gold);letter-spacing:.5em;font-size:14px;margin-bottom:26px}
+.brand{text-align:center;font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;letter-spacing:.32em;color:var(--cream);text-transform:uppercase}
+.brand-sub{text-align:center;color:var(--muted);font-size:12px;letter-spacing:.42em;text-transform:uppercase;margin-top:10px}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:34px 0}
+.label{color:var(--gold);font-size:11px;letter-spacing:.34em;text-transform:uppercase;font-weight:400}
+
+/* ---- title block ---- */
+.titleblock{text-align:center;padding:18px 0 6px}
+.notes-no{color:var(--muted);font-size:11px;letter-spacing:.36em;text-transform:uppercase;margin-bottom:26px}
+h1.title{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:54px;line-height:1.08;letter-spacing:.01em;color:var(--cream)}
+.title-fr{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:23px;color:var(--gold2);margin-top:18px;font-weight:400}
+.title-tag{color:var(--muted);font-size:13px;letter-spacing:.12em;margin-top:20px}
+.meta-row{display:flex;justify-content:center;gap:48px;margin-top:36px;color:var(--faint);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.meta-row b{display:block;color:var(--cream);font-family:'JetBrains Mono',monospace;font-weight:500;font-size:13px;letter-spacing:.06em;margin-top:6px}
+
+/* ---- epigraph ---- */
+.epigraph{margin:52px auto;max-width:620px;text-align:center}
+.epigraph .q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;line-height:1.6;color:var(--gold2)}
+.epigraph .qk{color:var(--muted);font-size:14px;margin-top:22px;line-height:1.95}
+.epigraph .sig{color:var(--faint);font-size:11px;letter-spacing:.28em;text-transform:uppercase;margin-top:24px}
+
+/* ---- section ---- */
+section{margin:74px 0}
+.sec-num{font-family:'Cormorant Garamond',serif;font-size:64px;color:var(--line);line-height:.8;font-weight:500}
+.sec-fr{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:18px;margin:6px 0 2px}
+h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:34px;color:var(--cream);letter-spacing:.01em;margin-bottom:24px}
+h3{font-size:14px;letter-spacing:.04em;color:var(--gold2);font-weight:500;margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+h3::before{content:"▸";color:var(--gold)}
+p{margin:16px 0;color:#d8d3c4}
+p .em{color:var(--gold2);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.12em}
+strong{font-weight:500;color:var(--cream)}
+.drop::first-letter{font-family:'Cormorant Garamond',serif;font-size:62px;float:left;line-height:.78;padding:6px 12px 0 0;color:var(--gold)}
+
+/* ---- table ---- */
+table{width:100%;border-collapse:collapse;margin:24px 0;font-size:13.5px}
+th{text-align:left;color:var(--gold);font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:11px 12px;border-bottom:1px solid var(--line)}
+td{padding:11px 12px;border-bottom:1px solid rgba(38,49,79,.5);color:#cfcabb}
+td.num,th.num{font-family:'JetBrains Mono',monospace;text-align:right}
+tr:hover td{background:rgba(201,168,106,.045)}
+.up{color:var(--green)}.down{color:var(--red)}
+.hl td{background:rgba(201,168,106,.08)}
+.hl td:first-child{box-shadow:inset 3px 0 0 var(--gold)}
+
+/* ---- callout / chart frame ---- */
+.frame{background:var(--navy2);border:1px solid var(--line);border-radius:10px;padding:26px 24px;margin:30px 0}
+.frame .cap{text-align:center;color:var(--gold);font-size:11px;letter-spacing:.3em;text-transform:uppercase;margin-bottom:4px}
+.frame .cap-sub{text-align:center;color:var(--muted);font-size:12px;margin-bottom:20px}
+.frame .cap-note{text-align:center;color:var(--faint);font-size:11.5px;margin-top:16px;line-height:1.7}
+
+/* confluence cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:20px 16px;text-align:center}
+.card .k{color:var(--muted);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase}
+.card .v{font-family:'JetBrains Mono',monospace;font-size:27px;color:var(--gold2);margin:10px 0 6px;font-weight:500}
+.card .d{color:var(--faint);font-size:11px;font-style:italic;font-family:'Cormorant Garamond',serif}
+.card.accent{border-color:var(--gold)}
+.card.accent .v{color:var(--gold)}
+
+/* count blocks */
+.count{border-left:2px solid var(--line);padding:4px 0 4px 22px;margin:26px 0}
+.count.c1{border-color:var(--green)}
+.count.c2{border-color:var(--red)}
+.count .tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
+.count.c1 .tag{color:var(--green)}
+.count.c2 .tag{color:var(--red)}
+.count h4{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--cream);margin:6px 0 10px}
+
+blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.55;color:var(--gold2);text-align:center;margin:40px auto;max-width:640px;padding:0 20px}
+
+.endmark{text-align:center;color:var(--gold);letter-spacing:.6em;font-size:13px;margin:64px 0 40px}
+.colophon{text-align:center;color:var(--faint);font-size:11px;line-height:2;border-top:1px solid var(--line);padding-top:30px}
+.colophon .sign{font-family:'Cormorant Garamond',serif;letter-spacing:.34em;color:var(--muted);font-size:14px;margin-bottom:14px}
+.disclaimer{color:var(--faint);font-size:10.5px;line-height:1.85;max-width:680px;margin:0 auto;text-align:center}
+
+@media(max-width:620px){
+  h1.title{font-size:38px}
+  .cards{grid-template-columns:1fr}
+  .meta-row{gap:24px;flex-wrap:wrap}
+  .page{padding:48px 18px 72px}
+  .sec-num{font-size:48px}
+  h2{font-size:27px}
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <div class="crest">✦ ◆ ✦</div>
+  <div class="brand">Chory &amp; Rochet</div>
+  <div class="brand-sub">Maison de Stratégie · Séoul</div>
+  <div class="rule"></div>
+
+  <!-- TITLE -->
+  <div class="titleblock">
+    <div class="notes-no">Strategy Notes — No.&nbsp;002</div>
+    <h1 class="title">KOSPI Elliott Wave<br>Recount</h1>
+    <div class="title-fr">Le Recomptage — 8,040의 오독, 8,933이라는 좌표</div>
+    <div class="title-tag">B Scenario, Revised · 트리거 발동 후 재카운팅 · Mid-Year Outlook 2026</div>
+    <div class="meta-row">
+      <div>Issued<b>07 · VI · MMXXVI</b></div>
+      <div>Volume<b>II</b></div>
+      <div>Supersedes<b>No.&nbsp;001</b></div>
+    </div>
+  </div>
+
+  <!-- EPIGRAPH -->
+  <div class="epigraph">
+    <div class="q">A coordinate that misses is not a coordinate that fails.<br>It is the one that tells you exactly where you stood.</div>
+    <div class="qk">좌표가 빗나갔다는 것은 좌표가 틀렸다는 뜻이 아니다.<br>그것은 우리가 정확히 어디에 서 있었는지를 알려주는 신호다.<br><br>No.001은 8,000선에서 종결의 <em>성격</em>을 옳게 읽었으나,
+    종결의 <em>시점</em>을 한 마디 일찍 못박았다. 시장은 그 오독을 스스로
+    적어둔 트리거로 정정해 주었다. 우리는 이제 한 차수 위에서 다시 좌표를 둔다.</div>
+    <div class="sig">— Maison Chory &amp; Rochet</div>
+  </div>
+  <div class="rule"></div>
+
+  <!-- I -->
+  <section>
+    <div class="sec-num">I</div>
+    <div class="sec-fr">Le Déclencheur</div>
+    <h2>발동된 트리거</h2>
+    <p class="drop">No.001은 2026년 5월 15일 장중 8,040 도달을 <strong>Primary [5]파 종결 = Cycle 3파 종결</strong>로 못박고, 직후를 Cycle 4파 진입으로 카운팅했다. 그리고 IX장 검증표에 한 줄을 미리 적어 두었다 — <span class="em">“8,040 단기 재돌파 → Primary [5] 미종결 · 일봉 차수 재조정.”</span></p>
+    <p>그 줄이 발동됐다. 5/15 이후 코스피는 내려간 것이 아니라 8,040을 약 <strong>900p(+11%)</strong> 위로 뚫고 신고가 행진을 했다. 본 노트는 그 정정의 기록이며, 동시에 한 차수 위에서 좌표를 다시 두는 작업이다. 가설은 폐기되거나 갱신된다 — 이번엔 갱신이다.</p>
+  </section>
+  <div class="rule"></div>
+
+  <!-- II -->
+  <section>
+    <div class="sec-num">II</div>
+    <div class="sec-fr">Ce Qui S'est Passé</div>
+    <h2>무슨 일이 있었나 — 5/15 이후 실제 경로</h2>
+    <p class="drop">“조정 후 재상승”이 아니었다. <strong>재상승이 먼저, 조정이 나중</strong>이었다. 이 순서가 재카운팅의 전부를 결정한다. 5/15의 -6.7% 갭다운은 종결의 시작(A파)이 아니라, 연장 중인 충격파 내부의 한 단계 낮은 차수 조정이었을 뿐이다.</p>
+
+    <div class="frame">
+      <div class="cap">— Chart I —</div>
+      <div class="cap-sub">KOSPI 일별 종가 · 2026.05.15 → 06.05 · 위꼬리는 장중 고점</div>
+      <svg width="100%" viewBox="0 0 880 440" role="img" aria-label="5월 15일 이후 코스피 경로">
+        <!-- gridlines -->
+        <g stroke="#26314f" stroke-width="1">
+          <line x1="70" y1="60"  x2="860" y2="60"/>
+          <line x1="70" y1="160" x2="860" y2="160"/>
+          <line x1="70" y1="260" x2="860" y2="260"/>
+          <line x1="70" y1="360" x2="860" y2="360"/>
+        </g>
+        <g font-family="JetBrains Mono, monospace" font-size="11" fill="#6b7488" text-anchor="end">
+          <text x="60" y="64">9,000</text>
+          <text x="60" y="164">8,500</text>
+          <text x="60" y="264">8,000</text>
+          <text x="60" y="364">7,500</text>
+        </g>
+        <!-- 8,040 trigger line -->
+        <line x1="70" y1="252" x2="860" y2="252" stroke="#c9a86a" stroke-width="1" stroke-dasharray="6 5" opacity="0.8"/>
+        <text x="76" y="245" font-family="Noto Sans KR" font-size="11.5" fill="#c9a86a">8,040 — 옛 Cycle 3 종결 가설 (폐기)</text>
+        <!-- wicks -->
+        <line x1="110" y1="360" x2="110" y2="252" stroke="#9aa3b8" stroke-width="1"/>
+        <line x1="620" y1="100" x2="620" y2="73"  stroke="#c9a86a" stroke-width="1"/>
+        <!-- rising leg (gold) -->
+        <polyline points="110,360 230,260 420,165 560,102 620,100"
+          fill="none" stroke="#c9a86a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- falling leg (red) -->
+        <polyline points="620,100 730,132 820,228"
+          fill="none" stroke="#e0635f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- markers -->
+        <circle cx="110" cy="252" r="3.5" fill="none" stroke="#9aa3b8" stroke-width="1.5"/>
+        <circle cx="620" cy="73"  r="5"   fill="#c9a86a"/>
+        <circle cx="820" cy="228" r="4.5" fill="#e0635f"/>
+        <!-- callouts -->
+        <text x="118" y="240" font-family="Noto Sans KR" font-size="11" fill="#9aa3b8">5/15 장중 8,040</text>
+        <text x="612" y="62" text-anchor="end" font-family="Noto Sans KR" font-size="12" fill="#e0c489">6/2 장중 8,933 ★ 새 top 후보</text>
+        <text x="812" y="248" text-anchor="end" font-family="Noto Sans KR" font-size="11.5" fill="#e0635f">6/5 ~8,160 (현재)</text>
+        <text x="688" y="190" font-family="Noto Sans KR" font-size="11.5" fill="#e0635f">Cycle 4 진행 추정</text>
+        <!-- x axis dates -->
+        <g font-family="JetBrains Mono, monospace" font-size="10.5" fill="#6b7488" text-anchor="middle">
+          <text x="110" y="400">5/15</text>
+          <text x="230" y="400">5/22</text>
+          <text x="420" y="400">5/29</text>
+          <text x="560" y="400">6/1</text>
+          <text x="620" y="400">6/2</text>
+          <text x="730" y="400">6/4</text>
+          <text x="820" y="400">6/5</text>
+        </g>
+      </svg>
+      <div class="cap-note">5/15 종가는 8,040 아래로 -6.7% 갭다운했으나, 이후 8,040 트리거선을 상향 돌파해 6/2 장중 8,933.62 신고가를 기록.<br>출처: KRX · korea-stock-analyzer · Investing.com · 언론 종합 (조회일 2026.06.07)</div>
+    </div>
+
+    <table>
+      <thead><tr><th>날짜</th><th class="num">KOSPI 종가</th><th class="num">장중 고점</th><th>특징</th></tr></thead>
+      <tbody>
+        <tr><td>05/15</td><td class="num">~7,500</td><td class="num">8,040</td><td>No.001이 Cycle 3 종결로 가정 · 매도 사이드카</td></tr>
+        <tr><td>05/29</td><td class="num up">8,476.15</td><td class="num">—</td><td>종가 사상 최고 경신 (직전 8,457 상회)</td></tr>
+        <tr><td>06/01</td><td class="num up">8,788.38</td><td class="num">8,874</td><td>사상 최고 · 삼성전자 시총 2천조 돌파</td></tr>
+        <tr class="hl"><td>06/02</td><td class="num up">8,801.49</td><td class="num">8,933.62</td><td>사상 첫 8,900 터치 → 8,503까지 밀린 반전봉</td></tr>
+        <tr><td>06/04</td><td class="num down">8,639.41</td><td class="num">—</td><td>반락</td></tr>
+        <tr><td>06/05</td><td class="num down">~8,160</td><td class="num">—</td><td>반도체 급락 · 매도 사이드카 · SK하이닉스 -9.92%</td></tr>
+      </tbody>
+    </table>
+
+    <h3>주도주 검증 — 시총 1·2위가 같은 경로를 그렸다</h3>
+    <table>
+      <thead><tr><th>종목</th><th class="num">05/15</th><th class="num">06/02 (장중 고점)</th><th class="num">06/05</th></tr></thead>
+      <tbody>
+        <tr><td>삼성전자</td><td class="num">270,500</td><td class="num">360,500 (370,000)</td><td class="num down">329,000 (-6.40%)</td></tr>
+        <tr><td>SK하이닉스</td><td class="num">1,819,000</td><td class="num">2,360,000 (2,407,000)</td><td class="num down">2,070,000 (-9.92%)</td></tr>
+      </tbody>
+    </table>
+    <p>지수의 약 49%가 삼성전자·SK하이닉스·SK스퀘어에 집중된 구조에서, 두 주도주가 6/2 고점을 함께 찍고 6/5 함께 꺾였다. 지수의 파동과 주도주의 파동이 동일 좌표를 공유한다 — 카운팅의 신뢰도를 높이는 정황이다.</p>
+  </section>
+  <div class="rule"></div>
+
+  <!-- III -->
+  <section>
+    <div class="sec-num">III</div>
+    <div class="sec-fr">L'Abandon</div>
+    <h2>옛 카운팅의 폐기</h2>
+    <p class="drop">시장이 8,040을 살짝 건드린 것이 아니다. 약 900p 위로 충분히 뚫고, 거기서 새로운 한 마디 전체를 그렸다. 이 폭은 노이즈가 아니라 독립된 추진 레그(impulse leg)다. 따라서 <strong>5/15 8,040은 Cycle 3파의 종결점이 아니다.</strong></p>
+    <p>구조적으로 5/15의 -6.7% 하락은 <span class="em">연장 중인 Primary [5]파 내부의 minute 4파(혹은 sub-wave 4)</span>로 재배치된다. 그 뒤 6/2 8,933까지의 상승이 minute 5파로서 Primary [5] = Cycle 3파를 완성했다. 요컨대 No.001은 “연장형 종결”을 본 것은 맞으나, 그 연장이 한 마디 더 남아 있었다.</p>
+  </section>
+  <div class="rule"></div>
+
+  <!-- IV / V -->
+  <section>
+    <div class="sec-num">IV</div>
+    <div class="sec-fr">Deux Recomptages</div>
+    <h2>두 개의 정합 카운팅</h2>
+    <p class="drop">하나의 데이터, 두 개의 좌표. 어느 쪽이든 5/15가 아니라 6/2가 변곡점이라는 점은 같다. 갈리는 것은 8,933이 <strong>3파의 top</strong>이냐, <strong>5파의 top</strong>이냐다.</p>
+
+    <div class="count c1">
+      <div class="tag">Count 1 · 강세 연속 (Base)</div>
+      <h4>연장 — 8,933 = 새 Cycle 3 top</h4>
+      <p>5/15 8,040 = 연장 5파 내부 minute 4파, 6/2 8,933 = minute 5파로 Cycle 3파 완성. 이 경우 6/2→현재 하락이 비로소 <strong>진짜 Cycle 4파 초입</strong>이다. No.001의 alternation 진단(Cycle 2가 길고 복잡 → Cycle 4는 빠르고 얕은 zigzag)은 그대로 살아있고, 출발점만 8,933으로 상향된다. Cycle 5파는 아직 남아있다.</p>
+    </div>
+
+    <div class="count c2">
+      <div class="tag">Count 2 · 꼬리위험 (Tail-risk)</div>
+      <h4>차수 상향 — Super Cycle 정점 임박</h4>
+      <p>5/15 이후 상승이 Cycle 5파 그 자체였다면(구조가 한 칸 압축), 8,933이 곧 <strong>Super Cycle V파의 정점 부근</strong>이고 6/5 사이드카 급락은 사십육 년 대정점의 초기 신호일 수 있다. 확률은 낮으나, Cycle 3 단독으로 9천 문턱을 밟았다는 사실이 이 시나리오를 가볍게 볼 수 없게 만든다.</p>
+    </div>
+  </section>
+  <div class="rule"></div>
+
+  <!-- VI -->
+  <section>
+    <div class="sec-num">VI</div>
+    <div class="sec-fr">Le Point de Bascule</div>
+    <h2>분기점 — 지금 하락의 성격이 가른다</h2>
+    <p class="drop">두 카운트는 미래가 아니라 <strong>현재 진행 중인 6/2→ 하락의 성격</strong>으로 판가름난다. 좌표는 이미 그려져 있으니, 우리는 흥분도 절망도 없이 관찰만 하면 된다.</p>
+    <div class="cards">
+      <div class="card"><div class="k">Count 1 신호</div><div class="v" style="color:var(--green)">얕은 zigzag</div><div class="d">7,400~7,700 사수 · 주도주 재베이스</div></div>
+      <div class="card"><div class="k">분기 관찰</div><div class="v">5파동 ↓</div><div class="d">하락의 내부 구조 — 3파동 vs 5파동</div></div>
+      <div class="card"><div class="k">Count 2 신호</div><div class="v" style="color:var(--red)">충격 이탈</div><div class="d">5/20 스윙 저점 7,053 결정적 하향 이탈</div></div>
+    </div>
+    <p>3파동의 얕은(-10~17%) 되돌림으로 7,400~7,700대를 지키면 → Count 1(Cycle 4 진행). 5파동 충격 형태로 <strong>5/20 스윙 저점 7,053</strong>을 깨고 가속하면 → Count 2로 무게 이동.</p>
+  </section>
+  <div class="rule"></div>
+
+  <!-- VII -->
+  <section>
+    <div class="sec-num">VII</div>
+    <div class="sec-fr">Les Coordonnées Révisées</div>
+    <h2>재설정된 좌표</h2>
+    <p class="drop">가장 실무적인 결론 — Cycle 4 저점 타깃과 트리거선을 8,040이 아니라 <strong>새 top 8,933 기준</strong>으로 다시 계산한다. 흥미롭게도 8,933의 -10% 되돌림이 정확히 8,040이다. <span class="em">옛 고점이 이제 지지선으로 뒤집힌다</span>(former resistance → support).</p>
+
+    <div class="frame">
+      <div class="cap">— Chart II —</div>
+      <div class="cap-sub">재설정된 좌표 · Cycle 4 목표 밴드와 Cycle 5 B/C 분기 (가격축 투영)</div>
+      <svg width="100%" viewBox="0 0 880 460" role="img" aria-label="재설정된 좌표 — Cycle 4 목표와 Cycle 5 B/C 분기">
+        <defs><marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+        <!-- zones -->
+        <rect x="80" y="50"  width="470" height="52" rx="6" fill="rgba(79,180,135,0.13)" stroke="#4fb487" stroke-width="0.5"/>
+        <rect x="80" y="142" width="470" height="65" rx="6" fill="rgba(110,163,216,0.13)" stroke="#6ea3d8" stroke-width="0.5"/>
+        <rect x="80" y="333" width="470" height="82" rx="6" fill="rgba(224,99,95,0.13)" stroke="#e0635f" stroke-width="0.5"/>
+        <!-- ref lines -->
+        <line x1="80" y1="380" x2="550" y2="380" stroke="#e0635f" stroke-width="0.8" stroke-dasharray="5 4" opacity="0.6"/>
+        <line x1="80" y1="216" x2="550" y2="216" stroke="#c9a86a" stroke-width="1" stroke-dasharray="6 5"/>
+        <!-- price ticks -->
+        <g font-family="JetBrains Mono, monospace" font-size="11" fill="#6b7488" text-anchor="end">
+          <text x="70" y="80">10,000</text>
+          <text x="70" y="211">9,000</text>
+          <text x="70" y="342">8,000</text>
+          <text x="70" y="424">7,400</text>
+        </g>
+        <!-- confirmed path (red) -->
+        <polyline points="100,216 190,317 340,380" fill="none" stroke="#e0635f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- projections -->
+        <polyline points="340,380 470,176" fill="none" stroke="#6ea3d8" stroke-width="2" stroke-dasharray="2 4" marker-end="url(#arr2)"/>
+        <polyline points="340,380 485,82"  fill="none" stroke="#4fb487" stroke-width="2.4" stroke-dasharray="7 4" marker-end="url(#arr2)"/>
+        <!-- nodes -->
+        <circle cx="100" cy="216" r="5"   fill="#c9a86a"/>
+        <circle cx="190" cy="317" r="4.5" fill="#e0635f"/>
+        <circle cx="340" cy="380" r="4.5" fill="none" stroke="#c9a86a" stroke-width="1.5" stroke-dasharray="3 2"/>
+        <!-- right labels -->
+        <g font-family="Noto Sans KR, sans-serif">
+          <text x="566" y="74"  font-size="13.5" font-weight="500" fill="#4fb487">⑤ C · 1만피+</text>
+          <text x="566" y="91"  font-size="12" fill="#9aa3b8">B에서 무게 이동</text>
+          <text x="566" y="170" font-size="13.5" font-weight="500" fill="#6ea3d8">⑤ B · 9,000~9,500</text>
+          <text x="566" y="187" font-size="12" fill="#9aa3b8">No.001 기존 타깃</text>
+          <text x="566" y="212" font-size="13.5" font-weight="500" fill="#e0c489">③ 8,933</text>
+          <text x="566" y="229" font-size="12" fill="#9aa3b8">Cycle 3 top · 재돌파 트리거</text>
+          <text x="566" y="314" font-size="13.5" font-weight="500" fill="#e0635f">현재 8,160</text>
+          <text x="566" y="330" font-size="12" fill="#9aa3b8">6/5 · 고점대비 −8.7%</text>
+          <text x="566" y="356" font-size="13.5" font-weight="500" fill="#e9e4d6">④ Cycle 4 목표</text>
+          <text x="566" y="373" font-size="12" fill="#9aa3b8">−10% · 8,040 (옛고점=지지)</text>
+          <text x="566" y="389" font-size="12" fill="#9aa3b8">−14% · 7,683 (base)</text>
+          <text x="566" y="405" font-size="12" fill="#9aa3b8">−17% · 7,415</text>
+          <text x="566" y="427" font-size="12" fill="#e0635f">7,053 이탈 → Count 2 (대정점)</text>
+        </g>
+      </svg>
+      <div class="cap-note">실선(빨강) = 확정 경로 ③ 8,933 → 현재 8,160. 점·파선 = 투영(가설) — Cycle 4 저점 후 Cycle 5가 B(9,000~9,500)·C(1만피+)로 분기.<br>Cycle 1 침범(3,316) = 전면 폐기선은 스케일상 하단으로 생략.</div>
+    </div>
+
+    <h3>Cycle 4 저점 타깃 — 재계산</h3>
+    <table>
+      <thead><tr><th>되돌림</th><th class="num">No.001 (top 8,040)</th><th class="num">No.002 (top 8,933)</th><th>평가</th></tr></thead>
+      <tbody>
+        <tr><td>-10% (얕은 zigzag)</td><td class="num">7,236</td><td class="num">8,040</td><td>강세 · 옛 고점 = 새 지지</td></tr>
+        <tr class="hl"><td>-14% (표준 zigzag)</td><td class="num">6,914</td><td class="num">7,683</td><td>Base case</td></tr>
+        <tr><td>-17% (깊은 zigzag)</td><td class="num">6,673</td><td class="num">7,415</td><td>보수 case</td></tr>
+      </tbody>
+    </table>
+    <p>6/5 종가 ~8,160은 고점 대비 약 -8.7%로, 이미 얕은 zigzag 영역에 막 진입한 상태다.</p>
+
+    <h3>검증 트리거 — 재설정 (If / Then)</h3>
+    <table>
+      <thead><tr><th>관찰 (If)</th><th>해석 (Then)</th></tr></thead>
+      <tbody>
+        <tr><td>저점이 <span class="mono">7,400</span> 위에서 형성</td><td>Count 1 정합 유지 · Cycle 5 준비</td></tr>
+        <tr><td>저점이 <span class="mono">7,400</span> 아래 이탈</td><td>표준 zigzag 폭 이탈 · 관망 · 차수 재검토</td></tr>
+        <tr><td>5/20 스윙 저점 <span class="mono">7,053</span> 결정적 하향 이탈</td><td>Count 2(대정점) 무게 이동 · 현금 확대</td></tr>
+        <tr><td><span class="mono">8,933</span> 단기 재돌파</td><td>Cycle 3 추가 연장 · 일봉 차수 재조정</td></tr>
+        <tr><td>Cycle 1 <span class="mono">3,316</span> 침범</td><td>카운팅 전면 폐기 · 차수 재구성 (불변)</td></tr>
+      </tbody>
+    </table>
+  </section>
+  <div class="rule"></div>
+
+  <!-- VIII -->
+  <section>
+    <div class="sec-num">VIII</div>
+    <div class="sec-fr">De B vers C</div>
+    <h2>가장 큰 함의 — B에서 C로</h2>
+    <p class="drop">핵심은 이것이다. <strong>Cycle 3파 혼자서 8,933에 도달했다.</strong> No.001의 B 시나리오는 Cycle 5파(=최종 정점)를 9,000~9,500으로 봤는데, Cycle 3파가 이미 그 문턱을 밟았다.</p>
+    <p>카운팅을 유지(8,933 = 3파, 이후 Cycle 4 → Cycle 5)하려면 Cycle 5 정점은 8,933 위로 투영돼야 한다. 즉 최종 Super Cycle 정점은 <span class="em">1만피 돌파 — No.001의 C(연장) 시나리오</span> 쪽으로 무게가 실린다. 데이터가 B에서 C로 기울고 있다.</p>
+
+    <div class="frame">
+      <div class="cap">— Chart III —</div>
+      <div class="cap-sub">Cycle 차수 재배치 · B → C 분기 (모식도, 시간 비례 아님)</div>
+      <svg width="100%" viewBox="0 0 880 400" role="img" aria-label="Cycle 1-5 재배치와 B vs C 분기">
+        <g stroke="#26314f" stroke-width="1">
+          <line x1="60" y1="70" x2="860" y2="70"/>
+          <line x1="60" y1="330" x2="860" y2="330"/>
+        </g>
+        <g font-family="JetBrains Mono, monospace" font-size="10.5" fill="#6b7488" text-anchor="end">
+          <text x="52" y="74">10,500</text>
+          <text x="52" y="334">2,285</text>
+        </g>
+        <!-- impulse 1->3 -->
+        <polyline points="70,300 200,210 320,250 470,90"
+          fill="none" stroke="#c9a86a" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+        <!-- cycle 4 (now) -->
+        <polyline points="470,90 560,150"
+          fill="none" stroke="#e0635f" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+        <!-- cycle 5 branch B -->
+        <polyline points="560,150 720,95"
+          fill="none" stroke="#6ea3d8" stroke-width="2" stroke-dasharray="2 4" stroke-linejoin="round"/>
+        <!-- cycle 5 branch C (favored) -->
+        <polyline points="560,150 760,45"
+          fill="none" stroke="#4fb487" stroke-width="2.4" stroke-dasharray="7 4" stroke-linejoin="round"/>
+        <!-- nodes -->
+        <circle cx="200" cy="210" r="3.5" fill="#9aa3b8"/>
+        <circle cx="320" cy="250" r="3.5" fill="#9aa3b8"/>
+        <circle cx="470" cy="90"  r="5"   fill="#c9a86a"/>
+        <circle cx="560" cy="150" r="4"   fill="#e0635f"/>
+        <circle cx="720" cy="95"  r="3.5" fill="#6ea3d8"/>
+        <circle cx="760" cy="45"  r="4"   fill="#4fb487"/>
+        <!-- labels -->
+        <g font-family="Noto Sans KR" font-size="11.5" fill="#9aa3b8">
+          <text x="200" y="230">①</text>
+          <text x="320" y="270">②</text>
+        </g>
+        <text x="476" y="80" font-family="Noto Sans KR" font-size="12" fill="#e0c489">③ 8,933 (재배치)</text>
+        <text x="566" y="170" font-family="Noto Sans KR" font-size="11.5" fill="#e0635f">④ now</text>
+        <text x="726" y="92" font-family="Noto Sans KR" font-size="11" fill="#6ea3d8">⑤ B · 9,000~9,500</text>
+        <text x="766" y="42" font-family="Noto Sans KR" font-size="11.5" fill="#4fb487">⑤ C · 10,000+ (무게 이동)</text>
+        <text x="70" y="318" font-family="Noto Sans KR" font-size="11" fill="#6b7488">Cycle 2 저점 (2025.4)</text>
+      </svg>
+      <div class="cap-note">①②③ = 재배치된 Cycle 1·2·3 (3파 top을 8,933으로 상향). ④ = 현재 진행 중 Cycle 4. ⑤ = Cycle 5 분기 — 점선 B(9,000~9,500) vs 파선 C(1만피 돌파, 무게 이동).</div>
+    </div>
+  </section>
+  <div class="rule"></div>
+
+  <!-- IX -->
+  <section>
+    <div class="sec-num">IX</div>
+    <div class="sec-fr">Conclusion</div>
+    <h2>결언 — 한 마디 일찍, 그러나 방향은 옳았다</h2>
+    <p class="drop">빗나간 것은 한 가지 — 가격 종결의 시점을 한 마디(one leg) 일찍 잡은 것이다. 8,040을 blow-off top으로 확정한 것은 성급했다.</p>
+    <p>그러나 종결의 <em>성격</em> 진단은 정확했고, 오히려 더 높은 레벨에서 강화되며 재현됐다. No.001이 8,000선에서 지목한 신호들 — 매수 사이드카 군집, 위꼬리 반전봉, 외국인 분산매도, 극단적 시장 폭 협소 — 이 8,900대에서 거의 그대로 나타났다. 6/2는 8,933 신고가 직후 8,503까지 밀렸다 마감한 전형적 소진 반전봉이었고, 외국인은 <strong>20거래일 연속 순매도(20일 누적 81조 · 연초 이후 약 120조)</strong>를 이어갔으며, 6/5 주도주가 먼저 꺾였다.</p>
+    <blockquote>좌표는 의도대로 작동했다.<br>트리거가 발동됐고, 우리는 어디에 서 있었는지 안다.<br>이제 한 차수 위에서 다시 한 걸음을 내디딘다.</blockquote>
+    <p>새 top 8,933을 기준으로 차수만 한 단계 위로 옮겨 카운팅을 재기동한다. 다만 이 국면에서 가장 경계할 점은, Cycle 3 단독으로 9천 문턱을 밟았다는 사실이 Count 2(대정점 임박)의 꼬리위험을 결코 가볍게 볼 수 없게 만든다는 것이다. 흥분하지 않고, 절망하지 않고, 6/2→ 하락의 내부 구조가 3파동인지 5파동인지를 차분히 읽는다.</p>
+  </section>
+
+  <div class="endmark">✦ ✦ ✦</div>
+
+  <div class="colophon">
+    <div class="sign">CHORY &amp; ROCHET</div>
+    <div class="disclaimer">
+      본 자료는 Chory &amp; Rochet의 전략 노트로서 정보 제공 목적으로 작성되었으며, 특정 종목 또는 지수에 대한 매매 권유나 투자 자문이 아닙니다.
+      엘리어트 파동 카운팅은 가설의 영역이며, 시장 데이터에 의해 언제든 검증 또는 폐기될 수 있습니다.
+      본 자료의 카운팅과 시나리오는 가격 행동의 좌표 설정을 위한 참고이며, 투자 판단의 책임은 전적으로 투자자 본인에게 있습니다.<br><br>
+      데이터 출처: KRX · korea-stock-analyzer · Investing.com · 언론 종합 (조회일 2026.06.07)<br>
+      Strategy Notes No.002 · 07 June 2026 · Maison Chory &amp; Rochet · Supersedes No.001
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
