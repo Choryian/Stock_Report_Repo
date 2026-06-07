@@ -1,22 +1,6 @@
 {
   "reports": [
     {
-      "id": "2026-06-07-kospi-elliott-wave-recount-no002",
-      "title": "KOSPI Elliott Wave Recount — Strategy Notes No.002",
-      "summary": "No.001 갱신. 8,040 정점 가설 폐기(미리 적어둔 재돌파 트리거 발동) → 8,933(6/2)을 새 Cycle 3 정점(연장)으로 재배치, 5/15는 minute 4로 강등. 현재 8,933→ 하락이 진짜 Cycle 4 초입. 목표 8,040(-10%)/7,683(-14%)/7,415(-17%), 옛 고점=새 지지. Count 1(강세 연속, Cycle 5 잔존) vs Count 2(대정점 임박, 7,053 이탈 시). Cycle 3 단독 9천 도달 → B(9,000~9,500)에서 C(1만피+)로 무게 이동. 외인 20거래일 연속 순매도(streak 81조·YTD 120조).",
-      "category": "로드맵리뷰",
-      "date": "2026-06-07",
-      "path": "reports/2026-06-07-kospi-elliott-wave-recount-no002.html",
-      "tags": [
-        "KOSPI",
-        "엘리어트파동",
-        "슈퍼사이클",
-        "Recount",
-        "중기전망",
-        "StrategyNotes"
-      ]
-    },
-    {
       "id": "2026-06-06-kospi-weekly-roadmap-review",
       "title": "코스피 주간 로드맵 & 파동 리뷰 — 3회차 (2026-W23)",
       "summary": "6/1~5 반전 주간: 6/2 장중 8,933 신고가(블로우오프 톱) → 6/5 검은 금요일 -5.54%(8,160), 주간 -3.72%. 美 고용쇼크·반도체 급락(SK하이닉스 -9.92%·삼성 -6.40%)·환율 1,539(야간 1,559)·외인 20거래일 연속(-81조). 6/3 지방선거 여당 우위(12:4). 파동: No.002 Recount 정합 — 8,040 정점 가설 폐기, 8,933=Cycle 3 정점(연장)·Cycle 4 조정 진입. 목표대 7,415~8,040(옛고점=새지지), Cycle 5 B 9,000~9,500/C 10,000+(무게), 7,053 이탈 시 Count 2 대정점. 다음주 6/8 갭다운·6/11 만기.",
@@ -30,6 +14,22 @@
         "로드맵리뷰",
         "Cycle4",
         "수급"
+      ]
+    },
+    {
+      "id": "2026-06-07-kospi-elliott-wave-recount-no002",
+      "title": "KOSPI Elliott Wave Recount — Strategy Notes No.002",
+      "summary": "No.001 갱신. 8,040 정점 가설 폐기(미리 적어둔 재돌파 트리거 발동) → 8,933(6/2)을 새 Cycle 3 정점(연장)으로 재배치, 5/15는 minute 4로 강등. 현재 8,933→ 하락이 진짜 Cycle 4 초입. 목표 8,040(-10%)/7,683(-14%)/7,415(-17%), 옛 고점=새 지지. Count 1(강세 연속, Cycle 5 잔존) vs Count 2(대정점 임박, 7,053 이탈 시). Cycle 3 단독 9천 도달 → B(9,000~9,500)에서 C(1만피+)로 무게 이동. 외인 20거래일 연속 순매도(streak 81조·YTD 120조).",
+      "category": "로드맵리뷰",
+      "date": "2026-06-07",
+      "path": "reports/2026-06-07-kospi-elliott-wave-recount-no002.html",
+      "tags": [
+        "KOSPI",
+        "엘리어트파동",
+        "슈퍼사이클",
+        "Recount",
+        "중기전망",
+        "StrategyNotes"
       ]
     },
     {
