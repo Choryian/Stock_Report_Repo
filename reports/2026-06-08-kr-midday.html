@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-06-08 KR 오전장 정리 및 오후장 대응 | Chory &amp; Rochet</title>
+<style>
+  :root{
+    --up:#d60000; --down:#0047d6; --flat:#555;
+    --bg:#f7f8fa; --card:#fff; --bd:#e3e6ec; --ink:#1a1d24; --sub:#5b6270;
+    --accent:#7b1e1e; --warn:#b8860b; --danger:#c0392b;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Apple SD Gothic Neo','Malgun Gothic','Segoe UI',sans-serif;
+    line-height:1.65;font-size:15px;}
+  .wrap{max-width:860px;margin:0 auto;padding:18px 14px 60px;}
+  header.top{background:linear-gradient(135deg,#3a0d0d,#7b1e1e);color:#fff;
+    border-radius:14px;padding:22px 20px;margin-bottom:18px;}
+  header.top .tag{font-size:12px;letter-spacing:2px;opacity:.85;}
+  header.top h1{margin:6px 0 4px;font-size:21px;line-height:1.3;}
+  header.top .date{font-size:13px;opacity:.9;}
+  .crash-banner{margin-top:14px;background:rgba(255,255,255,.12);
+    border-radius:10px;padding:12px 14px;font-size:14px;font-weight:700;}
+  section{background:var(--card);border:1px solid var(--bd);border-radius:14px;
+    padding:18px 18px 16px;margin-bottom:16px;}
+  h2{font-size:17px;margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);
+    color:var(--accent);display:flex;align-items:center;gap:8px;}
+  h3{font-size:14.5px;margin:16px 0 8px;color:#333;}
+  .up{color:var(--up);font-weight:700;}
+  .down{color:var(--down);font-weight:700;}
+  .flat{color:var(--flat);font-weight:700;}
+  .summary-line{font-size:16px;font-weight:800;background:#fff4f4;
+    border-left:5px solid var(--danger);border-radius:8px;padding:12px 14px;margin-bottom:10px;}
+  .kw{display:inline-block;background:#f0e6e6;color:#7b1e1e;border-radius:20px;
+    padding:3px 11px;font-size:12.5px;margin:3px 4px 0 0;font-weight:600;}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{border-collapse:collapse;width:100%;min-width:430px;font-size:13.5px;}
+  th,td{border:1px solid var(--bd);padding:7px 9px;text-align:center;}
+  th{background:#f2f1f4;color:#333;font-weight:700;}
+  td.name{text-align:left;font-weight:600;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:620px){.grid2{grid-template-columns:1fr;}}
+  .box{border:1px solid var(--bd);border-radius:10px;padding:12px 13px;background:#fcfcfd;}
+  .box.strong{border-color:#f1c5c5;background:#fff6f6;}
+  .box.weak{border-color:#c5d0f1;background:#f5f8ff;}
+  .box h4{margin:0 0 8px;font-size:14px;}
+  ul{margin:6px 0;padding-left:20px;}
+  li{margin:4px 0;}
+  .scen{border-radius:10px;padding:12px 14px;margin:8px 0;font-size:14px;}
+  .scen.a{background:#fff5f5;border:1px solid #f0c5c5;}
+  .scen.b{background:#f7f7f9;border:1px solid #e0e0e6;}
+  .scen.c{background:#f4f7ff;border:1px solid #c5d3f1;}
+  .scen b{font-size:14.5px;}
+  .tier1 th{background:#7b1e1e;color:#fff;}
+  .danger-list{background:#fff5f5;border:1px solid #f0c5c5;border-radius:10px;padding:10px 14px;}
+  .danger-list li{color:#a02020;font-weight:600;}
+  .note{font-size:12.5px;color:var(--sub);margin-top:6px;}
+  .verify{background:#fffbe6;border:1px solid #f0e0a0;border-radius:8px;
+    padding:10px 13px;font-size:13px;margin-top:8px;}
+  .verify b{color:#8a6d00;}
+  .scorebox{background:#f4f7ff;border:1px solid #c5d3f1;border-radius:10px;padding:12px 14px;margin-top:8px;}
+  footer{text-align:center;color:var(--sub);font-size:12.5px;margin-top:24px;
+    padding-top:16px;border-top:1px solid var(--bd);}
+  footer .brand{font-weight:800;color:#7b1e1e;font-size:14px;}
+  .pos{color:var(--up);}.neg{color:var(--down);}
+  .mini{font-size:12px;color:var(--sub);}
+  .hit{display:inline-block;background:#d60000;color:#fff;border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700;}
+  .miss{display:inline-block;background:#0047d6;color:#fff;border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700;}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="tag">CHORY &amp; ROCHET · KR MIDDAY PIVOT</div>
+  <h1>오전장 정리 및 오후장 대응 가이드</h1>
+  <div class="date">2026년 6월 8일 (월) · 12:00 KST 기준 (데이터 13:05~13:38 보강)</div>
+  <div class="crash-banner">🔴 검은 월요일 — 시초 갭다운 −8.8%, 서킷브레이커+사이드카 발동 · 환율 1,550 돌파 · 오전 중 낙폭 절반 만회(V반등) 진행</div>
+</header>
+
+<!-- 1. 한 줄 요약 -->
+<section>
+  <h2>1️⃣ 한 줄 요약</h2>
+  <div class="summary-line">
+    🟦 <b>갭하락 후 반등 시도 (유형 4)</b> — 美 5월 고용 서프라이즈로 금리인하 기대 후퇴 + 환율 1,550 돌파 + 반도체 투매 연장이 겹쳐 시초 −8.8% 패닉(서킷브레이커)이나, 개인·기관 저가매수와 SK하이닉스 V반등으로 오전 중 낙폭을 절반으로 축소.
+  </div>
+  <div>
+    <span class="kw">#검은월요일</span>
+    <span class="kw">#서킷브레이커</span>
+    <span class="kw">#매도사이드카</span>
+    <span class="kw">#환율1555</span>
+    <span class="kw">#고용서프라이즈</span>
+    <span class="kw">#은행방어주</span>
+    <span class="kw">#하이닉스V반등</span>
+  </div>
+  <p class="note">오전 시장 강도 점수: <b class="down">−8 / +10</b> (외인 −9천억·전종목 투매·환율 급등). 단, <b>장중 저점(7,442·−8.8%) 대비 13시 −4.94%로 +3.9%p 만회</b> → 모멘텀 방향은 개선. 패닉 매도는 1차 마무리, 현 국면은 <b>“추격 금지·반등 확인 후 선별”</b>의 변동성 관리 구간.</p>
+</section>
+
+<!-- 2. 인계 평가 -->
+<section>
+  <h2>2️⃣ 인계 평가 (금요일 마감 → 오늘 검증)</h2>
+  <p class="note">⚠️ 오늘 개장 보고서(us_overnight_report_20260608)는 <b>미생성</b> 상태. 금요일 마감 보고서(daily_close_report_20260605)와 실시간 데이터로 직접 검증.</p>
+
+  <h3>① 갭 시나리오 적중</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>금요일 제시</th><th>실제 6/8</th><th>판정</th></tr>
+    <tr><td class="name">C. 약세 갭<br>(환율 1,550 돌파 / 외인 매도 지속)</td><td>시초 −8.8% 갭다운, 환율 1,555, 외인 −9천억</td><td><span class="hit">정확 적중</span></td></tr>
+    <tr><td class="name">A. 강세 갭<br>(미 고용 둔화→반도체 반등)</td><td>고용 <b>서프라이즈(견조)</b> → 금리인하 후퇴, 반등 무산</td><td><span class="miss">빗나감</span></td></tr>
+  </table>
+  </div>
+  <p class="note">금요일 보고서가 <b>“C(약세 방어) &gt; B &gt; A, 현금비중 확대·방어주만 제한 대응”</b>을 최우선 권고 → <b>결과적으로 옳은 판단</b>. 갭다운 회피·방어주 선택 전략 유효.</p>
+
+  <h3>② 금요일 Tier 1 평가</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>종목</th><th>전제</th><th>오늘 결과</th></tr>
+    <tr><td class="name">현대차 / 삼성전기 / 원익IPS / 로보스타</td><td>“시초 갭 방향(A/B/C) 확인 후 진입”</td><td>C 갭다운 → <b>신규 진입 회피가 정답</b>. 4종 모두 시초 동반 급락(반도체·로봇·MLCC), 추격 안 한 것이 손실 회피</td></tr>
+  </table>
+  </div>
+  <p class="note">손절 라인이 모두 당일 저가 부근이었고 “급락 직후 신규 추격 비권장”을 명시 → 갭다운장에서 손실 차단 성공. 단 현대차는 외인비중 낮아(25.5%) 회복 탄력 상대 우위 → 오늘 Tier 1 재후보.</p>
+
+  <div class="verify">
+    <b>✅ [예정 이벤트 재검증 — verify_pending_events_rule]</b><br>
+    • <b>美 5월 고용보고서</b>: 발표 완료. 비농업 견조 + 실업률 <b>4.3% 동결 “서프라이즈”</b>(견조한 고용) → 6월 금리인하 기대 후퇴 → 달러 강세·원화 약세 가속 → 한국증시 충격 증폭. (금요일 시나리오 A 기대 무산, C 현실화)<br>
+    • <b>6월 FOMC</b>: <b>6/17~18 (한국시간 6/18 새벽 3~4시)</b> 개최 확정. SEP·점도표 동반 → 변동성 확대 구간. 동결 우세하나 <b>매파 점도표 리스크</b>가 환율·증시 추가 부담 요인.
+  </div>
+</section>
+
+<!-- 3. 오전 지수·수급·환율 -->
+<section>
+  <h2>3️⃣ 오전 지수 · 수급 · 환율</h2>
+  <div class="scroll">
+  <table>
+    <tr><th>지수</th><th>현재(13:05)</th><th>등락률</th><th>장중 저점</th><th>비고</th></tr>
+    <tr><td class="name">KOSPI</td><td>7,757.13</td><td class="down">−4.94%</td><td class="down">7,442.73<br>(−8.80%)</td><td>09:03 서킷브레이커(20분 중단)+09:34 매도 사이드카</td></tr>
+    <tr><td class="name">KOSDAQ</td><td>939.32</td><td class="down">−6.30%</td><td>—</td><td>09:06 코스닥150 사이드카, 900선 위협</td></tr>
+    <tr><td class="name">원/달러</td><td>1,555.2(시가)</td><td class="up">+16.1</td><td>—</td><td>1,550 돌파·금융위기 후 최고 / FSC+4대銀 긴급회의 / 1,600 경계론</td></tr>
+  </table>
+  </div>
+
+  <h3>코스피 투자자별 (오전 잠정)</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>투자자</th><th>순매매</th><th>특징</th></tr>
+    <tr><td class="name">외국인</td><td class="down">−8,977억 (≈−9천억)</td><td>21거래일째 이탈 가속, 매도 둔화 신호 아직 없음</td></tr>
+    <tr><td class="name">개인 · 기관</td><td class="up">순매수 전환</td><td>저가매수 유입 → 낙폭 절반 만회의 동력 (장중 변동 큼)</td></tr>
+  </table>
+  </div>
+  <p class="note">금요일 외인 −3.5조 대비 오전 −9천억으로 규모는 축소되었으나 <b>방향 전환은 아직 미확인</b>. 환율 1,550 돌파가 외인 매도의 핵심 트리거로 지속 작용 → 오후 환율 안정 여부가 수급 분수령.</p>
+
+  <div class="scorebox">
+    <b>오전 시장 강도 점수 (−10 ~ +10): <span class="down">−8</span></b>
+    <div class="scroll" style="margin-top:8px;">
+    <table>
+      <tr><th>항목</th><th>결과</th><th>점수</th></tr>
+      <tr><td class="name">외인 오전 순매수</td><td class="down">−8,977억</td><td class="down">−2</td></tr>
+      <tr><td class="name">거래대금(양시장)</td><td>패닉 급증(매도성·투매)</td><td class="down">−2</td></tr>
+      <tr><td class="name">상승종목 비율</td><td class="down">&lt;30% (전종목 투매)</td><td class="down">−2</td></tr>
+      <tr><td class="name">미 매크로/SOX</td><td>고용 서프라이즈→인하 후퇴, 반도체 약세</td><td class="down">−2</td></tr>
+      <tr><td class="name">원/달러 변동</td><td class="up">+16원 (1,555·1,550 돌파)</td><td class="down">−2</td></tr>
+      <tr><td style="text-align:right;font-weight:700;">합계(원점수)</td><td>−10 → <b>저점 대비 +3.9%p 만회</b> 반영</td><td class="down">실효 −8</td></tr>
+    </table>
+    </div>
+    <p class="note" style="margin-top:6px;">방향성: 절대 강도는 극약세이나 <b>저점 대비 회복 모멘텀(+)</b>이 공존 → capitulation 후 기술적 반등 국면 가능성.</p>
+  </div>
+</section>
+
+<!-- 4. 오전 강세/약세 섹터 -->
+<section>
+  <h2>4️⃣ 오전 강세 / 약세 섹터</h2>
+  <div class="grid2">
+    <div class="box strong">
+      <h4 class="up">🔥 상대 강세 (방어·반등)</h4>
+      <ul>
+        <li><b>은행·금융</b> — 변동성 회피·배당 매력. 6월 월간 신한지주 <span class="up">+14.85%</span>·KB금융 <span class="up">+13.94%</span>·하나 +7.38%. KRX 은행지수 6월 +8.91%(업종 4위). 단 고환율 자본건전성 우려 양면.</li>
+        <li><b>반도체 대형(낙폭 만회)</b> — SK하이닉스 시초 −9.03% → <span class="up">−2.75%로 V반등</span>, 삼성전자 −10.18% → −5.55%. 저가매수 유입.</li>
+        <li><b>자동차(상대 방어)</b> — 현대차 외인비중 25.5%로 외인매도 충격 제한적.</li>
+      </ul>
+    </div>
+    <div class="box weak">
+      <h4 class="down">🧊 약세 주도 (투매)</h4>
+      <ul>
+        <li><b>코스닥 성장주</b> — 지수 −6.30%, 150선물 −8%대 사이드카. 고밸류·중소형 투매 집중.</li>
+        <li><b>증권주</b> — 코스피 급락 동반, 신영증권 <span class="down">−11%대</span> 등 지수 민감.</li>
+        <li><b>로봇·2차전지 등 고밸류 테마</b> — 금요일 차익실현 연장, 변동성 극대.</li>
+      </ul>
+    </div>
+  </div>
+  <h3>라이프사이클 메모</h3>
+  <ul>
+    <li>자금 흐름: <b>고밸류 성장·테마 → 은행·배당 방어주</b>로 이동(Risk-off 로테이션). 변동성 장세 전형.</li>
+    <li>반도체는 Peak→조정 후 <b>낙폭과대 기술적 반등</b> 시도(하이닉스 V자) — 추세 전환 아닌 반발 매수 단계.</li>
+    <li class="mini">※ StockMatrix 테마 라이프사이클 API 장애(402 Payment Required, 금요일부터 지속) → 당일도 정성 분석 대체.</li>
+  </ul>
+</section>
+
+<!-- 5. 주도 테마 × 종목 -->
+<section>
+  <h2>5️⃣ 주도 테마 × 종목 매핑</h2>
+
+  <h3>① 은행·배당 방어 (Risk-off 수혜 — 신규 부상)</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>구분</th><th>종목</th><th>코멘트</th></tr>
+    <tr><td>대장</td><td class="name">KB금융 (105560)</td><td>은행 대장, 배당 2.85%, 6월 +13.94%, 외인비중 76%</td></tr>
+    <tr><td>2등</td><td class="name">신한지주 (055550)</td><td>6월 +14.85% 은행 최강, 배당 2.63%</td></tr>
+    <tr><td>소외/후발</td><td class="name">하나금융 · 우리금융</td><td>+7.38% / +5.05%, 오후 순환매 후보</td></tr>
+  </table>
+  </div>
+
+  <h3>② 반도체 대형 (낙폭과대 기술적 반등)</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>구분</th><th>종목</th><th>오늘</th><th>코멘트</th></tr>
+    <tr><td>대장</td><td class="name">SK하이닉스 (000660)</td><td class="down">−2.75%</td><td>시초 −9%→−2.75% V반등, 반도체 바닥 베팅 선봉(고위험)</td></tr>
+    <tr><td>대형</td><td class="name">삼성전자 (005930)</td><td class="down">−5.55%</td><td>시초 −10.18%→회복, 외인 매도 강도 관건</td></tr>
+  </table>
+  </div>
+
+  <h3>③ 신규 부상 / 약화</h3>
+  <ul>
+    <li><b>부상</b> — 은행·배당주(방어 자금 집결), 반도체 대형 낙폭만회(저가매수).</li>
+    <li><b>약화</b> — 코스닥 고밸류 성장주·로봇·증권주(투매 지속, 반등 탄력 약함).</li>
+  </ul>
+</section>
+
+<!-- 6. 오후 시나리오 -->
+<section>
+  <h2>6️⃣ 오후장 대응 시나리오 (강도 −8 · 방향 개선)</h2>
+  <div class="scen a">
+    <b>A. 반등 연장 (조건부 강세)</b> — 외인 매도 둔화 + SK하이닉스 플러스 전환 + 환율 1,550 하향 안정 시. KOSPI 7,800~7,900 회복 시도. 은행·반도체 대형 위주 선별 추격(소액). <span class="mini">확률 중하 / 환율 안정 전제</span>
+  </div>
+  <div class="scen b">
+    <b>B. 변동성 확대 (중립) — ★ 기본 시나리오</b> — 저점 7,442 ~ 7,800 박스 등락. 동시호가·MOC 변동성 극대. <b>손절 타이트, 거래대금 집중·방어주만 제한 대응.</b> 신규 베팅 사이즈 축소. <span class="mini">확률 최고</span>
+  </div>
+  <div class="scen c">
+    <b>C. 재급락 (약세)</b> — 환율 1,560+ 돌파 or 미 야간선물 추가 하락 시 저점 7,442 이탈, 2차 패닉. <b>현금화·익절 우선, 신규 진입 보류.</b> 환율이 핵심 트리거. <span class="mini">확률 중 / 환율 감시</span>
+  </div>
+  <p class="note">⚖️ 비중 권고: <b>B(변동성 선별) &gt; C(방어) &gt; A(반등)</b>. 패닉 1차 마무리·저점 만회는 긍정이나, <b>환율 1,550·외인 매도 지속</b>이 여전히 상단을 누르는 구조 → 추격보다 베팅사이즈 축소·반등 확인 매수.</p>
+</section>
+
+<!-- 7. Tier 1 -->
+<section>
+  <h2>7️⃣ 오후 Tier 1 관심종목 (보수적 · 분할 · 반등 확인 전제)</h2>
+  <p class="note">⚠️ 검은 월요일 변동성 극대 — 아래는 <b>반등/눌림 확인 후 소액 분할</b> 전제, 손절 엄수. 신규 추격 비권장. 가격은 13:38 장중 시총 기준 추정치.</p>
+  <div class="scroll">
+  <table class="tier1">
+    <tr><th>종목(코드)</th><th>현재(추정)</th><th>진입가</th><th>손절가</th><th>1차 목표</th><th>근거</th></tr>
+    <tr>
+      <td class="name">KB금융<br><span class="mini">105560</span></td>
+      <td>~153,200</td>
+      <td>148,000~152,000</td>
+      <td class="down">142,000</td>
+      <td class="up">165,000</td>
+      <td>은행 방어 대장, 배당 2.85%, 변동성 회피 자금 유입</td>
+    </tr>
+    <tr>
+      <td class="name">신한지주<br><span class="mini">055550</span></td>
+      <td>~98,300</td>
+      <td>95,000~98,000</td>
+      <td class="down">91,000</td>
+      <td class="up">106,000</td>
+      <td>6월 +14.85% 은행 최강, NIM·배당 매력</td>
+    </tr>
+    <tr>
+      <td class="name">현대차<br><span class="mini">005380</span></td>
+      <td>~656,000</td>
+      <td>638,000~652,000</td>
+      <td class="down">615,000</td>
+      <td class="up">700,000</td>
+      <td>외인비중 25.5%로 외인매도 충격 제한, 방어 상대강도</td>
+    </tr>
+    <tr>
+      <td class="name">SK하이닉스<br><span class="mini">000660</span></td>
+      <td>~2,011,000</td>
+      <td>1,950,000~2,000,000</td>
+      <td class="down">1,880,000</td>
+      <td class="up">2,180,000</td>
+      <td>−9%→−2.75% V반등, 반도체 바닥 베팅 <b>(고위험·소액·반등확인 한정)</b></td>
+    </tr>
+  </table>
+  </div>
+  <p class="note">손절 라인은 모두 장중 저점권. SK하이닉스는 변동성 과대로 <b>비중 최소화</b>. 환율 1,560 돌파(시나리오 C) 발생 시 전 종목 신규 진입 보류, 방어주(KB·신한)만 유지.</p>
+</section>
+
+<!-- 8. 오후 체크포인트 -->
+<section>
+  <h2>8️⃣ 오후 시간대별 체크포인트</h2>
+  <ul>
+    <li><b>13:00~13:30</b> — 서킷 이후 재반등 지속 여부 / 7,800 회복 시도 강도 / 환율 추가 방향.</li>
+    <li><b>14:00</b> — 외인·기관 잠정 순매수 발표. <b>외인 매도 둔화 = 1차 바닥 시그널</b> (현재 −9천억 → 축소 여부 핵심).</li>
+    <li><b>14:30~15:00</b> — 마감 1시간 전 수급 변화, 종가 베팅 시작. 은행·반도체 대형 종가 흐름.</li>
+    <li><b>15:20~15:30</b> — 동시호가·MOC. 투매성 매물 vs 저가매수 반발 최종 확인 → 내일 갭 방향 가늠.</li>
+    <li><b>장 마감 후</b> — 美 야간선물·환율 1,550 사수 여부, 중동 정세 헤드라인 모니터.</li>
+  </ul>
+  <div class="verify">
+    <b>📌 리마인드</b> — ① 14:00 외인 잠정 순매수(매도 둔화=바닥 신호) ② 15:20 동시호가 변동성 ③ 환율 1,550 사수/1,560 돌파 여부 ④ 6/18 새벽 FOMC(점도표) 대비 변동성 확대 구간 진입.
+  </div>
+</section>
+
+<footer>
+  본 자료는 정보 제공 목적이며 투자 권유가 아닙니다. 투자 판단과 책임은 투자자 본인에게 있습니다.<br>
+  데이터: KRX·네이버금융·파이낸셜뉴스·뉴시스·SBS (2026-06-08 13:05~13:38 장중 기준) · StockMatrix API 장애(402)로 테마 정성 분석 대체 · 오늘 개장 보고서 미생성으로 금요일 마감본+실시간 직접 검증<br>
+  <span class="brand">발행: Chory &amp; Rochet</span>
+</footer>
+
+</div>
+</body>
+</html>
