@@ -27,6 +27,18 @@
   .sw-badge::before {
     content: ""; width: 6px; height: 6px; border-radius: 50%; background: #10b981;
   }
+  .sw-strategy-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 4px; padding: 8px 16px;
+    background: #0f1729; color: #34d399;
+    border: 1px solid #1e5132; border-radius: 8px;
+    font-size: 12.5px; font-weight: 600; text-decoration: none;
+    transition: all .15s;
+  }
+  .sw-strategy-btn:hover {
+    background: #0f2818; border-color: #34d399;
+    transform: translateY(-1px);
+  }
   .sw-frame-wrap {
     border: 1px solid #1e293b;
     border-radius: 12px;
@@ -99,6 +111,7 @@
       <span class="sw-badge">매주 토요일 저녁 자동 업데이트</span>
       <span>분석 기준일 <strong id="lastUpdate">2026-06-11</strong></span>
       <span>발행: Chory &amp; Rochet</span>
+      <a class="sw-strategy-btn" href="./strategy.html">🔒 포트폴리오 전략 보고서</a>
     </div>
   </div>
 
