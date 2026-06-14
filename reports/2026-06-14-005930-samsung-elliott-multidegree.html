@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>삼성전자 005930 · 다계위 엘리어트 파동분석 — Chory & Rochet</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,500&family=Lora:wght@400;500;600&family=Noto+Serif+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root{--paper:#f5ecd9;--ink:#1a1f3a;--gold:#b8860b;--crimson:#8b1538;--emerald:#1a5d2f;--line:#cdbf9f;--soft:#efe4cb;--muted:#6a6450;}
+*{box-sizing:border-box}body{margin:0;background:#d8cba8;color:var(--ink);font-family:'Lora','Noto Serif KR',serif;line-height:1.7}
+.page{max-width:980px;margin:0 auto;background:var(--paper);box-shadow:0 2px 30px rgba(0,0,0,.18)}
+.mono{font-family:'JetBrains Mono',monospace}
+.masthead{border-bottom:3px double var(--ink);padding:26px 48px 14px;text-align:center}
+.mh-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:13px;text-transform:uppercase;color:var(--crimson)}
+.mh-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin:8px 0 4px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.mh-rule::before,.mh-rule::after{content:"";height:1px;width:70px;background:var(--line)}
+.mh-title{font-family:'Playfair Display',serif;font-weight:900;font-size:40px;margin:6px 0 2px}
+.mh-sub{font-size:15px;font-weight:500}
+.mh-meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+.wrap{padding:30px 48px 10px}
+.banner{background:var(--ink);color:var(--paper);padding:12px 18px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:11px;margin-bottom:22px}
+.banner b{color:#f0d98a}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:18px 0 26px}
+.stat{background:var(--paper);padding:14px 10px;text-align:center}
+.stat .v{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:17px}
+.stat .l{font-size:10px;color:var(--muted);text-transform:uppercase;margin-top:4px;font-family:'JetBrains Mono',monospace}
+.stat .v.dn{color:var(--crimson)}.stat .v.up{color:var(--emerald)}
+h2.sec{font-family:'Playfair Display',serif;font-weight:800;font-size:24px;margin:38px 0 4px;padding-bottom:8px;border-bottom:2px solid var(--ink);display:flex;align-items:baseline;gap:12px}
+h2.sec .no{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--gold);font-weight:700}
+.sub{color:var(--muted);font-size:13px;margin:2px 0 16px;font-style:italic}
+h3{font-weight:700;font-size:16.5px;margin:26px 0 8px;border-left:4px solid var(--gold);padding-left:10px}
+p{margin:10px 0;font-size:14.5px}.lead{font-size:15.5px}
+em.k{font-style:normal;color:var(--crimson);font-weight:600}strong{font-weight:700}
+.chart{background:#fbf7ee;border:1px solid var(--line);border-radius:4px;padding:14px 16px 6px;margin:18px 0}
+.chart .cap{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);margin:2px 0 8px;text-transform:uppercase}
+.chart .src{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--muted);text-align:right;margin-top:2px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px}
+th,td{padding:8px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;color:var(--muted);background:var(--soft);border-bottom:1.5px solid var(--ink)}
+td.mono,th.mono{font-family:'JetBrains Mono',monospace;text-align:right}
+.t-name{font-weight:600}.up{color:var(--emerald);font-weight:600}.dn{color:var(--crimson);font-weight:600}
+.xid{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--gold)}.xt{font-weight:600}.xnote{color:var(--muted);font-size:12px}
+.xb{font-family:'JetBrains Mono',monospace;font-size:9.5px;padding:2px 8px;border-radius:3px;white-space:nowrap}
+.b-ok{background:#dcedd9;color:var(--emerald)}.b-warn{background:#f6eccf;color:#8a6a12}.b-risk{background:#f0dde1;color:var(--crimson)}
+.cm{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.cm .cell{border:1px solid var(--line);border-radius:4px;padding:14px;background:#fbf7ee}
+.cm .cell .deg{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase}
+.cm .cell .dir{font-family:'Playfair Display',serif;font-size:22px;font-weight:800;margin:6px 0 2px}
+.cm .u .dir{color:var(--emerald)}.cm .d .dir{color:var(--crimson)}
+.cm .cell .t{font-size:12px;color:var(--muted)}
+.scen{border:1px solid var(--line);border-left-width:5px;border-radius:4px;padding:16px 18px;margin:14px 0;background:#fbf7ee}
+.scen.primary{border-left-color:var(--emerald)}.scen.alt{border-left-color:var(--gold)}.scen.risk{border-left-color:var(--crimson)}
+.scen .top{display:flex;justify-content:space-between;align-items:center}
+.scen h4{font-size:15.5px;margin:0;font-weight:700}
+.prob{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;padding:3px 12px;border-radius:14px;color:#fff}
+.scen.primary .prob{background:var(--emerald)}.scen.alt .prob{background:var(--gold)}.scen.risk .prob{background:var(--crimson)}
+.scen p{margin:8px 0 0;font-size:13.5px}
+.ladder th{background:var(--ink);color:var(--paper)}.ladder td.zone{font-weight:700}
+.callout{background:#fbf3df;border:1px solid var(--gold);border-radius:4px;padding:14px 18px;margin:18px 0;font-size:14px}.callout b{color:var(--crimson)}
+.nested{background:#fbf3df;border:1px solid var(--gold);border-radius:4px;padding:14px 18px;margin:16px 0;font-size:14px}
+.pull{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.5;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 30px;margin:26px 0;text-align:center}
+.pull .by{display:block;font-family:'JetBrains Mono',monospace;font-style:normal;font-size:10px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-top:10px}
+.legend{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--muted);margin:6px 0}
+.legend span{margin-right:14px}.dot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:middle}
+.disc{background:var(--soft);border:1px solid var(--line);border-radius:4px;padding:14px 18px;font-size:11px;color:var(--muted);line-height:1.6;margin:14px 0}
+.foot{border-top:3px double var(--ink);margin-top:40px;padding:24px 48px 34px;font-size:11.5px;color:var(--muted)}
+.foot .fb{font-family:'Playfair Display',serif;font-weight:900;color:var(--crimson);font-size:15px}
+@media print{body{background:#fff}.page{box-shadow:none}}
+@media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr)}.cm{grid-template-columns:1fr}.wrap{padding:20px}.masthead{padding:18px 20px}.mh-title{font-size:26px}}
+</style><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head><body><div class="page">
+<div class="masthead">
+ <div class="mh-brand">Chory & Rochet · Equity Research</div>
+ <div class="mh-rule">Multi-Degree Elliott Wave Brief · Vol. VII</div>
+ <div class="mh-title">삼성전자 005930</div>
+ <div class="mh-sub">KOSPI · 다계위(Cycle·Intermediate·Minute) 엘리어트 파동분석 & OHLC 캔들 진단</div>
+ <div class="mh-meta">발행일 2026.06.14 · 기준종가 2026.06.12 (322,500) · ATH 370,000 (06.02) · 데이터: KRX 실측 OHLC</div>
+</div>
+<div class="wrap">
+<div class="banner">⚑ <b>핵심 한 줄</b>&nbsp; [주 카운트 개정] 2025.1 대바닥(51,700) 기점 <b>Cycle (3)파가 확장 진행 중</b> — ATH 370,000은 <b>③-of-(3)(=①의 1.618배)</b>, 파5 종결이 아니다. 현재 322,500은 <b>④ 조정 국면</b>이며, ④후 <b>⑤-of-(3) → 400,000~420,000 신고가 여지</b>(증권사 48~59만 경로와 정합). 단 "370,000 천장"(대안)도 병존. <b>무효화선 223,000</b> / 확정 트리거 403,500 돌파. <b>추격 자제 · ④ 조정(244~268k) 분할매수 대기.</b></div>
+<div class="stats">
+ <div class="stat"><div class="v">~58,300</div><div class="l">52주 저가(25.6)</div></div>
+ <div class="stat"><div class="v up">370,000</div><div class="l">ATH (26.06.02)</div></div>
+ <div class="stat"><div class="v">322,500</div><div class="l">현재가 (06.12)</div></div>
+ <div class="stat"><div class="v dn">-12.8%</div><div class="l">ATH 대비</div></div>
+ <div class="stat"><div class="v up">+524%</div><div class="l">대바닥 대비</div></div>
+</div>
+<p class="lead">삼성전자는 HBM4·AI 메모리 슈퍼사이클을 등에 업고 <strong>2025년 1월 저점 51,700원에서 2026년 6월 ATH 370,000원까지 약 +615%</strong> 폭등했다. 본 보고서는 이 상승을 Cycle(주봉)·Intermediate(주봉)·Minute(일봉) 세 계위로 top-down 진단한다. 결론부터(개정): <em class="k">이 상승은 "완성된 5파"가 아니라 확장되는 Cycle (3)파가 진행 중인 구조이며, ATH 370,000은 (3)파 내부의 ③-of-(3)(=①의 1.618배) 종착이다.</em> 따라서 현재 322,500은 <strong>④-of-(3) 조정 국면</strong>이고, 마무리 후 <strong>⑤-of-(3) 신고가(400,000~420,000) → 상위 (4)·(5)</strong>로 추가 상승 여지가 크다 — 다만 "370,000 천장"(완성) 대안도 병존한다.</p>
+<div class="nested"><strong>중첩 위치 진술(개정):</strong> Cycle (3)[확장·진행, ③ 완료] ⊃ Intermediate ④-of-(3) 조정[진행] ⊃ Minute [반등·조정 혼조]. → 세 계위 모두 <strong>"단기 조정(④)"</strong>으로 정렬. 무효화선 <strong>223,000</strong>(①-of-(3)) 하회 시 약세(완성) 대안으로 회귀, <strong>403,500</strong> 돌파 시 ⑤ 진행으로 주 카운트 확정.</div>
+
+<h2 class="sec"><span class="no">§1</span> 기업 펀더멘털 & 모멘텀 (요약)</h2>
+<div class="sub">강한 실적·높은 목표가가 "확장 (3)파 진행" 주 카운트를 뒷받침</div>
+<p>HBM4가 엔비디아 차세대 SiP 테스트에서 최고 평가를 받으며 <strong>2026년 HBM 매출 26~34조원(전년 대비 약 3배)·연결 영업이익 100~133조원</strong> 전망이 쏟아지고 있다. 메모리 업황 회복이 가팔라 펀더멘털은 명백한 슈퍼사이클이다. <em class="k">주요 증권사 목표주가는 2026년 5월 일제히 대폭 상향되어 미래에셋 48만·NH 49만·한국투자 57만·노무라 59만원(연초 유진·키움 등 일부 21만원)에 이른다.</em> 현재가 322,500원은 이 공격적 목표가들을 오히려 <strong>하회</strong>하는 수준으로, 펀더멘털·컨센서스는 추가 상승 여력을 가리킨다. 이는 본 보고서 <em class="k">주(主) 카운트인 "확장 (3)파 진행(③ 완료 → ④ 조정 → ⑤ 신고가)"과 정합</em>하며, 현재 ④ 조정은 48~59만 목표가를 향한 분할매수 기회가 된다. 다만 강세 컨센서스가 ATH 부근에 집중된 점은 <strong>"370,000 천장"(대안) 시 5파 말기 환희(euphoria) 정점</strong>일 수도 있어, 223,000(무효화)·403,500(확정) 양방 점검이 필요하다.</p>
+<table><thead><tr><th>구분</th><th class="mono">값</th><th>해석</th></tr></thead><tbody>
+<tr><td class="t-name">2026E 영업이익</td><td class="mono">100~133조</td><td>HBM4·낸드 동반 — 슈퍼사이클</td></tr>
+<tr><td class="t-name">증권사 목표가</td><td class="mono up">21만~59만</td><td>5월 상향: 노무라59·한투57·NH49·미래에셋48</td></tr>
+<tr><td class="t-name">현재가</td><td class="mono">322,500</td><td>목표가 <b>하회</b> → 컨센서스상 상승 여력</td></tr>
+<tr><td class="t-name">ATH 대비</td><td class="mono dn">-12.8%</td><td>370,000 후 첫 조정 진행</td></tr>
+</tbody></table>
+
+<h2 class="sec"><span class="no">§2</span> 다계위 파동 진단</h2>
+<div class="sub">Top-down — Cycle(월) → Intermediate(주) → Minute(일)</div>
+<h3>① Cycle 계위 (주봉) — 확장 (3)파 진행 중 · 370,000 = ③-of-(3) [신(新) 주(主) 카운트]</h3>
+<p>재검토 결과, 51,700→370,000 전체를 "완성된 5파"로 보기보다 <em class="k">"확장되는 Cycle (3)파가 아직 진행 중"</em>으로 읽는 것이 더 정합적이다. (1) 108,600 → (2) 100,500(얕은 -7.6%) → <strong>(3) 진행 중</strong>이며, (3) 내부가 <strong>① 223,000 → ② 167,000 → ③ 370,000</strong>으로 전개됐다. 핵심은 <strong>③ = 203,000원 = ①(122,500)의 1.657배 ≈ 1.618배</strong> — 즉 370,000은 파5의 종결이 아니라 <em class="k">"third-of-third(3-3)"의 전형적 확장 종착</em>이다. 현재가 322,500은 <strong>③ 완료 후 ④ 조정</strong> 국면이며, 이후 ⑤-of-(3) → (4) → (5)로 추가 상승 여지가 크다.</p>
+<div class="nested"><strong>왜 이 카운트가 더 우월한가 (사용자 제안 채택):</strong><br>
+① <strong>확장은 보통 3파에서</strong> — 203,000원 상승을 "확장 5파(희귀)"가 아닌 "확장 ③-of-(3)(통례)"로 두면 EW 가이드라인에 부합.<br>
+② <strong>Intermediate 룰 문제 해소</strong> — 167→370이 종결 5파/다이애고널일 필요가 없어진다(3파는 추진 임펄스). 앞서 지적된 <em class="k">파3&lt;파1·4↔1 중첩 모순이 소멸</em>.<br>
+③ <strong>얕은 (2)파(-7.6%) 설명</strong> — 강추세의 짧은 2파 + 깊은 ②-of-(3)(-25%)의 교대가 자연스러움.<br>
+④ <strong>펀더/목표가 정합</strong> — ④ 조정 후 ⑤-of-(3) → (4)·(5)로 증권사 48~59만 경로와 일치. ⑤-of-(3) 1차 투영 ≈ 400,000~420,000(=①을 ④저점에 가산), 이는 직전 산출 무효화선 403,500과 일치.<br>
+<strong>무효화선 = 223,000원</strong>(①-of-(3) 고점): 이 아래로 깨지면 "④ 조정" 무효 → 약세(완성) 카운트로 회귀. <em class="k">원안(51,700→370,000 = 완성 5파)은 약세 대안으로 강등(§4 참조).</em></div>
+<table><thead><tr><th>파동</th><th class="mono">가격</th><th class="mono">비율</th><th>비고</th></tr></thead><tbody>
+<tr><td>(1) 108,600</td><td class="mono">+56,900</td><td class="mono">기준</td><td>—</td></tr>
+<tr><td>(2) 100,500</td><td class="mono">-7.6%</td><td class="mono">.142</td><td>얕은 2파 (강추세)</td></tr>
+<tr><td>(3)① 223,000</td><td class="mono">+122,500</td><td class="mono">내부기준</td><td class="up">sub-1 of (3)</td></tr>
+<tr><td>(3)② 167,000</td><td class="mono">-45.7%</td><td class="mono">.457</td><td class="up">sub-2 (교대)</td></tr>
+<tr><td>(3)③ 370,000</td><td class="mono">+203,000</td><td class="mono">1.618×①</td><td class="up">확장 3-of-3 ✓</td></tr>
+<tr><td>(3)④ 진행</td><td class="mono">370k→295.5k</td><td class="mono">.382≈292k</td><td class="b-warn xb">현재 조정 · &gt;223,000 유지</td></tr>
+<tr><td>(3)⑤ 대기</td><td class="mono">→ 400~420k</td><td class="mono">=① 투영</td><td class="up">(3) 완성 목표</td></tr>
+</tbody></table>
+<div class="chart"><div class="cap">CHART 1 · 삼성전자 Cycle(주봉) — 확장 (3)파 진행 · 370,000 = ③-of-(3)</div><div id="c1"></div>
+<div class="src">SRC: KRX 주봉 실측 OHLC(2025.01~2026.06, 일봉 리샘플) · 무효화선 223,000(①-of-(3) 고점) · ⑤-of-(3) 목표 400~420k</div></div>
+
+<h3>② Intermediate 계위 (주봉) — Cycle (3)의 5파 (25.11 (2)저 기점) · ①②③ 완료, ④ 진행</h3>
+<p>(사용자 지적 반영) Intermediate 계위는 <strong>Cycle (2) 저점(2025.11, ~100,500)에서 시작</strong>한다 — 즉 Cycle (3)의 내부 5파 그 자체다. <strong>① 100,500→223,000 → ② 223,000→167,000 → ③ 167,000→370,000(확장) → ④ 진행(현재) → ⑤ 대기.</strong> 앞선 개정에서 "파3&lt;파1·중첩으로 취약"하다던 지적은 <em class="k">Intermediate 시작점을 167,000(②저점)으로 잘못 잡은 데서 비롯된 착시</em>였다. (2)저점을 기점으로 올바로 카운트하면 ③가 ①보다 길고(확장 3파) 중첩도 없어 <strong>3대 규칙이 깨끗이 성립</strong>한다.</p>
+<table><thead><tr><th>파동</th><th class="mono">레그</th><th class="mono">비율</th><th>EW 룰</th></tr></thead><tbody>
+<tr><td>① 100,500→223,000</td><td class="mono">+122,500</td><td class="mono">기준</td><td>—</td></tr>
+<tr><td>② →167,000</td><td class="mono">-56,000</td><td class="mono">.457</td><td class="up">R1 ✓ (>① 시작 100,500)</td></tr>
+<tr><td>③ 167,000→370,000</td><td class="mono">+203,000</td><td class="mono">1.66×①</td><td class="up">R2 ✓ 확장3 (③>①)</td></tr>
+<tr><td>④ 진행</td><td class="mono">370k→295.5k..</td><td class="mono">.382≈292k</td><td class="b-warn xb">R3 — >223,000(①고점) 유지</td></tr>
+<tr><td>⑤ 대기</td><td class="mono">→ 400~420k</td><td class="mono">=① 투영</td><td class="up">(3) 완성 목표</td></tr>
+</tbody></table>
+<div class="nested"><strong>✓ 결론:</strong> (2)저 기점 카운트는 <strong>③(203,000) > ①(122,500)</strong>(정상 확장 3파)·④↔① 중첩 없음 → 임펄스 3대 규칙 충족. 앞서의 "파3&lt;파1" 위배는 ②저점(167,000)을 기점으로 오인한 산물이며, 본 정정으로 해소된다. <strong>무효화선 223,000</strong>(①고점, ④가 침범 불가) / <strong>확정 트리거 403,500</strong>(⑤ 진행). 현재는 ④ 조정 국면.</div>
+<div class="chart"><div class="cap">CHART 2 · 삼성전자 Intermediate(주봉) — Cycle (3) 내부 ①②③④ (25.11 기점)</div><div id="c2"></div>
+<div class="src">SRC: KRX 주봉 실측(2025.11~2026.06, 일봉 리샘플) · ④ 되돌림 244,546~292,454 · 무효 223,000↓ / 확정 403,500↑</div></div>
+
+<h3>③ Minute 계위 (일봉) — ④ 조정 정밀 분석: 완료인가, 진행 중인가</h3>
+<p>일봉에서 <strong>② 저점 167,000(03-31)</strong> 기점 167,000→370,000(③-of-(3))이 5파 임펄스로 완성됐고, ATH 370,000(06.02) 이후 <strong>④ 조정이 전개 중</strong>이다. 본 절은 다계위 분석의 <em class="k">실행 분기점 — "④가 끝났는가"</em>에 집중한다. ④ 내부는 현재까지 <strong>ⓐ 292,500(06-08) → ⓑ 324,000(06-09) → ⓒ 287,500(06-11)</strong>의 a-b-c 형태이며, ⓒ 저점 287,500은 ③의 <strong>.382 되돌림(292,454)을 살짝 통과</strong>한 40.6% 지점이다. 06-12 종가 322,500은 ⓒ에서 +35,000 강반등(장중 339,000)으로 — 이것이 ④ 종료(⑤ 개시) 신호인지 ⓑ류 추가 반등인지가 핵심이다.</p>
+<div class="chart"><div class="cap">CHART 3 · 삼성전자 Minute(일봉) — ④ 조정 정밀 줌 (06-01~06-12) · a-b-c & .382~.618 되돌림</div><div id="c4"></div>
+<div class="src">SRC: KRX 일봉 실측 · ⓐ292,500 / ⓑ324,000 / ⓒ287,500(.382 통과) · 완료 트리거 324,000↑ / 심화 287,500↓</div></div>
+<table><thead><tr><th>④ 내부</th><th class="mono">가격</th><th class="mono">폭</th><th>해석</th></tr></thead><tbody>
+<tr><td>③ 고점</td><td class="mono">370,000</td><td class="mono">기준</td><td>06-02 ATH</td></tr>
+<tr><td>ⓐ 하락</td><td class="mono">292,500</td><td class="mono">-77,500</td><td>-20.9% 급락(06-08)</td></tr>
+<tr><td>ⓑ 반등</td><td class="mono">324,000</td><td class="mono">+31,500</td><td>ⓐ의 .406 되돌림(06-09)</td></tr>
+<tr><td>ⓒ 하락</td><td class="mono">287,500</td><td class="mono">-36,500</td><td class="b-warn xb">ⓐ 살짝 하회·짧은 c(06-11)</td></tr>
+<tr><td>현재</td><td class="mono">322,500</td><td class="mono">+35,000</td><td>ⓒ서 강반등(06-12)</td></tr>
+</tbody></table>
+<div class="cm">
+ <div class="cell u"><div class="deg">④ 완료 신호</div><div class="dir" style="font-size:15px">⑤ 임박</div><div class="t">.382 도달(287,500)·06-12 강반등·③ 무중첩 — <b>확정: 324,000 종가 돌파</b></div></div>
+ <div class="cell d"><div class="deg">④ 진행 신호</div><div class="dir" style="font-size:15px">횡보·심화</div><div class="t">교대(②샤프→④횡보)·시간부족(7일 vs ③ 44일) — <b>심화: 287,500 이탈→268,500/244,546</b></div></div>
+ <div class="cell"><div class="deg">판정(현시점)</div><div class="dir" style="font-size:15px">미완 우위</div><div class="t">가격 저점은 .382로 충족, 교대·시간 비례상 <b>추가 횡보 후 ⑤</b> 우위 ≈55:45</div></div>
+</div>
+<div class="callout"><b>④ 판정 종합:</b> ⓒ 287,500이 ③의 <strong>.382(292,454)</strong>에 닿아 <em class="k">가격상 ④ 저점은 충족 가능</em>하나, ②가 샤프 지그재그였던 만큼 <strong>교대 원칙상 ④는 횡보형(플랫·삼각)</strong>이 정석이고 경과 기간(약 7거래일)도 ③(44거래일) 대비 짧다 → <strong>"가격 저점은 근접, 시간상 미완"</strong>이 현 판정. ⓒ(287,500) 종가 이탈 시 ④ 심화(.50=268,500 / .618=244,546), <strong>324,000 종가 돌파</strong> 시 ④ 종료·⑤ 개시 전환. 어느 경로든 <strong>223,000 위에서는 매수 우위</strong>(④ 매집 → ⑤ 신고가).</div>
+
+<h2 class="sec"><span class="no">§3</span> 교차계위 추론 & 컨빅션</h2>
+<div class="sub">세 계위 상호관계로 현재 위치를 확정</div>
+<table><thead><tr><th>#</th><th>규칙</th><th>관찰</th><th>판정</th><th>결과</th></tr></thead><tbody>
+<tr><td class="xid">X1</td><td class="xt">확장 위치</td><td>③ = ①(122,500)의 1.618배 = 203,000 (167k→370k)</td><td class="xnote">확장 3-of-3 — 주식시장 통례 부합 (주 카운트)</td><td><span class="xb b-ok">정합</span></td></tr>
+<tr><td class="xid">X2</td><td class="xt">무효화 위계</td><td>Minute(④ 조정) ⊂ Int(④-of-(3)) ⊂ Cycle((3) 진행)</td><td class="xnote">단기 조정이 장기 (3)파 상승구조를 부정하지 않음</td><td><span class="xb b-ok">정상</span></td></tr>
+<tr><td class="xid">X3</td><td class="xt">교대 원칙</td><td>(2)파 -7.6% 얕음 ↔ ②-of-(3) -25% 깊음</td><td class="xnote">강추세 짧은 2파 + 깊은 내부 2파 교대 → 정상</td><td><span class="xb b-ok">정상</span></td></tr>
+<tr><td class="xid">X4</td><td class="xt">Int 기점 정정</td><td>(2)저(25.11) 기점 시 ③ 203,000 > ① 122,500 · 중첩 없음</td><td class="xnote">올바른 기점이면 Int 5파 룰 충족 → 확장 3파 확정</td><td><span class="xb b-ok">정합</span></td></tr>
+<tr><td class="xid">X6</td><td class="xt">확정·무효</td><td>403,500 돌파 = ⑤ 진행 / 223,000 이탈 = 대안</td><td class="xnote">주 카운트 검증 기준선 (펀더/목표가 48~59만 정합)</td><td><span class="xb b-ok">강세변수</span></td></tr>
+<tr><td class="xid">X5</td><td class="xt">합류대</td><td>292,454+295,500 / 244,546+248,409 / 210,850+223,000</td><td class="xnote">다계위 피보 겹침 = ④ 조정 고확률 지지대</td><td><span class="xb b-risk">구조적</span></td></tr>
+</tbody></table>
+<div class="cm">
+ <div class="cell u"><div class="deg">Cycle · 장기</div><div class="dir">↑</div><div class="t">확장 (3)파 진행 · ③ 완료</div></div>
+ <div class="cell d"><div class="deg">Intermediate · 중기</div><div class="dir">↓</div><div class="t">④-of-(3) 조정 진행</div></div>
+ <div class="cell d"><div class="deg">Minute · 단기</div><div class="dir">↓</div><div class="t">조정 우위 · 추격 자제</div></div>
+</div>
+<div class="callout"><b>컨빅션 종합:</b> 신 주 카운트는 <strong>"확장 (3)파 진행 중, 현재 ④ 조정"</strong>(↑/↓/↓). 약세(370,000 천장) 대안에서도 <em class="k">현재 조정은 공통</em>이라 실행 결론은 견고: <strong>"신규 추격 금지 · ④ 조정(244~268k)을 분할매수 기회로 대기"</strong>. 갈리는 건 조정 <em>이후</em> 상단(⑤-of-(3) 400~420k → 48~59만 vs 370,000 천장 한계). <strong>무효화선 223,000</strong> 위에서 장기 상승 구조 유지 → 깊은 조정도 <em class="k">새 대형 상승의 매집 기회</em>.</div>
+
+<h2 class="sec"><span class="no">§4</span> 시나리오 (확률 합 100%)</h2>
+<div class="sub">신 주 카운트(확장 (3)파)로 재편 — 조정은 여전히 공통, 갈림길은 조정 이후 상단</div>
+<div class="scen primary"><div class="top"><h4>기본(주) — 확장 (3)파: ③ 완료, ④ 조정 후 ⑤ 신고가</h4><span class="prob">50%</span></div>
+<p>③-of-(3) 370,000 완료 → 현재 <strong>④ 조정 진행</strong>. ④ 되돌림 <strong>292,454(.382)·268,500(.50)·244,546(.618)★</strong>(<em class="k">223,000 위 유지 필수</em>). 이후 <strong>⑤-of-(3) → 400,000~420,000</strong>으로 (3) 완성 → Cycle (4) 조정 → (5)로 <strong>증권사 48~59만 경로</strong>. <em class="k">트리거: 403,500 돌파 시 본 카운트 확정</em>. HBM4 양산(6/12)·슈퍼사이클이 뒷받침.</p></div>
+<div class="scen alt"><div class="top"><h4>대안 — 370,000이 큰 계위 천장(완성), 다계위 조정</h4><span class="prob">30%</span></div>
+<p>370,000에서 상위 계위 임펄스가 종결됐다면 다계위 조정. 1차 <strong>295,500~268,500(.618~.50)</strong>, 본격 <strong>244,546(.382)★</strong>, 강력 <strong>210,850~223,000★</strong>. <em class="k">223,000 종가 이탈 시 이 시나리오로 무게 이동</em>. HBM4 실적이 하단을 지지해 박스 후 재상승 여지.</p></div>
+<div class="scen risk"><div class="top"><h4>리스크 — 223,000 이탈, 깊은 Cycle 조정</h4><span class="prob">20%</span></div>
+<p>매크로 충격·차익실현 가속 시 <strong>223,000(①-of-(3)) 이탈</strong> → 전체 .50 <strong>210,850</strong> 하회, <strong>173,291(.382)~167,000</strong>까지 깊은 되돌림. 단 108,600 위에서 <em class="k">장기 상승 구조는 유지</em> — 새 대형 상승의 매집 기회.</p></div>
+
+<h2 class="sec"><span class="no">§5</span> 계위별 전략</h2>
+<div class="sub">방향은 Cycle, 시점은 Intermediate, 실행은 Minute</div>
+<h3>중기(Intermediate) 분할 대응 — 조정 매수 사다리</h3>
+<table class="ladder"><thead><tr><th>구간</th><th class="zone">가격대</th><th>근거</th><th>비중</th><th>비고</th></tr></thead><tbody>
+<tr><td>관망/반등매도</td><td class="zone mono">320,000~340,000</td><td>현재가·④ 조정 반등</td><td class="mono">-</td><td>보유분 차익실현</td></tr>
+<tr><td>1차</td><td class="zone mono">268,500~295,500</td><td>④ .382~.50 (③ 되돌림)</td><td class="mono">20%</td><td>1차 지지 — 소량</td></tr>
+<tr><td>2차 (핵심)</td><td class="zone mono">244,000~248,000</td><td>④ .618 + 전체 .618 ★</td><td class="mono">35%</td><td>핵심 매집(④ 정상범위 하단)</td></tr>
+<tr><td>3차 (강력)</td><td class="zone mono">210,000~223,000</td><td>무효화 223,000(①고점)+전체 .50 ★</td><td class="mono">30%</td><td>이탈 시 대안 전환 — 강력 지지</td></tr>
+<tr><td>예비</td><td class="zone mono">~173,000 / 167,000</td><td>②-of-(3) 저점 + 전체 .382</td><td class="mono">15%</td><td>리스크 시나리오</td></tr>
+</tbody></table>
+<div class="callout"><b>무효화·확정:</b> [주 카운트=확장 (3)파] ④ 조정 무효화 = <strong>223,000 종가 이탈</strong>(→ 대안/리스크 전환), 주 카운트 확정 = <strong>403,500 돌파</strong>(⑤-of-(3) 진행). 최종 장기 무효 = <strong>108,600 하회</strong>(현실성 낮음). &nbsp;<b>R:R</b> — 핵심 244,000 진입·손절 218,000(<223,000, -26,000)·⑤ 목표 410,000(+166,000) → <strong>약 6.4:1</strong>; 1차 268,500 진입 시 손절 218,000(-50,500)·목표 410,000(+141,500) → <strong>약 2.8:1</strong>. (장기 (4)·(5)로 48~59만 추가 여지)</div>
+<table><thead><tr><th>계위</th><th>편향</th><th>실행</th><th>무효화/손절</th></tr></thead><tbody>
+<tr><td class="t-name">장기 Cycle</td><td class="up">보유·매집</td><td>확장 (3)파 진행 — ④ 조정에서 장기 매집, ⑤·(5) 보유 (목표 48~59만)</td><td class="mono">223,000 (최종 108,600)</td></tr>
+<tr><td class="t-name">중기 Intermediate</td><td class="up">조정 매수</td><td>④ 되돌림 분할: 268~295 1차, 244~248 핵심, 210~223 강력</td><td class="mono">223,000 이탈</td></tr>
+<tr><td class="t-name">단기 Minute</td><td class="dn">④ 박스 대응</td><td>④ 미완(287,500~324,000) 박스 매매; <b>324,000 돌파=⑤ 추격</b>, <b>287,500 이탈=④ 심화→268,500 매수</b></td><td class="mono">324,000↑완료 / 287,500↓심화</td></tr>
+</tbody></table>
+<div class="pull">"파동은 종착(終)과 휴식(休)을 같은 얼굴로 보여준다 —<br>피보 1.618에서, 시장은 작별일지 환승일지 아직 말하지 않았다."<span class="by">— Chory & Rochet · Vol. VII</span></div>
+<div class="legend">
+ <span><span class="dot" style="background:#b8860b"></span>Cycle(장기)</span>
+ <span><span class="dot" style="background:#c2410c"></span>Intermediate(중기)</span>
+ <span><span class="dot" style="background:#0e8a8a"></span>Minute(단기)</span>
+ <span>캔들 <span class="dot" style="background:#c0392b"></span>양봉 / <span class="dot" style="background:#1570ef"></span>음봉</span>
+ <span>★ 다계위 피보 합류대</span>
+ <span>···· 파동 경로(보조)</span>
+</div>
+<div class="disc"><strong>데이터 출처 & 한계.</strong> 전 계위 KRX 실측. Cycle=주봉(2025.01~2026.06, 일봉 리샘플), Intermediate=주봉(2025.11~2026.06, Cycle (2)저 기점), Minute=일봉(2026.03.23~06.12, ② 저점 167,000 기점). ATH 370,000(06.02 장중), 06.12 종가 322,500. 증권사 목표가는 2026년 5월 발표 기준(노무라 590,000·한국투자 570,000·NH 490,000·미래에셋 480,000, 연초 유진·키움 등 210,000) — 웹 리서치 교차확인. 파동 카운트는 메인+대안 병기이며 전개에 따라 갱신된다. <strong>개정(2026.06.14):</strong> 파동 카운트 재검토 반영 — 3대 규칙 충족 확인, (5)=1.618×(3) 피보 완성 단서 추가, "연장5↔종결대각" 모순 단일화, "370,000=(3)파" 강세 대안 30→35% 상향(기본 50→45%). <strong>2차 개정:</strong> Intermediate 5파 라벨의 룰 취약성(파3 108,000 < 파1 132,500 + 파4↔파1 중첩 → 임펄스·표준 다이애고널 모두 불성립) 명시, 무효화선 ≈403,500원(초과 시 상위계위 강세 전환) 추가. <strong>3차 개정:</strong> 주(主) 카운트를 <em>"확장 Cycle (3)파 진행 중, 370,000 = ③-of-(3)"</em>로 승격(원안 "완성 5파"는 대안 강등) — 확장은 통상 3파에서 발생·Intermediate 룰 문제 해소·얕은 (2)파 설명. 시나리오 재조정(기본 50/대안 30/리스크 20), 무효화선 223,000(①-of-(3) 고점)·확정 트리거 403,500. <strong>4차 개정:</strong> Intermediate 계위를 <em>Cycle (2)저(2025.11, ~100,500) 기점</em>으로 재정렬(①②③④) — ③(203,000)>①(122,500) 확장3파·중첩 없음으로 3대 규칙 충족, 앞선 "파3&lt;파1 취약" 지적(167,000 오기점)이 해소됨. Cycle 차트 월봉→주봉 전환 포함. <strong>5차 개정:</strong> Minute 일봉을 ② 저점(167,000, 03-31) 기점으로 확장(2026.03.23~) — ③ 임펄스를 기저부터 표시. 직전 차트(04-17 기점, 최저 213,000)는 167,000을 포함하지 않아 Intermediate ②저와 시각적으로 불일치했던 점을 정정.</div>
+<div class="disc"><strong>면책.</strong> 본 보고서는 투자 참고용 자체 리서치이며 특정 종목의 매수·매도를 권유하지 않습니다. 엘리어트 파동·피보나치 분석은 확률적 해석으로 미래 수익을 보장하지 않습니다. 투자 판단과 결과의 책임은 투자자 본인에게 있습니다.</div>
+</div>
+<div class="foot">
+ <div class="fb">Chory & Rochet</div>
+ <p style="margin:6px 0">Equity Research · Multi-Degree Elliott Wave Brief · Vol. VII | 삼성전자 (005930)</p>
+ <p style="margin:6px 0">발행 2026.06.14 · 기준종가 2026.06.12 · 스킬: elliott-multidegree (Cycle·Intermediate·Minute)</p>
+ <p style="margin-top:10px">💡 PDF 저장: 브라우저에서 Ctrl/⌘ + P → 대상 "PDF로 저장" → 배경 그래픽 켜기.</p>
+</div>
+<script>
+/* 실측 KRX OHLC: [yyyymmdd, open, high, low, close] */
+var M=[["20240131",73400,74000,72500,72700],["20240229",72600,73400,72000,73400],["20240329",81200,82500,80900,82400],["20240430",77000,78500,76600,77500],["20240531",74500,74700,73500,73500],["20240628",81900,81900,80800,81500],["20240731",81200,83900,80900,83900],["20240830",74400,75000,74100,74300],["20240930",64200,64300,61500,61500],["20241031",58500,61200,58300,59200],["20241129",55100,55300,53800,54200],["20241230",53300,54000,53100,53200],["20250131",52200,53000,51700,52400],["20250228",55400,55700,54500,54500],["20250331",59500,59700,57800,57800],["20250430",55900,56000,55300,55500],["20250530",56200,57200,55800,56200],["20250630",61200,61200,59800,59800],["20250731",73000,74000,71000,71400],["20250829",70100,70500,69700,69700],["20250930",84600,84900,83400,83900],["20251031",105000,108600,103300,107500],["20251128",103800,103800,100500,100500],["20251230",119100,121200,118700,119900],["20260130",160100,166500,160100,160500],["20260227",210000,223000,210000,216500],["20260331",170000,174700,167000,167200],["20260430",229000,230000,220500,220500],["20260529",309500,319000,305500,317000],["20260612",326000,370000,320000,322500]];
+var W=[["20260109",136000,140700,135200,139000],["20260116",139000,149500,139000,148900],["20260123",148900,156000,148900,152100],["20260130",152100,166500,152100,160500],["20260206",160500,160500,151600,158600],["20260213",158600,184400,158600,181200],["20260220",181200,190300,181200,190100],["20260227",190100,223000,190100,216500],["20260306",216500,216500,181000,188200],["20260313",188200,188200,179900,183500],["20260320",183500,202500,183500,199400],["20260327",199400,199400,172000,179700],["20260330",171000,190800,167000,186200],["20260406",190900,211000,190100,206000],["20260413",198200,218000,198200,216000],["20260420",214500,229500,213000,219500],["20260427",220000,230000,218500,220500],["20260504",228000,277000,224000,268500],["20260511",284500,299500,262000,270500],["20260518",269500,300500,262000,292500],["20260526",298000,323000,287500,317000],["20260601",319500,370000,319500,329000],["20260608",293000,324000,287500,322500]];
+var D=[["20260417",217000,218000,215000,216000],["20260420",214500,219000,213000,214500],["20260421",218000,220000,216000,219000],["20260422",218500,222500,215500,217500],["20260423",223000,229500,216000,224500],["20260424",224000,225000,216500,219500],["20260427",220000,226000,218500,224500],["20260428",224000,226000,221500,222000],["20260429",219500,228000,218500,226000],["20260430",229000,230000,220500,220500],["20260504",228000,232500,224000,232500],["20260506",254000,270000,251000,266000],["20260507",272000,277000,260000,271500],["20260508",260000,270000,260000,268500],["20260511",284500,288500,280000,285500],["20260512",290000,291500,266000,279000],["20260513",264000,285500,262000,284000],["20260514",282000,299500,282000,296000],["20260515",291000,296500,266000,270500],["20260518",269500,288500,262000,281000],["20260519",274000,281500,266000,275500],["20260520",278000,282500,263500,276000],["20260521",291000,299500,287000,299500],["20260522",300000,300500,292000,292500],["20260526",298000,302000,297500,299000],["20260527",321500,323000,306000,307000],["20260528",305000,306500,287500,299500],["20260529",309500,319000,305500,317000],["20260601",319500,354500,319500,349000],["20260602",360500,370000,342000,360500],["20260604",349000,366000,348000,351500],["20260605",333500,343000,325000,329000],["20260608",293000,315500,292500,295500],["20260609",310000,324000,300000,322000],["20260610",311000,314500,295250,302500],["20260611",290500,306500,287500,299000],["20260612",326000,339000,320000,322500]];
+/* Cycle 주봉(일봉 리샘플) 2025.01~2026.06 */
+var WC=[["20250102",52700,55100,52300,54400],["20250106",54400,57700,54300,55300],["20250113",54600,55000,53200,53700],["20250120",53600,54400,53100,53700],["20250131",52200,53000,51700,52400],["20250203",51100,54200,50800,53700],["20250210",53000,57300,52900,56000],["20250217",56100,59100,55700,58200],["20250224",57300,57800,54500,54500],["20250304",53900,55400,53400,53700],["20250310",53500,55900,52500,54700],["20250317",55500,61700,55400,61700],["20250324",61200,62000,59500,60200],["20250331",59500,59700,55700,56100],["20250407",53300,56700,52900,55200],["20250414",56300,57100,54500,55300],["20250421",55200,56400,54700,55700],["20250428",55800,56500,54200,54300],["20250507",54500,55500,54300,54800],["20250512",55200,58600,55000,56800],["20250519",56400,56700,54100,54200],["20250526",53900,57200,53700,56200],["20250602",56300,59900,56200,59100],["20250609",60400,60400,57700,58300],["20250616",58000,60600,56900,59500],["20250623",58400,61600,57600,60800],["20250630",61200,64700,59800,63300],["20250707",62900,63300,60200,62600],["20250714",62300,67800,61800,67100],["20250721",67400,68800,64900,65900],["20250728",68200,74000,67200,68900],["20250804",69500,72400,68300,71800],["20250811",72000,72400,70800,71600],["20250818",71100,71900,69400,71400],["20250825",71700,71800,69600,69700],["20250901",68400,70400,67500,69500],["20250908",69800,75600,69600,75400],["20250915",77200,81200,75900,79700],["20250922",81500,86200,81100,83300],["20250929",83300,90300,83200,89000],["20251010",94000,94500,92700,94400],["20251013",91300,99100,90200,97900],["20251020",97900,99900,95500,98800],["20251027",101300,108600,99100,107500],["20251103",106900,112400,96300,97900],["20251110",98600,106000,97200,97200],["20251117",99800,102900,94500,94800],["20251124",97800,105500,96200,100500],["20251201",102000,108400,99900,108400],["20251208",109700,110500,106800,108900],["20251215",105300,109700,102700,106300],["20251222",109700,117000,109300,117000],["20251229",119400,128500,118200,128500],["20260105",134600,144500,132700,139000],["20260112",141000,149500,136800,148900],["20260119",147200,157000,141800,152100],["20260126",154900,166600,149200,160500],["20260202",155700,169400,150400,158600],["20260209",168600,184400,162000,181200],["20260219",188000,190900,187100,190100],["20260223",194400,223000,190500,216500],["20260303",209500,212500,171900,188200],["20260309",173500,194800,167300,183500],["20260316",184600,209000,183600,199400],["20260323",190500,196400,172000,179700],["20260330",171000,193600,167000,186200],["20260406",190900,214500,190100,206000],["20260413",198200,218000,198200,216000],["20260420",214500,229500,213000,219500],["20260427",220000,230000,218500,220500],["20260504",228000,277000,224000,268500],["20260511",284500,299500,262000,270500],["20260518",269500,300500,262000,292500],["20260526",298000,323000,287500,317000],["20260601",319500,370000,319500,329000],["20260608",293000,339000,287500,322500]];
+/* Intermediate 주봉 = Cycle (3) 내부, 2025.11 (2)저 기점 */
+var WI=[["20251103",106900,112400,96300,97900],["20251110",98600,106000,97200,97200],["20251117",99800,102900,94500,94800],["20251124",97800,105500,96200,100500],["20251201",102000,108400,99900,108400],["20251208",109700,110500,106800,108900],["20251215",105300,109700,102700,106300],["20251222",109700,117000,109300,117000],["20251229",119400,128500,118200,128500],["20260105",134600,144500,132700,139000],["20260112",141000,149500,136800,148900],["20260119",147200,157000,141800,152100],["20260126",154900,166600,149200,160500],["20260202",155700,169400,150400,158600],["20260209",168600,184400,162000,181200],["20260219",188000,190900,187100,190100],["20260223",194400,223000,190500,216500],["20260303",209500,212500,171900,188200],["20260309",173500,194800,167300,183500],["20260316",184600,209000,183600,199400],["20260323",190500,196400,172000,179700],["20260330",171000,193600,167000,186200],["20260406",190900,214500,190100,206000],["20260413",198200,218000,198200,216000],["20260420",214500,229500,213000,219500],["20260427",220000,230000,218500,220500],["20260504",228000,277000,224000,268500],["20260511",284500,299500,262000,270500],["20260518",269500,300500,262000,292500],["20260526",298000,323000,287500,317000],["20260601",319500,370000,319500,329000],["20260608",293000,339000,287500,322500]];
+/* Minute 일봉 = Cycle (3) 내부, ② 저점(167,000, 03-31) 기점 */
+var DM=[["20260323",190500,191200,186300,186300],["20260324",195500,196000,185500,189700],["20260325",193700,196400,189000,189000],["20260326",185500,185900,178900,180100],["20260327",172100,181700,172000,179700],["20260330",171000,176650,170600,176300],["20260331",170000,174700,167000,167200],["20260401",179000,190800,178000,189600],["20260402",192600,193600,177300,179200],["20260403",184200,187200,182700,186200],["20260406",190900,194600,190100,193100],["20260407",202000,202500,192400,196500],["20260408",214000,214500,207500,210500],["20260409",207000,207500,202500,204500],["20260410",208500,211000,205500,206000],["20260413",198200,203000,198200,201000],["20260414",208000,210000,205500,206500],["20260415",215000,215500,210000,211000],["20260416",212000,218000,210500,217500],["20260417",217000,218000,215000,216000],["20260420",214500,219000,213000,214500],["20260421",218000,220000,216000,219000],["20260422",218500,222500,215500,217500],["20260423",223000,229500,216000,224500],["20260424",224000,225000,216500,219500],["20260427",220000,226000,218500,224500],["20260428",224000,226000,221500,222000],["20260429",219500,228000,218500,226000],["20260430",229000,230000,220500,220500],["20260504",228000,232500,224000,232500],["20260506",254000,270000,251000,266000],["20260507",272000,277000,260000,271500],["20260508",260000,270000,260000,268500],["20260511",284500,288500,280000,285500],["20260512",290000,291500,266000,279000],["20260513",264000,285500,262000,284000],["20260514",282000,299500,282000,296000],["20260515",291000,296500,266000,270500],["20260518",269500,288500,262000,281000],["20260519",274000,281500,266000,275500],["20260520",278000,282500,263500,276000],["20260521",291000,299500,287000,299500],["20260522",300000,300500,292000,292500],["20260526",298000,302000,297500,299000],["20260527",321500,323000,306000,307000],["20260528",305000,306500,287500,299500],["20260529",309500,319000,305500,317000],["20260601",319500,354500,319500,349000],["20260602",360500,370000,342000,360500],["20260604",349000,366000,348000,351500],["20260605",333500,343000,325000,329000],["20260608",293000,315500,292500,295500],["20260609",310000,324000,300000,322000],["20260610",311000,314500,295250,302500],["20260611",290500,306500,287500,299000],["20260612",326000,339000,320000,322500]];
+/* ④ 정밀 줌 (06-01~06-12) */
+var DZ=[["20260601",319500,354500,319500,349000],["20260602",360500,370000,342000,360500],["20260604",349000,366000,348000,351500],["20260605",333500,343000,325000,329000],["20260608",293000,315500,292500,295500],["20260609",310000,324000,300000,322000],["20260610",311000,314500,295250,302500],["20260611",290500,306500,287500,299000],["20260612",326000,339000,320000,322500]];
+function rc(el,bars,ann,fibs,band,accent){
+ var Wd=880,H=380,L=72,R=18,T=18,B=28,pw=Wd-L-R,ph=H-T-B,lo=1e12,hi=-1e12,i;
+ for(i=0;i<bars.length;i++){lo=Math.min(lo,bars[i][3]);hi=Math.max(hi,bars[i][2]);}
+ for(i=0;i<fibs.length;i++){lo=Math.min(lo,fibs[i].p);hi=Math.max(hi,fibs[i].p);}
+ if(band){lo=Math.min(lo,band.lo);hi=Math.max(hi,band.hi);}
+ var pad=(hi-lo)*0.06;lo-=pad;hi+=pad;
+ var X=function(i){return L+(i+0.5)*(pw/bars.length);},Y=function(p){return T+(hi-p)/(hi-lo)*ph;},cw=Math.max(4,(pw/bars.length)*0.68);
+ var s='<svg viewBox="0 0 '+Wd+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:JetBrains Mono,monospace">';
+ s+='<rect width="'+Wd+'" height="'+H+'" fill="#fbf7ee"/>';
+ if(band){var yb=Y(band.hi),yb2=Y(band.lo);s+='<rect x="'+L+'" y="'+yb+'" width="'+pw+'" height="'+(yb2-yb)+'" fill="'+accent+'" opacity="0.10"/>';if(band.label)s+='<text x="'+(L+pw/2)+'" y="'+((yb+yb2)/2+3)+'" fill="'+accent+'" font-size="10" text-anchor="middle" opacity="0.85">'+band.label+'</text>';}
+ for(i=0;i<fibs.length;i++){var f=fibs[i],yy=Y(f.p),col=f.s?accent:'#b9ad8c';s+='<line x1="'+L+'" y1="'+yy+'" x2="'+(Wd-R)+'" y2="'+yy+'" stroke="'+col+'" stroke-width="'+(f.s?1.1:0.8)+'" stroke-dasharray="'+(f.s?'5 3':'2 3')+'" opacity="0.8"/>';s+='<text x="'+(L-4)+'" y="'+(yy+3)+'" fill="'+col+'" font-size="9.3" text-anchor="end">'+f.p.toLocaleString()+' '+f.t+'</text>';}
+ for(i=0;i<bars.length;i++){var b=bars[i],cx=X(i),up=b[4]>=b[1],c=up?'#c0392b':'#1570ef';s+='<line x1="'+cx+'" y1="'+Y(b[2])+'" x2="'+cx+'" y2="'+Y(b[3])+'" stroke="'+c+'" stroke-width="1.4"/>';var yo=Y(b[1]),yc=Y(b[4]),tp=Math.min(yo,yc),hh=Math.abs(yc-yo);if(hh<1.2)hh=1.2;s+='<rect x="'+(cx-cw/2)+'" y="'+tp+'" width="'+cw+'" height="'+hh+'" fill="'+(up?c:'#1570ef')+'" stroke="'+c+'" stroke-width="0.7"/>';}
+ var idx={};for(i=0;i<bars.length;i++)idx[bars[i][0]]=i;
+ var pts=[];for(i=0;i<ann.length;i++){var a=ann[i];if(idx[a.d]!=null)pts.push(X(idx[a.d])+','+Y(a.price));}
+ if(pts.length>1)s+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="'+accent+'" stroke-width="1" stroke-dasharray="2 5" opacity="0.45"/>';
+ for(i=0;i<ann.length;i++){var a=ann[i];if(idx[a.d]==null)continue;var cx=X(idx[a.d]),top=a.side==='t',yp=top?Y(a.price)-16:Y(a.price)+16,w=Math.max(20,a.label.length*8+12);s+='<rect x="'+(cx-w/2)+'" y="'+(yp-11)+'" width="'+w+'" height="17" rx="8" fill="'+accent+'"/>';s+='<text x="'+cx+'" y="'+(yp+1)+'" fill="#fff" font-size="11" font-weight="700" text-anchor="middle">'+a.label+'</text>';if(a.sub)s+='<text x="'+cx+'" y="'+(top?yp-14:yp+18)+'" fill="#6a6450" font-size="9" text-anchor="middle">'+a.sub+'</text>';}
+ var st=Math.ceil(bars.length/6);for(i=0;i<bars.length;i++){if(i%st===0){var d=bars[i][0];s+='<text x="'+X(i)+'" y="'+(H-8)+'" fill="#6a6450" font-size="9" text-anchor="middle">'+d.slice(2,4)+'.'+d.slice(4,6)+'</text>';}}
+ s+='</svg>';document.getElementById(el).innerHTML=s;
+}
+rc('c1',WC,[{d:'20250131',price:51700,label:'바닥',side:'b',sub:'51,700'},{d:'20251027',price:108600,label:'(1)',side:'t',sub:'108,600'},{d:'20251124',price:100500,label:'(2)',side:'b',sub:'100,500'},{d:'20260223',price:223000,label:'①',side:'t',sub:'223,000'},{d:'20260330',price:167000,label:'②',side:'b',sub:'167,000'},{d:'20260601',price:370000,label:'③',side:'t',sub:'370,000 ATH'}],
+[{p:370000,t:'ATH=③',s:1},{p:301884,t:'.236'},{p:248409,t:'.618 전체',s:1},{p:210850,t:'.50',s:1},{p:173291,t:'.382'},{p:108600,t:'(1)고점',s:1}],{hi:223000,lo:210850,label:'무효화 223,000(①고점)+전체 .50'},'#b8860b');
+rc('c2',WI,[{d:'20251124',price:100500,label:'(2)',side:'b',sub:'100,500 기점'},{d:'20260223',price:223000,label:'①',side:'t',sub:'223,000'},{d:'20260330',price:167000,label:'②',side:'b',sub:'167,000'},{d:'20260601',price:370000,label:'③',side:'t',sub:'370,000'},{d:'20260608',price:295500,label:'④',side:'b',sub:'295,500 진행'}],
+[{p:370000,t:'③ ATH',s:1},{p:292454,t:'④ .382',s:1},{p:268500,t:'④ .50'},{p:244546,t:'④ .618',s:1},{p:223000,t:'①고점·무효',s:1},{p:100500,t:'(2)기점'}],{hi:292454,lo:244546,label:'④ 되돌림 .382~.618'},'#c2410c');
+rc('c4',DZ,[{d:'20260602',price:370000,label:'③',side:'t',sub:'370,000'},{d:'20260608',price:292500,label:'ⓐ',side:'b',sub:'292,500'},{d:'20260609',price:324000,label:'ⓑ',side:'t',sub:'324,000'},{d:'20260611',price:287500,label:'ⓒ',side:'b',sub:'287,500'},{d:'20260612',price:322500,label:'현재',side:'t',sub:'322,500'}],
+[{p:370000,t:'③ 370,000',s:1},{p:324000,t:'ⓑ·완료트리거',s:1},{p:322092,t:'.236'},{p:292454,t:'.382=292k',s:1},{p:287500,t:'ⓒ저점'},{p:268500,t:'.50=268k'},{p:244546,t:'.618=245k',s:1}],{hi:292454,lo:287500,label:'④ 저점 .382 도달'},'#8b1538');
+</script>
+</div></body></html>
