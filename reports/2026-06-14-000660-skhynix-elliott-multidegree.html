@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SK하이닉스 000660 · 다계위 엘리어트 파동분석 — Chory & Rochet</title>
+<meta name="description" content="SK하이닉스(000660)를 Cycle·Intermediate·Minute 3계위 엘리어트 파동으로 진단. 2024.9 바닥(144,700) 기점 확장 (3)파가 ATH 2,407,000에서 완성, 현재 (4) 조정 국면(저점 1,855,000=.236 얕은 4파). 무효화 1,285,000·확정 2,407,000 돌파. 증권사 목표가 234~380만이 (5) 신고가 경로 지지.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,500&family=Lora:wght@400;500;600&family=Noto+Serif+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root{--paper:#f5ecd9;--ink:#1a1f3a;--gold:#b8860b;--crimson:#8b1538;--emerald:#1a5d2f;--line:#cdbf9f;--soft:#efe4cb;--muted:#6a6450;}
+*{box-sizing:border-box}body{margin:0;background:#d8cba8;color:var(--ink);font-family:'Lora','Noto Serif KR',serif;line-height:1.7}
+.page{max-width:980px;margin:0 auto;background:var(--paper);box-shadow:0 2px 30px rgba(0,0,0,.18)}
+.mono{font-family:'JetBrains Mono',monospace}
+.masthead{border-bottom:3px double var(--ink);padding:26px 48px 14px;text-align:center}
+.mh-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:13px;text-transform:uppercase;color:var(--crimson)}
+.mh-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin:8px 0 4px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.mh-rule::before,.mh-rule::after{content:"";height:1px;width:70px;background:var(--line)}
+.mh-title{font-family:'Playfair Display',serif;font-weight:900;font-size:40px;margin:6px 0 2px}
+.mh-sub{font-size:15px;font-weight:500}
+.mh-meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+.wrap{padding:30px 48px 10px}
+.banner{background:var(--ink);color:var(--paper);padding:12px 18px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:11px;margin-bottom:22px}
+.banner b{color:#f0d98a}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:18px 0 26px}
+.stat{background:var(--paper);padding:14px 10px;text-align:center}
+.stat .v{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px}
+.stat .l{font-size:10px;color:var(--muted);text-transform:uppercase;margin-top:4px;font-family:'JetBrains Mono',monospace}
+.stat .v.dn{color:var(--crimson)}.stat .v.up{color:var(--emerald)}
+h2.sec{font-family:'Playfair Display',serif;font-weight:800;font-size:24px;margin:38px 0 4px;padding-bottom:8px;border-bottom:2px solid var(--ink);display:flex;align-items:baseline;gap:12px}
+h2.sec .no{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--gold);font-weight:700}
+.sub{color:var(--muted);font-size:13px;margin:2px 0 16px;font-style:italic}
+h3{font-weight:700;font-size:16.5px;margin:26px 0 8px;border-left:4px solid var(--gold);padding-left:10px}
+p{margin:10px 0;font-size:14.5px}.lead{font-size:15.5px}
+em.k{font-style:normal;color:var(--crimson);font-weight:600}strong{font-weight:700}
+.chart{background:#fbf7ee;border:1px solid var(--line);border-radius:4px;padding:14px 16px 6px;margin:18px 0}
+.chart .cap{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);margin:2px 0 8px;text-transform:uppercase}
+.chart .src{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--muted);text-align:right;margin-top:2px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px}
+th,td{padding:8px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;color:var(--muted);background:var(--soft);border-bottom:1.5px solid var(--ink)}
+td.mono,th.mono{font-family:'JetBrains Mono',monospace;text-align:right}
+.t-name{font-weight:600}.up{color:var(--emerald);font-weight:600}.dn{color:var(--crimson);font-weight:600}
+.xid{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--gold)}.xt{font-weight:600}.xnote{color:var(--muted);font-size:12px}
+.xb{font-family:'JetBrains Mono',monospace;font-size:9.5px;padding:2px 8px;border-radius:3px;white-space:nowrap}
+.b-ok{background:#dcedd9;color:var(--emerald)}.b-warn{background:#f6eccf;color:#8a6a12}.b-risk{background:#f0dde1;color:var(--crimson)}
+.cm{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.cm .cell{border:1px solid var(--line);border-radius:4px;padding:14px;background:#fbf7ee}
+.cm .cell .deg{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase}
+.cm .cell .dir{font-family:'Playfair Display',serif;font-size:22px;font-weight:800;margin:6px 0 2px}
+.cm .u .dir{color:var(--emerald)}.cm .d .dir{color:var(--crimson)}
+.cm .cell .t{font-size:12px;color:var(--muted)}
+.scen{border:1px solid var(--line);border-left-width:5px;border-radius:4px;padding:16px 18px;margin:14px 0;background:#fbf7ee}
+.scen.primary{border-left-color:var(--emerald)}.scen.alt{border-left-color:var(--gold)}.scen.risk{border-left-color:var(--crimson)}
+.scen .top{display:flex;justify-content:space-between;align-items:center}
+.scen h4{font-size:15.5px;margin:0;font-weight:700}
+.prob{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;padding:3px 12px;border-radius:14px;color:#fff}
+.scen.primary .prob{background:var(--emerald)}.scen.alt .prob{background:var(--gold)}.scen.risk .prob{background:var(--crimson)}
+.scen p{margin:8px 0 0;font-size:13.5px}
+.ladder th{background:var(--ink);color:var(--paper)}.ladder td.zone{font-weight:700}
+.callout{background:#fbf3df;border:1px solid var(--gold);border-radius:4px;padding:14px 18px;margin:18px 0;font-size:14px}.callout b{color:var(--crimson)}
+.nested{background:#fbf3df;border:1px solid var(--gold);border-radius:4px;padding:14px 18px;margin:16px 0;font-size:14px}
+.pull{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.5;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 30px;margin:26px 0;text-align:center}
+.pull .by{display:block;font-family:'JetBrains Mono',monospace;font-style:normal;font-size:10px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-top:10px}
+.legend{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--muted);margin:6px 0}
+.legend span{margin-right:14px}.dot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:middle}
+.disc{background:var(--soft);border:1px solid var(--line);border-radius:4px;padding:14px 18px;font-size:11px;color:var(--muted);line-height:1.6;margin:14px 0}
+.foot{border-top:3px double var(--ink);margin-top:40px;padding:24px 48px 34px;font-size:11.5px;color:var(--muted)}
+.foot .fb{font-family:'Playfair Display',serif;font-weight:900;color:var(--crimson);font-size:15px}
+@media print{body{background:#fff}.page{box-shadow:none}}
+@media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr)}.cm{grid-template-columns:1fr}.wrap{padding:20px}.masthead{padding:18px 20px}.mh-title{font-size:26px}}
+</style><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head><body><div class="page">
+<div class="masthead">
+ <div class="mh-brand">Chory & Rochet · Equity Research</div>
+ <div class="mh-rule">Multi-Degree Elliott Wave Brief · Vol. VIII</div>
+ <div class="mh-title">SK하이닉스 000660</div>
+ <div class="mh-sub">KOSPI · 다계위(Cycle·Intermediate·Minute) 엘리어트 파동분석 & OHLC 캔들 진단</div>
+ <div class="mh-meta">발행일 2026.06.14 · 기준종가 2026.06.12 (2,150,000) · ATH 2,407,000 (06.01) · 데이터: KRX 실측 OHLC</div>
+</div>
+<div class="wrap">
+<div class="banner">⚑ <b>핵심 한 줄</b>&nbsp; 2024.9 바닥(144,700) 기점 Cycle 임펄스 — <b>확장 (3)파가 ATH 2,407,000에서 완성</b>, 현재 2,150,000은 <b>(4) 조정 국면</b>(저점 1,855,000 = (3)의 .236 얕은 4파). (2)가 깊었던(78%) 만큼 교대상 (4) 얕음이 정석 → <b>(4) 마무리 후 (5)로 신고가 여지</b>(목표 270~330만). 증권사 목표가 234~380만이 (5) 경로 지지. 단 파라볼릭 소진 리스크 병존. <b>추격 자제 · (4) 분할매수 대기.</b> 무효화 1,285,000 / 확정 2,407,000 돌파.</div>
+<div class="stats">
+ <div class="stat"><div class="v">144,700</div><div class="l">대바닥 (24.9)</div></div>
+ <div class="stat"><div class="v up">2,407,000</div><div class="l">ATH (26.06.01)</div></div>
+ <div class="stat"><div class="v">2,150,000</div><div class="l">현재가 (06.12)</div></div>
+ <div class="stat"><div class="v dn">-10.7%</div><div class="l">ATH 대비</div></div>
+ <div class="stat"><div class="v up">+1,386%</div><div class="l">대바닥 대비</div></div>
+</div>
+<p class="lead">SK하이닉스는 HBM4 AI 메모리 슈퍼사이클의 최선두주자로서 <strong>2024년 9월 바닥 144,700원에서 2026년 6월 ATH 2,407,000원까지 약 +1,560%</strong> 폭등했다(현재 2,150,000). 본 보고서는 이 상승을 Cycle(주봉)·Intermediate(주봉)·Minute(일봉) 세 계위로 top-down 진단한다. 결론부터: <em class="k">2024.9 바닥 기점 임펄스에서 확장 (3)파가 ATH 2,407,000에서 완성됐고, 현재 322만→215만의 되돌림은 (4) 조정 국면이다.</em> (4) 저점 1,855,000은 (3)의 .236에 불과한 얕은 되돌림으로, 깊었던 (2)파와의 교대 원칙에 부합한다 → <strong>(4) 마무리 후 (5) 신고가</strong>가 기본 경로다. 다만 1.3M→2.4M의 파라볼릭 블로우오프(5주 +81%) 소진 가능성도 병존한다.</p>
+<div class="nested"><strong>중첩 위치 진술:</strong> Cycle (3)[확장 완성] → <strong>(4) 조정[진행]</strong> ⊃ Intermediate (3)의 내부 ①②③④⑤[⑤ 파라볼릭 완성] ⊃ Minute (4) 조정[ⓐⓑⓒ 진행, ⓒ higher low]. → 세 계위 모두 <strong>"단기 (4) 조정"</strong>으로 정렬. 무효화선 <strong>1,285,000</strong>(.50) 하회 시 약세(천장) 대안, <strong>2,407,000</strong> 돌파 시 (5) 진행으로 주 카운트 확정.</div>
+
+<h2 class="sec"><span class="no">§1</span> 기업 펀더멘털 & 모멘텀 (요약)</h2>
+<div class="sub">HBM4 단독 지위 ↔ 파라볼릭 주가 — 강세 컨센서스와 소진 리스크의 공존</div>
+<p>엔비디아향 HBM4 선점과 <strong>2027년까지 이어질 공급 부족·30%+ 영업이익률</strong> 전망에 메모리 밸류에이션 리레이팅이 본격화됐다. 증권사 목표주가는 일제히 상향되어 <em class="k">한국투자 380만(최고)·SK증권 300만·노무라 234만·LS 210만·KB 200만</em>으로, 현재가 2,150,000은 이 목표가들을 대체로 하회한다 — 펀더멘털·컨센서스는 추가 상승 여력을 가리키며 본 보고서 <strong>(5) 신고가 경로와 정합</strong>한다. 다만 단기 5주간 +81%의 파라볼릭 상승은 <strong>5파 말기 소진</strong> 신호일 수도 있어, 펀더멘털(상방)과 기술적 과열(천장 리스크)을 양방 점검한다.</p>
+<table><thead><tr><th>구분</th><th class="mono">값</th><th>해석</th></tr></thead><tbody>
+<tr><td class="t-name">증권사 목표가</td><td class="mono up">200만~380만</td><td>한투380·SK300·노무라234·LS210·KB200</td></tr>
+<tr><td class="t-name">현재가</td><td class="mono">2,150,000</td><td>목표가 <b>하회</b> → 컨센서스상 상승 여력</td></tr>
+<tr><td class="t-name">ATH 대비</td><td class="mono dn">-10.7%</td><td>2,407,000 후 (4) 조정 진행</td></tr>
+<tr><td class="t-name">5주 상승률</td><td class="mono dn">+81%</td><td>1.3M→2.4M 파라볼릭 — 소진 경계</td></tr>
+</tbody></table>
+
+<h2 class="sec"><span class="no">§2</span> 다계위 파동 진단</h2>
+<div class="sub">Top-down — Cycle(주) → Intermediate(주) → Minute(일)</div>
+<h3>① Cycle 계위 (주봉) — 2024.9 바닥 기점 임펄스 · 확장 (3)파 완성, (4) 진행</h3>
+<p>2024년 9월 144,700원 대바닥 기점으로 5파동 임펄스가 전개됐다. (1) 144,700→227,000(25.1) → (2) 227,000→162,700(25.4, 깊은 78% 되돌림) → <strong>(3) 162,700→2,407,000(26.6, 확장)</strong> → 현재 <strong>(4) 조정 진행</strong> → (5) 대기. <em class="k">절대규칙 3종 충족</em>: (2)가 (1)을 100% 침범 않고(162,700>144,700), (3)가 최단이 아니며, (4) 저점(1,855,000)이 (1)고점(227,000)을 중첩하지 않는다. (3)가 (1)의 27배로 강하게 확장된 추세이며, (4) 저점 1,855,000은 (3)의 <strong>.236(1,877,000)</strong> 수준 얕은 되돌림이다.</p>
+<table><thead><tr><th>파동</th><th class="mono">가격</th><th class="mono">비율</th><th>비고</th></tr></thead><tbody>
+<tr><td>(1) 227,000</td><td class="mono">+82,300</td><td class="mono">기준</td><td>24.9→25.1</td></tr>
+<tr><td>(2) 162,700</td><td class="mono">-78%</td><td class="mono">.781</td><td>깊은 2파 (지그재그)</td></tr>
+<tr><td>(3) 2,407,000</td><td class="mono">+2,244,300</td><td class="mono">27×(1)</td><td class="up">확장 3파 (내부 5파)</td></tr>
+<tr><td>(4) 진행</td><td class="mono">→1,855,000</td><td class="mono">.236</td><td class="b-warn xb">현재 조정 · 얕음(교대)</td></tr>
+<tr><td>(5) 대기</td><td class="mono">→ 2.71~3.24M</td><td class="mono">.382~.618×(3)</td><td class="up">중심 2.98M(.50)</td></tr>
+</tbody></table>
+<div class="chart"><div class="cap">CHART 1 · SK하이닉스 Cycle(주봉) — (1)(2)(3) 임펄스 + 주봉 거래량(하단)</div><div id="c1"></div>
+<div class="src">SRC: KRX 주봉 실측(2024.09~2026.06, 일봉 리샘플) · 거래량=주간 합산 · (4) 목표 1,550,000~1,877,000 · 무효 1,285,000↓</div></div>
+<div class="nested"><strong>📊 거래량으로 본 3파 vs 5파:</strong> 거래량 최대치는 <strong>⑤ 추진 구간(26-05-11주 ≈36.7M)</strong>으로 전체 최대였다 — 즉 추진력 자체는 강했다(3파적 성격). 그러나 가격이 신고가로 갈수록 거래량이 빠져 <em class="k">ATH(26-06-01주) 거래량은 ≈20.7M으로 급감</em>, <strong>가격↑·거래량↓ 다이버전스</strong>가 나타났다. 또한 ⑤ 피크(36.7M)가 ③ 피크(25-11주 ≈30.8M)를 넘긴 점은 정상적 "5파 약화"와 달라, 이 구간이 <strong>파라볼릭 블로우오프(거래량 분출 후 정점 다이버전스)</strong>임을 시사한다. → 결론: ATH 2,407,000은 <em class="k">③(연속 상승)이 아니라 ⑤-of-(3)의 종착</em>일 가능성을 거래량이 뒷받침하며, 이는 본 카운트(현재 (4) 조정)와 정합. 단, 이어질 Cycle (5)는 <strong>새로운 거래량 확장</strong>이 동반돼야 신뢰도가 높다.</div>
+
+<h3>② Intermediate 계위 (주봉) — Cycle (3)의 내부 5파 (25.4 (2)저 기점)</h3>
+<p>Cycle (3) 162,700→2,407,000의 내부는 깨끗한 5파다. <strong>① 162,700→298,500(25.6) → ② →245,000(25.8) → ③ 245,000→1,099,000(26.2, 확장) → ④ →806,000(26.3) → ⑤ 806,000→2,407,000(26.6, 파라볼릭)</strong>. ③(854,000)>①(135,800)로 확장 3파이며, ④(806,000)가 ①고점(298,500)을 중첩하지 않아 규칙 충족. ⑤는 806,000에서 2,407,000까지 +199%의 <em class="k">파라볼릭 블로우오프</em>로, 확장 5파의 전형적 종착 양상이다.</p>
+<table><thead><tr><th>파동</th><th class="mono">레그</th><th class="mono">비율</th><th>EW 룰</th></tr></thead><tbody>
+<tr><td>① 162,700→298,500</td><td class="mono">+135,800</td><td class="mono">기준</td><td>—</td></tr>
+<tr><td>② →245,000</td><td class="mono">-39%</td><td class="mono">.393</td><td class="up">R1 ✓</td></tr>
+<tr><td>③ 245,000→1,099,000</td><td class="mono">+854,000</td><td class="mono">6.3×①</td><td class="up">R2 ✓ 확장3</td></tr>
+<tr><td>④ →806,000</td><td class="mono">-34%</td><td class="mono">.343</td><td class="up">R3 ✓ (①무중첩)</td></tr>
+<tr><td>⑤ 806,000→2,407,000</td><td class="mono">+1,601,000</td><td class="mono">파라볼릭</td><td class="dn">확장 5파 · 소진경계</td></tr>
+</tbody></table>
+<div class="chart"><div class="cap">CHART 2 · SK하이닉스 Intermediate(주봉) — Cycle (3) 내부 ①②③④⑤ (25.4 기점)</div><div id="c2"></div>
+<div class="src">SRC: KRX 주봉 실측(2025.04~2026.06) · ⑤ 파라볼릭 완성 2,407,000 · 현재 (4) 조정 진행</div></div>
+
+<h3>③ Minute 계위 (일봉) — (4) 조정 정밀 분석: 완료인가, 진행 중인가</h3>
+<p>본 절은 실행 분기점 <em class="k">"(4)가 끝났는가"</em>에 집중한다. ATH 2,407,000(06.02) 이후 (4) 조정은 현재까지 <strong>ⓐ 1,855,000(06-08) → ⓑ 2,226,000(06-09) → ⓒ 1,960,000(06-11)</strong>의 a-b-c 형태다. 결정적으로 <strong>ⓒ(1,960,000)가 ⓐ(1,855,000)보다 높은 higher low</strong>이며, (4) 저점 1,855,000은 (3)의 <strong>.236(1,877,000)</strong>에 그친 얕은 되돌림이다. 06-12 종가 2,150,000은 ⓒ에서 +190,000 강반등(장중 2,304,000)으로 ⓑ 고점(2,226,000)에 근접한다.</p>
+<div class="chart"><div class="cap">CHART 3 · SK하이닉스 Minute(일봉) — (4) 조정 정밀 줌 (05-18~06-12) · a-b-c & .236~.382</div><div id="c3"></div>
+<div class="src">SRC: KRX 일봉 실측 · ⓐ1,855,000 / ⓑ2,226,000 / ⓒ1,960,000(higher low) · 완료 트리거 2,226,000↑ / 심화 1,855,000↓</div></div>
+<table><thead><tr><th>(4) 내부</th><th class="mono">가격</th><th class="mono">폭</th><th>해석</th></tr></thead><tbody>
+<tr><td>(3) 고점</td><td class="mono">2,407,000</td><td class="mono">기준</td><td>06-02 ATH</td></tr>
+<tr><td>ⓐ 하락</td><td class="mono">1,855,000</td><td class="mono">-552,000</td><td>-22.9% 급락(06-08)·.236</td></tr>
+<tr><td>ⓑ 반등</td><td class="mono">2,226,000</td><td class="mono">+371,000</td><td>ⓐ의 .67 되돌림(06-09)</td></tr>
+<tr><td>ⓒ 하락</td><td class="mono">1,960,000</td><td class="mono">-266,000</td><td class="up">higher low (ⓐ 위)(06-11)</td></tr>
+<tr><td>현재</td><td class="mono">2,150,000</td><td class="mono">+190,000</td><td>ⓒ서 강반등(06-12)</td></tr>
+</tbody></table>
+<div class="cm">
+ <div class="cell u"><div class="deg">(4) 완료 신호</div><div class="dir" style="font-size:15px">(5) 임박</div><div class="t">.236 얕은 조정·ⓒ higher low·교대(②깊→④얕) — <b>확정: 2,226,000 돌파 → 2,407,000</b></div></div>
+ <div class="cell d"><div class="deg">(4) 진행 신호</div><div class="dir" style="font-size:15px">파라볼릭 소진</div><div class="t">5주 +81% 과열·1,855,000 이탈 시 <b>.382(1,550,000)/.50(1,285,000)</b></div></div>
+ <div class="cell"><div class="deg">판정 (현시점)</div><div class="dir" style="font-size:15px">완료 우위</div><div class="t">얕은 .236 + higher low + 교대 정합 → <b>(4) 마무리 임박</b> 우위 (≈55:45), 단 파라볼릭 리스크</div></div>
+</div>
+<div class="callout"><b>(4) 판정 종합:</b> ⓐ 1,855,000이 (3)의 <strong>.236</strong>에 그친 얕은 되돌림 + ⓒ가 higher low + 깊은 (2)와의 <strong>교대 원칙</strong>(②깊음→④얕음)이 모두 <em class="k">(4) 마무리 임박</em>을 가리킨다. 다만 5주 +81% 파라볼릭은 소진 리스크. <strong>2,226,000(ⓑ) 돌파</strong>→<strong>2,407,000 돌파</strong> 시 (4) 종료·(5) 개시 확정, <strong>1,855,000 종가 이탈</strong> 시 (4) 심화(.382=1,550,000). 어느 경로든 <strong>1,285,000 위에서는 매수 우위</strong>.</div>
+
+<h2 class="sec"><span class="no">§3</span> 교차계위 추론 & 컨빅션</h2>
+<div class="sub">세 계위 상호관계로 현재 위치를 확정</div>
+<table><thead><tr><th>#</th><th>규칙</th><th>관찰</th><th>판정</th><th>결과</th></tr></thead><tbody>
+<tr><td class="xid">X1</td><td class="xt">확장 위치</td><td>(3) 162.7만→240.7만 내부 5파 · ⑤ 파라볼릭</td><td class="xnote">확장 3파 + 확장 5파(소진경계) — 강추세</td><td><span class="xb b-warn">강세·경계</span></td></tr>
+<tr><td class="xid">X2</td><td class="xt">무효화 위계</td><td>Minute((4)조정) ⊂ Int((3)완성) ⊂ Cycle((3)→(4))</td><td class="xnote">단기 조정이 장기 상승구조를 부정하지 않음</td><td><span class="xb b-ok">정상</span></td></tr>
+<tr><td class="xid">X3</td><td class="xt">교대 원칙</td><td>(2) 깊은 .78 ↔ (4) 얕은 .236</td><td class="xnote">2·4파 깊이 교대 성립 → 임펄스 정상·강세</td><td><span class="xb b-ok">정상</span></td></tr>
+<tr><td class="xid">X4</td><td class="xt">(4) 성격</td><td>.236 얕음 + ⓒ higher low(1,960,000>1,855,000)</td><td class="xnote">얕은 4파 — 마무리 임박, (5) 대기</td><td><span class="xb b-ok">강세</span></td></tr>
+<tr><td class="xid">X5</td><td class="xt">합류대</td><td>1,855,000(.236) / 1,550,000(.382) / 1,285,000(.50)+⑤기점</td><td class="xnote">다계위 피보 겹침 = (4) 고확률 지지대</td><td><span class="xb b-risk">구조적</span></td></tr>
+<tr><td class="xid">X6</td><td class="xt">확정·무효</td><td>2,407,000 돌파=(5) / 1,285,000 이탈=대안</td><td class="xnote">주 카운트 검증 기준선 (목표가 234~380만 정합)</td><td><span class="xb b-ok">강세변수</span></td></tr>
+</tbody></table>
+<div class="cm">
+ <div class="cell u"><div class="deg">Cycle · 장기</div><div class="dir">↑</div><div class="t">확장 (3) 완성 · (4) 진행→(5)</div></div>
+ <div class="cell d"><div class="deg">Intermediate · 중기</div><div class="dir">↓</div><div class="t">⑤ 후 (4) 조정 진행</div></div>
+ <div class="cell d"><div class="deg">Minute · 단기</div><div class="dir">↓→</div><div class="t">(4) 얕은 조정 · 마무리 임박</div></div>
+</div>
+<div class="callout"><b>컨빅션 종합:</b> 세 계위 모두 <strong>"단기 (4) 조정"</strong>으로 정렬(↑/↓/↓→). 약세(천장) 대안에서도 현재 조정은 공통이라 실행 결론은 견고: <strong>"신규 추격 금지 · (4) 조정을 분할매수 기회로 대기"</strong>. 갈리는 건 조정 <em>이후</em> 상단(⑤ 신고가 270~330만 vs 2,407,000 천장). <strong>1,285,000(.50)</strong> 위에서 장기 상승 구조 유지 → 깊은 (4)도 <em class="k">새 상승의 매집 기회</em>.</div>
+
+<h2 class="sec"><span class="no">§4</span> 시나리오 (확률 합 100%)</h2>
+<div class="sub">(4) 조정은 공통 — 갈림길은 조정 이후 상단</div>
+<div class="scen primary"><div class="top"><h4>기본(주) — 확장 (3) 완성, (4)→(5) 신고가</h4><span class="prob">50%</span></div>
+<p>(4)는 얕은 .236(1,855,000) 조정으로 마무리 임박. 추가 눌림 시 <strong>1,550,000(.382)·1,285,000(.50)★</strong> 분할매수. 이후 <strong>(5) → 2,712,000~3,242,000(271~324만)</strong>, 중심 <strong>~2,977,000(.50×(3), SK 300만 합류)</strong> — 아래 피보 산출표. <em class="k">트리거: 2,226,000(ⓑ)→2,407,000 돌파</em>. 증권사 목표가 234~380만(노무라·SK·한투)이 이 경로를 직접 뒷받침.</p></div>
+<div class="scen alt"><div class="top"><h4>대안 — 2,407,000이 천장(파라볼릭 소진)</h4><span class="prob">30%</span></div>
+<p>5주 +81% 파라볼릭 블로우오프가 상위 5파를 종결했다면 다계위 조정. 1차 <strong>1,550,000(.382)</strong>, 본격 <strong>1,285,000(.50)</strong>, 강력 <strong>1,020,000(.618)★</strong>. <em class="k">1,285,000 종가 이탈 시 이 시나리오로 무게 이동.</em> HBM4 실적이 하단을 지지해 박스 후 재상승 여지.</p></div>
+<div class="scen risk"><div class="top"><h4>리스크 — 가파른 되돌림</h4><span class="prob">20%</span></div>
+<p>차익실현·매크로 충격 가속 시 <strong>1,020,000(.618)~806,000((3)④)</strong>까지 깊은 되돌림. 단 (1)고점 <strong>227,000</strong> 위에서 <em class="k">장기 임펄스 구조는 유지</em> — 새 대형 상승의 매집 기회.</p></div>
+<div class="callout"><b>Cycle (5) 피보나치 목표 산출</b> &nbsp;(기준: (4)저 1,855,000=.236, (3)폭 2,244,300 투영)
+<table style="margin:8px 0 4px"><thead><tr><th>방법</th><th class="mono">계산</th><th class="mono">(5) 목표</th><th>비고</th></tr></thead><tbody>
+<tr><td>.382 × (3)</td><td class="mono">1,855,000 + 857,323</td><td class="mono up">≈2,712,000 (271만)</td><td>보수 — 노무라234~SK300 사이</td></tr>
+<tr><td>.50 × (3)</td><td class="mono">1,855,000 + 1,122,150</td><td class="mono up">≈2,977,000 (298만)</td><td>★ SK증권 300만 합류</td></tr>
+<tr><td>.618 × (3)</td><td class="mono">1,855,000 + 1,387,017</td><td class="mono up">≈3,242,000 (324만)</td><td>적극 (한투 380만 아래)</td></tr>
+<tr><td>(5)=(1) 등가</td><td class="mono">1,855,000 + 82,300</td><td class="mono dn">≈1,937,000</td><td>절단 리스크 — 확장3로 (1) 과소·무의미</td></tr>
+</tbody></table>
+확장된 (3) 탓에 "(5)=(1)" 류는 ATH 하회(무의미). 유효 목표는 <strong>(3)파 투영</strong>이며, <strong>.50×(3) ≈ 2,977,000이 SK증권 300만과 합류</strong>해 1차 목표 신뢰도 최상. <b>(4) 저점이 깊어지면 목표 하향</b>(.50×(3) 기준): (4)=1,550,000→(5) 2,672,000 / (4)=1,285,000→(5) 2,407,000(≈ATH). → <strong>종합 (5) 목표대 2,710,000~3,240,000(중심 ~2,980,000)</strong>.</div>
+
+<h2 class="sec"><span class="no">§5</span> 계위별 전략</h2>
+<div class="sub">방향은 Cycle, 시점은 Intermediate, 실행은 Minute</div>
+<h3>중기(Intermediate) 분할 대응 — (4) 조정 매수 사다리</h3>
+<table class="ladder"><thead><tr><th>구간</th><th class="zone">가격대</th><th>근거</th><th>비중</th><th>비고</th></tr></thead><tbody>
+<tr><td>관망/반등매도</td><td class="zone mono">2,150,000~2,250,000</td><td>현재가·ⓑ 부근</td><td class="mono">-</td><td>보유분 차익실현</td></tr>
+<tr><td>1차</td><td class="zone mono">1,855,000~1,960,000</td><td>(4) .236 + ⓐⓒ 저점</td><td class="mono">20%</td><td>1차 지지 — 소량</td></tr>
+<tr><td>2차 (핵심)</td><td class="zone mono">1,550,000~1,650,000</td><td>(4) .382 ★</td><td class="mono">35%</td><td>핵심 매집</td></tr>
+<tr><td>3차 (강력)</td><td class="zone mono">1,285,000~1,350,000</td><td>(4) .50 + ⑤기점(1,333,000) ★</td><td class="mono">30%</td><td>이탈 시 대안 전환 — 강력 지지</td></tr>
+<tr><td>예비</td><td class="zone mono">~1,020,000 / 806,000</td><td>.618 + (3)④ 저점</td><td class="mono">15%</td><td>리스크 시나리오</td></tr>
+</tbody></table>
+<div class="callout"><b>무효화·확정:</b> [주 카운트] (4) 조정 무효화(천장 전환) = <strong>1,285,000(.50) 종가 이탈</strong>, 주 카운트 확정 = <strong>2,407,000 돌파</strong>((5) 진행). 최종 임펄스 무효 = <strong>227,000 하회</strong>(현실성 없음). &nbsp;<b>R:R</b> — 핵심 1,550,000 진입·손절 1,285,000(-265,000)·(5) 목표 3,000,000(+1,450,000) → <strong>약 5.5:1</strong>; 1차 1,855,000 진입 시 손절 1,550,000(-305,000)·목표 3,000,000(+1,145,000) → <strong>약 3.8:1</strong>.</div>
+<table><thead><tr><th>계위</th><th>편향</th><th>실행</th><th>무효화/손절</th></tr></thead><tbody>
+<tr><td class="t-name">장기 Cycle</td><td class="up">보유·매집</td><td>확장 (3) 완성 — (4) 조정에서 장기 매집, (5) 보유 (목표 234~380만)</td><td class="mono">1,285,000 (최종 227,000)</td></tr>
+<tr><td class="t-name">중기 Intermediate</td><td class="up">조정 매수</td><td>(4) 되돌림 분할: 1,855~1,960 1차, 1,550~1,650 핵심, 1,285~1,350 강력</td><td class="mono">1,285,000 이탈</td></tr>
+<tr><td class="t-name">단기 Minute</td><td class="dn">(4) 박스 대응</td><td>(4) 박스 1,855,000~2,226,000 매매; <b>2,407,000 돌파=(5) 추격</b>, <b>1,855,000 이탈=(4) 심화→1,550,000 매수</b></td><td class="mono">2,407,000↑확정 / 1,855,000↓심화</td></tr>
+</tbody></table>
+<div class="pull">"가장 가파른 상승의 끝에서, 시장은 늘 같은 질문을 던진다 —<br>이것은 잠시 쉬어가는 4파인가, 아니면 작별을 고하는 정점인가."<span class="by">— Chory & Rochet · Vol. VIII</span></div>
+<div class="legend">
+ <span><span class="dot" style="background:#b8860b"></span>Cycle(장기)</span>
+ <span><span class="dot" style="background:#c2410c"></span>Intermediate(중기)</span>
+ <span><span class="dot" style="background:#0e8a8a"></span>Minute(단기)</span>
+ <span>캔들 <span class="dot" style="background:#c0392b"></span>양봉 / <span class="dot" style="background:#1570ef"></span>음봉</span>
+ <span>★ 다계위 피보 합류대</span>
+ <span>···· 파동 경로(보조)</span>
+</div>
+<div class="disc"><strong>데이터 출처 & 한계.</strong> 전 계위 KRX 실측. Cycle=주봉(2024.09~2026.06, 일봉 리샘플), Intermediate=주봉(2025.04~2026.06, Cycle (2)저 기점), Minute=일봉(2026.05.18~06.12, (4) 조정 줌). ATH 2,407,000(06.01), 06.12 종가 2,150,000. 증권사 목표가는 2026년 발표 기준(한국투자 380만·SK증권 300만·노무라 234만·LS 210만·KB 200만) — 웹 리서치 교차확인. 파동 카운트는 메인+대안 병기이며 전개에 따라 갱신된다.</div>
+<div class="disc"><strong>면책.</strong> 본 보고서는 투자 참고용 자체 리서치이며 특정 종목의 매수·매도를 권유하지 않습니다. 엘리어트 파동·피보나치 분석은 확률적 해석으로 미래 수익을 보장하지 않습니다. 투자 판단과 결과의 책임은 투자자 본인에게 있습니다.</div>
+</div>
+<div class="foot">
+ <div class="fb">Chory & Rochet</div>
+ <p style="margin:6px 0">Equity Research · Multi-Degree Elliott Wave Brief · Vol. VIII | SK하이닉스 (000660)</p>
+ <p style="margin:6px 0">발행 2026.06.14 · 기준종가 2026.06.12 · 스킬: elliott-multidegree (Cycle·Intermediate·Minute)</p>
+ <p style="margin-top:10px">💡 PDF 저장: 브라우저에서 Ctrl/⌘ + P → 대상 "PDF로 저장" → 배경 그래픽 켜기.</p>
+</div>
+<script>
+/* 실측 KRX OHLC: [yyyymmdd, open, high, low, close] */
+/* Cycle 주봉(일봉 리샘플) 2024.09~2026.06 */
+var WCH=[["20240902",173600,174900,152900,156400],["20240909",151800,171300,150500,162800],["20240919",154700,160800,144700,157100],["20240923",155800,189300,155700,183800],["20240930",183700,183800,169100,174100],["20241007",178400,191200,176000,186000],["20241014",186900,198200,183600,187300],["20241021",189400,206000,187500,201000],["20241028",203500,205000,180500,182200],["20241104",185200,203000,183700,200500],["20241111",199300,199300,171700,178200],["20241118",173800,178200,168100,176700],["20241125",174500,179500,157600,159900],["20241202",162200,175600,158600,167100],["20241209",167100,177400,165000,175500],["20241216",177400,184500,167100,168500],["20241223",170000,176000,168300,174500],["20241230",174000,182700,170000,181900],["20250106",184400,212500,184400,203500],["20250113",203000,217500,193600,214500],["20250120",219000,227000,210500,221000],["20250131",197000,204500,194800,199200],["20250203",191500,206000,186900,203000],["20250210",197800,212000,196000,210000],["20250217",211500,219500,205500,209500],["20250224",202500,206000,188700,190200],["20250304",184800,194400,184000,192400],["20250310",187500,206000,181300,204500],["20250317",207000,219500,201000,215500],["20250324",211500,215500,198900,199300],["20250331",193500,201500,178400,182200],["20250407",168000,189900,162700,180800],["20250414",182900,184400,171800,175000],["20250421",174800,184900,173300,184400],["20250428",183500,186200,176700,186000],["20250507",187700,196000,185900,190100],["20250512",193600,208000,193500,204500],["20250519",203000,208000,196500,200000],["20250526",200000,214500,196900,204500],["20250602",205000,230000,203000,224500],["20250609",233000,246500,227500,235500],["20250616",238000,260000,238000,257000],["20250623",252500,298500,248500,284000],["20250630",288500,294500,269000,270500],["20250707",266000,306500,264500,294500],["20250714",292500,302500,267000,269000],["20250721",267500,279000,264500,266000],["20250728",261000,274000,254500,258000],["20250804",254500,266000,250000,256500],["20250811",260500,279000,260000,276500],["20250818",272000,272000,245000,251000],["20250825",256000,270000,253000,269000],["20250901",259500,275000,255000,273500],["20250908",278500,329500,274000,328500],["20250915",339500,360000,325000,353000],["20250922",349000,364000,333000,336500],["20250929",339500,404500,339000,395500],["20251010",426000,439250,416500,428000],["20251013",405500,475000,403000,465500],["20251020",477500,513000,465500,510000],["20251027",533000,579000,509000,559000],["20251103",557000,624000,532000,580000],["20251110",584000,646000,560000,560000],["20251117",588000,606000,514000,521000],["20251124",531000,556000,501000,530000],["20251201",542000,559000,525000,544000],["20251208",543000,593000,533000,571000],["20251215",535000,570000,525000,547000],["20251222",574000,605000,567000,599000],["20251229",630000,679000,625000,677000],["20260105",698000,788000,671000,744000],["20260112",755000,763000,724000,756000],["20260119",755000,776000,728000,767000],["20260126",753000,931000,733000,909000],["20260202",870000,907000,791000,839000],["20260209",898000,905000,848000,880000],["20260219",905000,955000,881000,949000],["20260223",980000,1099000,941000,1061000],["20260303",1022000,1040000,846000,924000],["20260309",851000,985000,808000,910000],["20260316",925000,1060000,924000,1007000],["20260323",952000,1042000,880000,922000],["20260330",867000,914000,806000,876000],["20260406",877000,1056000,869000,1027000],["20260413",999000,1173000,996000,1128000],["20260420",1148000,1267000,1141000,1222000],["20260427",1253000,1328000,1249000,1286000],["20260504",1339000,1686000,1333000,1686000],["20260511",1833000,1995000,1781000,1819000],["20260518",1780000,1954000,1690000,1941000],["20260526",2008000,2379000,2006000,2333000],["20260601",2299000,2407000,2070000,2070000],["20260608",1856000,2304000,1855000,2150000]];
+/* Cycle 주봉 거래량(주간 합산, WCH와 동일 주차) */
+var VWCH=[25624033,26282187,22156912,29011102,13213464,17693664,21663797,22136463,19814378,16598365,20369390,19391428,21520916,22546722,18974245,18152927,9798807,7769823,30513348,22477877,22027539,11871995,24261623,14325588,13654929,20114935,14827645,17308049,16894307,10893009,23002955,31940619,12609722,14413200,10563443,11495249,13941868,10552267,14700418,12652932,20710008,18802083,25330529,20062408,16558041,24944295,14519235,15004379,11174900,10997865,16639603,13764079,11153046,20832798,23473086,17691637,14747800,6835852,19935345,19169232,22083540,30843690,22887741,23862023,21577515,14471141,17333745,14861813,11293897,12452649,25700983,18702528,18316400,30215203,27762786,18948942,8339442,21931376,26258528,23831460,18277749,21890621,24347552,18152926,17232687,18559298,13794535,18300407,36681704,24681665,25745205,20740175,28907530];
+/* Intermediate 주봉 = Cycle (3) 내부, 2025.04 (2)저 기점 */
+var WIH=WCH.slice(31);
+/* Minute 일봉 = (4) 조정 줌 2026.05.18~06.12 */
+var DH=[["20260518",1780000,1897000,1731000,1840000],["20260519",1791000,1823000,1740000,1745000],["20260520",1743000,1778000,1690000,1745000],["20260521",1801000,1954000,1796000,1940000],["20260522",1942000,1952000,1912000,1941000],["20260526",2008000,2087000,2006000,2052000],["20260527",2279000,2358000,2200000,2243000],["20260528",2189000,2305000,2151000,2289000],["20260529",2352000,2379000,2290500,2333000],["20260601",2299000,2398000,2296000,2363000],["20260602",2376000,2407000,2259000,2360000],["20260604",2284000,2327000,2262000,2298000],["20260605",2142000,2188000,2070000,2070000],["20260608",1856000,2072000,1855000,1911000],["20260609",2050000,2226000,1998000,2215000],["20260610",2137000,2180000,1992000,2048000],["20260611",1975000,2163000,1960000,2101000],["20260612",2281000,2304000,2150000,2150000]];
+function rc(el,bars,ann,fibs,band,accent,vol){
+ var Wd=880,H=380,L=86,R=18,T=18,B=28,pw=Wd-L-R,ph=H-T-B,lo=1e12,hi=-1e12,i;
+ var hasV=vol&&vol.length===bars.length,gap=12,priceH=hasV?ph*0.72:ph,volTop=T+priceH+gap,volH=ph-priceH-gap;
+ for(i=0;i<bars.length;i++){lo=Math.min(lo,bars[i][3]);hi=Math.max(hi,bars[i][2]);}
+ for(i=0;i<fibs.length;i++){lo=Math.min(lo,fibs[i].p);hi=Math.max(hi,fibs[i].p);}
+ if(band){lo=Math.min(lo,band.lo);hi=Math.max(hi,band.hi);}
+ var pad=(hi-lo)*0.06;lo-=pad;hi+=pad;
+ var X=function(i){return L+(i+0.5)*(pw/bars.length);},Y=function(p){return T+(hi-p)/(hi-lo)*priceH;},cw=Math.max(4,(pw/bars.length)*0.68);
+ var s='<svg viewBox="0 0 '+Wd+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;font-family:JetBrains Mono,monospace">';
+ s+='<rect width="'+Wd+'" height="'+H+'" fill="#fbf7ee"/>';
+ if(band){var yb=Y(band.hi),yb2=Y(band.lo);s+='<rect x="'+L+'" y="'+yb+'" width="'+pw+'" height="'+(yb2-yb)+'" fill="'+accent+'" opacity="0.10"/>';if(band.label)s+='<text x="'+(L+pw/2)+'" y="'+((yb+yb2)/2+3)+'" fill="'+accent+'" font-size="10" text-anchor="middle" opacity="0.85">'+band.label+'</text>';}
+ for(i=0;i<fibs.length;i++){var f=fibs[i],yy=Y(f.p),col=f.s?accent:'#b9ad8c';s+='<line x1="'+L+'" y1="'+yy+'" x2="'+(Wd-R)+'" y2="'+yy+'" stroke="'+col+'" stroke-width="'+(f.s?1.1:0.8)+'" stroke-dasharray="'+(f.s?'5 3':'2 3')+'" opacity="0.8"/>';s+='<text x="'+(L-4)+'" y="'+(yy+3)+'" fill="'+col+'" font-size="9.3" text-anchor="end">'+f.p.toLocaleString()+' '+f.t+'</text>';}
+ for(i=0;i<bars.length;i++){var b=bars[i],cx=X(i),up=b[4]>=b[1],c=up?'#c0392b':'#1570ef';s+='<line x1="'+cx+'" y1="'+Y(b[2])+'" x2="'+cx+'" y2="'+Y(b[3])+'" stroke="'+c+'" stroke-width="1.4"/>';var yo=Y(b[1]),yc=Y(b[4]),tp=Math.min(yo,yc),hh=Math.abs(yc-yo);if(hh<1.2)hh=1.2;s+='<rect x="'+(cx-cw/2)+'" y="'+tp+'" width="'+cw+'" height="'+hh+'" fill="'+(up?c:'#1570ef')+'" stroke="'+c+'" stroke-width="0.7"/>';}
+ if(hasV){var maxV=0;for(i=0;i<vol.length;i++)maxV=Math.max(maxV,vol[i]);s+='<line x1="'+L+'" y1="'+(volTop+volH)+'" x2="'+(Wd-R)+'" y2="'+(volTop+volH)+'" stroke="#cdbf9f" stroke-width="1"/>';for(i=0;i<vol.length;i++){var vbar=bars[i],vup=vbar[4]>=vbar[1],vcol=vup?'#c0392b':'#1570ef',vh=(vol[i]/maxV)*volH,vx=X(i);s+='<rect x="'+(vx-cw/2)+'" y="'+(volTop+volH-vh)+'" width="'+cw+'" height="'+vh+'" fill="'+vcol+'" opacity="0.5"/>';}s+='<text x="'+(L-4)+'" y="'+(volTop+9)+'" fill="#6a6450" font-size="8.5" text-anchor="end">거래량</text>';}
+ var idx={};for(i=0;i<bars.length;i++)idx[bars[i][0]]=i;
+ var pts=[];for(i=0;i<ann.length;i++){var a=ann[i];if(idx[a.d]!=null)pts.push(X(idx[a.d])+','+Y(a.price));}
+ if(pts.length>1)s+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="'+accent+'" stroke-width="1" stroke-dasharray="2 5" opacity="0.45"/>';
+ for(i=0;i<ann.length;i++){var a=ann[i];if(idx[a.d]==null)continue;var cx=X(idx[a.d]),top=a.side==='t',yp=top?Y(a.price)-16:Y(a.price)+16,w=Math.max(20,a.label.length*8+12);s+='<rect x="'+(cx-w/2)+'" y="'+(yp-11)+'" width="'+w+'" height="17" rx="8" fill="'+accent+'"/>';s+='<text x="'+cx+'" y="'+(yp+1)+'" fill="#fff" font-size="11" font-weight="700" text-anchor="middle">'+a.label+'</text>';if(a.sub)s+='<text x="'+cx+'" y="'+(top?yp-14:yp+18)+'" fill="#6a6450" font-size="9" text-anchor="middle">'+a.sub+'</text>';}
+ var st=Math.ceil(bars.length/6);for(i=0;i<bars.length;i++){if(i%st===0){var d=bars[i][0];s+='<text x="'+X(i)+'" y="'+(H-8)+'" fill="#6a6450" font-size="9" text-anchor="middle">'+d.slice(2,4)+'.'+d.slice(4,6)+'</text>';}}
+ s+='</svg>';document.getElementById(el).innerHTML=s;
+}
+rc('c1',WCH,[{d:'20240919',price:144700,label:'바닥',side:'t',sub:'144,700'},{d:'20250120',price:227000,label:'(1)',side:'t',sub:'227,000'},{d:'20250407',price:162700,label:'(2)',side:'t',sub:'162,700'},{d:'20260601',price:2407000,label:'(3)',side:'t',sub:'2,407,000'},{d:'20260608',price:1855000,label:'(4)',side:'b',sub:'1,855,000'}],
+[{p:2407000,t:'ATH=(3)',s:1},{p:1877000,t:'.236',s:1},{p:1550000,t:'.382',s:1},{p:1285000,t:'.50'},{p:227000,t:'(1)고점',s:1}],{hi:1877000,lo:1550000,label:'(4) 조정 .236~.382'},'#b8860b',VWCH);
+rc('c2',WIH,[{d:'20250623',price:298500,label:'①',side:'t',sub:'298,500'},{d:'20250818',price:245000,label:'②',side:'b',sub:'245,000'},{d:'20260223',price:1099000,label:'③',side:'t',sub:'1,099,000'},{d:'20260330',price:806000,label:'④',side:'b',sub:'806,000'},{d:'20260601',price:2407000,label:'⑤',side:'t',sub:'2,407,000'}],
+[{p:2407000,t:'⑤=ATH',s:1},{p:1099000,t:'③',s:1},{p:806000,t:'④',s:1},{p:298500,t:'①'},{p:245000,t:'②기점',s:1}],{hi:2407000,lo:1855000,label:'(4) 조정 진행'},'#c2410c');
+rc('c3',DH,[{d:'20260602',price:2407000,label:'(3)',side:'t',sub:'2,407,000'},{d:'20260608',price:1855000,label:'ⓐ',side:'b',sub:'1,855,000'},{d:'20260609',price:2226000,label:'ⓑ',side:'t',sub:'2,226,000'},{d:'20260611',price:1960000,label:'ⓒ',side:'b',sub:'1,960,000'},{d:'20260612',price:2150000,label:'현재',side:'t',sub:'2,150,000'}],
+[{p:2407000,t:'(3) ATH',s:1},{p:2226000,t:'ⓑ·트리거',s:1},{p:1877000,t:'.236',s:1},{p:1855000,t:'ⓐ저'},{p:1690000,t:'주저'}],{hi:1877000,lo:1855000,label:'(4)저 .236 도달'},'#0e8a8a');
+</script>
+</div></body></html>
