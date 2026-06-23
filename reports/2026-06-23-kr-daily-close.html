@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-06-23 일일 마감 정리 및 익일 준비 | Chory &amp; Rochet</title>
+<style>
+  :root{
+    --up:#d32f2f; --down:#1565c0; --bg:#f4f5f7; --card:#ffffff;
+    --ink:#1c1c1e; --sub:#5a6472; --line:#e3e6ea; --accent:#0f2c52;
+    --warn:#b8860b; --panic:#7a1010;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic","맑은 고딕",sans-serif;
+    font-size:15px;line-height:1.65;-webkit-text-size-adjust:100%}
+  .wrap{max-width:920px;margin:0 auto;padding:16px}
+  header{background:linear-gradient(135deg,#7a1010,#3a0a0a);color:#fff;border-radius:14px;padding:22px 20px;margin-bottom:16px}
+  header .tag{display:inline-block;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:20px;font-size:12px;letter-spacing:.5px;margin-bottom:10px}
+  header h1{margin:4px 0 6px;font-size:22px;line-height:1.3}
+  header .meta{font-size:13px;opacity:.92}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 14px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .card h2{margin:0 0 12px;font-size:17px;color:var(--accent);display:flex;align-items:center;gap:8px;border-bottom:2px solid var(--line);padding-bottom:8px}
+  .card h3{margin:14px 0 6px;font-size:15px;color:var(--accent)}
+  .up{color:var(--up);font-weight:700}
+  .down{color:var(--down);font-weight:700}
+  .summary{font-size:16px;font-weight:600;background:#fff4f4;border-left:5px solid var(--panic);padding:12px 14px;border-radius:8px;margin-bottom:8px}
+  .kw{display:inline-block;background:#eef1f6;color:var(--accent);font-size:12px;font-weight:600;padding:3px 9px;border-radius:14px;margin:3px 4px 0 0}
+  .tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:6px 0}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:14px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:center;white-space:nowrap}
+  th{background:#f0f2f5;color:var(--accent);font-weight:700}
+  td.l,th.l{text-align:left}
+  .pill{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;color:#fff}
+  .p-panic{background:var(--panic)} .p-warn{background:var(--warn)} .p-def{background:#2e7d32} .p-neu{background:#607d8b}
+  .scn{border-radius:10px;padding:12px 14px;margin:8px 0;border:1px solid var(--line)}
+  .scn.a{background:#fff5f5;border-left:5px solid var(--up)}
+  .scn.b{background:#f6f8fb;border-left:5px solid #607d8b}
+  .scn.c{background:#f3f7fd;border-left:5px solid var(--down)}
+  .scn b{font-size:14px}
+  ul{margin:6px 0 6px 0;padding-left:20px}
+  li{margin:4px 0}
+  .note{background:#fffbe6;border:1px solid #f0e0a0;border-radius:8px;padding:10px 12px;font-size:13px;color:#6b5800;margin:8px 0}
+  .danger{background:#fdecec;border:1px solid #f3c0c0;border-radius:8px;padding:10px 12px;font-size:13.5px;color:#7a1010;margin:8px 0}
+  .verify{font-size:12px;color:var(--sub);font-style:italic}
+  footer{text-align:center;color:var(--sub);font-size:12.5px;padding:18px 0 30px}
+  footer b{color:var(--accent)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:560px){.grid2{grid-template-columns:1fr}}
+  .stat{background:#fafbfc;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .stat .lbl{font-size:12px;color:var(--sub)}
+  .stat .val{font-size:18px;font-weight:800}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="tag">📉 검은 화요일 · KR DAILY CLOSE</span>
+  <h1>2026-06-23 (화) 일일 마감 정리 &amp; 익일 트레이딩 준비</h1>
+  <div class="meta">정규장 마감 후 통합 시황 · 발행: <b>Chory &amp; Rochet</b></div>
+</header>
+
+<!-- 1. 한 줄 요약 -->
+<div class="card">
+  <h2>1️⃣ 한 줄 요약</h2>
+  <div class="summary">
+    🔴 <b>위험회피 패닉 투매</b> — 외국인·기관 동반 매도 폭탄에 KOSPI 사상 최대폭 급락(-9.99%). 단, 간밤 美 반도체는 강세였던 만큼 <u>펀더멘털 붕괴가 아닌 한국 집중형 AI랠리 되돌림</u> 성격.
+  </div>
+  <div style="margin-top:8px">
+    <span class="kw">#검은화요일</span><span class="kw">#서킷브레이커4번째</span><span class="kw">#반도체투매</span>
+    <span class="kw">#외인2일연속조단위매도</span><span class="kw">#환율1539원</span><span class="kw">#한국국한급락</span>
+  </div>
+  <div class="note">📊 <b>시장 강도 점수: -10 / +10</b> (최악) — 외인+기관 11조 순매도 · 신저가 폭증 · 상승종목 극소 · 서킷브레이커+사이드카 동시 발동.</div>
+</div>
+
+<!-- 2. 지수·수급·환율 -->
+<div class="card">
+  <h2>2️⃣ 지수 · 수급 · 환율 · 금리</h2>
+  <div class="grid2" style="margin-bottom:10px">
+    <div class="stat"><div class="lbl">KOSPI</div><div class="val down">8,203.84</div><div class="down">-910.71 (-9.99%)</div><div class="lbl">역대 최대 포인트 하락 · 8,200선</div></div>
+    <div class="stat"><div class="lbl">KOSDAQ</div><div class="val down">891.52</div><div class="down">-76.88 (-7.94%)</div><div class="lbl">900선 붕괴</div></div>
+  </div>
+  <div class="tbl-scroll">
+  <table>
+    <tr><th class="l">구분</th><th>KOSPI</th><th>KOSDAQ</th><th class="l">해석</th></tr>
+    <tr><td class="l">외국인</td><td class="down">대규모 순매도</td><td class="up">+3,102억</td><td class="l">매도는 KOSPI 대형 반도체에 집중. 외인 <b>2거래일 연속 조단위 순매도</b>(가속)</td></tr>
+    <tr><td class="l">기관</td><td class="down">대규모 순매도</td><td class="up">+1,356억</td><td class="l">KOSPI 외인+기관 합산 <b>약 11조</b> 순매도</td></tr>
+    <tr><td class="l">개인</td><td class="up">대규모 순매수</td><td class="down">-4,637억</td><td class="l">KOSPI에서 11조 매도 폭탄 받아냄(방어). KOSDAQ는 차익실현</td></tr>
+  </table>
+  </div>
+  <div class="verify">※ 수급: 15:30 이후 마감시황(한경·zdnet) 교차. KOSPI 외인+기관 합 ≈11조 순매도 / KOSDAQ는 외인·기관 순매수로 <b>대조</b> — 매도는 코스피 반도체 집중. [검증: 마감 확정]</div>
+  <h3 style="margin-top:14px">환율 · 금리 · 글로벌</h3>
+  <ul>
+    <li><b>원/달러 1,539.1원</b> (+2.1원, 15:30) — 외환위기 이후 최고권. 외국인 누적 약 140조 매도→달러 환전이 고환율 구조의 핵심(정부 설명). 이재명 대통령 "1,500원 중반대는 너무 높다" 언급.</li>
+    <li><b>간밤 뉴욕 3대지수 혼조</b>: 빅테크 AI 인프라 capex 의구심으로 하이퍼스케일러 -2~4%, 알파벳 -5%(핵심 AI 연구진 이직), 스페이스X -16% 폭락. <b>그러나 美 반도체는 강세</b>(마이크론 +6.9%, 샌디스크 +4.1%, HBM 수요 견조).</li>
+    <li>미·이란 종전 MOU 체결 등 지정학 완화 → 유가·안전자산 변수는 다소 진정.</li>
+  </ul>
+</div>
+
+<!-- 3. 섹터 정리 -->
+<div class="card">
+  <h2>3️⃣ 섹터 정리 (지수 -10% 전면 약세)</h2>
+  <h3>🧊 약세 Top 3 (투매 주도)</h3>
+  <div class="tbl-scroll">
+  <table>
+    <tr><th class="l">섹터</th><th>대표주 / 등락</th><th class="l">코멘트</th></tr>
+    <tr><td class="l">반도체</td><td class="down">SK하이닉스 -12.47% / 삼성전자 -12.31%<br>한미반도체 -14.43% / 제주반도체 -17.31%</td><td class="l">하루새 삼전+하이닉스 시총 약 531조 증발. 美 반도체 강세에도 한국만 투매 → 차익실현·외인 디레버리징</td></tr>
+    <tr><td class="l">자동차·부품</td><td class="down">현대차 -12.05% / 현대모비스 -10.37%</td><td class="l">고환율(수출 우호)에도 위험회피 매물 일괄 출회</td></tr>
+    <tr><td class="l">조선·건설·소재</td><td class="down">한화오션 -10.30% / 대우건설 -11.10%<br>삼성중공업 -7.25% / POSCO홀딩스 -7.07%</td><td class="l">경기민감 전반 동반 급락</td></tr>
+  </table>
+  </div>
+  <h3>🛡️ 상대 강세 · 방어 (Counter-trend, 폭은 얇음)</h3>
+  <ul>
+    <li><b>보안주</b>: 엑스게이트 <span class="up">+21.54%</span> (19,690원) — 패닉장 속 역행 강세.</li>
+    <li><b>일부 바이오·헬스케어</b>: 차AI헬스케어 상한가(일본 닛쇼메디컬 526억 장기공급계약), 대웅·대웅제약 펙수클루 적응증 추가 3상 IND 승인 공시.</li>
+    <li>전통 경기방어(통신·유틸·내수)가 상대적 선방했으나 지수 낙폭이 워낙 커 절대수익 방어는 제한적.</li>
+  </ul>
+  <div class="note">⚠️ StockMatrix 테마 라이프사이클 API가 결제 만료(402)로 금일 조회 불가. 섹터·테마 분류는 마감 시세·뉴스·공시 기반으로 보강함. (테마 점수 기반 Emerging→Growth 트리거 데이터는 복구 후 재반영)</div>
+</div>
+
+<!-- 4. 주도 테마 & 주도주 -->
+<div class="card">
+  <h2>4️⃣ 주도 테마 &amp; 주도주 매핑</h2>
+  <div class="danger">📌 -10% 패닉장에서는 정상적 "주도 테마" 구도가 붕괴됨. 오늘은 <b>역행 강세(살아남은 종목)</b> 중심으로 매핑.</div>
+  <div class="tbl-scroll">
+  <table>
+    <tr><th class="l">테마</th><th class="l">대장</th><th class="l">2등 / 추격</th><th class="l">소외 / 관찰</th></tr>
+    <tr>
+      <td class="l">보안·양자보안<br><span class="pill p-def">역행 강세</span></td>
+      <td class="l">엑스게이트 (356680)<br><span class="up">+21.54%</span></td>
+      <td class="l">관련 보안주 순환 점검 필요</td>
+      <td class="l">지수 안정 시 후속주 확산 여부 관찰</td>
+    </tr>
+    <tr>
+      <td class="l">바이오·헬스케어<br><span class="pill p-def">개별 호재</span></td>
+      <td class="l">차AI헬스케어<br><span class="up">상한가</span> (526억 공급계약)</td>
+      <td class="l">대웅제약 (069620) — 펙수클루 3상 IND</td>
+      <td class="l">대웅 (003090) 지주 — 동반</td>
+    </tr>
+    <tr>
+      <td class="l">반도체 HBM<br><span class="pill p-panic">투매·낙폭과대</span></td>
+      <td class="l">SK하이닉스 (000660)<br><span class="down">-12.47%</span></td>
+      <td class="l">삼성전자 (005930) <span class="down">-12.31%</span></td>
+      <td class="l">한미반도체·주성엔지니어링 (HBM 장비)</td>
+    </tr>
+  </table>
+  </div>
+  <div class="verify">※ 역행 강세주(엑스게이트·차AI헬스케어)는 패닉장 단발 급등 성격 — 추격 매수는 금지 영역으로 분류(아래 5번).</div>
+</div>
+
+<!-- 5. 특징주 · 위험신호 -->
+<div class="card">
+  <h2>5️⃣ 특징주 · 위험 신호</h2>
+  <h3>📈 신규/역행 강세주</h3>
+  <ul>
+    <li>엑스게이트 +21.54%, 차AI헬스케어 상한가 — 모두 <b>일회성 모멘텀</b>. 지수 패닉 속 단기 자금 쏠림.</li>
+  </ul>
+  <h3>🚫 추격 금지 (위험 신호)</h3>
+  <div class="danger">
+    <ul style="margin:0">
+      <li><b>엑스게이트·차AI헬스케어</b>: 패닉장 단발 급등 → 익일 차익실현 매물 출회 위험. 추격 금지.</li>
+      <li><b>KODEX 200선물인버스2X (252670) +22.58%</b>: 지수 -10% 후 인버스 추격 진입은 반등 시 손실 위험 큼. 신규 진입 금지.</li>
+      <li><b>저점 마감 대형주(삼성전자·SK하이닉스 등 종가=당일 저가권)</b>: 반등 꼬리 없이 종가 최저 마감 → 익일 갭 추가 하락 가능. <u>美 야간 빅테크 추가 급락 시 즉시 매수 보류</u>.</li>
+      <li>레버리지·신용 보유분: 추가 마진콜·반대매매 연쇄 위험 → 변동성 극대 구간, 리스크 관리 최우선.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 6. 뉴스·공시 -->
+<div class="card">
+  <h2>6️⃣ 뉴스 · 공시 핵심</h2>
+  <ul>
+    <li><b>[증시]</b> 올해 4번째 서킷브레이커(KOSPI 1단계, 오후 2:35경) + 매도 사이드카 동시 발동. KOSDAQ도 09:06 매도 사이드카. 외인·기관 동반 투매.</li>
+    <li><b>[정책]</b> 정부(부총리) "국내 증시 급등으로 외국인 약 140조 매도 후 달러 환전 → 환율 상승 압력". 이재명 대통령 환율·유가(석유 최고가격제) 안정 주문.</li>
+    <li><b>[글로벌]</b> 美 빅테크 AI 인프라 capex 의구심·알파벳 연구진 이탈·스페이스X -16%. 반면 美 반도체(마이크론·샌디스크·크레도) 강세 → <b>韓 급락은 한국 국한</b>(유안타).</li>
+    <li><b>[공시]</b> 대웅·대웅제약 펙수클루 적응증 추가 3상 IND 승인 / 와이솔·대덕 타법인 주식취득 / 차AI헬스케어 526억 일본 장기공급계약(전일 장후) / iM금융지주 주식소각 결정.</li>
+  </ul>
+</div>
+
+<!-- 7. 익일 시나리오 -->
+<div class="card">
+  <h2>7️⃣ 익일(6/24 수) 트레이딩 시나리오</h2>
+  <div class="note">🎯 핵심 분기점 = <b>오늘 밤 美 증시(6/23 현지)</b>. 美 반도체가 어제처럼 버티면 韓 과매도 반등 가능, 빅테크 약세가 확산되면 추가 하락. <b>예측이 아닌 대응 — 갭 확인 후 베팅사이즈 조절.</b></div>
+  <div class="scn a"><b>🅰️ 강세 갭 (美 반도체 강세 지속·빅테크 안정)</b><br>
+    과매도 기술적 반등. 낙폭과대 우량 반도체(하이닉스·삼전) 분할 매수 우위. 단 전강후약(반등 매물) 경계 — 1차 반등 시 보유분 일부 차익.</div>
+  <div class="scn b"><b>🅱️ 보합·혼조 출발 (美 ±0.5% 이내)</b><br>
+    종목 차별화. 펀더멘털 훼손 없는 대형주 눌림목 + 역행 강세 섹터(보안·개별 바이오) 선별 대응. 지수 추격보다 종목 선별.</div>
+  <div class="scn c"><b>🅲 하락 갭 (美 빅테크 추가 투매·환율 1,540원 돌파)</b><br>
+    현금 비중 최우선. 신규 매수 보류, 반대매매·마진콜 연쇄 주의. 방어주·낙폭과대 우량주만 분할 관찰. <b>인버스 추격 진입 금지</b>(이미 +22%).</div>
+</div>
+
+<!-- 8. Tier 1 관심종목 -->
+<div class="card">
+  <h2>8️⃣ Tier 1 관심종목 (조건부 반등 매매)</h2>
+  <div class="danger">⚠️ 아래는 <b>시나리오 A/B(美 안정) 전제의 조건부 반등 매매</b>다. 시나리오 C(美 추가 급락·갭하락) 발생 시 <u>전 종목 진입 보류·관망</u>. 모든 항목에 손절 명시.</div>
+  <div class="tbl-scroll">
+  <table>
+    <tr><th class="l">종목(코드)</th><th>종가</th><th>진입가</th><th>손절가</th><th>1차 목표</th><th class="l">근거</th></tr>
+    <tr>
+      <td class="l">SK하이닉스<br>(000660)</td><td class="down">2,555,000</td>
+      <td>2,500,000<br>(저가권 안정 확인)</td><td class="down">2,410,000<br>(당일저가 -5% 이탈)</td><td class="up">2,760,000</td>
+      <td class="l">간밤 美 마이크론 +6.9%·HBM 수요 견조 → 펀더멘털 무관 과매도. 美 반도체 강세 유지 시 반등 1순위</td>
+    </tr>
+    <tr>
+      <td class="l">삼성전자<br>(005930)</td><td class="down">310,000</td>
+      <td>307,000<br>(반등 전환 확인)</td><td class="down">296,000<br>(당일저가 하회)</td><td class="up">340,000</td>
+      <td class="l">저점 마감으로 약하나 시총 대표주. 외인 매도 둔화 신호 동반 시에만 분할 진입</td>
+    </tr>
+    <tr>
+      <td class="l">대웅제약<br>(069620)</td><td class="down">패닉 동반 하락</td>
+      <td>당일 저가 +2% 회복 확인</td><td class="down">당일 저가 -3%</td><td class="up">전일 종가 회복</td>
+      <td class="l">펙수클루 적응증 추가 3상 IND 승인(개별 호재) → 지수와 디커플링 가능성. 방어적 소량</td>
+    </tr>
+  </table>
+  </div>
+  <div class="verify">※ 진입가는 "확인 후 분할" 원칙(저점 잡기 금지). 패닉 다음날은 변동성이 극대화되므로 평소 베팅사이즈의 1/2 이하 권장.</div>
+</div>
+
+<!-- 9. 모니터링 포인트 -->
+<div class="card">
+  <h2>9️⃣ 모니터링 포인트 (매크로 · 시간대 · 리스크)</h2>
+  <h3>📅 예정 이벤트 / 매크로 (일자·확인시점 명시)</h3>
+  <ul>
+    <li><b>美 증시 6/23(현지, 한국시간 6/24 새벽~05:00 마감)</b> — 최우선. 빅테크 AI capex 우려 vs 반도체(마이크론·엔비디아 계열) 강세 지속 여부. <span class="verify">[검증 필요: 6/24 07:30 美 야간 루틴에서 실제 마감 결과 재확인]</span></li>
+    <li><b>원/달러 환율</b> — 1,539원, <b>1,540원 돌파 여부</b>가 외국인 추가 이탈 트리거. 6/24 개장 전(08:30~) 역외 NDF 점검.</li>
+    <li><b>외국인 수급 연속성</b> — 2거래일 연속 조단위 순매도. 6/24 외인 매도 둔화(반등) vs 지속(추가 하락) 확인 — 11:30 잠정 / 마감 확정 대조.</li>
+    <li><b>美 마이크론·하이퍼스케일러 실적·가이던스 시즌</b> 근접 — AI capex 논쟁의 향방을 좌우. 일정 발표 시 추적.</li>
+  </ul>
+  <div class="verify">※ 본 섹션의 "예정 이벤트"는 다음 루틴(6/24 07:30 美야간→韓개장, 12:00 오전정리)이 인계 시 <b>실제 발생·결과를 WebSearch로 재검증</b>한 후 본문 반영할 것. (룰: verify_pending_events_rule)</div>
+  <h3>⏱️ 주요 시간대 (6/24)</h3>
+  <ul>
+    <li>08:00~09:00 — 美 마감·환율·시간외 점검, 갭 방향 확정 후 A/B/C 선택</li>
+    <li>09:00~09:30 — 시초가 반응(반등 vs 추가 갭하락), 사이드카·서킷 재발동 여부</li>
+    <li>11:30 — 외인·기관 잠정 수급(매도 둔화 신호 포착)</li>
+    <li>14:00~15:20 — 오후 추세·동시호가, 美 야간선물 방향 동조</li>
+  </ul>
+  <div class="danger">🔻 <b>핵심 리스크</b>: ① 美 빅테크 추가 투매 → 갭 연쇄 하락 ② 환율 1,540원+ → 외인 매도 가속 ③ 신용·레버리지 반대매매 연쇄 ④ 패닉 후 데드캣 바운스를 추세 전환으로 오인. <b>변동성 극대 구간 — 리스크 관리가 수익보다 우선.</b></div>
+</div>
+
+<footer>
+  본 보고서는 정보 제공 목적이며 투자 권유가 아닙니다. 투자 판단과 책임은 투자자 본인에게 있습니다.<br>
+  데이터: KRX·네이버금융·DART·네이버뉴스 (마감 확정 기준) · 일부 테마 데이터(StockMatrix) 금일 미수집(API 402)<br>
+  발행: <b>Chory &amp; Rochet</b> · 2026-06-23 일일 마감 정리 &amp; 익일 준비
+</footer>
+
+</div>
+</body>
+</html>
