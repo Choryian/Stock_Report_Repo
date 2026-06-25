@@ -3,141 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wine Notes · Chory &amp; Rochet</title>
-<meta name="description" content="Chory & Rochet의 와인 노트 — 시음기, 와인 에세이, 빈티지 메모">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="../assets/style.css?v=3">
+<title>와인 콘텐츠는 C&amp;R Wine Intelligence로 이전했습니다</title>
+<meta name="description" content="Chory & Rochet의 와인 콘텐츠는 별도 사이트 C&R Wine Intelligence로 일원화되었습니다.">
+<link rel="canonical" href="https://choryian.github.io/Wine-Intelligence/">
+<meta http-equiv="refresh" content="3; url=https://choryian.github.io/Wine-Intelligence/">
 <style>
-  /* Wine section local tweaks */
-  .hero h1 { font-family: 'Pretendard', serif; }
-  .card-cat--wine {
-    background: #f4ecec !important;
-    color: #7a2e2e !important;
-  }
-  .wine-empty { padding: 80px 24px; text-align: center; color: var(--text-muted); }
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    background:#2a0c0c;color:#f7f0e4;font-family:'Pretendard',-apple-system,system-ui,sans-serif;text-align:center;padding:24px;}
+  .box{max-width:520px;}
+  .mark{width:56px;height:56px;border-radius:8px;background:#c9a55b;color:#2a0c0c;display:flex;align-items:center;
+    justify-content:center;font-weight:800;font-size:16px;margin:0 auto 22px;letter-spacing:.5px;}
+  h1{font-size:24px;margin:0 0 12px;}
+  p{color:#d9cdb8;line-height:1.7;margin:0 0 26px;font-size:15px;}
+  a.go{display:inline-block;background:#c9a55b;color:#2a0c0c;font-weight:700;text-decoration:none;
+    padding:12px 26px;border-radius:8px;font-size:15px;}
+  a.go:hover{background:#e6cd91;}
+  .small{margin-top:22px;font-size:12.5px;color:#8a7f78;}
 </style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-JN4GMS3HSY');
-</script>
 </head>
 <body>
-
-<header class="site-header">
-  <div class="container header-inner">
-    <a href="../" class="brand">
-      <div class="brand-mark">C&amp;R</div>
-      <div class="brand-text">
-        <div class="brand-title">Stock Report Repository</div>
-        <div class="brand-sub">Chory &amp; Rochet · Research Archive</div>
-      </div>
-    </a>
-    <nav class="site-nav">
-      <a href="../roadmap/">한국증시 로드맵</a>
-      <a href="../sector-waves/">섹터 파동</a>
-      <a href="../">Reports</a>
-      <a href="./" class="active">Wine</a>
-    </nav>
+  <div class="box">
+    <div class="mark">CWI</div>
+    <h1>와인 콘텐츠가 이전했습니다</h1>
+    <p>Chory &amp; Rochet의 와인 시음기·시장 분석·산지 정보는<br>
+    이제 별도 사이트 <strong>C&amp;R Wine Intelligence</strong>로 일원화되었습니다.<br>
+    잠시 후 자동으로 이동합니다.</p>
+    <a class="go" href="https://choryian.github.io/Wine-Intelligence/">C&amp;R Wine Intelligence로 이동 →</a>
+    <div class="small">자동 이동이 되지 않으면 위 버튼을 눌러 주세요.</div>
   </div>
-</header>
-
-<main class="container main">
-  <section class="hero">
-    <h1>Wine Notes</h1>
-    <p class="hero-sub">와인의 라벨을 읽고 풍미를 알아주는 순간, 한 병의 술은 추억이 됩니다.</p>
-  </section>
-
-  <section class="report-grid" id="wineGrid">
-    <!-- JS가 렌더링 -->
-  </section>
-
-  <section class="wine-empty" id="wineEmpty" hidden>
-    <p>아직 등록된 와인 글이 없습니다.</p>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div>© 2026 Chory &amp; Rochet</div>
-    <div class="muted">Published via GitHub Pages</div>
-  </div>
-</footer>
-
-<script>
-(function () {
-  const grid = document.getElementById('wineGrid');
-  const empty = document.getElementById('wineEmpty');
-
-  function escapeHtml(s) {
-    return String(s == null ? '' : s)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-  }
-
-  function todayStr() {
-    const d = new Date();
-    const yyyy = d.getFullYear();
-    const mm = String(d.getMonth() + 1).padStart(2, '0');
-    const dd = String(d.getDate()).padStart(2, '0');
-    return `${yyyy}-${mm}-${dd}`;
-  }
-
-  function cardHtml(r) {
-    const tags = (r.tags || []).slice(0, 5).map(t =>
-      `<span class="card-tag">#${escapeHtml(t)}</span>`).join('');
-    // path는 reports.json 기준이 repo 루트이므로, 와인 페이지에서는 ../ 붙임
-    const href = '../' + r.path;
-    const isNew = r.date === todayStr();
-    const cls = isNew ? 'card is-new' : 'card';
-    const badge = isNew ? '<span class="new-badge">NEW</span>' : '';
-    return `
-      <article class="${cls}" data-href="${escapeHtml(href)}">
-        ${badge}
-        <div class="card-meta">
-          <span class="card-cat card-cat--wine">${escapeHtml(r.category || '와인')}</span>
-          <span class="card-date">${escapeHtml(r.date || '')}</span>
-        </div>
-        <h3 class="card-title">${escapeHtml(r.title || '제목 없음')}</h3>
-        <p class="card-summary">${escapeHtml(r.summary || '')}</p>
-        ${tags ? `<div class="card-tags">${tags}</div>` : ''}
-      </article>`;
-  }
-
-  async function load() {
-    try {
-      const res = await fetch('../data/reports.json', { cache: 'no-store' });
-      const json = await res.json();
-      const wines = (json.reports || [])
-        .filter(r => r.category === '와인')
-        .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-      if (wines.length === 0) {
-        grid.innerHTML = '';
-        empty.hidden = false;
-        return;
-      }
-      empty.hidden = true;
-      grid.innerHTML = wines.map(cardHtml).join('');
-    } catch (e) {
-      console.error('Failed to load reports.json', e);
-      grid.innerHTML = '';
-      empty.hidden = false;
-      empty.innerHTML = '<p>와인 글 목록을 불러올 수 없습니다.</p>';
-    }
-  }
-
-  grid.addEventListener('click', (e) => {
-    const card = e.target.closest('.card');
-    if (!card) return;
-    const href = card.dataset.href;
-    if (href) window.location.href = href;
-  });
-
-  load();
-})();
-</script>
 </body>
 </html>
