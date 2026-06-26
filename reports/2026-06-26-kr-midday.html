@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-06-26 KR 오전장 정리 및 오후장 대응 | Chory &amp; Rochet</title>
+<style>
+  :root{
+    --up:#d60000; --down:#0047c2; --bg:#f6f7f9; --card:#ffffff;
+    --ink:#1a1f29; --sub:#5b6573; --line:#e4e8ee; --accent:#0d2c54; --hi:#fff6e6;
+    --brand:#c4622e;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Apple SD Gothic Neo','Malgun Gothic','Segoe UI',sans-serif;
+    line-height:1.6;font-size:15px;-webkit-text-size-adjust:100%;}
+  .wrap{max-width:880px;margin:0 auto;padding:18px 14px 60px;}
+  header{background:linear-gradient(135deg,#0d2c54,#1a4a82);color:#fff;
+    border-radius:14px;padding:22px 20px;margin-bottom:18px;}
+  header .tag{font-size:12px;letter-spacing:.5px;opacity:.85;}
+  header h1{margin:6px 0 4px;font-size:21px;line-height:1.35;}
+  header .date{font-size:13px;opacity:.9;}
+  .oneliner{margin-top:14px;background:rgba(255,255,255,.12);border-radius:10px;
+    padding:12px 14px;font-size:15px;font-weight:600;}
+  .badge{display:inline-block;background:#ffd24d;color:#5a3d00;font-size:12px;
+    font-weight:700;padding:3px 9px;border-radius:20px;margin-bottom:6px;}
+  .score{display:inline-block;background:var(--down);color:#fff;font-size:13px;
+    font-weight:700;padding:4px 12px;border-radius:20px;margin-top:8px;}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:16px 16px 18px;margin-bottom:14px;}
+  h2{font-size:16px;margin:0 0 12px;padding-left:10px;border-left:4px solid var(--accent);}
+  h3{font-size:14px;margin:14px 0 7px;color:var(--accent);}
+  .up{color:var(--up);font-weight:700;} .down{color:var(--down);font-weight:700;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  @media(max-width:560px){.grid{grid-template-columns:1fr;}}
+  .kv{background:#fafbfc;border:1px solid var(--line);border-radius:10px;padding:11px 12px;}
+  .kv .label{font-size:12px;color:var(--sub);} .kv .val{font-size:17px;font-weight:700;margin-top:2px;}
+  .kv .sub{font-size:12px;color:var(--sub);margin-top:2px;}
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:6px 0;}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:13.5px;}
+  th,td{border-bottom:1px solid var(--line);padding:8px 9px;text-align:left;white-space:nowrap;}
+  th{background:#f0f3f7;color:var(--accent);font-weight:700;}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;}
+  ul{margin:6px 0;padding-left:20px;} li{margin:4px 0;}
+  .pill{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:20px;margin-right:5px;}
+  .p-strong{background:#fdecec;color:var(--up);} .p-weak{background:#e9f0fd;color:var(--down);}
+  .p-watch{background:#fff3d6;color:#8a5a00;} .p-neu{background:#eef1f4;color:#52606d;}
+  .scenario{border-radius:10px;padding:11px 13px;margin:8px 0;font-size:14px;}
+  .s-a{background:#fdeeee;border-left:4px solid var(--up);}
+  .s-b{background:#f3f5f8;border-left:4px solid #8a93a0;}
+  .s-c{background:#eaf0fc;border-left:4px solid var(--down);}
+  .hit{background:#eaf0fc;border:1px solid #b9cdf0;border-radius:10px;padding:11px 13px;font-size:13.5px;margin:8px 0;}
+  .warn{background:var(--hi);border:1px solid #f0d9a0;border-radius:10px;padding:11px 13px;font-size:13.5px;}
+  .note{font-size:12px;color:var(--sub);}
+  footer{text-align:center;color:var(--sub);font-size:12.5px;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);}
+  footer b{color:var(--brand);}
+  .mono{font-variant-numeric:tabular-nums;}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="tag">CHORY &amp; ROCHET · KR MIDDAY PIVOT</div>
+  <h1>오전장 정리 &amp; 오후장 대응</h1>
+  <div class="date">2026년 6월 26일 (금) · 오전장(09:00~12:00) 기준 · 작성 12:0X KST</div>
+  <div class="oneliner">
+    <span class="badge">갭상승 시도 후 급반전 · 매도 사이드카</span><br>
+    전일 +5.42% 급등 <b>하루 만에 급반전</b> — 차익실현 매물 + <b>외국인 2.4~3.2조 폭탄 순매도</b>로
+    KOSPI 장중 <span style="color:#ffd24d">-5.9%</span>(8,300 일시 붕괴), <b>올해 14번째 매도 사이드카</b>(11:12) 발동.
+    반도체 대형주(삼성전자·SK하이닉스) 8~9%대 급락. <b>개장 보고서 시나리오 C(환율發 약세)가 그대로 적중.</b>
+  </div>
+  <div class="score">오전 강도 -6 (-10~+10) · 오후 시나리오 C(약세) 우선</div>
+</header>
+
+<!-- 1. 한 줄 요약 -->
+<section>
+  <h2>1. 한 줄 요약</h2>
+  <p><span class="pill p-weak">갭상승 후 차익실현 → 추세 약화 (복합)</span> 9,000선 재탈환을 시도하던 시초가가 오전 내내 무너지며
+  <b>전일 급등분 대부분을 반납</b>. 외국인이 코스피에서만 2.4~3.2조원을 던지며 11시 12분 <b>매도 사이드카</b>가 발동(올해 14번째)됐다.
+  미 빅테크(애플·MSFT) 약세 여진 + 매파 PCE·환율 1,550원 임박이 차익실현 심리에 불을 붙인 전형적 <b>리스크-오프</b> 국면.</p>
+  <p><b>오전 강도 점수: -6</b> → 오후 시나리오 <b>C(추세 약세)</b> 우선. 현금화·익절 우선, 신규 추격 금지.</p>
+</section>
+
+<!-- 2. 인계 평가 -->
+<section>
+  <h2>2. 인계 평가 (개장 시나리오 · Tier 1 적중 검증)</h2>
+  <div class="hit">
+    🎯 <b>개장 보고서(6/26) 시나리오 적중: 시나리오 C 완전 적중.</b><br>
+    개장 보고서는 갭 점수 0·<b>기본 시나리오 B(보합)</b>, 반도체만 A(갭업)로 제시했으나,
+    실제로는 <b>반도체가 갭다운 후 붕괴</b>하며 위험 시나리오 <b>C</b>가 현실화.
+    C의 트리거로 명시했던 <b>"환율 1,550원 임박 + 외국인 대량 매도"가 그대로 발동</b>(외인 -2.4~3.2조, 환율 1,549.55).
+    → 방향성(B/A) 베이스케이스는 빗나갔으나, <b>위험 시나리오와 "추격 금지·눌림목·손절 사수" 원칙은 정확히 작동해 손실을 방어</b>.
+  </div>
+  <h3>Tier 1 종목 손절 점검 (개장 보고서 손절가 대비)</h3>
+  <div class="tablewrap">
+  <table>
+    <tr><th>종목(코드)</th><th>손절가</th><th>오전 현재가</th><th>등락률</th><th>판정</th></tr>
+    <tr><td>SK하이닉스(000660)</td><td class="num">2,720,000</td><td class="num">2,654,000</td><td class="num down">-9.02%</td><td class="down">손절 이탈 → 보유 금지</td></tr>
+    <tr><td>삼성전자(005930)</td><td class="num">340,000</td><td class="num">328,500</td><td class="num down">-8.37%</td><td class="down">손절 이탈 → 보유 금지</td></tr>
+    <tr><td>한미반도체(042700)</td><td class="num">255,000</td><td class="num">254,500</td><td class="num down">-6.78%</td><td class="down">손절 이탈(간신히)</td></tr>
+    <tr><td>삼성전기(009150)</td><td class="num">1,870,000</td><td class="num">1,969,000</td><td class="num down">-1.40%</td><td class="up">손절 사수 ○ (유일 생존)</td></tr>
+  </table>
+  </div>
+  <p class="note">→ Tier 1 4종 중 3종 손절 이탈, <b>삼성전기만 방어</b>. "손절 이탈 시 보유 금지·추격 아닌 눌림목" 규율을 지켰다면 8~9% 급락을 회피. 블랙리스트(SK이터닉스 -12.84%·SK -3.15%·펩트론) 추격 금지도 적중.</p>
+</section>
+
+<!-- 3. 오전 지수·수급·환율 -->
+<section>
+  <h2>3. 오전 지수 · 수급 · 환율</h2>
+  <div class="grid">
+    <div class="kv"><div class="label">KOSPI (오전)</div>
+      <div class="val down">8,400선 · -약 5.9%</div>
+      <div class="sub">11:24 확정 8,402.24(-5.91%) · 장중 8,300 일시 붕괴 · 정오 무렵 반도체 추가 하락으로 -6%대 심화</div></div>
+    <div class="kv"><div class="label">KOSDAQ (오전)</div>
+      <div class="val down">864~866 · -약 2.5%</div>
+      <div class="sub">전일 887.81 → 코스피 대비 낙폭 작음(상대 방어)</div></div>
+    <div class="kv"><div class="label">원/달러 환율</div>
+      <div class="val up">1,549.55원 ▲4.25</div>
+      <div class="sub up">+0.27% · <b>1,550원 트리거 임박/터치</b> — 외인 매도 가속 변수</div></div>
+    <div class="kv"><div class="label">매도 사이드카</div>
+      <div class="val down">11:12:12 발동</div>
+      <div class="sub">KOSPI200 선물 -5% 급변 → 프로그램 매도호가 5분 정지(올해 14번째)</div></div>
+  </div>
+
+  <h3>투자자별 오전 순매수 (코스피, 11시대 누적)</h3>
+  <div class="tablewrap">
+  <table>
+    <tr><th>구분</th><th>코스피</th><th>비고</th></tr>
+    <tr><td>외국인</td><td class="num down">-2조 4,346억 ~ -3조 2,350억</td><td>환율 1,550 임박 + 차익실현, <b>매도 폭탄</b>(시간 경과 확대)</td></tr>
+    <tr><td>기관</td><td class="num down">-715억 ~ -4,377억</td><td>전일 +4.2조 매수에서 순매도 전환(차익실현)</td></tr>
+    <tr><td>개인</td><td class="num up">+2조 8,327억 ~ +3조 8,496억</td><td>낙폭과대 저가매수(반대매매 리스크 상존)</td></tr>
+  </table>
+  </div>
+  <p class="note">※ 어제 지수를 떠받친 <b>기관(+4.2조)이 오늘 순매도로 돌아서고</b> 외국인 매도가 가속 → 전일 "기관 단독 매수" 상승의 취약성이 그대로 노출. 수치는 11시대 누적·집계 시점차로 범위 표기, 마감 확정치는 종가 기준 재확인 필요.</p>
+</section>
+
+<!-- 4. 오전 강세/약세 섹터 -->
+<section>
+  <h2>4. 오전 강세 / 약세 섹터</h2>
+  <p><span class="pill p-weak">전 업종 동반 약세 속 일부 반도체 소부장만 역행 강세</span></p>
+  <h3>역행 강세(상대) Top 3</h3>
+  <div class="tablewrap">
+  <table>
+    <tr><th>섹터/종목</th><th>등락</th><th>코멘트</th></tr>
+    <tr><td><span class="pill p-strong">반도체 장비(소부장)</span> 원익IPS(240810)</td><td class="up">+7.30%</td><td>대형주 차익실현 자금의 소부장 순환 + 거래량 폭증(코스닥 거래대금 5위)</td></tr>
+    <tr><td>HPSP(403870) · 심텍(222800)</td><td class="up">+1.76% · +1.19%</td><td>반도체 장비/기판 후행 소외주 상대 강세</td></tr>
+    <tr><td>삼성전기(009150)</td><td class="down">-1.40%</td><td>대형주 중 유일 방어(MLCC), Tier 1 손절 사수</td></tr>
+  </table>
+  </div>
+  <h3>약세 Top 3 (낙폭 과대)</h3>
+  <div class="tablewrap">
+  <table>
+    <tr><th>섹터</th><th>대표 종목 (등락)</th><th>코멘트</th></tr>
+    <tr><td><span class="pill p-weak">메모리/HBM</span></td>
+      <td>SK하이닉스 <span class="down">-9.02%</span> · 삼성전자 <span class="down">-8.37%</span> · 삼성전자우 <span class="down">-7.23%</span></td>
+      <td>전일 급등 차익실현 + 외인 매도 직격</td></tr>
+    <tr><td><span class="pill p-weak">SK그룹 지주</span></td>
+      <td>SK스퀘어 <span class="down">-12.11%</span> · SK <span class="down">-3.15%</span> · SK이터닉스 <span class="down">-12.84%</span></td>
+      <td>전일 리레이팅 급등분 반납(과열 해소)</td></tr>
+    <tr><td><span class="pill p-weak">수출 대형주·전력설비</span></td>
+      <td>현대차 <span class="down">-6.76%</span> · LG전자 <span class="down">-7.83%</span> · 두산에너빌리티 <span class="down">-8.31%</span> · LS ELECTRIC <span class="down">-8.22%</span></td>
+      <td>환율·매파 Fed 부담 + 위험회피 전방위 매도</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- 5. 주도 테마 & 주도주 매핑 -->
+<section>
+  <h2>5. 주도 테마 &amp; 주도주 매핑</h2>
+  <p class="note">※ StockMatrix 테마 API 일시 중단(402) — 가격·거래대금·뉴스 기반 수기 매핑.</p>
+  <div class="tablewrap">
+  <table>
+    <tr><th>테마</th><th>대장주</th><th>2등주</th><th>소외/순환 후보</th></tr>
+    <tr><td><b>반도체 장비(역행 강세)</b></td>
+      <td>원익IPS <span class="up">+7.30%</span></td>
+      <td>HPSP <span class="up">+1.76%</span></td>
+      <td>심텍 <span class="up">+1.19%</span> / 주성엔지니어링 <span class="down">-1.44%(낙폭축소)</span></td></tr>
+    <tr><td><b>메모리/HBM(차익실현)</b></td>
+      <td>SK하이닉스 <span class="down">-9.02%</span></td>
+      <td>삼성전자 <span class="down">-8.37%</span></td>
+      <td>한미반도체 <span class="down">-6.78%</span>(낙폭과대 반등 후보)</td></tr>
+    <tr><td><b>리테일·개별 모멘텀</b></td>
+      <td>광주신세계 <span class="up">+29.98%(상)</span></td>
+      <td>서산 <span class="up">+11.07%</span></td>
+      <td>지수와 무관한 개별 재료 — 추격 경계</td></tr>
+  </table>
+  </div>
+
+  <h3>오전 신규 부상 / 약화 테마</h3>
+  <ul>
+    <li><b>신규 부상</b> — <span class="pill p-strong">반도체 소부장</span> 원익IPS·HPSP·심텍: 대형주 이탈 자금의 순환 + 거래량 폭증. 단, 시장 전체 약세 속 역행이라 지속성 검증 필요</li>
+    <li><b>약화</b> — <span class="pill p-weak">메모리 대형주·SK그룹 지주</span>: 전일 주도 테마가 하루 만에 차익실현 매물로 급반전. 라이프사이클상 단기 Peak→Decline 전환 신호</li>
+  </ul>
+</section>
+
+<!-- 6. 오전 강도 점수 -->
+<section>
+  <h2>6. 오전 시장 강도 점수</h2>
+  <div class="tablewrap">
+  <table>
+    <tr><th>항목</th><th>오전 실측</th><th>점수</th></tr>
+    <tr><td>외국인 오전 순매수</td><td class="num down">-2.4~3.2조 순매도</td><td class="down">-2</td></tr>
+    <tr><td>거래대금(양시장)</td><td class="num">패닉성 폭증(매도 주도)</td><td class="num">0 (강세 가산 제외)</td></tr>
+    <tr><td>상승종목 비율</td><td class="num down">전 업종 동반 하락(극소수 역행)</td><td class="down">-2</td></tr>
+    <tr><td>미 야간선물(ES)</td><td class="num">약보합</td><td class="num">0</td></tr>
+    <tr><td>원/달러 변동</td><td class="num up">+0.27%(원화 약세)</td><td class="down">-2</td></tr>
+  </table>
+  </div>
+  <p><b>종합 강도: -6</b> (거래대금 폭증은 매도 주도이므로 강세 신호로 가산하지 않음). → 강도 -4 이하 = <b>시나리오 C(약세)</b> 영역.</p>
+</section>
+
+<!-- 7. 오후 시나리오 -->
+<section>
+  <h2>7. 오후장 대응 시나리오 (A/B/C)</h2>
+  <div class="scenario s-c"><b>★ C. 추세 약화 (약세) — 강도 -6, 현재 진행형 [우선]</b><br>
+    외인 매도 지속 + 환율 1,550원 돌파 시 추가 하락. <b>현금비중 확대·익절 우선</b>, 신규 추격 전면 자제.
+    반등은 기술적 시도로만 간주, 방어주·역행 강세주만 제한적 관찰. 오후 외인 선물·환율이 키.</div>
+  <div class="scenario s-b"><b>B. 변동성 확대 (중립) — 오후 기술적 반등 시</b><br>
+    매도 사이드카 후 단기 낙폭과대 반발 매수 유입 가능. 거래대금 집중 종목만, <b>손절 라인 타이트</b>하게.
+    낙폭과대 우량 반도체(SK하이닉스·삼성전자) 기술반등 시도 관찰하되 종가 무렵 외인 둔화 확인 후 분할.</div>
+  <div class="scenario s-a"><b>A. 추세 강화 (강세) — 가능성 낮음</b><br>
+    외인 매도 급반전 + 환율 1,540원 하향 안정 동반 시에만. 현 강도(-6)에서는 베이스케이스 아님.</div>
+</section>
+
+<!-- 8. Tier 1 관심종목 -->
+<section>
+  <h2>8. 오후 Tier 1 관심종목 (진입 · 손절 · 목표)</h2>
+  <p class="note">※ 강도 -6 급락장 — <b>기본 스탠스는 현금·관망</b>. 아래는 방어/역행 강세 한정 소수 후보, 손절 이탈 시 즉시 정리. 시초·추격 금지.</p>
+  <div class="tablewrap">
+  <table>
+    <tr><th>종목(코드)</th><th>오전가</th><th>진입가(눌림)</th><th>손절가</th><th>1차 목표</th><th>근거</th></tr>
+    <tr><td>삼성전기(009150)</td><td class="num">1,969,000</td><td class="num">1,940,000</td><td class="num down">1,895,000</td><td class="num up">2,080,000</td><td>Tier1 유일 손절 사수·MLCC 방어주</td></tr>
+    <tr><td>원익IPS(240810)</td><td class="num">166,000</td><td class="num">157,000</td><td class="num down">150,000</td><td class="num up">182,000</td><td>역행 강세 반도체 장비·거래량 폭증(추격 금지, 눌림 대기)</td></tr>
+    <tr><td>SK하이닉스(000660)</td><td class="num">2,654,000</td><td class="num">2,580,000</td><td class="num down">2,520,000</td><td class="num up">2,800,000</td><td>펀더 훼손無 차익실현 급락, 오후 외인 둔화 확인 후 기술반등만</td></tr>
+  </table>
+  </div>
+  <p class="note">추격 금지(블랙리스트): 광주신세계·서산(개별 급등·지수 무관) · SK이터닉스(-12.84%)·SK스퀘어(-12.11% 변동성). 환율민감 수출주·고밸류 신규진입 자제.</p>
+</section>
+
+<!-- 9. 오후 체크포인트 -->
+<section>
+  <h2>9. 오후 시간대별 체크포인트</h2>
+  <ul>
+    <li><b>13:00~13:30</b> — 오후장 재개 첫 추세: 사이드카 후 반발 매수 vs 추가 매도. 반도체 대형주 저점 지지/이탈 여부</li>
+    <li><b>14:00</b> — 외국인·기관 잠정 순매수 발표 — <b>외인 매도 둔화/가속</b>이 오후 방향 결정(최우선)</li>
+    <li><b>환율 상시</b> — <b>1,550원 돌파 여부</b>가 외인 추가 매도 트리거. 돌파 시 시나리오 C 강화·현금화</li>
+    <li><b>14:30~15:00</b> — 마감 1시간 전 수급 변화, 낙폭과대 반등 시도 강도, 종가 베팅 자제(변동성 과대)</li>
+    <li><b>15:20~15:30</b> — 동시호가·MOC: 외인 프로그램 잔량, 반대매매·로스컷 물량 확인</li>
+  </ul>
+  <p class="note">원칙: 급락 사이드카 당일 종가 베팅은 변동성 리스크 과대 → 베팅 사이즈 축소·현금 우위. 외부변수(환율·미 야간선물)는 예측이 아닌 대응 영역.</p>
+</section>
+
+<footer>
+  본 보고서는 정보 제공 목적이며 투자 권유가 아닙니다. 투자 판단과 책임은 투자자 본인에게 있습니다.<br>
+  데이터: 네이버금융 · DART · 네이버뉴스 · Newspim · DigitalToday (지수·수급은 11시대 장중치 / StockMatrix 테마 API 일시중단으로 테마 수기 매핑)<br>
+  발행: <b>Chory &amp; Rochet</b> · 2026-06-26 · 짝 보고서: 6/26 개장 대응 / 6/25 마감 정리
+</footer>
+
+</div>
+</body>
+</html>
