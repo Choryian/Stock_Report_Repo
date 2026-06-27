@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>코스피 주간 로드맵 & 파동 리뷰 — 6회차 (2026-W26)</title>
+<style>
+  :root {
+    --ink:#0f172a; --sub:#475569; --line:#e2e8f0; --bg:#f8fafc;
+    --green:#059669; --blue:#1d4ed8; --purple:#7c3aed; --amber:#b45309; --red:#b91c1c;
+    --hl:#fef3c7; --hlbd:#f59e0b;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:28px; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,'Noto Sans KR','Apple SD Gothic Neo',sans-serif; line-height:1.65; }
+  .wrap { max-width:980px; margin:0 auto; }
+  header { border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:8px; }
+  h1 { font-size:23px; margin:0 0 6px; }
+  .meta { font-size:12.5px; color:var(--sub); }
+  .brand { float:right; font-size:12px; color:var(--sub); font-style:italic; }
+  .draft { display:inline-block; background:#fee2e2; border:1px solid #ef4444;
+    color:#991b1b; font-size:11.5px; font-weight:700; padding:2px 8px; border-radius:4px; margin-left:6px; }
+  section { background:#fff; border:1px solid var(--line); border-radius:10px;
+    padding:20px 24px; margin-top:18px; box-shadow:0 1px 3px rgba(0,0,0,.04); }
+  h2 { font-size:17px; margin:0 0 4px; display:flex; align-items:center; gap:8px; }
+  h2 .n { display:inline-flex; width:26px; height:26px; border-radius:50%;
+    background:var(--ink); color:#fff; font-size:13px; align-items:center; justify-content:center; }
+  .lead { font-size:13px; color:var(--sub); margin:0 0 14px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 4px; }
+  th,td { border:1px solid var(--line); padding:7px 9px; text-align:center; }
+  th { background:#f1f5f9; font-weight:700; }
+  td.l { text-align:left; }
+  .up { color:var(--green); font-weight:700; }
+  .down { color:var(--red); font-weight:700; }
+  .verdict { background:#fffbeb; border-left:4px solid var(--hlbd); padding:12px 16px;
+    border-radius:4px; font-size:13.5px; margin:10px 0; }
+  ul { margin:8px 0; padding-left:20px; font-size:13px; } li { margin:3px 0; }
+  .tag { display:inline-block; font-size:11px; font-weight:700; padding:1px 7px; border-radius:10px; }
+  .t-done { background:#dcfce7; color:#166534; } .t-prog { background:#dbeafe; color:#1e40af; }
+  .t-up { background:#fee2e2; color:#991b1b; } .t-watch { background:#f3e8ff; color:#6b21a8; }
+  .scn { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:10px; }
+  .scn .c { border:1px solid var(--line); border-radius:8px; padding:12px; font-size:12.5px; }
+  .scn .c h4 { margin:0 0 6px; font-size:13.5px; }
+  .scn .a { border-top:3px solid var(--green); } .scn .b { border-top:3px solid var(--blue); }
+  .scn .cc { border-top:3px solid var(--red); }
+  .note { font-size:11.5px; color:var(--sub); margin-top:6px; }
+  footer { font-size:11px; color:var(--sub); text-align:center; margin-top:22px; padding-top:12px; border-top:1px solid var(--line); }
+  @media(max-width:680px){ .scn{grid-template-columns:1fr;} }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="brand">Chory &amp; Rochet</span>
+  <h1>코스피 주간 로드맵 &amp; 파동 리뷰 <span class="draft">6회차 · 확정</span></h1>
+  <div class="meta">
+    작성 기준일 2026-06-27(토) · 대상 거래주 2026-06-22(월)~06-26(금) · 가이드 대상주 06-29~07-03 ·
+    연계: <em>5회차 (2026-W25)</em> + <em>Strategy Notes No.002 Recount</em> + <em>상승추세 변수 로드맵 2026 H2</em>
+  </div>
+</header>
+
+<p style="font-size:12px;color:#991b1b;background:#fef2f2;border:1px solid #ef4444;border-radius:6px;padding:10px 14px;margin-top:14px;">
+  ⚠ <strong>MSCI 불발 · 변동성 폭발 주간</strong> — 2026-06-26(금) 마감 반영. <strong>6/23 MSCI 관찰대상국 등재 12번째 불발</strong> + SK하이닉스 ADR 지연 + 연기금 리밸런싱이 겹쳐 <strong>주 2회 서킷브레이커</strong>(6/23 −9.99%·6/26 장중 −8%). 주간 9,052 → 8,411 <strong>−7.08%</strong>. 5회차 <strong>시나리오 C(등재 실패) 적중</strong>. 파동: <strong>Cycle 5 minor (1) 9,385 정점 → minor (2) 깊은 조정(저점 8,080, 67% 되돌림)</strong> — 추세 유효하나 촉매 소멸로 단기 리스크 급등.
+</p>
+
+<!-- 1. 로드맵 변경 로그 -->
+<section>
+  <h2><span class="n">1</span> 로드맵 변경 로그 (지난주 점검)</h2>
+  <p class="lead">『상승추세 변수 로드맵 2026 H2』 — <strong>#1 변수 MSCI 결판(불발)</strong> 및 변동성 촉매</p>
+  <table>
+    <thead><tr><th>레인</th><th>항목</th><th>상태</th><th>이번 주 변동 / 결과</th></tr></thead>
+    <tbody>
+      <tr><td>외인수급</td><td class="l">★ MSCI 시장분류</td><td><span class="tag t-up">✗ 불발</span></td>
+        <td class="l"><strong>6/23 관찰대상국 등재 12번째 실패</strong>. 사유: 원화 역외 실물인도 불가·유동성·공매도 규제. 다음 기회 2027.6 → 2028.6 편입 → 2029 반영. <strong>로드맵 최대 상승 촉매 소멸</strong></td></tr>
+      <tr><td>외인수급</td><td class="l">외인 동반 투매</td><td><span class="tag t-up">급락</span></td>
+        <td class="l"><strong>6/26 외인 −4.64조·기관 −3.87조 동반 순매도</strong>(개인 흡수). MSCI 실망 + 연기금 6월말 리밸런싱</td></tr>
+      <tr><td>AI/반도체</td><td class="l">SK하이닉스 ADR</td><td><span class="tag t-up">지연</span></td>
+        <td class="l"><strong>SK하이닉스 미국 ADR 승인 지연</strong> 개별 악재 → 반도체 대형주 직격</td></tr>
+      <tr><td>매크로</td><td class="l">매파 FOMC 후속</td><td><span class="tag t-prog">잠재</span></td>
+        <td class="l">점도표 인상 전환 여진. 빅테크 수익성 우려(6/23 NY발)가 급락 1차 방아쇠로 가세</td></tr>
+      <tr><td>파동</td><td class="l">Cycle 5 minor (2)</td><td><span class="tag t-prog">조정</span></td>
+        <td class="l">minor (1) 9,385(6/19) 정점 → minor (2) 저점 8,080(6/24). 8,457 하회·67% 되돌림(깊은 2파). 7,442·7,053 미이탈로 카운트 유효</td></tr>
+      <tr><td>국내정책</td><td class="l">상법·밸류업</td><td><span class="tag t-prog">대기</span></td>
+        <td class="l">7~9월 상법 핵심조항 시행 임박 — MSCI 공백 메울 차기 정책 촉매</td></tr>
+      <tr><td>매크로</td><td class="l">미–이란 휴전</td><td><span class="tag t-watch">관망</span></td>
+        <td class="l">서명 지연 지속. 유가·환율 변수로 잔존</td></tr>
+    </tbody>
+  </table>
+  <p class="note">※ <strong>로드맵의 #1 상승 변수(MSCI)가 negative로 확정</strong> — H2 외인 유입 thesis 약화. 단 2027 재도전·상법 시행 등 차기 촉매는 유효. 이번 급락은 "촉매 소멸 + 과열(개인신용 38조) 해소"의 성격.</p>
+</section>
+
+<!-- 2. 주간 코스피 실측 -->
+<section>
+  <h2><span class="n">2</span> 주간 코스피 실측</h2>
+  <p class="lead">2026-06-22 ~ 06-26 일별 (출처: Yahoo Finance ^KS11) · 주 2회 서킷브레이커</p>
+  <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 6px 4px;overflow-x:auto;">
+  <svg viewBox="0 0 880 352" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;min-width:680px;font-family:-apple-system,'Noto Sans KR',sans-serif;">
+    <!-- y: Pmax 9,300 Pmin 8,000 span 1,300, scale 0.2, y=40+(9300-p)*0.2 -->
+    <g stroke="#eef2f6" stroke-width="1">
+      <line x1="70" y1="80" x2="850" y2="80"/>
+      <line x1="70" y1="140" x2="850" y2="140"/>
+      <line x1="70" y1="200" x2="850" y2="200"/>
+      <line x1="70" y1="260" x2="850" y2="260"/>
+      <line x1="70" y1="300" x2="850" y2="300"/>
+    </g>
+    <g font-size="10" fill="#94a3b8" text-anchor="end">
+      <text x="62" y="84">9,000</text><text x="62" y="144">8,700</text>
+      <text x="62" y="204">8,400</text><text x="62" y="264">8,100</text><text x="62" y="304">7,900</text>
+    </g>
+    <!-- 9,385 prior top / 8,457 breakout -->
+    <line x1="70" y1="63.4" x2="850" y2="63.4" stroke="#b45309" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="74" y="60" font-size="10" fill="#b45309" font-weight="700">9,385 — minor(1) 정점(6/19)</text>
+    <line x1="70" y1="208.6" x2="850" y2="208.6" stroke="#1d4ed8" stroke-width="1" stroke-dasharray="5,3"/>
+    <text x="74" y="219" font-size="10" fill="#1d4ed8" font-weight="700">8,457 — 돌파선(하회)</text>
+
+    <!-- close polyline: 6/19 89.6, 6/22 77.2, 6/23 259.4, 6/24 205.8, 6/25 114, 6/26 217.8 -->
+    <polyline points="110,89.6 230,77.2 350,259.4 470,205.8 590,114 710,217.8" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+    <!-- 6/19 ref -->
+    <line x1="110" y1="63.4" x2="110" y2="89.6" stroke="#94a3b8" stroke-width="2"/>
+    <circle cx="110" cy="89.6" r="3" fill="#94a3b8"/>
+    <text x="110" y="332" font-size="9" fill="#64748b" text-anchor="middle">6/19 9,052</text>
+    <!-- 6/22: O8954 H9253 L8900 C9114 up -->
+    <line x1="230" y1="49.4" x2="230" y2="120" stroke="#059669" stroke-width="3.5"/>
+    <circle cx="230" cy="77.2" r="4" fill="#059669"/>
+    <text x="230" y="332" font-size="9" fill="#64748b" text-anchor="middle">6/22 +0.69%</text>
+    <text x="230" y="344" font-size="8.5" fill="#94a3b8" text-anchor="middle">고 9,253</text>
+    <!-- 6/23: O9083 H9175 L8203 C8203 crash 서킷 -->
+    <line x1="350" y1="65" x2="350" y2="259.4" stroke="#b91c1c" stroke-width="4"/>
+    <circle cx="350" cy="259.4" r="4.5" fill="#b91c1c"/>
+    <text x="350" y="332" font-size="9" fill="#b91c1c" text-anchor="middle" font-weight="700">6/23 -9.99%</text>
+    <text x="350" y="344" font-size="8.5" fill="#b91c1c" text-anchor="middle">서킷 · MSCI</text>
+    <!-- 6/24: O8356 H8577 L8080 C8471 up, low 8080 -->
+    <line x1="470" y1="184.6" x2="470" y2="284" stroke="#059669" stroke-width="3.5"/>
+    <circle cx="470" cy="205.8" r="4" fill="#059669"/>
+    <text x="470" y="297" font-size="9.5" fill="#b91c1c" text-anchor="middle" font-weight="700">저 8,080</text>
+    <text x="470" y="332" font-size="9" fill="#64748b" text-anchor="middle">6/24 +3.27%</text>
+    <!-- 6/25: O8703 H9044 L8693 C8930 up -->
+    <line x1="590" y1="91.2" x2="590" y2="161.4" stroke="#059669" stroke-width="3.5"/>
+    <circle cx="590" cy="114" r="4" fill="#059669"/>
+    <text x="590" y="332" font-size="9" fill="#64748b" text-anchor="middle">6/25 +5.42%</text>
+    <text x="590" y="344" font-size="8.5" fill="#94a3b8" text-anchor="middle">고 9,044</text>
+    <!-- 6/26: O8813 H8861 L8126 C8411 down 서킷 -->
+    <line x1="710" y1="127.8" x2="710" y2="274.8" stroke="#b91c1c" stroke-width="4"/>
+    <circle cx="710" cy="217.8" r="5" fill="#b91c1c" stroke="#fff" stroke-width="1.2"/>
+    <text x="710" y="332" font-size="9" fill="#b91c1c" text-anchor="middle" font-weight="700">6/26 -5.81%</text>
+    <text x="710" y="344" font-size="8.5" fill="#b91c1c" text-anchor="middle">서킷 · C 8,411</text>
+
+    <!-- 6/29 forward -->
+    <line x1="810" y1="40" x2="810" y2="300" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="5,3"/>
+    <text x="810" y="36" font-size="10" fill="#b45309" font-weight="700" text-anchor="middle">6/29~</text>
+    <text x="810" y="332" font-size="8.5" fill="#b45309" text-anchor="middle">2Q 실적·반기말</text>
+  </svg>
+  </div>
+  <p class="note">막대=일중 고저 · 점=종가 · 색상: <span class="up">상승</span>/<span class="down">하락</span>. 6/22 MSCI 기대로 9,253까지 상승 → <strong>6/23 −9.99% 서킷</strong>(MSCI 불발 우려 선반영+NY 빅테크 우려) → 6/24 저점 <strong>8,080</strong> 후 6/25 +5.42% 반등 → <strong>6/26 장중 −8% 서킷</strong>(외인·기관 8.5조 투매). 주간 −7.08%, 장중 범위 9,253~8,080(−12.7%).</p>
+
+  <table style="margin-top:14px;">
+    <thead><tr><th>주간 요약</th><th>값</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td class="l">주간 고점(장중)</td><td>9,253.00 (6/22)</td><td class="l">MSCI 기대 선반영 고점</td></tr>
+      <tr><td class="l">주간 저점(장중)</td><td><strong>8,080.99 (6/24)</strong></td><td class="l">minor(1) 9,385 대비 <strong class="down">−13.9%</strong></td></tr>
+      <tr><td class="l">주간 종가</td><td><strong>8,411.21 (6/26)</strong></td><td class="l">전주 9,052.42 대비 <strong class="down">−7.08%</strong></td></tr>
+      <tr><td class="l">6/26 수급</td><td><strong class="down">외인 −4.64조·기관 −3.87조</strong></td><td class="l">동반 투매(8.5조), 개인 흡수</td></tr>
+      <tr><td class="l">서킷브레이커</td><td><strong class="down">주 2회</strong> (6/23·6/26)</td><td class="l">변동성 폭발 — 단기 패닉 구간</td></tr>
+      <tr><td class="l">MSCI</td><td><strong class="down">관찰대상국 불발</strong></td><td class="l">12번째 실패, 2027 재도전</td></tr>
+    </tbody>
+  </table>
+  <p class="note">5회차에서 경고한 <strong>질 약화(개인신용 38조·반도체 쏠림)</strong>가 MSCI 불발을 트리거로 현실화. 외인·기관이 동반 투매로 돌아서며 단기 변동성 폭발. 단 6/24 저점 8,080에서 저가매수 유입·6/25 반등은 바닥 탐색 신호.</p>
+</section>
+
+<!-- 3. 파동 카운트 판정 -->
+<section>
+  <h2><span class="n">3</span> 파동 카운트 판정 — Cycle 5 minor (2) 깊은 조정
+    <a href="https://choryian.github.io/Stock_Report_Repo/reports/2026-06-07-kospi-elliott-wave-recount-no002.html" target="_blank" rel="noopener"
+       style="margin-left:auto;font-size:11.5px;font-weight:600;color:#1d4ed8;text-decoration:none;border:1px solid #bfdbfe;background:#eff6ff;padding:3px 10px;border-radius:6px;white-space:nowrap;">↗ Recount (No.002)</a>
+  </h2>
+  <p class="lead"><strong>No.002 프레임 유지</strong>. 5회차 minor (1) 9,385(6/19) 정점 후 <strong>minor (2) 조정이 깊게 전개</strong> — 저점 8,080(6/24)은 minor (1)의 <strong>67% 되돌림</strong>이자 8,457(돌파선) 하회. 깊은 2파지만 <strong>7,442(Cycle 4 저점)·7,053(Count 2) 한참 위</strong> → Cycle 5 카운트 유효. MSCI 불발로 촉매가 약해져 minor (2)가 복합·장기화할 위험.</p>
+
+  <div class="verdict">
+    <strong>판정: Cycle 5 minor (2) 깊은 조정 진행 — 추세 유효하나 단기 리스크 급등</strong><br>
+    minor (2) 저점 8,080(6/24) = minor(1)(7,442→9,385)의 <strong>67% 되돌림</strong>(정상 2파 범위 61.8~78.6%). 8,080→8,930(6/25)→8,126(6/26)의 <strong>복합·더블바텀</strong> 형태. <strong>8,080~8,126 사수 + 8,457 회복</strong>이 minor (3) 재개 신호. 이탈 시 61.8~78.6% 심화대 <strong>7,858~8,184</strong>, 그 아래 7,442가 최후 보루. 추세 목표(10,000→10,300~10,500→강세 12,000)는 minor (2) 저점 확정 후 유효하나, <strong>MSCI 촉매 소멸로 신뢰도는 한 단계 하향</strong>.
+  </div>
+
+  <p style="font-size:13px;margin:12px 0 6px;"><strong>Cycle 5 진행 — minor (2) 조정 &amp; 목표 콘</strong></p>
+  <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 6px 4px;overflow-x:auto;">
+  <svg viewBox="0 0 1000 410" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;min-width:720px;font-family:-apple-system,'Noto Sans KR',sans-serif;">
+    <!-- y: Pmax 12,500 Pmin 7,000 span 5,500, scale 0.06, y=40+(12500-p)*0.06 -->
+    <g stroke="#eef2f6" stroke-width="1">
+      <line x1="70" y1="70" x2="940" y2="70"/>
+      <line x1="70" y1="130" x2="940" y2="130"/>
+      <line x1="70" y1="190" x2="940" y2="190"/>
+      <line x1="70" y1="250" x2="940" y2="250"/>
+      <line x1="70" y1="310" x2="940" y2="310"/>
+      <line x1="70" y1="370" x2="940" y2="370"/>
+    </g>
+    <g font-size="10" fill="#94a3b8" text-anchor="end">
+      <text x="64" y="74">12,000</text><text x="64" y="134">11,000</text><text x="64" y="194">10,000</text>
+      <text x="64" y="254">9,000</text><text x="64" y="314">8,000</text><text x="64" y="374">7,000</text>
+    </g>
+
+    <!-- minor(2) retracement band 8,184(61.8%, 298.96)~7,858(78.6%, 318.5) -->
+    <rect x="70" y="298.96" width="490" height="19.5" fill="#fde68a" opacity="0.45"/>
+    <text x="80" y="312" font-size="9" fill="#92400e" font-weight="700">minor(2) 심화대 7,858~8,184 (61.8~78.6%)</text>
+
+    <!-- Fibonacci target bands (forward) -->
+    <line x1="560" y1="190" x2="940" y2="190" stroke="#059669" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="936" y="186" text-anchor="end" font-size="9.5" fill="#059669" font-weight="700">10,000 (1.272×W1·심리)</text>
+    <line x1="560" y1="172" x2="940" y2="172" stroke="#059669" stroke-width="1.2" stroke-dasharray="6,3"/>
+    <text x="936" y="168" text-anchor="end" font-size="9.5" fill="#059669" font-weight="700">10,300~10,500 (1.618×W1·0.382순행)</text>
+    <line x1="560" y1="70" x2="940" y2="70" stroke="#16a34a" stroke-width="1.2" stroke-dasharray="7,3"/>
+    <text x="936" y="66" text-anchor="end" font-size="9.5" fill="#16a34a" font-weight="700">12,000 (0.618×순행 · 강세 stretch)</text>
+
+    <!-- key levels -->
+    <line x1="70" y1="226.9" x2="560" y2="226.9" stroke="#b45309" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="74" y="223" font-size="9.5" fill="#b45309" font-weight="700">9,385 — minor(1) 정점</text>
+    <line x1="70" y1="282.6" x2="940" y2="282.6" stroke="#1d4ed8" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="74" y="279" font-size="9.5" fill="#1d4ed8" font-weight="700">8,457 — 돌파선(하회) · 회복 시 minor(3)</text>
+    <line x1="70" y1="343.5" x2="940" y2="343.5" stroke="#b91c1c" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="74" y="340" font-size="9.5" fill="#b91c1c" font-weight="700">7,442 — Cycle 4 저점(최후 보루)</text>
+    <line x1="70" y1="366.8" x2="940" y2="366.8" stroke="#b91c1c" stroke-width="1" stroke-dasharray="3,3"/>
+    <text x="74" y="363" font-size="9.5" fill="#b91c1c" font-weight="700">7,053 — Count 2 무효화선</text>
+
+    <!-- forward zone -->
+    <line x1="560" y1="40" x2="560" y2="380" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+    <rect x="560" y="40" width="380" height="340" fill="#f1f5f9" opacity="0.35"/>
+    <text x="750" y="400" text-anchor="middle" font-size="10" fill="#1d4ed8" font-weight="700">전망 (6/29~)</text>
+
+    <!-- path: ③8,933(254)@120 -> ④7,442(343.5)@200 -> ⑤(1) 9,385(226.9)@380 -> (2)low 8,080(305.2)@480 -> 현재 8,411(285.3)@540 -->
+    <polyline points="120,254 200,343.5 380,226.9 480,305.2 540,285.3" fill="none" stroke="#059669" stroke-width="2.6"/>
+    <!-- projection: minor(2) base then minor(3) up -->
+    <polyline points="540,285.3 610,300 700,200 840,172" fill="none" stroke="#059669" stroke-width="2.2" stroke-dasharray="7,4" marker-end="url(#aUp6)"/>
+    <polyline points="700,200 860,70" fill="none" stroke="#16a34a" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#aUp6b)"/>
+    <defs>
+      <marker id="aUp6" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#059669"/></marker>
+      <marker id="aUp6b" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#16a34a"/></marker>
+    </defs>
+
+    <!-- pivots -->
+    <circle cx="120" cy="254" r="5" fill="#b45309"/>
+    <text x="120" y="246" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">③ 8,933</text>
+    <circle cx="200" cy="343.5" r="5" fill="#b91c1c"/>
+    <text x="200" y="360" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b91c1c">④ 7,442</text>
+    <circle cx="380" cy="226.9" r="6" fill="#059669"/>
+    <text x="380" y="219" text-anchor="middle" font-size="11" font-weight="700" fill="#059669">⑤-(1) 9,385</text>
+    <circle cx="480" cy="305.2" r="6" fill="#b91c1c" stroke="#fff" stroke-width="1.4"/>
+    <text x="480" y="322" text-anchor="middle" font-size="10" font-weight="700" fill="#b91c1c">(2) 저 8,080</text>
+    <circle cx="540" cy="285.3" r="5" fill="#1d4ed8" stroke="#fff" stroke-width="1.3"/>
+    <text x="548" y="281" text-anchor="start" font-size="9.5" fill="#1d4ed8" font-weight="700">현재 8,411</text>
+
+    <!-- labels -->
+    <text x="775" y="150" font-size="11" font-weight="700" fill="#059669">minor (3) ↑</text>
+
+    <!-- x labels -->
+    <g font-size="10" fill="#475569" text-anchor="middle">
+      <text x="120" y="400">6/2</text><text x="200" y="400">6/8</text><text x="380" y="400">6/19</text><text x="480" y="400">6/24</text><text x="540" y="400">현재</text>
+    </g>
+  </svg>
+  </div>
+  <p class="note">초록=Cycle 5, 점·파선=전망. <strong>⑤-(1) 9,385 정점 → (2) 저점 8,080</strong>(67% 되돌림·8,457 하회). 8,080~8,126 더블바텀 사수 + <strong>8,457 회복 시 minor (3)</strong>로 10,000→10,300~10,500→(강세)12,000. 심화 시 7,858~8,184, <strong>7,442 이탈 시 카운트 재점검</strong>, 7,053 이탈 시 Count 2.</p>
+
+  <table style="margin-top:14px;">
+    <thead><tr><th>요소</th><th>5회차 가설</th><th>이번 주 실측</th><th>판정</th></tr></thead>
+    <tbody>
+      <tr><td class="l">MSCI 시나리오</td><td>C(등재 실패) 경계</td><td>6/23 불발 → 급락</td><td class="down">시나리오 C 적중</td></tr>
+      <tr><td class="l">minor (2) 조정</td><td>8,457~8,933 예상</td><td>저점 8,080 (8,457 하회)</td><td class="down">예상보다 깊음 ⚠</td></tr>
+      <tr><td class="l">되돌림 비율</td><td>—</td><td>67% (정상 61.8~78.6%)</td><td>깊지만 정상 범위</td></tr>
+      <tr><td class="l">카운트 유효성</td><td>7,442/7,053 미이탈</td><td>저점 8,080 ≫ 7,442</td><td class="up">Cycle 5 유효 ✓</td></tr>
+      <tr><td class="l">minor (2) 저점</td><td>—</td><td>8,080/8,126 더블바텀?</td><td>확정 미정 ⚠</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:13px;margin:14px 0 4px;"><strong>근거 요약</strong></p>
+  <ul>
+    <li><strong>minor (2) 진행</strong> — minor (1) 9,385 정점 후 −13.9%(저점 8,080), minor(1)의 67% 되돌림. 5회차 "minor (2) 조정 점검" 경고대로 전개.</li>
+    <li><strong>깊지만 정상</strong> — 67% 되돌림은 2파 정상 범위(61.8~78.6%). 8,457 하회는 부담이나 7,442·7,053 미이탈로 Cycle 5 구조 유효.</li>
+    <li><strong>촉매 소멸</strong> — MSCI 불발로 외인 유입 thesis 약화 + SK하이닉스 ADR 지연 → minor (2)가 복합·장기화할 위험. 추세 목표 신뢰도 한 단계 하향.</li>
+    <li><strong>바닥 탐색 신호</strong> — 6/24 8,080 저가매수·6/25 +5.42% 반등·8,080~8,126 더블바텀 시도. 단 6/26 외인·기관 8.5조 투매로 미확정.</li>
+    <li><strong>차기 촉매</strong> — 7~9월 상법 핵심조항 시행·2Q 실적시즌이 MSCI 공백을 메울 후보. minor (3)의 펀더멘털 연료.</li>
+  </ul>
+
+  <p style="font-size:13px;margin:14px 0 4px;"><strong>트리거 체크리스트 (60분 종가)</strong></p>
+  <table>
+    <thead><tr><th>조건</th><th>해석</th><th>대응</th></tr></thead>
+    <tbody>
+      <tr><td class="l" style="background:#f0fdf4;">8,457 회복·안착</td><td>minor (2) 종료 → minor (3) 재개</td><td>분할 매수 전환</td></tr>
+      <tr><td class="l">8,080~8,457 박스</td><td>minor (2) 바닥 탐색(복합·더블바텀)</td><td>분할 매수 관찰(저점 확인)</td></tr>
+      <tr><td class="l" style="background:#fef2f2;">8,080 이탈</td><td>minor (2) 심화 → 7,858~8,184</td><td>비중 축소·현금 확보</td></tr>
+      <tr><td class="l" style="background:#fee2e2;">7,442 이탈</td><td>Cycle 5 카운트 재점검 (7,053 이탈 시 Count 2)</td><td>현금 비중 확대</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 4. 다음주 트레이딩 가이드 -->
+<section>
+  <h2><span class="n">4</span> 다음주 트레이딩 가이드 (06-29~07-03)</h2>
+  <p class="lead">MSCI 불발·연기금 리밸런싱 충격 소화 국면. <strong>반기말(6/30)·2Q 실적시즌 진입·7월 상법 시행 임박</strong>이 minor (2) 저점·minor (3) 재개를 좌우.</p>
+
+  <div class="scn">
+    <div class="c a">
+      <h4>🟢 시나리오 A · minor (2) 저점 후 반등</h4>
+      <p>8,080~8,126 더블바텀 사수 → 8,457 회복 시 minor (3) 재개. 반기말 리밸런싱 종료·저가매수·상법 기대 시.</p>
+      <p><strong>대응</strong>: 8,080~8,300 분할 매수, 8,457 회복 확인 시 비중 확대. 추격 자제.</p>
+    </div>
+    <div class="c b">
+      <h4>🔵 시나리오 B · 복합 바닥 다지기</h4>
+      <p>8,080~8,700 넓은 박스에서 변동성 소화(복합 2파). 실적·정책 모멘텀 대기 구간.</p>
+      <p><strong>대응</strong>: 박스 하단 분할 매수·상단 익절. 방향 확정 후 추종.</p>
+    </div>
+    <div class="c cc">
+      <h4>🔴 시나리오 C · 조정 심화</h4>
+      <p>외인 매도 지속·개인 신용(38조) 청산 가세 시 8,080 이탈 → 7,858~8,184, 최악 7,442 테스트.</p>
+      <p><strong>대응</strong>: 8,080 종가 이탈 시 비중 축소. 7,442 사수 여부 관찰(이탈 시 카운트 재점검).</p>
+    </div>
+  </div>
+
+  <p style="font-size:13px;margin:18px 0 4px;"><strong>7월 1주 — 4대 변수 업데이트 &amp; 매핑</strong></p>
+  <table>
+    <thead><tr><th>변수</th><th>현재 상태 (6/27)</th><th>강세 조건</th><th>약세 조건</th></tr></thead>
+    <tbody>
+      <tr><td class="l">외인·신용 수급</td><td class="l"><strong>6/26 외인·기관 8.5조 투매·개인 신용 38조</strong></td><td class="l">외인 매도 진정·신용 안정</td><td class="l">매도 지속·신용 반대매매(margin call)</td></tr>
+      <tr><td class="l">반기말·연기금</td><td class="l">6/30 반기말, 연기금 리밸런싱</td><td class="l">리밸런싱 종료 → 수급 정상화</td><td class="l">기관 매도 연장</td></tr>
+      <tr><td class="l">★ 2Q 실적시즌</td><td class="l">7월 본격 — 삼성 HBM4 첫 매출·반도체</td><td class="l">어닝 서프라이즈 → 펀더멘털 회복</td><td class="l">반도체 실적 실망</td></tr>
+      <tr><td class="l">★ 상법 핵심조항</td><td class="l">7~9월 시행 임박 (MSCI 공백 대체)</td><td class="l">집중투표·독립이사 → 지주·금융 재평가</td><td class="l">시행 지연·완화</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:12.5px;margin:8px 0 6px;color:#475569;">→ MSCI 촉매 소멸로 <strong>차기 동력은 2Q 실적 + 7월 상법 시행</strong>. 단기는 외인 매도·신용 청산 진정이 minor (2) 저점의 전제. 반기말 리밸런싱 종료(7월 초)가 수급 분기.</p>
+
+  <p style="font-size:13px;margin:14px 0 4px;"><strong>주중 핵심 일정</strong></p>
+  <ul>
+    <li><strong>6/30(화) 반기말</strong> — 연기금 리밸런싱·윈도드레싱 종료 여부 → 수급 정상화 가늠</li>
+    <li><strong>8,080~8,126 더블바텀</strong> — 사수 시 minor (2) 저점 확정, 이탈 시 7,858~8,184 심화</li>
+    <li><strong>외인 매도·신용 청산</strong> — 8.5조 투매·신용 38조 진정 여부가 최우선 관전</li>
+    <li><strong>2Q 실적시즌 개막</strong> — 반도체 어닝이 펀더멘털 분기</li>
+    <li><strong>7월 상법 핵심조항 시행</strong> — MSCI 공백 메울 정책 촉매</li>
+  </ul>
+  <p class="note">결론: Cycle 5 추세는 유효(7,442 위)하나 <strong>MSCI 불발·8.5조 투매로 minor (2)가 깊고 길어질 위험</strong>. 기준선은 <strong>시나리오 B(복합 바닥 다지기)</strong>, 8,080 사수·8,457 회복이 minor (3) 신호 / 8,080 이탈 = 심화(7,858~8,184) / 7,442 이탈 = 카운트 재점검. <strong>차기 상승 연료는 2Q 실적·7월 상법</strong>.</p>
+</section>
+
+<footer>
+  Chory &amp; Rochet · 코스피 주간 로드맵 &amp; 파동 리뷰 6회차 (확정) · 2026-06-27<br>
+  본 자료는 가격 행동의 좌표 설정을 위한 참고이며 투자 권유가 아닙니다. 카운팅은 시장 데이터에 의해 언제든 검증·폐기될 수 있습니다.
+</footer>
+
+</div>
+</body>
+</html>
