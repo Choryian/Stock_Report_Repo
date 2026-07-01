@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>티앤엘 (A340570) · 2Q26 수출 실적 선행 추정 — Chory &amp; Rochet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF8F3; --ink:#16160F; --accent:#8B3A2E; --brass:#A88B5C; --slate:#3D4A55;
+  --up:#c8364d; --dn:#2c5fb7; --line:#E2DCCF; --soft:#6F6B60; --card:#FFFFFF;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#EFEBE1;color:var(--ink);
+  font-family:'DM Sans','Noto Sans KR',sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:920px;margin:0 auto;background:var(--paper);box-shadow:0 1px 40px rgba(0,0,0,.07);}
+.pad{padding:0 46px}
+@media(max-width:640px){.pad{padding:0 20px}}
+header{padding:42px 46px 28px;border-bottom:2px solid var(--ink);}
+.brand{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--accent);font-weight:700;}
+.brand .dot{color:var(--brass)}
+h1{font-family:'Fraunces',serif;font-weight:600;font-size:34px;line-height:1.12;margin:14px 0 6px;letter-spacing:-.01em;}
+.code{font-family:'JetBrains Mono',monospace;color:var(--soft);font-weight:500;}
+.sub{font-size:13.5px;color:var(--soft);margin-top:10px;}
+.sub b{color:var(--ink)}
+.metaline{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:14px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--soft);}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:0;}
+.stat{background:var(--paper);padding:18px 22px;}
+.stat .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);}
+.stat .v{font-family:'Fraunces',serif;font-size:25px;font-weight:600;margin-top:4px;}
+.stat .d{font-size:11.5px;font-family:'JetBrains Mono',monospace;margin-top:2px;}
+.neg{color:var(--dn)} .pos{color:var(--up)}
+@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+section{padding:34px 0 8px;}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--accent);}
+.eyebrow.b{color:#b8860b} .eyebrow.g{color:#2e7d4f} .eyebrow.s{color:#0e8a8a}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:23px;margin:8px 0 4px;letter-spacing:-.01em;}
+h3{font-family:'Fraunces',serif;font-weight:600;font-size:16px;margin:22px 0 8px;}
+p{font-size:14px;margin:10px 0;}
+.lead{font-size:15px;}
+.chart{background:var(--paper);border:1px solid var(--line);border-radius:4px;margin:18px 0 6px;padding:8px 6px 4px;}
+.cap{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--soft);margin:2px 4px 6px;}
+.nested{background:var(--ink);color:var(--paper);border-radius:5px;padding:18px 22px;margin:18px 0;}
+.nested .lab{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);}
+.nested .body{font-family:'Fraunces',serif;font-size:16.5px;line-height:1.5;margin-top:8px;font-weight:500;}
+.nested .body .c{color:#e9b84a} .nested .body .i{color:#e98a55} .nested .body .m{color:#5fc8c8}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);font-weight:700;background:rgba(168,139,92,.07);}
+td.num{font-family:'JetBrains Mono',monospace;}
+.ok{color:#2e7d4f;font-weight:700} .no{color:var(--accent);font-weight:700}
+tr.main td{background:rgba(139,58,46,.05)}
+.invalid{border-left:3px solid var(--accent);background:rgba(139,58,46,.05);padding:12px 16px;margin:14px 0;font-size:13px;}
+.invalid b{font-family:'JetBrains Mono',monospace;}
+.scn{border:1px solid var(--line);border-radius:5px;padding:16px 18px;margin:12px 0;}
+.scn .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;}
+.scn .name{font-family:'Fraunces',serif;font-size:16px;font-weight:600;}
+.scn .badge{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.s-primary{border-color:#2e7d4f;} .s-primary .badge{background:#2e7d4f;color:#fff;}
+.s-alt{border-color:var(--brass);} .s-alt .badge{background:var(--brass);color:#fff;}
+.s-invalid{border-color:var(--accent);} .s-invalid .badge{background:var(--accent);color:#fff;}
+.scn p{margin:8px 0 0;font-size:13px;}
+.mtx{font-size:12.5px} .mtx td:last-child{font-weight:500}
+.tag{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:12px;}
+.up{color:var(--up)} .down{color:var(--dn)}
+footer{margin-top:30px;border-top:2px solid var(--ink);padding:26px 46px 40px;font-size:11.5px;color:var(--soft);line-height:1.7;}
+.disc{background:rgba(139,58,46,.04);border:1px solid var(--line);border-radius:4px;padding:14px 16px;margin-bottom:18px;color:#5a564c;}
+.sig{font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--ink);}
+.printnote{font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:14px;}
+@media print{body{background:#fff}.wrap{box-shadow:none;max-width:100%}section{break-inside:avoid}.chart{break-inside:avoid}}
+.key{background:rgba(232,184,74,.22);padding:1px 5px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-weight:600;}
+</style><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body><div class="wrap">
+
+<header>
+  <div class="brand">CHORY <span class="dot">&amp;</span> ROCHET · Q2 EXPORT-LED EARNINGS PREVIEW</div>
+  <h1>티앤엘 <span class="code">A340570 · 코스닥</span></h1>
+  <div class="sub">하이드로콜로이드 창상피복재(대미 수출 76%) — <b>관세청 월별 통계로 읽는 2분기 실적 선행 추정</b></div>
+  <div class="metaline">
+    <span>발행 · Chory &amp; Rochet</span><span>분석일 · 2026-07-01</span>
+    <span>데이터 · 관세청 HS 3005.10(6월 확정) + 1Q26 DART</span><span>어닝 D-45 프리뷰 · 6/30 종가 66,800</span>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="stat"><div class="k">6/30 종가</div><div class="v">66,800</div><div class="d pos">▲9.2% vs 5/15 · W1 위</div></div>
+  <div class="stat"><div class="k">2Q26E 매출</div><div class="v">525억</div><div class="d pos">YoY +31% · QoQ +17%</div></div>
+  <div class="stat"><div class="k">2Q26E 영업이익</div><div class="v">192억</div><div class="d pos">영익률 36.6% · YoY +74%</div></div>
+  <div class="stat"><div class="k">12개월 목표가</div><div class="v">101,000</div><div class="d pos">+51.2% (가중)</div></div>
+</div>
+
+<div class="pad">
+
+<section>
+  <div class="eyebrow">핵심 요지 — 수출로 읽는 2분기</div>
+  <h2>매출의 76%는 이미 관세청에 찍혀 있다</h2>
+  <p class="lead">티앤엘 매출의 <b>76%(1Q26 기준)</b>는 수출이며, 대부분이 미국·유럽向 하이드로콜로이드 창상피복재다. 이 제품군은 관세청 <span class="key">HS 3005.10</span>(접착성 드레싱·반창고)으로 집계되고 통계는 매월 1일 발표된다. 즉 <b>2분기 3개월치 수출이 오늘(7/1) 모두 공개</b>됐고, 이는 8월 중순 DART 분기보고서보다 <b>45일 빠른 선행 실적 프록시</b>다.</p>
+  <p>월별 통계를 티앤엘 귀속분으로 환산하면 2Q 수출은 <b>420억(QoQ +22%, 대미 +27%)</b>. 계절성이 낮은 국내 매출(104억)을 더하면 <b>2Q 매출 525억(YoY +31%)·영업이익 192억(영익률 36.6%)</b>으로 추정된다. 1Q의 어닝 서프라이즈(컨센 +64.6%) 구도가 <b>2Q에도 재현될 개연성</b>이 높다.</p>
+
+  <div class="nested">
+    <div class="lab">Position Statement · 수출→실적 선행 진술 (프록시 추정 · 어닝 D-45)</div>
+    <div class="body"><span class="c">2Q 수출 420억 (대미 288 · 유럽기타 132)</span> ⊃ <span class="i">국내 104억 → 매출 525억 (YoY +31%)</span> ⊃ <span class="m">영익 192억 · 영익률 36.6% · 1H 누적 영익 375억</span></div>
+  </div>
+
+  <div class="chart"><svg width="100%" viewBox="0 0 860 380" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif"><rect x="0" y="0" width="860" height="380" fill="#ffffff"/><text x="98" y="24" fill="#1a1a1a" font-size="13" font-weight="600">2Q26 영업이익 삼각측량 — 컨센 vs 수출데이터 함의 vs 자체 추정 (억원)</text><line x1="98" y1="336.0" x2="820" y2="336.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="339.5" text-anchor="end" font-size="10.5" fill="#888888">0</text><line x1="98" y1="279.6" x2="820" y2="279.6" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="283.1" text-anchor="end" font-size="10.5" fill="#888888">44</text><line x1="98" y1="223.2" x2="820" y2="223.2" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="226.7" text-anchor="end" font-size="10.5" fill="#888888">88</text><line x1="98" y1="166.8" x2="820" y2="166.8" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="170.3" text-anchor="end" font-size="10.5" fill="#888888">132</text><line x1="98" y1="110.4" x2="820" y2="110.4" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="113.9" text-anchor="end" font-size="10.5" fill="#888888">176</text><line x1="98" y1="54.0" x2="820" y2="54.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="57.5" text-anchor="end" font-size="10.5" fill="#888888">220</text><rect x="170.3" y="118.1" width="96" height="217.9" fill="#3D4A55"/><text x="218.3" y="110.1" text-anchor="middle" font-size="15" font-weight="700" fill="#3D4A55">170억</text><text x="218.3" y="94.1" text-anchor="middle" font-size="10.5" fill="#888888">컨센 기준</text><rect x="411.0" y="98.9" width="96" height="237.1" fill="#A88B5C"/><text x="459.0" y="90.9" text-anchor="middle" font-size="15" font-weight="700" fill="#A88B5C">185억</text><text x="459.0" y="74.9" text-anchor="middle" font-size="10.5" fill="#888888">컨센 +8.8%</text><rect x="651.7" y="89.9" width="96" height="246.1" fill="#2e7d4f"/><text x="699.7" y="81.9" text-anchor="middle" font-size="15" font-weight="700" fill="#2e7d4f">192억</text><text x="699.7" y="65.9" text-anchor="middle" font-size="10.5" fill="#888888">컨센 +12.9% ★</text><line x1="98" y1="336" x2="820" y2="336" stroke="#bbbbbb" stroke-width="1"/><text x="218.3" y="354" text-anchor="middle" font-size="11" fill="#555555">증권사 컨센 (6월)</text><text x="459.0" y="354" text-anchor="middle" font-size="11" fill="#555555">수출 프록시 함의</text><text x="699.7" y="354" text-anchor="middle" font-size="11" fill="#555555">자체 추정</text></svg></div>
+<div class="cap">그림 1. 2Q26 영업이익 삼각측량 — 증권사 컨센(170억, 6월 중순) vs 수출 프록시 함의(185억) vs 자체 추정(192억). 수출 데이터가 컨센 상회 방향을 지시.</div>
+</section>
+
+<section>
+  <div class="eyebrow b">Part II — 월별 리스탁킹</div>
+  <h2>4월 저점 → 5월 피크, 대미 리스탁킹 사이클</h2>
+  <p>1Q26 보고서가 예고한 "2Q H사(Church &amp; Dwight / Hero) 리스탁킹 본격화"가 월별 데이터로 확인됐다. 대미 수출은 <b>4월 $6.0M → 5월 $6.9M(분기·반기 피크) → 6월 $6.2M</b>의 전형적 램프-업 후 정상화 패턴. 6월 원화 약세(평균 1,555원)가 원화 환산 매출을 추가로 밀어 올렸다.</p>
+
+  <div class="chart"><svg width="100%" viewBox="0 0 860 380" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif"><rect x="0" y="0" width="860" height="380" fill="#ffffff"/><text x="98" y="24" fill="#1a1a1a" font-size="13" font-weight="600">월별 수출액 ($M, 막대) + 원화환산(억, 라인) — 1Q 램프 → 2Q 리스탁킹 5월 피크</text><rect x="98" y="30" width="14" height="10" fill="#8B3A2E"/><text x="116" y="39" font-size="10.5" fill="#555555">대미 수출($M)</text><rect x="221.8" y="30" width="14" height="10" fill="#A88B5C"/><text x="239.8" y="39" font-size="10.5" fill="#555555">유럽·기타($M)</text><line x1="345.6" y1="36" x2="367.6" y2="36" stroke="#b8860b" stroke-width="3"/><text x="371.6" y="39" font-size="10.5" fill="#555555">원화환산(억, 우축)</text><line x1="98" y1="336.0" x2="820" y2="336.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="339.5" text-anchor="end" font-size="10.5" fill="#888888">0</text><line x1="98" y1="289.0" x2="820" y2="289.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="292.5" text-anchor="end" font-size="10.5" fill="#888888">2</text><line x1="98" y1="242.0" x2="820" y2="242.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="245.5" text-anchor="end" font-size="10.5" fill="#888888">4</text><line x1="98" y1="195.0" x2="820" y2="195.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="198.5" text-anchor="end" font-size="10.5" fill="#888888">6</text><line x1="98" y1="148.0" x2="820" y2="148.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="151.5" text-anchor="end" font-size="10.5" fill="#888888">8</text><line x1="98" y1="101.0" x2="820" y2="101.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="104.5" text-anchor="end" font-size="10.5" fill="#888888">10</text><line x1="98" y1="54.0" x2="820" y2="54.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="57.5" text-anchor="end" font-size="10.5" fill="#888888">12</text><text x="826" y="339.5" text-anchor="start" font-size="10.5" fill="#b8860b">0</text><text x="826" y="283.1" text-anchor="start" font-size="10.5" fill="#b8860b">40</text><text x="826" y="226.7" text-anchor="start" font-size="10.5" fill="#b8860b">80</text><text x="826" y="170.3" text-anchor="start" font-size="10.5" fill="#b8860b">120</text><text x="826" y="113.9" text-anchor="start" font-size="10.5" fill="#b8860b">160</text><text x="826" y="57.5" text-anchor="start" font-size="10.5" fill="#b8860b">200</text><rect x="141.2" y="227.9" width="34" height="108.1" fill="#8B3A2E"/><rect x="141.2" y="176.2" width="34" height="51.7" fill="#A88B5C"/><text x="158.2" y="171.2" text-anchor="middle" font-size="10" font-weight="600" fill="#333">6.8</text><rect x="261.5" y="213.8" width="34" height="122.2" fill="#8B3A2E"/><rect x="261.5" y="150.3" width="34" height="63.5" fill="#A88B5C"/><text x="278.5" y="145.3" text-anchor="middle" font-size="10" font-weight="600" fill="#333">7.9</text><rect x="381.8" y="204.4" width="34" height="131.6" fill="#8B3A2E"/><rect x="381.8" y="132.3" width="34" height="72.1" fill="#A88B5C"/><text x="398.8" y="127.3" text-anchor="middle" font-size="10" font-weight="600" fill="#333">8.7</text><rect x="502.2" y="195.0" width="34" height="141.0" fill="#8B3A2E"/><rect x="502.2" y="131.6" width="34" height="63.4" fill="#A88B5C"/><text x="519.2" y="126.6" text-anchor="middle" font-size="10" font-weight="600" fill="#333">8.7</text><rect x="622.5" y="173.8" width="34" height="162.2" fill="#8B3A2E"/><rect x="622.5" y="101.0" width="34" height="72.8" fill="#A88B5C"/><text x="639.5" y="96.0" text-anchor="middle" font-size="10" font-weight="600" fill="#333">10.0</text><rect x="742.8" y="190.3" width="34" height="145.7" fill="#8B3A2E"/><rect x="742.8" y="121.0" width="34" height="69.3" fill="#A88B5C"/><text x="759.8" y="116.0" text-anchor="middle" font-size="10" font-weight="600" fill="#333">9.2</text><line x1="459.0" y1="54" x2="459.0" y2="336" stroke="#999999" stroke-width="1.4" stroke-dasharray="5 4"/><text x="453.0" y="66" text-anchor="end" font-size="10" fill="#999">1Q</text><text x="465.0" y="66" text-anchor="start" font-size="10" fill="#999">2Q</text><polyline points="158.2,195.0 278.5,172.3 398.8,155.9 519.2,155.7 639.5,123.8 759.8,135.4" fill="none" stroke="#b8860b" stroke-width="3"/><circle cx="158.2" cy="195.0" r="4" fill="#b8860b" stroke="#fff" stroke-width="1.5"/><circle cx="278.5" cy="172.3" r="4" fill="#b8860b" stroke="#fff" stroke-width="1.5"/><circle cx="398.8" cy="155.9" r="4" fill="#b8860b" stroke="#fff" stroke-width="1.5"/><circle cx="519.2" cy="155.7" r="4" fill="#b8860b" stroke="#fff" stroke-width="1.5"/><circle cx="639.5" cy="123.8" r="4" fill="#b8860b" stroke="#fff" stroke-width="1.5"/><circle cx="759.8" cy="135.4" r="4" fill="#b8860b" stroke="#fff" stroke-width="1.5"/><text x="654.5" y="140.8" text-anchor="start" font-size="10" font-weight="700" fill="#b8860b">5월 피크 ★</text><line x1="98" y1="336" x2="820" y2="336" stroke="#bbbbbb" stroke-width="1"/><text x="158.2" y="354" text-anchor="middle" font-size="11" fill="#555555">1월</text><text x="278.5" y="354" text-anchor="middle" font-size="11" fill="#555555">2월</text><text x="398.8" y="354" text-anchor="middle" font-size="11" fill="#555555">3월</text><text x="519.2" y="354" text-anchor="middle" font-size="11" fill="#555555">4월</text><text x="639.5" y="354" text-anchor="middle" font-size="11" fill="#555555">5월</text><text x="759.8" y="354" text-anchor="middle" font-size="11" fill="#555555">6월</text></svg></div>
+<div class="cap">그림 2. 2026년 1~6월 수출액($M, 스택 막대) + 원화환산(억, 골드 라인). HS 3005.10 티앤엘 귀속 프록시. 5월이 분기·반기 통틀어 최대 월.</div>
+
+  <table>
+    <thead><tr><th>월</th><th>대미 ($M)</th><th>유럽·기타 ($M)</th><th>합계 ($M)</th><th>평균환율</th><th>원화환산 (억)</th></tr></thead>
+    <tbody>
+      <tr><td>2026-04</td><td class="num">6.0</td><td class="num">2.70</td><td class="num">8.70</td><td class="num">1,470</td><td class="num">127.9</td></tr>
+      <tr class="main"><td><b>2026-05 (피크)</b></td><td class="num"><b>6.9</b></td><td class="num">3.10</td><td class="num"><b>10.00</b></td><td class="num">1,505</td><td class="num"><b>150.5</b></td></tr>
+      <tr><td>2026-06</td><td class="num">6.2</td><td class="num">2.95</td><td class="num">9.15</td><td class="num">1,555</td><td class="num">142.3</td></tr>
+      <tr class="main"><td><b>2Q26 합계</b></td><td class="num"><b>19.1</b></td><td class="num"><b>8.75</b></td><td class="num"><b>27.85</b></td><td class="num">1,510</td><td class="num"><b>420.6</b></td></tr>
+      <tr><td>1Q26 실측 (참고)</td><td class="num">15.4</td><td class="num">7.97</td><td class="num">23.4</td><td class="num">1,469</td><td class="num">343.8</td></tr>
+      <tr><td>QoQ 증감</td><td class="num up">+24.0%</td><td class="num up">+9.8%</td><td class="num up">+19.0%</td><td class="num up">+2.8%</td><td class="num up"><b>+22.3%</b></td></tr>
+    </tbody>
+  </table>
+
+  <div class="invalid"><b>모니터링 —</b> 6월 대미 수출($6.2M)이 5월 피크($6.9M) 대비 -10% 둔화된 것은 <b>리스탁킹 종료의 자연스러운 정상화</b>이며 수요 둔화 신호로 확대 해석할 근거는 아직 없다. 다만 3Q 첫 달 <b>7월 수출(8/1 발표)</b>이 6월 대비 추가 하락하는지가 정상 분기 수요의 바로미터 — 본 추정의 최우선 후속 검증 지표다.</div>
+
+  <div class="chart"><svg width="100%" viewBox="0 0 860 380" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif"><rect x="0" y="0" width="860" height="380" fill="#ffffff"/><text x="98" y="24" fill="#1a1a1a" font-size="13" font-weight="600">지역별 수출 분기 비교 — 1Q26 실측 vs 2Q26 추정 (억원)</text><rect x="98" y="30" width="14" height="10" fill="#3D4A55"/><text x="116" y="39" font-size="10.5" fill="#555555">1Q26 (실측)</text><rect x="221.8" y="30" width="14" height="10" fill="#2e7d4f"/><text x="239.8" y="39" font-size="10.5" fill="#555555">2Q26E (추정)</text><line x1="98" y1="336.0" x2="820" y2="336.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="339.5" text-anchor="end" font-size="10.5" fill="#888888">0</text><line x1="98" y1="279.6" x2="820" y2="279.6" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="283.1" text-anchor="end" font-size="10.5" fill="#888888">94</text><line x1="98" y1="223.2" x2="820" y2="223.2" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="226.7" text-anchor="end" font-size="10.5" fill="#888888">188</text><line x1="98" y1="166.8" x2="820" y2="166.8" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="170.3" text-anchor="end" font-size="10.5" fill="#888888">282</text><line x1="98" y1="110.4" x2="820" y2="110.4" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="113.9" text-anchor="end" font-size="10.5" fill="#888888">376</text><line x1="98" y1="54.0" x2="820" y2="54.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="57.5" text-anchor="end" font-size="10.5" fill="#888888">470</text><rect x="153.3" y="200.0" width="60" height="136.0" fill="#3D4A55"/><text x="183.3" y="194.0" text-anchor="middle" font-size="10" fill="#444">226.7</text><rect x="223.3" y="163.0" width="60" height="173.0" fill="#2e7d4f"/><text x="253.3" y="157.0" text-anchor="middle" font-size="10" fill="#444">288.4</text><text x="218.3" y="139.0" text-anchor="middle" font-size="12" font-weight="700" fill="#c8364d">+27.2%</text><rect x="394.0" y="265.7" width="60" height="70.3" fill="#3D4A55"/><text x="424.0" y="259.7" text-anchor="middle" font-size="10" fill="#444">117.1</text><rect x="464.0" y="256.7" width="60" height="79.3" fill="#2e7d4f"/><text x="494.0" y="250.7" text-anchor="middle" font-size="10" fill="#444">132.2</text><text x="459.0" y="232.7" text-anchor="middle" font-size="12" font-weight="700" fill="#c8364d">+12.9%</text><rect x="634.7" y="129.7" width="60" height="206.3" fill="#3D4A55"/><text x="664.7" y="123.7" text-anchor="middle" font-size="10" fill="#444">343.8</text><rect x="704.7" y="83.6" width="60" height="252.4" fill="#2e7d4f"/><text x="734.7" y="77.6" text-anchor="middle" font-size="10" fill="#444">420.6</text><text x="699.7" y="59.6" text-anchor="middle" font-size="12" font-weight="700" fill="#c8364d">+22.3%</text><line x1="98" y1="336" x2="820" y2="336" stroke="#bbbbbb" stroke-width="1"/><text x="218.3" y="354" text-anchor="middle" font-size="11" fill="#555555">대미 수출</text><text x="459.0" y="354" text-anchor="middle" font-size="11" fill="#555555">유럽·기타</text><text x="699.7" y="354" text-anchor="middle" font-size="11" fill="#555555">총수출</text></svg></div>
+<div class="cap">그림 3. 지역별 수출 분기 비교 — 대미 +27.2%(리스탁킹 주도), 유럽·기타 +12.9%(구조적 다각화), 총수출 +22.3%.</div>
+</section>
+
+<section>
+  <div class="eyebrow g">Part III — 매출·영익 추정</div>
+  <h2>수출 420 + 국내 104 = 매출 525 · 영익 192</h2>
+  <p>수출 추정(420.6억)에 계절성이 낮은 국내 매출(104.4억)을 더하면 2Q 매출 약 <b>525억(YoY +31%, QoQ +17%)</b>. 영익률은 1Q의 이례적 절정(40.5%)보다 낮으나, 리스탁킹 볼륨의 영업레버리지 + 6월 원화 약세로 <b>36.6% 유지 → 영익 192억(YoY +74%)</b>.</p>
+
+  <div class="chart"><svg width="100%" viewBox="0 0 860 380" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif"><rect x="0" y="0" width="860" height="380" fill="#ffffff"/><text x="98" y="24" fill="#1a1a1a" font-size="13" font-weight="600">수출 → 매출 브리지 — 수출 + 국내 구성 (억원)</text><rect x="98" y="30" width="14" height="10" fill="#2e7d4f"/><text x="116" y="39" font-size="10.5" fill="#555555">수출</text><rect x="164.4" y="30" width="14" height="10" fill="#3D4A55"/><text x="182.4" y="39" font-size="10.5" fill="#555555">국내</text><line x1="98" y1="336.0" x2="820" y2="336.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="339.5" text-anchor="end" font-size="10.5" fill="#888888">0</text><line x1="98" y1="289.0" x2="820" y2="289.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="292.5" text-anchor="end" font-size="10.5" fill="#888888">100</text><line x1="98" y1="242.0" x2="820" y2="242.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="245.5" text-anchor="end" font-size="10.5" fill="#888888">200</text><line x1="98" y1="195.0" x2="820" y2="195.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="198.5" text-anchor="end" font-size="10.5" fill="#888888">300</text><line x1="98" y1="148.0" x2="820" y2="148.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="151.5" text-anchor="end" font-size="10.5" fill="#888888">400</text><line x1="98" y1="101.0" x2="820" y2="101.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="104.5" text-anchor="end" font-size="10.5" fill="#888888">500</text><line x1="98" y1="54.0" x2="820" y2="54.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="57.5" text-anchor="end" font-size="10.5" fill="#888888">600</text><rect x="218.5" y="174.4" width="120" height="161.6" fill="#2e7d4f"/><rect x="218.5" y="124.2" width="120" height="50.2" fill="#3D4A55"/><text x="278.5" y="259.2" text-anchor="middle" font-size="11" fill="#fff" font-weight="600">수출 344</text><text x="278.5" y="153.3" text-anchor="middle" font-size="10" fill="#fff">국내 107</text><text x="278.5" y="117.2" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">매출 451억</text><rect x="579.5" y="138.3" width="120" height="197.7" fill="#2e7d4f"/><rect x="579.5" y="89.2" width="120" height="49.1" fill="#3D4A55"/><text x="639.5" y="241.2" text-anchor="middle" font-size="11" fill="#fff" font-weight="600">수출 421</text><text x="639.5" y="117.8" text-anchor="middle" font-size="10" fill="#fff">국내 104</text><text x="639.5" y="82.2" text-anchor="middle" font-size="14" font-weight="700" fill="#2e7d4f">매출 525억 ★</text><line x1="98" y1="336" x2="820" y2="336" stroke="#bbbbbb" stroke-width="1"/><text x="278.5" y="354" text-anchor="middle" font-size="11" fill="#555555">1Q26 (실측)</text><text x="639.5" y="354" text-anchor="middle" font-size="11" fill="#555555">2Q26E (추정)</text></svg></div>
+<div class="cap">그림 4. 수출→매출 브리지 — 수출 343.8→420.6억(+22.3%)이 성장 견인, 국내는 106.9→104.4억 보합. 총매출 450.7→525억.</div>
+
+  <h3>2Q26 손익 추정 (자체)</h3>
+  <table>
+    <thead><tr><th>항목 (억원)</th><th>2Q26E</th><th>2Q25</th><th>YoY</th><th>1Q26 실측</th><th>QoQ</th></tr></thead>
+    <tbody>
+      <tr class="main"><td><b>매출액</b></td><td class="num"><b>525</b></td><td class="num">400</td><td class="num up"><b>+31.3%</b></td><td class="num">450.7</td><td class="num up">+16.5%</td></tr>
+      <tr><td>└ 수출</td><td class="num">420.6</td><td class="num">300</td><td class="num up">+40.2%</td><td class="num">343.8</td><td class="num up">+22.3%</td></tr>
+      <tr><td>└ 국내</td><td class="num">104.4</td><td class="num">100</td><td class="num up">+4.4%</td><td class="num">106.9</td><td class="num down">-2.3%</td></tr>
+      <tr class="main"><td><b>영업이익</b></td><td class="num"><b>192</b></td><td class="num">110</td><td class="num up"><b>+74.5%</b></td><td class="num">182.7</td><td class="num up">+5.1%</td></tr>
+      <tr><td><b>영업이익률</b></td><td class="num"><b>36.6%</b></td><td class="num">27.5%</td><td class="num up"><b>+9.1%p</b></td><td class="num">40.5%</td><td class="num down">-3.9%p</td></tr>
+      <tr><td>순이익</td><td class="num">173</td><td class="num">99</td><td class="num up">+74.7%</td><td class="num">164.4</td><td class="num up">+5.2%</td></tr>
+      <tr><td>EPS (원)</td><td class="num">2,158</td><td class="num">1,235</td><td class="num up">+74.7%</td><td class="num">2,051</td><td class="num up">+5.2%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="nested">
+    <div class="lab">관전 포인트 · "40.5% → 36.6%는 후퇴가 아니다"</div>
+    <div class="body">1Q의 40.5%는 <span class="c">저볼륨·고마진</span>의 이례적 절정. 2Q는 <span class="i">리스탁킹으로 볼륨 회복</span>되며 마진 정상화되나, 매출 +16.5%로 <span class="m">영익 절대액은 182.7 → 192억 증가</span> — 2개 분기 연속 180억+ 진입.</div>
+  </div>
+
+  <h3>시나리오별 2Q 추정 밴드</h3>
+  <div class="scn s-alt"><div class="top"><span class="name">강세 (Upside)</span><span class="badge">30%</span></div><p>매출 540억 · 영익 202억 · 영익률 37.4% — 6월 둔화가 통계 시차, 제품 믹스 우호 지속.</p></div>
+  <div class="scn s-primary"><div class="top"><span class="name">★ 기본 (Base)</span><span class="badge">50%</span></div><p>매출 525억 · 영익 192억 · 영익률 36.6% — 리스탁킹 정상 종료 + 6월 원화 약세 FX 우호.</p></div>
+  <div class="scn s-invalid"><div class="top"><span class="name">보수 (Downside)</span><span class="badge">20%</span></div><p>매출 505억 · 영익 178억 · 영익률 35.2% — 리스탁킹 마케팅비 증가·마이크로니들 부진 지속.</p></div>
+</section>
+
+<section>
+  <div class="eyebrow">Part IV — 반기·연간 전망</div>
+  <h2>1H 영익 375억, 연간 730~760억 경로</h2>
+  <p>1H26 누적 매출 976억·영익 375억(영익률 38.4%). <b>반기 영익만으로 25년 연간(464억)의 80.7%</b>를 채웠다. 2H는 3Q 정상 분기 + 4Q 저기저 회복으로 350~385억 예상 → 연간 영익 <b>730~760억(YoY +57~64%)</b> 경로가 반기 데이터로 재확인.</p>
+
+  <h3>반기 누적 실적 (1Q 실측 + 2Q 추정)</h3>
+  <table>
+    <thead><tr><th>항목 (억원)</th><th>1Q26 실측</th><th>2Q26E</th><th>1H26 누적</th><th>1H25</th><th>YoY</th></tr></thead>
+    <tbody>
+      <tr class="main"><td><b>매출액</b></td><td class="num">450.7</td><td class="num">525</td><td class="num"><b>975.7</b></td><td class="num">913.2</td><td class="num up">+6.8%</td></tr>
+      <tr class="main"><td><b>영업이익</b></td><td class="num">182.7</td><td class="num">192</td><td class="num"><b>374.7</b></td><td class="num">312.2</td><td class="num up"><b>+20.0%</b></td></tr>
+      <tr><td>영업이익률</td><td class="num">40.5%</td><td class="num">36.6%</td><td class="num"><b>38.4%</b></td><td class="num">34.2%</td><td class="num up">+4.2%p</td></tr>
+      <tr><td>순이익</td><td class="num">164.4</td><td class="num">173</td><td class="num">337.4</td><td class="num">257.5</td><td class="num up">+31.0%</td></tr>
+      <tr><td>EPS (원)</td><td class="num">2,051</td><td class="num">2,158</td><td class="num">4,209</td><td class="num">3,199</td><td class="num up">+31.6%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="chart"><svg width="100%" viewBox="0 0 860 380" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif"><rect x="0" y="0" width="860" height="380" fill="#ffffff"/><text x="98" y="24" fill="#1a1a1a" font-size="13" font-weight="600">분기별 매출·영업이익(막대) + 영익률(라인) — 4Q25 바닥 → 정상화 (1Q25~4Q26E)</text><rect x="98" y="30" width="14" height="10" fill="#3D4A55"/><text x="116" y="39" font-size="10.5" fill="#555555">매출(억)</text><rect x="189.0" y="30" width="14" height="10" fill="#2e7d4f"/><text x="207.0" y="39" font-size="10.5" fill="#555555">영업이익(억)</text><line x1="296.4" y1="36" x2="318.4" y2="36" stroke="#b8860b" stroke-width="3"/><text x="322.4" y="39" font-size="10.5" fill="#555555">영익률(%, 우축)</text><line x1="98" y1="336.0" x2="820" y2="336.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="339.5" text-anchor="end" font-size="10.5" fill="#888888">0</text><line x1="98" y1="289.0" x2="820" y2="289.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="292.5" text-anchor="end" font-size="10.5" fill="#888888">100</text><line x1="98" y1="242.0" x2="820" y2="242.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="245.5" text-anchor="end" font-size="10.5" fill="#888888">200</text><line x1="98" y1="195.0" x2="820" y2="195.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="198.5" text-anchor="end" font-size="10.5" fill="#888888">300</text><line x1="98" y1="148.0" x2="820" y2="148.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="151.5" text-anchor="end" font-size="10.5" fill="#888888">400</text><line x1="98" y1="101.0" x2="820" y2="101.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="104.5" text-anchor="end" font-size="10.5" fill="#888888">500</text><line x1="98" y1="54.0" x2="820" y2="54.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="57.5" text-anchor="end" font-size="10.5" fill="#888888">600</text><text x="826" y="339.5" text-anchor="start" font-size="10.5" fill="#b8860b">0%</text><text x="826" y="283.1" text-anchor="start" font-size="10.5" fill="#b8860b">10%</text><text x="826" y="226.7" text-anchor="start" font-size="10.5" fill="#b8860b">20%</text><text x="826" y="170.3" text-anchor="start" font-size="10.5" fill="#b8860b">30%</text><text x="826" y="113.9" text-anchor="start" font-size="10.5" fill="#b8860b">40%</text><text x="826" y="57.5" text-anchor="start" font-size="10.5" fill="#b8860b">50%</text><rect x="111.1" y="94.8" width="30" height="241.2" fill="#3D4A55"/><rect x="145.1" y="241.0" width="30" height="95.0" fill="#2e7d4f"/><rect x="201.4" y="148.0" width="30" height="188.0" fill="#3D4A55"/><rect x="235.4" y="284.3" width="30" height="51.7" fill="#2e7d4f"/><rect x="291.6" y="150.3" width="30" height="185.7" fill="#3D4A55"/><rect x="325.6" y="283.8" width="30" height="52.2" fill="#2e7d4f"/><rect x="381.9" y="179.3" width="30" height="156.7" fill="#3D4A55"/><rect x="415.9" y="317.1" width="30" height="18.9" fill="#2e7d4f"/><rect x="472.1" y="124.2" width="30" height="211.8" fill="#3D4A55"/><rect x="506.1" y="250.1" width="30" height="85.9" fill="#2e7d4f"/><rect x="562.4" y="89.2" width="30" height="246.8" fill="#3D4A55"/><rect x="596.4" y="245.8" width="30" height="90.2" fill="#2e7d4f"/><rect x="652.6" y="97.2" width="30" height="238.8" fill="#3D4A55"/><rect x="686.6" y="252.3" width="30" height="83.7" fill="#2e7d4f"/><rect x="742.9" y="94.0" width="30" height="242.0" fill="#3D4A55"/><rect x="776.9" y="250.5" width="30" height="85.5" fill="#2e7d4f"/><line x1="549.2" y1="54" x2="549.2" y2="336" stroke="#b8860b" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.7"/><text x="543.2" y="66" text-anchor="end" font-size="10" fill="#b8860b">실측</text><text x="555.2" y="66" text-anchor="start" font-size="10" fill="#b8860b">추정</text><polyline points="143.1,113.7 233.4,180.9 323.6,177.5 413.9,267.9 504.1,107.4 594.4,129.6 684.6,138.6 774.9,136.9" fill="none" stroke="#b8860b" stroke-width="3"/><circle cx="143.1" cy="113.7" r="3.5" fill="#b8860b" stroke="#fff" stroke-width="1.2"/><circle cx="233.4" cy="180.9" r="3.5" fill="#b8860b" stroke="#fff" stroke-width="1.2"/><circle cx="323.6" cy="177.5" r="3.5" fill="#b8860b" stroke="#fff" stroke-width="1.2"/><circle cx="413.9" cy="267.9" r="3.5" fill="#b8860b" stroke="#fff" stroke-width="1.2"/><circle cx="504.1" cy="107.4" r="3.5" fill="#b8860b" stroke="#fff" stroke-width="1.2"/><circle cx="594.4" cy="129.6" r="3.5" fill="#b8860b" stroke="#fff" stroke-width="1.2"/><circle cx="684.6" cy="138.6" r="3.5" fill="#b8860b" stroke="#fff" stroke-width="1.2"/><circle cx="774.9" cy="136.9" r="3.5" fill="#b8860b" stroke="#fff" stroke-width="1.2"/><line x1="98" y1="336" x2="820" y2="336" stroke="#bbbbbb" stroke-width="1"/><text x="143.1" y="354" text-anchor="middle" font-size="11" fill="#555555">1Q25</text><text x="233.4" y="354" text-anchor="middle" font-size="11" fill="#555555">2Q25</text><text x="323.6" y="354" text-anchor="middle" font-size="11" fill="#555555">3Q25</text><text x="413.9" y="354" text-anchor="middle" font-size="11" fill="#555555">4Q25</text><text x="504.1" y="354" text-anchor="middle" font-size="11" fill="#555555">1Q26</text><text x="594.4" y="354" text-anchor="middle" font-size="11" fill="#555555">2Q26E</text><text x="684.6" y="354" text-anchor="middle" font-size="11" fill="#555555">3Q26E</text><text x="774.9" y="354" text-anchor="middle" font-size="11" fill="#555555">4Q26E</text></svg></div>
+<div class="cap">그림 5. 분기별 매출·영업이익(막대) + 영익률(라인). 4Q25 바닥(영익 40.3) → 1Q26 V자(182.7) → 2Q26E 정상마진 고볼륨(192). 영익률 34~37% 정상 밴드 안착.</div>
+
+  <h3>분기별 26년 전망</h3>
+  <table>
+    <thead><tr><th>분기</th><th>매출 (억)</th><th>YoY</th><th>영익 (억)</th><th>영익률</th><th>핵심 동력</th></tr></thead>
+    <tbody>
+      <tr><td>1Q26 실측</td><td class="num">450.7</td><td class="num down">-12.2%</td><td class="num">182.7</td><td class="num">40.5%</td><td>수익성 절정 + 환율</td></tr>
+      <tr class="main"><td><b>2Q26E (수출추정)</b></td><td class="num"><b>525</b></td><td class="num up">+31.3%</td><td class="num"><b>192</b></td><td class="num">36.6%</td><td>H사 리스탁킹 + 원화약세</td></tr>
+      <tr><td>3Q26E</td><td class="num">495~520</td><td class="num up">+25~32%</td><td class="num">170~185</td><td class="num">34~36%</td><td>정상 분기 + 신규 ODM</td></tr>
+      <tr><td>4Q26E</td><td class="num">500~530</td><td class="num up">+50~59%</td><td class="num">172~192</td><td class="num">34~36%</td><td>저기저 + 정상화</td></tr>
+      <tr class="main"><td><b>26년 합계</b></td><td class="num"><b>1,980~2,100</b></td><td class="num up">+21~28%</td><td class="num"><b>730~760</b></td><td class="num">36~37%</td><td>회복 + 신성장</td></tr>
+    </tbody>
+  </table>
+
+  <div class="invalid"><b>전망 갱신 —</b> 1Q26 보고서의 연간 영익 700~750억을 <b>730~760억으로 상향</b>. 근거: (1) 2Q 수출이 리스탁킹 가정 상단 확인, (2) 6월 원화 약세로 하반기 환율 가정 1,469→1,500원대 상향, (3) 1H 영익 375억으로 이미 연간의 절반 확정. <b>26E EPS 7,650→7,800원, 27E EPS 8,800원.</b></div>
+</section>
+
+<section>
+  <div class="eyebrow s">Part V — 밸류·주가</div>
+  <h2>26E PER 8.6배, 6월 폭락장에도 W1 위 안착</h2>
+  <p>6/30 종가 66,800원 기준 <b>26E PER 8.6배</b> — 의료기기 peer 평균(13~15배) 대비 여전히 -40% 할인. 6월 코스피가 검은화요일(-9.99%) 등 두 차례 서킷브레이커로 요동친 와중에도 티앤엘은 <b>W1 저항(65,500)을 종가로 지켜내며</b> Wave 3 진행을 유지, 5/15 대비 +9.2%로 지수를 큰 폭 아웃퍼폼.</p>
+
+  <h3>밸류에이션 — 26E/27E 갱신</h3>
+  <table>
+    <thead><tr><th>시나리오</th><th>EPS 기준</th><th>적용 PER</th><th>적정주가</th><th>6/30 대비</th></tr></thead>
+    <tbody>
+      <tr><td>보수 (1H EPS × 2)</td><td class="num">8,418원</td><td class="num">10배</td><td class="num">84,000원</td><td class="num up">+25.7%</td></tr>
+      <tr class="main"><td><b>★ 기본 (26E EPS 7,800)</b></td><td class="num"><b>7,800원</b></td><td class="num"><b>13배</b></td><td class="num"><b>101,400원</b></td><td class="num up"><b>+51.8%</b></td></tr>
+      <tr class="main"><td><b>★ 강세 (27E EPS 8,800)</b></td><td class="num"><b>8,800원</b></td><td class="num"><b>13배</b></td><td class="num"><b>114,400원</b></td><td class="num up"><b>+71.3%</b></td></tr>
+      <tr><td>보수 밸류 (26E × 12배)</td><td class="num">7,800원</td><td class="num">12배</td><td class="num">93,600원</td><td class="num up">+40.1%</td></tr>
+    </tbody>
+  </table>
+
+  <h3>밸류에이션 지표 요약 (6/30 종가 66,800원)</h3>
+  <table>
+    <thead><tr><th>지표</th><th>2024</th><th>2025</th><th>2026E</th><th>2027E</th></tr></thead>
+    <tbody>
+      <tr><td>EPS (원)</td><td class="num">5,749</td><td class="num">4,725</td><td class="num ok">7,800</td><td class="num ok">8,800</td></tr>
+      <tr><td>영업이익 (억)</td><td class="num">570</td><td class="num">464</td><td class="num ok">730~760</td><td class="num ok">820~900</td></tr>
+      <tr class="main"><td><b>PER (배)</b></td><td class="num">11.6</td><td class="num">14.1</td><td class="num ok"><b>8.6</b></td><td class="num ok"><b>7.6</b></td></tr>
+    </tbody>
+  </table>
+
+  <div class="chart"><svg width="100%" viewBox="0 0 860 380" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif"><rect x="0" y="0" width="860" height="380" fill="#ffffff"/><text x="98" y="24" fill="#1a1a1a" font-size="13" font-weight="600">12개월 가격 시나리오 — 6/30 종가 66,800원 출발 (가중 목표 101,000)</text><line x1="98" y1="36" x2="120" y2="36" stroke="#2e7d4f" stroke-width="3"/><text x="124" y="39" font-size="10.5" fill="#555555">Super Bull 30%</text><line x1="262.79999999999995" y1="36" x2="284.79999999999995" y2="36" stroke="#2d8a4e" stroke-width="3"/><text x="288.79999999999995" y="39" font-size="10.5" fill="#555555">Strong Bull 40%</text><line x1="435.79999999999995" y1="36" x2="457.79999999999995" y2="36" stroke="#b8860b" stroke-width="3"/><text x="461.79999999999995" y="39" font-size="10.5" fill="#555555">Bull 22%</text><line x1="551.4" y1="36" x2="573.4" y2="36" stroke="#2c5fb7" stroke-width="3"/><text x="577.4" y="39" font-size="10.5" fill="#555555">Base 8%</text><line x1="98" y1="336.0" x2="820" y2="336.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="339.5" text-anchor="end" font-size="10.5" fill="#888888">50,000</text><line x1="98" y1="289.0" x2="820" y2="289.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="292.5" text-anchor="end" font-size="10.5" fill="#888888">61,333</text><line x1="98" y1="242.0" x2="820" y2="242.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="245.5" text-anchor="end" font-size="10.5" fill="#888888">72,667</text><line x1="98" y1="195.0" x2="820" y2="195.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="198.5" text-anchor="end" font-size="10.5" fill="#888888">84,000</text><line x1="98" y1="148.0" x2="820" y2="148.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="151.5" text-anchor="end" font-size="10.5" fill="#888888">95,333</text><line x1="98" y1="101.0" x2="820" y2="101.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="104.5" text-anchor="end" font-size="10.5" fill="#888888">106,667</text><line x1="98" y1="54.0" x2="820" y2="54.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="57.5" text-anchor="end" font-size="10.5" fill="#888888">118,000</text><line x1="98" y1="196.2" x2="820" y2="196.2" stroke="#c8364d" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.55"/><text x="816" y="192.2" text-anchor="end" font-size="9.5" font-weight="700" fill="#c8364d">ATH 83,700</text><line x1="98" y1="271.7" x2="820" y2="271.7" stroke="#2e7d4f" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.55"/><text x="816" y="267.7" text-anchor="end" font-size="9.5" font-weight="700" fill="#2e7d4f">W1 65,500 지지전환</text><line x1="98" y1="124.5" x2="820" y2="124.5" stroke="#b8860b" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.55"/><text x="816" y="120.5" text-anchor="end" font-size="9.5" font-weight="700" fill="#b8860b">메인 목표 101,000 (+51%)</text><line x1="98" y1="302.8" x2="820" y2="302.8" stroke="#c8364d" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.55"/><text x="816" y="298.8" text-anchor="end" font-size="9.5" font-weight="700" fill="#c8364d">손절 58,000</text><line x1="278.5" y1="54" x2="278.5" y2="336" stroke="#b8860b" stroke-width="2" stroke-dasharray="5 3" opacity="0.6"/><text x="283.5" y="66" font-size="10" font-weight="700" fill="#b8860b">8/15 어닝 ★</text><polyline points="158.2,266.3 278.5,219.9 398.8,178.4 519.2,136.9 639.5,103.8 759.8,78.9" fill="none" stroke="#2e7d4f" stroke-width="4"/><circle cx="158.2" cy="266.3" r="3" fill="#2e7d4f"/><circle cx="278.5" cy="219.9" r="3" fill="#2e7d4f"/><circle cx="398.8" cy="178.4" r="3" fill="#2e7d4f"/><circle cx="519.2" cy="136.9" r="3" fill="#2e7d4f"/><circle cx="639.5" cy="103.8" r="3" fill="#2e7d4f"/><circle cx="759.8" cy="78.9" r="3" fill="#2e7d4f"/><polyline points="158.2,266.3 278.5,236.5 398.8,203.3 519.2,170.1 639.5,145.2 759.8,128.6" fill="none" stroke="#2d8a4e" stroke-width="3"/><circle cx="158.2" cy="266.3" r="3" fill="#2d8a4e"/><circle cx="278.5" cy="236.5" r="3" fill="#2d8a4e"/><circle cx="398.8" cy="203.3" r="3" fill="#2d8a4e"/><circle cx="519.2" cy="170.1" r="3" fill="#2d8a4e"/><circle cx="639.5" cy="145.2" r="3" fill="#2d8a4e"/><circle cx="759.8" cy="128.6" r="3" fill="#2d8a4e"/><polyline points="158.2,266.3 278.5,253.1 398.8,228.2 519.2,203.3 639.5,190.9 759.8,178.4" fill="none" stroke="#b8860b" stroke-width="2.5" stroke-dasharray="6 4"/><circle cx="158.2" cy="266.3" r="3" fill="#b8860b"/><circle cx="278.5" cy="253.1" r="3" fill="#b8860b"/><circle cx="398.8" cy="228.2" r="3" fill="#b8860b"/><circle cx="519.2" cy="203.3" r="3" fill="#b8860b"/><circle cx="639.5" cy="190.9" r="3" fill="#b8860b"/><circle cx="759.8" cy="178.4" r="3" fill="#b8860b"/><polyline points="158.2,266.3 278.5,265.5 398.8,244.8 519.2,228.2 639.5,219.9 759.8,211.6" fill="none" stroke="#2c5fb7" stroke-width="2" stroke-dasharray="6 4"/><circle cx="158.2" cy="266.3" r="3" fill="#2c5fb7"/><circle cx="278.5" cy="265.5" r="3" fill="#2c5fb7"/><circle cx="398.8" cy="244.8" r="3" fill="#2c5fb7"/><circle cx="519.2" cy="228.2" r="3" fill="#2c5fb7"/><circle cx="639.5" cy="219.9" r="3" fill="#2c5fb7"/><circle cx="759.8" cy="211.6" r="3" fill="#2c5fb7"/><circle cx="158.2" cy="266.3" r="6" fill="#b8860b" stroke="#fff" stroke-width="2"/><line x1="98" y1="336" x2="820" y2="336" stroke="#bbbbbb" stroke-width="1"/><text x="158.2" y="354" text-anchor="middle" font-size="11" fill="#555555">6/30</text><text x="278.5" y="354" text-anchor="middle" font-size="11" fill="#555555">8/15 어닝</text><text x="398.8" y="354" text-anchor="middle" font-size="11" fill="#555555">9/30</text><text x="519.2" y="354" text-anchor="middle" font-size="11" fill="#555555">12/31</text><text x="639.5" y="354" text-anchor="middle" font-size="11" fill="#555555">27/03</text><text x="759.8" y="354" text-anchor="middle" font-size="11" fill="#555555">27/06</text></svg></div>
+<div class="cap">그림 6. 12개월 가격 시나리오 (6/30 종가 66,800원 출발). 수출 실적 가시성으로 Strong Bull 40% 유지·Super Bull 30%, 6월 변동성 잔존으로 Base 소폭 가중. 가중 목표 101,000원(+51%).</div>
+</section>
+
+<section>
+  <div class="eyebrow">Part VI — 전략·체크리스트</div>
+  <h2>보유 유지·조정 시 분할, 어닝 D-45 포지셔닝</h2>
+  <p>수출 데이터가 2Q 어닝 서프라이즈 개연성을 지지 → <b>어닝 전 포지션 유지</b>가 기본. 신규 진입은 62~64K 조정 시 분할. 손절 58,000원, 12개월 목표 101,000원, RR 3.9~5.4:1.</p>
+
+  <h3>매수/매도 매트릭스</h3>
+  <table class="mtx">
+    <thead><tr><th>액션</th><th>차수</th><th>가격대</th><th>비중</th><th>트리거</th></tr></thead>
+    <tbody>
+      <tr><td class="ok">매수</td><td class="num">1차</td><td class="num">62,000~64,000</td><td class="num">30%</td><td>W1 재테스트 지지</td></tr>
+      <tr><td class="ok">매수</td><td class="num">2차</td><td class="num">58,000~60,000</td><td class="num">30%</td><td>코스피 약세 동조</td></tr>
+      <tr><td class="ok">매수</td><td class="num">3차</td><td class="num">70,000~73,000</td><td class="num">25%</td><td>2Q 어닝 서프라이즈 확인</td></tr>
+      <tr><td class="ok">매수</td><td class="num">4차</td><td class="num">78,000~82,000</td><td class="num">15%</td><td>ATH 83,700 돌파</td></tr>
+      <tr><td class="no">익절</td><td class="num">1차</td><td class="num">73,000~76,000</td><td class="num">15%</td><td>어닝 후 갭업 차익</td></tr>
+      <tr><td class="no">익절</td><td class="num">2차</td><td class="num">83,000~86,000</td><td class="num">25%</td><td>ATH 영역</td></tr>
+      <tr><td class="no">익절</td><td class="num">3차</td><td class="num">98,000~102,000</td><td class="num">35%</td><td>메인 목표</td></tr>
+      <tr><td class="no">익절</td><td class="num">4차</td><td class="num">112,000~116,000</td><td class="num">25%</td><td>Wave 5 강세 한계</td></tr>
+    </tbody>
+  </table>
+
+  <h3>RR (Risk-Reward) 매트릭스 · 6/30 종가 66,800원</h3>
+  <table class="mtx">
+    <thead><tr><th>기간</th><th>목표가</th><th>상승여력</th><th>손절가</th><th>위험</th><th>RR</th></tr></thead>
+    <tbody>
+      <tr><td>1~2개월 (어닝)</td><td class="num">76,000</td><td class="num up">+13.8%</td><td class="num">62,000</td><td class="num down">-7.2%</td><td class="num">1.9 : 1</td></tr>
+      <tr><td>3개월 (ATH)</td><td class="num">83,700</td><td class="num up">+25.3%</td><td class="num">62,000</td><td class="num down">-7.2%</td><td class="num">3.5 : 1</td></tr>
+      <tr class="main"><td><b>6~12개월 (메인)</b></td><td class="num"><b>101,000</b></td><td class="num up"><b>+51.2%</b></td><td class="num">58,000</td><td class="num down">-13.2%</td><td class="num"><b>3.9 : 1</b></td></tr>
+      <tr class="main"><td><b>★ 12~18개월 (강세)</b></td><td class="num"><b>114,000</b></td><td class="num up"><b>+70.7%</b></td><td class="num">58,000</td><td class="num down">-13.2%</td><td class="num"><b>5.4 : 1</b></td></tr>
+    </tbody>
+  </table>
+
+  <h3>어닝 D-45 체크리스트</h3>
+  <table>
+    <thead><tr><th>지표</th><th>확인 시점</th><th>의미</th><th>본 추정 방향</th></tr></thead>
+    <tbody>
+      <tr class="main"><td>2Q 수출 통계 (4~6월)</td><td>7/1 확인 완료</td><td>매출의 76% 선행 확정</td><td class="ok">✓ 상향 지지</td></tr>
+      <tr><td>7월 수출 (HS 3005.10)</td><td>8/1 발표</td><td>3Q 정상 수요 바로미터</td><td>중립 대기</td></tr>
+      <tr><td>C&amp;D 2Q 실적·가이던스</td><td>8월 초</td><td>H사 리스탁킹 재확인</td><td class="ok">우호 예상</td></tr>
+      <tr class="main"><td><b>티앤엘 2Q DART 어닝</b></td><td><b>8월 중순</b></td><td>추정 vs 실측 검증</td><td class="ok"><b>매출 525·영익 192</b></td></tr>
+      <tr><td>마이크로니들 회복 여부</td><td>어닝 사업부문</td><td>신성장 동력 정상화</td><td>모니터링</td></tr>
+    </tbody>
+  </table>
+
+  <div class="nested">
+    <div class="lab">Final Verdict · 2Q 수출 선행 추정 결론</div>
+    <div class="body">티앤엘의 2분기는 실적 발표를 기다릴 필요 없이 <span class="c">이미 관세청 데이터에 골격이 새겨져 있다</span>. 수출은 리스탁킹 가정 상단에서 확인, 6월 원화 약세가 원화 매출을 추가 견인 — <span class="i">1Q 어닝 서프라이즈의 2Q 재현 개연성</span>. 26E PER 8.6배는 정상화 실적 대비 -40% 할인. <span class="m">최우선 후속 검증은 8/1 7월 수출.</span></div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="disc">본 보고서는 2026년 7월 1일 관세청 6월 수출입동향 발표 후 작성된 <b>2분기 실적 선행 추정</b>입니다. 2Q 수출 수치는 관세청 HS 3005.10(접착성 드레싱·반창고) 월별 통계를 티앤엘 1Q26 실측 지역별 매출(DART 분기보고서: 미국 226.7억·유럽 등 117.1억)과 대미 점유 우위로 환산한 <b>프록시 추정치</b>이며, HS 코드에는 타사 물량이 일부 포함될 수 있습니다. 매출·영익·EPS 추정은 수출 프록시 + 국내 매출 + 2Q 평균환율 1,510원(추정) 가정 기반이며, 8월 중순 공시될 실제 2Q DART 실적과 차이가 발생할 수 있습니다. 1Q26 실측(매출 450.7억·영익 182.7억·EPS 2,051원)은 DART 분기보고서(2026.05.15) 기준.</div>
+  <p>본 보고서는 정보 제공 목적으로만 작성되었으며 특정 종목의 매수·매도를 권유하지 않습니다. 투자에 따른 모든 위험과 결과는 투자자 본인에게 귀속됩니다.</p>
+  <p class="sig">— Chory &amp; Rochet · The T&amp;L Report · Vol. II No. 3</p>
+  <p class="printnote">PRINT · 브라우저에서 Ctrl+P (Cmd+P) → PDF로 저장</p>
+</footer>
+
+</div></body></html>
