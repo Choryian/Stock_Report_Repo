@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOSPI Elliott Wave Recount No.004 (주중 임시 개정) | Chory &amp; Rochet</title>
+<style>
+  :root{
+    --navy:#1a2744; --navy-2:#243356; --burgundy:#8b2635; --gold:#b08d3e;
+    --ink:#22262e; --muted:#6b7280; --line:#d9dde5; --bg:#f6f7f9; --card:#ffffff;
+    --up:#c0392b; --down:#2456a6; --warn-bg:#fdf3e7; --warn-bd:#e2b06c;
+    --ok:#1e7a4f;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:15px;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px 60px;}
+  header.masthead{background:var(--navy);color:#fff;padding:34px 0 26px;}
+  .masthead .wrap{padding-bottom:0;}
+  .brand{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:16px;flex-wrap:wrap;gap:6px;}
+  .brand .name{font-size:15px;letter-spacing:2.5px;font-weight:700;color:var(--gold);}
+  .brand .cat{font-size:12px;color:#aeb8cf;letter-spacing:1px;}
+  h1{font-size:27px;font-weight:800;line-height:1.35;margin-bottom:8px;}
+  .subtitle{font-size:15px;color:#c3ccdf;margin-bottom:14px;}
+  .meta{font-size:12.5px;color:#93a0bb;display:flex;gap:18px;flex-wrap:wrap;}
+  .badge-interim{display:inline-block;background:var(--burgundy);color:#fff;font-size:11.5px;font-weight:700;letter-spacing:1px;padding:3px 10px;border-radius:3px;margin-bottom:12px;}
+  section{margin-top:38px;}
+  h2{font-size:19px;color:var(--navy);border-left:5px solid var(--burgundy);padding-left:12px;margin-bottom:16px;letter-spacing:-0.3px;}
+  h3{font-size:15.5px;color:var(--navy-2);margin:20px 0 8px;}
+  p{margin-bottom:10px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px 22px;margin-bottom:14px;}
+  .lead{background:var(--navy);color:#eef1f7;border-radius:8px;padding:22px 24px;font-size:15.5px;}
+  .lead strong{color:var(--gold);}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0 6px;background:#fff;}
+  th{background:var(--navy-2);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap;}
+  td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:nth-child(even) td{background:#fafbfc;}
+  .num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .up{color:var(--up);font-weight:600;} .dn{color:var(--down);font-weight:600;}
+  .tbl-scroll{overflow-x:auto;}
+  .warn{background:var(--warn-bg);border:1px solid var(--warn-bd);border-radius:6px;padding:14px 16px;font-size:14px;margin:12px 0;}
+  .verdict{background:#eef4ee;border:1px solid #9fc3a8;border-radius:6px;padding:14px 16px;font-size:14px;margin:12px 0;}
+  .danger{background:#fbeeee;border:1px solid #d9a2a2;border-radius:6px;padding:14px 16px;font-size:14px;margin:12px 0;}
+  .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0;}
+  .kpi{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:6px;padding:12px 14px;}
+  .kpi .k{font-size:11.5px;color:var(--muted);letter-spacing:0.5px;}
+  .kpi .v{font-size:19px;font-weight:800;color:var(--navy);margin-top:2px;font-variant-numeric:tabular-nums;}
+  .kpi .s{font-size:12px;color:var(--muted);}
+  .prob-bar{display:flex;height:34px;border-radius:6px;overflow:hidden;font-size:12.5px;font-weight:700;color:#fff;margin:12px 0 4px;}
+  .prob-bar div{display:flex;align-items:center;justify-content:center;white-space:nowrap;}
+  .pb-a{background:var(--navy);} .pb-b{background:var(--burgundy);} .pb-c{background:#7a8699;}
+  .chart-box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;margin:14px 0;overflow-x:auto;}
+  .chart-caption{font-size:12px;color:var(--muted);margin-top:6px;text-align:center;}
+  ul,ol{padding-left:22px;margin-bottom:10px;}
+  li{margin-bottom:5px;}
+  .src{font-size:12px;color:var(--muted);}
+  .foot{margin-top:50px;border-top:2px solid var(--navy);padding-top:16px;font-size:12px;color:var(--muted);}
+  .foot .brandline{font-weight:700;color:var(--navy);letter-spacing:2px;font-size:13px;margin-bottom:6px;}
+  code{background:#eef0f4;border-radius:3px;padding:1px 5px;font-size:13px;font-variant-numeric:tabular-nums;}
+  .ifthen{border-left:4px solid var(--navy);background:#fff;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0 6px 6px 0;padding:12px 15px;margin-bottom:10px;font-size:14px;}
+  .ifthen.buy{border-left-color:var(--ok);}
+  .ifthen.sell{border-left-color:var(--burgundy);}
+  .ifthen b.tag{display:inline-block;font-size:11px;letter-spacing:1px;color:#fff;background:var(--navy);border-radius:3px;padding:1px 7px;margin-right:8px;vertical-align:1px;}
+  .ifthen.buy b.tag{background:var(--ok);} .ifthen.sell b.tag{background:var(--burgundy);}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="brand">
+      <span class="name">CHORY &amp; ROCHET</span>
+      <span class="cat">Market Strategy | Elliott Wave Series</span>
+    </div>
+    <div class="badge-interim">주중 임시 개정판 — INTERIM REVISION</div>
+    <h1>KOSPI Elliott Wave Recount No.004<br>7,378 붕괴 이후: 카운트는 살아있는가</h1>
+    <div class="subtitle">확대 플랫 종결 가설의 붕괴와 재구성 — 7,063.76, 무효화선 앞 10.8포인트의 방어</div>
+    <div class="meta">
+      <span>발행: Chory &amp; Rochet 리서치센터</span>
+      <span>기준일: 2026-07-09 (목) 장 마감</span>
+      <span>선행 보고서: No.003 (2026-07-03)</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ================= 0. 요약 ================= -->
+<section>
+  <div class="lead">
+    <p><strong>한 줄 요약</strong> — No.003이 Cycle 4파 바닥 후보로 지목한 7,378.10은 주중에 붕괴했다. 그러나 지수는 7/9(목) 장중 <strong>7,063.76</strong>, 즉 최종 무효화 위계의 마지막 방어선인 5/20 스윙 저점 7,053을 불과 <strong>10.8p</strong> 남긴 지점에서 V자 반전해 7,291.91로 상승 마감했다. 재카운트 결과, Ⓒ파는 종결이 아니라 <strong>연장 중이었으며</strong>, 그 연장이 7/9 저점에서 수렴형 엔딩 다이어고널(terminal 구조)로 완성됐을 가능성이 가장 높다(가중 50%). Cycle 4 바닥 후보는 <strong>7,378.10 → 7,063.76으로 공식 이동</strong>한다. 단, 7,053 종가 이탈 시 대세 하락 카운트(Count B)가 우위로 전환되는 칼끝 위 균형이다.</p>
+  </div>
+  <div class="kpi-row">
+    <div class="kpi"><div class="k">주간 실측 저점 (7/9 장중)</div><div class="v">7,063.76</div><div class="s">무효화선 7,053 대비 +10.8p</div></div>
+    <div class="kpi"><div class="k">7/9 종가</div><div class="v">7,291.91</div><div class="s">+45.12p (+0.62%), 저점 대비 +3.2%</div></div>
+    <div class="kpi"><div class="k">Ⓒ파 실측 배율</div><div class="v">1.557 × Ⓐ</div><div class="s">한계 1.618 (6,973) 이내</div></div>
+    <div class="kpi"><div class="k">9,385.59 대비 낙폭</div><div class="v">−24.74%</div><div class="s">14거래일, 서킷브레이커 2회</div></div>
+  </div>
+</section>
+
+<!-- ================= 1. 실측 데이터 ================= -->
+<section>
+  <h2>1. 주중 실측 데이터 (7/3~7/9) — 무엇이 실제로 일어났나</h2>
+  <div class="card">
+    <div class="tbl-scroll">
+    <table>
+      <tr><th>일자</th><th>시가</th><th>고가</th><th>저가</th><th>종가</th><th>등락</th><th>핵심 이벤트 / 수급</th></tr>
+      <tr>
+        <td class="num">07/03 (금)</td><td class="num">—</td><td class="num">8,136</td><td class="num"><b>7,378.10</b></td><td class="num">8,088.34</td><td class="num up">+5.76%</td>
+        <td>대형 해머, 매수 사이드카(13:47). No.003의 바닥 후보 성립일</td>
+      </tr>
+      <tr>
+        <td class="num">07/06 (월)</td><td class="num">8,186.82</td><td class="num"><b>8,327.26</b></td><td class="num">7,815.53</td><td class="num">8,051.33</td><td class="num dn">−0.46%</td>
+        <td>장중 +2.95%(8,327) → −3.37%(7,815) 급반전, 일중 511p 변동. 개인 +2조6,461억 / 외인 −1조3,105억 / 기관 −1조4,314억</td>
+      </tr>
+      <tr>
+        <td class="num">07/07 (화)</td><td class="num">—</td><td class="num">—</td><td class="num">7,392.04</td><td class="num">7,656.31</td><td class="num dn">−4.91%</td>
+        <td>13:51 <b>서킷브레이커</b>(−8.03%, 올해 6번째). 삼성전자 사상 최대 잠정실적에도 −6.92%. 외인 −2조9,172억(13거래일 연속 순매도) / 개인 +3조1,325억 / 기관 −3,073억</td>
+      </tr>
+      <tr>
+        <td class="num">07/08 (수)</td><td class="num">7,452.48</td><td class="num">7,791.66</td><td class="num">7,186.21</td><td class="num">7,246.79</td><td class="num dn">−5.35%</td>
+        <td>13:31 매도 사이드카. 미-이란 충돌 격화·호르무즈 리스크. <b>외인 순매수 전환</b>(13일 연속 매도 종료). 환율 1,498.5원(−29.7원)</td>
+      </tr>
+      <tr>
+        <td class="num">07/09 (목)</td><td class="num">7,486.64</td><td class="num">7,543.86</td><td class="num"><b>7,063.76</b></td><td class="num">7,291.91</td><td class="num up">+0.62%</td>
+        <td>+3.31% 출발 → IRGC 미군기지(바레인·쿠웨이트) 타격 보도에 7,063까지 급락 → V반등 마감. 기관 +1조2,879억 / 외인 +1,461억 / 개인 −1조3,307억. 환율 1,506.1원</td>
+      </tr>
+    </table>
+    </div>
+    <p class="src">출처(교차검증): 파이낸셜뉴스 fn마감·오후시황(7/6, 7/8, 7/9), 뉴스핌(7/7 서킷브레이커·저가 7,392.04 / 7/8 마감), 이투데이(7/6 일중 511p / 7/9 마감), 뉴스핌·이지경제·오피니언뉴스(7/6 마감 확정 수급), 데일리안·이코노미스트(7/8 −5.35%), 미디어펜·국제뉴스·싱글리스트(7/9 종가 7,291.91·저가 7,063.76·수급), 글로벌이코노믹(7/7 종가 7,656.31). 종가 체인 검산: 8,051.33×(1−0.0491)=7,656.3 ✓, 7,656.31−409.52=7,246.79 ✓, 7,246.79+45.12=7,291.91 ✓</p>
+  </div>
+
+  <h3>예정 이벤트 검증 (No.003 캘린더 대조)</h3>
+  <div class="card">
+    <ul>
+      <li><b>삼성전자 2분기 잠정실적 (7/7, 실제 발표 확인)</b> — 매출 171조 원, 영업이익 <b>89조 4,000억 원</b>(전년동기 +1,810.3%)으로 컨센서스(84조 원대)를 상회하는 사상 최대 어닝서프라이즈. 그러나 시장은 "가격 상승 주도의 후기 사이클 징후"로 해석했고, 당일 삼성전자 −6.92%·코스피 −4.91% 폭락. <b>No.003이 기대한 "바닥 가설 검증 촉매"는 정반대로 작동</b> — 최상의 뉴스에 최악의 가격 반응은 그 자체로 조정 미완의 신호였다.</li>
+      <li><b>중동 사태 (신규 발생, 검증 완료)</b> — 이란의 상선 공격 → 미국의 보복 공습·대이란 제재 복원 → 이란의 쿠웨이트·바레인 미군시설 80여 곳 공격 주장(7/9). 호르무즈 해협 항행 우려가 7/8~7/9 급락의 직접 트리거. No.003 발행 시점에는 존재하지 않던 외생 변수다.</li>
+      <li><b>원/달러 환율</b> — 7/2 고점 ~1,555원 → 7/8 1,498.5원(−29.7원) → 7/9 1,506.1원. 주가 폭락 구간에서 원화가 오히려 강세(1,500선 하향 돌파)를 보인 것은 외인 재유입·당국 개입과 부합하는 이례적 조합.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 2. 해머의 재해석 ================= -->
+<section>
+  <h2>2. 07/03 해머 반등의 사후 판정 — Cycle 5의 개시가 아니라 Ⓒ파 내부 (4)소파였다</h2>
+  <div class="card">
+    <p>7/3 +5.76% 대형 해머는 7/6 오전 <b>8,327.26</b>에서 정확히 소멸했다. 이 반등의 성격은 사후적으로 명확하다.</p>
+    <ul>
+      <li><b>0.618 되돌림 정타</b> — 직전 하락 소파(8,930 → 7,378.10, −1,551.9p)의 61.8% 되돌림은 8,337.2. 실제 반등 고점 8,327.26과의 오차는 <b>9.9p(0.6%)</b>. 전형적인 조정 내부의 반작용 랠리(counter-trend rally) 좌표다.</li>
+      <li><b>지속시간 1.5거래일</b> — 새 임펄스(Cycle 5)의 1파라면 볼 수 없는 수명. 반등은 7/6 오전에 끝났고 같은 날 −3.37%까지 되밀리며 일중 511p 변동을 남겼다.</li>
+      <li><b>수급 부재</b> — 반등일(7/6)에도 외인 −1조3,105억·기관 −1조4,314억(합산 −2조7,419억) 동반 매도. 해머를 만든 것은 개인 매수(+2조6,461억)뿐이었다.</li>
+    </ul>
+    <div class="verdict"><b>규율의 승리</b> — No.003의 매수 트리거는 "8,200 <u>종가</u> 회복"이었다. 실제 종가는 7/3 8,088.34, 7/6 8,051.33으로 <b>트리거는 한 번도 발동되지 않았다</b>(8,200 상회는 장중뿐). 종가 기준 규율을 지킨 포지션은 이번 −12% 추가 하락을 전액 회피했다. 사전규율 체계가 예측 실패를 방어한 실증 사례로 기록한다.</div>
+  </div>
+</section>
+
+<!-- ================= 3. 재카운트 ================= -->
+<section>
+  <h2>3. 파동 재카운트 — 임펄스 기각, 이중 지그재그 + 엔딩 다이어고널</h2>
+
+  <div class="card">
+    <h3>3-1. No.003 카운트의 어디가 틀렸나 (기술적 사인)</h3>
+    <p>No.003은 Ⓒ파(9,385.59 → 7,378.10)를 5파 임펄스 완성으로 판정했다. 이번 주 실측은 두 가지를 기각했다.</p>
+    <ol>
+      <li><b>겹침 규칙 위반</b> — Ⓒ 내부를 임펄스로 유지하려면 (4)소파 고점이 (1)소파 저점(8,081)을 침범할 수 없다. 그러나 7/3~7/6 반등 고점 8,327.26은 8,081을 <b>246p 상회 침범</b>했다. 순수 임펄스 카운트는 규칙상 성립 불가 → Ⓒ의 내부 구조를 다시 읽어야 한다.</li>
+      <li><b>1.382 투영(7,325)의 관통</b> — 미세오차 방어 시나리오는 7/8 장중(7,186)에 소멸. 중간 계산점인 1.5×Ⓐ(7,149)도 7/9에 관통됐다.</li>
+    </ol>
+
+    <h3>3-2. 새 카운트: Ⓒ = 이중 지그재그(W-X-Y), 마지막 c는 수렴형 엔딩 다이어고널</h3>
+    <p>겹침이 허용되는 구조로 다시 읽으면 6/19 이후 전체가 자연스럽게 풀린다.</p>
+    <div class="tbl-scroll">
+    <table>
+      <tr><th>구분</th><th>구간</th><th>크기</th><th>피보나치 검증</th></tr>
+      <tr><td><b>W</b></td><td class="num">9,385.59 → 8,081 (6/23, 서킷 −9.99%)</td><td class="num">−1,304.6p</td><td>첫 지그재그</td></tr>
+      <tr><td><b>X</b></td><td class="num">8,081 → 8,930 (6/25)</td><td class="num">+849p</td><td>W의 65% 되돌림</td></tr>
+      <tr><td><b>Y-a</b></td><td class="num">8,930 → 7,378.10 (7/3)</td><td class="num">−1,551.9p</td><td>7/2 −7.89% 포함</td></tr>
+      <tr><td><b>Y-b</b></td><td class="num">7,378.10 → 8,327.26 (7/6)</td><td class="num">+949.2p</td><td>a의 <b>0.612</b> 되돌림 (0.618 정타, 오차 1%)</td></tr>
+      <tr><td><b>Y-c</b></td><td class="num">8,327.26 → 7,063.76 (7/9)</td><td class="num">−1,263.5p</td><td>c = <b>0.814 × a</b> (0.786~0.81 클러스터), 엔딩 다이어고널</td></tr>
+    </table>
+    </div>
+
+    <h3>3-3. Y-c 내부: 수렴형 엔딩 다이어고널 검증 (규칙 전수 통과)</h3>
+    <div class="tbl-scroll">
+    <table>
+      <tr><th>소파</th><th>구간</th><th>크기</th><th>수렴 조건</th></tr>
+      <tr><td>i</td><td class="num">8,327.26 → 7,392.04 (7/7, CB −8.03%)</td><td class="num">935.2p</td><td rowspan="5" style="vertical-align:middle;">
+        추진파 수렴: i(935) &gt; iii(605) &gt; v(480) ✓<br>
+        조정파 수렴: ii(400) &gt; iv(358) ✓<br>
+        iv가 i 영역 침범(7,543 &gt; 7,392) — <b>다이어고널의 필요조건</b> ✓<br>
+        v/iii = 0.793 ≈ 0.786 ✓
+      </td></tr>
+      <tr><td>ii</td><td class="num">7,392.04 → 7,791.66 (7/8 오전)</td><td class="num">+399.6p</td></tr>
+      <tr><td>iii</td><td class="num">7,791.66 → 7,186.21 (7/8, 사이드카)</td><td class="num">−605.5p</td></tr>
+      <tr><td>iv</td><td class="num">7,186.21 → 7,543.86 (7/9 오전)</td><td class="num">+357.7p</td></tr>
+      <tr><td>v</td><td class="num">7,543.86 → <b>7,063.76</b> (7/9)</td><td class="num">−480.1p</td></tr>
+    </table>
+    </div>
+    <p>엔딩 다이어고널은 정의상 <b>터미널(종결) 구조</b>이며, 완성 직후 급격한 역방향 반전이 뒤따르는 것이 교과서적 특성이다. 7/9 오후 저점 7,063.76에서 종가 7,291.91까지의 당일 +228p(+3.2%) V반등은 이 특성과 정확히 부합한다.</p>
+
+    <h3>3-4. 상위 계위 정합성</h3>
+    <ul>
+      <li><b>Ⓒ 총량</b>: 9,385.59 − 7,063.76 = 2,321.8p = <b>1.557 × Ⓐ</b>(1,490.9p). 확대형 조정의 C(Y) 허용 한계 1.618(=6,973.3) 이내에서 종결 후보 성립.</li>
+      <li><b>이전 4파 지지 원칙</b>: Cycle 4의 종착지로 고전적인 "한 등급 아래 직전 4파 영역" — 5/20 스윙 저점 7,053 — 을 장중 10.8p 차이로 터치·방어. 7,000 심리선·1.618 투영(6,973)과 함께 <b>6,973~7,063 터미널 밴드</b>를 형성.</li>
+      <li><b>구조 명칭 정정</b>: Ⓒ가 5파 임펄스가 아닌 3파 계열(이중 지그재그)로 판독되므로, Cycle 4의 공식 분류를 '확대 플랫(3-3-5)'에서 <b>'확대형 복합 조정(Ⓐ-Ⓑ-Ⓒ, B파가 신고가를 만드는 불규칙 확대형; Ⓒ=W-X-Y)'</b>으로 정정한다. 실무 함의(Ⓑ 신고가 → 깊은 Ⓒ → Cycle 5)는 동일하다.</li>
+      <li><b>수급 방증</b>: 외인 13거래일 연속 순매도가 7/8 종료 → 7/8~7/9 연속 순매수 전환, 7/9 기관 +1조2,879억 vs 개인 −1조3,307억. 개인 신용 청산 물량을 외인·기관이 받는 <b>주체 교대</b>는 바닥권의 전형적 수급 서명이다. 폭락 중 원화 강세(1,555→1,506원)도 동일 방향.</li>
+    </ul>
+  </div>
+
+  <!-- ===== SVG 차트 ===== -->
+  <div class="chart-box">
+    <svg viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" style="min-width:760px;width:100%;height:auto;font-family:'Segoe UI','Malgun Gothic',sans-serif;">
+      <!-- plot bg -->
+      <rect x="60" y="40" width="860" height="440" fill="#fcfcfd" stroke="#e3e6ec"/>
+      <!-- horizontal levels -->
+      <g stroke-dasharray="5,4" stroke-width="1">
+        <line x1="60" y1="59.4"  x2="920" y2="59.4"  stroke="#b08d3e"/>
+        <line x1="60" y1="216.5" x2="920" y2="216.5" stroke="#1e7a4f"/>
+        <line x1="60" y1="399.1" x2="920" y2="399.1" stroke="#c98a8a"/>
+        <line x1="60" y1="454.1" x2="920" y2="454.1" stroke="#8b2635"/>
+        <line x1="60" y1="467.6" x2="920" y2="467.6" stroke="#8b2635"/>
+      </g>
+      <g font-size="11" fill="#6b7280">
+        <text x="64" y="55" fill="#8a6d2f">9,385.59 — ATH (Ⓑ 정점)</text>
+        <text x="64" y="212" fill="#1e7a4f">8,457 — 구조 확정선 (상방 트리거)</text>
+        <text x="64" y="395" fill="#a05656">7,378.10 — 구 바닥 후보 (7/7 붕괴)</text>
+        <text x="700" y="450" fill="#8b2635" font-weight="bold">7,053 — 1차 무효화 (5/20 스윙)</text>
+        <text x="700" y="478" fill="#8b2635">6,973 — 최종 무효화 (1.618×Ⓐ)</text>
+      </g>
+      <!-- diagonal wedge (Y-c) -->
+      <g stroke="#9aa5b8" stroke-width="1.2" stroke-dasharray="7,5" fill="none">
+        <line x1="640" y1="315" x2="890" y2="390"/>
+        <line x1="585" y1="385" x2="890" y2="465"/>
+      </g>
+      <!-- price path -->
+      <polyline fill="none" stroke="#1a2744" stroke-width="2.4" stroke-linejoin="round"
+        points="80,59.4 170,280.1 240,136.5 430,399.1 520,238.5 600,396.7 660,329.1 720,431.6 790,371.0 850,452.3 905,413.7"/>
+      <!-- pivot dots -->
+      <g fill="#1a2744">
+        <circle cx="80" cy="59.4" r="3.5"/><circle cx="170" cy="280.1" r="3.5"/><circle cx="240" cy="136.5" r="3.5"/>
+        <circle cx="430" cy="399.1" r="3.5"/><circle cx="520" cy="238.5" r="3.5"/><circle cx="600" cy="396.7" r="3.5"/>
+        <circle cx="660" cy="329.1" r="3.5"/><circle cx="720" cy="431.6" r="3.5"/><circle cx="790" cy="371.0" r="3.5"/>
+        <circle cx="905" cy="413.7" r="3.5"/>
+      </g>
+      <circle cx="850" cy="452.3" r="5" fill="#8b2635"/>
+      <!-- wave labels -->
+      <g font-size="14" font-weight="bold" fill="#8b2635">
+        <text x="70" y="48">Ⓑ</text>
+        <text x="163" y="300">W</text>
+        <text x="234" y="128">X</text>
+        <text x="424" y="420">a</text>
+        <text x="514" y="230">b</text>
+      </g>
+      <g font-size="12.5" font-weight="bold" fill="#243356">
+        <text x="594" y="416">i</text>
+        <text x="655" y="320">ii</text>
+        <text x="712" y="450">iii</text>
+        <text x="784" y="362">iv</text>
+        <text x="843" y="474" fill="#8b2635">v</text>
+      </g>
+      <!-- annotations -->
+      <g font-size="10.5" fill="#6b7280">
+        <text x="75" y="78">06/19 9,385.59</text>
+        <text x="150" y="268">06/23 8,081 (CB −9.99%)</text>
+        <text x="248" y="150">06/25 8,930</text>
+        <text x="340" y="418">07/03 7,378.10 (해머)</text>
+        <text x="500" y="226">07/06 8,327.26 = 0.618 되돌림</text>
+        <text x="547" y="385">07/07 7,392.04 (CB −8.03%)</text>
+        <text x="668" y="345">07/08 7,791.66</text>
+        <text x="640" y="425">07/08 7,186.21</text>
+        <text x="796" y="358">07/09 7,543.86</text>
+        <text x="770" y="500" font-weight="bold" fill="#8b2635">07/09 저점 7,063.76 (7,053 방어)</text>
+        <text x="885" y="405" font-weight="bold" fill="#1a2744">종가 7,291.91</text>
+      </g>
+      <!-- title + legend -->
+      <text x="60" y="26" font-size="13.5" font-weight="bold" fill="#1a2744">KOSPI — Ⓒ파 재카운트: 이중 지그재그(W-X-Y) + Y-c 수렴형 엔딩 다이어고널 (2026.06.19 ~ 07.09, 피벗 개략도)</text>
+      <text x="60" y="540" font-size="10.5" fill="#9aa3b2">시간축은 피벗 간격 개략(비등간격). 가격축 6,900~9,500. 점선 쐐기 = Y-c 수렴 채널.</text>
+      <!-- y axis ticks -->
+      <g font-size="10" fill="#9aa3b2" text-anchor="end">
+        <text x="55" y="63">9,386</text><text x="55" y="140">8,930</text><text x="55" y="264">8,200</text>
+        <text x="55" y="403">7,378</text><text x="55" y="457">7,053</text><text x="55" y="483">6,900</text>
+      </g>
+    </svg>
+    <div class="chart-caption">Ⓒ파 내부 재카운트 개략도 — W-X-Y 이중 지그재그, 마지막 c(8,327→7,064)는 i&gt;iii&gt;v · ii&gt;iv 수렴 조건을 전수 충족하는 엔딩 다이어고널</div>
+  </div>
+</section>
+
+<!-- ================= 4. 시나리오 ================= -->
+<section>
+  <h2>4. 시나리오 및 확률 가중치</h2>
+  <div class="prob-bar">
+    <div class="pb-a" style="width:50%;">Count A 50%</div>
+    <div class="pb-b" style="width:30%;">Count B 30%</div>
+    <div class="pb-c" style="width:20%;">Count C 20%</div>
+  </div>
+  <div class="card">
+    <h3>Count A (기본, 50%) — Cycle 4 종결 후보: 바닥 7,063.76</h3>
+    <p>Ⓒ(=W-X-Y)가 7/9 엔딩 다이어고널 v파로 완성. Cycle 4 바닥 후보를 <b>7,378.10에서 7,063.76으로 이동</b>하고 Cycle 5 개시를 대기한다. 근거: ① 다이어고널 수렴 규칙 전수 충족 + 당일 V반전, ② Ⓒ=1.557×Ⓐ로 1.618 한계 이내, ③ 5/20 스윙 7,053 방어, ④ 외인 순매수 전환·기관 대량 매수·개인 투매의 주체 교대, ⑤ 폭락 중 원화 강세. Cycle 5 재투영: 7,063.76 기준 1.0배 8,941 / <b>1.236배 9,384 — 구 ATH(9,385.59)와 1.6p 차 더블탑 좌표</b> / 1.618배 10,101. Super Cycle V 합류점 9,704는 유지.</p>
+    <h3>Count B (대안 1, 30%) — 9,385.59 = Cycle 5·Super Cycle V 조기 종결 (대세 하락)</h3>
+    <p>No.003이 예고한 Count 2. 6/8 저점 7,442.73을 Cycle 4 바닥으로, 6/8→6/19의 +26% 분출을 절단성 Cycle 5(블로오프)로 보고, 6/19 이후를 <b>새로운 대세 하락의 개시</b>로 읽는다. 지지 근거: −24.7%의 낙폭 속도, 14거래일 새 서킷브레이커 2회, 사상 최대 실적에 대한 −6.9% 반응(전형적 고점 후 심리). 반박 근거: Cycle 계위의 5파가 8거래일 만에 끝났다는 계위 부정합, 그리고 <b>7,053이 아직 깨지지 않았다</b>. 채택 트리거: 7,053 종가 이탈, 또는 반등이 8,457 회복에 실패한 뒤 7,063.76 신저가 갱신.</p>
+    <h3>Count C (대안 2, 20%) — Cycle 4 미완: 마지막 하락 또는 삼각형 잔여</h3>
+    <p>7,063.76은 Y의 중간 저점일 뿐이며, 7,543~7,791 대역으로의 X성 반등 후 마지막 하락(6,973~7,000 재시험 또는 소폭 하회)이 남았거나, 7,064~8,457 레인지의 삼각형으로 시간 조정이 연장되는 경로. 채택 트리거: 반등이 7,791~8,081에서 소진된 뒤 신저가 없이 수렴 지속, 또는 6,973 장중 터치 후 즉시 복원.</p>
+    <div class="warn"><b>계위 유의</b> — Count A와 C는 방향상 같은 가족(조정 후 Cycle 5)이며 차이는 시점뿐이다. 합산 70% vs Count B 30%. 즉 구조적 우위는 여전히 "조정 마무리" 쪽이지만, 그 판정 전체가 7,053~6,973의 80p 띠 위에 놓여 있다.</div>
+  </div>
+</section>
+
+<!-- ================= 5. 방어선/무효화 위계 ================= -->
+<section>
+  <h2>5. 새 방어선·무효화 위계</h2>
+  <div class="card">
+    <h3>하방 위계</h3>
+    <div class="tbl-scroll">
+    <table>
+      <tr><th>레벨</th><th>의미</th><th>이탈 시 조치</th></tr>
+      <tr><td class="num"><b>7,063.76</b></td><td>주간 실측 저점 = 새 Cycle 4 바닥 후보</td><td>장중 이탈 시 Count C 가중 상향, 경계 태세</td></tr>
+      <tr><td class="num"><b>7,053</b></td><td>5/20 스윙 저점 — <b>1차 무효화선(종가 기준)</b></td><td>종가 이탈 시 Count B 우위 전환(B ≥ 50%), 주식비중 최소밴드</td></tr>
+      <tr><td class="num"><b>6,973</b></td><td>1.618×Ⓐ 투영 — <b>Count A/C 수학적 최종 무효화</b></td><td>종가 이탈 시 Count B 공식 채택, 대조정 국면 선언</td></tr>
+      <tr><td class="num">3,316</td><td>Cycle 1 정점 — 전체 강세 카운트 폐기선 (불변)</td><td>카운팅 전면 재구성</td></tr>
+    </table>
+    </div>
+    <h3>상방 위계</h3>
+    <div class="tbl-scroll">
+    <table>
+      <tr><th>레벨</th><th>의미</th><th>도달 시 판정</th></tr>
+      <tr><td class="num"><b>7,543.86</b></td><td>7/9 반등 고점 = 다이어고널 iv 정점</td><td>종가 상회 시 다이어고널 해소 1차 확인 — 바닥 시도 유효</td></tr>
+      <tr><td class="num">7,791.66 → 8,081</td><td>7/8 반등 고점 → W저점(구 소파 저항 벨트)</td><td>돌파 누적 시 Count C의 "추가 하락" 경로 소거</td></tr>
+      <tr><td class="num">8,327.26</td><td>Y-b 고점(0.618 되돌림 좌표)</td><td>상회 시 6/19 이후 하락 구조 전체 종료 사실상 확정</td></tr>
+      <tr><td class="num"><b>8,457</b></td><td>구조 확정선 (No.003 승계)</td><td><b>종가 안착 시 Cycle 4 종결 공식 확정 + Cycle 5 진행 선언</b></td></tr>
+      <tr><td class="num">9,385.59</td><td>ATH = Cycle 5 1.236 투영(9,384)과 중첩</td><td>돌파 시 Cycle 5 확정, 미돌파 반락 시 더블탑 경계</td></tr>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 6. 트레이딩 가이드 ================= -->
+<section>
+  <h2>6. 트레이딩 가이드 갱신 (규율 기반 자산배분 관점)</h2>
+  <div class="card">
+    <div class="danger"><b>구 가이드 폐기</b> — No.003의 "8,200 종가 회복 시 분할매수"는 공식 폐기한다. 종가 기준 미발동으로 실집행·실손실은 없었으나(2절 참조), 기준 좌표 자체가 구 카운트(바닥 7,378)에 종속돼 있어 더 이상 유효하지 않다.</div>
+
+    <h3>IF → THEN 매트릭스 (신규)</h3>
+    <div class="ifthen buy"><b class="tag">진입 1</b> <b>7,543.86 종가 상회</b> → 엔딩 다이어고널 해소 확인. 탐색적 1단계 진입(계획 물량의 1/4 이내, 지수 ETF 중심). 손절 기준: 7,053 종가.</div>
+    <div class="ifthen buy"><b class="tag">진입 2</b> <b>8,457 종가 안착</b> → Cycle 4 종결 공식 확정. 본진입(누적 1/2~2/3). 현금밴드 중립 상단으로 이동.</div>
+    <div class="ifthen buy"><b class="tag">보유</b> <b>9,385.59 돌파</b> → Cycle 5 진행 확정. 보유 지속 + 트레일링 스탑 개시. 1.236 투영(9,384)과 ATH가 겹치는 좌표이므로 첫 시도 반락은 정상으로 간주.</div>
+    <div class="ifthen sell"><b class="tag">방어 1</b> <b>7,053 종가 이탈</b> → Count B 우위 전환. 신규 매수 전면 금지, 보유분 반등 시 축소, 주식비중 최소밴드.</div>
+    <div class="ifthen sell"><b class="tag">방어 2</b> <b>6,973 종가 이탈</b> → Count A/C 폐기, Count B(대세 하락) 공식 채택. 현금 최대밴드, 인버스/방어 자산 검토는 별도 위원회 안건.</div>
+
+    <h3>현금밴드 지침 (자산배분 거버넌스 연계)</h3>
+    <ul>
+      <li><b>현재 국면 판정</b>: 변동성 극단(주간 서킷브레이커 1회+사이드카 2회), 추세지표 전면 훼손, 미검증 외생 리스크(중동) — 시장국면 점수상 <b>방어 밴드(주식 하단) 유지</b>가 규율상 정답. 7/9의 바닥 후보는 "확인 후 진입" 대상이지 "선취매" 대상이 아니다.</li>
+      <li>진입 1 충족 시 중립 하단, 진입 2 충족 시 중립 상단으로 단계 이동. 트리거 없는 밴드 이동 금지.</li>
+      <li><b>이벤트 리스크 수칙</b>: 호르무즈발 갭 변동이 상시 가능한 구간 — 시장가 추격 금지, 분할·지정가 원칙, 레버리지 상품 배제. 7/6(511p)·7/8(605p)의 일중 진폭은 인트라데이 손절 라인을 무의미하게 만든다. 모든 판정은 <b>종가 기준</b>으로 통일한다.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 7. 캘린더 ================= -->
+<section>
+  <h2>7. 모니터링 캘린더</h2>
+  <div class="card">
+    <div class="tbl-scroll">
+    <table>
+      <tr><th>시점</th><th>항목</th><th>파동 판정 연계</th></tr>
+      <tr><td class="num">상시 (진행형)</td><td>미-이란 충돌·호르무즈 해협 상황 (7/8~9 실측 검증된 진행 이벤트)</td><td>확전 시 Count B 트리거(7,053) 조기 도달 위험 / 완화 시 진입 1 트리거 촉진</td></tr>
+      <tr><td class="num">매 거래일</td><td>외인·기관 순매수 지속 여부 (7/8~9 이틀 연속 외인 순매수의 연장 확인)</td><td>주체 교대 지속 = Count A 방증 강화</td></tr>
+      <tr><td class="num">7/10 (금)</td><td>주간 마감 — 7,053 위 주봉 종가 확보 여부</td><td>주봉 기준 1차 무효화 판정</td></tr>
+      <tr><td class="num">주말 정기</td><td>No.005 (주간 정기호) — 본 임시 개정의 재검증 및 코스피 로드맵 전면 갱신</td><td>—</td></tr>
+    </table>
+    </div>
+    <p class="src">※ 본 캘린더에는 WebSearch로 실재가 검증된 진행형 이벤트만 수록했다. 날짜가 특정된 미래 예정 이벤트(삼성전자 확정실적 공시일 등)는 공표 일정 확인 후 No.005에서 기재한다.</p>
+  </div>
+</section>
+
+<!-- ================= 8. 결어 ================= -->
+<section>
+  <h2>8. 결어 — 카운트는 죽지 않았다, 다만 좌표를 옮겼다</h2>
+  <div class="card">
+    <p>No.003의 바닥 좌표(7,378.10)는 틀렸다. 그러나 No.003이 설계해 둔 <b>무효화 위계는 정확히 작동했다</b> — "7,378 재이탈 시 비중 축소, 7,325 → 7,053 순차 관찰"의 지시대로 시장은 7,325와 7,149를 차례로 지웠고, 마지막 방어선 7,053 앞 10.8p에서 멈춰 섰다. 조정의 구조는 확대 플랫의 5파 임펄스가 아니라 이중 지그재그의 엔딩 다이어고널이었고, 그 차이가 314p의 추가 하락이었다.</p>
+    <p>이제 판 전체가 7,053~6,973의 80p 띠 위에 놓였다. 이 띠가 지켜지면 7,063.76은 Cycle 4의 진짜 바닥으로 승격되고, 뚫리면 9,385.59가 대세의 정점으로 강등된다. 어느 쪽이든 판정 기준은 이미 가격으로 적어 두었다. 살아남는 카운트는 처음부터 맞았던 카운트가 아니라, 제때 고쳐진 카운트다.</p>
+  </div>
+</section>
+
+<div class="foot">
+  <div class="brandline">CHORY &amp; ROCHET — RESEARCH CENTER</div>
+  <p>본 자료는 Chory &amp; Rochet 리서치센터가 작성한 시장 구조 분석 자료로, 특정 종목·상품의 매매 권유가 아니며 투자 판단의 최종 책임은 투자자 본인에게 있습니다. 엘리어트 파동 카운트는 가격에 의해 언제든 검증 또는 폐기될 수 있는 가설이며, 본 보고서의 모든 판정은 명시된 무효화 레벨에 종속됩니다.</p>
+  <p>데이터 출처: 파이낸셜뉴스·뉴스핌·이투데이·데일리안·이코노미스트·미디어펜·국제뉴스·싱글리스트·글로벌이코노믹·머니투데이·삼성전자 뉴스룸 (2026.07.03~07.09 마감 시황·실적 보도, 복수 소스 교차 검증) | 선행 보고서: KOSPI Elliott Wave Recount No.003 (2026-07-03, Chory &amp; Rochet)</p>
+  <p>© 2026 Chory &amp; Rochet. KOSPI Elliott Wave Recount Series No.004 — Interim Revision, 2026-07-09.</p>
+</div>
+
+</div>
+</body>
+</html>
