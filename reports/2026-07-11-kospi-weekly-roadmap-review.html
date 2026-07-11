@@ -46,6 +46,9 @@
   .note { font-size:11.5px; color:var(--sub); margin-top:6px; }
   footer { font-size:11px; color:var(--sub); text-align:center; margin-top:22px; padding-top:12px; border-top:1px solid var(--line); }
   @media(max-width:680px){ .scn{grid-template-columns:1fr;} }
+  .tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:6px 0;}
+  .tblwrap table{margin:0;}
+  @media(max-width:680px){ .tblwrap table{min-width:600px;} body{padding:16px;} }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
@@ -77,7 +80,7 @@
 <section>
   <h2><span class="n">1</span> 로드맵 변경 로그 (지난주 점검)</h2>
   <p class="lead">『상승추세 변수 로드맵 2026 H2』 — <strong>바닥 후보 재이동</strong> 및 수급·매크로 변수</p>
-  <table>
+  <div class="tblwrap"><table>
     <thead><tr><th>레인</th><th>항목</th><th>상태</th><th>이번 주 변동 / 결과</th></tr></thead>
     <tbody>
       <tr><td>파동</td><td class="l">★ Cycle 4 바닥 후보 7,378</td><td><span class="tag t-up">✗ 붕괴</span></td>
@@ -97,7 +100,7 @@
       <tr><td>이벤트</td><td class="l">SK하이닉스 나스닥 ADR</td><td><span class="tag t-done">상장 확정</span></td>
         <td class="l">공모가 <strong>$149 확정</strong>, 조달 ~$265억(40조) — <strong>알리바바 넘는 외국기업 미 상장 사상 최대</strong>. 7/13 정규거래 전환. 국내 보통주는 재료 소멸 위꼬리(sell-the-news)</td></tr>
     </tbody>
-  </table>
+  </table></div>
   <p class="note">※ <strong>7회차의 '종결 후보(7,378)'는 틀렸으나 무효화 위계는 정확히 작동했다.</strong> "7,378 재이탈 → 7,325 → 7,053 순차 관찰"의 지시대로 시장은 7,325·7,149를 지웠고 7,053 앞 10.8p에서 멈췄다. 조정의 구조가 확대 플랫의 5파 임펄스가 아니라 이중 지그재그의 엔딩 다이어고널이었다는 것 — 그 차이가 314p였다. 살아남는 카운트는 처음부터 맞은 카운트가 아니라 <strong>제때 고쳐진 카운트</strong>다.</p>
 </section>
 
@@ -169,7 +172,7 @@
   </div>
   <p class="note">막대=일중 고저 · 점=종가 · 7/7 상단은 추정(장중 고가 미기재). 7/6 반기 되돌림(8,327) → <strong>7/7 삼성전자 사상 최대 실적에도 −4.91% 서킷브레이커</strong> → <strong>7/8 −5.35%(중동 충돌)</strong> → <strong>7/9 7,063.76 → 7,053 방어 V반등</strong> → 7/10 오전 +4.19%(7,597) 급등 후 되돌려 7,476 마감(<strong>확인선 7,543.86 종가 미회복</strong>). 주간 −7.57%, 장중 범위 8,327~7,064(−15.2%).</p>
 
-  <table style="margin-top:14px;">
+  <div class="tblwrap"><table style="margin-top:14px;">
     <thead><tr><th>주간 요약</th><th>값</th><th>비고</th></tr></thead>
     <tbody>
       <tr><td class="l">주간 고점(장중)</td><td>8,327.26 (7/6)</td><td class="l">7/3 해머 0.618 되돌림(8,337) 정타 후 소멸 — 반작용 랠리</td></tr>
@@ -180,7 +183,7 @@
       <tr><td class="l">변동성 이벤트</td><td><strong>7/7 서킷브레이커 · 7/8 매도 사이드카</strong></td><td class="l">일중 진폭 7/6 511p·7/8 605p — 인트라데이 손절 무의미</td></tr>
       <tr><td class="l">원/달러</td><td><strong>1,506.60 (7/10)</strong></td><td class="l">폭락 중 원화 강세(7/2 ~1,555 → 7/8 1,498.5) — 외인 재유입·개입 정합</td></tr>
     </tbody>
-  </table>
+  </table></div>
   <p class="note">7회차가 '종결 후보'로 세운 7,378은 소진 후보가 아니라 <strong>Ⓒ파 연장 구간의 통과점</strong>이었다. 그러나 시장은 딱 한 등급 아래 직전 4파 영역(5/20 스윙 7,053)에서 멈췄고, 7/9 V반등·외인 순매수 전환·원화 강세의 복합 신호가 그 자리에서 동시 출현했다. <strong>레벨은 314p 더 깊었지만, 무효화 위계는 정확히 지켜졌다.</strong></p>
 </section>
 
@@ -192,7 +195,7 @@
   </h2>
   <p class="lead">주간 리뷰의 임무는 하나로 압축된다 — <strong>7,063.76(7/9)이 Cycle 4파의 바닥인가?</strong> 이 질문의 답이 세 갈래로 나뉘고, 각 답이 다른 포지션을 요구한다. <strong>① 4파 종료 → 5파 시작(강세)</strong> / <strong>② B파(반작용) 반등 → 4파 마지막 하락 잔여</strong> / <strong>③ 애초에 4파가 아니라 9,385=대세 정점(하락장)</strong>. 아래 표가 이번 주 판단의 전부다.</p>
 
-  <table>
+  <div class="tblwrap"><table>
     <thead><tr><th>가설 (질문의 답)</th><th>파동</th><th>핵심 근거 (현재)</th><th>미충족·반증</th><th>확인 트리거</th><th>확률</th></tr></thead>
     <tbody>
       <tr>
@@ -220,7 +223,7 @@
         <td>25%</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
   <div class="verdict" style="border-left-color:#1d4ed8;background:#eff6ff;">
     <strong>이번 주 잠정 판단(lean) — "4파 종료(강세)로 기운다, 그러나 아직 미확정. B파 반등 가능성을 배제하지 못한다."</strong><br>
     4파 종료(①) <strong>55%</strong> vs 4파 미종료·재하락(②+③ = B파 반등 성격) <strong>45%</strong>. 저울은 강세로 기울었으나 그 동력은 <strong>가격(7,053 방어)이지 수급(외인)이 아니다</strong> — 7/10 외인이 다시 팔았기 때문에 ①을 60% 이상으로 올리지 않았다. <strong>①과 ②를 가르는 단일 심판은 오직 하나, 7,543.86 종가</strong>다. 그 위에서 마감하기 전까지 이번 주 반등은 "5파 시작"이 아니라 "B파 반등일 수도 있는 미확정 반등"으로 취급한다.
@@ -313,7 +316,7 @@
   </div>
   <p class="note">주황=Ⓒ 이중 지그재그(Ⓑ—W—X—a—b—c), 초록=7/9~10 반등, 점·파선=전망. <strong>Ⓒ 7,064 = 1.557×Ⓐ + 직전 4파 영역(7,053) 동시 도달</strong>. 7,543.86 종가 상회 시 진입1 → 8,457 안착 시 Cycle 5(타깃 9,384/9,704, 연장 10,101) / 7,053 이탈 = Count B 우위 / <strong>6,973 이탈 = Count B 공식 채택</strong>.</p>
 
-  <table style="margin-top:14px;">
+  <div class="tblwrap"><table style="margin-top:14px;">
     <thead><tr><th>요소</th><th>7회차 가설</th><th>이번 주 실측</th><th>판정</th></tr></thead>
     <tbody>
       <tr><td class="l">바닥 후보 7,378</td><td>확대 플랫 Ⓒ 소진 후보</td><td>7/7 하회 → 7/9 7,063.76</td><td class="down">붕괴 ✗</td></tr>
@@ -323,10 +326,10 @@
       <tr><td class="l">시나리오 B(7,800~8,200 박스)</td><td>기준 시나리오</td><td>7/7 −4.91%로 박스 붕괴</td><td class="down">빗나감 ✗</td></tr>
       <tr><td class="l">Ⓒ = 5파 임펄스 (No.003)</td><td>임펄스 완성</td><td>7/6 반등 8,327 &gt; 8,081 겹침 위반</td><td>이중 지그재그로 정정</td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <p style="font-size:13px;margin:14px 0 4px;"><strong>트리거 체크리스트 (60분 종가)</strong></p>
-  <table>
+  <div class="tblwrap"><table>
     <thead><tr><th>조건</th><th>해석</th><th>대응</th></tr></thead>
     <tbody>
       <tr><td class="l" style="background:#f0fdf4;">7,543.86 종가 상회</td><td>엔딩 다이어고널 해소 1차 확인 — 바닥 시도 유효</td><td><strong>진입1</strong>: 탐색적 1/4 진입(지수 ETF), 손절 7,053</td></tr>
@@ -335,7 +338,7 @@
       <tr><td class="l" style="background:#fef2f2;">7,053 종가 이탈</td><td>Count B 우위 전환 — 9,385 = 대세 정점 가설</td><td>신규 금지·반등 매도, 주식비중 최소밴드</td></tr>
       <tr><td class="l" style="background:#fee2e2;">6,973 종가 이탈</td><td>Count A/C 폐기, 대조정 국면 선언</td><td>현금 최대밴드</td></tr>
     </tbody>
-  </table>
+  </table></div>
 </section>
 
 <!-- 4. 다음주 트레이딩 가이드 -->
@@ -344,7 +347,7 @@
   <p class="lead">7,053 방어 + 이틀 반등으로 출발하나 <strong>확인선 7,543.86 종가 회복은 미완</strong>. <strong>★ 7/13(월) SK하이닉스 ADR 정규거래 전환</strong>이 국내 외인 수급의 분기점 — 차익 이동이 끝나고 외인이 국내로 복귀하는지가 반등 지속성의 1번 변수. <strong>★ 7/16(목) 한은 금통위</strong>도 주 후반 변수.</p>
 
   <p style="font-size:13px;margin:6px 0 4px;"><strong>▸ 현재 매매 포지션 점검 (판단 → 자세)</strong></p>
-  <table>
+  <div class="tblwrap"><table>
     <thead><tr><th>국면 / 조건</th><th>현재 판단</th><th>포지션 자세 (대응)</th></tr></thead>
     <tbody>
       <tr><td class="l"><strong>현재 국면</strong></td><td class="l">바닥 미확정 · 확인선 미회복 · 외인 비참여 · 추세지표 훼손</td><td class="l"><strong>방어 밴드(주식 하단) 유지</strong> — 7,063.76은 "확인 후 진입" 대상, <strong>선취매 금지</strong></td></tr>
@@ -355,7 +358,7 @@
       <tr><td class="l" style="background:#fee2e2;">현금화</td><td class="l">6,973 <strong>종가 이탈</strong></td><td class="l"><strong>현금 최대밴드</strong> · 방어자산 검토</td></tr>
       <tr><td class="l">절대 금지</td><td class="l">상시(이벤트 갭 구간)</td><td class="l">7,543.86 종가 확인 전 <strong>선취매</strong> · 시장가 추격 · 레버리지 상품</td></tr>
     </tbody>
-  </table>
+  </table></div>
   <p class="note">→ 포지션의 중심축은 <strong>7,543.86(강세 전환선)</strong>과 <strong>7,053(방어 이탈선)</strong> 두 종가다. 그 사이(현재 7,476)는 <strong>"판단 유보 구간"</strong> — 어느 쪽 종가도 나오지 않는 한 방어 자세를 유지하고 밴드를 움직이지 않는다. 트리거 없는 밴드 이동 금지.</p>
 
   <div class="scn">
@@ -377,7 +380,7 @@
   </div>
 
   <p style="font-size:13px;margin:18px 0 4px;"><strong>7월 3주 — 4대 변수 업데이트 &amp; 매핑</strong></p>
-  <table>
+  <div class="tblwrap"><table>
     <thead><tr><th>변수</th><th>현재 상태 (7/11)</th><th>강세 조건</th><th>약세 조건</th></tr></thead>
     <tbody>
       <tr><td class="l">★ SK하이닉스 ADR 정규거래 (7/13)</td><td class="l">공모가 $149 확정 · 차익 이동發 외인 국내 순매도 의심</td><td class="l">전환 후 외인 국내 복귀 → 수급 정상화</td><td class="l">초일 약세 → 보통주 갭하락·외인 매도 지속</td></tr>
@@ -385,7 +388,7 @@
       <tr><td class="l">외인·기관 수급</td><td class="l">외인 순환(7/8·9 매수→7/10 매도) · 기관 이틀 단독</td><td class="l">외인 3일+ 순매수 안착 + 기관 지속</td><td class="l">외인 재매도 + 기관 소진 → 수급 공백</td></tr>
       <tr><td class="l">미-이란 호르무즈</td><td class="l">7/10 협상복귀 기대로 완화 · WTI 진정</td><td class="l">합의·완화 지속 → 리스크 프리미엄 축소</td><td class="l">재격화 → 유가·환율 재점화, Count B 촉진</td></tr>
     </tbody>
-  </table>
+  </table></div>
   <p style="font-size:12.5px;margin:8px 0 6px;color:#475569;">→ 이번 주는 <strong>7,543.86(확인선)과 7,053(무효화선) 사이 500p 띠 위에서 수급 주체의 교대 여부를 채점하는 주</strong>. 반등이 살아있어도 외인이 복귀하지 않으면 상단(7,543→8,457)은 무겁고, 반등이 밀려도 7,053이 지켜지면 하단은 방어된다 — 가격 레벨보다 <strong>ADR 전환 후 외인의 방향</strong>이 본질.</p>
 
   <p style="font-size:13px;margin:14px 0 4px;"><strong>주중 핵심 일정</strong></p>
