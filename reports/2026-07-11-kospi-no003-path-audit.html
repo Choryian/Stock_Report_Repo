@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOSPI Path Audit — No.003는 어디까지 맞았나 | Chory &amp; Rochet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0908; --surface:#161311; --surface-elev:#1c1815; --border:#2a2520; --border-strong:#3a3530;
+    --gold:#c9a961; --gold-light:#e3c477; --gold-dark:#8a7340; --gold-faded:rgba(201,169,97,.15);
+    --ivory:#e8e3d8; --ivory-dim:#b8b0a3; --muted:#6b6258;
+    --red:#c44545; --red-light:#d96363; --green:#6fa96f; --green-light:#8fc98f; --blue:#3b6fc4;
+    --serif-display:'Cormorant Garamond','Noto Serif KR',serif;
+    --serif-kr:'Noto Serif KR','EB Garamond',serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ivory);font-family:var(--serif-kr);font-weight:300;font-size:16px;line-height:1.75;letter-spacing:.005em;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(ellipse at top,rgba(201,169,97,.04) 0%,transparent 50%),radial-gradient(ellipse at bottom,rgba(201,169,97,.02) 0%,transparent 50%);pointer-events:none;z-index:0;}
+  .page{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:0 32px;}
+  .cover{min-height:82vh;display:flex;flex-direction:column;justify-content:space-between;padding:56px 32px;max-width:900px;margin:0 auto;position:relative;z-index:2;}
+  .cover-top{display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .maison-ornament{color:var(--gold);font-size:14px;letter-spacing:.5em;opacity:.85;}
+  .maison-mark{font-family:var(--serif-display);font-size:13px;font-weight:500;letter-spacing:.45em;color:var(--gold);text-transform:uppercase;}
+  .maison-est{font-family:var(--serif-display);font-style:italic;font-size:11px;color:var(--ivory-dim);letter-spacing:.2em;margin-top:4px;}
+  .cover-center{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:24px;padding:48px 0;}
+  .series-label{font-family:var(--serif-display);font-style:italic;font-size:14px;color:var(--gold-light);letter-spacing:.15em;}
+  .cover-divider{width:60px;height:1px;background:var(--gold);opacity:.6;}
+  .cover-title-en{font-family:var(--serif-display);font-size:clamp(32px,6vw,52px);font-weight:400;color:var(--ivory);letter-spacing:.04em;line-height:1.15;max-width:720px;}
+  .cover-title-kr{font-family:var(--serif-kr);font-weight:300;font-size:clamp(17px,3vw,23px);color:var(--ivory-dim);letter-spacing:.08em;line-height:1.5;max-width:640px;}
+  .cover-subtitle{font-family:var(--serif-display);font-style:italic;font-weight:400;font-size:clamp(15px,2.2vw,19px);color:var(--gold-light);letter-spacing:.05em;max-width:600px;margin-top:6px;}
+  .verdict-strip{display:flex;gap:0;flex-wrap:wrap;justify-content:center;margin-top:14px;border:1px solid var(--border-strong);border-radius:2px;overflow:hidden;}
+  .vs-cell{padding:12px 20px;border-right:1px solid var(--border);text-align:center;min-width:150px;}
+  .vs-cell:last-child{border-right:none;}
+  .vs-k{font-family:var(--serif-display);font-style:italic;font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;}
+  .vs-v{font-family:var(--serif-display);font-size:18px;font-weight:500;margin-top:3px;letter-spacing:.02em;}
+  .vs-miss{color:var(--red-light);} .vs-hit{color:var(--green-light);} .vs-hold{color:var(--gold-light);}
+  .cover-bottom{display:flex;justify-content:space-between;align-items:flex-end;padding-top:32px;border-top:1px solid var(--border);}
+  .cover-meta-label{font-family:var(--serif-display);font-style:italic;font-size:11px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;}
+  .cover-meta-value{font-family:var(--serif-display);font-size:16px;color:var(--ivory);letter-spacing:.08em;}
+  .cover-meta-value.gold{color:var(--gold);}
+  .content-section{padding:66px 0;border-bottom:1px solid var(--border);}
+  .section-roman{font-family:var(--serif-display);font-style:italic;font-size:44px;color:var(--gold);line-height:1;margin-bottom:16px;opacity:.85;}
+  .section-label{font-family:var(--serif-display);font-style:italic;font-size:12px;color:var(--gold);letter-spacing:.3em;text-transform:uppercase;margin-bottom:12px;}
+  .section-heading{font-family:var(--serif-display);font-size:clamp(26px,4.5vw,36px);font-weight:400;color:var(--ivory);letter-spacing:.02em;margin-bottom:32px;line-height:1.2;}
+  .body-text{font-family:var(--serif-kr);font-weight:300;font-size:16px;line-height:1.95;color:var(--ivory);letter-spacing:.01em;margin-bottom:20px;}
+  .body-text strong{font-weight:500;color:var(--gold-light);}
+  .body-text em{font-style:italic;color:var(--gold-light);}
+  .drop-cap::first-letter{font-family:var(--serif-display);float:left;font-size:60px;line-height:.85;padding-right:12px;padding-top:6px;color:var(--gold);font-weight:500;}
+  .pull-quote{margin:44px 0;padding:28px 34px;border-left:2px solid var(--gold);background:linear-gradient(90deg,var(--gold-faded) 0%,transparent 100%);}
+  .pull-quote-text{font-family:var(--serif-display);font-style:italic;font-size:clamp(18px,2.5vw,22px);line-height:1.5;color:var(--ivory);}
+  .data-table{width:100%;border-collapse:collapse;margin:26px 0;font-family:var(--serif-kr);font-size:14px;}
+  .data-table thead{border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);}
+  .data-table th{font-family:var(--serif-display);font-style:italic;font-weight:500;color:var(--gold);text-align:left;padding:13px 11px;letter-spacing:.05em;font-size:13px;}
+  .data-table td{padding:11px;border-bottom:1px solid var(--border);color:var(--ivory);line-height:1.5;vertical-align:top;}
+  .data-table .num{font-family:var(--serif-display);font-weight:500;text-align:right;letter-spacing:.02em;}
+  .data-table .hl{color:var(--gold-light);font-weight:500;}
+  .data-table .base-case{background:var(--gold-faded);}
+  .g-hit{color:var(--green-light);font-weight:500;} .g-miss{color:var(--red-light);font-weight:500;} .g-hold{color:var(--gold-light);font-weight:500;}
+  .exbox{margin:36px 0;padding:30px 34px;background:linear-gradient(135deg,var(--surface) 0%,var(--surface-elev) 100%);border:1px solid var(--gold);position:relative;}
+  .exbox::before{content:'✦';position:absolute;top:-10px;left:28px;background:var(--bg);padding:0 10px;color:var(--gold);font-size:16px;}
+  .exlabel{font-family:var(--serif-display);font-style:italic;color:var(--gold);letter-spacing:.25em;text-transform:uppercase;font-size:12px;margin-bottom:14px;}
+  .two-paths{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:26px 0;}
+  .path-card{border:1px solid var(--border-strong);border-radius:3px;padding:18px 20px;background:var(--surface);}
+  .path-card.up{border-top:3px solid var(--green);} .path-card.dn{border-top:3px solid var(--red);}
+  .path-card h4{font-family:var(--serif-display);font-size:17px;font-weight:500;margin-bottom:6px;letter-spacing:.02em;}
+  .path-card.up h4{color:var(--green-light);} .path-card.dn h4{color:var(--red-light);}
+  .path-card p{font-size:13.5px;line-height:1.65;color:var(--ivory-dim);}
+  .path-card .rungs{font-family:var(--serif-display);font-size:13px;color:var(--gold-light);margin-top:8px;letter-spacing:.02em;}
+  .chart-wrap{margin:40px 0;background:var(--surface);border:1px solid var(--border);padding:16px 12px 8px;position:relative;overflow-x:auto;}
+  .chart-wrap::before,.chart-wrap::after{content:'';position:absolute;width:12px;height:12px;border-color:var(--gold);opacity:.8;}
+  .chart-wrap::before{top:-1px;left:-1px;border-top:2px solid;border-left:2px solid;}
+  .chart-wrap::after{bottom:-1px;right:-1px;border-bottom:2px solid;border-right:2px solid;}
+  .chart-cap{font-family:var(--serif-display);font-style:italic;font-size:13px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin:4px 0 10px;text-align:center;}
+  .finale-section{padding:96px 0 70px;text-align:center;}
+  .finale-ornament{font-size:14px;color:var(--gold);letter-spacing:.8em;margin-bottom:26px;opacity:.7;}
+  .finale-text{font-family:var(--serif-display);font-style:italic;font-size:clamp(19px,3vw,25px);line-height:1.6;color:var(--ivory);max-width:640px;margin:0 auto;}
+  .finale-kr{font-family:var(--serif-kr);font-size:clamp(15px,2vw,17px);line-height:1.95;color:var(--ivory-dim);max-width:580px;margin:28px auto 0;font-weight:300;}
+  .finale-signature{margin-top:52px;padding-top:26px;border-top:1px solid var(--border);max-width:300px;margin-left:auto;margin-right:auto;}
+  .finale-signature-name{font-family:var(--serif-display);font-weight:500;font-size:18px;color:var(--gold);letter-spacing:.3em;}
+  .finale-signature-detail{font-family:var(--serif-display);font-style:italic;font-size:12px;color:var(--muted);margin-top:6px;letter-spacing:.1em;}
+  .ref-link{display:inline-block;font-family:var(--serif-display);font-style:italic;font-size:13px;color:var(--gold-light);border:1px solid var(--border-strong);border-radius:2px;padding:4px 12px;margin:4px 6px 4px 0;text-decoration:none;letter-spacing:.03em;}
+  .ref-link:hover{border-color:var(--gold);color:var(--gold);}
+  .footer{background:#100d0a;padding:46px 32px 38px;margin-top:60px;border-top:1px solid var(--border);text-align:center;position:relative;z-index:2;}
+  .footer-mark{font-family:var(--serif-display);font-size:13px;letter-spacing:.4em;color:var(--gold);margin-bottom:16px;}
+  .footer-disclaimer{font-family:var(--serif-kr);font-weight:300;font-size:11.5px;color:var(--muted);line-height:1.8;max-width:720px;margin:0 auto 20px;font-style:italic;}
+  .footer-meta{font-family:var(--serif-display);font-style:italic;font-size:11px;color:var(--muted);letter-spacing:.15em;}
+  @media(max-width:768px){.page,.cover,.footer{padding-left:20px;padding-right:20px;}.two-paths{grid-template-columns:1fr;}.body-text{font-size:15px;}.data-table{font-size:13px;}.data-table th,.data-table td{padding:9px 8px;}}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+
+<!-- ===================== COVER ===================== -->
+<section class="cover">
+  <div class="cover-top">
+    <div class="maison-ornament">✦ &nbsp; ◆ &nbsp; ✦</div>
+    <div class="maison-mark">Chory &amp; Rochet</div>
+    <div class="maison-est">Maison de Stratégie · Séoul</div>
+  </div>
+
+  <div class="cover-center">
+    <div class="series-label">Strategy Notes — Path Audit · No.003 Review</div>
+    <div class="cover-divider"></div>
+    <h1 class="cover-title-en">The Path, Graded</h1>
+    <div class="cover-title-kr">No.003는 어디까지 맞았나 — 예측 경로의 사후 채점</div>
+    <div class="cover-subtitle">7,378 바닥 가설의 붕괴, 그러나 트리거 사다리의 완주</div>
+    <div class="verdict-strip">
+      <div class="vs-cell"><div class="vs-k">Base 상방 경로</div><div class="vs-v vs-miss">미실현 ✗</div></div>
+      <div class="vs-cell"><div class="vs-k">하방 트리거 사다리</div><div class="vs-v vs-hit">정밀 적중 ✓</div></div>
+      <div class="vs-cell"><div class="vs-k">최종 무효화선 7,053</div><div class="vs-v vs-hold">방어 ◆</div></div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div>
+      <div class="cover-meta-label">Issued</div>
+      <div class="cover-meta-value">11 · VII · MMXXVI</div>
+    </div>
+    <div style="text-align:right">
+      <div class="cover-meta-label">Reviewing</div>
+      <div class="cover-meta-value gold">No.003 · The Expanded Flat</div>
+    </div>
+  </div>
+</section>
+
+<div class="page">
+
+<!-- ===================== I. 서문 ===================== -->
+<section class="content-section">
+  <div class="section-roman">I</div>
+  <div class="section-label">Préface</div>
+  <h2 class="section-heading">예측 경로를 채점한다는 것</h2>
+
+  <p class="body-text drop-cap">No.003(7월 3일)은 장중 저점 <strong>7,378.10</strong>을 Cycle 4파 확대 플랫의 종결 '후보'로 세우고, 그 위에 두 갈래의 길을 미리 그려 두었다. 하나는 8,200·8,457을 되찾으며 Cycle 5파로 올라서는 <em>상방 base 경로</em>였고, 다른 하나는 7,378이 깨질 때를 대비해 적어 둔 <em>하방 트리거 사다리</em> — 7,325 → 7,053의 순차 관찰이었다.</p>
+
+  <p class="body-text">이 노트는 그 두 경로를 이후 5거래일(7/6~7/10)의 실측과 대조해 채점한다. 질문은 하나다 — <strong>시장은 No.003이 그린 길을 따라갔는가.</strong> 답은 이분법이 아니다. No.003의 <strong>바닥 숫자(7,378)는 폐기됐지만</strong>, No.003이 <strong>미리 적어 둔 트리거의 눈금은 거의 정확히 지켜졌다</strong>. 시장은 상방 경로가 아니라 하방 경로를 골랐고, 그 하방 경로마저 No.003이 계단마다 이름 붙여 둔 자리였다.</p>
+
+  <div class="pull-quote">
+    <div class="pull-quote-text">예측의 성패는 정점과 바닥의 숫자에서만 갈리지 않는다. 틀릴 경우를 위해 무엇을 적어 두었는가 — 채점은 거기서도 이뤄진다.</div>
+  </div>
+</section>
+
+<!-- ===================== II. 두 갈래 경로 ===================== -->
+<section class="content-section">
+  <div class="section-roman">II</div>
+  <div class="section-label">Les Deux Chemins</div>
+  <h2 class="section-heading">No.003이 그린 두 갈래 경로</h2>
+
+  <p class="body-text">VIII장 <em>If-Then</em>이 명시한 경로를 방향별로 정리한다. 이것이 채점의 기준선이다.</p>
+
+  <div class="two-paths">
+    <div class="path-card up">
+      <h4>▲ Base 상방 경로</h4>
+      <p><strong>7,378 = 바닥 후보</strong> → 8,200 종가 회복 → 8,457 안착 = Cycle 4 종결 확정 · Cycle 5 개시. 9,385 돌파 시 확정, 타깃 <strong>9,400~9,700</strong>(9,698/9,704 confluence).</p>
+      <div class="rungs">8,200 → 8,457 → 9,385 → 9,698</div>
+    </div>
+    <div class="path-card dn">
+      <h4>▼ 하방 트리거 사다리</h4>
+      <p><strong>7,378 장중 재이탈</strong> → Ⓒ파 연장 → <strong>7,325(1.382×Ⓐ) → 7,053</strong> 순차 관찰(비중 축소). <strong>7,053 이탈 시 Count 2</strong> = 대세 하락(9,385 = Super Cycle V 종결) 채택.</p>
+      <div class="rungs">7,378 → 7,325 → 7,053 → (Count 2)</div>
+    </div>
+  </div>
+
+  <p class="body-text">시간 기준선도 하나 박아 두었다 — <strong>7월 7일 삼성전자 2분기 잠정실적</strong>이 "7,378 바닥 가설의 첫 시금석", 그리고 <strong>7월 중 8,457 회복 여부</strong>가 Cycle 5 개시의 구조적 확인선이었다.</p>
+</section>
+
+<!-- ===================== III. 대조 채점표 ===================== -->
+<section class="content-section">
+  <div class="section-roman">III</div>
+  <div class="section-label">La Confrontation</div>
+  <h2 class="section-heading">실제 진행 대조 — 5거래일 채점</h2>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>일자</th><th class="num">실측</th><th>No.003 경로 대비 판정</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>07/06 (월)</td><td class="num">종가 8,051 · 고 8,327</td>
+        <td>8,200 종가 미회복 — <span class="g-miss">상방 트리거 미발동</span>. 해머 0.618 되돌림(8,337) 정타 후 소멸</td>
+      </tr>
+      <tr>
+        <td>07/07 (화)</td><td class="num">−4.91% · 종가 7,656 · CB</td>
+        <td>삼성전자 <strong>사상 최대 실적(영업익 89.4조)에도 서킷브레이커</strong> — <span class="g-miss">시금석 하방 이탈, 기대와 정반대 ✗</span></td>
+      </tr>
+      <tr>
+        <td>07/08 (수)</td><td class="num">−5.35% · 저 7,186</td>
+        <td>7,378·7,325 순차 관통 → <span class="g-hit">하방 트리거 ③ 정확히 발동 ✓</span> · 매도 사이드카</td>
+      </tr>
+      <tr class="base-case">
+        <td><strong>07/09 (목)</strong></td><td class="num hl"><strong>저 7,063.76</strong></td>
+        <td><strong>무효화선 7,053을 +10.8p 앞두고 V반전</strong> → <span class="g-hold">트리거 ④ 미발동, Count 2 회피 ◆</span></td>
+      </tr>
+      <tr>
+        <td>07/10 (금)</td><td class="num">종가 7,476 (오전 7,597)</td>
+        <td>8,200/8,457 미회복 — <span class="g-miss">Cycle 5 개시 미확인</span>. 확인선 7,543.86 종가 미회복</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="body-text">시장은 <strong>상방 경로의 첫 관문(8,200 종가)조차 밟지 못한 채</strong>, 7/7 시금석에서 하방으로 꺾였다. 그리고 꺾인 뒤의 궤적은 No.003이 하방 카드에 적어 둔 <strong>7,378 → 7,325 → 7,053</strong>의 계단을 그대로 밟아 내려갔다 — 다만 마지막 한 칸(7,053) 앞에서 멈췄다.</p>
+</section>
+
+<!-- ===================== IV. 경로 오버레이 차트 ===================== -->
+<section class="content-section">
+  <div class="section-roman">IV</div>
+  <div class="section-label">La Carte</div>
+  <h2 class="section-heading">예측 경로 vs 실제 궤적</h2>
+
+  <div class="chart-wrap">
+    <div class="chart-cap">— Predicted Path vs Actuals · 2026.07.03 → 07.10 —</div>
+    <svg viewBox="0 0 920 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;min-width:700px;font-family:'Cormorant Garamond','Noto Serif KR',serif;">
+      <!-- y=50+(8500-p)*0.19375 ; x pivots 7/3@110 ... 7/10@660, fwd 780 -->
+      <!-- grid -->
+      <g stroke="#2a2520" stroke-width="1">
+        <line x1="70" y1="58.3" x2="900" y2="58.3"/>
+        <line x1="70" y1="108.1" x2="900" y2="108.1"/>
+        <line x1="70" y1="267.5" x2="900" y2="267.5"/>
+        <line x1="70" y1="330.5" x2="900" y2="330.5"/>
+      </g>
+      <g font-size="11" fill="#8a7340" font-style="italic">
+        <text x="74" y="54">8,457 — 구조 확정선 (상방 목표)</text>
+        <text x="74" y="104">8,200 — 상방 첫 관문 (종가 회복)</text>
+      </g>
+      <!-- trigger rungs (No.003 하방 사다리) -->
+      <g stroke-dasharray="5,4" stroke-width="1">
+        <line x1="70" y1="267.5" x2="900" y2="267.5" stroke="#c9a961"/>
+        <line x1="70" y1="277.8" x2="900" y2="277.8" stroke="#8a7340"/>
+        <line x1="70" y1="330.5" x2="900" y2="330.5" stroke="#c44545"/>
+        <line x1="70" y1="346.0" x2="900" y2="346.0" stroke="#c44545"/>
+      </g>
+      <g font-size="10.5" fill="#b8b0a3">
+        <text x="74" y="264">7,378 — 바닥 후보 (트리거 ③ 기준)</text>
+        <text x="470" y="275" fill="#c9a961">7,325 — 1.382×Ⓐ</text>
+        <text x="74" y="343" fill="#d96363" font-weight="bold">7,053 — 최종 무효화 (트리거 ④)</text>
+        <text x="620" y="358" fill="#d96363">6,973 — 수학적 최종선</text>
+      </g>
+
+      <!-- No.003 예측 base 상방 경로 (dashed green, from 7/3 pivot upward) -->
+      <polyline points="110,267.5 250,180 430,108.1 640,58.3 820,20" fill="none" stroke="#6fa96f" stroke-width="2" stroke-dasharray="8,5" opacity="0.9" marker-end="url(#upP)"/>
+      <text x="470" y="150" font-size="12" fill="#8fc98f" font-style="italic" transform="rotate(-20 470 150)">No.003 예측 (base) — Cycle 5 ↑</text>
+      <defs>
+        <marker id="upP" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#6fa96f"/></marker>
+      </defs>
+
+      <!-- 실제 궤적 (solid) : 7/3 8088 -> 7/6 8051 -> 7/7 7656 -> 7/8 7247(low 7186) -> 7/9 low 7063.76 -> 7/10 7476 -->
+      <polyline points="110,129.8 220,136.9 330,213.5 440,292.8 550,328.4 660,248.5" fill="none" stroke="#e8e3d8" stroke-width="2.6" stroke-linejoin="round"/>
+      <!-- 7/8 intraday low marker -->
+      <line x1="440" y1="292.8" x2="440" y2="304.7" stroke="#3b6fc4" stroke-width="2"/>
+      <!-- 7/9 rebound tail to close -->
+      <polyline points="550,328.4 550,284.2" fill="none" stroke="#6fa96f" stroke-width="2"/>
+
+      <!-- actual pivots -->
+      <circle cx="110" cy="129.8" r="4.5" fill="#c9a961" stroke="#0a0908" stroke-width="1.5"/>
+      <circle cx="220" cy="136.9" r="3.5" fill="#e8e3d8"/>
+      <circle cx="330" cy="213.5" r="3.5" fill="#c44545"/>
+      <circle cx="440" cy="304.7" r="3.5" fill="#c44545"/>
+      <circle cx="550" cy="328.4" r="5.5" fill="#c44545" stroke="#e8e3d8" stroke-width="1.4"/>
+      <circle cx="660" cy="248.5" r="4.5" fill="#6fa96f" stroke="#0a0908" stroke-width="1.5"/>
+
+      <!-- annotations -->
+      <g font-size="10" fill="#b8b0a3">
+        <text x="96" y="122">7/3 바닥후보</text>
+        <text x="300" y="205" fill="#d96363">7/7 CB (시금석 붕괴)</text>
+        <text x="404" y="320" fill="#d96363">7/8 저 7,186</text>
+        <text x="500" y="346" fill="#d96363" font-weight="bold">7/9 저 7,063.76 (7,053 방어)</text>
+        <text x="628" y="242" fill="#8fc98f" font-weight="bold">7/10 종가 7,476</text>
+      </g>
+
+      <!-- x labels -->
+      <g font-size="10.5" fill="#6b6258" text-anchor="middle">
+        <text x="110" y="392">7/3</text><text x="220" y="392">7/6</text><text x="330" y="392">7/7</text>
+        <text x="440" y="392">7/8</text><text x="550" y="392">7/9</text><text x="660" y="392">7/10</text>
+      </g>
+
+      <!-- legend -->
+      <g font-size="11">
+        <line x1="620" y1="90" x2="650" y2="90" stroke="#e8e3d8" stroke-width="2.6"/>
+        <text x="656" y="94" fill="#b8b0a3">실제 궤적</text>
+        <line x1="620" y1="108" x2="650" y2="108" stroke="#6fa96f" stroke-width="2" stroke-dasharray="8,5"/>
+        <text x="656" y="112" fill="#b8b0a3">No.003 예측 base</text>
+      </g>
+    </svg>
+  </div>
+  <p class="body-text" style="font-size:13.5px;color:var(--ivory-dim);">흰 실선(실제)은 첫 걸음부터 초록 파선(No.003 예측 base)과 <strong>정반대로 갈라져 내려갔다</strong>. 그러나 그 하강은 무질서한 것이 아니라, No.003이 하방 카드에 순서대로 적어 둔 금색 눈금(7,378 → 7,325)을 밟고, 적색 최종선(7,053) 바로 앞에서 반전했다. <strong>방향은 예측을 벗어났으되, 좌표는 예측 안에 있었다.</strong></p>
+</section>
+
+<!-- ===================== V. 트리거별 채점 ===================== -->
+<section class="content-section">
+  <div class="section-roman">V</div>
+  <div class="section-label">La Notation</div>
+  <h2 class="section-heading">트리거별 채점 — If, Then</h2>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>No.003 트리거 (If → Then)</th><th>발동 여부</th><th>판정</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>8,200 종가 회복 → 8,457 안착 = Cycle 5 개시</td>
+        <td>미발동 (최고 종가 8,051)</td>
+        <td class="g-miss">상방 경로 미실현 ✗</td>
+      </tr>
+      <tr>
+        <td>7/7 삼성전자 실적 = 바닥 가설 시금석</td>
+        <td>실적 서프라이즈 · 가격 −4.91% CB</td>
+        <td class="g-miss">시금석 하방 이탈 ✗</td>
+      </tr>
+      <tr class="base-case">
+        <td><strong>7,378 재이탈 → 7,325 → 7,053 순차 관찰</strong></td>
+        <td><strong>7/8 발동 — 7,325·7,149 관통</strong></td>
+        <td class="g-hit"><strong>하방 사다리 적중 ✓</strong></td>
+      </tr>
+      <tr class="base-case">
+        <td><strong>7,053 이탈 → Count 2 (대세 하락)</strong></td>
+        <td><strong>미발동 (저 7,063.76, +10.8p)</strong></td>
+        <td class="g-hold"><strong>방어 → 구조 생존 ◆</strong></td>
+      </tr>
+      <tr>
+        <td>3,316 침범 → 카운팅 전면 폐기</td>
+        <td>무관 (미근접)</td>
+        <td class="g-hold">불변 —</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="exbox">
+    <div class="exlabel">▸ The Scorecard</div>
+    <p class="body-text" style="margin:0;font-size:14.5px;">
+      상방 경로 트리거 <strong>2건 = 모두 미발동(빗나감)</strong>. 하방 경로 트리거 <strong>③ = 정확히 발동</strong>, 그리고 그 종착지 <strong>④(7,053) = 10.8p 차로 방어</strong>. 즉 No.003의 <em>낙관 시나리오</em>는 채점에서 낙제했으나, No.003의 <em>위험 관리 체계</em>는 만점에 가깝다. 7,378을 "확정"이 아니라 "후보"로 부르고 그 아래 무효화 사다리를 미리 깔아 둔 규율이, 예측의 실패를 손실이 아닌 좌표로 바꿔 놓았다.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== VI. 지금 위치 ===================== -->
+<section class="content-section">
+  <div class="section-roman">VI</div>
+  <div class="section-label">La Position</div>
+  <h2 class="section-heading">그래서 지금 어디에 서 있나</h2>
+
+  <p class="body-text">No.003 관점에서 시장의 현 상태는 <strong>"바닥 후보는 폐기했으되 무효화 위계는 준수한"</strong> 국면이다. 예측의 <em>방향성</em>(정점 대비 빠른 −17%대 조정 → 저점 → Cycle 5)은 살아 있고, 예측의 <em>레벨</em>(7,378)만 314p 아래로 이동했다.</p>
+
+  <table class="data-table">
+    <thead><tr><th>항목</th><th class="num">No.003 (7/3)</th><th class="num">현재 (7/11, No.005 승계)</th></tr></thead>
+    <tbody>
+      <tr><td>Cycle 4 바닥 후보</td><td class="num">7,378.10</td><td class="num hl">7,063.76</td></tr>
+      <tr><td>조정 구조 명칭</td><td class="num">확대 플랫 (3-3-5)</td><td class="num">확대형 복합조정 (Ⓒ=W-X-Y)</td></tr>
+      <tr><td>최종 무효화선</td><td class="num">7,053</td><td class="num hl">7,053 · 6,973 (방어 중)</td></tr>
+      <tr><td>Cycle 5 확인선</td><td class="num">8,457</td><td class="num">7,543.86 → 8,457</td></tr>
+      <tr><td>Cycle 5 정점 밴드</td><td class="num">9,400~9,700</td><td class="num">9,384 / 9,704 (유지)</td></tr>
+    </tbody>
+  </table>
+
+  <p class="body-text">바닥의 숫자는 후속본이 고쳐 적었으나, No.003이 세운 <strong>골격 — Ⓐ-Ⓑ-Ⓒ 조정 후 Cycle 5, 무효화선 7,053, 정점 confluence 9,700 — 은 한 칸도 무너지지 않았다.</strong> 7,378이 7,063.76으로 내려앉은 것은 카운트의 폐기가 아니라, No.003이 스스로 깔아 둔 사다리를 한 계단 더 내려가 다시 발을 디딘 것이다.</p>
+
+  <div style="margin-top:24px;">
+    <a class="ref-link" href="https://choryian.github.io/Stock_Report_Repo/reports/2026-07-03-kospi-elliott-wave-recount-no003.html" target="_blank" rel="noopener">↗ No.003 원본 (The Expanded Flat)</a>
+    <a class="ref-link" href="https://choryian.github.io/Stock_Report_Repo/reports/2026-07-09-kospi-elliott-wave-recount-no004.html" target="_blank" rel="noopener">↗ No.004 (임시 개정)</a>
+    <a class="ref-link" href="https://choryian.github.io/Stock_Report_Repo/reports/2026-07-11-kospi-elliott-wave-recount-no005.html" target="_blank" rel="noopener">↗ No.005 (주간 정기호)</a>
+    <a class="ref-link" href="https://choryian.github.io/Stock_Report_Repo/reports/2026-07-11-kospi-weekly-roadmap-review.html" target="_blank" rel="noopener">↗ 주간 로드맵 리뷰 8회차</a>
+  </div>
+</section>
+
+<!-- ===================== VII. 결언 ===================== -->
+<section class="finale-section">
+  <div class="finale-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+  <p class="finale-text">The forecast missed the floor.<br>The framework caught the fall.</p>
+  <p class="finale-kr">예측은 바닥을 놓쳤고, 체계는 낙하를 받아냈다.<br><br>7,378은 바닥이 아니었다 — 그러나 시장은 No.003이 미리 적어 둔 계단을 한 칸씩 밟아 내려가,<br>마지막 계단 앞에서 멈췄다. 레벨은 틀렸고 위계는 맞았다.<br>이것이 트리거를 미리 적는 규율이 예측의 실패에 지불하는 배당이다.</p>
+  <div class="finale-signature">
+    <div class="finale-signature-name">CHORY &amp; ROCHET</div>
+    <div class="finale-signature-detail">— Maison de Stratégie —</div>
+  </div>
+</section>
+
+</div><!-- /.page -->
+
+<footer class="footer">
+  <div class="footer-mark">CHORY &amp; ROCHET</div>
+  <p class="footer-disclaimer">
+    본 자료는 Chory &amp; Rochet의 전략 노트로서 정보 제공 목적으로 작성되었으며, 특정 종목·지수에 대한 매매 권유나 투자 자문이 아닙니다. 엘리어트 파동 카운팅은 가설의 영역이며 시장 데이터에 의해 언제든 검증·폐기될 수 있습니다. 투자 판단의 책임은 전적으로 투자자 본인에게 있습니다.
+    <br><br>
+    데이터 출처: KRX·일일 마감/오전장 보고서(2026.07.06~07.10) · Recount No.004(2026-07-09) 실측 승계 · 파동 대시보드(2026-07-10 지수 기준치). 7/10 종가(7,476)는 대시보드 기준치이며 확정 마감치와 미세 차이 가능. 채점 대상: Strategy Notes No.003 (2026.07.03).
+  </p>
+  <div class="footer-meta">
+    Path Audit · No.003 Review &nbsp;·&nbsp; 11 July 2026 &nbsp;·&nbsp; Maison Chory &amp; Rochet
+  </div>
+</footer>
+
+</body>
+</html>
