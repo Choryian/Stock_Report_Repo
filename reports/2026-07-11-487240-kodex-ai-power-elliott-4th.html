@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KODEX AI전력핵심설비(487240) 다계위 파동분석 4차 — Chory &amp; Rochet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=DM+Sans:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--green:#3f7a52;--paper:#FAF8F3;--ink:#16160F;--accent:#8B3A2E;--brass:#A88B5C;--slate:#3D4A55;--up:#c8364d;--dn:#2c5fb7;--line:#E3DDD0;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans','Noto Sans KR',sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.mono{font-family:'JetBrains Mono',monospace}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up)}.dn{color:var(--dn)}.muted{color:#8a8676}
+.serif{font-family:'Fraunces',serif}
+header{border-bottom:2.5px solid var(--ink);padding:26px 0 16px;margin-top:14px}
+.brand{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--accent);font-weight:500}
+.brand-meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:1px;color:#8a8676;margin-top:6px;display:flex;gap:18px;flex-wrap:wrap}
+.hero{padding:42px 0 30px}
+.kick{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--accent);text-transform:uppercase}
+.hero h1{font-family:'Fraunces',serif;font-size:50px;line-height:1.07;font-weight:600;margin:14px 0 8px;letter-spacing:-0.5px}
+.hero .lede{font-size:16.5px;color:#46443a;max-width:780px;margin-top:10px}
+.herometa{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:34px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.herometa div{padding:16px 18px 16px 0;border-right:1px solid var(--line)}
+.herometa div:last-child{border-right:none;padding-right:0}
+.herometa .v{font-family:'Fraunces',serif;font-size:27px;font-weight:600}
+.herometa .l{font-size:11.5px;color:#8a8676;margin-top:3px;letter-spacing:.3px}
+.band{background:var(--ink);color:var(--paper);border-radius:3px;margin:34px 0;padding:30px 34px;display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.band .v{font-family:'Fraunces',serif;font-size:30px;font-weight:600;color:#F4E9D8}
+.band .l{font-size:11px;color:#b8b09c;margin-top:5px;letter-spacing:.4px}
+.band .v.acc{color:var(--brass)}.band .v.up{color:#e88}.band .v.gr{color:#8fbf9f}
+section{padding:30px 0}
+.part{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:6px}
+h2{font-family:'Fraunces',serif;font-size:33px;font-weight:600;letter-spacing:-0.3px;margin-bottom:8px;padding-bottom:14px;border-bottom:1.5px solid var(--ink)}
+h3{font-family:'Fraunces',serif;font-size:21px;font-weight:600;margin:26px 0 10px}
+p{margin:11px 0;color:#322f26}
+p.big{font-size:16px}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:0}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:#8a8676;font-weight:500;border-bottom:1.5px solid var(--ink)}
+td.wr{white-space:normal}
+tbody tr:hover{background:#F1ECE0}
+.wbadge{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:500}
+.callout{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+.co{border:1px solid var(--line);border-radius:3px;padding:18px 20px}
+.co.moat{border-left:3px solid var(--green)}
+.co.risk{border-left:3px solid var(--accent)}
+.co h4{font-family:'Fraunces',serif;font-size:16px;margin-bottom:5px}
+.co p{font-size:13px;margin:0;color:#56523f}
+.co .tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:#8a8676}
+.chart{border:1px solid var(--line);border-radius:3px;padding:8px;margin:18px 0;background:#fff}
+.chart svg{width:100%;height:auto;display:block}
+.caption{font-size:12.5px;color:#8a8676;margin:6px 2px 22px;line-height:1.6}
+.scen{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0}
+.sc{border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.sc .hd{padding:13px 16px;color:#fff;font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+.sc .hd .p{font-family:'JetBrains Mono',monospace;font-size:13px}
+.sc.bull .hd{background:var(--green)}.sc.neut .hd{background:var(--slate)}.sc.bear .hd{background:var(--ink)}
+.sc .bd{padding:15px 16px;font-size:13px;color:#46443a}
+.sc .bd .tgt{font-family:'Fraunces',serif;font-size:20px;font-weight:600;margin-bottom:4px}
+.verdict{background:var(--ink);color:var(--paper);border-radius:3px;padding:46px 44px;margin:38px 0}
+.verdict .q{font-family:'Fraunces',serif;font-style:italic;font-size:26px;line-height:1.4;color:#F4E9D8;max-width:820px}
+.verdict p{color:#cfc8b6;margin:18px 0}
+.vdl{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:26px;border-top:1px solid #3a382e;padding-top:24px}
+.vdl .l{font-size:11px;color:#b8b09c;letter-spacing:.5px}
+.vdl .v{font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:var(--brass);margin-top:4px}
+.stars{font-size:24px;color:var(--brass);letter-spacing:3px;margin-top:6px}
+footer{border-top:2px solid var(--ink);margin-top:30px;padding:24px 0 60px}
+.disc{font-size:11.5px;color:#8a8676;line-height:1.7}
+.report-footer-meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#8a8676;letter-spacing:1px;margin-bottom:14px;display:flex;gap:16px;flex-wrap:wrap}
+.gr{color:var(--green)}.risk-t{color:var(--accent)}
+@media(max-width:860px){.herometa,.band,.scen,.callout,.vdl{grid-template-columns:1fr 1fr}.hero h1{font-size:34px}.band{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.herometa,.band,.scen,.callout,.vdl{grid-template-columns:1fr}.wrap{padding:0 16px}}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head><body><div class="wrap">
+
+<header>
+<div class="brand">CHORY &amp; ROCHET · EQUITY RESEARCH</div>
+<div class="brand-meta"><span>삼성자산운용 KODEX</span><span>487240 · KODEX AI전력핵심설비</span><span>다계위 파동분석 4차</span><span>분석일 2026·07·11</span></div>
+</header>
+
+<div class="hero">
+<div class="kick">Elliott Multidegree · 4th Report · 1차 5/17 → 2차 6/10 → 3차 6/19 → 4차 7/11</div>
+<h1>거래량이 옳았다 —<br>46,655는 B파였고, 34,400에서 (4)가 다시 바닥을 찾는다.</h1>
+<p class="lede">3차 보고서(6/19)는 반등이 <b>'거래량 없는 반등 = B파의 가면'</b>이라며 하방 분수령을 <b>38,300 종가 이탈 → 목표 35,355~32,000</b>으로 미리 적었다. 시장의 답 — <b class="risk-t">A1 확인선(49,800)은 끝내 종가로 넘지 못했고</b>, 반등은 <b>7/1 46,655에서 천장</b>을 찍은 뒤, <b class="up">7/7·7/8 38,300을 결정적으로 이탈해 7/8 저점 34,400</b>까지 밀렸다. 34,400은 3차가 지목한 <b>C파(35,355~32,000) 목표대에 정확히 안착</b>했다. (4)파를 <b>이중 지그재그(W-X-Y)</b>로 재판독하고, (4)저점 후보를 <b>38,300 → 34,400</b>으로 이동한다. 34,400은 <b>(3) 전체의 0.5 되돌림(35,355)</b> 부근 — 7/9 코스피가 신저가를 낸 날 이 ETF는 오히려 반등해 <b class="gr">긍정 다이버전스</b>를 남겼다. 분수령은 <b class="gr">38,300 종가 회복(상)</b> / <b class="up">34,400 종가 이탈(하)</b>.</p>
+<div class="herometa">
+<div><div class="v">37,300<span style="font-size:15px;font-weight:400"> 원</span></div><div class="l">자료기준일 종가 · 2026.07.10</div></div>
+<div><div class="v up">−46.0%</div><div class="l">(3)정점(63,685)→(4)저점(34,400)</div></div>
+<div><div class="v gr">34,400</div><div class="l">(4)저점 후보 · 0.5 되돌림 안착</div></div>
+<div><div class="v" style="color:var(--accent)">A 48 / B 37 / C 15</div><div class="l">시나리오 가중 (v4)</div></div>
+</div>
+</div>
+
+<div class="band">
+<div><div class="v">63,685</div><div class="l">(3)정점 (5/8)</div></div>
+<div><div class="v up">34,400</div><div class="l">(4)저점 후보 (7/8) · 신규</div></div>
+<div><div class="v">38,300</div><div class="l">舊 (4)저점 → 現 저항·1차 확인선</div></div>
+<div><div class="v gr">46,655</div><div class="l">B파(X) 천장 (7/1) · (5)확인</div></div>
+<div><div class="v acc">22,010</div><div class="l">시나리오 C 트리거 / 무효화</div></div>
+</div>
+
+<p class="big" style="background:#FBEEEE;border-left:3px solid var(--accent);padding:14px 18px;border-radius:3px">
+<b>3차 → 4차 변경 요약.</b> ① 분석일 6/19 → <b>7/11(7/10 종가 37,300)</b>. ② <b class="up">3차 하방 트리거(38,300 종가 이탈) 발동</b> — 6/26 첫 이탈(37,690) → 7/1 <b>46,655 B파 천장</b>(A1 확인선 49,800 끝내 미회복) → 7/7(37,890)·7/8(34,400) 결정적 이탈. ③ <b>A1(49,600 거래량 돌파)은 미발동 → A2(반등=B파, C파 잔여) 채택</b>. ④ (4) 재판독: 단일 지그재그 → <b>이중 지그재그(W-X-Y)</b>, (4)저점 <b>38,300 → 34,400</b>. ⑤ 34,400 = <b>0.5 되돌림(35,355)+Ⓨ≈0.5Ⓦ+3차 A2목표대</b> 3중 안착 → 새 바닥 후보. ⑥ <b class="gr">7/9 對 코스피 긍정 다이버전스</b>(코스피 신저가일에 ETF 반등)·7/10 원전·전력 테마 반등 주도. 가중 <b>A 48 / B 37 / C 15</b>. 메인 임펄스 골격(22,010·7,025) 견고.</p>
+
+<!-- ============ Part 1 ============ -->
+<section>
+<div class="part">Part 1</div><h2>거대 임펄스 구조 — 사이클 (1)(2)(3)(4)(5) 계승</h2>
+<p class="big">1차(5/17)의 정통 차수 카운트를 4차에서도 계승한다. 바뀐 것은 <b>(4)파의 내부 구조와 저점</b>뿐 — 상위 골격은 불변이다.</p>
+<div class="tw"><table><thead><tr><th>파동</th><th>구간</th><th class="num">%</th><th class="wr">비고</th></tr></thead><tbody>
+<tr><td><b>(3)</b></td><td>7,025 → <b>63,685</b> ('26-05-08)</td><td class="num"><b>+807%</b></td><td class="wr">약 20개월, sub (3)-1~(3)-5</td></tr>
+<tr><td>↳ (3)-3</td><td>7,935 → 27,110</td><td class="num">+241.7%</td><td class="wr">%기준 최장 (가이드라인 충족)</td></tr>
+<tr><td>↳ (3)-4</td><td>27,110 → <b>22,010</b></td><td class="num">−18.8%</td><td class="wr"><b>시나리오 C 트리거 (종가 이탈 시 (3) 무효)</b></td></tr>
+<tr><td>↳ (3)-5</td><td>22,010 → 63,685</td><td class="num">+189.3%</td><td class="wr">(3) 정점</td></tr>
+<tr style="background:#FBEEEE"><td><b>(4)</b></td><td>63,685 → <b>34,400</b> ('26-07-08)</td><td class="num up"><b>−46.0%</b></td><td class="wr"><b>이중 지그재그 W-X-Y (3차: 단일 ZZ 38,300) · 0.507 되돌림</b></td></tr>
+<tr style="background:#EEF3EE"><td><b>(5) 초입?</b></td><td>34,400 → 37,300 (진행)</td><td class="num gr">+8.4%</td><td class="wr"><b>바닥 후보 반등 · 확인 미완</b></td></tr>
+</tbody></table></div>
+<p class="muted" style="font-size:12.5px">절대 무효화 — 사이클 (2) 저점 <b>7,025</b> 침범 시 (3)파 전면 재카운트. 시나리오 C 트리거 — (3)-4 저점 <b>22,010</b> 종가 이탈. 두 선 모두 현재가(37,300) 대비 매우 멀어(−41%·−81%), 8배 급등 임펄스 골격은 (4)의 심화에도 불구하고 견고하다.</p>
+</section>
+
+<!-- ============ Part 2 ============ -->
+<section>
+<div class="part">Part 2</div><h2>3차 판정 채점 — A2(B파)가 이겼다</h2>
+<p class="big">3차는 A1(임펄스, 40%)과 A2(B파+C, 42%)를 호각으로 두되, <b>거래량·RSI 검증(Part 6)</b>을 근거로 "반등은 B파의 가면"이라 적고 하방 트리거를 명시했다. 이후 5거래일의 실측이 그 트리거를 하나씩 발동시켰다.</p>
+<div class="tw"><table><thead><tr><th>3차 트리거 / 예측</th><th>실측 (6/22~7/10)</th><th>판정</th></tr></thead><tbody>
+<tr><td class="wr">A1 확정 = 49,800 거래량 동반 종가 돌파</td><td class="wr">종가 최고 46,655(7/1) — 49,800 종가 <b>끝내 미회복</b></td><td class="risk-t"><b>미발동 ✗</b></td></tr>
+<tr><td class="wr">"거래량 없는 반등 = B파의 가면"</td><td class="wr">6/19 천장 분배 후 하락 재개 — 반등은 임펄스 아니었음</td><td class="gr"><b>적중 ✓</b></td></tr>
+<tr style="background:#FBEEEE"><td class="wr"><b>38,300 종가 이탈 → B파 확정·C파 시작</b></td><td class="wr"><b>6/26 첫 이탈(37,690) → 7/7(37,890)·7/8(34,400) 결정적</b></td><td class="up"><b>발동 ✓</b></td></tr>
+<tr style="background:#FBEEEE"><td class="wr"><b>C파(Ⓨ) 목표 35,355~32,000</b></td><td class="wr"><b>7/8 저점 34,400 — 목표대 상단 안착</b></td><td class="gr"><b>적중 ✓</b></td></tr>
+<tr><td class="wr">40,700·38,300 이탈 시 비중 축소·청산(중기 전략)</td><td class="wr">규율 준수 시 −20%대 추가 하락 회피</td><td class="gr"><b>규율 유효 ✓</b></td></tr>
+</tbody></table></div>
+<div class="callout">
+<div class="co moat"><div class="tag">채점 결론</div><h4>레벨은 갱신, 트리거는 명중</h4><p>3차의 <b>바닥(38,300)</b>은 틀렸으나, 3차가 미리 적어 둔 <b>하방 트리거 사다리(49,800 미확인 → 38,300 이탈 → 35,355~32,000)</b>는 순서대로 발동해 34,400에서 멈췄다. "거래량이 표를 의심하게 한다"던 3차의 유보가 옳았다.</p></div>
+<div class="co risk"><div class="tag">그래서 지금</div><h4>A2 채택 후의 재출발</h4><p>반등=B파, C파(Ⓨ)=34,400 안착이 확정된 지금, 질문은 다시 하나로 압축된다 — <b>34,400이 (4)의 진짜 바닥인가((5) 시작), 아니면 Ⓨ가 더 연장되는가.</b> 이번엔 우리가 그 트리거를 적을 차례다.</p></div>
+</div>
+</section>
+
+<!-- ============ Part 3 ============ -->
+<section>
+<div class="part">Part 3</div><h2>다계위 차트 — Cycle / Intermediate / Minute</h2>
+
+<h3>Cycle — 사이클 (1)(2)(3)(4)(5) 골격 (로그)</h3>
+<div class="chart"><svg viewBox="0 0 1000 460" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans,sans-serif">
+<rect width="1000" height="460" fill="#fff"/>
+<!-- log grid: y=420-(log10(p)-3.80)*336.4 -->
+<g stroke="#E3DDD0" stroke-width="1" stroke-dasharray="2,4">
+<line x1="70" y1="82.2" x2="960" y2="82.2"/><line x1="70" y1="156.6" x2="960" y2="156.6"/>
+<line x1="70" y1="237.3" x2="960" y2="237.3"/><line x1="70" y1="325.5" x2="960" y2="325.5"/><line x1="70" y1="404.2" x2="960" y2="404.2"/>
+</g>
+<g font-family="JetBrains Mono,monospace" font-size="10" fill="#8a8676" text-anchor="end">
+<text x="64" y="85">63,685</text><text x="64" y="159">38,300</text><text x="64" y="240">22,010</text><text x="64" y="328">12,050</text><text x="64" y="407">7,025</text>
+</g>
+<!-- price skeleton -->
+<polyline points="90,404.2 200,325.5 260,386.4 420,207 500,237.3 640,82.2 780,172.1" fill="none" stroke="#16160F" stroke-width="2.4" stroke-linejoin="round"/>
+<!-- (5) projection -->
+<polyline points="780,172.1 880,90 940,56.3" fill="none" stroke="#3f7a52" stroke-width="2" stroke-dasharray="7,4" marker-end="url(#u1)"/>
+<defs><marker id="u1" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#3f7a52"/></marker></defs>
+<!-- pivots -->
+<circle cx="90" cy="404.2" r="4" fill="#2c5fb7"/><text x="90" y="422" text-anchor="middle" font-size="11" font-weight="700" fill="#2c5fb7">(2) 7,025</text>
+<circle cx="420" cy="207" r="3.5" fill="#16160F"/><text x="420" y="199" text-anchor="middle" font-size="9.5" fill="#8a8676">(3)-3</text>
+<circle cx="500" cy="237.3" r="3.5" fill="#8B3A2E"/><text x="500" y="255" text-anchor="middle" font-size="9.5" fill="#8B3A2E">(3)-4 22,010</text>
+<circle cx="640" cy="82.2" r="5" fill="#c8364d"/><text x="640" y="74" text-anchor="middle" font-size="11" font-weight="700" fill="#c8364d">(3) 63,685</text>
+<circle cx="780" cy="172.1" r="5.5" fill="#c8364d" stroke="#fff" stroke-width="1.4"/><text x="792" y="176" text-anchor="start" font-size="11" font-weight="700" fill="#c8364d">(4) 34,400</text>
+<text x="892" y="86" text-anchor="middle" font-size="11" font-weight="700" fill="#3f7a52">(5) ↑</text>
+<text x="905" y="70" text-anchor="middle" font-size="9" fill="#8a8676">63,685→76,075</text>
+</svg></div>
+<p class="caption">7,025(②) → (3)파 +807% → 정점 63,685(5/8) → <b class="up">(4) 34,400</b>(7/8, 전체 임펄스의 0.507 되돌림) → 반등. (4)는 (3)-4(22,010)를 침범하지 않아 임펄스 규칙 유지. 로그 스케일.</p>
+
+<h3>Intermediate / Minute — (4) 이중 지그재그 Ⓦ-Ⓧ-Ⓨ 와 시나리오</h3>
+<div class="chart"><svg viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans,sans-serif">
+<rect width="1000" height="480" fill="#fff"/>
+<!-- y=40+(66000-p)*0.010833 -->
+<g stroke="#E3DDD0" stroke-width="1" stroke-dasharray="2,4">
+<line x1="70" y1="65.1" x2="960" y2="65.1"/><line x1="70" y1="215.5" x2="960" y2="215.5"/>
+<line x1="70" y1="249.6" x2="960" y2="249.6"/><line x1="70" y1="340.1" x2="960" y2="340.1"/>
+<line x1="70" y1="371.9" x2="960" y2="371.9"/><line x1="70" y1="382.3" x2="960" y2="382.3"/><line x1="70" y1="408.3" x2="960" y2="408.3"/>
+</g>
+<g font-family="JetBrains Mono,monospace" font-size="9.5" fill="#8a8676">
+<text x="74" y="62" fill="#c8364d">63,685 — (3)정점</text>
+<text x="74" y="212" fill="#8B3A2E">49,800 — A1 최종 확인선 (미회복)</text>
+<text x="74" y="246" fill="#3f7a52">46,655 — Ⓧ(B파) 천장 · (5) 유력 확인</text>
+<text x="74" y="337" fill="#16160F">38,300 — 舊(4)저점 · 現 저항/1차 확인선</text>
+<text x="620" y="369" fill="#8a8676">35,355 — 0.5 되돌림</text>
+<text x="74" y="404" fill="#c8364d" font-weight="bold">34,400 — (4)저점 후보 (Ⓨ)</text>
+<text x="620" y="405" fill="#8B3A2E">32,000 — B 시나리오 목표</text>
+</g>
+<!-- forward zone -->
+<line x1="620" y1="45" x2="620" y2="440" stroke="#8a8676" stroke-width="1" stroke-dasharray="3,3"/>
+<rect x="620" y="45" width="340" height="395" fill="#F1ECE0" opacity="0.5"/>
+<text x="790" y="460" text-anchor="middle" font-size="10" fill="#8B3A2E" font-weight="700">전망 (7/13~)</text>
+<!-- price path: (3)정점 -> W -> X-internal(49600,37690) -> X 46655 -> Y 34400 -> now 37300 -->
+<polyline points="110,65.1 230,340.1 320,217.7 390,346.7 450,249.6 560,382.3 620,350.9" fill="none" stroke="#16160F" stroke-width="2.4" stroke-linejoin="round"/>
+<!-- bull A projection -->
+<polyline points="620,350.9 700,340.1 800,249.6 920,120" fill="none" stroke="#3f7a52" stroke-width="2.1" stroke-dasharray="7,4" marker-end="url(#uA)"/>
+<!-- bear B projection -->
+<polyline points="620,350.9 690,382.3 780,408.3" fill="none" stroke="#c8364d" stroke-width="1.7" stroke-dasharray="4,4" marker-end="url(#dB)"/>
+<defs>
+<marker id="uA" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#3f7a52"/></marker>
+<marker id="dB" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#c8364d"/></marker>
+</defs>
+<!-- pivots + wave labels -->
+<circle cx="110" cy="65.1" r="4.5" fill="#c8364d"/><text x="110" y="57" text-anchor="middle" font-size="10" font-weight="700" fill="#c8364d">(3) 63,685</text>
+<circle cx="230" cy="340.1" r="4.5" fill="#2c5fb7"/><text x="230" y="357" text-anchor="middle" font-size="10.5" font-weight="700" fill="#2c5fb7">Ⓦ 38,300</text><text x="230" y="369" text-anchor="middle" font-size="8.5" fill="#8a8676">6/8</text>
+<circle cx="320" cy="217.7" r="3" fill="#8a8676"/><text x="320" y="211" text-anchor="middle" font-size="8.5" fill="#8a8676">49,600(6/19)</text>
+<circle cx="390" cy="346.7" r="3" fill="#8a8676"/><text x="390" y="360" text-anchor="middle" font-size="8.5" fill="#8a8676">37,690(6/26)</text>
+<circle cx="450" cy="249.6" r="4.5" fill="#3f7a52"/><text x="450" y="242" text-anchor="middle" font-size="10.5" font-weight="700" fill="#3f7a52">Ⓧ 46,655</text><text x="450" y="234" text-anchor="middle" font-size="8.5" fill="#8a8676">7/1 · B파</text>
+<circle cx="560" cy="382.3" r="6" fill="#c8364d" stroke="#fff" stroke-width="1.4"/><text x="560" y="400" text-anchor="middle" font-size="10.5" font-weight="700" fill="#c8364d">Ⓨ 34,400</text><text x="560" y="412" text-anchor="middle" font-size="8.5" fill="#8a8676">7/8</text>
+<circle cx="620" cy="350.9" r="4.5" fill="#16160F"/><text x="628" y="346" text-anchor="start" font-size="9.5" font-weight="700" fill="#16160F">현재 37,300</text>
+<text x="820" y="250" font-size="10.5" font-weight="700" fill="#3f7a52">A · (5) 개시</text>
+<text x="700" y="405" font-size="10" font-weight="700" fill="#c8364d">B · Ⓨ 연장</text>
+</svg></div>
+<p class="caption">(3)정점 63,685 → <b>Ⓦ 38,300</b>(6/8, 지그재그①) → <b>Ⓧ 46,655</b>(복합 커넥터: 49,600↑→37,690↓→46,655, "거래량 없는 반등"=B파) → <b class="up">Ⓨ 34,400</b>(7/8, 지그재그②, ≈0.5Ⓦ) → 현재 37,300. <b class="gr">38,300 회복(A)</b> / <b class="up">34,400 이탈(B, 32,000)</b>이 분수령. Ⓨ가 Ⓦ의 0.48배로 다소 짧아 연장(31,000) 여지 잔존.</p>
+</section>
+
+<!-- ============ Part 4 ============ -->
+<section>
+<div class="part">Part 4</div><h2>시나리오 &amp; 계위별 전략 (v4)</h2>
+<div class="scen">
+<div class="sc bull"><div class="hd"><span>A · (4) 종료(34,400), (5) 진행</span><span class="p">48%</span></div><div class="bd"><div class="tgt">38,300 회복 → 63,685 / 76,075</div>Ⓨ가 34,400에서 완성 — 0.5 되돌림(35,355)·Ⓨ≈0.5Ⓦ·3차 목표대 3중 안착 + <b>7/9 對코스피 긍정 다이버전스</b>. 38,300 종가 회복이 1차, 46,655 회복이 (5) 유력 확인. 목표 34,400+41,675=<b>76,075</b>. <b class="gr">A2(3차) 소진 후 재출발 = 48%</b></div></div>
+<div class="sc neut"><div class="hd"><span>B · Ⓨ 연장(4파 미완)</span><span class="p">37%</span></div><div class="bd"><div class="tgt">34,400 이탈 → 32,000 / 31,000</div>34,400은 Ⓨ 중간 저점일 뿐 — Ⓨ가 짧아(0.48Ⓦ) 0.618Ⓦ(≈31,000)·0.618 되돌림까지 연장. 반등이 38,300에서 소진 후 신저가면 채택. 거래량 미검증 반등은 추격 금지. <b>37%</b></div></div>
+<div class="sc bear"><div class="hd"><span>C · 대형 ABC / (3) 재정의</span><span class="p">15%</span></div><div class="bd"><div class="tgt">22,010 이탈 시</div>63,685이 (3)이 아닌 (5)정점이었을 가능성. <b>22,010 종가 이탈로만 확정</b>. 3차 12%+꼬리 → 15%. 절대 무효화 7,025.</div></div>
+</div>
+<div class="tw"><table><thead><tr><th>계위</th><th>편향</th><th class="wr">액션</th><th>목표 / 무효화</th></tr></thead><tbody>
+<tr><td><b>장기 (Cycle)</b></td><td>롱 보유</td><td class="wr">임펄스 골격(22,010·7,025) 견고. (5) 시나리오 생존. 풀비중 추격은 46,655 회복 후.</td><td class="mono">63,685~76,075 / 22,010</td></tr>
+<tr><td><b>중기 ((4)→(5))</b></td><td style="color:var(--accent);font-weight:700">중립·조건부</td><td class="wr">① 34,400 위 분할 관찰(선취매 금지) ② <b>38,300 종가 회복 = 1차 매수</b>, 46,655 회복 = 확대 ③ <b>34,400 종가 이탈 = 청산·B 대응</b></td><td class="mono">46,655→63,685 / 34,400</td></tr>
+<tr><td><b>단기 (Minute)</b></td><td>롱 트레이딩</td><td class="wr">34,400 반등 트레이딩. 38,300 저항 미회복 시 차익, 34,400 이탈 시 손절. 거래량 동반 여부 필수 확인.</td><td class="mono">38,300 / 34,400</td></tr>
+</tbody></table></div>
+</section>
+
+<!-- ============ Part 5 ============ -->
+<section>
+<div class="part">Part 5</div><h2>핵심 가격 레벨</h2>
+<div class="tw"><table><thead><tr><th>레벨</th><th class="num">가격</th><th class="wr">의미</th></tr></thead><tbody>
+<tr><td>(5) 목표 2</td><td class="num mono">76,075</td><td class="wr">34,400 + (3)-5 등폭(41,675)</td></tr>
+<tr><td>(5) 목표 1</td><td class="num mono">63,685</td><td class="wr">전고점(ATH) 재도전</td></tr>
+<tr><td><b>A1 최종 확인선</b></td><td class="num mono">49,800</td><td class="wr">종가 돌파 = (5) 본격 · 舊 A1 확정선 승계</td></tr>
+<tr style="background:#EEF3EE"><td><b>Ⓧ(B파) 천장</b></td><td class="num mono gr">46,655</td><td class="wr">종가 회복 = (5) 유력 · Ⓨ 완성 확정</td></tr>
+<tr style="background:#EEF3EE"><td><b>1차 확인선</b></td><td class="num mono">38,300</td><td class="wr"><b>舊(4)저점·現 저항. 종가 회복 = Ⓨ 종료 시사</b></td></tr>
+<tr><td>현재가</td><td class="num mono">37,300</td><td class="wr">7/10 종가 (34,400 대비 +8.4%)</td></tr>
+<tr style="background:#FBEEEE"><td><b>(4)저점 후보 / A 무효</b></td><td class="num mono up"><b>34,400</b></td><td class="wr"><b>종가 이탈 = A 폐기 → B(Ⓨ 연장)</b></td></tr>
+<tr><td>B 시나리오 목표</td><td class="num mono">32,000~31,000</td><td class="wr">0.618Ⓦ · 0.618 되돌림</td></tr>
+<tr><td>시나리오 C 확정</td><td class="num mono">22,010</td><td class="wr">(3)-4 저점 이탈 → 대형 ABC</td></tr>
+<tr><td>전면 무효화</td><td class="num mono">7,025</td><td class="wr">사이클 (2) 저점 침범</td></tr>
+</tbody></table></div>
+</section>
+
+<!-- ============ Part 6 ============ -->
+<section>
+<div class="part">Part 6</div><h2>상대강도 &amp; 다이버전스 — 34,400 바닥의 정황증거</h2>
+<p class="big">3차의 핵심 무기가 <b>거래량·RSI</b>였다면, 4차의 바닥 후보(34,400)를 뒷받침하는 것은 <b>지수 대비 상대강도(다이버전스)와 섹터 주도</b>다. 단, 반등 2일·거래량 미검증이라는 3차의 교훈은 그대로 유효하다.</p>
+<div class="callout">
+<div class="co moat"><div class="tag">긍정 다이버전스</div><h4>코스피 신저가일에 ETF 반등 (7/9)</h4><p>이 ETF는 <b>7/8 저점 34,400</b>으로 하루 먼저 저점을 찍고 <b>7/9 +1.8%(35,020)</b> 반등했다 — 반면 코스피는 7/9 장중 신저가(7,063.76). 지수보다 <b>1일 선행 저점 + 지수 신저가일 반등</b>은 상대강도·선행 반전의 전형적 정황.</p></div>
+<div class="co moat"><div class="tag">섹터 주도</div><h4>7/10 원전·전력 반등 주도</h4><p>7/10 지수 반등에서 <b>두산에너빌리티 +8.2%·LS ELECTRIC +8.24%</b> 등 전력·원전이 상위 강세. AI 전력수요 내러티브 재점화가 구성종목을 통해 ETF 반등(37,300, 저점 대비 +8.4%)을 뒷받침.</p></div>
+<div class="co risk"><div class="tag">미검증 리스크 1</div><h4>Ⓨ가 짧다 (0.48Ⓦ)</h4><p>이중 지그재그에서 Ⓨ는 통상 0.618~1.0Ⓦ. 현 Ⓨ(−12,255)는 Ⓦ(−25,385)의 0.48배로 짧아, <b>34,400이 종점이 아닐 여지</b>(31,000까지 연장)가 B 37%의 핵심 근거.</p></div>
+<div class="co risk"><div class="tag">미검증 리스크 2</div><h4>반등 2일·거래량 미확인</h4><p>3차가 46%의 거래량 반등을 'B파의 가면'으로 간파했듯, 현 반등도 <b>거래량 동반 확인 전에는 추격 금지</b>. 38,300 종가 회복 + 거래량 팽창이 동반돼야 Ⓨ 종료를 신뢰.</p></div>
+</div>
+</section>
+
+<!-- ============ Part 7 ============ -->
+<section>
+<div class="part">Part 7</div><h2>비판적 자기검토</h2>
+<div class="tw"><table><thead><tr><th class="wr">잠재적 반론</th><th class="wr">대응</th></tr></thead><tbody>
+<tr><td class="wr">34,400이 (4)의 진짜 바닥이 아니라 Ⓨ 중간 저점일 수 있음(Ⓨ 짧음)</td><td class="wr">B 37%로 명시 반영. <b>34,400 종가 이탈 = A 폐기·B(32,000/31,000)</b> 하드 트리거로 추적. 34,400 위·38,300 미회복 구간은 '판단 유보'.</td></tr>
+<tr><td class="wr">(4)를 단일 지그재그(3차)에서 이중 지그재그로 바꾼 것이 사후 끼워맞추기 아닌가</td><td class="wr">Ⓧ가 Ⓦ를 33%만 되돌리고(플랫 아님) 신고가 없이 복합 횡보 후 Ⓨ 신저가 — 이중 지그재그의 정의에 부합. 결정적으로 <b>3차가 예고한 '38,300 이탈 → C(Ⓨ)'가 그대로 발동</b>해, 재판독은 시장이 강제한 것.</td></tr>
+<tr><td class="wr">0.507 되돌림은 이상적 4파(0.382)보다 깊다</td><td class="wr">깊은 4파는 5파 조정에서 흔하며, <b>0.5 되돌림(35,355)은 유효 지지대</b>. (3)-4(22,010)를 침범하지 않아 임펄스 규칙은 유지. 단 0.618(24,650) 이탈 시 C 경계.</td></tr>
+<tr><td class="wr">7/10 종가(37,300)가 대시보드 기준치</td><td class="wr">파동 대시보드(2026-07-10) 지수/ETF 기준치 사용. 확정 마감치와 미세 차이 가능하나 트리거(38,300·34,400)와의 관계는 불변.</td></tr>
+</tbody></table></div>
+</section>
+
+<!-- ============ Verdict ============ -->
+<div class="verdict">
+<div class="q">"3차는 46,165 회복에 A1의 표를 세면서도, 거래량이 그 표를 의심하게 한다고 적었다. 시장은 의심의 손을 들어줬다 — 46,655는 B파였고, 38,300은 바닥이 아니라 관문이었다. 이제 새 바닥의 이름은 34,400이다."</div>
+<p>사이클 (4)파는 3차가 지목한 38,300이 아니라, <b>이중 지그재그 Ⓦ-Ⓧ-Ⓨ</b>로 연장되어 <b>34,400(7/8)</b>에서 바닥을 다시 찾는 것으로 본다. 3차의 하방 트리거(38,300 이탈 → 35,355~32,000)가 정확히 발동해 Ⓨ가 목표대에 안착했고, 34,400은 <b>(3) 전체의 0.5 되돌림(35,355)·Ⓨ≈0.5Ⓦ</b>이 겹치는 자리다. <b>7/9 對코스피 긍정 다이버전스</b>와 7/10 전력·원전 섹터 주도가 바닥 후보를 뒷받침한다. 그러나 Ⓨ가 짧고(0.48Ⓦ) 반등의 거래량이 미검증이라, <b>A(48%)와 B(37%)는 호각에 가깝다</b>. 실전은 — <b class="gr">38,300 종가 회복 = 1차 매수 · 46,655 회복 = (5) 확대</b>, <b class="up">34,400 종가 이탈 = 청산·B(32,000) 대응</b>. 메인 임펄스 골격(22,010·7,025)은 (4)의 심화에도 견고하다. 3차의 규율이 −20% 추가 하락을 방어했듯, 4차의 규율도 가격으로 미리 적혀 있다.</p>
+<div class="vdl">
+<div><div class="l">투자의견 · 시간지평</div><div class="v">중립·조건부 (A≈B, 중기)</div></div>
+<div><div class="l">확정 트리거 / 무효화</div><div class="v">38,300 회복 ↑ / 34,400 이탈 ↓</div></div>
+<div><div class="l">(5)파 목표</div><div class="v">63,685 → 76,075</div></div>
+</div>
+<div style="margin-top:22px"><div class="l" style="font-size:11px;color:#b8b09c">종합 평점 (3차 3.5 → 4차 3.5 · 3차 트리거 명중으로 프레임 견고, 단 34,400 바닥은 미확정 호각)</div><div class="stars">★★★½☆ <span style="font-family:'JetBrains Mono';font-size:14px;color:#cfc8b6">3.5 / 5.0</span></div></div>
+</div>
+
+<footer>
+<div class="report-footer-meta"><span>CHORY &amp; ROCHET · EQUITY RESEARCH</span><span>487240 · KODEX AI전력핵심설비</span><span>다계위 파동분석 4차 · 2026·07·11</span></div>
+<p class="disc">본 분석은 엘리어트 파동 이론 기반 가격 시나리오 추정이며 투자 권유나 법적 조언이 아닙니다. 1차(5/17)의 사이클 (1)(2)(3)(4)(5) 카운트를 계승하고, 3차(6/19) 이후 6/22~7/10 실측으로 재산정했습니다. (4)저점은 3차의 38,300(장중저점)에서 <b>34,400(7/8)</b>으로 이동하고 (4) 내부를 이중 지그재그(Ⓦ-Ⓧ-Ⓨ)로 재판독했습니다. 최근 종가·저점은 파동 대시보드(2026-07-10 기준) 및 일일 시황 보고서에 근거하며, 7/10 종가(37,300)는 대시보드 기준치로 확정 마감치와 미세 차이가 있을 수 있습니다. 상장 후 약 23개월의 짧은 이력과 8배 급등으로 파동 카운트의 신뢰도는 제한적이며, 시나리오 확률은 분석가의 주관적 추정입니다. 전체(Cycle) 차트는 로그 스케일입니다. 투자에 따른 모든 위험과 결과는 투자자 본인에게 귀속됩니다.</p>
+</footer>
+
+</div></body></html>
