@@ -22,7 +22,7 @@
     '.cr-nav a{padding:8px 14px;border-radius:4px;color:#6b6b6b;font-weight:500;font-size:14px;text-decoration:none;white-space:nowrap;}' +
     '.cr-nav a:hover{background:#f3f3f3;color:#111;}' +
     '.cr-nav a.cr-active{background:#eaf0f7;color:#1e3a5f;}' +
-    '@media (max-width:640px){.cr-header-inner{padding:10px 16px;}.cr-brand-sub{display:none;}.cr-nav a{padding:6px 9px;font-size:12px;}}';
+    '@media (max-width:640px){.cr-header-inner{padding:10px 14px;flex-wrap:wrap;gap:8px;}.cr-brand-sub{display:none;}.cr-brand-mark{width:32px;height:32px;font-size:12px;}.cr-brand-title{font-size:15px;}.cr-nav{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:2px;}.cr-nav a{padding:6px 9px;font-size:12px;}}';
 
   var style = document.createElement('style');
   style.textContent = css;
