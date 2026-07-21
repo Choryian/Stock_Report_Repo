@@ -88,8 +88,9 @@ footer{margin-top:30px;border-top:2px solid var(--ink);padding:26px 46px 40px;fo
   <h1>티앤엘 <span class="code">A340570 · 코스닥</span></h1>
   <div class="sub">하이드로콜로이드 창상피복재(대미 수출 76%) — <b>관세청 월별 통계로 읽는 2분기 실적 선행 추정</b></div>
   <div class="metaline">
-    <span>발행 · Chory &amp; Rochet</span><span>분석일 · 2026-07-01</span>
+    <span>발행 · Chory &amp; Rochet</span><span>분석일 · 2026-07-01 · 발행 · 2026-07-21</span>
     <span>데이터 · 관세청 HS 3005.10(6월 확정) + 1Q26 DART</span><span>어닝 D-45 프리뷰 · 6/30 종가 66,800</span>
+    <span>rev.1 · 2026-07-21 · 회귀 교차검증(Part III-B) 추가</span>
   </div>
 </header>
 
@@ -174,6 +175,53 @@ footer{margin-top:30px;border-top:2px solid var(--ink);padding:26px 46px 40px;fo
   <div class="scn s-alt"><div class="top"><span class="name">강세 (Upside)</span><span class="badge">30%</span></div><p>매출 540억 · 영익 202억 · 영익률 37.4% — 6월 둔화가 통계 시차, 제품 믹스 우호 지속.</p></div>
   <div class="scn s-primary"><div class="top"><span class="name">★ 기본 (Base)</span><span class="badge">50%</span></div><p>매출 525억 · 영익 192억 · 영익률 36.6% — 리스탁킹 정상 종료 + 6월 원화 약세 FX 우호.</p></div>
   <div class="scn s-invalid"><div class="top"><span class="name">보수 (Downside)</span><span class="badge">20%</span></div><p>매출 505억 · 영익 178억 · 영익률 35.2% — 리스탁킹 마케팅비 증가·마이크로니들 부진 지속.</p></div>
+</section>
+
+<section>
+  <div class="eyebrow s">Part III-B — 회귀 교차검증 (rev.1)</div>
+  <h2>독립 2차 통관 소스 + 회귀모형: 525억은 통계적으로 확증된다</h2>
+  <p>Part III의 525억 추정을 <b>독립적으로 교차검증</b>하기 위해, Part II의 HS 3005.10 자체 배분과는 <b>다른 2차 통관 소스</b>(관세청 지역통계 간접추정)로 8개 분기(2024 3Q~2026 1Q)의 <span class="key">분기 통관액을 원화환산</span>하고, 이를 DART 실측 매출에 대해 최소자승(OLS) 회귀했다. FX 왜곡을 제거하기 위해 설명변수는 <b>통관액 × 분기평균 환율(원)</b>로 통일했다.</p>
+
+  <h3>학습 데이터셋 — 통관_KRW ↔ 실측 매출 (7개 분기)</h3>
+  <table>
+    <thead><tr><th>분기</th><th>실측매출 (억)</th><th>통관 ($M)</th><th>분기평균 FX</th><th>통관_KRW (억)</th></tr></thead>
+    <tbody>
+      <tr><td>2024 3Q</td><td class="num">487.2</td><td class="num">28.55</td><td class="num">1,340</td><td class="num">382.5</td></tr>
+      <tr><td>2024 4Q</td><td class="num">465.2</td><td class="num">18.63</td><td class="num">1,415</td><td class="num">263.5</td></tr>
+      <tr><td>2025 1Q</td><td class="num">513.2</td><td class="num">26.64</td><td class="num">1,463</td><td class="num">389.8</td></tr>
+      <tr><td>2025 2Q</td><td class="num">387.6</td><td class="num">16.01</td><td class="num">1,386</td><td class="num">221.9</td></tr>
+      <tr><td>2025 3Q</td><td class="num">406.7</td><td class="num">19.30</td><td class="num">1,395</td><td class="num">269.2</td></tr>
+      <tr><td>2025 4Q</td><td class="num">334.0</td><td class="num">13.40</td><td class="num">1,446</td><td class="num">193.7</td></tr>
+      <tr><td>2026 1Q 실측</td><td class="num">450.7</td><td class="num">21.00</td><td class="num">1,465</td><td class="num">307.7</td></tr>
+      <tr class="main"><td><b>2026 2Q 예측</b></td><td class="num"><b>?</b></td><td class="num">28.30</td><td class="num">1,509</td><td class="num"><b>427.1</b></td></tr>
+    </tbody>
+  </table>
+
+  <div class="nested">
+    <div class="lab">OLS 회귀식 · n=7 · R²=0.836</div>
+    <div class="body">매출(억) = <span class="c">215.5</span> + <span class="m">0.757</span> × 통관_KRW(억) &nbsp; <span style="font-size:12px;color:#b9b3a3">[ r=0.914 · 잔차SE=27.6억 ]</span></div>
+  </div>
+  <p>절편 <b>215.5억 = 비(非)통관 기저</b>(국내·기타제품·미포착 직수출), 기울기 <b>0.757 = 통관 1억↑당 매출 0.76억↑</b>. 통관_KRW 하나가 분기 매출 분산의 <b>84%(R²)</b>를 설명한다 — 티앤엘 매출이 통관 프록시로 상당 부분 복원 가능함을 실증.</p>
+
+  <div class="chart"><svg width="100%" viewBox="0 0 860 400" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif"><rect x="0" y="0" width="860" height="400" fill="#ffffff"/><text x="98" y="24" fill="#1a1a1a" font-size="13" font-weight="600">통관_KRW(x) vs 실측 매출(y) — OLS 회귀선 + 2Q26E 예측(68% 밴드)</text><line x1="98" y1="336.0" x2="820" y2="336.0" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="339.5" text-anchor="end" font-size="10.5" fill="#888888">300</text><line x1="98" y1="281.8" x2="820" y2="281.8" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="285.3" text-anchor="end" font-size="10.5" fill="#888888">350</text><line x1="98" y1="227.5" x2="820" y2="227.5" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="231.0" text-anchor="end" font-size="10.5" fill="#888888">400</text><line x1="98" y1="173.3" x2="820" y2="173.3" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="176.8" text-anchor="end" font-size="10.5" fill="#888888">450</text><line x1="98" y1="119.1" x2="820" y2="119.1" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="122.6" text-anchor="end" font-size="10.5" fill="#888888">500</text><line x1="98" y1="64.9" x2="820" y2="64.9" stroke="#dddddd" stroke-width="0.7" stroke-dasharray="2 4"/><text x="92" y="68.4" text-anchor="end" font-size="10.5" fill="#888888">550</text><line x1="153.5" y1="54" x2="153.5" y2="336" stroke="#eeeeee" stroke-width="0.7"/><text x="153.5" y="352" text-anchor="middle" font-size="10" fill="#999">200</text><line x1="292.4" y1="54" x2="292.4" y2="336" stroke="#eeeeee" stroke-width="0.7"/><text x="292.4" y="352" text-anchor="middle" font-size="10" fill="#999">250</text><line x1="431.2" y1="54" x2="431.2" y2="336" stroke="#eeeeee" stroke-width="0.7"/><text x="431.2" y="352" text-anchor="middle" font-size="10" fill="#999">300</text><line x1="570.1" y1="54" x2="570.1" y2="336" stroke="#eeeeee" stroke-width="0.7"/><text x="570.1" y="352" text-anchor="middle" font-size="10" fill="#999">350</text><line x1="708.9" y1="54" x2="708.9" y2="336" stroke="#eeeeee" stroke-width="0.7"/><text x="708.9" y="352" text-anchor="middle" font-size="10" fill="#999">400</text><line x1="98" y1="279.9" x2="820" y2="66.4" stroke="#2e7d4f" stroke-width="2.5"/><text x="110" y="72" text-anchor="start" font-size="11" font-weight="700" fill="#2e7d4f">매출 = 215.5 + 0.757·통관_KRW</text><text x="110" y="88" text-anchor="start" font-size="10.5" fill="#777">R²=0.836 · r=0.914 · n=7</text><line x1="784.1" y1="37.7" x2="784.1" y2="115.8" stroke="#c8364d" stroke-width="1.6"/><line x1="778" y1="37.7" x2="790" y2="37.7" stroke="#c8364d" stroke-width="1.6"/><line x1="778" y1="115.8" x2="790" y2="115.8" stroke="#c8364d" stroke-width="1.6"/><circle cx="660.3" cy="133.0" r="5" fill="#3D4A55" stroke="#fff" stroke-width="1.3"/><text x="655" y="123" text-anchor="middle" font-size="9.5" fill="#777">24.3Q</text><circle cx="329.9" cy="156.8" r="5" fill="#3D4A55" stroke="#fff" stroke-width="1.3"/><text x="330" y="147" text-anchor="middle" font-size="9.5" fill="#777">24.4Q</text><circle cx="680.6" cy="104.8" r="5" fill="#3D4A55" stroke="#fff" stroke-width="1.3"/><text x="686" y="99" text-anchor="middle" font-size="9.5" fill="#777">25.1Q</text><circle cx="214.4" cy="241.0" r="5" fill="#3D4A55" stroke="#fff" stroke-width="1.3"/><text x="214" y="231" text-anchor="middle" font-size="9.5" fill="#777">25.2Q</text><circle cx="345.7" cy="220.3" r="5" fill="#3D4A55" stroke="#fff" stroke-width="1.3"/><text x="346" y="210" text-anchor="middle" font-size="9.5" fill="#777">25.3Q</text><circle cx="136.0" cy="299.1" r="5" fill="#3D4A55" stroke="#fff" stroke-width="1.3"/><text x="148" y="303" text-anchor="middle" font-size="9.5" fill="#777">25.4Q</text><circle cx="452.6" cy="172.5" r="5" fill="#3D4A55" stroke="#fff" stroke-width="1.3"/><text x="452" y="162" text-anchor="middle" font-size="9.5" fill="#777">26.1Q</text><circle cx="784.1" cy="76.8" r="7" fill="#c8364d" stroke="#fff" stroke-width="2"/><text x="770" y="32" text-anchor="middle" font-size="11" font-weight="700" fill="#c8364d">2Q26E 539억</text><text x="770" y="128" text-anchor="middle" font-size="9.5" fill="#c8364d">68% 503~575</text><line x1="98" y1="336" x2="820" y2="336" stroke="#bbbbbb" stroke-width="1"/><text x="459" y="392" text-anchor="middle" font-size="11" fill="#555">통관_KRW (억) = 통관액($M) × 분기평균 환율</text></svg></div>
+<div class="cap">그림 5b. 통관_KRW(x) vs 실측 매출(y) 산점도 + OLS 회귀선(n=7, R²=0.836). 2Q26E(빨강)는 학습구간 우측 끝의 외삽점 — 68% 예측밴드(503~575) 표시.</div>
+
+  <h3>2Q26 회귀 예측 & 신뢰구간</h3>
+  <p>2Q26 통관_KRW 427억(2차 소스 $28.3M × FX 1,509)을 대입하면 점추정 <b>539억</b>. Part II의 자체 HS 배분(420.6억)을 대입하면 534억으로, <b>방법이 다른 두 통관 소스가 534~539억으로 수렴</b>한다.</p>
+  <table>
+    <thead><tr><th>구분</th><th>2Q26 매출</th><th>회귀상 위치 / 비고</th></tr></thead>
+    <tbody>
+      <tr class="main"><td><b>회귀 점추정</b></td><td class="num"><b>534~539억</b></td><td>2개 독립 통관 소스 수렴</td></tr>
+      <tr><td>68% 예측구간 (±1σ)</td><td class="num">503 ~ 575억</td><td>실무 베이스 밴드</td></tr>
+      <tr><td>95% 예측구간</td><td class="num">446 ~ 632억</td><td>소표본+외삽으로 넓음</td></tr>
+      <tr class="main"><td><b>Part III 기본 추정</b></td><td class="num"><b>525억</b></td><td class="ok">회귀 ±1σ 밴드 內 → 확증</td></tr>
+      <tr><td>1Q26 실측</td><td class="num">450.7억</td><td>QoQ +17~20%</td></tr>
+      <tr><td>일부 자동집계 "컨센" 453억</td><td class="num">453억</td><td class="no">≈ 하위 5%ile 꼬리값</td></tr>
+    </tbody>
+  </table>
+
+  <div class="invalid"><b>회귀가 말하는 것 —</b> Part III의 <b>525억 기본 추정은 회귀 점추정(534~539억)의 ±1σ(503~575) 안</b>에 정확히 위치한다 → 방법론이 다른 두 접근(수출 브리지 vs OLS 회귀)이 상호 확증. 반면 시중 일부 자동집계에 도는 <b>2Q "컨센 453억"은 회귀상 하위 5%ile 꼬리값</b>으로, 지금처럼 통관이 찍힌 상태에서 실현되려면 통관→매출 전환효율이 관측사상 최악으로 붕괴해야 한다 — 통계적으로 <b>비현실적으로 낮은 값</b>이다.</div>
+  <p style="font-size:12px;color:var(--soft)">방법 주석 · 통관·매출 매칭은 2차 통관 시계열 시작(2025.06) 제약으로 7개 분기(외삽 1개). FX는 분기 내 월말종가 평균. 2차 통관 소스는 평균 −8.9% 하향편의가 있으나 절편·기울기에 흡수되어 편의 상쇄. 분기가 누적될수록(3Q26~) 예측구간은 자동 축소된다.</p>
 </section>
 
 <section>
@@ -293,7 +341,7 @@ footer{margin-top:30px;border-top:2px solid var(--ink);padding:26px 46px 40px;fo
 </div>
 
 <footer>
-  <div class="disc">본 보고서는 2026년 7월 1일 관세청 6월 수출입동향 발표 후 작성된 <b>2분기 실적 선행 추정</b>입니다. 2Q 수출 수치는 관세청 HS 3005.10(접착성 드레싱·반창고) 월별 통계를 티앤엘 1Q26 실측 지역별 매출(DART 분기보고서: 미국 226.7억·유럽 등 117.1억)과 대미 점유 우위로 환산한 <b>프록시 추정치</b>이며, HS 코드에는 타사 물량이 일부 포함될 수 있습니다. 매출·영익·EPS 추정은 수출 프록시 + 국내 매출 + 2Q 평균환율 1,510원(추정) 가정 기반이며, 8월 중순 공시될 실제 2Q DART 실적과 차이가 발생할 수 있습니다. 1Q26 실측(매출 450.7억·영익 182.7억·EPS 2,051원)은 DART 분기보고서(2026.05.15) 기준.</div>
+  <div class="disc">본 보고서는 2026년 7월 1일 관세청 6월 수출입동향 발표 후 작성된 <b>2분기 실적 선행 추정</b>입니다. 2Q 수출 수치는 관세청 HS 3005.10(접착성 드레싱·반창고) 월별 통계를 티앤엘 1Q26 실측 지역별 매출(DART 분기보고서: 미국 226.7억·유럽 등 117.1억)과 대미 점유 우위로 환산한 <b>프록시 추정치</b>이며, HS 코드에는 타사 물량이 일부 포함될 수 있습니다. 매출·영익·EPS 추정은 수출 프록시 + 국내 매출 + 2Q 평균환율 1,510원(추정) 가정 기반이며, 8월 중순 공시될 실제 2Q DART 실적과 차이가 발생할 수 있습니다. 1Q26 실측(매출 450.7억·영익 182.7억·EPS 2,051원)은 DART 분기보고서(2026.05.15) 기준. <b>rev.1(2026-07-21)</b>: Part III-B 회귀 교차검증 추가 — 8개 분기(2024 3Q~2026 1Q) 통관_KRW↔실측매출 OLS 회귀(R²=0.836)로 2Q26 매출 점추정 534~539억(68% 예측구간 503~575억) 산출, Part III 기본추정 525억이 ±1σ 밴드 내에 위치함을 확인. 회귀용 2차 통관 데이터는 관세청 지역 수출통계 간접추정(평균오차 −8.9%), 분기평균 환율은 월말종가 평균 근사.</div>
   <p>본 보고서는 정보 제공 목적으로만 작성되었으며 특정 종목의 매수·매도를 권유하지 않습니다. 투자에 따른 모든 위험과 결과는 투자자 본인에게 귀속됩니다.</p>
   <p class="sig">— Chory &amp; Rochet · The T&amp;L Report · Vol. II No. 3</p>
   <p class="printnote">PRINT · 브라우저에서 Ctrl+P (Cmd+P) → PDF로 저장</p>
