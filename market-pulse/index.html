@@ -36,8 +36,12 @@
 .rangebtns button{font:inherit;font-size:12px;padding:4px 12px;border:1px solid var(--border);
  background:var(--bg);border-radius:20px;cursor:pointer;color:var(--text-muted)}
 .rangebtns button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
-#tip{position:absolute;pointer-events:none;background:#111;color:#fff;font-size:11.5px;padding:6px 9px;
- border-radius:6px;opacity:0;transform:translate(-50%,-120%);white-space:nowrap;z-index:5}
+#tip{position:absolute;pointer-events:none;background:rgba(17,17,17,.92);color:#fff;font-size:11.5px;padding:8px 11px;
+ border-radius:7px;opacity:0;white-space:nowrap;z-index:5;line-height:1.65;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+#tip .dt{font-weight:700;margin-bottom:3px;color:#cbd5e1}
+#tip .row{display:flex;justify-content:space-between;gap:14px}
+#tip .row span:first-child{color:#94a3b8}
+#tip .row b{font-variant-numeric:tabular-nums}
 table.ic{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
 table.ic th,table.ic td{border:1px solid var(--border);padding:6px 8px;text-align:center}
 table.ic th{background:var(--bg-soft);color:var(--text-muted)}
@@ -130,7 +134,7 @@ table.ic tr.avgrow td{color:var(--text-muted);border-top:2px solid var(--border-
   <b>용법</b> — 정밀 변곡 타이머가 아니라 <b>1~3개월 시장국면 게이지·자산배분 틸트·방어 필터</b>. McClellan 등 breadth 모멘텀
   교차는 동행/휩소라 보조로만.<br>
   <b>주의</b> — 1999~2007 상폐데이터 부분보정, 우선주·ETN 제외. 21일 중첩윈도우로 유의성 과대. 투자판단 참고자료.
-  발행 <b>Chory &amp; Rochet</b> · 생성 2026-07-27 15:43
+  발행 <b>Chory &amp; Rochet</b> · 생성 2026-07-27 16:00
  </div>
 </main>
 
@@ -188,14 +192,25 @@ function draw(){
  [0,Math.floor(idx.length/2),idx.length-1].forEach(j=>{if(j>=0)g.fillText(D.date[idx[j]],X(j),H-4);});
  cv._m={idx,X,top:padT,bot:t-gap};
 }
+const row=(k,v)=>'<div class="row"><span>'+k+'</span><b>'+v+'</b></div>';
 cv.addEventListener('mousemove',e=>{
- const m=cv._m;if(!m)return;const r=cv.getBoundingClientRect();const mx=e.clientX-r.left;
+ const m=cv._m;if(!m)return;const r=cv.getBoundingClientRect();const mx=e.clientX-r.left,my=e.clientY-r.top;
  let best=0,bd=1e9;m.idx.forEach((_,j)=>{const dx=Math.abs(m.X(j)-mx);if(dx<bd){bd=dx;best=j;}});
  const gi=m.idx[best],px=m.X(best);
  cross.style.opacity=1;cross.style.left=px+'px';cross.style.top=m.top+'px';cross.style.height=(m.bot-m.top)+'px';
- tip.style.opacity=1;tip.style.left=px+'px';tip.style.top=(m.top+4)+'px';
- tip.innerHTML=D.date[gi]+'<br>코스피 '+D.kospi[gi].toLocaleString()+'<br>스코어 '+D.score[gi]+' · z '+D.comp[gi].toFixed(2)
-  +'<br>%&gt;MA200 '+D.pct200[gi]+'% · 신고저 '+D.nhnl[gi]+'<br>MA분산 '+D.disp[gi]+'%';
+ tip.innerHTML='<div class="dt">'+D.date[gi]+'</div>'
+  +row('코스피', D.kospi[gi].toLocaleString())
+  +row('선행복합 스코어', D.score[gi])
+  +row('선행복합 z', D.comp[gi].toFixed(2))
+  +row('%&gt;MA200 참여도', D.pct200[gi]+'%')
+  +row('신고−신저', D.nhnl[gi])
+  +row('MA분산', D.disp[gi]+'%');
+ // 기본은 마우스 왼편, 왼쪽 가장자리에선 오른편으로 자동 전환
+ const flip = mx < 210;
+ tip.style.opacity=1;
+ tip.style.left=(mx + (flip?16:-16))+'px';
+ tip.style.top=my+'px';
+ tip.style.transform=flip?'translate(0,-50%)':'translate(-100%,-50%)';
 });
 cv.addEventListener('mouseleave',()=>{tip.style.opacity=0;cross.style.opacity=0;});
 function clearActive(){[...document.querySelectorAll('#rb button')].forEach(x=>x.classList.remove('on'));}
