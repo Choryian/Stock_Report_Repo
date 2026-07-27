@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-07-27 KR 오전장 정리 및 오후장 대응 | Chory &amp; Rochet</title>
+<style>
+  :root{
+    --up:#d60000; --down:#0047c7; --ink:#1a1a1a; --sub:#5a5f66;
+    --line:#e3e6ea; --bg:#ffffff; --panel:#f7f8fa; --warn:#b45309; --warnbg:#fffbeb;
+    --accent:#0f2c52; --brand:#c4622e; --okbg:#ecfdf5; --ok:#047857;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0 16px 64px; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic","맑은 고딕",sans-serif;
+    font-size:15px; line-height:1.7; -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:900px; margin:0 auto;}
+  header{padding:28px 0 18px; border-bottom:3px solid var(--brand);}
+  .brand{font-size:12px; letter-spacing:.18em; color:var(--brand); text-transform:uppercase; font-weight:700;}
+  h1{font-size:23px; margin:8px 0 6px; line-height:1.35;}
+  .meta{font-size:13px; color:var(--sub);}
+  h2{
+    font-size:18px; margin:34px 0 12px; padding:8px 0 8px 12px;
+    border-left:5px solid var(--brand); background:var(--panel);
+  }
+  h3{font-size:15px; margin:20px 0 8px; color:var(--accent);}
+  p{margin:8px 0;}
+  .lead{
+    background:var(--panel); border:1px solid var(--line); border-radius:8px;
+    padding:16px; font-size:16px; line-height:1.75;
+  }
+  .lead strong{font-size:17px;}
+  .tags{margin-top:10px; font-size:13px; color:var(--sub);}
+  .scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:12px 0;}
+  table{border-collapse:collapse; width:100%; min-width:520px; font-size:14px;}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top;}
+  th{background:var(--panel); font-weight:600; white-space:nowrap;}
+  td.num{text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums;}
+  .up{color:var(--up); font-weight:600;}
+  .down{color:var(--down); font-weight:600;}
+  .flat{color:var(--sub); font-weight:600;}
+  .note{
+    background:var(--warnbg); border:1px solid #fcd34d; border-left:5px solid var(--warn);
+    border-radius:6px; padding:12px 14px; font-size:13.5px; margin:14px 0; color:#4a3410;
+  }
+  .note b{color:var(--warn);}
+  .okbox{
+    background:var(--okbg); border:1px solid #a7f3d0; border-left:5px solid var(--ok);
+    border-radius:6px; padding:12px 14px; font-size:13.5px; margin:14px 0; color:#064e3b;
+  }
+  ul,ol{margin:8px 0 8px 20px; padding:0;}
+  li{margin:5px 0;}
+  .pill{
+    display:inline-block; padding:2px 9px; border-radius:999px; font-size:12px;
+    font-weight:600; border:1px solid var(--line); background:var(--panel); color:var(--sub);
+  }
+  .pill.a{background:#fee2e2; color:#991b1b; border-color:#fca5a5;}
+  .pill.b{background:#f1f5f9; color:#334155; border-color:#cbd5e1;}
+  .pill.c{background:#dbeafe; color:#1e40af; border-color:#93c5fd;}
+  .score{
+    display:inline-block; font-size:26px; font-weight:800; color:var(--accent);
+    background:#eef2f7; border:2px solid var(--accent); border-radius:10px; padding:4px 16px; margin:6px 0;
+  }
+  footer{
+    margin-top:44px; padding-top:16px; border-top:2px solid var(--brand);
+    font-size:12.5px; color:var(--sub);
+  }
+  .disc{font-size:12px; color:var(--sub); margin-top:8px; line-height:1.6;}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">Chory &amp; Rochet · Midday Pivot Desk</div>
+  <h1>2026-07-27 (월) KR 오전장 정리 및 오후장 대응</h1>
+  <div class="meta">작성 기준: 2026-07-27 14:05 KST · 오전장 마감 + 오후장 초입 라이브 반영 (스케줄 정오 트리거의 실제 실행 시점 14:00대)</div>
+</header>
+
+<div class="note">
+  <b>⏱ 트리거 시점 안내</b> — 본 루틴은 정오(12:00) 분기점 기준이나 실제 실행이 <b>14:00대</b>로 지연됐다. 따라서 "오전장"은 <b>09:00~정오 확정 흐름</b>으로 정리하되, 지수·수급·종목가는 <b>14:00 라이브</b>를 함께 반영했다. 오후 대응 가이드는 <b>남은 마감 1시간(14:30~15:30)</b>에 초점을 둔다. 14:00 정각 확정 지수 프린트는 미확보로 <b>근사치</b>이며, 종목 개별가는 14:00~14:07 네이버 스냅샷 실측이다.
+</div>
+
+<h2>① 한 줄 요약</h2>
+<div class="lead">
+  <p><strong>[갭상승 후 급반락 → 대형주·NAVER 주도 오후 재반등 = 6,700선 되찾은 초변동성 휩소]</strong> 코스피는 주말 이란 완화·야간선물 반등을 업고 <b class="up">+1.73%(6,806)</b> 갭상승 출발했으나, <b>외국인 3거래일째 대량 매도</b>에 오전 중 <b class="down">−1.27%(6,605)</b>까지 급반락(장중 저점 <b>~6,550</b>). 이후 <b>삼성전자·SK하이닉스·NAVER 초대형주가 플러스로 돌아서며</b> 오후 초입 <b>6,700선 보합</b>으로 되돌렸다. 고·저 폭 약 <b>250p(≈3.8%)</b>의 전형적 휩소.</p>
+  <p>오늘의 주인공은 <b class="up">NAVER +9.6%(장중 +11.6%)</b> — <b>한·미 AI 동맹(엔비디아 파트너십)</b> 재료로 독주. 반도체는 SOX 갭 우려 대비 <b>선방</b>(삼전 +0.8%·하이닉스 +1.4%)하며 지수를 방어했다. 반면 금요일 유가·지정학 급등주(<b>신재생·연료전지·방산·화학</b>)는 이란 완화로 <b>대규모 되돌림</b>(두산퓨얼셀 −30%·SK이터닉스 −27%·현대로템 −16%). 오전 시장강도 <b>−2</b>(외인 매도·원화 약세가 거래대금·대형주 강세를 상쇄).</p>
+  <div class="tags">키워드: <b>#NAVER독주</b> · <b>#한미AI동맹</b> · <b>#외인3일째매도</b> · <b>#지정학되돌림</b> · <b>#하이닉스실적D-1</b> · 오전강도 <b>−2</b></div>
+</div>
+
+<h2>② 인계 평가 — 오늘 갭 시나리오 &amp; 개장 Tier 1</h2>
+<div class="note">
+  <b>⚠ 인계 자료 상태</b> — 오늘 개장 보고서(<b>us_overnight 7/27</b>)는 정상 확보. 단 <b>어제(금 7/24) 마감 보고서(daily_close)는 미생성</b>(최신 close는 7/20)이라, 금요일 종가·수급은 개장 보고서에 반영된 값(코스피 6,690.62 / 외인 −3.28조)으로 대체 평가한다.
+</div>
+<h3>갭 시나리오 적중</h3>
+<p>개장 보고서 <b>갭 점수 +2 → 기본 시나리오 B(보합~완만 반등)</b>. 실제: 시초 +1.73%로 <b>A(갭상승)처럼 출발</b>했으나 곧 <b>−1.27%로 반락 후 보합 회귀</b> = <b>결과적으로 B에 안착</b>. 특히 개장 보고서의 핵심 경고 <b>"갭 추격 금지 — 시초 급등은 항복 반등의 되메움일 수 있음, 9:30~10:00 추세 확인 후 대응"</b>이 <b>정확히 적중</b>(시초 추격 시 −3%대 손실). 다만 "반도체 상대 열위" 전망은 <b>빗나감</b> — AI 동맹 재료로 반도체·플랫폼이 오히려 지수를 방어했다.</p>
+<h3>개장 Tier 1 성적표</h3>
+<div class="scroll">
+<table>
+  <thead><tr><th>종목</th><th class="num">참조/시초</th><th class="num">14:00</th><th>판정</th></tr></thead>
+  <tbody>
+    <tr><td><b>NAVER</b> (035420)</td><td class="num">시초확인</td><td class="num up">227,500 (+9.6%)</td><td class="up">🎯 대적중 — 목표 +6% 초과 돌파(장중 +11.6%). AI서비스·디커플링 방어 논리 완승</td></tr>
+    <tr><td><b>삼성전자</b> (005930)</td><td class="num">249,500</td><td class="num up">251,500 (+0.8%)</td><td>△ 손절 238,000 위 유지·목표 262,000 미달. 소폭 방어(고가 258,500 반납)</td></tr>
+    <tr><td><b>삼성전기</b> (009150)</td><td class="num">시초확인</td><td class="num down">1,308,000 (−1.4%)</td><td class="down">✗ 시초 1,399,000 급등 후 저점 1,272,000까지 반락. "상대강도 후보" 실패</td></tr>
+    <tr><td><b>KODEX200</b> (069500)</td><td class="num">손절 6,650</td><td class="num flat">지수 ~6,700</td><td class="down">✗ 장중 저점 ~6,550으로 손절선 6,650 <b>일시 이탈</b>(휩소 손절). 종가 회복 시 재평가</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="disc">요약: <b>프로세스(갭 추격 금지) 100% 적중</b>, 종목 <b>1승(NAVER 대박)·1분(삼전)·2패(삼성전기·KODEX200 휩소)</b>. 초대형주로 압축된 차별화 장세.</p>
+
+<h2>③ 오전 지수 · 수급</h2>
+<div class="scroll">
+<table>
+  <thead><tr><th>지표</th><th class="num">시가</th><th class="num">14:00 근사</th><th>일중 고/저 · 비고</th></tr></thead>
+  <tbody>
+    <tr><td><b>KOSPI</b></td><td class="num up">6,806.27<br>(+1.73%)</td><td class="num flat">~6,700<br>(보합)</td><td>고 6,806 / 저 ~6,550. 전일 6,690.62 대비 강보합. 11:09 저점 6,605(−1.27%)서 회복</td></tr>
+    <tr><td><b>KOSDAQ</b></td><td class="num up">760.54<br>(+1.65%)</td><td class="num flat">~750<br>(보합권)</td><td>동반 갭상승 후 반락. 전일 ~748</td></tr>
+    <tr><td>원/달러</td><td class="num">1,459.0<br>(09시)</td><td class="num down">~1,466.8<br>(11시)</td><td class="down">저가결제·월말 네고 속 원화 소폭 약세. 경보선 1,480엔 여유</td></tr>
+    <tr><td>미 야간선물</td><td class="num" colspan="2">ES/NQ 일요일 +0.7%/+1.2% 기반, 장중 보합권 추정</td><td>주중 FOMC·메가캡 어닝 대기 관망</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="note">
+  <b>수급(오전, ~11시 잠정)</b> — 코스피 <b class="down">외국인 −1.9조</b>(<b>3거래일 연속 대량 순매도</b>·금 −3.28조에 이어) · 기관 <b class="down">−1,040억</b> · 개인 <b class="up">+1.87조</b>. 외국인 매도가 갭상승분을 되밀어낸 <b>1차 원인</b>. 지수를 다시 세운 건 초대형주(삼전·하이닉스·NAVER) 매수와 개인 방어. <b>오후 최대 검증 포인트 = 14:00·마감 외인 매도 강도의 둔화/가속.</b>
+</div>
+
+<h3>오전 시장 강도 점수 <span class="score">−2</span></h3>
+<div class="scroll">
+<table>
+  <thead><tr><th>항목</th><th class="num">실측</th><th class="num">점수</th></tr></thead>
+  <tbody>
+    <tr><td>외인 오전 순매수</td><td class="down">−1.9조 (3일째 매도)</td><td class="num down">−2</td></tr>
+    <tr><td>거래대금(양시장)</td><td>휩소·고회전(대형주+급락주 폭증)</td><td class="num up">+2</td></tr>
+    <tr><td>상승종목 비율</td><td class="flat">중립(대형 green·중소 red 혼재)</td><td class="num flat">0</td></tr>
+    <tr><td>미 야간선물(ES)</td><td class="flat">보합권</td><td class="num flat">0</td></tr>
+    <tr><td>원/달러 변동</td><td class="down">+0.5% (원화 약세)</td><td class="num down">−2</td></tr>
+    <tr><td colspan="2"><b>합계</b></td><td class="num"><b>−2</b></td></tr>
+  </tbody>
+</table>
+</div>
+<p>지수는 보합이나 <b>내부(외인 수급·환율)는 약세 톤</b>. 대형주 강세가 표면을 떠받쳤을 뿐 폭·수급의 질은 취약. → 오후 기본 <b>시나리오 B(변동성 확대·중립)</b>, 마감으로 갈수록 외인 매도 지속 시 <b>C(약화) 경계</b>.</p>
+
+<h2>④ 오전 강세 / 약세 섹터</h2>
+<div class="okbox">
+  <b>▲ 강세 Top 3</b>
+  <ul style="margin:6px 0">
+    <li><b>AI 서비스·플랫폼</b> — <b class="up">NAVER +9.6%</b>(대장, 한·미 AI 동맹) / <b class="up">삼성SDS +5.7%</b>(2등, 클라우드·AI인프라) / 카카오·크래프톤(소외 — 오후 순환매 후보). 알파벳 CAPEX 상향 + 엔비디아 파트너십 이중 호재.</li>
+    <li><b>반도체(회복·실적 D-1 기대)</b> — 삼성전자 +0.8% / SK하이닉스 +1.4% / <b class="up">주성엔지니어링 +4.8%</b> · 한미반도체 +1.3%. SOX −4.25% 갭을 예상보다 잘 소화, 하이닉스 실적(7/28) 선기대.</li>
+    <li><b>은행·밸류</b> — <b class="up">우리금융지주 +7.9%</b> 등 금융 강세. 위험회피 속 저PBR·배당 방어 로테이션.</li>
+  </ul>
+</div>
+<div class="note">
+  <b>▼ 약세 Top 3 (금요일 유가·지정학 급등주의 되돌림)</b>
+  <ul style="margin:6px 0; color:#4a3410">
+    <li><b>신재생·연료전지</b> — <b class="down">두산퓨얼셀 −29.9%</b> · <b class="down">SK이터닉스 −27.4%</b> · 한화솔루션 −13.0% · HD현대에너지솔루션. 이란 완화·유가 100달러 하회로 금요일 급등분 폭반납.</li>
+    <li><b>방산</b> — <b class="down">현대로템 −16.0%</b> · 한화에어로스페이스 −8.3%. 지정학 데탈레이션 되돌림.</li>
+    <li><b>화학·조선(약)</b> — 한화솔루션·롯데계열 약세, 한화오션 −1.5%·삼성중공업 −1.8%(상대 방어). 유가 하락 원가 논리 반전.</li>
+  </ul>
+</div>
+
+<h2>⑤ 주도 테마 × 종목 매핑</h2>
+<div class="scroll">
+<table>
+  <thead><tr><th>테마</th><th>대장주</th><th>2등주</th><th>소외주(순환매 후보)</th></tr></thead>
+  <tbody>
+    <tr><td><b>한·미 AI 동맹</b></td><td class="up">NAVER +9.6%</td><td class="up">삼성SDS +5.7%</td><td>카카오 · 크래프톤 · 한미반도체(+1.3%)</td></tr>
+    <tr><td><b>반도체·HBM</b></td><td class="up">SK하이닉스 +1.4%</td><td class="up">삼성전자 +0.8%</td><td>주성엔지니어링(+4.8%) · 원익IPS</td></tr>
+    <tr><td><b>은행·밸류</b></td><td class="up">우리금융 +7.9%</td><td>KB·신한금융</td><td>보험·증권(테마 emerging)</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="disc">StockMatrix 라이프사이클(7/26 기준): 초기강세 <b>카카오뱅크(76)·웹툰(68)·스테이블코인(64)</b>, 급등 <b>공기청정기(+14)·아이폰(+10)</b>, 과열 <b>건설 대표주(82)·쿠팡(75)</b>. 오늘 실측 주도는 위 모델과 별개로 <b>AI 동맹(NAVER)</b>이 압도.</p>
+
+<h2>⑥ 오전 신규 부상 / 약화 테마</h2>
+<ul>
+  <li><b>🆙 신규 부상 — 한·미 AI 동맹(엔비디아 파트너십):</b> NAVER·삼성SDS 중심, 거래대금 폭증 + NAVER 장중 신고가권. 오늘 가장 강한 순매수 쏠림. AI 서비스·클라우드로 확산 여지.</li>
+  <li><b>🔻 약화 — 유가·지정학 수혜군(신재생·연료전지·방산·조선):</b> 금요일 급등을 이틀 만에 반납. 이란 완화·유가 하락이 논리 자체를 훼손 → 단기 추격 매수 금지 구간.</li>
+</ul>
+
+<h2>⑦ 오후장 대응 시나리오</h2>
+<h3><span class="pill a">A</span> 추세 강화 (강세) — 확률 25%</h3>
+<ul>
+  <li><b>트리거:</b> 14:00 이후 외인 매도 급감·순매수 전환 + 초대형주 강세 유지 + NAVER 랠리 확산.</li>
+  <li><b>대응:</b> AI 동맹 대장(NAVER)·후발주(삼성SDS) 추격보다 <b>소외주 순환매</b>(카카오·크래프톤) 우선. 반도체는 하이닉스 실적 <b>전날</b>이라 종가 베팅 신중.</li>
+</ul>
+<h3><span class="pill b">B</span> 변동성 확대 (중립) — 기본, 확률 50%</h3>
+<ul>
+  <li><b>예측:</b> 6,650~6,760 등락, 초대형주 vs 급락주 극단적 차별화 지속.</li>
+  <li><b>대응:</b> <b>손절 타이트, 거래대금 집중 종목만.</b> NAVER는 이미 +9.6%로 과열 — 신규는 <b>눌림목만</b>. 금요일 급등주(신재생·방산) 반등 노린 진입 금지. 관망 우위.</li>
+</ul>
+<h3><span class="pill c">C</span> 추세 약화 (약세) — 확률 25%</h3>
+<ul>
+  <li><b>트리거:</b> 외인 매도 4일째 가속 + 지수 6,650 재이탈 + 하이닉스 실적 경계 매물.</li>
+  <li><b>대응:</b> <b>현금 우위·익절 우선.</b> 은행·채권 등 방어군만. 파동 지지 <b>6,394~6,409</b> 하단 주시.</li>
+</ul>
+
+<h2>⑧ 오후 Tier 1 관심종목</h2>
+<div class="note">
+  <b>규율 우선</b> — 6,973 회복 전까지 방어 국면. 아래는 "조건 충족 시 대응 후보"이며 <b>추격 금지·눌림목 원칙</b>. 하이닉스 실적(7/28) 전날인 만큼 반도체 신규 베팅은 보수적.
+</div>
+<div class="scroll">
+<table>
+  <thead><tr><th>종목</th><th>성격</th><th class="num">현재(14:00)</th><th class="num">진입</th><th class="num">손절</th><th class="num">1차 목표</th><th>근거</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><b>NAVER</b><br>(035420)</td><td>AI동맹 대장·모멘텀</td>
+      <td class="num up">227,500<br>(+9.6%)</td><td class="num">눌림 221,000~<br>223,000</td><td class="num down">218,500<br>(장중저 이탈)</td><td class="num up">234,500<br>(장중고)</td>
+      <td>한·미 AI 동맹 최선호. 단 +9.6% 과열 → <b>추격 금지, 눌림목만</b>. 손익비 ~2.8:1</td>
+    </tr>
+    <tr>
+      <td><b>삼성SDS</b><br>(018260)</td><td>AI인프라·순환</td>
+      <td class="num up">221,500<br>(+5.7%)</td><td class="num">217,000~<br>218,000</td><td class="num down">212,500<br>(−2.4%)</td><td class="num up">231,000<br>(+6.2%)</td>
+      <td>AI 동맹 2등·클라우드 순환 수혜. 저점 207,000서 반등. 손익비 ~2.7:1</td>
+    </tr>
+    <tr>
+      <td><b>삼성전자</b><br>(005930)</td><td>메모리 대장·조건부</td>
+      <td class="num up">251,500<br>(+0.8%)</td><td class="num">249,000<br>(지지확인)</td><td class="num down">244,000<br>(−2.9%)</td><td class="num up">258,500<br>(장중고)</td>
+      <td><b>조건부</b> — 지수 6,690 지지 + 외인 매도 둔화 확인 시만. 하이닉스 실적(7/28) 이벤트 리스크 상존</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p class="disc">개장 Tier 1의 <b>삼성전기·KODEX200은 오전 휩소로 제외</b>(삼성전기 시초 급등 후 반락, KODEX200 손절선 일시 이탈). Tier 2(관망): 카카오·크래프톤(AI동맹 소외 순환), 우리금융(밸류 방어). <b>금지군: 신재생·연료전지·방산(되돌림 추격 불가).</b></p>
+
+<h2>⑨ 오후 시간대별 체크포인트</h2>
+<ul>
+  <li><b>14:00~14:30</b> — 외국인·기관 잠정 순매수 재확인. <b>−1.9조 매도의 둔화/가속</b>이 오후 방향의 1차 단서.</li>
+  <li><b>14:30~15:00</b> — 마감 1시간 전 수급 변화, NAVER 랠리 지속 여부, 지수 6,650 사수 여부.</li>
+  <li><b>15:20~15:30</b> — 동시호가·MOC. 초대형주(삼전·하이닉스) 종가 = <b>하이닉스 실적(7/28) 직전 포지셔닝</b>의 바로미터.</li>
+  <li><b>D-1 (내일 7/28)</b> — <b>SK하이닉스 2Q 실적</b>(컨센 매출 84조·영업이익 사상 최대, <b>sell-the-news 경계</b>). 이번 주 국내 최대 분수령.</li>
+  <li><b>이번 주</b> — 미 FOMC + 애플·MS·메타·아마존 메가캡 어닝 집중. 주간 변동성 확대 전제.</li>
+</ul>
+<h3>가격 기준선</h3>
+<ul>
+  <li><b>KOSPI ~6,700</b> — 14:00 보합 (전일 6,690.62)</li>
+  <li><b>6,650</b> — 1차 방어선(장중 6,550 일시 이탈 후 회복). 종가 사수 여부가 관건</li>
+  <li><b>6,394~6,409</b> — 파동 3중 confluence 지지대</li>
+  <li><b>6,973</b> — Count B 무효화선(2거래일 연속 종가 회복 시 국면 전환·재배분 게이트). 현재 이 아래</li>
+  <li><b>6,043</b> — 하방 역트리거(이탈 시 전면 방어)</li>
+  <li><b>원/달러 1,480</b> — 상향 돌파 시 외인 수급 반전 경보(현 ~1,467)</li>
+</ul>
+
+<footer>
+  <div><b>발행: Chory &amp; Rochet</b> · Midday Pivot Desk</div>
+  <div>보고서 생성: 2026-07-27 14:05 KST</div>
+  <p class="disc">
+    본 자료는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 모든 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.<br>
+    데이터 출처: 네이버금융(종목가·거래대금 14:00~14:07 실측), 헤럴드경제·더팩트·파이낸셜뉴스·서울파이낸스(지수·수급), 뉴시스·이데일리·KB(환율), StockMatrix(테마 라이프사이클), Chory &amp; Rochet 개장 보고서(7/27) 인계. 14:00 정각 확정 지수·수급은 잠정치이며 마감 시 변동·보정될 수 있습니다.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
