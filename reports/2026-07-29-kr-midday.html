@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-07-29 KR 오전장 정리 및 오후장 대응 | Chory &amp; Rochet</title>
+<style>
+:root{
+  --bg:#0e1117; --card:#161b22; --card2:#1c2230; --bd:#2a3140;
+  --tx:#e6edf3; --tx2:#9aa7b8; --tx3:#6e7c91;
+  --up:#ff5b5b; --dn:#4a9eff; --warn:#ffb020; --ok:#3fb950; --crit:#ff2d2d;
+}
+*{box-sizing:border-box;}
+body{margin:0;padding:0;background:var(--bg);color:var(--tx);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+  line-height:1.65;font-size:15px;}
+.wrap{max-width:960px;margin:0 auto;padding:16px;}
+header{border-bottom:2px solid var(--bd);padding-bottom:14px;margin-bottom:20px;}
+.brand{font-size:12px;letter-spacing:.16em;color:var(--tx3);text-transform:uppercase;font-weight:600;}
+h1{font-size:22px;margin:8px 0 6px;line-height:1.35;}
+.meta{font-size:12.5px;color:var(--tx3);}
+h2{font-size:17px;margin:30px 0 12px;padding-left:10px;border-left:4px solid #d4af37;}
+h3{font-size:14.5px;margin:18px 0 8px;color:var(--tx2);}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px 16px;margin:12px 0;}
+.crit-box{background:linear-gradient(180deg,#2a0f12,#1a0d10);border:1px solid #7a2020;border-left:4px solid var(--crit);
+  border-radius:8px;padding:14px 16px;margin:14px 0;}
+.warn-box{background:#241c08;border-left:4px solid var(--warn);border-radius:6px;padding:12px 14px;margin:12px 0;font-size:14px;}
+.ok-box{background:#0d2016;border-left:4px solid var(--ok);border-radius:6px;padding:12px 14px;margin:12px 0;font-size:14px;}
+.info-box{background:#0f1c2e;border-left:4px solid var(--dn);border-radius:6px;padding:12px 14px;margin:12px 0;font-size:14px;}
+.summary{background:linear-gradient(135deg,#1a1f2e,#141822);border:1px solid #333c4d;border-radius:10px;padding:18px;margin:16px 0;}
+.summary .headline{font-size:17px;font-weight:700;color:#ffd479;line-height:1.5;margin-bottom:10px;}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px;}
+th{background:var(--card2);color:var(--tx2);text-align:left;padding:9px 8px;border-bottom:1px solid var(--bd);
+  font-weight:600;font-size:12.5px;white-space:nowrap;}
+td{padding:9px 8px;border-bottom:1px solid #232a36;vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+.up{color:var(--up);font-weight:600;} .dn{color:var(--dn);font-weight:600;} .flat{color:var(--tx3);}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11.5px;font-weight:700;margin-right:4px;}
+.t-crit{background:#5a1010;color:#ff8080;} .t-warn{background:#4a3708;color:#ffc857;}
+.t-ok{background:#0f3d22;color:#5fd77f;} .t-info{background:#132d4a;color:#79b8ff;}
+.t-neu{background:#2a3140;color:var(--tx2);}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px -2px;}
+.scroll table{min-width:560px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0;}
+.stat{background:var(--card2);border:1px solid var(--bd);border-radius:8px;padding:12px;}
+.stat .lbl{font-size:11.5px;color:var(--tx3);margin-bottom:4px;}
+.stat .val{font-size:19px;font-weight:700;line-height:1.25;}
+.stat .sub{font-size:12px;color:var(--tx3);margin-top:3px;}
+.scen{border-radius:8px;padding:13px 15px;margin:10px 0;border:1px solid var(--bd);}
+.scen.a{background:#0d2016;border-left:4px solid var(--ok);}
+.scen.b{background:#241c08;border-left:4px solid var(--warn);}
+.scen.c{background:#2a0f12;border-left:4px solid var(--crit);}
+.scen .nm{font-weight:700;font-size:14.5px;margin-bottom:6px;}
+ul{margin:8px 0;padding-left:20px;} li{margin:5px 0;}
+.lv{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #232a36;font-size:13.5px;gap:10px;}
+.lv:last-child{border-bottom:none;}
+.lv .n{color:var(--tx2);flex:1;} .lv .v{font-weight:700;font-family:ui-monospace,Menlo,monospace;white-space:nowrap;}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--bd);font-size:12px;color:var(--tx3);}
+.disc{font-size:11.5px;color:#5a6577;margin-top:10px;line-height:1.6;}
+code{background:#232a36;padding:1px 6px;border-radius:3px;font-size:12.5px;}
+@media(max-width:600px){
+  body{font-size:14px;} .wrap{padding:12px;} h1{font-size:19px;} h2{font-size:15.5px;}
+  .stat .val{font-size:17px;} table{font-size:12.5px;}
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">Chory &amp; Rochet · Midday Pivot Desk</div>
+  <h1>2026-07-29 (수) KR 오전장 정리 및 오후장 대응</h1>
+  <div class="meta">작성 기준: 2026-07-29 12:00~12:05 KST 스냅샷 · 오전장(09:00~12:00) 실측</div>
+</header>
+
+<div class="crit-box">
+<strong style="color:#ff8080;font-size:15px;">🚨 비상 국면 — 이틀 연속 붕괴, 서킷브레이커 발동선 목전</strong>
+<p style="margin:10px 0 0;font-size:14px;">
+코스피는 <strong>사상 최대 실적을 발표한 SK하이닉스로 +3.40%까지 올랐다가 −7.63%로 무너졌다.</strong>
+고가 대비 <strong>−10.67%</strong>, 어제 −10.84%에 이어 <strong>2거래일 누적 −17.6%</strong>다.
+현재 지수는 <strong>일중 저점에서 거래 중</strong>이며, 서킷브레이커 1단계 발동선(5,541.77)까지 <strong>0.40%</strong>,
+코스닥은 발동선(649.38)까지 <strong>0.17%</strong> 남았다.<br><br>
+⚠️ 본 보고서는 <strong>12:00 스냅샷</strong>이며 지수가 하방으로 진행 중인 상태에서 작성됐다. 수치는 즉시 낡을 수 있다.
+</p>
+</div>
+
+<!-- ① 한 줄 요약 -->
+<h2>① 한 줄 요약</h2>
+<div class="summary">
+  <div class="headline">[사상 최대 실적이 매도 방아쇠가 됐다 — 갭상승 후 차익실현(유형 2)의 극단형, 미 선물은 보합인데 한국만 홀로 무너지는 국내 레버리지 청산 2일차]</div>
+  <p style="margin:0;font-size:14px;color:var(--tx2);">
+  09:00 SK하이닉스가 <strong>매출 79.3조(+256.8% YoY)·영업이익 60.5조(+557.2% YoY)</strong>의 사상 최대 실적을 냈고
+  지수는 <strong>6,228.52(+3.40%)</strong>까지 올랐다. 그러나 실적이 컨센서스(84.06조/64.09조)를 <strong>약 6% 하회</strong>하자
+  <strong>개인 1.5조원 투매</strong>가 터졌고, 지수는 300포인트 넘게 되밀려 <strong>5,564.06(−7.63%)</strong>로 내려앉았다.
+  기관이 1.5조원을 받았지만 개인 물량을 소화하지 못했다.<br><br>
+  <strong>핵심 판독 — 이건 미국발이 아니다.</strong> 같은 시각 미 야간선물 ES는 <strong>−0.03%(보합)</strong>,
+  원/달러는 <strong>1,452원(−0.03%, 원화 강보합)</strong>이다. 외부 충격이 없는데 한국 지수만 −7.6% 무너졌다는 것은
+  어제 진단한 <strong>단일종목 레버리지 ETF 청산 연쇄가 2일차로 진행 중</strong>임을 뜻한다.
+  어제 4.3조를 순매수했던 개인이 오늘 1.5조를 던지는 <strong>매수 주체의 항복(capitulation)</strong> 구간이다.
+  </p>
+</div>
+
+<div class="grid">
+  <div class="stat"><div class="lbl">KOSPI (12:00)</div><div class="val dn">5,564.06</div><div class="sub dn">−459.60 (−7.63%)</div></div>
+  <div class="stat"><div class="lbl">KOSDAQ (12:00)</div><div class="val dn">650.49</div><div class="sub dn">−55.36 (−7.84%)</div></div>
+  <div class="stat"><div class="lbl">오전 강도 점수</div><div class="val" style="color:#ff5b5b;">−9</div><div class="sub">룰 산출 0 → 실질 보정(아래 ⑦)</div></div>
+  <div class="stat"><div class="lbl">원/달러</div><div class="val flat">1,452.2</div><div class="sub flat">−0.46원 (−0.03%)</div></div>
+  <div class="stat"><div class="lbl">미 야간선물 ES</div><div class="val flat">7,463.0</div><div class="sub flat">−0.03% (보합)</div></div>
+  <div class="stat"><div class="lbl">2거래일 누적</div><div class="val dn">−17.6%</div><div class="sub">6,755.75 → 5,564.06</div></div>
+</div>
+
+<!-- ② 인계 평가 -->
+<h2>② 인계 평가 — 오늘 아침 개장 보고서 검증</h2>
+
+<h3>2-1. 갭 시나리오 적중 판정</h3>
+<div class="scroll">
+<table>
+<tr><th>시나리오</th><th>제시 확률</th><th>예측</th><th>실제</th><th>판정</th></tr>
+<tr><td><strong>A. 반등 지속</strong></td><td>30%</td><td>시초 +4~6%(6,265~6,385) 후 유지·확대</td><td>시초 +1.09%</td><td><span class="tag t-crit">실패</span></td></tr>
+<tr><td><strong>B. 갭상승 후 되밀림</strong></td><td>45%</td><td>시초 +2~5% 후 절반 반납, 종가 6,050~6,200</td><td>시초 밴드 미달 · 낙폭 과대</td><td><span class="tag t-warn">부분</span></td></tr>
+<tr><td><strong>C. 반등 실패·재하락</strong></td><td>25%</td><td>시초 +1~2% 그치거나 즉시 반락 · 5,992 재이탈 시 하방 가속</td><td><strong>시초 +1.09%</strong> → 5,992 이탈 → 가속</td><td><span class="tag t-ok">적중</span></td></tr>
+</table>
+</div>
+
+<div class="warn-box">
+<strong>✅ C 적중 — 단, 낙폭 규모는 어떤 시나리오도 담지 못했다.</strong><br>
+시초가 <strong>+1.09%</strong>는 C가 명시한 "+1~2%" 밴드에 정확히 들어왔고, "5,992 재이탈 시 하방 가속"도 그대로 실현됐다.
+경로 판정은 <strong>C 정타</strong>다.<br><br>
+다만 C조차 <strong>−7.6%·고가 대비 −10.7% 반전</strong>은 상정하지 않았다.
+장중 6,228.52(+3.40%)를 찍은 구간은 형식상 A의 갭 밴드를 잠시 밟았으나, <strong>시초가 기준</strong> 판정이므로 C가 맞다.
+<br><br>
+<strong>교훈 —</strong> 시나리오의 <em>방향</em>은 맞았으나 <em>진폭</em>이 전면 과소평가됐다. 레버리지 청산 국면에서는
+일반 밴드(±2~5%)가 아니라 <strong>변동성 확대 계수(2~3배)</strong>를 적용한 별도 밴드가 필요하다.
+</div>
+
+<h3>2-2. Tier 1 관심종목 성적표 — 5종목 전부 손절 이탈</h3>
+<div class="scroll">
+<table>
+<tr><th>종목</th><th>7/28 종가</th><th>12:00 현재</th><th>등락</th><th>손절가</th><th>판정</th></tr>
+<tr><td>한화에어로스페이스</td><td>875,000</td><td>~807,000<sup>*</sup></td><td class="dn">−7.77%</td><td>845,000</td><td><span class="tag t-crit">🔴 손절 이탈</span></td></tr>
+<tr><td>NAVER</td><td>210,000</td><td>200,500</td><td class="dn">−4.52%</td><td>201,000</td><td><span class="tag t-crit">🔴 손절 이탈</span></td></tr>
+<tr><td>삼성전자</td><td>220,000</td><td>204,500</td><td class="dn">−7.05%</td><td>214,000</td><td><span class="tag t-crit">🔴 손절 이탈</span></td></tr>
+<tr><td>KODEX 200</td><td>95,675</td><td>~87,990<sup>*</sup></td><td class="dn">−8.03%</td><td>92,500</td><td><span class="tag t-crit">🔴 손절 이탈</span></td></tr>
+<tr><td>SK하이닉스</td><td>1,550,000</td><td>1,373,000</td><td class="dn">−11.42%</td><td>1,470,000</td><td><span class="tag t-crit">🔴 손절 이탈</span></td></tr>
+</table>
+</div>
+<p style="font-size:12px;color:var(--tx3);margin:4px 0 0;"><sup>*</sup> 시가총액÷상장주식수 및 PER×EPS 2중 역산값(네이버금융 12:02 스냅샷). 두 방식 오차 0.1% 이내로 교차검증됨.</p>
+
+<div class="crit-box">
+<strong style="color:#ff8080;">Tier 1 적중률 0/5 — 그러나 규율은 옳았다</strong>
+<ul style="margin:10px 0 0;font-size:13.5px;">
+<li><strong>진입 경로 검증:</strong> 삼성전자는 시초 226,500으로 제시 눌림구간(222,000~228,000)에 정확히 진입 → 체결 성립 후 손절.
+NAVER도 시초 213,500으로 눌림구간(208,000~213,000) 상단 접촉 → 체결 성립 후 손절.
+SK하이닉스는 "발표 후 15분 안정 시에만" 조건이었는데 09:15경 <strong>+3~4%(1,599,000)</strong>로 안정 판정이 성립해 진입 가능했고, 이후 −11.4%로 붕괴했다.</li>
+<li><strong>손실 추정:</strong> 제시 진입가 기준 종목당 −4.5%~−9.5%. 5종목 균등 진입 시 <strong>포트폴리오 −7% 내외</strong>.</li>
+<li><strong>✅ 정확했던 판단 3가지</strong> — ① <strong>회피군</strong>(반도체 장비·소부장): 한미반도체 −11.31%, 주성엔지니어링 −10.56%로 회피 지시 정확.
+② <strong>"시초가 추격 금지"</strong>: 시초 추격 시 삼성전자 고가 234,000에서 −12.6% 피격, 눌림 원칙이 손실을 줄였다.
+③ <strong>"전면 방어 국면·신규 비중 확대 금지"</strong> 규율 자체는 정확했다.</li>
+<li><strong>❌ 구조적 결함</strong> — <strong>"전면 방어 국면"을 선언하면서 동시에 Tier 1 매수 후보 5개를 제시한 것이 모순이다.</strong>
+6,043 역트리거 이탈 + 6,394 confluence 붕괴 상태에서 규율상 정답은 "Tier 1 없음"이었다.
+<strong>→ 개선안: 하방 역트리거 이탈 상태에서는 Tier 1 롱 후보 제시를 규칙으로 금지하고, 방어·관찰군만 산출한다.</strong></li>
+</ul>
+</div>
+
+<h3>2-3. [필수] 예정 이벤트 재검증</h3>
+<div class="scroll">
+<table>
+<tr><th>이벤트</th><th>인계 표기</th><th>실제 확인</th><th>오후 영향</th></tr>
+<tr><td><strong>SK하이닉스 2Q 확정실적</strong></td><td>오늘 09:00 발표</td>
+<td><span class="tag t-ok">✅ 발생</span> 매출 <strong>79.3조</strong>(+256.8% YoY) / 영업이익 <strong>60.5조</strong>(+557.2% YoY)</td>
+<td>사상 최대이나 <strong>컨센(84.06조/64.09조) 약 6% 하회</strong> → 전형적 sell-the-news. 주가 +4% → −11.4% 반전의 직접 방아쇠</td></tr>
+<tr><td>매도 사이드카</td><td>어제 발동</td><td><span class="tag t-ok">✅ 오늘도 발동</span> 코스피·코스닥 <strong>2거래일 연속</strong></td><td>프로그램 매도 압력 상시화</td></tr>
+<tr><td>FOMC 금리 결정</td><td>7/30 03:00 KST</td><td><span class="tag t-neu">미발생</span> 7/28~29 회의 진행 중 · 동결 컨센</td><td>오늘 오버나이트 포지션 최소화 근거 유지</td></tr>
+<tr><td>MSFT · META 실적</td><td>미 7/29 장마감 후</td><td><span class="tag t-neu">미발생</span> 7/30 새벽 KST</td><td>AI CAPEX 가이던스 = 반도체 반등의 최종 분수령</td></tr>
+<tr><td>LRCX 실적</td><td>미 7/29</td><td><span class="tag t-neu">미발생</span></td><td>장비 섹터 2차 충격 가능성 잔존</td></tr>
+<tr><td>KLA 시간외 −8.81%</td><td>어제 마감 후</td><td><span class="tag t-ok">✅ 확인</span></td><td>장비주 상단 제한 요인 지속(한미반도체 −11.31% 실현)</td></tr>
+</table>
+</div>
+
+<!-- ③ 오전 지수·수급 -->
+<h2>③ 오전 지수 · 수급 실측</h2>
+<div class="scroll">
+<table>
+<tr><th>지표</th><th>시가</th><th>고가</th><th>저가</th><th>12:00 현재</th><th>등락률</th></tr>
+<tr><td><strong>KOSPI</strong></td><td>6,089.11<br><span style="font-size:11.5px;" class="up">(+1.09%)</span></td>
+<td>6,228.52<br><span style="font-size:11.5px;" class="up">(+3.40%)</span></td>
+<td class="dn">5,564.06</td><td class="dn"><strong>5,564.06</strong></td><td class="dn"><strong>−7.63%</strong></td></tr>
+<tr><td><strong>KOSDAQ</strong></td><td>713.71<br><span style="font-size:11.5px;" class="up">(+1.11%)</span></td>
+<td>719.39<br><span style="font-size:11.5px;" class="up">(+1.92%)</span></td>
+<td class="dn">650.49</td><td class="dn"><strong>650.49</strong></td><td class="dn"><strong>−7.84%</strong></td></tr>
+</table>
+</div>
+
+<div class="warn-box">
+<strong>📉 "현재가 = 일중 저가" — 최악의 오전 마감 형태</strong><br>
+코스피·코스닥 모두 12:00 현재가가 <strong>일중 저가와 일치</strong>한다. 되돌림 없이 저점에서 오전을 마쳤다는 뜻으로,
+매도 압력이 소진되지 않은 상태다. 어제 SK하이닉스가 "종가=장중 저가"로 마감한 뒤 오늘 −11.4%가 이어진 것과 같은 패턴이다.
+<br><br>
+<strong>고가→현재 낙폭:</strong> 코스피 −664.46p(<strong>−10.67%</strong>) · 코스닥 −68.90p(<strong>−9.58%</strong>)
+</div>
+
+<h3>3-1. 투자자별 수급</h3>
+<div class="scroll">
+<table>
+<tr><th>주체</th><th>코스피 오전 누적</th><th>해석</th></tr>
+<tr><td><strong>개인</strong></td><td class="dn">−1조 5,000억 ~ −1조 5,778억</td><td>🔴 <strong>투매·항복.</strong> 어제 +4조 3,340억 순매수 → 오늘 −1.5조 순매도로 정반대 전환. 어제 저가매수분의 손절 출회</td></tr>
+<tr><td><strong>기관</strong></td><td class="up">+1조 4,586억 ~ +1조 5,000억</td><td>🟢 <strong>흡수 시도.</strong> 이틀 연속 대량 순매수이나 개인 물량을 소화하지 못함</td></tr>
+<tr><td><strong>외국인</strong></td><td class="flat">+817억 → −400억</td><td>🟡 <strong>중립·소액.</strong> 어제 −4조 9,660억 대량 매도에서 <strong>급감</strong>. 매도 압력의 주체가 외인 → 개인으로 교체됨</td></tr>
+</table>
+</div>
+
+<div class="info-box">
+<strong>⚠️ 수급 데이터 정확성 고지</strong> — 위 수급은 <strong>10:24~10:44 시점 잠정치</strong>다(당시 지수 −2.32%).
+12:00 현재 지수가 −7.63%까지 밀린 만큼 실제 수급은 상당히 달라졌을 가능성이 높으나,
+확정 소스가 없어 <strong>추정치로 대체하지 않고 잠정치임을 명시</strong>한다(마감 수급 정확성 룰 적용).
+14:00 잠정 발표에서 반드시 재확인할 것.<br><br>
+<strong>다만 방향성 판독은 유효하다:</strong> 외인 매도가 −5조에서 ±수백억으로 급감한 것은 구조적으로 중요하다.
+<strong>어제와 달리 오늘의 하락은 외인 이탈이 아니라 개인 레버리지 청산이 주도</strong>하고 있다.
+</div>
+
+<h3>3-2. 매크로 · 대외 동조화</h3>
+<div class="scroll">
+<table>
+<tr><th>지표</th><th>12:00 수준</th><th>등락</th><th>해석</th></tr>
+<tr><td>미 야간선물 ES (S&amp;P)</td><td>7,463.00</td><td class="flat">−0.03%</td><td>🟢 <strong>보합</strong> — 미국발 충격 없음</td></tr>
+<tr><td>원/달러</td><td>1,452.23</td><td class="flat">−0.46원 (−0.03%)</td><td>🟢 <strong>원화 강보합</strong> — 외인 이탈발 환율 급등 악순환 미작동</td></tr>
+<tr><td>원/달러 일중 범위</td><td colspan="2">1,451.30 ~ 1,458.22</td><td>변동폭 7원, 경보선 1,480 대비 여유 충분</td></tr>
+</table>
+</div>
+
+<div class="crit-box">
+<strong style="color:#ff8080;">🔍 가장 중요한 판독 — 디커플링의 방향이 역전됐다</strong>
+<p style="margin:8px 0 0;font-size:13.5px;">
+어제까지의 서사는 "미국 반도체 급락(SOX −4.49%)이 한국을 끌어내린다"였다. 그러나 오늘 오전,
+<strong>미 야간선물은 보합(−0.03%), 원화는 강보합(−0.03%)인데 한국 지수만 −7.6% 무너졌다.</strong>
+외부 변수가 전부 중립인 상태에서 발생한 하락이므로, 이것은 <strong>순수 국내 수급 사건</strong>이다.<br><br>
+어제 진단한 <strong>단일종목 레버리지 ETF(잔고 약 13.8조) 청산 연쇄</strong>가 2일차로 진행 중이며,
+어제는 외인이, 오늘은 개인이 매도 주체다. 즉 <strong>"기관 외인 → 개인"으로 항복이 전이되는 전형적 청산 말기 패턴</strong>이다.
+<br><br>
+<strong>양면적 함의:</strong> ⓐ 외부 악재가 없으므로 <strong>펀더멘털 훼손은 아니며</strong>, 물량이 소진되면 반등 탄력은 클 수 있다.
+ⓑ 그러나 청산이 <strong>언제 끝나는지는 가격이 아니라 잔고가 결정</strong>하므로, 하방 목표를 기술적으로 계산하는 것이 무의미한 구간이다.
+<strong>→ 결론: 저점 예측 시도 자체를 포기하고, 현금 보존과 트리거 대응만 한다.</strong>
+</p>
+</div>
+
+<!-- ④ 섹터 -->
+<h2>④ 오전 강세 / 약세 섹터</h2>
+
+<div class="ok-box">
+<strong>🟢 상승 종목 — 검색 상위 28종목 중 단 3개(10.7%)</strong>
+<div class="scroll">
+<table style="margin-top:8px;">
+<tr><th>종목</th><th>현재가</th><th>등락률</th><th>섹터</th><th>방어 논리</th></tr>
+<tr><td><strong>삼양식품</strong></td><td>1,240,000</td><td class="up">+4.82%</td><td>음식료·내수</td><td>반도체 무관 · 수출 실적주 · 원화 강세 부담에도 상승 = 진성 상대강도</td></tr>
+<tr><td><strong>셀트리온</strong></td><td>181,200</td><td class="up">+2.14%</td><td>바이오</td><td>미 10년물 4.62% 하락(금리 우호) · 반도체 밸류체인 무관</td></tr>
+<tr><td><strong>카카오</strong></td><td>35,750</td><td class="up">+0.28%</td><td>플랫폼</td><td>GOOGL +2.19%·MSFT +1.09% 근거 · 소외주 저평가 매력</td></tr>
+</table>
+</div>
+</div>
+
+<h3>4-1. 오전 약세 섹터 Top 3</h3>
+<div class="scroll">
+<table>
+<tr><th>순위</th><th>섹터</th><th>대표 종목 · 낙폭</th><th>원인</th><th>라이프사이클 변화</th></tr>
+<tr><td><strong>1</strong></td><td><strong>전력기기·AI 전력</strong></td>
+<td>HD현대일렉트릭 <span class="dn">−17.94%</span><br>LS ELECTRIC <span class="dn">−8.63%</span><br>두산에너빌리티 <span class="dn">−7.88%</span></td>
+<td>AI CAPEX 의구심 확산 · 고밸류 되돌림(HD현대일렉 PER 26.5)</td><td>Peak → <strong>Decline 진입</strong></td></tr>
+<tr><td><strong>2</strong></td><td><strong>방산·항공우주</strong></td>
+<td>한국항공우주 <span class="dn">−16.99%</span><br>한화에어로스페이스 <span class="dn">−7.77%</span></td>
+<td>미·이란 휴전으로 지정학 프리미엄 소멸 + 어제 상대강도 1위였던 반작용</td><td>Peak → <strong>Decline</strong> (어제 방어 → 오늘 최약)</td></tr>
+<tr><td><strong>3</strong></td><td><strong>반도체 장비·소부장</strong></td>
+<td>한미반도체 <span class="dn">−11.31%</span><br>주성엔지니어링 <span class="dn">−10.56%</span><br>LG이노텍 <span class="dn">−11.19%</span></td>
+<td>중국 DUV 쇼크 진앙 + KLA 시간외 −8.81% 여진</td><td>Decline 지속 (5일차)</td></tr>
+</table>
+</div>
+
+<div class="warn-box">
+<strong>⚠️ 어제의 방어주가 오늘의 최약체가 됐다 — 순환 방어 실패</strong><br>
+한화에어로스페이스는 어제 −2.67%로 <strong>지수 대비 +8.2%p 최고 상대강도</strong>였고, 그 근거로 오늘 Tier 1 1순위에 올랐다.
+그러나 오늘 −7.77%로 지수와 동조했다. 한국항공우주는 −16.99%로 지수의 2배 이상 무너졌다.<br><br>
+<strong>판독:</strong> 청산 국면 2일차에서는 <strong>1일차 방어주가 "아직 팔 수 있는 자산"이 되어 2일차 매도 대상</strong>이 된다.
+<strong>→ 규칙화: 폭락 1일차의 상대강도를 2일차 진입 근거로 쓰지 않는다.</strong> 이번 Tier 1 실패의 핵심 원인이다.
+</div>
+
+<h3>4-2. 주도 테마 × 종목 매핑</h3>
+<div class="info-box" style="margin-bottom:10px;">
+<strong>ℹ️ StockMatrix TLI 기준일 = 2026-07-28</strong> — 테마 스코어는 <strong>어제 종가 기준</strong>이며 오늘 오전 붕괴는 미반영이다.
+아래는 "어제까지의 테마 위치 + 오늘 오전 실측"을 병기해 해석한다.
+</div>
+<div class="scroll">
+<table>
+<tr><th>테마 (TLI/단계)</th><th>대장주</th><th>2등주</th><th>소외주</th><th>오늘 오전 실측</th></tr>
+<tr><td><strong>은행</strong> 64 / Peak</td><td>기업은행</td><td>우리금융지주</td><td>BNK금융지주</td>
+<td>어제 평균 −4.70%로 지수(−10.84%) 대비 <strong>+6.1%p 방어</strong> · 현금 대체 후보 유지</td></tr>
+<tr><td><strong>증권</strong> 76 / Emerging ↑10</td><td>한국금융지주</td><td>한화투자증권</td><td>신영증권</td>
+<td>어제 평균 −7.04% · <span class="dn">거래대금 폭증은 수익이나 지수 급락은 악재 — 상충</span></td></tr>
+<tr><td><strong>지능형로봇/AI</strong> 67 / Peak</td><td>솔트룩스</td><td>와이즈넛</td><td>가온그룹</td>
+<td>레인보우로보틱스 <span class="dn">−3.87%</span> — <strong>지수 대비 +3.8%p 방어</strong> · 낙폭 상대적 제한</td></tr>
+<tr><td><strong>건설 대표주</strong> 80 / Peak</td><td>현대건설</td><td>GS건설</td><td>DL이앤씨</td>
+<td>어제 평균 −9.64% · Peak 최고점수이나 <strong>7일 −2로 하강 전환</strong></td></tr>
+<tr><td><strong>스페이스X</strong> 74 / Peak ↑11</td><td>한미반도체</td><td>켄코아에어로스페이스</td><td>센서뷰</td>
+<td>한미반도체 <span class="dn">−11.31%</span> — <strong>테마 점수 급등과 주가 붕괴가 정반대</strong> · 함정 신호</td></tr>
+</table>
+</div>
+
+<h3>4-3. 신규 부상 / 약화 테마</h3>
+<div class="scroll">
+<table>
+<tr><th>구분</th><th>테마</th><th>근거</th></tr>
+<tr><td><span class="tag t-ok">신규 부상</span></td><td><strong>내수 음식료</strong></td><td>삼양식품 +4.82%(고가 1,322,000, +11.7%) — 전 시장 붕괴 중 유일한 강세 · 거래대금 동반</td></tr>
+<tr><td><span class="tag t-ok">신규 부상</span></td><td><strong>바이오·제약</strong></td><td>셀트리온 +2.14% · 미 10년물 하락(4.62%) 수혜 · 반도체 디커플링 자산</td></tr>
+<tr><td><span class="tag t-crit">급속 약화</span></td><td><strong>전력기기·AI 전력</strong></td><td>HD현대일렉트릭 −17.94% — 오늘 최대 낙폭 섹터 · Peak에서 수직 붕괴</td></tr>
+<tr><td><span class="tag t-crit">급속 약화</span></td><td><strong>엔터</strong></td><td>하이브 −16.26% (고가 194,200 → 158,000, −18.6%) · 적자(PER −14.62) 취약성 노출</td></tr>
+<tr><td><span class="tag t-crit">급속 약화</span></td><td><strong>제약 개별주</strong></td><td>삼천당제약 −11.40%(PER 283) · 코오롱티슈진 −9.27% — <strong>고PER·적자주 선별 학살</strong></td></tr>
+</table>
+</div>
+
+<div class="info-box">
+<strong>🔬 오늘 매도의 선별 기준은 "밸류에이션"이다</strong><br>
+낙폭 상위를 PER로 정렬하면 패턴이 명확하다 — 주성엔지니어링(PER 800) −10.56%, 삼천당제약(283) −11.40%,
+두산에너빌리티(247) −7.88%, 삼성전기(94) −10.23%, 한미반도체(85) −11.31%.
+반면 현대차(PER 10.85) −3.30%, SK스퀘어(6.94)는 −11.68%로 예외이나 지주사 할인 요인이 별개다.<br>
+<strong>→ 오후 대응 원칙: 고PER·적자·테마 프리미엄 종목이 2차 매도 타깃이다. 저PER·실적 기반 내수주가 상대적 피난처다.</strong>
+</div>
+
+<!-- ⑦ 강도 점수 -->
+<h2>⑤ 오전 시장 강도 점수</h2>
+<div class="scroll">
+<table>
+<tr><th>항목</th><th>실측</th><th>기준</th><th>룰 점수</th></tr>
+<tr><td>외인 오전 순매수</td><td>+817억 → −400억 (소액 혼조)</td><td>−500~+500억 = 중립</td><td class="flat">0</td></tr>
+<tr><td>거래대금(양시장)</td><td>12조 대폭 초과 (투매 거래대금, 확정치 미확보)</td><td>12조↑ = 강세</td><td class="up">+2 ⚠️</td></tr>
+<tr><td>상승종목 비율</td><td>검색 상위 28종목 중 3종목 상승 = <strong>10.7%</strong></td><td>35%↓ = 약세</td><td class="dn">−2</td></tr>
+<tr><td>미 야간선물(ES)</td><td>−0.03%</td><td>±0.2% = 중립</td><td class="flat">0</td></tr>
+<tr><td>원/달러 변동</td><td>−0.03% (원화 강보합)</td><td>±0.1% = 중립</td><td class="flat">0</td></tr>
+<tr style="background:var(--card2);"><td colspan="3"><strong>룰 산출 합계</strong></td><td><strong class="flat">0 (중립)</strong></td></tr>
+</table>
+</div>
+
+<div class="crit-box">
+<strong style="color:#ff8080;">⚠️ 스코어링 룰이 오늘 붕괴했다 — 실질 강도 −9로 보정</strong>
+<p style="margin:8px 0 0;font-size:13.5px;">
+룰 합계가 <strong>0(중립)</strong>으로 나왔다. 코스피가 <strong>−7.63%</strong> 무너진 날에 "중립" 판정은 명백한 오류이며, 원인은 두 가지 구조적 결함이다.
+</p>
+<ul style="margin:10px 0 0;font-size:13.5px;">
+<li><strong>결함 ① — 지수 등락률 항목이 없다.</strong> 5개 항목 어디에도 코스피 자체의 등락이 들어가지 않는다.
+오늘처럼 외부 지표(ES·환율·외인)가 전부 중립인데 지수만 폭락하는 <strong>순수 국내 수급 사건</strong>에서 룰은 완전히 눈이 먼다.</li>
+<li><strong>결함 ② — 거래대금이 역부호로 작동한다.</strong> 룰은 "12조↑ = 강세 +2"로 규정하나,
+오늘의 대량 거래대금은 <strong>투매·항복 거래</strong>다. 공포 국면에서 거래대금 증가는 강세가 아니라 <strong>약세 심화 신호</strong>다.
+이 항목이 +2를 잘못 얹어 −2를 상쇄해버렸다.</li>
+</ul>
+<p style="margin:10px 0 0;font-size:13.5px;">
+<strong>실질 판정 = −9 (최하단).</strong> 근거: 지수 −7.63% · 고가 대비 −10.67% 반전 · 현재가=일중저가 ·
+상승종목 비율 10.7% · 2거래일 누적 −17.6% · 서킷브레이커 발동선 0.4% 이격.
+<br><br>
+<strong>📌 룰 개정 제안(주말 검토 안건):</strong> ⓐ 6번째 항목으로 <strong>"코스피 오전 등락률"</strong> 신설(+2/0/−2, ±1.5% 기준)
+ⓑ 거래대금 항목에 <strong>방향 조건부</strong> 적용 — 지수 상승 시 +2, <strong>지수 −2% 이하 하락 시 −2로 부호 반전</strong>.
+</p>
+</div>
+
+<!-- ⑥ 오후 시나리오 -->
+<h2>⑥ 오후장 대응 시나리오</h2>
+
+<div class="crit-box">
+<strong style="color:#ff8080;font-size:15px;">🚨 최우선 — 서킷브레이커 발동선 계산</strong>
+<div style="margin-top:10px;">
+<div class="lv"><span class="n">코스피 CB 1단계 (−8%)</span><span class="v" style="color:#ff5b5b;">5,541.77 · 현재 −0.40%</span></div>
+<div class="lv"><span class="n">코스피 CB 2단계 (−15%)</span><span class="v">5,120.11</span></div>
+<div class="lv"><span class="n">코스피 CB 3단계 (−20%, 당일 종료)</span><span class="v">4,818.93</span></div>
+<div class="lv"><span class="n">코스닥 CB 1단계 (−8%)</span><span class="v" style="color:#ff5b5b;">649.38 · 현재 −0.17%</span></div>
+</div>
+<p style="margin:10px 0 0;font-size:13.5px;">
+CB 1단계는 <strong>해당 수준이 1분간 지속</strong>되면 발동되며 20분간 전 종목 매매가 중단된다(1일 1회).
+<strong>코스닥은 발동선까지 1.11포인트(0.17%)</strong>로 사실상 접촉 상태이며, 오후 개시 직후 발동 가능성이 매우 높다.
+매도 사이드카는 <strong>이미 2거래일 연속 발동</strong>됐다.<br><br>
+<strong>실무 지침 —</strong> CB 발동 시 20분간 <strong>주문 취소·정정도 불가</strong>하다.
+따라서 <strong>손절 주문은 CB 발동 전에 처리</strong>해야 하며, 발동 중 포지션은 재개 시점의 시가에 그대로 노출된다.
+재개 직후 첫 5분은 호가 공백으로 슬리피지가 극단적이므로 <strong>시장가 주문을 피하고 지정가로 대응</strong>한다.
+</p>
+</div>
+
+<div class="scen a">
+<div class="nm">🟢 A. 기술적 반등 — 확률 20%</div>
+<strong>트리거:</strong> 5,541 사수 · 기관 순매수 확대 · 개인 매도 소진(14:00 수급에서 개인 순매도 −1.5조 이하로 둔화) · 미 선물 보합 유지<br>
+<strong>경로:</strong> 5,564에서 저점 확인 후 5,700~5,850 회복. 종가 5,700~5,850<br>
+<strong>대응:</strong> <span class="tag t-crit">신규 진입 금지 유지</span> 반등은 <strong>매수 기회가 아니라 비중 축소 기회</strong>다.
+보유 물량 중 고PER·테마주를 우선 정리한다. 규율상 재편입 게이트는 여전히 6,394 종가 회복이다.
+</div>
+
+<div class="scen b">
+<div class="nm">🟡 B. CB 발동 후 저점 배회 — 기본 시나리오 · 확률 45%</div>
+<strong>트리거:</strong> 5,541 이탈 → CB 1단계 발동 → 20분 중단 → 재개 후 낙폭 일부 회복하나 추세 전환 실패<br>
+<strong>경로:</strong> 5,400~5,650 박스 등락. 종가 5,450~5,650<br>
+<strong>대응:</strong> <span class="tag t-crit">신규 진입 금지</span> CB 재개 직후 첫 5분 <strong>지정가만</strong> 사용.
+손절 미처리 물량은 재개 직후 반등 구간(첫 10~15분)에 정리한다. 오버나이트 포지션 최소화(FOMC 03:00 대기).
+</div>
+
+<div class="scen c">
+<div class="nm">🔴 C. 2차 붕괴 — 확률 35%</div>
+<strong>트리거:</strong> CB 재개 후 즉시 재하락 · 개인 매도 2차 라운드 · 반대매매 강제청산 확산 · 신용융자 담보부족 계좌 반대매매 예약<br>
+<strong>경로:</strong> 5,400 이탈 → 5,120(CB 2단계) 향발. 종가 5,100~5,400<br>
+<strong>대응:</strong> <span class="tag t-crit">현금 100% 지향</span> 전 종목 무조건 청산 검토.
+레버리지·신용 포지션은 <strong>담보비율 확인 즉시 자발적 축소</strong>(반대매매는 가격 무관 시장가 강제청산이므로 자발적 정리가 항상 유리).
+방어자산(국고채 장기 ETF·금 ETF)만 허용.
+</div>
+
+<h3>6-1. 오후 Tier 1 관심종목</h3>
+<div class="crit-box">
+<strong style="color:#ff8080;">🚫 오후 신규 롱 Tier 1 = 없음 (0종목)</strong>
+<p style="margin:8px 0 0;font-size:13.5px;">
+루틴은 Tier 1을 3~5개 요구하나, <strong>의도적으로 0개를 제출한다.</strong> 근거:
+</p>
+<ul style="margin:8px 0 0;font-size:13.5px;">
+<li>하방 역트리거 <strong>6,043 이탈</strong>(현재 5,564, −7.9% 하회) — 규율상 전면 방어 국면</li>
+<li>파동 3중 confluence <strong>6,394~6,409 붕괴</strong> — 재편입 게이트 미충족</li>
+<li>지수가 <strong>일중 저점에서 하방 진행 중</strong> — 어떤 손절가도 CB 발동 시 무의미(주문 취소 불가)</li>
+<li>오늘 아침 Tier 1 <strong>5종목 전부 손절 이탈</strong>한 직후에 새 롱 후보를 제시하는 것은 규율 위반</li>
+</ul>
+<p style="margin:10px 0 0;font-size:13.5px;">
+<strong>이는 ②-2에서 지적한 "방어 국면 선언 + Tier 1 제시" 모순을 오늘부터 교정한 결과다.</strong>
+자산배분 거버넌스(규율 기반 · 예측 아닌 위치측정 · 사전규율)에 따라, 위치가 방어 구간이면 산출물도 방어여야 한다.
+</p>
+</div>
+
+<h3>6-2. 🛡 방어 · 관찰군 (매수 권고 아님 — 조건 충족 시 후보)</h3>
+<div class="info-box" style="margin-bottom:10px;">
+아래는 <strong>오늘 진입 대상이 아니다.</strong> 시나리오 A(5,541 사수 + 개인 매도 둔화)가 <strong>14:00 수급으로 확인된 이후</strong>에만
+관찰 대상으로 승격되며, 그 전에는 <strong>기록·감시 목적</strong>이다. 손절가는 승격 시 적용할 값을 미리 고정해 둔 것이다.
+</div>
+<div class="scroll">
+<table>
+<tr><th>종목</th><th>12:00</th><th>등락</th><th>승격 조건</th><th>손절</th><th>1차 목표</th><th>근거</th></tr>
+<tr><td><strong>삼양식품</strong><br><span style="font-size:11.5px;color:var(--tx3);">003230</span></td>
+<td>1,240,000</td><td class="up">+4.82%</td>
+<td>A 확정 + 1,200,000 지지</td><td>1,163,000<br><span style="font-size:11.5px;">(일중 저가, −6.2%)</span></td><td>1,322,000<br><span style="font-size:11.5px;">(일중 고가, +6.6%)</span></td>
+<td>전 시장 붕괴 중 유일 강세 · 반도체 무관 실적주 · 손익비 1.06:1 <span class="dn">(2:1 미달 → 승격 시 진입가 하향 필요)</span></td></tr>
+<tr><td><strong>셀트리온</strong><br><span style="font-size:11.5px;color:var(--tx3);">068270</span></td>
+<td>181,200</td><td class="up">+2.14%</td>
+<td>A 확정 + 178,000 지지</td><td>177,700<br><span style="font-size:11.5px;">(일중 저가, −1.9%)</span></td><td>188,800<br><span style="font-size:11.5px;">(일중 고가, +4.2%)</span></td>
+<td>금리 하락 수혜 · 반도체 디커플링 · <strong>손익비 2.2:1 ✅</strong> — 3종 중 유일하게 손익비 충족</td></tr>
+<tr><td><strong>카카오</strong><br><span style="font-size:11.5px;color:var(--tx3);">035720</span></td>
+<td>35,750</td><td class="up">+0.28%</td>
+<td>A 확정 + 35,600 지지</td><td>35,600<br><span style="font-size:11.5px;">(일중 저가, −0.4%)</span></td><td>37,900<br><span style="font-size:11.5px;">(일중 고가, +6.0%)</span></td>
+<td>GOOGL·MSFT 강세 근거 · 소외주 · 손익비 명목상 14:1이나 <span class="dn">손절 이격 0.4%로 실무 불가 — 재설정 필요</span></td></tr>
+</table>
+</div>
+
+<h3>6-3. 🚫 오후 회피군</h3>
+<div class="scroll">
+<table>
+<tr><th>회피 대상</th><th>사유</th></tr>
+<tr><td><strong>고PER · 적자 · 테마 프리미엄 전체</strong></td><td>오늘 매도의 선별 기준이 밸류에이션임이 확인됨. 주성엔지니어링(PER 800)·삼천당제약(283)·두산에너빌리티(247) 등 2차 타깃</td></tr>
+<tr><td><strong>반도체 장비·소부장</strong></td><td>중국 DUV 진앙 + KLA 시간외 −8.81% + <strong>LRCX 실적 오늘 밤</strong> 대기 — 3중 악재 미해소</td></tr>
+<tr><td><strong>전력기기·AI 전력</strong></td><td>오늘 최대 낙폭 섹터(HD현대일렉트릭 −17.94%) · Peak에서 수직 붕괴 진행 중 · 낙폭과대 매수 금지</td></tr>
+<tr><td><strong>어제 상대강도 상위 종목</strong></td><td>한화에어로·한국항공우주 사례 — 청산 2일차에 1일차 방어주가 매도 대상으로 전환됨</td></tr>
+<tr><td><strong>레버리지 · 단일종목 레버리지 ETF 전체</strong></td><td>이번 사태의 진원. 잔고 13.8조 청산이 진행 중이며 종료 시점 미확인</td></tr>
+</table>
+</div>
+
+<!-- 시간대별 -->
+<h2>⑦ 오후 시간대별 체크포인트</h2>
+<div class="scroll">
+<table>
+<tr><th>시각</th><th>점검 항목</th><th>판단 기준 · 행동</th></tr>
+<tr><td><strong>즉시</strong></td><td>🚨 <strong>손절 주문 선처리</strong></td><td>CB 발동 시 20분간 주문 취소·정정 불가. <strong>CB 전에 정리할 물량은 지금 처리</strong></td></tr>
+<tr><td><strong>12:00~12:30</strong></td><td>코스닥 649.38 / 코스피 5,541.77 접촉 여부</td><td>코스닥은 0.17% 이격 — 접촉 시 CB 1단계. 발동 시 20분 중단</td></tr>
+<tr><td><strong>CB 재개 직후</strong></td><td>첫 5분 호가 공백</td><td><strong>시장가 금지 · 지정가만.</strong> 재개 첫 10~15분 반등이 손절 정리의 마지막 창</td></tr>
+<tr><td><strong>13:00</strong></td><td>미 야간선물 ES · 원/달러 재점검</td><td>ES가 −0.5% 이탈하면 C 확률 상향. 환율 1,480 접근 시 경보(현 1,452, 여유)</td></tr>
+<tr><td><strong>★ 14:00</strong></td><td><strong>외인·기관 잠정 순매수 발표</strong> — 오늘 최대 단서</td><td><strong>개인 순매도 규모가 오전(−1.5조) 대비 둔화되면 A</strong>, 확대되면 C. 외인이 −1조 이상 순매도로 전환하면 즉시 C</td></tr>
+<tr><td><strong>14:30~15:00</strong></td><td>반대매매 예약 물량 · 종가 베팅</td><td>신용융자 담보부족 계좌의 익일 반대매매가 예약되는 구간. 개인 매도 재확대 여부 확인</td></tr>
+<tr><td><strong>15:20~15:30</strong></td><td>동시호가 · MOC</td><td>종가가 <strong>5,541 위/아래</strong>인지가 내일 갭의 1차 결정 변수</td></tr>
+<tr><td><strong>03:00 (7/30)</strong></td><td>FOMC 금리 결정 (동결 컨센)</td><td><strong>오버나이트 포지션 최소화</strong> — 동결이어도 파월 코멘트 변동성</td></tr>
+<tr><td><strong>새벽 (7/30)</strong></td><td>MSFT · META 실적 + LRCX 실적</td><td>AI CAPEX 가이던스 = 반도체 반등의 최종 분수령. LRCX는 장비 2차 충격 변수</td></tr>
+</table>
+</div>
+
+<h3>가격 기준선</h3>
+<div class="card">
+<div class="lv"><span class="n">5,564.06 — <strong>현재 · 일중 저가</strong></span><span class="v" style="color:#ff5b5b;">−7.63%</span></div>
+<div class="lv"><span class="n">5,541.77 — <strong>CB 1단계 발동선</strong></span><span class="v" style="color:#ff5b5b;">−0.40% 이격</span></div>
+<div class="lv"><span class="n">5,730.23 — 4/13 장중 저점 (이탈)</span><span class="v">+2.99%</span></div>
+<div class="lv"><span class="n">5,992.91 — 7/28 장중 저점 (이탈)</span><span class="v">+7.71%</span></div>
+<div class="lv"><span class="n">6,023.66 — 7/28 종가 (출발점)</span><span class="v">+8.26%</span></div>
+<div class="lv"><span class="n">6,043 — AI반도체 하방 역트리거 (이탈·방어 발동중)</span><span class="v">+8.61%</span></div>
+<div class="lv"><span class="n">6,228.52 — 오늘 일중 고가</span><span class="v">+11.94%</span></div>
+<div class="lv"><span class="n">6,394~6,409 — 파동 3중 confluence (붕괴 · 재편입 게이트)</span><span class="v">+14.9%</span></div>
+<div class="lv"><span class="n">6,973 — Count B 무효화선</span><span class="v">+25.3%</span></div>
+<div class="lv"><span class="n">5,120.11 — CB 2단계 (−15%)</span><span class="v" style="color:#ff5b5b;">−7.98%</span></div>
+<div class="lv"><span class="n">원/달러 1,480 — 외인 수급 반전 경보</span><span class="v">현 1,452 · 여유</span></div>
+</div>
+
+<div class="warn-box">
+<strong>📋 본 보고서의 한계 — 명시</strong>
+<ul style="margin:8px 0 0;">
+<li><strong>수급 확정치 부재:</strong> 투자자별 순매수는 10:24~10:44 잠정치다. 12:00 확정 소스가 없어 추정 대체하지 않았다(정확성 룰 준수). 14:00 재확인 필수.</li>
+<li><strong>거래대금 미확정:</strong> 양시장 오전 거래대금 확정치를 확보하지 못해 강도 점수에서 "12조 초과(추정)"로 처리했다.</li>
+<li><strong>DART 오전 공시 개별 스캔 미실시:</strong> 지수 급변 대응을 우선했다. 다만 오늘 최대 공시인 SK하이닉스 2Q 실적은 본문에 반영했다.</li>
+<li><strong>업종지수 상하위 5 미수록:</strong> KRX 업종지수 실시간 소스 미확보로, 대표 종목 실측 기반 섹터 판정으로 대체했다.</li>
+<li><strong>일부 종목가 역산:</strong> 한화에어로·KODEX 200·월덱스는 시가총액÷상장주식수 및 PER×EPS 2중 역산값이다(두 방식 오차 0.1% 이내 교차검증).</li>
+</ul>
+</div>
+
+<footer>
+<div><strong>발행: Chory &amp; Rochet</strong> · Midday Pivot Desk</div>
+<div>보고서 생성: 2026-07-29 12:05 KST · 데이터 스냅샷: 12:00~12:03 KST</div>
+<div class="disc">
+데이터 출처 — 지수·환율·선물: Investing.com(코스피·코스닥·USD/KRW·ES 실시간). 종목: 네이버금융(12:00~12:03 스냅샷).
+전일 종가: KRX 일봉 확정 데이터. 수급·시장 상황: 뉴스핌·뉴시스·머니투데이·이투데이·뉴스1·파이낸셜뉴스.
+테마: StockMatrix TLI(기준일 2026-07-28). 인계: Chory &amp; Rochet 개장 보고서(2026-07-29 08:20).
+<br><br>
+본 자료는 정보 제공 목적으로 작성되었으며 투자 권유가 아닙니다. 모든 투자 판단과 그 결과에 대한 책임은 투자자 본인에게 있습니다.
+특히 본 보고서는 <strong>서킷브레이커 발동이 임박한 극단적 변동성 국면의 12:00 스냅샷</strong>이며, 기재된 모든 가격과 판정은 작성 직후 무효화될 수 있습니다.
+</div>
+</footer>
+
+</div>
+</body>
+</html>
