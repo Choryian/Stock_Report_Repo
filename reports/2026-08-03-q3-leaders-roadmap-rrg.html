@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Chory &amp; Rochet">
+<meta name="publisher" content="Chory &amp; Rochet">
+<meta name="description" content="이익 주도주(반도체·전력기기)와 주가 주도주(바이오·은행·조선)의 분리. 섹터 RRG 실측 반영 개정판. 코스피 8/3 확정 종가 6,257.45(-5.12%), 방어선 6,404 재장악 1거래일 만에 반납(휩소 확정).">
+<title>2026년 3분기 주도주 로드맵 v2.1 | Chory &amp; Rochet</title>
+<style>
+:root{
+  --bg:#0f1216; --card:#171c23; --card2:#1d232c; --line:#2a323d;
+  --tx:#e8edf3; --tx2:#a6b2c1; --tx3:#7a8797;
+  --up:#ff5c5c; --dn:#4d9dff; --wn:#ffb340; --ok:#3ddc97; --ac:#8b7cff;
+}
+*{box-sizing:border-box}
+body{margin:0;padding:0;background:var(--bg);color:var(--tx);
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+ line-height:1.65;-webkit-text-size-adjust:100%}
+.wrap{max-width:1080px;margin:0 auto;padding:16px}
+header{border-bottom:2px solid var(--ac);padding:22px 0 16px;margin-bottom:24px}
+.brand{font-size:12px;letter-spacing:.18em;color:var(--ac);font-weight:700;text-transform:uppercase}
+h1{font-size:25px;margin:10px 0 6px;line-height:1.3;font-weight:800}
+.sub{font-size:15px;color:var(--tx2);margin:8px 0 10px;line-height:1.6;font-weight:600}
+.meta{font-size:12.5px;color:var(--tx3)}
+h2{font-size:18px;margin:34px 0 12px;padding-left:11px;border-left:4px solid var(--ac);font-weight:700}
+h3{font-size:15px;margin:22px 0 9px;color:var(--tx2);font-weight:700}
+p{margin:9px 0;font-size:14.5px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:16px;margin:13px 0}
+.hl{background:linear-gradient(135deg,#1c2330,#171c23);border-left:4px solid var(--wn)}
+.lead{font-size:15.5px;line-height:1.8}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin:13px 0}
+.tag{background:var(--card2);border:1px solid var(--line);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--tx2)}
+.tag.r{border-color:#5a2b2b;color:#ff9a9a}
+.tag.b{border-color:#23456b;color:#8dc4ff}
+.tag.g{border-color:#255c45;color:#7fe3bb}
+.tag.w{border-color:#6b4a1e;color:#ffc879}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:13px 0}
+.kpi{background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:12px}
+.kpi .l{font-size:11.5px;color:var(--tx3);margin-bottom:5px}
+.kpi .v{font-size:19px;font-weight:800;letter-spacing:-.02em}
+.kpi .s{font-size:12px;margin-top:3px;color:var(--tx3)}
+.up{color:var(--up)} .dn{color:var(--dn)} .wn{color:var(--wn)} .ok{color:var(--ok)} .ac{color:var(--ac)}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:13px 0;border-radius:9px;border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:560px}
+th{background:var(--card2);color:var(--tx2);text-align:left;padding:9px 10px;font-weight:700;
+ border-bottom:1px solid var(--line);white-space:nowrap;font-size:12px}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:rgba(255,255,255,.017)}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.scen{border-radius:10px;padding:14px;margin:11px 0;border:1px solid var(--line);background:var(--card)}
+.scen.a{border-left:4px solid var(--ok)}
+.scen.b{border-left:4px solid var(--wn);background:linear-gradient(135deg,#1e2028,#171c23)}
+.scen.c{border-left:4px solid var(--dn)}
+.scen .t{font-weight:800;font-size:15px;margin-bottom:6px}
+.pill{float:right;font-size:12px;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:2px 10px;color:var(--tx2)}
+ul{margin:8px 0;padding-left:20px;font-size:14px} li{margin:5px 0}
+ol{margin:8px 0;padding-left:24px;font-size:14px}
+ol li{margin:9px 0}
+.note{font-size:12.5px;color:var(--tx3);font-style:normal;margin-top:9px;line-height:1.6}
+.chk{background:var(--card2);border-radius:9px;padding:12px;margin:9px 0;border:1px solid var(--line)}
+.chk b{color:var(--ac)}
+.q{border-left:3px solid var(--ac);padding:4px 0 4px 12px;margin:12px 0;color:var(--tx2);font-size:14px}
+.rrg{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:11px;margin:13px 0}
+.qd{border-radius:10px;padding:14px;border:1px solid var(--line);background:var(--card)}
+.qd .h{font-weight:800;font-size:14px;margin-bottom:7px}
+.qd.lead2{border-left:4px solid var(--ok)}
+.qd.imp{border-left:4px solid var(--wn)}
+.qd.lag{border-left:4px solid var(--dn)}
+.qd ul{padding-left:17px;font-size:13.5px;margin:5px 0}
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--tx3);line-height:1.75}
+@media(max-width:640px){.wrap{padding:12px}h1{font-size:20px}h2{font-size:16.5px}}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">Chory &amp; Rochet · 리서치센터 · 수석 전략가 데스크</div>
+  <h1>2026년 3분기 주도주 로드맵 v2.1</h1>
+  <div class="sub">섹터 RRG 반영 개정 · 8/3 확정 종가 레벨 교정<br>
+  &ldquo;이익 주도주&rdquo;와 &ldquo;주가 주도주&rdquo;의 분리 — 시장은 고베타 성장에서 방어·퀄리티 + 신규 경기가치로 로테이션을 완료했다</div>
+  <div class="meta">발행 Chory &amp; Rochet 리서치센터 · 수석 전략가 데스크 · 기준일 2026-08-03(2Q26 실적시즌 종료) · 코스피 확정 종가 6,257.45</div>
+</header>
+
+<div class="grid">
+  <div class="kpi"><div class="l">코스피 확정 종가 (8/3)</div><div class="v dn">6,257.45</div><div class="s">−338.00p · −5.12%</div></div>
+  <div class="kpi"><div class="l">현재 위치</div><div class="v wn">밴드 내</div><div class="s">6,043.72 ~ 6,404</div></div>
+  <div class="kpi"><div class="l">방어선 6,404</div><div class="v up">반납</div><div class="s">7/31 재장악 → 1거래일 휩소</div></div>
+  <div class="kpi"><div class="l">Regime</div><div class="v wn">G2 방어</div><div class="s">신규매수 halt 유지</div></div>
+</div>
+
+<div class="tags">
+  <span class="tag g">주가 주도 Top3 — 바이오·은행·조선</span>
+  <span class="tag b">반도체 = 이익 코어 · 홀드</span>
+  <span class="tag r">전력기기 확산 1순위 기각</span>
+  <span class="tag w">휩소 확정</span>
+  <span class="tag">RRG 실측 반영</span>
+  <span class="tag">v2.1 레벨 교정</span>
+</div>
+
+<h2>개정 사유 및 데이터 검증 노트</h2>
+<div class="card">
+  <p><b>개정 사유</b> — 섹터 데스크 RRG·라이프사이클 실측이 v1 초안과 핵심에서 충돌했다. 메모리 규율에 따라 실측을 우선 반영한다. v1의 확산 1순위(전력기기)는 실측으로 <b class="up">기각(REJECTED)</b>.</p>
+</div>
+<div class="card hl">
+  <p><b>⚑ 데이터 검증 노트 (v2.1 — 판단 철회·정정)</b><br>
+  v2.0이 &ldquo;데이터피드 손상·허위 수치&rdquo;로 판단해 삭제했던 조 단위 실적치는 <b>재검증 결과 전부 실제 공시치로 확인</b>되어 원복한다. 당시 삭제 근거는 공시 원문 대조가 아니라 &ldquo;분기 단위로 비현실적&rdquo;이라는 자체 개연성 판단이었고, 이는 실측 우선 원칙 위반이었다.</p>
+  <p>검증된 2Q26 공시 실적:</p>
+  <ul>
+    <li><b>SK하이닉스</b>(2026-07-29 공시): 매출 79조 3,187억(+256.8% YoY) · 영업이익 <b class="ac">60조 5,426억</b>(+557.2% YoY) · <b>영업이익률 76%</b>, 분기 사상 최대. 단 시장 예상치는 소폭 하회.</li>
+    <li><b>삼성전자</b>(2026-07-30 공시): 매출 171.5조 · 연결 영업이익 <b class="ac">89조 4,924억</b>(+1,813.8% YoY), 3개 분기 연속 역대 최대. 부문별로 <b>반도체(DS) 89.2조 · 영업이익률 70%</b> vs <b class="up">완제품(DX) 약 −8,000억 사상 첫 적자</b> — 전사 영업이익의 99%를 반도체가 부담하는 단일 의존 구조.</li>
+    <li><b>전력기기 3사</b>: HD현대일렉트릭 2,870억(+37.3% YoY · 영업이익률 25.1%), 효성중공업 2,643억(+60.9%), LS일렉트릭 1,785억(+64.4% · 매출 1조 5,770억) — <b>합산 약 7,298억</b>(개별 공시 단순합)으로 3사 합산 분기 사상 최대. 효성중공업·LS일렉트릭은 개별 역대 최대 명시, HD현대일렉트릭은 직전 최대(1Q26 2,583억) 경신. 3사 수주잔고 30조원 상회.</li>
+    <li>그 외: 코스피 12개월 선행 영업이익 추정 상향 기업 비율 78%(에프앤가이드, 2026-07-12 기준, 역대 최고), 주성엔지니어링 2Q 영업익 14.2억(−78.4% YoY) · 전분기 대비 흑자전환 · 상반기 누계 영업손실 −56억 적자전환.</li>
+  </ul>
+</div>
+
+<h3>레벨 기준 실측 (8/3 확정)</h3>
+<div class="card">
+  <p>코스피 종가 <b class="dn">6,257.45</b>(−338.00p, <b class="dn">−5.12%</b>), 시가 6,358.27 · 장중 고가 6,393.00. 직전 거래일 7/31 종가 6,595.45(+17.91%)로 방어선 6,404를 상회 재장악했으나 1거래일 만에 반납 → <b class="up">휩소 확정</b>. 현재 위치는 <b>6,043.72 ~ 6,404 밴드 내</b>(역트리거 6,043.72 상방 유지, 방어선 6,404 미유지). 같은 날 코스닥은 737.35(+2.44%)로 역행 상승 — 반도체 차익실현발 지수 하락이라는 로테이션 구도와 정합.</p>
+</div>
+
+<h2>0. 규율 전제 (불변)</h2>
+<div class="card">
+<ol>
+  <li>주도주 판별 ≠ 진입 타이밍. 아래 명단은 게이트가 열렸을 때의 매수 대상이지 지금 매수 신호가 아니다. 현재 regime은 G2 방어심화·신규매수 halt, 완전 해제는 코스피 주간종가 7,284.41 회복.</li>
+  <li>더 방어적인 라인이 현금밴드를 정한다. 파동 골격 Count B(대세하락) 하에서 실적 강도가 포지션을 앞지르지 않는다.</li>
+  <li>반등은 약세 카운트를 낮추는 근거가 아니다. 7/31 대규모 반등(+17.91%) 직후 8/3 −5.12% 되돌림으로 방어선 6,404를 하루 만에 반납한 것이 그 취약성을 증명. 본 로드맵은 강세 전환 신호가 아니다.</li>
+</ol>
+</div>
+
+<h2>1. 실적시즌 총평 — 이익 주도주와 주가 주도주가 갈라섰다</h2>
+<div class="card hl">
+  <p class="lead"><b>한 줄 결론: 이익의 정점은 반도체·전력이 찍었지만, 주가의 주도권은 바이오·은행·조선으로 넘어갔다.</b>
+  사상 최대 이익이 곧 주가 주도력은 아니다. 시장은 고베타 성장(반도체)에서 이익이 뒷받침되는 방어·퀄리티(은행)와 신규 경기가치·상대강도 리더(바이오·조선)로 로테이션을 마쳤고, 이는 현재의 G2 방어 국면과 정합한다.</p>
+</div>
+
+<h3>두 축의 분리</h3>
+<div class="rrg">
+  <div class="qd lag">
+    <div class="h dn">이익 주도주 — 반도체 · 전력기기</div>
+    <p style="font-size:13.5px;margin:0">펀더멘털은 최강. 반도체는 선행 영업이익 상향 78%(역대 최고)의 원천, 전력 3사는 분기 사상 최대. 그러나 주가 상대강도는 이미 이탈·좌측. <b>실적은 주가에 선반영된 후행 확인</b>이다.</p>
+  </div>
+  <div class="qd lead2">
+    <div class="h ok">주가 주도주 — 바이오 · 은행 · 조선</div>
+    <p style="font-size:13.5px;margin:0">RRG 상대강도 실측상 현재 시장을 이끄는 축. 폭락장에서 상대적·절대적으로 견조했고, 상승 국면에서 주도력이 살아있다.</p>
+  </div>
+</div>
+
+<h3>시즌의 실증 사례</h3>
+<div class="tw"><table>
+<thead><tr><th>종목/섹터</th><th>검증된 사실</th><th>주가 신호</th></tr></thead>
+<tbody>
+<tr><td><b>삼성전자</b></td><td>2Q 매출 171.5조 · 연결 영업익 <b>89조 4,924억</b>(+1,813.8% YoY), 3개 분기 연속 역대 최대. 단 DS 89.2조 vs DX −8,000억 사상 첫 적자</td><td class="dn">발표일 급락(기관 매도, 선반영)</td></tr>
+<tr><td><b>SK하이닉스</b></td><td>2Q 매출 79.3조 · 영업익 <b>60조 5,426억</b> · 영업이익률 76%, 분기 사상 최대이나 예상치 소폭 하회</td><td class="dn">이익이 주가 주도로 전환되지 못함</td></tr>
+<tr><td><b>반도체 소부장</b><br>(주성엔지니어링)</td><td>2Q 영업익 14.2억(−78.4% YoY) · QoQ 흑자전환, 상반기 누계 영업손실 −56억 적자전환</td><td class="wn">옥석가리기, 일괄 접근 금지</td></tr>
+<tr><td><b>전력 3사</b><br>(HD현대일렉 · 효성중공업 · LS일렉)</td><td>2Q 영업익 2,870억 / 2,643억 / 1,785억, <b>합산 약 7,298억</b>으로 분기 사상 최대 · 수주잔고 30조 상회</td><td class="wn">실적 최고이나 주가 상대강도 좌측(선반영·이탈)</td></tr>
+</tbody></table></div>
+
+<h2>2. RRG 4사분면 매트릭스 (섹터 데스크 실측과 1:1 정합)</h2>
+<p class="note">축: RS-Ratio(상대강도 수준, 가로) × RS-Momentum(상대강도 방향, 세로).</p>
+
+<div class="rrg">
+  <div class="qd lead2">
+    <div class="h ok">Leading 우상 — 주가 주도군</div>
+    <ul>
+      <li>바이오/제약 (RS 102.88 · 전섹터 1위 · 가속)</li>
+      <li>은행/금융 (26주 +35.3% · 최장·최견고)</li>
+      <li>조선 (RS 101.5 / 102.7 · 신규턴 · 4주 +15.3%)</li>
+      <li>화장품 (26주 +22.1%)</li>
+      <li>방산 (완만 Leading)</li>
+    </ul>
+  </div>
+  <div class="qd imp">
+    <div class="h wn">Improving 좌측 — 추격 금지 · 관찰</div>
+    <ul>
+      <li>전력기기 (RS 98.59, 13주 −20.1% · 26주 −24.3%, <b>최악 사분면</b>, TLI decline)</li>
+    </ul>
+  </div>
+  <div class="qd lag">
+    <div class="h dn">Lagging — 이익 코어이나 주가 이탈</div>
+    <ul>
+      <li>반도체/HBM (RS 99.28 / 97.76, TLI peak · 분배)</li>
+      <li>반도체 소부장 (주성)</li>
+    </ul>
+  </div>
+</div>
+
+<h3>핵심 이동 (v1 대비)</h3>
+<div class="card">
+  <ul>
+    <li><b>전력기기</b>: 우상(확산 1순위) → 좌측 Improving으로 강등. Improving 좌측은 백테스트상 최악 사분면(13주 forward 평균 −4.18%, 승률 35.5%).</li>
+    <li><b>반도체/HBM</b>: Lagging 확정. 직전 26주 +37.2%로 최대 주도주였으나 Leading → Weakening → Lagging 이탈 완료. 이익 코어이나 주가 주도력 소멸.</li>
+    <li><b>바이오 · 은행 · 조선</b>: 우상 Leading 주도군으로 확정.</li>
+  </ul>
+</div>
+
+<h2>3. 3분기 주도 후보 우선순위 (개정)</h2>
+
+<h3>A. 이익 코어 (홀드) — 반도체 대형주(HBM)</h3>
+<div class="card">
+  <p><b>역할</b> — 지수 이익의 앵커(선행이익 상향 78%의 원천). 이익은 코어, 그러나 주가 주도력은 Lagging으로 이탈.</p>
+  <p><b>행동규율</b> — 코어 홀드, <b class="up">신규 추격 금지</b>. TLI peak·분배 시그니처는 추격 매수를 정당화하지 않는다. 소부장은 종목별 실적 확인 후 선별(주성 적자전환 = 일괄 금지).</p>
+  <p><b>반증 트리거</b> — 선행 영업이익 추정 상향률(78%)이 2개월 연속 하향 전환 / DRAM·HBM 계약가 반락 / HBM4 양산 지연 → 이익 코어 붕괴 → 홀드에서 축소로 전환.</p>
+</div>
+
+<h3>B. 주가 주도 Top3 (판별 최상위) — 바이오 · 은행 · 조선</h3>
+<div class="card">
+<ol>
+  <li><b class="ok">바이오/제약 — 주가 주도 #1.</b> RS-Ratio 102.88 전섹터 1위·가속. 방어·퀄리티 로테이션 수혜. <i>반증</i>: RS-Ratio 100 하향 이탈 + 모멘텀 둔화, 대형 파이프라인 실패·정책 리스크.</li>
+  <li><b class="ok">은행/금융 — 주가 주도 #2.</b> 26주 +35.3%, 최장·최견고 리더십. 이익 뒷받침 방어 가치. <i>반증</i>: 금리·NIM 급락, 자본규제 강화, RS-Ratio 100 이탈.</li>
+  <li><b class="ok">조선 — 주가 주도 #3.</b> RS 101.53 / 102.67 신규턴, 폭락장 유일 견조(4주 +15.3%), TLI emerging(런웨이 최대). 수주잔고 실적 가시성 + 상대강도 신규 턴. <i>반증</i>: 신규수주 급감, 후판가 급등 마진 훼손, RS 신규턴 좌절.</li>
+  <li><b>화장품(#4)</b>: 26주 +22.1%, Leading권. <b>방산(#5)</b>: 완만 Leading, 수주 가시성. — 둘 다 확산 확인 시 순차 편입.</li>
+</ol>
+</div>
+
+<h3>C. 관찰 (턴 확정 전 진입 금지) — 전력기기 · 반도체 소부장</h3>
+<div class="card">
+  <p><b class="wn">전력기기</b> — 이익은 최고이나 주가 상대강도 좌측(Improving, 최악 사분면). → RS-Ratio 100 상향 재돌파(턴 확정) 전까지 <b>추격 금지·관찰</b>. 사상 최대 실적을 매수 근거로 삼지 말 것.</p>
+  <p><b class="wn">반도체 소부장</b> — 주성엔지니어링 상반기 누계 적자전환(2Q 자체는 +14.2억 흑자·QoQ 개선이나 YoY −78.4%) 등 옥석가리기. 종목별 실적 확인 없이 접근 금지.</p>
+</div>
+
+<h2>4. 하우스 분석 프레임 연결</h2>
+
+<h3>4-1. AI 반도체 P×Q 프레임 재평가</h3>
+<div class="card">
+  <p><b>(1) 현재 위치 = 여전히 수익성 확대 창.</b> 반도체 대형주의 분기 사상 최대 이익(P 상승·Q 제약)과 선행이익 상향 78%는 이익 창이 열려 있음을 재확인 — &ldquo;지금은 조정 심화(A′)이지 이익 붕괴가 아니다&rdquo;의 펀더멘털 배경. 단 파동은 이미 Count B로 확정, 이익 창과 주가 파동이 갈라진 상태이며 더 방어적인 파동 라인이 포지션을 정한다.</p>
+  <p><b>(2) 천장의 주가 선반영 확정.</b> 반도체 RRG Lagging·TLI peak(분배)는 시장이 P×Q 천장을 주가로 선반영·분배 중이라는 실측 신호. 어닝서프라이즈에도 주가가 반응 못한 것과 정합. → 이익 코어는 유효, 주가 주도력은 이탈.</p>
+</div>
+
+<h3>4-2. 증대 사다리 연결 (ai_semi_turn_deployment_ladder)</h3>
+<div class="card">
+  <p><b>좌표</b> — 코스피는 역트리거 6,043.72를 상방 탈환한 상태를 유지하나, 방어선 6,404는 7/31 종가 6,595.45로 일시 상회 재장악했다가 8/3 종가 6,257.45(−5.12%)로 반납했다 = <b class="up">휩소 확정</b>. 현재 6,043.72~6,404 밴드 내. 증대 본시점 7,284.41 미도달, SOL 신호 조건 미충족 → <b>코어 증대 금지 유지</b>. SOL=신호탄두 유효.</p>
+  <p>단, 사다리의 코어 대상(200/Top5=반도체 대형주)은 현재 RRG Lagging이다. 증대 게이트가 열리면 사다리의 반도체 코어와 주가 주도 Top3(바이오·은행·조선)를 병행 배분하도록 사다리를 보완할 것을 위원회에 상정한다.</p>
+</div>
+
+<h3>4-3. 전력 테마 사다리 (개정 — 선결조건 추가)</h3>
+<div class="card">
+  <div class="chk"><b>Stage 0 (현재)</b> — 선결조건 = 전력기기 RS-Ratio 100 상향 재돌파(턴 확정), <b class="up">미충족</b>. 코스피는 8/3 종가 6,257.45로 6,043.72~6,404 밴드 내(6,404 재장악 실패·휩소). 액션 = 추격 금지·관찰만.</div>
+  <div class="chk"><b>Stage 1</b> — RS-Ratio 100 돌파 + 유지, 코스피 6,404 재장악 → 확산 1차분(위성) 검토.</div>
+  <div class="chk"><b>Stage 2</b> — RS-Ratio Leading 안착, 코스피 <b>주간종가</b> 7,284.41 상회 → 확산 코어 편입 검토(§0-1·§5와 동일 기준).</div>
+  <p class="note">전력은 RS-Ratio 100 돌파 확인이 진입의 선결조건이며, 그 전까지 사다리 진입 자체가 봉쇄된다.</p>
+</div>
+
+<h3>4-4. Regime / 거버넌스</h3>
+<div class="card">
+  <p>G2 방어심화·신규매수 halt 유지. 4포폴 현금 방어 대체로 완료. 재진입 게이트는 항복 확증형 5항(5,480 홀드 + V반전 + 외인 순매수전환 + 미장안정 + 개인투매 소진), 7/31 반등에도 외인 지속매수·V반전 확증 미검증이었고 <b class="up">8/3 종가 6,257.45(−5.12%) 급락으로 V반전 가설은 1거래일 만에 부정</b>됐다(6,404 반납). 하방 방아쇠 5,480까지는 여유가 있으나 게이트 5항은 여전히 전부 미충족. 로테이션(주가 주도 = 방어·퀄리티 + 가치) 완료와 G2 방어는 정합한다.</p>
+</div>
+
+<h2>5. IF-THEN 시나리오</h2>
+<div class="card">
+  <p><b>레벨 기준선(불변)</b> — 상방 6,043.72(탈환·완료·유지 중) → 6,404(방어선 재장악 — 7/31 일시 상회 후 8/3 반납, 미충족) → 7,284.41(증대·regime 해제) → 7,378(하락프레임 전면무효) / 하방 5,480(코어 축소 재개) → 5,300 → 5,000.</p>
+  <p><b>현재 위치(2026-08-03 KRX 확정 종가 6,257.45 기준): <span class="wn">6,043.72 ~ 6,404 밴드 내</span></b> — 아래 두 번째 시나리오가 적용 국면이다.</p>
+</div>
+
+<div class="scen a">
+  <div class="t ok">IF 코스피 주간종가 7,284.41 회복 <span class="pill">regime 완전 해제</span></div>
+  <p style="margin:0">집행 모드. 주가 주도 Top3 우선 편입(바이오 → 은행 → 조선, +화장품·방산 순차). 반도체 코어는 RRG Lagging 탈피·TLI peak 해소 확인 후 오버웨이트 재개(이익만으로 추격 금지). 전력기기는 RS-Ratio 100 돌파 확인 시에만 편입. 현금밴드 0 방향, risk_tilt 상향.</p>
+</div>
+<div class="scen b">
+  <div class="t wn">IF 6,043.72~6,404 밴드 지속 <span class="pill">← 현재 적용 국면</span></div>
+  <p style="margin:0">8/3 종가 6,257.45, 6,404 재장악 실패·휩소 확정. 판별 유지·진입 보류. <b>신규매수 halt 유지</b>. Top3는 RS-Ratio Leading 유지 추적, 전력은 RS-Ratio 100 돌파만 관찰. 6,404 재장악 시 Top3 위성 1차분만 검토.</p>
+</div>
+<div class="scen c">
+  <div class="t dn">IF 코스피 종가 5,480 이탈 <span class="pill">하방 방아쇠</span></div>
+  <p style="margin:0">로드맵 동결. 코어 축소 재개. Count B 하방 연장(5,300 · 5,000). 모든 확산·주도 진입 전면 보류(이익 코어 반도체조차 파동 우선 방어). 명단 보존·활성화 금지.</p>
+</div>
+
+<h2>6. 리스크 · 반증 조건 (문서 전체 무효화)</h2>
+<div class="card">
+<ol class="risk">
+<li><b>주가 주도군의 상대강도 붕괴</b>: 바이오·은행·조선 중 2개 이상 RS-Ratio 100 하향 이탈 → 주가 주도권 이전 전제 소멸 → Top3 재작성. 1차 렌즈 반증.</li>
+<li><b>이익 코어 붕괴</b>: 선행 영업이익 상향률 78%가 <b>2개월 연속</b> 하향 전환 → 반도체 이익 코어 논리 붕괴(§3-A와 동일 요건).</li>
+<li><b>이익의 단일 의존 리스크</b>: 삼성전자 2Q 전사 영업이익의 99%가 반도체(DS 89.2조 · 영업이익률 70%), 완제품(DX)은 −8,000억 사상 첫 적자다. 비반도체 부문 적자가 확대되면 &ldquo;지수 이익 앵커&rdquo; 논리는 반도체 단일 변수에 전량 노출된다 → 메모리 사이클 반락 시 이익 코어가 완충 없이 붕괴. 근접 반증 소재로 상시 추적.</li>
+<li><b>전력 반전</b>: 전력기기 RS-Ratio 100 상향 돌파 + 유지 → 관찰 강등 해제, 확산 후보 재승격(반증이자 업그레이드 트리거).</li>
+<li><b>파동 하방 연장</b>: 5,480 종가 이탈 → 로드맵 동결(§5).</li>
+<li><b>매크로 외생충격</b>: AI 자금조달 리스크 재점화, 중국 반도체 기술자립 가속(7/28 급락의 유력 요인으로 지목됨 — 인과 귀속은 미확정) 재발 → 이익 코어 논리 흔들림.</li>
+</ol>
+</div>
+
+<div class="card hl">
+  <p><b>⚑ 모니터링 포인트(일정 재확인 대상)</b> — 미국 하이퍼스케일러 3Q capex 가이던스, 삼성·SK 3Q 잠정실적/가이던스, DRAM·HBM 계약가, 전력 3사 신규수주 공시, 잭슨홀·FOMC. 구체 일자 확정 기재 전 WebSearch 재검증 필수(예정 이벤트 검증 룰).</p>
+</div>
+
+<h2>부기 (v2)</h2>
+<div class="card">
+  <ul>
+    <li>v1 대비 개정: 전력기기 확산 1순위 기각, 주가 주도 Top3(바이오·은행·조선) 확정.</li>
+    <li>섹터 데스크 RRG·라이프사이클 실측 반영 완료.</li>
+    <li><b>실적 수치 정정(v2.1)</b>: v2.0이 &ldquo;데이터피드 오파싱·허위&rdquo;로 판단해 삭제했던 조 단위 분기 실적치는 재검증 결과 실제 공시치로 확인되어 원복했다(검증 노트·§1 표). 공시 원문 대조 없이 개연성만으로 사실을 기각한 v2.0의 판단을 철회한다.</li>
+    <li>강세편향·반증불가 배제(방법론 개혁 8규칙 준수). 모든 주도 가설에 근접 반증 트리거 부기.</li>
+    <li><b>2026-08-03 KRX 확정 종가(6,257.45, −338.00p · −5.12%) 반영 레벨 교정 완료(v2.1)</b> — §4-2 · §4-3 · §4-4 · §5의 코스피 현황 위치를 &ldquo;6,404 재장악 후 반납(휩소 확정) · 6,043.72~6,404 밴드 내&rdquo;로 재규정. 레벨 기준선 수치 자체는 불변.</li>
+  </ul>
+</div>
+
+<footer>
+  발행: <b>Chory &amp; Rochet</b> · 리서치센터 · 수석 전략가 데스크<br>
+  기준일 2026-08-03 (2Q26 실적시즌 종료) · 코스피 확정 종가 6,257.45<br><br>
+  <b>면책 고지</b>: 본 자료는 Chory &amp; Rochet 리서치센터의 내부 전략 참고자료이며, 특정 종목·업종의 매수 또는 매도를 권유하는 문서가 아니다. 모든 판단의 최종 책임은 투자자 본인에게 있다. 기재된 실적 수치는 각 사 잠정 실적 공시 기준이며, 지수 레벨은 2026-08-03 KRX 확정 종가 기준이다.
+</footer>
+
+</div>
+</body>
+</html>
