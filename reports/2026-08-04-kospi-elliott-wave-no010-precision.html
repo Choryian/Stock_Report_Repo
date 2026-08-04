@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KOSPI 엘리어트 파동 정밀 카운팅 No.010 | Chory &amp; Rochet</title>
+<meta name="description" content="KOSPI 엘리어트 파동 정밀 카운팅 No.010 — 6월 고점(9,385.59)→7월 저점(5,262.77) −43.9% 5파 하락 완결, 반등 두 해석(a파 미완 ④파 vs a파 완성 b파), 5,976.82 무효화 위계·B파 6,838 1차 목표. 2026-08-04 종가 6,187.00 기준.">
+<meta property="og:title" content="KOSPI 엘리어트 파동 정밀 카운팅 No.010 · Chory &amp; Rochet">
+<meta property="og:description" content="반등을 5파로 읽을지 3파로 읽을지 — 6,080.25~5,976.82 무효화 위계로 가르는 정밀 카운팅. 2026-08-04 종가 6,187.00 기준.">
+<meta property="og:type" content="article">
+<style>
+:root{
+  color-scheme: light;
+  --surface-1:#fcfcfb; --page:#f9f9f7;
+  --ink-1:#0b0b0b; --ink-2:#52514e; --ink-muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+  --up:#d03b3b; --down:#2a78d6; --violet:#4a3aa7; --amber:#eb6834; --aqua:#1baf7a;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+  --warn:#fab219; --crit:#d03b3b; --good:#0ca30c;
+  --chip:rgba(11,11,11,0.045);
+}
+@media (prefers-color-scheme: dark){ :root:where(:not([data-theme="light"])){
+  color-scheme: dark;
+  --surface-1:#1a1a19; --page:#0d0d0d;
+  --ink-1:#ffffff; --ink-2:#c3c2b7; --ink-muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+  --up:#e66767; --down:#3987e5; --violet:#9085e9; --amber:#d95926; --aqua:#199e70;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --chip:rgba(255,255,255,0.06);
+}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink-1);
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15px;line-height:1.65;}
+.wrap{max-width:1120px;margin:0 auto;padding:32px 20px 80px}
+header{border-bottom:1px solid var(--border);padding-bottom:20px;margin-bottom:28px}
+h1{font-size:26px;margin:0 0 6px;letter-spacing:-0.01em}
+.sub{color:var(--ink-2);font-size:13.5px}
+h2{font-size:19px;margin:44px 0 4px;letter-spacing:-0.01em}
+h2 .n{color:var(--ink-muted);font-weight:600;margin-right:8px}
+h3{font-size:15px;margin:18px 0 2px}
+.lede{color:var(--ink-2);font-size:14px;margin:0 0 16px}
+.card{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin:16px 0}
+.card.v{border-left:3px solid var(--violet)}
+.card.a{border-left:3px solid var(--amber)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0 8px}
+.tile{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.tile .k{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted)}
+.tile .v{font-size:25px;font-weight:650;margin-top:4px;letter-spacing:-0.02em}
+.tile .m{font-size:12.5px;color:var(--ink-2);margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums;margin:10px 0}
+th{text-align:left;font-weight:600;color:var(--ink-2);font-size:12px;letter-spacing:.04em;
+   text-transform:uppercase;border-bottom:1px solid var(--axis);padding:8px 10px;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--grid)}
+td.num,th.num{text-align:right}
+tr.hi td{background:var(--chip);font-weight:600}
+.tag{display:inline-block;font-size:11px;font-weight:650;padding:1px 7px;border-radius:5px;
+  border:1px solid var(--border);color:var(--ink-2);white-space:nowrap}
+.tag.ok{color:var(--good);border-color:color-mix(in srgb,var(--good) 40%,transparent)}
+.tag.no{color:var(--crit);border-color:color-mix(in srgb,var(--crit) 45%,transparent)}
+.tag.w{color:var(--ink-1);border-color:color-mix(in srgb,var(--warn) 60%,transparent);
+  background:color-mix(in srgb,var(--warn) 14%,transparent)}
+.tag.v{color:var(--violet);border-color:color-mix(in srgb,var(--violet) 45%,transparent)}
+.tag.am{color:var(--amber);border-color:color-mix(in srgb,var(--amber) 45%,transparent)}
+.note{border-left:3px solid var(--warn);background:var(--surface-1);border-radius:0 10px 10px 0;
+  padding:14px 18px;margin:18px 0;font-size:14px}
+.note b{color:var(--ink-1)}
+.note.crit{border-left-color:var(--crit)}
+.chartbox{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:14px 8px 6px;margin:16px 0;position:relative}
+svg{display:block;width:100%;height:auto;overflow:visible}
+.legend{display:flex;gap:16px;flex-wrap:wrap;padding:6px 12px 4px;font-size:12px;color:var(--ink-2)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.legend i.ln{width:16px;height:3px;border-radius:2px}
+#tt{position:absolute;pointer-events:none;opacity:0;transition:opacity .1s;
+  background:var(--surface-1);border:1px solid var(--axis);border-radius:9px;padding:8px 11px;
+  font-size:12.5px;font-variant-numeric:tabular-nums;box-shadow:0 6px 22px rgba(0,0,0,.16);z-index:5;white-space:nowrap}
+#tt .dt{font-weight:650;margin-bottom:3px}
+#tt .r{color:var(--ink-2)} #tt .r b{color:var(--ink-1);font-weight:600}
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--border);color:var(--ink-muted);font-size:12.5px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+.scbox{margin:12px 0 16px;border:1px solid var(--border);border-radius:10px;padding:8px 6px 4px;background:var(--surface-1)}
+.sclegend{display:flex;gap:14px;flex-wrap:wrap;padding:4px 10px 6px;font-size:11.5px;color:var(--ink-2)}
+.sclegend i.ln{display:inline-block;width:18px;height:3px;border-radius:2px;margin-right:5px;vertical-align:3px}
+.sclegend i.ln.dsh{-webkit-mask:repeating-linear-gradient(90deg,#000 0 5px,transparent 5px 9px);
+  mask:repeating-linear-gradient(90deg,#000 0 5px,transparent 5px 9px)}
+.sclegend i.ln.dsh2{-webkit-mask:repeating-linear-gradient(90deg,#000 0 3px,transparent 3px 7px);
+  mask:repeating-linear-gradient(90deg,#000 0 3px,transparent 3px 7px)}
+.sclegend span{display:inline-flex;align-items:center}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.75;
+  background:var(--chip);border-radius:8px;padding:12px 14px;white-space:pre;overflow-x:auto;color:var(--ink-2)}
+/* ── 브랜드 마스트헤드 (Chory & Rochet) ── */
+.masthead{background:#0e1830;color:#fff;border-bottom:3px solid #b08d3e}
+.masthead .mwrap{max-width:1120px;margin:0 auto;padding:30px 20px 24px}
+.masthead .brand{display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:2px solid #b08d3e;padding-bottom:10px;margin-bottom:15px;flex-wrap:wrap;gap:6px}
+.masthead .brand .name{font-size:15px;letter-spacing:.22em;font-weight:750;color:#d9b968}
+.masthead .brand .cat{font-size:12px;color:#aeb8cf;letter-spacing:.05em}
+.masthead .badge{display:inline-block;background:#8b2635;color:#fff;font-size:11.5px;font-weight:700;
+  letter-spacing:.09em;padding:3px 11px;border-radius:4px;margin-bottom:12px}
+.masthead h1{font-size:25px;line-height:1.32;margin:0 0 9px;letter-spacing:-0.01em;color:#fff;border:0}
+.masthead .subtitle{font-size:14px;line-height:1.72;color:#c3ccdf;margin:0 0 15px;max-width:900px}
+.masthead .mmeta{font-size:12.5px;color:#93a0bb;display:flex;gap:16px 20px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.masthead .mmeta b{color:#e0c489;font-weight:600}
+@media(max-width:620px){.masthead h1{font-size:20px}.masthead .mwrap{padding:24px 18px 20px}}
+.foot .brandline{font-weight:700;letter-spacing:.16em;color:var(--ink-2);font-size:13px;margin-bottom:8px}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="mwrap">
+    <div class="brand">
+      <span class="name">CHORY &amp; ROCHET</span>
+      <span class="cat">Market Strategy | Elliott Wave Series · 정밀 카운팅</span>
+    </div>
+    <span class="badge">STRATEGY NOTES · No.010</span>
+    <h1>KOSPI 엘리어트 파동 정밀 카운팅 No.010</h1>
+    <p class="subtitle">6월 고점 9,385.59 → 7월 저점 5,262.77의 <b style="color:#fff">−43.9% 5파 하락은 완결</b>됐고, 시장은 지금 그 되돌림(B파) 초입에 있다. 본 노트는 7/29 이후 반등을 <b style="color:#fff">5파(해석 1)</b>로 읽을지 <b style="color:#fff">3파(해석 2)</b>로 읽을지를 실측으로 가르고, 6,080.25 ~ 5,976.82의 무효화 위계로 판별법을 못박는다.</p>
+    <div class="mmeta">
+      <span>발행: <b>Chory &amp; Rochet</b> 리서치센터</span>
+      <span>기준일: 2026-08-04 (화) · 종가 확정</span>
+      <span>데이터: KRX 일봉 OHLC · FinanceDataReader (KS11)</span>
+      <span>연계: No.009 통합판 후속</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<div class="tiles">
+  <div class="tile"><div class="k">A파 (하락)</div><div class="v">−43.93%</div>
+    <div class="m">9,385.59 → 5,262.77 · 4,122.82p · 27영업일</div></div>
+  <div class="tile"><div class="k">현재 되돌림</div><div class="v">22.4%</div>
+    <div class="m">종가 6,187.00 · 고점대비 −34.08%</div></div>
+  <div class="tile"><div class="k">B파 1차 목표</div><div class="v">6,838</div>
+    <div class="m">A파 38.2% 되돌림 · 두 해석 공통 관문</div></div>
+  <div class="tile"><div class="k">최종 무효화선</div><div class="v">5,976.82</div>
+    <div class="m">반등 ①파 고점 · 겹침 규칙</div></div>
+</div>
+
+<div class="note"><b>먼저 정정할 것 — 반등 고점은 6,393이 아니라 6,630.77입니다.</b><br>
+KRX 일봉으로 확인한 결과 <b>7/31 장중 고점이 6,630.77</b>(종가 6,595.45)이고, 3분봉 차트에서 보신
+<b>6,393.00은 8/3 고점</b>입니다. 즉 6,393은 반등의 꼭짓점이 아니라 그 뒤 조정 과정의 반등 고점입니다.
+반면 지적하신 <b>8/4 저점 6,080.25는 정확</b>했습니다.</div>
+
+<h2><span class="n">01</span>차트 — 파동 오버레이</h2>
+<p class="lede">보라색 실선이 하락 A파의 ①~⑤, 주황색 실선이 이후 반등의 1~4파입니다. 반등 라벨은 <b>해석 1(5파 임펄스)</b> 기준이며, 해석 2에서는 같은 경로가 a-b-c로 읽힙니다(04장 참조).</p>
+
+<div class="chartbox">
+<div class="legend">
+  <span><i style="background:var(--up)"></i>상승봉</span>
+  <span><i style="background:var(--down)"></i>하락봉</span>
+  <span><i class="ln" style="background:var(--violet)"></i>하락 A파 ①~⑤</span>
+  <span><i class="ln" style="background:var(--amber)"></i>반등 1~4파</span>
+  <span><i style="background:var(--aqua)"></i>B파 목표 (A파 되돌림)</span>
+  <span><i style="background:var(--crit)"></i>무효화 / A파 저점</span>
+</div>
+<div id="tt"></div>
+<svg id="cv" viewBox="0 0 1080 560" role="img" aria-label="KOSPI 일봉 캔들차트에 엘리어트 파동 실선 오버레이와 피보나치 되돌림 목표선"></svg>
+</div>
+
+<h2><span class="n">02</span>하락 A파 — 5파 임펄스 완성 확인</h2>
+<p class="lede">장중 기준과 종가 기준 두 카운트 모두 엘리어트 3대 규칙을 통과합니다. 특히 종가 기준은 피보나치 비율이 교과서적입니다.</p>
+
+<div class="two">
+<div>
+<h3>카운트 A · 장중(High/Low) 기준</h3>
+<table><thead><tr><th>파동</th><th>구간</th><th class="num">시작</th><th class="num">종료</th><th class="num">폭</th><th class="num">비율</th></tr></thead><tbody>
+<tr><td>①</td><td>06/19→06/24</td><td class="num">9,385.59</td><td class="num">8,080.99</td><td class="num">1,304.60</td><td class="num">—</td></tr>
+<tr><td>②</td><td>06/24→06/25</td><td class="num">8,080.99</td><td class="num">9,044.04</td><td class="num">963.05</td><td class="num">73.8%</td></tr>
+<tr class="hi"><td>③</td><td>06/25→07/21</td><td class="num">9,044.04</td><td class="num">6,429.03</td><td class="num">2,615.01</td><td class="num">2.004×①</td></tr>
+<tr><td>④</td><td>07/21→07/22</td><td class="num">6,429.03</td><td class="num">7,166.00</td><td class="num">736.97</td><td class="num">28.2%</td></tr>
+<tr><td>⑤</td><td>07/22→07/29</td><td class="num">7,166.00</td><td class="num">5,262.77</td><td class="num">1,903.23</td><td class="num">0.644×(①~③)</td></tr>
+</tbody></table>
+</div>
+<div>
+<h3>카운트 B · 종가 기준 <span class="tag ok">교과서적</span></h3>
+<table><thead><tr><th>파동</th><th>구간</th><th class="num">시작</th><th class="num">종료</th><th class="num">폭</th><th class="num">비율</th></tr></thead><tbody>
+<tr><td>①</td><td>06/22→06/23</td><td class="num">9,114.55</td><td class="num">8,203.84</td><td class="num">910.71</td><td class="num">—</td></tr>
+<tr><td>②</td><td>06/23→06/25</td><td class="num">8,203.84</td><td class="num">8,930.30</td><td class="num">726.46</td><td class="num">79.8%</td></tr>
+<tr class="hi"><td>③</td><td>06/25→07/20</td><td class="num">8,930.30</td><td class="num">6,516.27</td><td class="num">2,414.03</td><td class="num">2.651×① ≈ <b>2.618</b></td></tr>
+<tr class="hi"><td>④</td><td>07/20→07/23</td><td class="num">6,516.27</td><td class="num">7,096.89</td><td class="num">580.62</td><td class="num">24.05% ≈ <b>23.6%</b></td></tr>
+<tr class="hi"><td>⑤</td><td>07/23→07/30</td><td class="num">7,096.89</td><td class="num">5,593.56</td><td class="num">1,503.33</td><td class="num">1.651×① ≈ <b>1.618</b></td></tr>
+</tbody></table>
+</div>
+</div>
+
+<div class="card">
+<b style="font-size:14px">규칙 검증</b>
+<table style="margin-top:6px"><thead><tr><th>항목</th><th>장중 기준</th><th>종가 기준</th><th>판정</th></tr></thead><tbody>
+<tr><td>③파가 ①·⑤ 중 최단이 아닐 것</td><td>2,615.01 (최장)</td><td>2,414.03 (최장)</td><td><span class="tag ok">통과</span></td></tr>
+<tr><td>④파가 ①파 영역 침범 금지</td><td>7,166.00 &lt; 8,080.99 (여유 915p)</td><td>7,096.89 &lt; 8,203.84 (여유 1,107p)</td><td><span class="tag ok">통과</span></td></tr>
+<tr><td>②파가 시작점 초과 금지</td><td>9,044.04 &lt; 9,385.59</td><td>8,930.30 &lt; 9,114.55</td><td><span class="tag ok">통과</span></td></tr>
+<tr><td>②·④ 교대성 (지침)</td><td>73.8% 깊음 ↔ 28.2% 얕음</td><td>79.8% 깊음 ↔ 24.1% 얕음</td><td><span class="tag ok">성립</span></td></tr>
+</tbody></table>
+<p style="font-size:13.5px;color:var(--ink-2);margin:10px 0 0">
+종가 기준에서 ③=2.618×①, ④=23.6%×③, ⑤=1.618×① 세 개가 모두 오차 2% 안팎으로 들어맞습니다.
+<b>6월 고점에서 시작된 하락은 5파 임펄스로 완성</b>된 것으로 판단하며, 7/29 저점 5,262.77은 A파(또는 하락 1파)의 종점입니다.
+이 부분은 두 해석이 다투지 않는 공통 전제입니다.</p>
+</div>
+
+<h2><span class="n">03</span>반등 구간 실측</h2>
+<p class="lede">7/29 저점 이후 반등을 실제 고저로 분해한 결과입니다. 이 <b>수치 자체는 다툼이 없고</b>, 이것을 5파로 읽느냐 3파로 읽느냐에서 해석이 갈립니다.</p>
+
+<table><thead><tr><th>구간</th><th>날짜</th><th class="num">시작</th><th class="num">종료</th><th class="num">폭</th><th class="num">비율</th><th>해석1 라벨</th><th>해석2 라벨</th></tr></thead><tbody>
+<tr><td>1</td><td>07/29→07/30</td><td class="num">5,262.77</td><td class="num">5,976.82</td><td class="num">714.05</td><td class="num">—</td><td><span class="tag am">①파</span></td><td><span class="tag v">a파의 a</span></td></tr>
+<tr><td>2</td><td>07/30 장중</td><td class="num">5,976.82</td><td class="num">5,547.41</td><td class="num">429.41</td><td class="num">60.1%</td><td><span class="tag am">②파</span></td><td><span class="tag v">a파의 b</span></td></tr>
+<tr class="hi"><td>3</td><td>07/30→07/31</td><td class="num">5,547.41</td><td class="num">6,630.77</td><td class="num">1,083.36</td><td class="num">1.517×①</td><td><span class="tag am">③파</span></td><td><span class="tag v">a파의 c</span></td></tr>
+<tr class="hi"><td>4</td><td>07/31→08/04</td><td class="num">6,630.77</td><td class="num">6,080.25</td><td class="num">550.52</td><td class="num">50.8%</td><td><span class="tag am">④파 (조정)</span></td><td><span class="tag v">b파 (조정)</span></td></tr>
+</tbody></table>
+
+<div class="note"><b>이 표가 이 보고서의 핵심입니다.</b><br>
+맨 오른쪽 두 열을 보세요. <b>같은 4번 구간</b>을 해석 1은 "a파 <u>안쪽</u>의 작은 ④파"로,
+해석 2는 "a파가 <u>끝난 뒤</u> 오는 b파"로 봅니다. <b>계위가 한 단계 다릅니다.</b>
+④파라면 조정이 작아 이미 끝났을 수 있고, b파라면 조정이 커서 아직 한참 남았습니다.</div>
+
+<div class="card">
+<b style="font-size:14px">④파(=4번 구간) 되돌림 격자 · 3번 구간 1,083.36p 기준</b>
+<table style="margin-top:6px"><thead><tr><th>되돌림</th><th class="num">레벨</th><th>판정</th></tr></thead><tbody>
+<tr><td>23.6%</td><td class="num">6,375.10</td><td></td></tr>
+<tr><td>38.2%</td><td class="num">6,216.93</td><td></td></tr>
+<tr class="hi"><td>50.0%</td><td class="num">6,089.09</td><td><span class="tag ok">실제 저점 6,080.25 — 오차 8.84p</span></td></tr>
+<tr><td>61.8%</td><td class="num">5,961.25</td><td><span class="tag no">무효화선 아래</span></td></tr>
+<tr><td>①파 고점</td><td class="num">5,976.82</td><td><span class="tag no">겹침 무효화</span></td></tr>
+</tbody></table>
+<p style="font-size:13.5px;color:var(--ink-2);margin:10px 0 0">
+8/4 저점 6,080.25가 50% 되돌림선에서 8.84p 차이로 정지했습니다. ④파치고는 깊고(표준 23.6~38.2%),
+①파 고점까지 여유가 <b>103.43포인트</b>뿐입니다.</p>
+</div>
+
+<h2><span class="n">04</span>두 해석 비교 — 경로가 다릅니다</h2>
+<p class="lede">2파(60.1%)와 4파(50.8%)가 둘 다 깊어 <b>교대의 법칙이 성립하지 않습니다.</b> 5파 임펄스로 보기에 약점이 있고, 그래서 3파 조정 해석이 살아 있습니다.</p>
+
+<div class="mono">B파 (반등 전체) = a - b - c  세 다리로 구성
+
+해석 1 ── a파가 아직 안 끝났다
+   a파:  5,263 ①─②─③─④ ··· ⑤ ─→ 약 6,838
+                        ↑ 지금 (④파 종료 추정)
+         → 그 뒤에 b파 하락 → c파 상승
+
+해석 2 ── a파가 이미 끝났다
+   a파:  5,263 ────────→ 6,631   [완료 · 3분절]
+   b파:  6,631 ────────→ ?        ↑ 지금 (진행 중)
+         → 그 뒤에 c파 상승</div>
+
+<div class="card v">
+<h3 style="margin-top:0"><span class="tag v">해석 1</span> a파 미완 · ⑤파 대기</h3>
+<p style="font-size:13.5px;color:var(--ink-2);margin:2px 0 6px">
+지금 조정은 <b>a파 안쪽의 ④파</b>. 이미 끝났으므로 곧바로 ⑤파가 올라가 a파를 완성하고, 그 뒤에 b파 조정과 c파 상승이 따라옵니다.</p>
+<div class="scbox"><div class="sclegend">
+  <span><i class="ln" style="background:var(--amber)"></i>확정 경로 (1~4파)</span>
+  <span><i class="ln dsh" style="background:var(--s1)"></i>투영 경로 (⑤ → b → c)</span>
+  <span><i class="ln dsh2" style="background:var(--aqua)"></i>A파 되돌림선</span>
+</div><svg id="scA" viewBox="0 0 1080 360" role="img" aria-label="해석 1 시나리오: 5파 상승 후 b파 조정, c파 상승 경로 투영"></svg></div>
+<table><thead><tr><th>단계</th><th class="num">목표</th><th class="num">현재가 대비</th><th>예상 시점</th></tr></thead><tbody>
+<tr><td>④파 조정</td><td class="num">6,080.25</td><td class="num">−1.73%</td><td>완료 추정</td></tr>
+<tr class="hi"><td><b>⑤파 상승</b> (= a파 종착)</td><td class="num">6,794 ~ 6,989</td><td class="num">+9.8 ~ +13.0%</td><td>08/07 ~ 08/12</td></tr>
+<tr><td>b파 하락</td><td class="num">6,236 / 6,050 / 5,864</td><td class="num">+0.8 / −2.2 / −5.2%</td><td>08/中</td></tr>
+<tr><td>c파 상승 (= B파 종착)</td><td class="num">7,439 ~ 7,811</td><td class="num">+20.2 ~ +26.2%</td><td>08/末 ~ 09/初</td></tr>
+</tbody></table>
+<p style="font-size:13.5px;color:var(--ink-2);margin:8px 0 0">
+조정은 이미 끝났고 곧바로 상승이 시작된다는 그림. 지금이 저점 근처이며, 리스크는 6,080.25(−1.7%)에서 무효화선 5,976.82(−3.4%)까지로 <b>제한적</b>.</p>
+</div>
+
+<div class="card a">
+<h3 style="margin-top:0"><span class="tag am">해석 2</span> a파 완성 · b파 진행 중</h3>
+<p style="font-size:13.5px;color:var(--ink-2);margin:2px 0 8px">
+a파 = 5,262.77 → 6,630.77 (1,368.00p). b파의 깊이는 <b>B파가 어떤 패턴이냐</b>에 따라 갈립니다.
+8/4 저점 6,080.25는 a파의 <b>40.2% 되돌림</b>에 불과해, 어떤 패턴이든 b파는 아직 미완입니다.</p>
+<div class="scbox"><div class="sclegend">
+  <span><i class="ln" style="background:var(--amber)"></i>확정 경로 (a파 완성)</span>
+  <span><i class="ln dsh" style="background:var(--s1)"></i>이중지그재그 (b 38.2%)</span>
+  <span><i class="ln dsh" style="background:var(--s2)"></i>삼각형 (b 61.8%)</span>
+  <span><i class="ln dsh" style="background:var(--s3)"></i>정규 플랫 (b 90%)</span>
+</div><svg id="scB" viewBox="0 0 1080 360" role="img" aria-label="해석 2 시나리오: B파 패턴별 b파 저점과 c파 목표 투영"></svg></div>
+<table><thead><tr><th>B파 패턴</th><th class="num">b파 되돌림</th><th class="num">b파 저점</th><th class="num">현재가 대비</th><th class="num">c=1.0a</th><th class="num">c=1.618a</th></tr></thead><tbody>
+<tr class="hi"><td>이중지그재그 (W-X-Y)</td><td class="num">38.2%</td><td class="num">6,108.19</td><td class="num">−1.27%</td><td class="num">7,476.19</td><td class="num">8,321.62</td></tr>
+<tr><td>이중지그재그</td><td class="num">50.0%</td><td class="num">5,946.77</td><td class="num">−3.88%</td><td class="num">7,314.77</td><td class="num">8,160.19</td></tr>
+<tr class="hi"><td>삼각형</td><td class="num">61.8%</td><td class="num">5,785.35</td><td class="num">−6.49%</td><td class="num">7,153.35</td><td class="num">7,998.77</td></tr>
+<tr><td>삼각형</td><td class="num">78.6%</td><td class="num">5,555.52</td><td class="num">−10.21%</td><td class="num">6,923.52</td><td class="num">7,768.95</td></tr>
+<tr><td>정규 플랫</td><td class="num">90.0%</td><td class="num">5,399.57</td><td class="num">−12.73%</td><td class="num">6,767.57</td><td class="num">7,612.99</td></tr>
+<tr><td>정규 플랫</td><td class="num">100%</td><td class="num">5,262.77</td><td class="num">−14.94%</td><td class="num">6,630.77</td><td class="num">7,476.19</td></tr>
+</tbody></table>
+<p style="font-size:13.5px;color:var(--ink-2);margin:8px 0 0">
+b파 종료 예상 시점 <b>08/06 ~ 08/13</b> (a파 소요 3영업일의 1.0~2.618배). 플랫이면 A파 저점 재테스트까지 열려 있습니다.</p>
+</div>
+
+<div class="card">
+<b style="font-size:14px">핵심 비교</b>
+<table style="margin-top:6px"><thead><tr><th></th><th>해석 1 — ④파</th><th>해석 2 — b파</th></tr></thead><tbody>
+<tr><td>지금 하락의 정체</td><td>a파 <b>내부</b>의 ④파</td><td>a파 <b>완성 후</b>의 b파</td></tr>
+<tr><td>계위</td><td>한 단계 아래 (작은 조정)</td><td>한 단계 위 (큰 조정)</td></tr>
+<tr class="hi"><td>조정이 끝났나</td><td><b>예</b> — 6,080.25에서 종료</td><td><b>아니오</b> — 진행 중</td></tr>
+<tr class="hi"><td>추가 하락 여지</td><td>거의 없음 (−1.7% 이내)</td><td><b>−1% ~ −15%</b></td></tr>
+<tr><td>다음 상승 시작</td><td>즉시</td><td>08/06 ~ 08/13 이후</td></tr>
+<tr><td>다음 상승 목표</td><td>6,794 ~ 6,989 (⑤파)</td><td>6,631 ~ 7,476 (c파)</td></tr>
+<tr><td>B파 최종 종착</td><td>7,439 ~ 7,811</td><td>6,631 ~ 8,322</td></tr>
+<tr><td>구조상 약점</td><td>2·4파 교대성 불성립</td><td>a파가 3분절 → 지그재그 배제</td></tr>
+</tbody></table>
+<p style="font-size:13.5px;color:var(--ink-2);margin:10px 0 0">
+<b>최종 목적지(6,800~7,800)는 두 해석이 크게 다르지 않습니다.</b> 결정적으로 다른 것은 <b>거기 도달하기 전에
+얼마나 더 내려가느냐</b>입니다. 해석 2가 맞다면 지금 진입 시 최대 15%의 평가손을 견뎌야 합니다.</p>
+</div>
+
+<h2><span class="n">05</span>판별 신호와 무효화 위계</h2>
+
+<table><thead><tr><th>사건</th><th class="num">레벨</th><th class="num">현재가 대비</th><th>결론</th></tr></thead><tbody>
+<tr><td>8/3 고점 돌파</td><td class="num">6,393.00</td><td class="num">+3.33%</td><td>해석 1 우세로 기움</td></tr>
+<tr class="hi"><td><b>반등 고점 돌파</b></td><td class="num">6,630.77</td><td class="num">+7.17%</td><td><b>해석 1 확정</b> — ⑤파 진행</td></tr>
+<tr><td>8/4 저점 이탈</td><td class="num">6,080.25</td><td class="num">−1.73%</td><td>경고 — 해석 2 쪽으로</td></tr>
+<tr class="hi"><td><b>반등 ①파 고점 이탈</b></td><td class="num">5,976.82</td><td class="num">−3.40%</td><td><b>해석 1 폐기</b>(겹침) → 해석 2 확정</td></tr>
+<tr><td>A파 저점 이탈</td><td class="num">5,262.77</td><td class="num">−14.94%</td><td>둘 다 폐기 — B파 가설 소멸</td></tr>
+</tbody></table>
+
+<div class="note crit"><b>무효화 위계 — 6,080.25는 "경고", 5,976.82가 "판결"</b><br>
+① <b>6,080.25</b> — 8/4 저점. 초단기 카운트(3분봉 1-2파)의 무효화선. 깨져도 상위 카운트는 살아 있음.<br>
+② <b>5,976.82</b> — 반등 ①파 고점. <b>해석 1의 진짜 무효화선</b>. 겹침 규칙상 여기 깨지면 5파 임펄스 카운트는 성립 불가.<br>
+③ <b>5,262.77</b> — A파 저점. B파 가설 전체의 무효화선.<br>
+이 <b>103.43포인트 구간(6,080.25 ~ 5,976.82)</b>이 지금 시장이 걸어놓은 문제입니다.</div>
+
+<h2><span class="n">06</span>B파 본체 목표와 그 이후</h2>
+<p class="lede">해석 1·2의 차이는 <b>B파 안쪽 경로</b>일 뿐입니다. 한 계위 위에서 보면 두 해석 모두 아래 그림의 <b>A-B-C</b> 중 B 구간에 있습니다.</p>
+
+<div class="scbox"><div class="sclegend">
+  <span><i class="ln" style="background:var(--violet)"></i>확정 A파 (①~⑤)</span>
+  <span><i class="ln dsh" style="background:var(--s1)"></i>B 38.2% → C 시나리오</span>
+  <span><i class="ln dsh" style="background:var(--s2)"></i>B 50.0% → C 시나리오</span>
+  <span><i class="ln dsh" style="background:var(--s3)"></i>B 61.8% → C 시나리오</span>
+</div><svg id="scC" viewBox="0 0 1080 420" role="img" aria-label="A-B-C 전체 구조: B파 목표 3가지와 각각에서 이어지는 C파 하락 투영"></svg></div>
+
+<div class="note"><b>이 그림에서 읽을 것</b><br>
+세 경로 모두 B파에서 올라간 뒤 C파로 다시 내려옵니다. C파 목표는 <b>C = 0.618 × A</b> 기준입니다.
+주목할 점은 <b>B파가 높이 갈수록 C파 도달점도 높아진다</b>는 것 — 61.8%까지 반등하면 C파는 A파 저점(5,262.77)
+부근에서 멈춰 <b>이중바닥</b>이 되고, 38.2%에서 그치면 C파는 4,290까지 내려갑니다.
+즉 <b>반등이 약할수록 이후 하락이 깊습니다.</b> 위로 못 갈 힘이 아래로 나타나는 구조입니다.</div>
+
+<div class="two"><div>
+<b style="font-size:14px">B파 목표 격자 (A파 4,122.82p 되돌림)</b>
+<table style="margin-top:6px"><thead><tr><th>되돌림</th><th class="num">레벨</th><th class="num">현재가 대비</th></tr></thead><tbody>
+<tr><td>23.6%</td><td class="num">6,235.76</td><td class="num">+0.79%</td></tr>
+<tr class="hi"><td>38.2% · 1차 관문</td><td class="num">6,837.69</td><td class="num">+10.52%</td></tr>
+<tr class="hi"><td>50.0% · 중심값</td><td class="num">7,324.18</td><td class="num">+18.38%</td></tr>
+<tr><td>61.8% · 상단</td><td class="num">7,810.67</td><td class="num">+26.24%</td></tr>
+<tr><td>78.6% · 극단</td><td class="num">8,503.31</td><td class="num">+37.44%</td></tr>
+</tbody></table>
+</div><div>
+<b style="font-size:14px">B파 완성 후 C파 (참고)</b>
+<table style="margin-top:6px"><thead><tr><th>B 종착</th><th class="num">C=0.618A</th><th class="num">C=1.0A</th></tr></thead><tbody>
+<tr><td>6,837.69</td><td class="num">4,289.79</td><td class="num">2,714.87</td></tr>
+<tr><td>7,324.18</td><td class="num">4,776.28</td><td class="num">3,201.36</td></tr>
+<tr><td>7,810.67</td><td class="num">5,262.77</td><td class="num">3,687.85</td></tr>
+</tbody></table>
+<p style="font-size:13px;color:var(--ink-2);margin:6px 0 0">
+C=1.0A 값은 고점 대비 −60~70%에 해당해 지수로는 이례적 규모입니다.
+실무에서는 C=0.618A 또는 A저점 재테스트(이중바닥)가 더 빈번합니다. B파 완성 후 재계산할 영역입니다.</p>
+</div></div>
+
+<div class="card">
+<b style="font-size:14px">B파 전체 시간 투영</b>
+<table style="margin-top:6px"><thead><tr><th>비율</th><th class="num">영업일</th><th>종료 시점</th></tr></thead><tbody>
+<tr><td>0.382 × A</td><td class="num">10</td><td>2026-08-12</td></tr>
+<tr class="hi"><td>0.618 × A</td><td class="num">17</td><td>2026-08-21</td></tr>
+<tr><td>1.000 × A</td><td class="num">27</td><td>2026-09-04</td></tr>
+</tbody></table>
+<p style="font-size:13px;color:var(--ink-2);margin:6px 0 0">A파는 27영업일 소요. 반등은 8/4 기준 4영업일차로 시간상 초입이며, 두 해석 모두 B파 종료를 8월 말~9월 초로 봅니다.</p>
+</div>
+
+<footer class="foot">
+<div class="brandline">CHORY &amp; ROCHET · RESEARCH</div>
+데이터: KRX 일봉 OHLC (FinanceDataReader, KS11) · 2026-05-20 ~ 2026-08-04 · 08/04 종가 6,187.00 확정 · 생성 2026-08-04<br>
+본 문서는 엘리어트 파동 구조 해석이며 투자 자문이나 매매 권유가 아닙니다. 모든 레벨은 가격 진행에 따라 재계산되어야 합니다. ⓒ 2026 Chory &amp; Rochet.
+</footer>
+</div>
+
+<script>
+const DATA=[{"d": "2026-05-20", "o": 7324.52, "h": 7324.52, "l": 7053.84, "c": 7208.95}, {"d": "2026-05-21", "o": 7486.37, "h": 7819.23, "l": 7486.37, "c": 7815.59}, {"d": "2026-05-22", "o": 7873.12, "h": 7886.64, "l": 7780.13, "c": 7847.71}, {"d": "2026-05-26", "o": 8070.91, "h": 8131.15, "l": 8008.19, "c": 8047.51}, {"d": "2026-05-27", "o": 8242.12, "h": 8457.09, "l": 8220.04, "c": 8228.7}, {"d": "2026-05-28", "o": 8165.73, "h": 8253.6, "l": 7841.01, "c": 8185.29}, {"d": "2026-05-29", "o": 8384.31, "h": 8476.15, "l": 8273.74, "c": 8476.15}, {"d": "2026-06-01", "o": 8485.67, "h": 8874.16, "l": 8485.67, "c": 8788.38}, {"d": "2026-06-02", "o": 8883.19, "h": 8933.62, "l": 8503.12, "c": 8801.49}, {"d": "2026-06-04", "o": 8623.82, "h": 8759.05, "l": 8577.3, "c": 8639.41}, {"d": "2026-06-05", "o": 8323.2, "h": 8382.16, "l": 8038.1, "c": 8160.59}, {"d": "2026-06-08", "o": 8048.09, "h": 8048.09, "l": 7442.73, "c": 7484.41}, {"d": "2026-06-09", "o": 7697.76, "h": 8119.09, "l": 7598.87, "c": 8096.93}, {"d": "2026-06-10", "o": 7899.77, "h": 7996.68, "l": 7541.11, "c": 7730.82}, {"d": "2026-06-11", "o": 7509.62, "h": 7800.62, "l": 7394.46, "c": 7763.95}, {"d": "2026-06-12", "o": 8263.85, "h": 8434.4, "l": 8079.77, "c": 8123.62}, {"d": "2026-06-15", "o": 8526.12, "h": 8603.48, "l": 8450.24, "c": 8545.98}, {"d": "2026-06-16", "o": 8696.55, "h": 8753.82, "l": 8540.41, "c": 8726.6}, {"d": "2026-06-17", "o": 8622.13, "h": 8872.18, "l": 8605.66, "c": 8864.24}, {"d": "2026-06-18", "o": 8884.92, "h": 9106.07, "l": 8867.34, "c": 9063.84}, {"d": "2026-06-19", "o": 9288.89, "h": 9385.59, "l": 8831.72, "c": 9052.42}, {"d": "2026-06-22", "o": 8954.43, "h": 9253.0, "l": 8900.68, "c": 9114.55}, {"d": "2026-06-23", "o": 9083.54, "h": 9175.45, "l": 8203.84, "c": 8203.84}, {"d": "2026-06-24", "o": 8356.79, "h": 8577.52, "l": 8080.99, "c": 8471.02}, {"d": "2026-06-25", "o": 8703.42, "h": 9044.04, "l": 8693.62, "c": 8930.3}, {"d": "2026-06-26", "o": 8813.18, "h": 8861.7, "l": 8126.84, "c": 8411.21}, {"d": "2026-06-29", "o": 8334.28, "h": 8525.53, "l": 8127.99, "c": 8394.65}, {"d": "2026-06-30", "o": 8416.7, "h": 8667.73, "l": 8220.8, "c": 8476.48}, {"d": "2026-07-01", "o": 8591.5, "h": 8620.15, "l": 8143.33, "c": 8303.41}, {"d": "2026-07-02", "o": 7933.1, "h": 8136.28, "l": 7616.33, "c": 7648.09}, {"d": "2026-07-03", "o": 7739.75, "h": 8136.28, "l": 7378.1, "c": 8088.34}, {"d": "2026-07-06", "o": 8186.82, "h": 8327.26, "l": 7815.53, "c": 8051.33}, {"d": "2026-07-07", "o": 7919.2, "h": 7954.55, "l": 7389.22, "c": 7656.31}, {"d": "2026-07-08", "o": 7452.48, "h": 7791.66, "l": 7186.21, "c": 7246.79}, {"d": "2026-07-09", "o": 7486.64, "h": 7543.86, "l": 7063.76, "c": 7291.91}, {"d": "2026-07-10", "o": 7552.49, "h": 7704.93, "l": 7429.51, "c": 7475.94}, {"d": "2026-07-13", "o": 7412.03, "h": 7529.07, "l": 6783.43, "c": 6806.93}, {"d": "2026-07-14", "o": 6769.06, "h": 6979.92, "l": 6448.86, "c": 6856.83}, {"d": "2026-07-15", "o": 7082.91, "h": 7424.18, "l": 7082.91, "c": 7284.41}, {"d": "2026-07-16", "o": 6960.5, "h": 6995.93, "l": 6730.87, "c": 6820.6}, {"d": "2026-07-20", "o": 6643.58, "h": 6814.86, "l": 6472.8, "c": 6516.27}, {"d": "2026-07-21", "o": 6553.88, "h": 6836.86, "l": 6429.03, "c": 6747.95}, {"d": "2026-07-22", "o": 7052.09, "h": 7166.0, "l": 6791.06, "c": 6797.7}, {"d": "2026-07-23", "o": 6963.35, "h": 7108.44, "l": 6892.64, "c": 7096.89}, {"d": "2026-07-24", "o": 7000.78, "h": 7000.78, "l": 6650.41, "c": 6690.62}, {"d": "2026-07-27", "o": 6806.27, "h": 6806.27, "l": 6557.39, "c": 6755.75}, {"d": "2026-07-28", "o": 6400.27, "h": 6413.57, "l": 5992.91, "c": 6023.66}, {"d": "2026-07-29", "o": 6089.11, "h": 6228.52, "l": 5262.77, "c": 5663.24}, {"d": "2026-07-30", "o": 5681.77, "h": 5976.82, "l": 5547.41, "c": 5593.56}, {"d": "2026-07-31", "o": 5657.79, "h": 6630.77, "l": 5629.76, "c": 6595.45}, {"d": "2026-08-03", "o": 6358.27, "h": 6393.0, "l": 6223.29, "c": 6257.45}, {"d": "2026-08-04", "o": 6351.38, "h": 6389.4, "l": 6080.25, "c": 6187.0}], PD=[{"d": "2026-06-19", "p": 9385.59, "o": 0, "lab": "기점", "pos": "top"}, {"d": "2026-06-24", "p": 8080.99, "o": 0, "lab": "①", "pos": "bot"}, {"d": "2026-06-25", "p": 9044.04, "o": 0, "lab": "②", "pos": "top"}, {"d": "2026-07-21", "p": 6429.03, "o": 0, "lab": "③", "pos": "bot"}, {"d": "2026-07-22", "p": 7166.0, "o": 0, "lab": "④", "pos": "top"}, {"d": "2026-07-29", "p": 5262.77, "o": 0, "lab": "⑤", "pos": "bot"}], PU=[{"d": "2026-07-29", "p": 5262.77, "o": 0, "lab": "", "pos": "bot"}, {"d": "2026-07-30", "p": 5976.82, "o": -0.24, "lab": "1", "pos": "top"}, {"d": "2026-07-30", "p": 5547.41, "o": 0.24, "lab": "2", "pos": "bot"}, {"d": "2026-07-31", "p": 6630.77, "o": 0, "lab": "3", "pos": "top"}, {"d": "2026-08-04", "p": 6080.25, "o": 0, "lab": "4", "pos": "bot"}], FIBS=[{"p": 6235.76, "lab": "23.6%", "kind": "minor"}, {"p": 6837.69, "lab": "38.2%  B파 1차 목표", "kind": "major"}, {"p": 7324.18, "lab": "50.0%  B파 중심값", "kind": "major"}, {"p": 7810.67, "lab": "61.8%  B파 상단", "kind": "major"}, {"p": 8503.31, "lab": "78.6%", "kind": "minor"}, {"p": 5976.82, "lab": "5,976.82  무효화(겹침)", "kind": "stop"}, {"p": 5262.77, "lab": "5,262.77  A파 저점", "kind": "stop"}];
+const W=1080,H=560,ML=8,MR=104,MT=30,MB=34;
+const iw=W-ML-MR, ih=H-MT-MB;
+const lo=5050, hi=9600;
+const y=v=>MT+ih*(hi-v)/(hi-lo);
+const bw=iw/DATA.length, x=(i,o)=>ML+bw*(i+0.5+(o||0));
+const idx={}; DATA.forEach((d,i)=>idx[d.d]=i);
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+let s='';
+for(let v=5500;v<=9500;v+=500){
+  s+=`<line x1="${ML}" y1="${y(v)}" x2="${ML+iw}" y2="${y(v)}" stroke="var(--grid)" stroke-width="1"/>`;
+  s+=`<text x="${ML+iw+6}" y="${y(v)+4}" font-size="10.5" fill="var(--ink-muted)" style="font-variant-numeric:tabular-nums">${v.toLocaleString()}</text>`;
+}
+FIBS.forEach(f=>{
+  const col=f.kind==='stop'?'var(--crit)':'var(--aqua)';
+  const dash=(f.kind==='major'||f.kind==='stop')?'6 4':'2 5';
+  const wgt=f.kind==='minor'?1:1.6;
+  s+=`<line x1="${ML}" y1="${y(f.p)}" x2="${ML+iw}" y2="${y(f.p)}" stroke="${col}" stroke-width="${wgt}" stroke-dasharray="${dash}" opacity="${f.kind==='minor'?0.45:0.85}"/>`;
+  const lw=f.lab.length*7.0+10;
+  s+=`<rect x="${ML+2}" y="${y(f.p)-15}" width="${lw}" height="14" rx="3" fill="var(--surface-1)" opacity="0.92"/>`;
+  s+=`<text x="${ML+7}" y="${y(f.p)-4.5}" font-size="10.5" font-weight="600" fill="${col}">${esc(f.lab)}</text>`;
+});
+DATA.forEach((d,i)=>{
+  const up=d.c>=d.o, col=up?'var(--up)':'var(--down)', cx=x(i);
+  s+=`<line x1="${cx}" y1="${y(d.h)}" x2="${cx}" y2="${y(d.l)}" stroke="${col}" stroke-width="1.3" opacity="0.85"/>`;
+  const yt=y(Math.max(d.o,d.c)), yb=y(Math.min(d.o,d.c));
+  s+=`<rect x="${cx-bw*0.31}" y="${yt}" width="${bw*0.62}" height="${Math.max(1.2,yb-yt)}" fill="${col}" rx="1" opacity="0.85"/>`;
+});
+// ── 파동 실선 오버레이 ──
+function drawPath(pts,color,fs){
+  const P=pts.filter(p=>idx[p.d]!==undefined);
+  const pl=P.map(p=>`${x(idx[p.d],p.o).toFixed(1)},${y(p.p).toFixed(1)}`).join(' ');
+  let g=`<polyline points="${pl}" fill="none" stroke="var(--surface-1)" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>`;
+  g+=`<polyline points="${pl}" fill="none" stroke="${color}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>`;
+  P.forEach(p=>{
+    const cx=x(idx[p.d],p.o), cy=y(p.p);
+    g+=`<circle cx="${cx}" cy="${cy}" r="4.4" fill="var(--surface-1)" stroke="${color}" stroke-width="2.2"/>`;
+    if(!p.lab) return;
+    const up=p.pos==='top', ly=up?cy-19:cy+26;
+    const pw=Math.max(19, p.lab.length*11+8);
+    g+=`<rect x="${cx-pw/2}" y="${ly-14.5}" width="${pw}" height="19" rx="9.5" fill="var(--surface-1)" stroke="${color}" stroke-width="1.4" opacity="0.97"/>`;
+    g+=`<text x="${cx}" y="${ly}" font-size="${fs}" font-weight="700" fill="${color}" text-anchor="middle">${p.lab}</text>`;
+    g+=`<text x="${cx}" y="${up?ly-21:ly+16}" font-size="9.5" fill="var(--ink-muted)" text-anchor="middle" style="font-variant-numeric:tabular-nums">${p.p.toLocaleString()}</text>`;
+  });
+  return g;
+}
+s+=drawPath(PD,'var(--violet)',12);
+s+=drawPath(PU,'var(--amber)',12);
+DATA.forEach((d,i)=>{ if(d.d.slice(8)==='01'||i===0||i===DATA.length-1||d.d.slice(8)==='15'){
+  s+=`<text x="${x(i)}" y="${H-10}" font-size="10" fill="var(--ink-muted)" text-anchor="middle">${d.d.slice(5)}</text>`;}});
+s+=`<line id="ch" x1="0" y1="${MT}" x2="0" y2="${MT+ih}" stroke="var(--axis)" stroke-width="1" opacity="0"/>`;
+document.getElementById('cv').innerHTML=s;
+
+const svg=document.getElementById('cv'), tt=document.getElementById('tt'), ch=document.getElementById('ch'), box=document.querySelector('.chartbox');
+svg.addEventListener('mousemove',e=>{
+  const r=svg.getBoundingClientRect(), px=(e.clientX-r.left)/r.width*W;
+  let i=Math.round((px-ML)/bw-0.5); i=Math.max(0,Math.min(DATA.length-1,i));
+  const d=DATA[i]; ch.setAttribute('x1',x(i)); ch.setAttribute('x2',x(i)); ch.setAttribute('opacity','0.8');
+  tt.innerHTML=`<div class="dt">${d.d}</div>`+
+    `<div class="r">시 <b>${d.o.toLocaleString()}</b> · 고 <b>${d.h.toLocaleString()}</b></div>`+
+    `<div class="r">저 <b>${d.l.toLocaleString()}</b> · 종 <b>${d.c.toLocaleString()}</b></div>`;
+  tt.style.opacity=1;
+  const bx=box.getBoundingClientRect();
+  let L=e.clientX-bx.left+14; if(L+160>bx.width) L=e.clientX-bx.left-174;
+  tt.style.left=L+'px'; tt.style.top=(e.clientY-bx.top-10)+'px';
+});
+svg.addEventListener('mouseleave',()=>{tt.style.opacity=0;ch.setAttribute('opacity','0');});
+
+// ═══════════ 시나리오 차트 ═══════════
+const L = DATA.length-1;                       // 08/04
+const T = d=>idx[d];                           // 날짜 → 인덱스
+function scenario(id,cfg){
+  const el=document.getElementById(id); if(!el) return;
+  const vb=el.getAttribute('viewBox').split(' ').map(Number), Wc=vb[2], Hc=vb[3];
+  const mL=8,mR=96,mT=26,mB=28, w=Wc-mL-mR, h=Hc-mT-mB;
+  const n0=cfg.from, span=(L-n0)+cfg.future;
+  const X=t=>mL+w*(t)/span, Y=v=>mT+h*(cfg.hi-v)/(cfg.hi-cfg.lo);
+  let g='';
+  for(let v=Math.ceil(cfg.lo/cfg.step)*cfg.step; v<=cfg.hi; v+=cfg.step){
+    g+=`<line x1="${mL}" y1="${Y(v)}" x2="${mL+w}" y2="${Y(v)}" stroke="var(--grid)" stroke-width="1"/>`;
+    g+=`<text x="${mL+w+6}" y="${Y(v)+4}" font-size="10" fill="var(--ink-muted)" style="font-variant-numeric:tabular-nums">${v.toLocaleString()}</text>`;
+  }
+  (cfg.hlines||[]).forEach(hl=>{
+    g+=`<line x1="${mL}" y1="${Y(hl.p)}" x2="${mL+w}" y2="${Y(hl.p)}" stroke="${hl.c}" stroke-width="1.4" stroke-dasharray="3 5" opacity="0.8"/>`;
+    const lw=hl.lab.length*6.6+10;
+    g+=`<rect x="${mL+2}" y="${Y(hl.p)-14}" width="${lw}" height="13" rx="3" fill="var(--surface-1)" opacity="0.92"/>`;
+    g+=`<text x="${mL+6}" y="${Y(hl.p)-4}" font-size="10" font-weight="600" fill="${hl.c}">${hl.lab}</text>`;
+  });
+  // 실제 캔들 (맥락용, 중성색)
+  const cw=Math.min(9, w/span*0.62);
+  for(let i=n0;i<=L;i++){ const d=DATA[i], cx=X(i-n0);
+    g+=`<line x1="${cx}" y1="${Y(d.h)}" x2="${cx}" y2="${Y(d.l)}" stroke="var(--ink-muted)" stroke-width="1" opacity="0.5"/>`;
+    const yt=Y(Math.max(d.o,d.c)), yb=Y(Math.min(d.o,d.c));
+    g+=`<rect x="${cx-cw/2}" y="${yt}" width="${cw}" height="${Math.max(1,yb-yt)}" fill="var(--ink-muted)" opacity="${d.c>=d.o?0.28:0.5}" rx="1"/>`;
+  }
+  // 오늘 구분선
+  g+=`<line x1="${X(L-n0)}" y1="${mT}" x2="${X(L-n0)}" y2="${mT+h}" stroke="var(--axis)" stroke-width="1" stroke-dasharray="2 4"/>`;
+  g+=`<text x="${X(L-n0)}" y="${mT-9}" font-size="10" fill="var(--ink-muted)" text-anchor="middle">오늘 08/04</text>`;
+  cfg.paths.forEach(P=>{
+    const pl=P.pts.map(q=>`${X(q[0]).toFixed(1)},${Y(q[1]).toFixed(1)}`).join(' ');
+    g+=`<polyline points="${pl}" fill="none" stroke="var(--surface-1)" stroke-width="5" stroke-linejoin="round" opacity="0.85"/>`;
+    g+=`<polyline points="${pl}" fill="none" stroke="${P.c}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"${P.dash?' stroke-dasharray="7 5"':''}/>`;
+    P.pts.forEach((q,k)=>{
+      if(!q[2]) return;
+      const cx=X(q[0]), cy=Y(q[1]);
+      g+=`<circle cx="${cx}" cy="${cy}" r="3.8" fill="var(--surface-1)" stroke="${P.c}" stroke-width="2"/>`;
+      const up=(q[3]!=='bot'), ty=up?cy-11:cy+18, lw=q[2].length*6.9+12;
+      let lx=cx-lw/2; if(lx+lw>mL+w+70) lx=mL+w+70-lw; if(lx<mL) lx=mL;
+      g+=`<rect x="${lx}" y="${ty-11}" width="${lw}" height="15.5" rx="4" fill="var(--surface-1)" stroke="${P.c}" stroke-width="1.2" opacity="0.97"/>`;
+      g+=`<text x="${lx+lw/2}" y="${ty+0.5}" font-size="10.5" font-weight="700" fill="${P.c}" text-anchor="middle" style="font-variant-numeric:tabular-nums">${q[2]}</text>`;
+    });
+  });
+  el.innerHTML=g;
+}
+const V=n=>`var(--${n})`;
+// ── 해석 1 ──
+scenario('scA',{from:L-15,future:26,lo:5080,hi:8100,step:500,
+  hlines:[{p:6837.69,lab:'A파 38.2%  6,838',c:V('aqua')},{p:7810.67,lab:'A파 61.8%  7,811',c:V('aqua')},
+          {p:5976.82,lab:'무효화  5,976.82',c:V('crit')}],
+  paths:[
+   {c:V('amber'),dash:false,pts:[[T('2026-07-29')-(L-15),5262.77],[T('2026-07-30')-(L-15)-0.2,5976.82],
+     [T('2026-07-30')-(L-15)+0.2,5547.41],[T('2026-07-31')-(L-15),6630.77,'3  6,630.77'],[15,6080.25,'4  6,080.25','bot']]},
+   {c:V('s1'),dash:true,pts:[[15,6080.25],[21,6837.69,'⑤  6,838'],[28,6050.23,'b  6,050','bot'],[38,7625.15,'c  7,625']]}
+  ]});
+// ── 해석 2 ──
+scenario('scB',{from:L-15,future:24,lo:5150,hi:7700,step:500,
+  hlines:[{p:6837.69,lab:'A파 38.2%  6,838',c:V('aqua')},{p:5262.77,lab:'A파 저점  5,262.77',c:V('crit')}],
+  paths:[
+   {c:V('amber'),dash:false,pts:[[T('2026-07-29')-(L-15),5262.77,'a 시작','bot'],[T('2026-07-30')-(L-15)-0.2,5976.82],
+     [T('2026-07-30')-(L-15)+0.2,5547.41],[T('2026-07-31')-(L-15),6630.77,'a 완성  6,630.77'],[15,6080.25]]},
+   {c:V('s1'),dash:true,pts:[[15,6080.25],[27,7476.19,'c  7,476']]},
+   {c:V('s2'),dash:true,pts:[[15,6080.25],[19,5785.35,'b  5,785','bot'],[31,7153.35,'c  7,153']]},
+   {c:V('s3'),dash:true,pts:[[15,6080.25],[21,5399.57,'b  5,400','bot'],[33,6767.57,'c  6,768']]}
+  ]});
+// ── B파 본체 + C파 ──
+scenario('scC',{from:T('2026-06-15'),future:54,lo:4000,hi:9700,step:1000,
+  hlines:[{p:5262.77,lab:'A파 저점  5,262.77',c:V('crit')}],
+  paths:[
+   {c:V('violet'),dash:false,pts:[[T('2026-06-19')-T('2026-06-15'),9385.59,'A 기점  9,385.59'],
+     [T('2026-06-24')-T('2026-06-15'),8080.99],[T('2026-06-25')-T('2026-06-15'),9044.04],
+     [T('2026-07-21')-T('2026-06-15'),6429.03],[T('2026-07-22')-T('2026-06-15'),7166.00],
+     [L-T('2026-06-15')-4,5262.77,'A 완성  5,262.77','bot']]},
+   {c:V('s1'),dash:true,pts:[[L-T('2026-06-15'),6187.0],[L-T('2026-06-15')+6,6837.69,'B  6,838'],[L-T('2026-06-15')+34,4289.79,'C  4,290','bot']]},
+   {c:V('s2'),dash:true,pts:[[L-T('2026-06-15'),6187.0],[L-T('2026-06-15')+15,7324.18,'B  7,324'],[L-T('2026-06-15')+43,4776.28,'C  4,776','bot']]},
+   {c:V('s3'),dash:true,pts:[[L-T('2026-06-15'),6187.0],[L-T('2026-06-15')+25,7810.67,'B  7,811'],[L-T('2026-06-15')+53,5262.77,'C  5,263','bot']]}
+  ]});
+</script>
+</body></html>
