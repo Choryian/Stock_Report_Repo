@@ -1,0 +1,637 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-08-13 일일 마감 정리 및 익일 준비</title>
+<style>
+  :root{
+    --up:#d32f2f; --down:#1565c0; --ink:#1a1a1a; --sub:#5f6368;
+    --line:#e3e5e8; --bg:#ffffff; --panel:#f7f8fa; --accent:#0b3d67;
+    --warn:#b26a00; --warnbg:#fff8e6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+       font-family:-apple-system,BlinkMacSystemFont,"Malgun Gothic","맑은 고딕",sans-serif;
+       font-size:15px;line-height:1.72;-webkit-text-size-adjust:100%}
+  .wrap{max-width:940px;margin:0 auto;padding:22px 16px 64px}
+  header.rep{border-bottom:3px solid var(--accent);padding-bottom:16px;margin-bottom:26px}
+  .brand{font-size:12px;letter-spacing:.16em;color:var(--accent);font-weight:700;text-transform:uppercase}
+  h1{font-size:23px;margin:8px 0 6px;line-height:1.35;letter-spacing:-.01em}
+  .meta{font-size:13px;color:var(--sub)}
+  h2{font-size:18px;margin:38px 0 12px;padding-left:11px;border-left:5px solid var(--accent);line-height:1.4}
+  h3{font-size:15px;margin:24px 0 8px;color:var(--accent)}
+  p{margin:9px 0}
+  .lead{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:18px 0}
+  .lead .cat{font-size:19px;font-weight:800;color:var(--up);letter-spacing:-.01em}
+  .kw{margin-top:8px;font-size:13.5px;color:var(--sub)}
+  .kw b{color:var(--ink)}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;
+          border:1px solid var(--line);border-radius:9px}
+  table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px}
+  th,td{padding:9px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  th{background:var(--panel);font-weight:700;font-size:13px;color:var(--sub);white-space:nowrap}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  tr:last-child td{border-bottom:none}
+  .up{color:var(--up);font-weight:700}
+  .down{color:var(--down);font-weight:700}
+  .flat{color:var(--sub);font-weight:700}
+  .note{background:var(--warnbg);border:1px solid #f0dca8;border-left:4px solid var(--warn);
+        border-radius:7px;padding:12px 14px;margin:14px 0;font-size:13.5px}
+  .note b{color:var(--warn)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:12px;margin:14px 0}
+  .card{border:1px solid var(--line);border-radius:9px;padding:13px 15px;background:var(--panel)}
+  .card h4{margin:0 0 7px;font-size:14px;letter-spacing:-.01em}
+  .card p{margin:4px 0;font-size:13.5px}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 8px;border-radius:20px;
+       background:#e8eef4;color:var(--accent);font-weight:700;margin-right:5px}
+  .tag.red{background:#fdeaea;color:var(--up)}
+  .tag.blue{background:#e8f0fb;color:var(--down)}
+  .tag.gray{background:#eceef0;color:var(--sub)}
+  ul{margin:8px 0;padding-left:20px}
+  li{margin:5px 0}
+  .scn{border:1px solid var(--line);border-radius:9px;padding:14px 16px;margin:11px 0}
+  .scn.a{border-left:5px solid var(--up)}
+  .scn.b{border-left:5px solid var(--sub)}
+  .scn.c{border-left:5px solid var(--down)}
+  .scn h4{margin:0 0 6px;font-size:15px}
+  .pct{font-size:12.5px;color:var(--sub);font-weight:600}
+  footer.rep{margin-top:52px;padding-top:18px;border-top:2px solid var(--line);
+             font-size:12.5px;color:var(--sub)}
+  footer.rep .pub{font-size:14px;color:var(--accent);font-weight:800;margin-bottom:6px}
+  .ok{color:var(--up);font-weight:700}
+  .no{color:var(--down);font-weight:700}
+  .na{color:var(--sub);font-weight:700}
+  @media (max-width:520px){
+    body{font-size:14.5px} h1{font-size:20px} h2{font-size:16.5px}
+    .wrap{padding:18px 12px 52px}
+  }
+</style>
+
+<div class="wrap">
+
+<header class="rep">
+  <div class="brand">Chory &amp; Rochet · Market Desk</div>
+  <h1>2026-08-13(목) 일일 마감 정리 및 익일 트레이딩 준비</h1>
+  <div class="meta">작성 2026-08-13 · 정규장 마감(15:30) 확정치 기준 · 다음 거래일 <b>8/14(금)</b> — 3일 휴장 직전 마지막 거래일</div>
+</header>
+
+<!-- 1 -->
+<h2>1. 한 줄 요약</h2>
+<div class="lead">
+  <div class="cat">② 외인 주도 상승 — 대형 반도체 편중, 코스피 단독 강세</div>
+  <p style="margin-top:9px">
+    미 7월 CPI 둔화(+3.4%)로 9월 금리 동결 전망이 60%까지 오른 가운데, 외국인이 코스피에서 3거래일 연속
+    순매수를 이어가며 지수를 <b>6,813.34(+3.56%)</b>까지 밀어올렸다. 그러나 상승은 전기·전자 한 업종에 집중됐고,
+    코스닥에서는 외국인·기관이 모두 순매도로 돌아서 <b>+0.29%</b>에 그쳤다. 지수 급등과 시장 폭의 괴리가 오늘의 본질이다.
+  </p>
+  <div class="kw">핵심 키워드 · <b>#외인3일연속순매수</b> <b>#MLCC후방부품확산</b> <b>#코스닥소외</b></div>
+</div>
+
+<div class="note">
+  <b>판정 근거</b> — 5개 유형 중 ①(위험선호 상승)이 아닌 ②를 택한 이유는 <b>코스닥 상대강세 조건이 미충족</b>이기 때문이다.
+  코스피 +3.56% 대 코스닥 +0.29%로 격차가 3.27%p이며, 코스닥에서는 외국인(−1,364억)·기관(−1,171억)이 동반 순매도했다.
+  기관이 코스피에서 +6,798억 순매수했으므로 "외인 단독"은 아니나, 규모 비율이 외인:기관 = 약 3.1:1로 외인 주도가 명확하다.
+</div>
+
+<!-- 2 -->
+<h2>2. 지수 · 수급 · 환율</h2>
+
+<h3>2-1. 지수</h3>
+<div class="scroll">
+<table>
+  <tr><th>구분</th><th class="num">종가</th><th class="num">등락</th><th class="num">등락률</th><th class="num">시가</th><th class="num">장중 고가</th><th class="num">장중 저가</th></tr>
+  <tr><td><b>KOSPI</b></td><td class="num">6,813.34</td><td class="num up">+234.30</td><td class="num up">+3.56%</td><td class="num">6,773.92</td><td class="num">6,895.63</td><td class="num">6,748.13</td></tr>
+  <tr><td><b>KOSDAQ</b></td><td class="num">861.37</td><td class="num up">+2.46</td><td class="num up">+0.29%</td><td class="num">863.15</td><td class="num na">미확보</td><td class="num na">미확보</td></tr>
+</table>
+</div>
+<p style="font-size:13.5px;color:var(--sub)">
+  양 시장 <b>4거래일 연속 동반 상승</b>. 코스피는 시가부터 +2.96% 갭상승 출발해 장중 6,895.63(+4.81%)까지 6,900선에 근접했으나
+  종가는 고가 대비 −1.19% 밀렸다. <b>장중 고점을 지키지 못한 점</b>은 내일 판단에서 감점 요인으로 다룬다.
+  코스닥은 시가 863.15가 당일 상단 부근이었고 장중 859.01(−0.01%)까지 마이너스로 밀렸다가 861.37로 마감했다.
+</p>
+
+<h3>2-2. 투자주체별 수급 (마감 확정치)</h3>
+<div class="scroll">
+<table>
+  <tr><th>시장</th><th class="num">외국인</th><th class="num">기관</th><th class="num">개인</th></tr>
+  <tr><td><b>KOSPI</b></td><td class="num up">+2조 951억</td><td class="num up">+6,798억</td><td class="num down">−2조 7,230억</td></tr>
+  <tr><td><b>KOSDAQ</b></td><td class="num down">−1,364억</td><td class="num down">−1,171억</td><td class="num up">+2,585억</td></tr>
+</table>
+</div>
+
+<div class="note">
+  <b>수급 수치 검증 노트</b> — 장중 15:39 시점 방송 보도는 "외국인 3조원 넘는 순매수"로 전했으나, 이는 <b>마감 확정치가 아니다</b>.
+  16:00 이후 확정 기준 복수 매체(매일경제·inews24·비바100)는 코스피 외국인 <b>+2조 951억</b>으로 일치한다.
+  일부 매체(아주경제·아시아경제)는 +2조 1,094억으로 표기해 약 143억 차이가 있으나 결론에 영향을 주지 않는다.
+  본 보고서는 사내 <b>마감 수급 정확성 룰</b>에 따라 장중 헤드라인 추정치를 배제하고 확정치를 채택했다.
+</div>
+
+<h3>2-3. 수급 해석</h3>
+<ul>
+  <li><b>외인 코스피 매수 + 코스닥 매도</b> → 사내 해석룰상 "대형주·반도체 사이클 회복 시그널"에 정확히 해당한다.
+      실제로 전기·전자 업종이 +5.16%로 단독 질주했다.</li>
+  <li><b>외인 3거래일 연속 순매수</b> — 8/11 +450억 → 8/12 +2조 8,354억 → 8/13 +2조 951억.
+      규모는 전일 대비 26% 줄었으나 방향은 유지됐다. 감소 자체를 이탈 신호로 읽지 않는다.</li>
+  <li><b>외인 매수 + 환율 상승</b>(1,419.4원, +3.7원)의 조합은 "강한 매수"(외인 매수+환율 하락)보다 한 단계 낮다.
+      환율이 내려주지 않은 상태의 외인 매수는 지속성 검증이 필요하다.</li>
+  <li><b>개인 −2조 7,230억</b> — 이틀 연속 대규모 순매도. 급등에 파는 패턴이 반복되고 있다.</li>
+</ul>
+
+<h3>2-4. 환율 · 금리 · 시장 강도</h3>
+<div class="scroll">
+<table>
+  <tr><th>항목</th><th class="num">값</th><th>비고</th></tr>
+  <tr><td>원/달러 (15:30)</td><td class="num">1,419.4원</td><td class="down">+3.7원 상승(원화 약세)</td></tr>
+  <tr><td>국고채 3년 / 10년</td><td class="num na">미확보</td><td>데이터 소스 중단 — 익일 루틴에서 보완</td></tr>
+  <tr><td>코스피 거래대금</td><td class="num na">미확보</td><td>참고: 8/11 21조 9,403억</td></tr>
+  <tr><td>국내 증시 시가총액</td><td class="num">6,000조원대 회복</td><td class="up">헤럴드경제 보도 기준</td></tr>
+</table>
+</div>
+
+<h3>2-5. 시장 강도 점수</h3>
+<div class="scroll">
+<table>
+  <tr><th>항목</th><th>실측</th><th class="num">점수</th></tr>
+  <tr><td>외국인 순매수(코스피)</td><td class="up">+2조 951억 — 기준 +3,000억 크게 상회</td><td class="num up">+2</td></tr>
+  <tr><td>상승종목 비율</td><td>강세 종목 우위(매일경제) — 정확 비율 미확보</td><td class="num up">+1 (추정)</td></tr>
+  <tr><td>거래대금(양 시장 합)</td><td class="na">미확보</td><td class="num na">—</td></tr>
+  <tr><td>신고가/신저가 비율</td><td class="na">미확보</td><td class="num na">—</td></tr>
+  <tr><td colspan="2"><b>합계 (실측 2개 항목 기준)</b></td><td class="num up"><b>+3 / 최대 +4</b></td></tr>
+</table>
+</div>
+<p style="font-size:13.5px;color:var(--sub)">
+  4개 항목 중 2개가 미확보이므로 <b>−10~+10 스케일의 정식 점수로 확정하지 않는다</b>.
+  확보된 항목만으로는 강세이나, 시장 폭(breadth)을 나타내는 두 항목이 비어 있어 "지수 강세 = 시장 전반 강세"로 확대 해석하지 않는다.
+</p>
+
+<!-- 3 -->
+<h2>3. 섹터 4분류</h2>
+
+<h3>3-1. 강세 섹터 (코스피 업종 기준)</h3>
+<div class="scroll">
+<table>
+  <tr><th>순위</th><th>업종</th><th class="num">등락률</th><th>해석</th></tr>
+  <tr><td>1</td><td><b>전기·전자</b></td><td class="num up">+5.16%</td><td>삼성전자·SK하이닉스·삼성전기 3종이 동시 급등. 외국인 매수의 사실상 전부가 여기로 들어왔다</td></tr>
+  <tr><td>2</td><td>제조업</td><td class="num up">+4.19%</td><td>전기·전자를 포함하는 상위 분류. 독립 신호로 보지 않음</td></tr>
+  <tr><td>3</td><td>IT서비스</td><td class="num up">+2.11%</td><td>NAVER +5.10%가 견인. 카카오 +1.39%는 동조 약함</td></tr>
+  <tr><td>4</td><td>금융업</td><td class="num up">+2.06%</td><td>금리 동결 전망 확산에 따른 반응. 단 보험은 역방향(−1.71%)</td></tr>
+  <tr><td>5</td><td>철강·금속</td><td class="num up">+2.01%</td><td>지수 동조 수준</td></tr>
+  <tr><td>6</td><td>운수장비</td><td class="num up">+1.69%</td><td>현대차 +2.20%</td></tr>
+</table>
+</div>
+
+<h3>3-2. 약세 섹터</h3>
+<div class="scroll">
+<table>
+  <tr><th>순위</th><th>업종</th><th class="num">등락률</th><th>해석</th></tr>
+  <tr><td>1</td><td><b>전기·가스</b></td><td class="num down">−5.25%</td><td>한국전력 −6.63%가 주도. 지수 +3.56% 국면에서 −5%대는 명백한 개별 악재성 이탈</td></tr>
+  <tr><td>2</td><td>오락·문화</td><td class="num down">−1.89%</td><td>JYP Ent. −11.20% 등 엔터 급락</td></tr>
+  <tr><td>3</td><td>보험</td><td class="num down">−1.71%</td><td>삼성생명 −3.64%. 금융업 강세와 정반대 방향</td></tr>
+  <tr><td>4</td><td>비금속</td><td class="num down">−1.59%</td><td>—</td></tr>
+  <tr><td>5</td><td>음식료·담배</td><td class="num down">−1.01%</td><td>경기방어 성격 자금 이탈</td></tr>
+  <tr><td>6</td><td>종이·목재</td><td class="num down">−1.01%</td><td>—</td></tr>
+</table>
+</div>
+<p class="note" style="background:var(--panel);border-color:var(--line);border-left-color:var(--accent);color:var(--ink)">
+  <b>섹터 구조 판독</b> — 상승 업종은 전기·전자 하나가 압도적이고 나머지는 +2% 미만이다.
+  반대로 하락 업종에는 <b>전기·가스·보험·음식료</b> 등 방어·배당 성격이 모여 있다.
+  이는 "위험선호 확대"가 아니라 <b>방어자산에서 반도체로의 자금 이동(로테이션)</b>에 가깝다.
+  같은 돈이 자리를 옮긴 것이지 새 돈이 크게 들어온 국면으로 단정할 근거는 오늘 데이터에 없다.
+</p>
+
+<h3>3-3. 신규 부상 · 약세 지속 · 상대강도</h3>
+<div class="grid">
+  <div class="card">
+    <h4><span class="tag red">신규 부상</span></h4>
+    <p><b>MLCC·반도체 기판(후방 부품)</b> — 최근 랠리가 메모리 2종에 집중됐던 구간에서 오늘 처음으로 부품 축이 독립적으로 폭발했다.</p>
+    <p><b>지주·투자</b> — SK스퀘어 +9.08%. 하이닉스 지분가치 재평가.</p>
+  </div>
+  <div class="card">
+    <h4><span class="tag blue">약세 지속</span></h4>
+    <p><b>전력·유틸리티</b> — 한국전력 −6.63%. 전일까지 강세였던 전선(대원전선 −5.74%)·광케이블(대한광통신 −2.00%)도 동반 이탈.</p>
+    <p><b>엔터</b> — JYP −11.20%, 오락·문화 업종 4일 이내 최약.</p>
+  </div>
+  <div class="card">
+    <h4><span class="tag gray">상대강도</span></h4>
+    <p><b>코스닥이 코스피 대비 −3.27%p 열위</b>. 8/10 레버리지 규제 이후 7거래일 32% 급등했던 코스닥의 탄력이 이번 주 들어 명확히 둔화됐다.</p>
+    <p>RS-Ratio 정량 산출은 sector-theme-monitor 스킬 미실행으로 이번 회차 생략.</p>
+  </div>
+</div>
+
+<!-- 4 -->
+<h2>4. 테마 라이프사이클 &amp; 주도주 매핑</h2>
+
+<div class="note">
+  <b>테마 데이터 시점 고지</b> — StockMatrix TLI의 최신 갱신일은 <b>2026-08-12</b>로, <b>오늘(8/13)의 MLCC 급등은 아직 반영돼 있지 않다</b>.
+  또한 사내 검증상 TLI 점수는 매 실행일 횡단면 재정규화를 거치므로 날짜 간 점수 직접 비교가 불가하다.
+  따라서 아래 <b>단계 라벨은 참고로만</b> 쓰고, 오늘의 주도 테마 판정은 실측 종가 등락률을 1차 근거로 삼았다.
+</div>
+
+<h3>4-1. 라이프사이클 분포 (8/12 기준)</h3>
+<p>추적 239개 중 품질 게이트 통과 112개 — <b>정점 86 / 성장 6 / 초기 20 / 쇠퇴 0</b>. 평균 점수 59.8.
+<b>정점 단계가 전체의 77%</b>라는 점은 시장 전반이 이미 뜨겁게 달아오른 구간임을 시사한다.
+쇠퇴 0개는 아직 본격적 식음 구간이 시작되지 않았다는 의미이나, 정점 편중은 신규 진입 난이도가 높다는 경고이기도 하다.</p>
+
+<div class="scroll">
+<table>
+  <tr><th>단계</th><th>테마</th><th class="num">점수</th><th class="num">7일 변동</th><th>대응</th></tr>
+  <tr><td><span class="tag red">정점</span></td><td>스페이스X</td><td class="num">77</td><td class="num up">+6</td><td>분할 매도 구간</td></tr>
+  <tr><td><span class="tag red">정점</span></td><td>2차전지(본체·전고체·나트륨·장비·LFP)</td><td class="num">70~76</td><td class="num up">+6~+10</td><td>계열 전체 정점 — 신규 진입 지양</td></tr>
+  <tr><td><span class="tag gray">성장</span></td><td>3D 프린터</td><td class="num">59</td><td class="num up">+6</td><td>성장 6개 중 유일한 상승 가속</td></tr>
+  <tr><td><span class="tag blue">초기</span></td><td><b>온디바이스 AI</b></td><td class="num">56</td><td class="num up">+6</td><td class="up">최우선 관찰 — 대장주가 삼성전기</td></tr>
+  <tr><td><span class="tag blue">초기</span></td><td><b>MLCC(적층세라믹콘덴서)</b></td><td class="num">54</td><td class="num down">−6</td><td class="up">8/13 급등 미반영 — 단계 상향 유력</td></tr>
+  <tr><td><span class="tag blue">초기</span></td><td>방산</td><td class="num">59</td><td class="num up">+6</td><td>관찰 유지</td></tr>
+  <tr><td><span class="tag blue">초기</span></td><td>두나무</td><td class="num">59</td><td class="num up">+8</td><td>관찰 — 종목 평균 등락은 −0.21%로 아직 미동조</td></tr>
+</table>
+</div>
+
+<p class="note">
+  <b>가장 중요한 관찰</b> — MLCC 테마의 7일 변동은 <b>−6</b>으로 표면상 식어가는 중이었다.
+  그런데 오늘 삼성전기 +12.58%, 삼화콘덴서 +17.39%가 나왔다.
+  <b>점수 하락 중이던 테마가 외부 촉매(모건스탠리 톱픽 교체) 하나로 급반전한 사례</b>다.
+  TLI 단계 라벨을 진입 근거로 삼았다면 오늘의 최대 상승을 놓쳤을 것이며, 이는 사내 TLI 정규화 결함 경고와 정확히 부합한다.
+</p>
+
+<h3>4-2. 강세 테마 3종 × 대장 / 2등 / 소외주 매핑</h3>
+
+<div class="scroll">
+<table>
+  <tr><th>테마</th><th>구분</th><th>종목(코드)</th><th class="num">종가</th><th class="num">등락률</th><th>메모</th></tr>
+
+  <tr><td rowspan="3"><b>① AI 후방부품<br>(MLCC·기판)</b><br><span class="pct">오늘의 최강 테마</span></td>
+      <td class="up">대장</td><td>삼성전기 (009150)</td><td class="num">1,503,000</td><td class="num up">+12.58%</td>
+      <td>모건스탠리 최선호주 교체(삼성전자→삼성전기), 목표가 256만→262만원 상향</td></tr>
+  <tr><td class="up">2등</td><td>삼화콘덴서 (001820)</td><td class="num">103,300</td><td class="num up">+17.39%</td>
+      <td class="down">등락률은 1위이나 고가 110,800 대비 −6.8% 밀려 마감 — 위꼬리 경계</td></tr>
+  <tr><td>소외</td><td>코스모신소재·아모텍·아바텍</td><td class="num na">미확보</td><td class="num na">미확보</td>
+      <td>MLCC 테마 구성 종목. 종가 실측 미확보로 <b>미상승 여부 확인 불가</b> — 익일 검증 대상</td></tr>
+
+  <tr><td rowspan="3"><b>② 메모리 대형주</b><br><span class="pct">지수 견인 축</span></td>
+      <td class="up">대장</td><td>SK하이닉스 (000660)</td><td class="num">1,593,000</td><td class="num up">+5.92%</td>
+      <td>외국인 순매수 최상위. 장중 1,634,000 고가</td></tr>
+  <tr><td class="up">2등</td><td>삼성전자 (005930)</td><td class="num">268,000</td><td class="num up">+4.89%</td>
+      <td>거래량 3,546만주. 싱가포르 테마섹 신규 투자 보도</td></tr>
+  <tr><td>소외</td><td>제주반도체 (080220)</td><td class="num">88,300</td><td class="num up">+1.49%</td>
+      <td>대형 메모리 대비 4%p 이상 열위 — 순환 후보</td></tr>
+
+  <tr><td rowspan="3"><b>③ 반도체 장비·소부장</b><br><span class="pct">확산 여부가 관건</span></td>
+      <td class="up">대장</td><td>한미반도체 (042700)</td><td class="num">226,000</td><td class="num up">+3.91%</td>
+      <td>3거래일 연속 상승. 스페이스X 테마에도 중복 편입</td></tr>
+  <tr><td class="up">2등</td><td>주성엔지니어링 (036930)</td><td class="num">179,300</td><td class="num up">+3.05%</td>
+      <td>전공정 장비. 오전 보고서 진입가 168,000까지 안 밀림</td></tr>
+  <tr><td>소외</td><td>원익IPS·테크윙</td><td class="num na">종가 미확보</td><td class="num na">—</td>
+      <td>11:08 장중 원익IPS +5.92%(118,100), 테크윙 +1.96%(49,300). <b>장중 시점 수치이며 종가 아님</b></td></tr>
+</table>
+</div>
+
+<p class="note">
+  <b>확산 판정</b> — 오늘 상승은 대장주(하이닉스 +5.92%, 삼성전기 +12.58%)가 2등·소외주를 크게 앞섰다.
+  장비 축(한미 +3.91%, 주성 +3.05%)은 대형 메모리 상승폭의 절반 수준에 그쳤다.
+  <b>자금이 아직 소부장 전반으로 확산되지 않고 시총 상위에 머물러 있다</b>는 뜻이며,
+  이것이 코스피 +3.56% 대 코스닥 +0.29% 격차의 직접 원인이다.
+</p>
+
+<!-- 5 -->
+<h2>5. 주도주 4분류 &amp; 위험 신호</h2>
+
+<div class="scroll">
+<table>
+  <tr><th>분류</th><th>종목</th><th class="num">등락률</th><th>근거 / 익일 전략</th></tr>
+  <tr><td class="up"><b>신규 주도주</b></td><td>삼성전기 (009150)</td><td class="num up">+12.58%</td>
+      <td>증권사 톱픽 교체라는 명확한 촉매 + 거래량 116만주. <b>갭상승 추격 금지, 눌림목 대기</b></td></tr>
+  <tr><td class="up"><b>연속 주도주</b></td><td>SK하이닉스 / 삼성전자</td><td class="num up">+5.92% / +4.89%</td>
+      <td>3거래일 연속 외인 순매수 집중. <b>종가 부근 분할 or 갭하락 시 대응</b></td></tr>
+  <tr><td class="up"><b>순환 주도주</b></td><td>SK스퀘어 (402340)</td><td class="num up">+9.08%</td>
+      <td>하이닉스 지분가치 연동. 메모리→지주로 순환. <b>다음 순환은 소부장·제주반도체 축</b></td></tr>
+  <tr><td class="down"><b>단발성 특징주</b></td><td>케이앤에스아이앤씨 (487400)<br>코오롱티슈진 (950160)<br>금호타이어 (073240)</td>
+      <td class="num up">+39.82%<br>+19.91%<br>+9.70%</td>
+      <td class="down"><b>추격 금지 원칙 적용</b>. 특히 첫 종목은 아래 위험신호 참조</td></tr>
+</table>
+</div>
+
+<h3>5-1. 위험 신호 — 추격 금지 / 매도 관점</h3>
+<div class="scroll">
+<table>
+  <tr><th>종목</th><th class="num">시가</th><th class="num">고가</th><th class="num">저가</th><th class="num">종가</th><th class="num">등락률</th><th>위험 유형</th></tr>
+  <tr><td><b>케이앤에스아이앤씨</b><br>(487400)</td><td class="num">21,000</td><td class="num">24,600</td><td class="num">14,720</td><td class="num">15,380</td><td class="num up">+39.82%</td>
+      <td class="down"><b>최고 위험.</b> 고가 대비 −37.5% 붕괴, 종가가 저가 부근. 거래량 2,472만주 폭증 + 극단적 위꼬리. 상승률 숫자만 보고 접근하면 안 되는 전형</td></tr>
+  <tr><td><b>금호건설</b><br>(002990)</td><td class="num">15,900</td><td class="num">18,040</td><td class="num">14,170</td><td class="num">14,370</td><td class="num down">−3.75%</td>
+      <td class="down">전일 '호남 반도체 팹' 재료로 상한가 → 오늘 고가 대비 −20.3%. <b>상한가 풀린 종목</b> 유형. 거래량 3,332만주</td></tr>
+  <tr><td><b>한국전력</b><br>(015760)</td><td class="num">34,350</td><td class="num">34,650</td><td class="num">32,800</td><td class="num">33,100</td><td class="num down">−6.63%</td>
+      <td class="down">지수 +3.56% 국면에서 −6.63%. 전기·가스 업종 −5.25% 동반 이탈로 개별이 아닌 <b>업종 전체 자금 이탈</b></td></tr>
+  <tr><td><b>JYP Ent.</b><br>(035900)</td><td class="num">44,750</td><td class="num">44,750</td><td class="num">40,800</td><td class="num">40,850</td><td class="num down">−11.20%</td>
+      <td class="down">시가가 곧 고가, 종가가 저가 부근 — <b>온종일 매도 우위</b>. 반등 시도 흔적 없음</td></tr>
+  <tr><td><b>삼화콘덴서</b><br>(001820)</td><td class="num">92,900</td><td class="num">110,800</td><td class="num">91,500</td><td class="num">103,300</td><td class="num up">+17.39%</td>
+      <td class="down">상승 마감이나 <b>고가 대비 −6.8%</b>. 일중 변동폭 21%. 강세 테마이되 진입은 눌림목 이후로 제한</td></tr>
+  <tr><td><b>대원전선</b><br>(006340)</td><td class="num">15,420</td><td class="num">16,000</td><td class="num">15,000</td><td class="num">15,110</td><td class="num down">−5.74%</td>
+      <td class="down">거래량 1,554만주. 전선·전력기기 축 차익실현</td></tr>
+</table>
+</div>
+
+<div class="note">
+  <b>위험 공시 스캔</b> — 오늘 접수된 주요사항 공시 126건 중 <b>유상증자·최대주주 변경 등 중대 악재 공시는 확인되지 않았다.</b>
+  전환사채 만기전 취득(큐브엔터·에스바이오메딕스·코퍼스코리아)은 부채 축소 성격으로 중립~긍정,
+  서린바이오 전환가액 조정은 희석 요인이나 규모가 작다. 파라텍은 액면병합 변경상장으로 매매거래정지가 해제됐다.
+</div>
+
+<!-- 6 -->
+<h2>6. 뉴스 · 공시 핵심</h2>
+
+<div class="grid">
+  <div class="card">
+    <h4>🌐 글로벌 · 매크로</h4>
+    <p>· 미 7월 CPI <b>+3.4%</b>(전년비, 6월 3.5%→둔화), 근원 +2.5%, 전월비 +0.1% — 예상 부합</p>
+    <p>· 이에 <b>9월 FOMC 동결 전망 60%</b>까지 상승</p>
+    <p>· 필라델피아 반도체지수 <b>+2.49%</b>, 이틀 연속 상승</p>
+    <p>· 미 증시 8/12 혼조: 다우 −0.04%, S&amp;P500 +0.26%, 나스닥 +0.54%</p>
+    <p class="down">· <b>반대 견해</b>: BofA는 CPI 둔화에도 연내 3회 인상 전망을 유지 — 동결 컨센서스가 만장일치가 아님</p>
+  </div>
+  <div class="card">
+    <h4>🏭 기업 · 산업</h4>
+    <p>· <b>모건스탠리</b>, 최선호주를 삼성전자 → <b>삼성전기</b>로 교체. 목표가 256만→262만원. 근거는 MLCC 가격 강세와 ABF 기판 수요 개선</p>
+    <p>· 하이퍼스케일러 고객사 <b>MLCC 선주문</b> 지속 — 올 하반기~내년 가격 강세 전망</p>
+    <p>· <b>싱가포르 테마섹</b>, 삼성전자·SK하이닉스 신규 투자 단행 보도</p>
+    <p>· "삼성전자·SK하이닉스 현 주가는 극단적 저평가" 증권가 코멘트 확산</p>
+  </div>
+  <div class="card">
+    <h4>📋 주요 공시 (8/13)</h4>
+    <p>· 태광산업 — <b>신규 시설투자</b> 결정(자율공시) + 기업가치 제고계획 첨부정정</p>
+    <p>· 현대엘리베이터 — 현금·현물 <b>배당 결정</b> 및 기준일 설정</p>
+    <p>· 롯데리츠 — 금전배당 결정 + 주주명부 폐쇄 기준일</p>
+    <p>· 대림제지 — 주주환원 정책 공정공시</p>
+    <p>· HS효성첨단소재·이녹스첨단소재 — 타인에 대한 채무보증 결정</p>
+    <p>· 카카오게임즈·SK케미칼 — IR 개최</p>
+    <p class="pct">전체 126건 중 지수 영향 유의 건은 확인되지 않음</p>
+  </div>
+</div>
+
+<!-- 7 -->
+<h2>7. 익일(8/14 금) 시나리오</h2>
+
+<div class="note">
+  <b>내일의 특수 조건 — 반드시 선반영할 것</b><br>
+  ① <b>오늘 밤 21:30 KST 미 7월 PPI 발표</b> — 내일 개장 전 결과 확정. 오늘 장에는 미반영 상태다.<br>
+  ② <b>8/14(금)는 3일 휴장 직전 마지막 거래일</b> (8/15 토 광복절 · 8/17 월 대체공휴일 휴장 → 다음 거래일 8/18 화).
+  4거래일 연속 상승 후 3일 공백을 앞둔 상황이므로, <b>오후로 갈수록 차익실현·포지션 축소 압력이 구조적으로 강해진다.</b>
+  A 시나리오에서도 종가 관리는 보수적으로 간다.
+</div>
+
+<div class="scn a">
+  <h4>A. 상승 갭 <span class="pct">— 발동 조건: PPI 예상 하회(둔화 확인) + 미 반도체 3일 연속 강세</span></h4>
+  <p><b>대응</b> — 시초 추격은 하지 않는다. 오늘 코스피가 장중 6,895까지 갔다가 −1.19% 밀려 마감한 만큼,
+  <b>6,900선 돌파 후 유지 여부</b>가 관문이다. 09:30까지 6,900을 지키면 장비·소부장(주성엔지니어링·한미반도체) 확산 베팅을 실행하고,
+  못 지키면 대형 메모리만 유지한다.</p>
+  <p><b>주의</b> — 연휴 전이므로 <b>14:00 이후 신규 진입 금지</b>, 급등 종목은 종가 전 일부 이익실현.</p>
+</div>
+
+<div class="scn b">
+  <h4>B. 보합 출발 <span class="pct">— 발동 조건: PPI 예상 부합, 미장 ±0.5% 이내 혼조 (기본 시나리오)</span></h4>
+  <p><b>대응</b> — 오늘 강세주의 <b>눌림목 매수</b>가 핵심. 삼성전기 1,440,000~1,470,000, SK하이닉스 1,540,000 이하,
+  주성엔지니어링 172,000 이하가 1차 관찰 구간이다.</p>
+  <p><b>단</b> 오늘 오전 보고서의 눌림목 진입가 5개 중 <b>단 하나도 체결되지 않았다</b>(아래 부록 B).
+  같은 실수를 반복하지 않기 위해, 09:30까지 지정가에 닿지 않으면 <b>비중을 절반으로 줄여 시장가 분할</b>로 전환한다.</p>
+</div>
+
+<div class="scn c">
+  <h4>C. 하락 갭 <span class="pct">— 발동 조건: PPI 예상 상회 → 금리 인상 베팅 부활, 또는 미 반도체 급락</span></h4>
+  <p><b>대응</b> — 현금 비중 확대. 4거래일 연속 상승분에 대한 되돌림이 3일 휴장 리스크와 겹치면 낙폭이 커질 수 있다.
+  <b>신규 진입 전면 보류</b>, 보유분은 손절가 엄수.</p>
+  <p><b>즉시 선회 트리거</b> — 11:00 외국인 잠정 순매수가 <b>순매도로 전환</b>되면 시나리오 등급과 무관하게 C로 대응한다.
+  오늘 상승의 유일한 동력이 외인 매수였으므로, 이 축이 꺾이면 지지 근거가 사라진다.</p>
+  <p class="down"><b>BofA 시나리오</b>가 현실화(PPI 상회)될 경우 오늘의 금융업 +2.06%, 전기·전자 +5.16%가 가장 크게 되돌려진다.</p>
+</div>
+
+<!-- 8 -->
+<h2>8. 관심종목 3티어</h2>
+
+<h3>Tier 1 — 진입 · 손절 · 목표 명시 (5종)</h3>
+<div class="scroll">
+<table>
+  <tr><th>종목(코드)</th><th class="num">8/13 종가</th><th class="num">진입가</th><th class="num">손절가</th><th class="num">1차 목표</th><th>근거 / 상태</th></tr>
+  <tr>
+    <td><b>삼성전기</b><br>(009150)</td><td class="num">1,503,000</td>
+    <td class="num">1,440,000~1,470,000<br><span class="pct">분할 · 시초 추격 금지</span></td>
+    <td class="num down">1,380,000<br><span class="pct">−5.4%</span></td>
+    <td class="num up">1,620,000<br><span class="pct">+7.8%</span></td>
+    <td><span class="tag red">신규 · 1순위</span> 모건스탠리 톱픽 교체(목표 262만원)라는 구체적 촉매 + MLCC 선주문 실체.
+        AI 수혜가 메모리·GPU에서 후방 부품으로 확산되는 첫 신호다. 단 하루 +12.58%로 가격이 앞서 있어 눌림목 조건부</td>
+  </tr>
+  <tr>
+    <td><b>SK하이닉스</b><br>(000660)</td><td class="num">1,593,000</td>
+    <td class="num">1,540,000 이하 분할</td>
+    <td class="num down">1,470,000<br><span class="pct">−7.7%</span></td>
+    <td class="num up">1,700,000<br><span class="pct">+6.7%</span></td>
+    <td><span class="tag red">신규</span> 외국인 순매수가 가장 집중된 종목. SOX 이틀 연속 상승 + 테마섹 신규 투자.
+        변동성이 크므로 손절 폭을 넓게 잡고 비중을 줄인다</td>
+  </tr>
+  <tr>
+    <td><b>한미반도체</b><br>(042700)</td><td class="num">226,000</td>
+    <td class="num">218,000 이하 분할</td>
+    <td class="num down">205,000<br><span class="pct">−9.3%</span></td>
+    <td class="num up">245,000<br><span class="pct">+8.4%</span></td>
+    <td><span class="tag gray">인계 · 유지</span> 오전 보고서 1순위 유지. 3거래일 연속 상승했고 오늘 +3.91%로 대형 메모리 대비
+        상승폭이 작아 따라갈 여지가 남았다. <b>손절 198,000 → 205,000 상향</b></td>
+  </tr>
+  <tr>
+    <td><b>주성엔지니어링</b><br>(036930)</td><td class="num">179,300</td>
+    <td class="num">172,000 이하 분할<br><span class="pct">09:30 이후 추세 확인</span></td>
+    <td class="num down">162,000<br><span class="pct">−9.6%</span></td>
+    <td class="num up">195,000<br><span class="pct">+8.8%</span></td>
+    <td><span class="tag gray">인계 · 유지</span> 오전 진입가 168,000에 닿지 않고 +3.05% 상승. 진입 168,000→172,000,
+        손절 158,000→162,000 동반 상향. 장비 축 확산이 실현되면 최대 수혜</td>
+  </tr>
+  <tr>
+    <td><b>삼성전자</b><br>(005930)</td><td class="num">268,000</td>
+    <td class="num">260,000 이하 분할</td>
+    <td class="num down">250,000<br><span class="pct">−6.7%</span></td>
+    <td class="num up">288,000<br><span class="pct">+7.5%</span></td>
+    <td><span class="tag gray">인계 · 목표 상향</span> 오전 목표 272,000에 종가 268,000으로 근접.
+        진입 246,000은 저가 262,500으로 미체결. 테마섹 투자·전기전자 +5.16% 반영해 <b>목표 272,000→288,000, 손절 238,000→250,000 상향</b></td>
+  </tr>
+</table>
+</div>
+
+<h3>Tier 2 — 조건부 (트리거 충족 시에만)</h3>
+<div class="scroll">
+<table>
+  <tr><th>종목</th><th class="num">종가</th><th>트리거 조건</th></tr>
+  <tr><td>삼화콘덴서 (001820)</td><td class="num">103,300</td><td>고가 대비 −6.8% 마감. <b>95,000 이하로 눌린 뒤 반등할 때만</b>. 시초 강세 시 접근 금지</td></tr>
+  <tr><td>제주반도체 (080220)</td><td class="num">88,300</td><td>메모리 순환 후보. <b>대형 메모리가 이틀 더 상승을 유지</b>할 때 소외주 갭 메우기 베팅</td></tr>
+  <tr><td>삼성SDI (006400)</td><td class="num">487,000</td><td><span class="tag blue">Tier 1 → 2 강등</span> +0.31%로 상대 열위. 2차전지 테마 전 계열이 <b>정점 단계</b>. 470,000 이하 + 테마 단계 유지 시에만</td></tr>
+  <tr><td>두산에너빌리티 (034020)</td><td class="num">80,900</td><td><span class="tag blue">Tier 1 → 2 강등</span> 이틀 연속 지수 대비 열위(+0.75%). 진입 78,500 미체결. <b>78,500 도달 시에만</b> 재검토</td></tr>
+  <tr><td>NAVER (035420)</td><td class="num">226,500</td><td>+5.10%로 IT서비스 견인. 218,000 이하 눌림 시 관찰</td></tr>
+  <tr><td>SK스퀘어 (402340)</td><td class="num">1,117,000</td><td>+9.08% 급등. 하이닉스 추가 상승 확인 후에만</td></tr>
+</table>
+</div>
+
+<h3>Tier 3 — 모니터링만</h3>
+<p>원익IPS · 테크윙 · 에스앤에스텍(장비 소외축, 종가 실측 필요) / LG이노텍(+1.82%) / LS ELECTRIC(+2.64%) /
+현대차(+2.20%) / 카카오(+1.39%) / 코스모신소재 · 아모텍 · 아바텍(MLCC 소외주 후보) / 알테오젠(0.00%, 코스닥 대장 무반응)</p>
+
+<div class="note">
+  <b>Tier 1 제외 · 강등 사유 기록</b><br>
+  · <b>한화오션</b> — 오전 보고서에서 이미 제외. 오늘 +0.67%로 지수 대비 −2.89%p 열위, 제외 판단 유지.<br>
+  · <b>POSCO홀딩스</b> — 오전 강등 유지. 오늘 종가 실측 미확보.<br>
+  · <b>삼성SDI · 두산에너빌리티</b> — 오늘 신규 강등. 두 종목 모두 +1% 미만으로 코스피 +3.56%에 크게 못 미쳤다.
+  단일 세션으로 강등하지 않는다는 원칙이 있으나, 두 종목 모두 <b>8/12·8/13 이틀 연속</b> 열위이므로 원칙에 저촉되지 않는다.
+</div>
+
+<!-- 9 -->
+<h2>9. 모니터링 포인트</h2>
+
+<h3>9-1. 매크로 캘린더 (일자 · 시각 명시)</h3>
+<div class="scroll">
+<table>
+  <tr><th>일시 (KST)</th><th>이벤트</th><th>발표 매체 / 확인처</th><th>중요도</th></tr>
+  <tr><td><b>8/13(목) 21:30</b></td><td><b>미 7월 생산자물가지수(PPI)</b></td><td>미 노동통계국(BLS)</td><td class="up">★★★ 최우선</td></tr>
+  <tr><td>8/13(목) 21:30</td><td>미 주간 신규 실업수당 청구건수</td><td>미 노동부</td><td>★★</td></tr>
+  <tr><td>8/13(목) 밤</td><td>EU 6월 산업생산</td><td>유로스타트</td><td>★</td></tr>
+  <tr><td>8/13(목) 정오 발표됨</td><td>한국은행 7월 이후 국제금융·외환시장 동향</td><td>한국은행</td><td class="na">★ 발표 완료 · 내용 미확인</td></tr>
+  <tr><td><b>8/14(금)</b></td><td><b>한국 증시 — 3일 휴장 직전 마지막 거래일</b></td><td>—</td><td class="up">★★★</td></tr>
+  <tr><td>8/15(토) · 8/17(월)</td><td><b>광복절 · 대체공휴일 — 국내 증시 휴장</b><br><span class="pct">다음 거래일 8/18(화)</span></td><td>한국거래소 2026년 일정표 (확정)</td><td class="up">★★★</td></tr>
+  <tr><td class="na">일자 미확정</td><td>미 7월 소매판매</td><td class="na">발표 예정 보도만 확인, <b>정확 일자 미확보 — 익일 루틴 재검증 필수</b></td><td>★★</td></tr>
+</table>
+</div>
+
+<h3>9-2. 시간대별 체크포인트 (8/14)</h3>
+<div class="scroll">
+<table>
+  <tr><th>시각</th><th>확인 항목</th><th>판단 기준</th></tr>
+  <tr><td>08:00~08:50</td><td>PPI 결과 · 미 증시 8/13 마감 · 역외 환율</td>
+      <td>PPI 전월비 +0.3% 이상이면 즉시 시나리오 C 우선. 환율 1,420원 재상향 시 외인 매수 지속성에 의문 부여</td></tr>
+  <tr><td>08:30~09:00</td><td>동시호가 — 삼성전자 · SK하이닉스 예상체결가</td>
+      <td>두 종목 합산 +2% 이상 갭상승이면 오히려 경계(시초 매물). 보합~+1%가 가장 건강</td></tr>
+  <tr><td><b>09:30~10:00</b></td><td><b>자금 확산 여부 — 최대 관문</b></td>
+      <td>오늘 대장주만 급등하고 소부장이 못 따라온 구조가 반복되는지. 장비주가 대형 메모리 상승폭의 70% 이상 따라오면 확산 확인 → Tier 1 장비 2종 진입</td></tr>
+  <tr><td><b>11:00</b></td><td><b>외국인 잠정 순매수</b></td>
+      <td class="down">오늘 최대 관전 포인트였고 내일도 동일. 4일 연속 순매수 여부. <b>순매도 전환 시 즉시 C 선회</b></td></tr>
+  <tr><td>13:00</td><td>미 선물 · 환율 재점검</td><td>미선물 −0.5% 이하이면 오후 방어 전환</td></tr>
+  <tr><td><b>14:00 이후</b></td><td><b>연휴 전 포지션 정리</b></td>
+      <td class="down">신규 진입 금지 구간. 3일 공백을 넘길 종목만 남기고 급등 단발성 종목은 정리</td></tr>
+  <tr><td>15:20</td><td>동시호가</td><td>연휴 전 마지막 수급. 외인 매도 출회 여부 확인</td></tr>
+</table>
+</div>
+
+<h3>9-3. 리스크 요약</h3>
+<ul>
+  <li><b>구조적 편중</b> — 오늘 상승의 실질은 전기·전자 한 업종. 이 축이 흔들리면 지수 방어 수단이 없다.</li>
+  <li><b>테마 정점 편중</b> — 품질 통과 112개 테마 중 86개(77%)가 정점 단계. 신규 진입 가능 구간이 좁다.</li>
+  <li><b>3일 휴장 공백</b> — 8/14 종가 이후 8/18까지 국내 대응 불가. 그 사이 미 증시는 8/14·8/17 두 세션이 진행된다.</li>
+  <li><b>동결 컨센서스의 취약성</b> — 9월 동결 전망 60%는 만장일치가 아니며, BofA는 연내 3회 인상을 유지 중이다. PPI가 이 균형을 깰 수 있다.</li>
+  <li><b>환율</b> — 1,419.4원(+3.7원). 외인 순매수와 원화 약세가 동시에 진행 중인 비정형 조합.</li>
+</ul>
+
+<!-- 부록 A -->
+<h2>부록 A. 예정 이벤트 재검증 <span class="pct">(사내 필수 룰)</span></h2>
+<p>직전 보고서(8/13자 미국 야간 시황)에 "예정·미확정"으로 기재된 항목을 본문 작성 전 재검증했다.</p>
+<div class="scroll">
+<table>
+  <tr><th>직전 기재</th><th>검증 결과</th><th>재해석</th></tr>
+  <tr>
+    <td>미 7월 PPI — "오늘 8/13 발표"</td>
+    <td class="ok">✔ 확정 — 8/13(목) 21:30 KST, 미 노동통계국. 복수 매체 일치</td>
+    <td>한국장 마감 후이므로 오늘 지수에는 미반영. <b>내일 개장을 좌우하는 단일 최대 변수</b>. 결과는 내일 루틴에서 재검증</td>
+  </tr>
+  <tr>
+    <td>미 7월 CPI — "발표 완료, +3.4%"</td>
+    <td class="ok">✔ 확인 — 9월 동결 전망이 60%까지 상승한 것으로 후속 확인</td>
+    <td>오늘 외인 2조원 순매수의 매크로 배경. 다만 BofA는 연내 3회 인상 전망 유지 — <b>컨센서스가 갈려 있다</b></td>
+  </tr>
+  <tr>
+    <td>"8/17(월)은 광복절 대체공휴일 휴장"</td>
+    <td class="ok">✔ 확정 — 한국거래소 2026년 일정표에 8/15 광복절·8/17 대체공휴일 명시</td>
+    <td>8/14(금)가 마지막 거래일. 다음 거래일 8/18(화). 휴장 전날 16일 18:00 야간거래는 해당 없음(8/14 기준 별도 확인 필요)</td>
+  </tr>
+  <tr>
+    <td>호르무즈 협상 — "교착 지속"</td>
+    <td class="na">✖ <b>금일 재검증 미실시</b> — 데이터 소스 중단</td>
+    <td>8/13 07:20 기준 "이란·오만 양자 협상만 진행, 미 해상봉쇄 지속" 상태를 그대로 인계. <b>내일 루틴에서 반드시 재검증</b></td>
+  </tr>
+  <tr>
+    <td>이란 의회 본회의 표결 — "미표결, 2주 내 제출 예정"</td>
+    <td class="na">✖ <b>금일 재검증 미실시</b> — 동일 사유</td>
+    <td>"2주 내" 시한이 8월 하순에 걸린다. 시나리오 C 트리거로 계속 추적 대상. <b>내일 루틴 재검증 필수</b></td>
+  </tr>
+  <tr>
+    <td>—</td>
+    <td class="up">신규 — 싱가포르 테마섹, 삼성전자·SK하이닉스 신규 투자 단행</td>
+    <td>오늘 상승 재료 중 하나로 확인. 규모·조건 등 세부는 미확보 → 익일 보완</td>
+  </tr>
+  <tr>
+    <td>—</td>
+    <td class="up">신규 — 모건스탠리, 최선호주 삼성전자→삼성전기 교체(목표 262만원)</td>
+    <td>오늘 최대 개별 촉매. Tier 1 1순위 편입 근거</td>
+  </tr>
+</table>
+</div>
+
+<!-- 부록 B -->
+<h2>부록 B. 직전 시나리오 자가평가</h2>
+<div class="scroll">
+<table>
+  <tr><th>8/13 오전 보고서 예측</th><th>실제 결과</th><th>판정</th></tr>
+  <tr>
+    <td>갭 점수 +4를 <b>실효 +2로 할인</b> — "미장 상승분을 한국이 이미 선반영했다"</td>
+    <td>시가 +2.96% 갭상승, 종가 <b>+3.56%</b>, 장중 최대 +4.81%</td>
+    <td class="down"><b>과소 평가.</b> 할인 논리 자체는 8/11 교훈의 정당한 적용이었으나, 이번엔 반대 방향으로 빗나갔다.
+        모건스탠리 톱픽 교체·테마섹 투자라는 <b>당일 신규 재료</b>가 있었고, 이는 전날 미장 반영분과 무관했다.
+        <b>교훈: 미장 반영도만으로 갭을 재단하지 말고, 당일 국내 발생 재료를 별도 항목으로 둘 것</b></td>
+  </tr>
+  <tr>
+    <td>Tier 1 5종목 전원 <b>눌림목 지정가 진입</b> 설정</td>
+    <td class="down"><b>5개 중 0개 체결</b><br>
+        · 삼성전자 246,000 → 저가 262,500 (미달)<br>
+        · 두산에너빌리티 78,500 → 저가 80,600 (미달)<br>
+        · 주성엔지니어링 168,000 → 저가 173,700 (미달)<br>
+        · 삼성SDI 470,000 → 저가 479,000 (미달)<br>
+        · 한미반도체 — 저가 221,500, 진입 조건 하회 없음</td>
+    <td class="down"><b>전량 기회 상실.</b> 5개 종목 모두 상승 마감했으므로 방향은 맞았고 실행만 실패했다.
+        강한 추세장에서 전 종목을 눌림목 조건부로 묶으면 아무것도 못 산다.
+        <b>개선: 추세 확인 시 최소 1~2종목은 시장가 분할 진입 경로를 남긴다</b> — 내일 시나리오 B에 이미 반영</td>
+  </tr>
+  <tr>
+    <td>"삼성전자 어제 +6.68%는 SOX +2.49%의 2.7배로 명백한 초과 반영, 시초 진입 금지"</td>
+    <td>오늘 추가 <b>+4.89%</b>, 268,000 마감. 목표 272,000에 −1.5% 근접</td>
+    <td class="down"><b>오판.</b> "초과 반영 = 되돌림"이라는 전제가 성립하지 않았다.
+        외국인 수급이 살아 있는 국면에서는 상대 강도 괴리가 조정이 아니라 <b>지속</b>으로 나타날 수 있다</td>
+  </tr>
+  <tr>
+    <td>"11:00 외국인 잠정 순매수 연속성이 최대 관전 포인트, 순매도 전환 시 C 선회"</td>
+    <td class="up">외국인 코스피 <b>+2조 951억</b>으로 3일 연속 순매수 유지</td>
+    <td class="ok"><b>적중.</b> 관전 포인트 설정이 정확했고 C 선회 트리거는 미발동. 내일도 동일 트리거를 유지한다</td>
+  </tr>
+  <tr>
+    <td>한화오션 Tier 1 제외 — "재료 유효하나 상대 강도 열위"</td>
+    <td>오늘 +0.67%, 지수 대비 −2.89%p 열위</td>
+    <td class="ok"><b>적중.</b> 제외 판단 유효. 조선→반도체 자금 이동이 오늘도 이어졌다</td>
+  </tr>
+</table>
+</div>
+
+<p class="note">
+  <b>이번 회차의 교훈 — 두 번 연속 방향을 반대로 틀렸다.</b><br>
+  8/11 보고서는 SOX 급락을 과대평가해 갭하락을 예상했다가 상승했고(과소 평가),
+  8/13 오전 보고서는 그 교훈을 적용해 갭 점수를 할인했다가 다시 과소 평가했다.
+  <b>직전 회차의 오류를 교정하려는 조정이 그 자체로 새로운 편향을 만든 사례</b>다.
+  근본 원인은 미장 등락률을 한국 갭의 주된 설명 변수로 쓴 데 있다.
+  오늘 상승의 절반 이상은 미장과 무관한 국내 발생 재료(증권사 톱픽 교체, 국부펀드 투자)였다.
+  <b>다음 회차부터 갭 판단 시 "미장 반영분"과 "당일 국내 재료"를 분리해 각각 점수화한다.</b>
+</p>
+
+<div class="note">
+  <b>데이터 한계 고지</b> — 본 보고서 작성 중 외부 데이터 소스(시세·뉴스·테마·공시 MCP)가 중단되어
+  다음 항목은 실측하지 못했다: <b>양 시장 거래대금, 국고채 금리, 프로그램매매, 선물 베이시스, 공매도 상위,
+  신고가/신저가 종목수, 상승/하락 종목 비율, 일부 개별 종목 종가, 이란·호르무즈 최신 동향, 미 7월 소매판매 일자.</b>
+  해당 항목은 추정하지 않고 "미확보"로 명시했으며, 익일 루틴에서 보완한다.
+  확보된 지수·수급·업종·상위 30종목 시세는 마감 확정치 기준이다.
+</div>
+
+<footer class="rep">
+  <div class="pub">발행: Chory &amp; Rochet · Market Desk</div>
+  <div>작성 2026-08-13 · 2026-08-13 정규장 마감(15:30) 기준 · 페어 루틴: 미국 야간 시황 및 한국 개장 대응(평일 07:30 KST)</div>
+  <div style="margin-top:9px">
+    본 보고서는 정보 제공 목적이며 투자 권유가 아닙니다. 모든 수치는 작성 시점에 확보 가능한 공개 자료에 근거하며,
+    미확보 항목은 추정하지 않고 명시했습니다. KRX·서울외국환중개 확정치와 차이가 날 수 있으며, 차이 발견 시 익일 루틴에서 정정합니다.
+    투자 결정과 그 결과에 대한 책임은 투자자 본인에게 있습니다.
+  </div>
+</footer>
+
+</div>
