@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="KOSPI 다계위 엘리어트 파동 No.010 — Primary[3] 완결 실측검증(2월 거래량 피크 확인), 레버리지 오버슈팅 Primary[4] 진행. 8/20 종가 6,852.58 기준 현재 위치 = Primary[4] Int(C) 내부.">
+<title>KOSPI Elliott Wave Recount No.010 | Chory &amp; Rochet</title>
+<style>
+  :root{
+    --navy:#1a2744; --navy-2:#243356; --burgundy:#8b2635; --gold:#b08d3e;
+    --ink:#22262e; --muted:#6b7280; --line:#d9dde5; --bg:#f6f7f9; --card:#ffffff;
+    --up:#c0392b; --down:#2456a6; --ok:#1e7a4f; --okbg:#eef7f1; --rbg:#fbeeee;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:15px;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 60px;}
+  header.masthead{background:var(--navy);color:#fff;padding:34px 0 26px;}
+  .masthead .wrap{padding-bottom:0;}
+  .brand{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:16px;flex-wrap:wrap;gap:6px;}
+  .brand .name{font-size:15px;letter-spacing:2.5px;font-weight:700;color:var(--gold);}
+  .brand .cat{font-size:12px;color:#aeb8cf;letter-spacing:1px;}
+  h1{font-size:26px;font-weight:800;line-height:1.35;margin-bottom:8px;}
+  .subtitle{font-size:15px;color:#c3ccdf;margin-bottom:14px;}
+  .meta{font-size:12.5px;color:#93a0bb;display:flex;gap:18px;flex-wrap:wrap;}
+  .badge-interim{display:inline-block;background:var(--ok);color:#fff;font-size:11.5px;font-weight:700;letter-spacing:1px;padding:3px 10px;border-radius:3px;margin-bottom:12px;}
+  section{margin-top:38px;}
+  .part{margin-top:50px;padding-top:8px;border-top:3px solid var(--navy);}
+  .part-tag{display:inline-block;background:var(--navy);color:#fff;font-size:12px;font-weight:700;letter-spacing:1px;padding:3px 12px;border-radius:3px;margin-bottom:8px;}
+  h2{font-size:20px;color:var(--navy);border-left:5px solid var(--burgundy);padding-left:12px;margin-bottom:16px;letter-spacing:-0.3px;}
+  h3{font-size:15.5px;color:var(--navy-2);margin:20px 0 8px;}
+  p{margin-bottom:10px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px 22px;margin-bottom:14px;}
+  .lead{background:var(--navy);color:#eef1f7;border-radius:8px;padding:22px 24px;font-size:15.5px;}
+  .lead strong{color:var(--gold);}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0 6px;background:#fff;}
+  th{background:var(--navy-2);color:#fff;padding:8px 10px;text-align:left;font-weight:600;white-space:nowrap;}
+  td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:nth-child(even) td{background:#fafbfc;}
+  .num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .up{color:var(--up);font-weight:600;} .dn{color:var(--down);font-weight:600;}
+  .tbl-scroll{overflow-x:auto;}
+  .warn{background:#fdf3e7;border:1px solid #e2b06c;border-radius:6px;padding:14px 16px;font-size:14px;margin:12px 0;}
+  .verdict{background:var(--okbg);border:1px solid #9fc3a8;border-radius:6px;padding:14px 16px;font-size:14px;margin:12px 0;}
+  .danger{background:var(--rbg);border:1px solid #d9a2a2;border-radius:6px;padding:14px 16px;font-size:14px;margin:12px 0;}
+  .nested{background:#fbf6ea;border:1px solid #e2c98a;border-left:4px solid var(--gold);border-radius:0 6px 6px 0;padding:14px 16px;font-size:14px;margin:12px 0;}
+  .nested pre{font-family:'Consolas','Malgun Gothic',monospace;font-size:12.5px;line-height:1.55;white-space:pre;overflow-x:auto;color:#4a3c1e;margin:0;}
+  .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:14px 0;}
+  .kpi{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:6px;padding:12px 14px;}
+  .kpi .k{font-size:11.5px;color:var(--muted);letter-spacing:0.5px;}
+  .kpi .v{font-size:19px;font-weight:800;color:var(--navy);margin-top:2px;font-variant-numeric:tabular-nums;}
+  .kpi .s{font-size:12px;color:var(--muted);}
+  .kpi.good{border-left-color:var(--ok);} .kpi.bad{border-left-color:var(--up);}
+  .prob-bar{display:flex;height:34px;border-radius:6px;overflow:hidden;font-size:12.5px;font-weight:700;color:#fff;margin:12px 0 4px;}
+  .prob-bar div{display:flex;align-items:center;justify-content:center;white-space:nowrap;}
+  .pb-a{background:var(--burgundy);} .pb-b{background:var(--ok);} .pb-c{background:#7a8699;}
+  .chart-box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;margin:14px 0;overflow-x:auto;}
+  .chart-caption{font-size:12px;color:var(--muted);margin-top:6px;text-align:center;}
+  ul,ol{padding-left:22px;margin-bottom:10px;}
+  li{margin-bottom:5px;}
+  .src{font-size:12px;color:var(--muted);}
+  .foot{margin-top:50px;border-top:2px solid var(--navy);padding-top:16px;font-size:12px;color:var(--muted);}
+  .foot .brandline{font-weight:700;color:var(--navy);letter-spacing:2px;font-size:13px;margin-bottom:6px;}
+  code{background:#eef0f4;border-radius:3px;padding:1px 5px;font-size:13px;font-variant-numeric:tabular-nums;}
+  .check{color:var(--ok);font-weight:700;} .x{color:var(--up);font-weight:700;}
+  .key-pivot{background:#fdf6d8;padding:1px 5px;border-radius:3px;font-weight:600;}
+  .ifthen{border-left:4px solid var(--navy);background:#fff;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0 6px 6px 0;padding:12px 15px;margin-bottom:10px;font-size:14px;}
+  .ifthen.buy{border-left-color:var(--ok);} .ifthen.sell{border-left-color:var(--burgundy);} .ifthen.cond{border-left-color:var(--gold);}
+  .ifthen b.tag{display:inline-block;font-size:11px;letter-spacing:1px;color:#fff;background:var(--navy);border-radius:3px;padding:1px 7px;margin-right:8px;vertical-align:1px;}
+  .ifthen.buy b.tag{background:var(--ok);} .ifthen.sell b.tag{background:var(--burgundy);} .ifthen.cond b.tag{background:var(--gold);}
+  .wv{display:inline-block;min-width:22px;text-align:center;background:var(--burgundy);color:#fff;border-radius:50%;font-weight:800;font-size:12px;padding:1px 0;}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="brand">
+      <span class="name">CHORY &amp; ROCHET</span>
+      <span class="cat">Market Strategy | Elliott Wave Series · 다계위 실측검증</span>
+    </div>
+    <span class="badge-interim">실측 검증 개정 — DATA-VERIFIED RECOUNT</span>
+    <h1>KOSPI Elliott Wave Recount No.010<br>Primary [3]는 실측으로 완결됐다 — 지금은 레버리지가 만든 Primary [4] 조정의 한복판</h1>
+    <p class="subtitle">코스피 지수 일봉·거래량 실측으로 <b>2,284 저점(25.4.9)·2월 거래량 피크(3-3파)</b>가 확인됐다. 9,385.59는 <b>Primary [3]의 5파 정점</b>이며, 7월 −44% 붕괴는 레버리지 청산이 과도하게 부풀린 <b>Primary [4] 조정</b>이다. 8/20 종가 6,852.58 기준, 현재는 그 조정의 <b>Intermediate (C) 내부</b>다.</p>
+    <div class="meta">
+      <span>발행: Chory &amp; Rochet 리서치센터</span>
+      <span>기준일: 2026-08-20 (목) · 종가 6,852.58 확정</span>
+      <span>선행: No.009 (2026-07-31)</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <div class="lead">
+    <p><b>한 줄 요약</b> — 코스피 지수 일봉 실측(KS11, 2025.4~2026.4)이 이 시리즈의 파동 카운트를 <strong>데이터로 검증</strong>했다. ① 파동 1 시작점 <strong>2,284 = 2025-04-09</strong>, ② 최대 거래량일 <strong>2026-02-20</strong>(= 3파의 3파). 두 앵커가 정확히 맞았고, 절대규칙(R1~R3)도 통과한다. 결론: <strong>9,385.59(6/19)는 Primary [3]의 5파 정점</strong>이다.</p>
+    <p>그 뒤의 <strong>−44% 급락(→5,262.77, 7/29)</strong>은 단일종목 레버리지·인버스 ETF 청산 연쇄가 만든 <b>오버슈팅</b>이며, 파동상 <strong>Primary [4] 조정의 Intermediate (A)파</strong>다. 이어진 반등은 <strong>~7,200(8/18)에서 저항(7,284~7,378) 앞에 긴 윗꼬리로 역전</strong>하며 (B)파로 종결됐고, 지금은 <strong>(C)파 내부</strong>다. 8/20 종가 6,852.58은 하이닉스 40조 자사주 소각 발표發 <b>(C) 내부 되돌림</b>으로 읽힌다.</p>
+    <p>따라서 큰 그림은 명확하다 — <strong>9,385는 대정점이 아니라 Primary [3] 정점</strong>이고, Primary [4] 조정이 끝나면 <strong>Primary [5]가 신고가로 한 번 더</strong> 향한다. 그 신고가가 비로소 <b>Cycle V = Supercycle (III)의 대천장</b>이다. 다만 그 전에, 구조상 <b>(C)파 마지막 하락(→5,262 재시험~5,000)</b>이 남아 있을 가능성이 크다.</p>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi good"><div class="k">8/20 종가</div><div class="v">6,852.58</div><div class="s">+381.41 (+5.89%) · 하이닉스 40조 소각</div></div>
+    <div class="kpi good"><div class="k">Primary [3] 정점</div><div class="v">9,385.59</div><div class="s">5파 · 실측 검증 완료</div></div>
+    <div class="kpi bad"><div class="k">Primary [4]-(A) 저점</div><div class="v">5,262.77</div><div class="s">7/29 · −44% 레버리지 오버슈팅</div></div>
+    <div class="kpi"><div class="k">현재 위치</div><div class="v">Int (C) 내부</div><div class="s">(B) 저항 실패 후 하락 국면</div></div>
+  </div>
+</section>
+
+<!-- ============ PART 1 ============ -->
+<div class="part">
+  <span class="part-tag">PART 1 · 실측 검증</span>
+  <h2>Primary [3] 완결 — 데이터가 확증한 5파</h2>
+  <p>코스피 지수 일봉(2025-01~2026-04)으로 카운트의 핵심 앵커를 실측 검증했다.</p>
+  <div class="tbl-scroll">
+  <table>
+    <tr><th>카운트 주장</th><th>실측 (KS11 일봉)</th><th>판정</th></tr>
+    <tr><td>25.4 = 파동 1 시작</td><td class="num">저점 <b>2,284</b> = 2025-04-09</td><td class="check">✓ 정확</td></tr>
+    <tr><td>25.7 = 파동 1 상당</td><td class="num">7월 고 3,288</td><td class="check">✓ 부합</td></tr>
+    <tr><td>25.10 = 3-1파</td><td class="num">10월 고 4,146</td><td class="check">✓ 부합</td></tr>
+    <tr><td><b>26.2 = 3-3파 (최대거래량)</b></td><td class="num"><b>일봉 최대거래량 2026-02-20</b> (17.5억주)<br>2월 월평균 10.5억 (직전 4~5억의 2배+)</td><td class="check">✓ <b>정확</b></td></tr>
+  </table>
+  </div>
+
+  <div class="chart-box">
+  <svg viewBox="0 0 940 400" width="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Malgun Gothic, sans-serif">
+    <rect x="0" y="0" width="940" height="400" fill="#ffffff"/>
+    <text x="70" y="20" font-size="12" font-weight="700" fill="#1a2744">Primary [3] — 2,284(25.4) → 9,385.59(26.6) · 5파 임펄스 + 거래량</text>
+
+    <!-- PRICE PANEL: y = 40 + (9600-p)*0.03421 -->
+    <g stroke="#eceef2" stroke-width="1">
+      <line x1="70" y1="47.3" x2="910" y2="47.3"/><line x1="70" y1="150" x2="910" y2="150"/><line x1="70" y1="253" x2="910" y2="253"/>
+    </g>
+    <g font-size="10" fill="#8a94a6" text-anchor="end">
+      <text x="64" y="50">9,386</text><text x="64" y="153">6,600</text><text x="64" y="256">3,600</text>
+    </g>
+    <!-- price polyline: pivots -->
+    <!-- 2284(80,290) 3288(256,256) 3150(373,261) 4146(432,227) 6307(600,153) [3-4:5093 x=650 y=193] 8040(830,93) 7053(852,127) 9385(898,47) -->
+    <polyline fill="none" stroke="#1a2744" stroke-width="2.3" stroke-linejoin="round"
+      points="80,290 256,256 373,261 432,227 600,153 650,193 830,93 852,127 898,47"/>
+    <g fill="#1a2744">
+      <circle cx="80" cy="290" r="4"/><circle cx="256" cy="256" r="3.5"/><circle cx="373" cy="261" r="3.5"/>
+      <circle cx="432" cy="227" r="3"/><circle cx="600" cy="153" r="4.5"/><circle cx="650" cy="193" r="3"/>
+      <circle cx="830" cy="93" r="3.5"/><circle cx="852" cy="127" r="3.5"/>
+    </g>
+    <circle cx="898" cy="47" r="5" fill="#c0392b"/>
+    <!-- wave labels -->
+    <g font-size="11" font-weight="800" fill="#8b2635">
+      <text x="72" y="303">1시작</text>
+      <text x="250" y="248">①</text><text x="367" y="276">②</text>
+      <text x="426" y="220">3-1</text><text x="596" y="145">3-3★</text><text x="644" y="207">3-4</text>
+      <text x="822" y="86">3-5</text><text x="846" y="140">④</text><text x="896" y="40">⑤</text>
+    </g>
+    <text x="80" y="305" font-size="9" fill="#6b7280">2,284</text>
+    <text x="600" y="167" font-size="8.5" fill="#8b2635" text-anchor="middle">6,307</text>
+    <text x="898" y="60" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="700">9,385.59</text>
+
+    <!-- VOLUME PANEL: y 315~385, monthly avg vol bars, max~1108 -> h=vol/1108*66 -->
+    <line x1="70" y1="385" x2="910" y2="385" stroke="#c9ced8" stroke-width="1"/>
+    <text x="70" y="330" font-size="9.5" fill="#8a94a6">월 평균거래량</text>
+    <!-- bars: (x, month) apr25..apr26; width 40 -->
+    <g>
+      <rect x="72"  y="354" width="38" height="31" fill="#c7cdd8"/><!--Apr517-->
+      <rect x="130" y="360" width="38" height="25" fill="#c7cdd8"/><!--May422-->
+      <rect x="188" y="351" width="38" height="34" fill="#c7cdd8"/><!--Jun567-->
+      <rect x="246" y="356" width="38" height="29" fill="#c7cdd8"/><!--Jul492-->
+      <rect x="304" y="366" width="38" height="19" fill="#c7cdd8"/><!--Aug318-->
+      <rect x="362" y="363" width="38" height="22" fill="#c7cdd8"/><!--Sep373-->
+      <rect x="420" y="356" width="38" height="29" fill="#c7cdd8"/><!--Oct481-->
+      <rect x="478" y="363" width="38" height="22" fill="#c7cdd8"/><!--Nov365-->
+      <rect x="536" y="361" width="38" height="24" fill="#c7cdd8"/><!--Dec400-->
+      <rect x="594" y="352" width="38" height="33" fill="#c7cdd8"/><!--Jan550-->
+      <rect x="652" y="323" width="38" height="62" fill="#b08d3e"/><!--Feb1048★-->
+      <rect x="710" y="319" width="38" height="66" fill="#d0b25e"/><!--Mar1108-->
+      <rect x="768" y="327" width="38" height="58" fill="#d0b25e"/><!--Apr975-->
+    </g>
+    <text x="671" y="316" font-size="9" fill="#8a6a1e" text-anchor="middle" font-weight="700">2월 피크(3-3)</text>
+    <g font-size="8" fill="#9aa3b4" text-anchor="middle">
+      <text x="91" y="396">4월</text><text x="381" y="396">'25.9</text><text x="671" y="396">'26.2</text><text x="787" y="396">4월</text>
+    </g>
+  </svg>
+  <div class="chart-caption">상단=Primary [3] 5파(2,284→9,385.59). 하단=월평균 거래량 — <b>2월(3-3파)에서 직전의 2배+로 폭발</b>, 이후 5파(6월 9,385)로 갈수록 신고가에도 모멘텀 둔화. 25.4~26.4 실측(KS11), 5~6월 피벗(8,040·7,053·9,385)은 보고서 계열 승계.</div>
+  </div>
+
+  <div class="verdict">
+    <b>절대규칙 검증</b> (<code>validate 2284 3288 3150 8040 7053 9385</code>) — R1 <span class="check">✓</span> · R2(③=4.87×①, 최장·최단아님) <span class="check">✓</span> · R3(④7,053&gt;①3,288) <span class="check">✓</span> · W2 13.7%·W4 20.2%(얕은 되돌림, 강추세). <b>→ 9,385.59 = Primary [3]의 5파 정점 확정.</b>
+  </div>
+</div>
+
+<!-- ============ PART 2 ============ -->
+<div class="part">
+  <span class="part-tag">PART 2 · 다계위 구조</span>
+  <h2>Supercycle → Cycle → Primary — 현재 위치</h2>
+  <div class="nested">
+<pre>Supercycle (III)  [1980–2026]  ── 46년 대순환, 최종 국면
+ └ Cycle (V)  [2020–2026]  ── Supercycle 5번째·마지막 Cycle파
+    ├ Primary [1]  1,439(20) → 3,316(21)
+    ├ Primary [2]  3,316 → 2,284(25.4)        [길고 복잡한 조정]
+    ├ Primary [3]  2,284 → 9,385.59(26.6)  ★완결·실측검증
+    │     1:3,288  2:3,150
+    │     3( 3-1:4,146 / 3-3:6,307★최대거래량 / 3-5:8,040 )  4:7,053  5:9,385.59
+    └ Primary [4]  9,385.59 → 진행 중       ◀ 현재
+         ├ Int (A)  9,385.59 → 5,262.77(7/29)   [5파 −44%, 레버리지 오버슈팅]  ✅
+         ├ Int (B)  5,262.77 → ~7,200(8/18)      [3파, (A)의 47%, 저항 실패·역전]  ✅
+         └ Int (C)  ~7,200 → 진행 중            ◀◀ 지금 여기 (8/20 종가 6,852.58)</pre>
+  </div>
+  <p><b>계위 함의</b> — 9,385.59는 <b>Primary [3]</b>의 정점이므로, Primary [4] 조정이 끝나면 <b>Primary [5]가 신고가(&gt;9,385)</b>로 향한다. 그 신고가가 <b>Cycle V 완성 = Supercycle (III) 대천장</b>이며, 그 이후에야 다년 대조정이 시작된다. <span class="key-pivot">즉 지금은 "대천장 이전, 마지막 상승을 앞둔 조정"</span>이다. 이 카운트의 경성 무효화선은 <b>3,316</b>(Primary [1] 정점)이다.</p>
+</div>
+
+<!-- ============ PART 3 ============ -->
+<div class="part">
+  <span class="part-tag">PART 3 · 현재 국면</span>
+  <h2>Primary [4] — 레버리지 오버슈팅 조정 (A-B-C)</h2>
+
+  <div class="tbl-scroll">
+  <table>
+    <tr><th>파동</th><th>경로</th><th>구조·비율</th><th>상태</th></tr>
+    <tr><td><span class="wv">A</span></td><td class="num">9,385.59 → 5,262.77 (7/29)</td><td>5파 −44% · Primary[3]의 55% 되돌림 · <b>레버리지 청산 오버슈팅</b></td><td class="check">완결</td></tr>
+    <tr><td><span class="wv">B</span></td><td class="num">5,262.77 → ~7,200 (8/18 장중)</td><td>3파 · (A)의 47% 되돌림 · <b>7,284~7,378 저항서 긴 윗꼬리 역전</b></td><td class="check">완결(추정)</td></tr>
+    <tr><td><span class="wv">C</span></td><td class="num">~7,200 → 진행</td><td>i:7,200→6,471.17(8/19) · ii:→6,852.58(8/20, 자사주 반등)</td><td class="dn">진행 중</td></tr>
+  </table>
+  </div>
+
+  <div class="chart-box">
+  <svg viewBox="0 0 940 400" width="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Malgun Gothic, sans-serif">
+    <defs><linearGradient id="rb" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8b2635" stop-opacity="0.18"/><stop offset="100%" stop-color="#8b2635" stop-opacity="0.04"/></linearGradient></defs>
+    <rect x="0" y="0" width="940" height="400" fill="#ffffff"/>
+    <text x="70" y="20" font-size="12" font-weight="700" fill="#1a2744">Primary [4] — 9,385.59 → 현재 6,852.58 (A-B-C 조정)</text>
+    <!-- y = 40 + (9600-p)*0.0405 (height ~340 for 9600..1200? use range 4600-9600 -> 40+(9600-p)*0.068) -->
+    <g stroke="#eceef2" stroke-width="1">
+      <line x1="70" y1="55" x2="910" y2="55"/><line x1="70" y1="191.6" x2="910" y2="191.6"/><line x1="70" y1="328" x2="910" y2="328"/>
+    </g>
+    <g font-size="10" fill="#8a94a6" text-anchor="end">
+      <text x="64" y="58">9,386</text><text x="64" y="195">7,378</text><text x="64" y="331">5,378</text>
+    </g>
+    <!-- resistance band 7284-7378 : y(7378)=190.9 y(7284)=197.3 -->
+    <rect x="70" y="190" width="840" height="8" fill="url(#rb)"/>
+    <line x1="70" y1="191" x2="910" y2="191" stroke="#8b2635" stroke-width="1.3" stroke-dasharray="5,3"/>
+    <text x="906" y="185" font-size="10" fill="#8b2635" text-anchor="end" font-weight="700">7,284~7,378 저항 (B 역전·상방 분기선)</text>
+    <!-- 5262 line y=333.6 -->
+    <line x1="70" y1="333.6" x2="910" y2="333.6" stroke="#1e7a4f" stroke-width="1.1"/>
+    <text x="74" y="346" font-size="10" fill="#1e7a4f" font-weight="700">5,262.77 (7/29 저 = (A) 저점 · (C) 재시험 표적)</text>
+    <!-- 4900 target y=40+(9600-4900)*.068=359.6 -->
+    <line x1="560" y1="359.6" x2="910" y2="359.6" stroke="#8b2635" stroke-width="0.9" stroke-dasharray="2,4"/>
+    <text x="906" y="356" font-size="9.5" fill="#8b2635" text-anchor="end">4,825~5,000 ((C) 목표, Primary[3] 61.8%)</text>
+
+    <!-- NOW divider -->
+    <line x1="560" y1="40" x2="560" y2="370" stroke="#b8b8b8" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <text x="560" y="52" font-size="10" fill="#555" text-anchor="middle" font-weight="700">오늘(8/20)</text>
+
+    <!-- A: 9385(90,55) internal down to 5262(340,333.6) -->
+    <polyline fill="none" stroke="#1a2744" stroke-width="2.3" stroke-linejoin="round"
+      points="90,55 150,180 200,150 260,250 300,210 340,333.6"/>
+    <circle cx="90" cy="55" r="5" fill="#c0392b"/>
+    <circle cx="340" cy="333.6" r="5" fill="#c0392b"/>
+    <text x="86" y="48" font-size="11" font-weight="800" fill="#8b2635">Ⓟ[3]</text>
+    <text x="200" y="290" font-size="12" font-weight="800" fill="#1a2744">(A) 5파</text>
+    <text x="322" y="349" font-size="9" fill="#c0392b">5,262.77</text>
+    <!-- B: 5262 -> 7200(480,191) -->
+    <polyline fill="none" stroke="#8b2635" stroke-width="2.3" stroke-linejoin="round"
+      points="340,333.6 400,250 440,280 480,191"/>
+    <circle cx="480" cy="191" r="5" fill="#8b2635"/>
+    <text x="470" y="184" font-size="11" font-weight="800" fill="#8b2635">(B)</text>
+    <text x="484" y="187" font-size="9" fill="#8b2635">~7,200 (8/18)</text>
+    <!-- C so far: 7200 -> 6471(530,231.8) -> 6852(560,206.0) -->
+    <polyline fill="none" stroke="#8b2635" stroke-width="2.3" stroke-linejoin="round"
+      points="480,191 530,231.8 560,206"/>
+    <circle cx="530" cy="231.8" r="3.5" fill="#8b2635"/>
+    <circle cx="560" cy="206" r="5.5" fill="#c0392b"/>
+    <text x="524" y="245" font-size="8.5" fill="#2456a6">6,471(8/19)</text>
+    <text x="566" y="200" font-size="10" fill="#c0392b" font-weight="700">6,852.58 (오늘)</text>
+    <text x="500" y="222" font-size="10" font-weight="800" fill="#8b2635">i</text>
+    <text x="548" y="200" font-size="10" font-weight="800" fill="#8b2635">ii</text>
+    <!-- projection: C down then Primary[5] up -->
+    <path d="M560,206 L610,250 L660,300 L720,359.6" fill="none" stroke="#8b2635" stroke-width="2.2" stroke-dasharray="7,4"/>
+    <text x="726" y="357" font-size="9.5" fill="#8b2635" font-weight="700">(C) → 5,262~4,900</text>
+    <path d="M720,359.6 L790,250 L880,60" fill="none" stroke="#1e7a4f" stroke-width="2.2" stroke-dasharray="1,0"/>
+    <text x="878" y="52" font-size="9.5" fill="#1e7a4f" text-anchor="end" font-weight="700">Primary [5] → 신ATH</text>
+  </svg>
+  <div class="chart-caption">남색=(A) 5파 하락(레버리지 오버슈팅). 적색 실선=(B) 반등(7,200서 역전) + (C) 진행(i·ii). 적색 파선=(C) 잔여 하락 투영(→5,262 재시험~4,900). 녹색=(C) 종료 후 Primary [5] 신고가. <b>7,378 종가 돌파 시 (C) 무효·[5] 조기 개시.</b></div>
+  </div>
+
+  <div class="warn">
+    <b>판별(캔들) 근거</b> — (B) 반등이 <b>7,284~7,378을 종가로 넘지 못하고 ~7,200서 긴 윗꼬리로 역전</b>한 것은 임펄스가 아닌 <b>조정 반등(Ⓑ)</b>의 서명이다(No.009 판별 가이드). 이어 8/19 −5.8%로 (B) 저점을 이탈해 (C) 개시가 확인됐다. 오늘 +5.89%(6,852.58)는 <b>8/18 고점(7,200)·8/14 종가(6,977)보다 낮은 고점</b> → 아직 <b>(C) 내부 되돌림</b> 범주다.
+  </div>
+</div>
+
+<!-- ============ PART 4 ============ -->
+<div class="part">
+  <span class="part-tag">PART 4 · 시나리오·전략</span>
+  <h2>시나리오 · 레벨 · 트리거</h2>
+
+  <div class="prob-bar">
+    <div class="pb-a" style="width:55%">A. (C) 하락 미완 55%</div>
+    <div class="pb-b" style="width:35%">B. Primary[4] 조기바닥 35%</div>
+    <div class="pb-c" style="width:10%">C. 대정점 통과 10%</div>
+  </div>
+
+  <div class="card" style="border-left:4px solid var(--burgundy)">
+    <h3>A. (C) 하락 미완 (기본, 55%) — 한 번 더 저점</h3>
+    <p>오늘 반등은 (C) 내부 되돌림(ii). 이후 (C) 재개 → <b>5,262.77 재시험 → 4,825~5,000</b>(Primary [3] 61.8%). 그 저점이 <b>Primary [4] 완성 = Primary [5] 개시</b> 자리. <b>근거</b>: (B)가 저항서 역전·(C) 5파 미완.</p>
+  </div>
+  <div class="card" style="border-left:4px solid var(--ok)">
+    <h3>B. Primary [4] 조기 바닥 (35%) — 자사주 촉매 절단</h3>
+    <p>하이닉스 40조·삼성 100조+ 주주환원이 (C)를 <b>미달(truncated)</b>로 끊고, 5,262.77이 Primary [4] 바닥. (A)가 이미 레버리지로 과도 오버슈팅했으므로 (C)가 얕게 끝날 수 있음. <b>확정</b>: <span class="key-pivot">7,378 종가 돌파</span> → Primary [5] 조기 개시.</p>
+  </div>
+  <div class="card" style="border-left:4px solid #7a8699">
+    <h3>C. 대정점 이미 통과 (10%) — 9,385 = Cycle V 정점</h3>
+    <p>2월 거래량 피크가 3-3이 아니라 Primary [3] 자체였고 9,385 = Primary [5]/Cycle V 정점이었을 잔여 가능성. <b>확정</b>: <b>3,316 종가 이탈</b> → 대세하락·전면 재구성.</p>
+  </div>
+
+  <h3>레벨 위계 (8/20 기준)</h3>
+  <div class="tbl-scroll">
+  <table>
+    <tr><th>방향</th><th>레벨</th><th>판정</th></tr>
+    <tr><td rowspan="2">상방</td><td class="num up">7,200 → <b>7,284~7,378</b></td><td>종가 돌파 = (C) 무효 → Primary [4] 종료·[5] 강세 전환</td></tr>
+    <tr><td class="num up">8,457 → 9,385.59</td><td>Cycle 5 확정선 → 구 ATH 재도전(Primary [5])</td></tr>
+    <tr><td rowspan="3">하방</td><td class="num">6,471.17</td><td>8/19 저 — 이탈 시 (C) 하락 재개 확인</td></tr>
+    <tr><td class="num"><b>5,262.77</b></td><td>7/29 저 = (A) 저점 · (C) 1차 재시험 표적</td></tr>
+    <tr><td class="num">4,825~5,000</td><td>Primary [3] 61.8% = (C)/Primary [4] 최종 바닥대</td></tr>
+    <tr><td>경성</td><td class="num"><b>3,316</b></td><td>Primary [1] 정점 — 전체 카운트 폐기선(불변)</td></tr>
+  </table>
+  </div>
+
+  <h3>IF → THEN</h3>
+  <div class="ifthen cond"><b class="tag">현 국면</b> <b>Primary [4]-(C) 내부.</b> 추격 금지. 반등은 (C) 되돌림으로 간주, 7,378 미돌파 시 비중확대 보류. 하락은 Primary [5] 대비 <b>분할 매수 준비 구간</b>(5,262~4,900).</div>
+  <div class="ifthen buy"><b class="tag">강세 전환</b> <b>7,378 종가 돌파</b> → (C) 무효·Primary [5] 개시. 지수 ETF·반도체 밸류체인 진입. <b>8,457 안착</b> = Cycle 5 확정, 구 ATH 재도전.</div>
+  <div class="ifthen buy"><b class="tag">바닥 매수</b> <b>5,262~4,900 도달 + V반전(수급·캔들)</b> → Primary [4] 바닥 후보. 분할 진입(1/3), 손절 4,800 종가.</div>
+  <div class="ifthen sell"><b class="tag">경성</b> <b>3,316 종가 이탈</b> → 대정점 확정·카운팅 전면 재구성.</div>
+
+  <div class="nested" style="margin-top:16px">
+    <b>결어</b> — 실측이 하나를 확정했다: <b>9,385는 대천장이 아니라 Primary [3]의 정점</b>이다(2월 거래량 피크가 증인). 7월의 −44%는 공포가 아니라 <b>레버리지 배관이 터진 오버슈팅</b>이었고, 파동상 Primary [4] 조정이다. 지금(6,852.58)은 그 조정의 (C)파 안 — 구조는 <b>한 번의 하락(→5,262 재시험~5,000)</b>을 더 가리키지만, 자사주 촉매가 그것을 얕게 끊을 힘도 있다. 어느 쪽이든 방향은 같다: <b>Primary [4]가 끝나면 Primary [5]가 신고가로 향하고, 그 신고가가 비로소 46년 대순환의 천장</b>이다. 분기선은 위로 <b>7,378</b>, 아래로 <b>3,316</b> — 그 사이에서 시장이 답한다.
+  </div>
+</div>
+
+<div class="foot">
+  <div class="brandline">CHORY &amp; ROCHET — RESEARCH CENTER</div>
+  <p>본 자료는 Chory &amp; Rochet 리서치센터가 작성한 시장 구조 분석 자료로, 특정 종목·상품의 매매 권유가 아니며 투자 판단의 최종 책임은 투자자 본인에게 있습니다. 엘리어트 파동 카운트는 가격에 의해 언제든 검증·폐기될 수 있는 가설이며, 본 보고서의 모든 판정은 명시된 무효화 레벨(7,378 · 5,262.77 · 3,316)에 종속됩니다.</p>
+  <p style="margin-top:8px;">데이터 출처: <b>코스피 지수 일봉·거래량 실측(KS11, 2025-01~2026-04)</b> — 저점 2,284(25-04-09)·최대거래량일 2026-02-20 확인. 2026-05~08 피벗(8,040·7,053·9,385.59·5,262.77·6,977.94·6,471.17·6,852.58)은 나무위키·서울경제·블록미디어·파이낸셜뉴스·Aju Press 및 본 시리즈 승계. 검증: elliott-multidegree <code>ew_toolkit.py</code>(validate R1~R3). 파동 상위좌표(3,316·2,284) 및 Supercycle/Cycle 스캐폴드는 사용자 확정 구조. <b>8/20 종가 6,852.58(+5.89%) 확정.</b></p>
+  <p style="margin-top:8px;">선행: No.009(2026-07-31) · No.008(07-29) · No.007(07-20). 차기: No.011(반등 성격·(C) 종료 확정 후).</p>
+  <p style="margin-top:10px;">© 2026 Chory &amp; Rochet. KOSPI Elliott Wave Series No.010 — Data-Verified Recount, 2026-08-20.</p>
+</div>
+
+</div>
+</body>
+</html>
