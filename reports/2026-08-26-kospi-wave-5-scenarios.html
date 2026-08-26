@@ -1,0 +1,376 @@
+<title>코스피 5개 시나리오 경로</title>
+<style>
+:root{--bg:#f3f4f7;--surface:#fff;--surface-2:#eceff4;--border:#d7dbe3;--ink:#1b2030;--muted:#666f83;
+--navy:#1a2744;--gold:#9c7a2e;--grid:#e6e9ef;
+--up:#1c7a4d;--flat:#9c6f13;--down:#b8283a;--bear:#7d1f2c;--hist:#5b6478;
+--okbg:#e8f5ee;--okln:#a9d3bb;--badbg:#fcebec;--badln:#eab3b9;
+--shadow:0 1px 2px rgba(20,24,38,.04),0 8px 24px -12px rgba(20,24,38,.12);}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+--bg:#0f1220;--surface:#171b2c;--surface-2:#1e2337;--border:#2c3350;--ink:#e8eaf3;--muted:#9aa3bf;
+--navy:#151d33;--gold:#c9a85a;--grid:#262c46;
+--up:#4fbd88;--flat:#d9ab4a;--down:#e5717f;--bear:#f08a96;--hist:#8e97ae;
+--okbg:#122a20;--okln:#2c5a41;--badbg:#2c1418;--badln:#5c2730;
+--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px -12px rgba(0,0,0,.5);}}
+:root[data-theme="dark"]{
+--bg:#0f1220;--surface:#171b2c;--surface-2:#1e2337;--border:#2c3350;--ink:#e8eaf3;--muted:#9aa3bf;
+--navy:#151d33;--gold:#c9a85a;--grid:#262c46;
+--up:#4fbd88;--flat:#d9ab4a;--down:#e5717f;--bear:#f08a96;--hist:#8e97ae;
+--okbg:#122a20;--okln:#2c5a41;--badbg:#2c1418;--badln:#5c2730;
+--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px -12px rgba(0,0,0,.5);}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.6;font-size:15px;
+font-family:'Noto Sans KR','Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif}
+.wrap{max-width:1280px;margin:0 auto;padding:0 20px 56px}
+header.mast{background:var(--navy);color:#eef1f8;padding:26px 0 20px;margin-bottom:20px}
+header.mast .wrap{padding-bottom:0}
+.brandline{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--gold);
+padding-bottom:8px;margin-bottom:13px;flex-wrap:wrap;gap:6px}
+.brandline .name{font-size:13.5px;letter-spacing:2.5px;font-weight:700;color:var(--gold)}
+.brandline .cat{font-size:11.5px;color:#a9b2c9;letter-spacing:.5px}
+h1{font-size:23px;font-weight:800;margin:0 0 8px;line-height:1.35}
+.sub{font-size:14px;color:#c4cbdc;margin-bottom:11px;max-width:80ch}
+.meta{font-size:12px;color:#8f9ab8;display:flex;gap:18px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px;margin-bottom:22px}
+.card{margin:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;
+box-shadow:var(--shadow);padding:13px 14px 11px;border-top:4px solid var(--border)}
+.card.up{border-top-color:var(--up)}.card.flat{border-top-color:var(--flat)}
+.card.down{border-top-color:var(--down)}.card.bear{border-top-color:var(--bear)}
+figcaption{display:flex;align-items:baseline;gap:8px;margin-bottom:5px}
+.sid{font-size:12px;font-weight:800;letter-spacing:.5px;color:var(--muted)}
+.sname{font-size:14.5px;font-weight:700;flex:1;line-height:1.3}
+.sprob{font-size:18px;font-weight:800;font-variant-numeric:tabular-nums}
+.card.up .sprob{color:var(--up)}.card.flat .sprob{color:var(--flat)}
+.card.down .sprob{color:var(--down)}.card.bear .sprob{color:var(--bear)}
+.smeta{display:flex;gap:7px;margin-bottom:8px;flex-wrap:wrap}
+.wv,.br{font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;border:1px solid var(--border);
+background:var(--surface-2);color:var(--muted)}
+.br.hold{color:var(--up);background:var(--okbg);border-color:var(--okln)}
+.br.brk{color:var(--down);background:var(--badbg);border-color:var(--badln)}
+svg{display:block;width:100%;height:auto}
+.starget{font-size:12.5px;color:var(--muted);margin-top:7px;padding-top:7px;border-top:1px solid var(--border);
+font-variant-numeric:tabular-nums}
+.mark{stroke-width:1.5;stroke-dasharray:6 3}
+.mark.sup{stroke:var(--up)}.mark.brk{stroke:var(--down)}
+.mkb.sup{fill:var(--up)}.mkb.brk{fill:var(--down)}
+.mkt{font-size:9.5px;font-weight:700;fill:#fff;text-anchor:middle}
+.ref{stroke:var(--grid);stroke-width:1;stroke-dasharray:3 3}
+.key{stroke:var(--gold);stroke-width:1.5;stroke-dasharray:5 3}
+.reft{font-size:9.5px;fill:var(--muted);font-variant-numeric:tabular-nums}
+.keyt{fill:var(--gold);font-weight:700}
+.hist{stroke:var(--hist);stroke-width:1.7;stroke-linejoin:round;opacity:.75}
+.now{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 3;opacity:.6}
+.nowt{font-size:9.5px;fill:var(--muted);text-anchor:middle}
+.proj{stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:7 4}
+.proj.up{stroke:var(--up)}.proj.flat{stroke:var(--flat)}
+.proj.down{stroke:var(--down)}.proj.bear{stroke:var(--bear)}
+.dot.up,.bdg.up,.arw.up{fill:var(--up)}.dot.flat,.bdg.flat,.arw.flat{fill:var(--flat)}
+.dot.down,.bdg.down,.arw.down{fill:var(--down)}.dot.bear,.bdg.bear,.arw.bear{fill:var(--bear)}
+.bdgt{font-size:10.5px;font-weight:700;fill:#fff;text-anchor:middle}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:12.5px;color:var(--muted);margin-bottom:20px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:18px;height:3px;border-radius:2px;display:inline-block}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;
+box-shadow:var(--shadow);padding:17px 19px;margin-bottom:16px}
+.panel h2{font-size:16px;margin:0 0 10px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;font-size:10.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);
+padding:6px 9px;border-bottom:1px solid var(--border);font-weight:600}
+td{padding:8px 9px;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+tr.hl td{background:var(--surface-2)}
+.cf{color:var(--gold);font-weight:700;font-size:11.5px}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.split{grid-template-columns:1fr}}
+.box{border-radius:8px;padding:12px 14px;border:1px solid;font-size:13.5px}
+.box.ok{background:var(--okbg);border-color:var(--okln)}
+.box.bad{background:var(--badbg);border-color:var(--badln)}
+.box b{display:block;margin-bottom:5px;font-size:13px}
+
+.secttl{font-size:17px;margin:22px 0 12px;padding-bottom:7px;border-bottom:2px solid var(--navy)}
+.stem{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;
+padding:10px 13px;font-size:14px;font-variant-numeric:tabular-nums;margin-bottom:10px}
+.fork{font-size:13.5px;color:var(--muted);margin-bottom:13px;max-width:88ch}
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.split2{grid-template-columns:1fr}}
+.branch{border:1px solid var(--border);border-radius:10px;padding:12px 14px;background:var(--surface)}
+.branch.three{border-left:4px solid var(--flat)}
+.branch.five{border-left:4px solid var(--down)}
+.bt{font-size:14.5px;font-weight:700;margin-bottom:3px}
+.bd{font-size:12.5px;color:var(--muted);margin-bottom:9px;line-height:1.5}
+.branch ul{list-style:none;margin:0;padding:0}
+.branch li{font-size:13.5px;padding:5px 0;border-top:1px solid var(--border);display:flex;
+align-items:baseline;gap:8px}
+.branch li:first-child{border-top:none}
+.branch s{color:var(--muted)}
+.tag{font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:99px;color:#fff;flex:none;
+min-width:26px;text-align:center}
+.tag.s1{background:var(--up)}.tag.s2{background:var(--flat)}
+.tag.s3,.tag.s4{background:var(--down)}.tag.s5{background:var(--bear)}
+.tag.dead{background:var(--muted)}
+.notes{margin-top:13px;padding-top:11px;border-top:1px solid var(--border)}
+.notes p{margin:0 0 7px;font-size:13px;color:var(--muted);line-height:1.6;max-width:92ch}
+.notes p:last-child{margin-bottom:0}
+.notes b{color:var(--ink)}
+.foot{margin-top:22px;border-top:2px solid var(--navy);padding-top:13px;font-size:11.5px;color:var(--muted)}
+.foot .b{font-weight:700;color:var(--ink);letter-spacing:1.5px;font-size:12px;margin-bottom:5px}
+</style>
+<header class="mast"><div class="wrap">
+<div class="brandline"><span class="name">CHORY &amp; ROCHET</span>
+<span class="cat">Market Strategy | Elliott Wave · 시나리오 경로</span></div>
+<h1>코스피 5개 시나리오 — 앞으로의 경로</h1>
+<p class="sub">6/19~7/29 하락의 파동 구조에서 도출된 다섯 갈래입니다.
+다섯 차트는 <b>같은 로그 축(3,700~9,800)</b>과 같은 실측 구간을 씁니다.
+금색 파선 <b>5,263</b>을 깨느냐가 실무상 유일한 분류축입니다.</p>
+<div class="meta"><span>정점 9,385.59 (6/19)</span><span>저점 5,262.77 (7/29)</span>
+<span>반등 정점 7,216.62 (8/18)</span><span>라이브 6,807.78 (8/26 장중)</span></div>
+</div></header>
+<div class="wrap">
+
+<div class="panel"><h2>코스피 하락 파동 분석 (9,385 → 5,262)과 향후 시나리오</h2>
+<div class="stem"><b>하락 6/19 9,385.59 → 7/29 5,262.77</b> · −43.93% · 27거래일</div>
+<div class="fork">분절 수는 <b>확정되지 않습니다</b> — 3분절·5분절 라벨 모두 절대규칙 R1~R3를 통과하고,
+로그 피보나치도 양쪽 다 부합합니다. 그래서 두 갈래를 모두 열어야 합니다.</div>
+<div class="split2">
+  <div class="branch three">
+    <div class="bt">하락이 <b>3분절</b>이면</div>
+    <div class="bd">완결된 조정 하나 → 그 자체로는 <b>종료를 확정하지 못함</b></div>
+    <ul>
+      <li><span class="tag s1">S1</span>조정 전체 완료 → 새 임펄스</li>
+      <li><span class="tag dead">✗</span><s>대형 플랫의 A</s> — <b>사망</b></li>
+      <li><span class="tag s2">S2</span>대형 삼각형의 A</li>
+      <li><span class="tag s3">S3</span>복합조정의 W</li>
+    </ul>
+  </div>
+  <div class="branch five">
+    <div class="bt">하락이 <b>5분절</b>이면</div>
+    <div class="bd">조정 <b>미완이 확정</b> — 플랫·삼각형은 A가 three여야 하므로 배제</div>
+    <ul>
+      <li><span class="tag s4">S4</span>대형 지그재그의 A</li>
+      <li><span class="tag s5">S5</span>하락 임펄스의 1파 <b>(유일하게 조정 아님)</b></li>
+    </ul>
+  </div>
+</div>
+<div class="notes">
+<p><b>플랫이 죽은 이유</b> — 플랫은 B가 A의 90% 이상(<b>8,858</b>)을 되돌려야 합니다.
+8/18 반등은 <b>7,216.62</b>(54.6%)에서 반전했습니다. 되살리려면 지금부터 +23%가 필요합니다.</p>
+<p><b>정보의 비대칭</b> — <b>5분절이면</b> 조정 미완이 거의 확정됩니다(조정은 자기 계위에서 five로 끝나지 않음).
+<b>3분절이어도</b> 조정 종료는 전혀 확정되지 않습니다. 분절 수는 <b>한 방향으로만</b> 결정적입니다.</p>
+</div>
+</div>
+
+<div class="panel"><h2>한 장 비교</h2>
+<table>
+<tr><th>시나리오</th><th>현재 파동</th><th>조정인가</th><th class="n">5,263</th><th class="n">다음 목표</th><th class="n">무효화선</th><th class="n">확률</th></tr>
+<tr><td><b>S1</b> 조정 완료 → 새 상승</td><td>②파</td><td>완료</td><td class="n">방어</td><td class="n">8,777 ↑</td><td class="n">5,263 (−22.7%)</td><td class="n"><b>43%</b></td></tr>
+<tr><td><b>S2</b> 대형 삼각형</td><td>B파</td><td>진행</td><td class="n">방어</td><td class="n">수개월 횡보</td><td class="n">8,360 / 5,263</td><td class="n">8%</td></tr>
+<tr><td><b>S3</b> 복합조정</td><td><b>X파</b></td><td>진행</td><td class="n">이탈</td><td class="n">4,047</td><td class="n">느슨</td><td class="n">12%</td></tr>
+<tr><td><b>S4</b> 대형 지그재그</td><td>B파</td><td>진행</td><td class="n">이탈</td><td class="n">5,047~4,047</td><td class="n"><b>8,293 (+21.8%)</b></td><td class="n"><b>22%</b></td></tr>
+<tr><td><b>S5</b> 하락 임펄스</td><td>2파</td><td><b>추세전환</b></td><td class="n">이탈</td><td class="n">4,047 → 2,830</td><td class="n">9,386 (+37.9%)</td><td class="n">15%</td></tr>
+</table></div>
+
+<h2 class="secttl">다섯 시나리오의 경로</h2>
+<div class="grid"><figure class="card up">
+  <figcaption>
+    <span class="sid">S1</span><span class="sname">조정 완료 → 새 상승</span>
+    <span class="sprob">43%</span>
+  </figcaption>
+  <div class="smeta"><span class="wv">현재 ②파</span><span class="br hold">5,263 방어</span></div>
+  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S1 경로"><line x1="8" y1="36.8" x2="342.0" y2="36.8" class="ref"/>
+<text x="347.0" y="40.2" class="reft reft">9,386 전고</text>
+<line x1="8" y1="102.7" x2="342.0" y2="102.7" class="ref"/>
+<text x="347.0" y="106.1" class="reft reft">7,217</text>
+<line x1="8" y1="181.7" x2="342.0" y2="181.7" class="key"/>
+<text x="347.0" y="185.1" class="reft keyt">5,263</text>
+<line x1="8" y1="132.7" x2="342.0" y2="132.7" class="mark sup"/>
+<rect x="11" y="116.7" width="81.6" height="14" rx="3" class="mkb sup"/>
+<text x="51.8" y="127.2" class="mkt">1차 지지 6,401</text>
+<line x1="8" y1="164.8" x2="342.0" y2="164.8" class="mark sup"/>
+<rect x="11" y="148.8" width="81.6" height="14" rx="3" class="mkb sup"/>
+<text x="51.8" y="159.3" class="mkt">최종 한계 5,631</text>
+<polyline points="8.0,36.8 60.2,130.8 63.5,95.5 92.9,181.7 109.2,122.2 115.7,142.4 135.3,102.7 138.6,132.7 145.1,111.9 151.6,132.4 151.6,117.3" class="hist" fill="none"/>
+<line x1="151.6" y1="22" x2="151.6" y2="270" class="now"/>
+<text x="151.6" y="18" class="nowt">오늘</text>
+<polyline points="151.6,117.3 170.7,124.3 197.3,102.7 250.6,53.6 284.9,71.3 342.0,31.2" class="proj up" fill="none"/>
+<circle cx="197.3" cy="102.7" r="3" class="dot up"/>
+<rect x="199.3" y="79.7" width="67.0" height="15" rx="3.5" class="bdg up"/>
+<text x="232.8" y="90.7" class="bdgt">7,217 돌파</text>
+<circle cx="250.6" cy="53.6" r="3" class="dot up"/>
+<rect x="252.6" y="30.6" width="18.0" height="15" rx="3.5" class="bdg up"/>
+<text x="261.6" y="41.6" class="bdgt">③</text>
+<circle cx="284.9" cy="71.3" r="3" class="dot up"/>
+<rect x="286.9" y="76.3" width="18.0" height="15" rx="3.5" class="bdg up"/>
+<text x="295.9" y="87.3" class="bdgt">④</text>
+<circle cx="342.0" cy="31.2" r="3" class="dot up"/>
+<rect x="324.0" y="8.2" width="18.0" height="15" rx="3.5" class="bdg up"/>
+<text x="333.0" y="19.2" class="bdgt">⑤</text></svg>
+  <div class="starget">1차 지지 6,401 · 최종 5,631 · 무효 5,263</div>
+</figure>
+<figure class="card flat">
+  <figcaption>
+    <span class="sid">S2</span><span class="sname">대형 삼각형</span>
+    <span class="sprob">8%</span>
+  </figcaption>
+  <div class="smeta"><span class="wv">현재 B파</span><span class="br hold">5,263 방어</span></div>
+  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S2 경로"><line x1="8" y1="36.8" x2="342.0" y2="36.8" class="ref"/>
+<text x="347.0" y="40.2" class="reft reft">9,386 전고</text>
+<line x1="8" y1="102.7" x2="342.0" y2="102.7" class="ref"/>
+<text x="347.0" y="106.1" class="reft reft">7,217</text>
+<line x1="8" y1="181.7" x2="342.0" y2="181.7" class="key"/>
+<text x="347.0" y="185.1" class="reft keyt">5,263</text>
+<line x1="8" y1="132.7" x2="342.0" y2="132.7" class="mark brk"/>
+<rect x="11" y="116.7" width="81.6" height="14" rx="3" class="mkb brk"/>
+<text x="51.8" y="127.2" class="mkt">1차 이탈 6,401</text>
+<line x1="8" y1="165.9" x2="342.0" y2="165.9" class="mark sup"/>
+<rect x="11" y="149.9" width="75.0" height="14" rx="3" class="mkb sup"/>
+<text x="48.5" y="160.4" class="mkt">C 하한 5,606</text>
+<polyline points="8.0,36.8 60.2,130.8 63.5,95.5 92.9,181.7 109.2,122.2 115.7,142.4 135.3,102.7 138.6,132.7 145.1,111.9 151.6,132.4 151.6,117.3" class="hist" fill="none"/>
+<line x1="151.6" y1="22" x2="151.6" y2="270" class="now"/>
+<text x="151.6" y="18" class="nowt">오늘</text>
+<polyline points="151.6,117.3 168.8,105.0 216.3,153.1 262.0,115.7 303.9,135.9 342.0,94.7" class="proj flat" fill="none"/>
+<circle cx="168.8" cy="105.0" r="3" class="dot flat"/>
+<rect x="170.8" y="82.0" width="18.0" height="15" rx="3.5" class="bdg flat"/>
+<text x="179.8" y="93.0" class="bdgt">B</text>
+<circle cx="216.3" cy="153.1" r="3" class="dot flat"/>
+<rect x="218.3" y="158.1" width="18.0" height="15" rx="3.5" class="bdg flat"/>
+<text x="227.3" y="169.1" class="bdgt">C</text>
+<circle cx="262.0" cy="115.7" r="3" class="dot flat"/>
+<rect x="264.0" y="92.7" width="18.0" height="15" rx="3.5" class="bdg flat"/>
+<text x="273.0" y="103.7" class="bdgt">D</text>
+<circle cx="303.9" cy="135.9" r="3" class="dot flat"/>
+<rect x="305.9" y="140.9" width="18.0" height="15" rx="3.5" class="bdg flat"/>
+<text x="314.9" y="151.9" class="bdgt">E</text></svg>
+  <div class="starget">1차 이탈 6,401 · C 하한 5,606 · 5,263 방어</div>
+</figure>
+<figure class="card down">
+  <figcaption>
+    <span class="sid">S3</span><span class="sname">복합조정 → Y파</span>
+    <span class="sprob">12%</span>
+  </figcaption>
+  <div class="smeta"><span class="wv">현재 X파</span><span class="br brk">5,263 이탈</span></div>
+  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S3 경로"><line x1="8" y1="36.8" x2="342.0" y2="36.8" class="ref"/>
+<text x="347.0" y="40.2" class="reft reft">9,386 전고</text>
+<line x1="8" y1="102.7" x2="342.0" y2="102.7" class="ref"/>
+<text x="347.0" y="106.1" class="reft reft">7,217</text>
+<line x1="8" y1="181.7" x2="342.0" y2="181.7" class="key"/>
+<text x="347.0" y="185.1" class="reft keyt">5,263</text>
+<line x1="8" y1="132.7" x2="342.0" y2="132.7" class="mark brk"/>
+<rect x="11" y="116.7" width="81.6" height="14" rx="3" class="mkb brk"/>
+<text x="51.8" y="127.2" class="mkt">1차 이탈 6,401</text>
+<polyline points="8.0,36.8 60.2,130.8 63.5,95.5 92.9,181.7 109.2,122.2 115.7,142.4 135.3,102.7 138.6,132.7 145.1,111.9 151.6,132.4 151.6,117.3" class="hist" fill="none"/>
+<line x1="151.6" y1="22" x2="151.6" y2="270" class="now"/>
+<text x="151.6" y="18" class="nowt">오늘</text>
+<polyline points="151.6,117.3 168.8,110.3 208.7,159.6 231.6,141.5 292.5,247.5 342.0,170.7" class="proj down" fill="none"/>
+<circle cx="292.5" cy="247.5" r="3" class="dot down"/>
+<rect x="294.5" y="253.5" width="18.0" height="15" rx="3.5" class="bdg down"/>
+<text x="303.5" y="264.5" class="bdgt">Y</text></svg>
+  <div class="starget">1차 이탈 6,401 → 5,263 관통 → Y 4,047</div>
+</figure>
+<figure class="card down">
+  <figcaption>
+    <span class="sid">S4</span><span class="sname">대형 지그재그 → C파</span>
+    <span class="sprob">22%</span>
+  </figcaption>
+  <div class="smeta"><span class="wv">현재 B파</span><span class="br brk">5,263 이탈</span></div>
+  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S4 경로"><line x1="8" y1="36.8" x2="342.0" y2="36.8" class="ref"/>
+<text x="347.0" y="40.2" class="reft reft">9,386 전고</text>
+<line x1="8" y1="102.7" x2="342.0" y2="102.7" class="ref"/>
+<text x="347.0" y="106.1" class="reft reft">7,217</text>
+<line x1="8" y1="181.7" x2="342.0" y2="181.7" class="key"/>
+<text x="347.0" y="185.1" class="reft keyt">5,263</text>
+<line x1="8" y1="132.7" x2="342.0" y2="132.7" class="mark brk"/>
+<rect x="11" y="116.7" width="81.6" height="14" rx="3" class="mkb brk"/>
+<text x="51.8" y="127.2" class="mkt">1차 이탈 6,401</text>
+<polyline points="8.0,36.8 60.2,130.8 63.5,95.5 92.9,181.7 109.2,122.2 115.7,142.4 135.3,102.7 138.6,132.7 145.1,111.9 151.6,132.4 151.6,117.3" class="hist" fill="none"/>
+<line x1="151.6" y1="22" x2="151.6" y2="270" class="now"/>
+<text x="151.6" y="18" class="nowt">오늘</text>
+<polyline points="151.6,117.3 166.9,109.6 206.8,153.1 229.7,134.7 300.1,192.2 342.0,138.7" class="proj down" fill="none"/>
+<circle cx="300.1" cy="192.2" r="3" class="dot down"/>
+<rect x="302.1" y="198.2" width="18.0" height="15" rx="3.5" class="bdg down"/>
+<text x="311.1" y="209.2" class="bdgt">C</text></svg>
+  <div class="starget">1차 이탈 6,401 → 5,263 관통 → C 5,047</div>
+</figure>
+<figure class="card bear">
+  <figcaption>
+    <span class="sid">S5</span><span class="sname">하락 임펄스 → 3파</span>
+    <span class="sprob">15%</span>
+  </figcaption>
+  <div class="smeta"><span class="wv">현재 2파</span><span class="br brk">5,263 이탈</span></div>
+  <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S5 경로"><line x1="8" y1="36.8" x2="342.0" y2="36.8" class="ref"/>
+<text x="347.0" y="40.2" class="reft reft">9,386 전고</text>
+<line x1="8" y1="102.7" x2="342.0" y2="102.7" class="ref"/>
+<text x="347.0" y="106.1" class="reft reft">7,217</text>
+<line x1="8" y1="181.7" x2="342.0" y2="181.7" class="key"/>
+<text x="347.0" y="185.1" class="reft keyt">5,263</text>
+<line x1="8" y1="132.7" x2="342.0" y2="132.7" class="mark brk"/>
+<rect x="11" y="116.7" width="81.6" height="14" rx="3" class="mkb brk"/>
+<text x="51.8" y="127.2" class="mkt">1차 이탈 6,401</text>
+<polyline points="8.0,36.8 60.2,130.8 63.5,95.5 92.9,181.7 109.2,122.2 115.7,142.4 135.3,102.7 138.6,132.7 145.1,111.9 151.6,132.4 151.6,117.3" class="hist" fill="none"/>
+<line x1="151.6" y1="22" x2="151.6" y2="270" class="now"/>
+<text x="151.6" y="18" class="nowt">오늘</text>
+<polyline points="151.6,117.3 166.9,110.3 239.2,247.5 271.6,199.6 342.0,276.0" class="proj bear" fill="none"/>
+<circle cx="239.2" cy="247.5" r="3" class="dot bear"/>
+<rect x="241.2" y="253.5" width="25.0" height="15" rx="3.5" class="bdg bear"/>
+<text x="253.7" y="264.5" class="bdgt">3파</text>
+<circle cx="271.6" cy="199.6" r="3" class="dot bear"/>
+<rect x="273.6" y="176.6" width="25.0" height="15" rx="3.5" class="bdg bear"/>
+<text x="286.1" y="187.6" class="bdgt">4파</text>
+<circle cx="342.0" cy="276.0" r="3" class="dot bear"/>
+<rect x="275.0" y="282.0" width="67.0" height="15" rx="3.5" class="bdg bear"/>
+<text x="308.5" y="293.0" class="bdgt">5파 2,830</text>
+<path d="M 342.0 280.0 l -5 9 l 10 0 z" class="arw bear"/></svg>
+  <div class="starget">1차 이탈 6,401 → 5,263 관통 → 3파 4,047</div>
+</figure></div>
+<div class="legend">
+<span><i style="background:var(--hist)"></i>실측 (6/19~8/25)</span>
+<span><i style="background:var(--up)"></i>S1 상승</span>
+<span><i style="background:var(--flat)"></i>S2 횡보</span>
+<span><i style="background:var(--down)"></i>S3·S4 하락</span>
+<span><i style="background:var(--bear)"></i>S5 추세전환</span>
+<span><i style="background:var(--gold)"></i>5,263 분류선</span>
+</div>
+
+<div class="panel"><h2>지지·이탈 사다리 — 라이브 6,807.78 기준</h2>
+<table>
+<tr><th class="n">레벨</th><th class="n">라이브 대비</th><th>정체</th><th>발동 시</th></tr>
+<tr><td class="n"><b>6,759.86</b></td><td class="n">−0.7%</td><td>①의 (iv)파 저점</td>
+<td>S1의 ②파 교과서적 종착 영역 상단. 이미 8/19에 하향 이탈했던 자리 — 회복 유지가 관건</td></tr>
+<tr><td class="n"><b>6,674.66</b></td><td class="n">−2.0%</td><td>8/5 고점 = ①의 (i)파 고점 · <b>겹침선</b></td>
+<td>S3·S4·S5의 <b>선행 신호</b>. 재이탈 시 8/20~ 반등이 되돌림에 그쳤다는 증거</td></tr>
+<tr class="hl"><td class="n"><b>6,400.81</b></td><td class="n">−6.0%</td>
+<td><b>8/19·8/25 쌍바닥</b> + ①의 38.2% 되돌림 <b>6,397</b> <span class="cf">4.1p 일치</span></td>
+<td><b>S1 = 1차 지지 / S2·S3·S4·S5 = 1차 이탈선.</b> 다섯 시나리오가 공유하는 첫 관문</td></tr>
+<tr><td class="n"><b>6,158.73</b></td><td class="n">−9.5%</td>
+<td>8/7 저점 + ①의 50% 되돌림 <b>6,163</b> <span class="cf">4.0p 일치</span></td>
+<td>반등 저점열 붕괴. S1 심각 손상, S2의 C파 상단 진입</td></tr>
+<tr><td class="n">5,937</td><td class="n">−12.8%</td><td>61.8% 되돌림</td>
+<td>S1의 통상 하한. S2의 C=0.618×B 목표</td></tr>
+<tr><td class="n">5,631 / 5,606</td><td class="n">−17.3%</td><td>78.6% 되돌림 / S2의 C 하한(0.8×B)</td>
+<td><b>S1의 실질 최종선.</b> S2는 여기서 멈추고 D파로 반등해야 성립</td></tr>
+<tr class="hl"><td class="n"><b>5,262.77</b></td><td class="n">−22.7%</td><td>7/29 저점</td>
+<td><b>S1·S2 사망. S3·S4·S5는 반드시 관통해야 하는 선</b></td></tr>
+</table></div>
+
+<div class="split">
+<div class="box ok"><b>5,263 방어 — 51%</b>
+S1(43) + S2(8). 저점이 이미 최종이거나, 가격이 아니라 <b>시간</b>으로 조정이 이어집니다.
+S2는 상승이 아니라 수개월 수축 횡보라는 점에 유의하십시오.</div>
+<div class="box bad"><b>5,263 이탈 — 49%</b>
+S3(12) + S4(22) + S5(15). 세 경로의 1차 목표가 <b>5,047~4,047</b>에 겹칩니다.
+여기서 멈추면 조정, 가속하면 S5(추세전환)로 넘어갑니다.</div>
+</div>
+
+<div class="panel"><h2>관문은 두 개뿐입니다</h2>
+<table>
+<tr><th>레벨</th><th class="n">라이브 대비</th><th>발동 시</th></tr>
+<tr><td><b>7,216.62</b> (8/18 고점)</td><td class="n">+6.0%</td>
+<td>S1이 base로 승격. <b>단 S2·S4·S5는 죽지 않습니다</b> — 진짜 강세 확정선은 8,300대</td></tr>
+<tr><td><b>6,400.81</b> (8/19 저점)</td><td class="n">−6.0%</td>
+<td>쌍바닥 붕괴. S1 심각 손상, S3·S4·S5 확인</td></tr>
+</table></div>
+
+<div class="foot"><div class="b">CHORY &amp; ROCHET — RESEARCH CENTER</div>
+실측 구간은 KOSPI 지수(^KS11) 일봉 주요 피벗의 실제 좌표이며, 오늘 이후 점선은 각 시나리오의
+전형적 전개를 나타낸 <b>모식도</b>로 특정 시점·경로를 예측하지 않습니다. 목표 레벨은 전부 로그 눈금 산출.
+확률은 6기준 가중 채점의 정규화 결과이며 판단이 개입합니다. 본 자료는 매매 권유가 아닙니다.</div>
+</div>
