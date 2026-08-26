@@ -124,6 +124,7 @@ min-width:26px;text-align:center}
 .notes p{margin:0 0 7px;font-size:13px;color:var(--muted);line-height:1.6;max-width:92ch}
 .notes p:last-child{margin-bottom:0}
 .notes b{color:var(--ink)}
+.notes p.err{background:var(--badbg);border:1px solid var(--badln);border-radius:8px;padding:10px 12px}
 .foot{margin-top:22px;border-top:2px solid var(--navy);padding-top:13px;font-size:11.5px;color:var(--muted)}
 .foot .b{font-weight:700;color:var(--ink);letter-spacing:1.5px;font-size:12px;margin-bottom:5px}
 </style>
@@ -135,7 +136,7 @@ min-width:26px;text-align:center}
 다섯 차트의 <b>캔들(6/19~오늘)은 완전히 동일</b>합니다 — 가격은 사실이니까요. 다른 것은 그 위에 얹힌 <b>파동선과 라벨</b>입니다. 같은 로그 축(3,700~9,800)을 씁니다.
 금색 파선 <b>5,263</b>을 깨느냐가 실무상 유일한 분류축입니다.</p>
 <div class="meta"><span>정점 9,385.59 (6/19)</span><span>저점 5,262.77 (7/29)</span>
-<span>반등 정점 7,216.62 (8/18)</span><span>라이브 6,807.78 (8/26 장중)</span></div>
+<span>반등 정점 7,216.62 (8/18)</span><span>라이브 6,851.38 (8/26 14:31 장중)</span></div>
 </div></header>
 <div class="wrap">
 
@@ -174,24 +175,30 @@ min-width:26px;text-align:center}
 273.85p 침범해 <b>단순 임펄스 카운트가 이미 깨졌습니다</b>(R3 위반). 3분절에서는 겹침이 자유롭습니다.</p>
 <p><b>앞으로 오는 하락도 직선이 아닙니다</b> — S4의 C파와 S5의 ③파는 모두 임펄스라
 내부가 <b>5분절(i-ii-iii-iv-v)</b>입니다. 즉 <b>1차 급락 → 되돌림 반등 → 3파 가속</b>의
-순서를 밟습니다. S5 기준 산출: (i) 5,786 → (ii) 6,462 → (iii) 4,520 → (iv) 5,181 → (v) 4,047.
-차트의 점선은 이 굴곡을 반영했습니다.</p>
+순서를 밟습니다. S5 기준 산출(해석 B): <b>(i) 6,400.81 종료(8/19)</b> → (ii) 6,963 → (iii) 5,734~5,086 → (iv) 5,734 → <b>(v)=③ 4,189</b>. 차트의 점선은 이 굴곡을 반영했습니다.</p>
 <p><b>다만 하락 5분절은 리딩 다이애고널이 아닙니다</b> — 다이애고널은 4파가 1파와 겹쳐야 하는데,
 실측은 (1) 저점 <b>8,080.99</b> vs (4) 고점 <b>7,424.18</b>로 <b>656.81p(8.85%) 여유</b>를 두고 통과했습니다.
 확장파가 없어 다이애고널처럼 보이지만((5)/(3)=1.017), 겹침 기준으로는 <b>정규 임펄스</b>입니다.
 이 국면에서 다이애고널이 실제 쟁점이 되는 곳은 하락이 아니라 <b>S1의 반등 ①파</b>(8/19 겹침)입니다.
-<b>다만 8/18 이후 구간에는 다이애고널이 성립합니다</b> — 아래 참조.</p>
-<p><b>8/18 이후 = 수축 리딩 다이애고널 (요건 전항 통과)</b><br>
-i 7,216.62→6,400.81 · ii →6,954.12 · iii →6,408.82 · iv →6,829.88(진행) —
-<b>4파가 1파 영역 안(6,401~7,217)에 들어와 겹침</b>(다이애고널 필수요건) ✓ ·
-|iii|&lt;|i| ✓ · |iv|&lt;|ii| ✓ · 2파 100% 미초과 ✓.<br>
-<b>5파 착지 창 6,294~6,409</b>(수축 한계와 3파 저점 사이, 폭 114p)에서 (i)이 완성되고,
-그 뒤 <b>(ii)가 깊게 되돌린 후((61.8~78.6% = 6,881~7,026) (iii)이 가속</b>합니다.
-LD는 원래 되돌림이 깊습니다.<br>
-<b>무효화선 6,954.12 — 라이브 대비 +2.15%.</b> 2-4 추세선이 하향해야 수렴하므로 4파 고점이
-2파 고점을 넘으면 이 카운트는 즉시 사망합니다. <b>이 분석 전체에서 유일하게 R2 기준(−8%) 안에 든 근접 무효화선</b>입니다.<br>
-적용 범위: 이 LD는 S5 전용이 아니라 <b>S3의 Y, S4의 C에도 동일하게 첫 파동으로 붙습니다.</b>
-반면 <b>수축 5분절 구조는 2파 자리에 거의 나타나지 않으므로 S1에는 불리</b>합니다.</p>
+8/18 이후 구간도 마찬가지입니다 — 아래 검증 참조.</p>
+<p class="err"><b>[검증·정정] 8/18 이후를 리딩 다이애고널로 셀 수 없습니다 — failed third</b><br>
+겹침·수축 요건만 보면 통과하는 것처럼 보입니다(4파 고점이 1파 영역 6,401~7,217 안 ✓ ·
+|iii|&lt;|i| ✓ · |iv|&lt;|ii| ✓). 그러나 결정적 항목이 남습니다.<br>
+<b>i 종점 6,400.81 (8/19) vs iii 종점 6,408.82 (8/25) — iii이 i을 8.01p 넘지 못했습니다.</b><br>
+<b>3파는 1파 종점을 반드시 넘어야 하며, 다이애고널도 예외가 아닙니다.</b>
+절단(truncation)은 5파에만 인정됩니다. 따라서 이 구간의 다이애고널 라벨은 <b>무효</b>이고,
+8/18 이후 하락은 <b>3분절 조정</b>으로 읽어야 합니다.<br>
+같은 판정은 <b>선행 보고서 No.011계열(8/25 60분봉 3안)</b>이 이미 내린 바 있습니다 —
+"③이 ①종점 6,400.81 미달(+8.01p) = failed third ⇒ 임펄스 C 불가". 본 회차는 그 결론을 승계합니다.</p>
+<p><b>남는 해석은 둘입니다.</b><br>
+<b>B — (i)은 8/19에 종료, 현재는 (ii) 정규 플랫:</b> a 6,954.12 · b 6,408.82
+(<b>a의 98.5% 되돌림 = 정규 플랫 요건 90~105% 충족</b>) · c 진행 중 → <b>목표 6,963</b>(c=a).
+(ii) 전체는 (i)의 70.2% 되돌림으로 2파 통상 50~78% 정중앙. 이후 (iii) 급락.<br>
+<b>C — 8/18 이후 전체가 완결 조정:</b> 상위 반등이 재개되어 7,216.62를 돌파.<br>
+<b>판별선: 6,963(B의 c 완성) → 7,216.62(B도 사망, C 확인).</b><br>
+주의 — 제시된 겹침 논거(8/19 6,400.81 &lt; 8/5 6,674.66)는 <b>8/18을 반등 정점으로 놓았을 때만</b>
+성립합니다. 8/25 보고서의 "③ 진행 중" 라벨(① 6,674.66 / ② 6,158.73)로 재배치하면
+4파가 아직 없어 R3 위반 자체가 발생하지 않습니다. 라벨 선택에 의존하는 논거임을 명시합니다.</p>
 </div>
 </div>
 
@@ -314,9 +321,9 @@ LD는 원래 되돌림이 깊습니다.<br>
 <rect x="326.5" y="150.9" width="4.6" height="9.6" fill="var(--fall)" opacity=".85"/>
 <line x1="336.2" y1="158.1" x2="336.2" y2="176.0" stroke="var(--rise)" stroke-width="1"/>
 <rect x="333.9" y="159.4" width="4.6" height="9.7" fill="var(--rise)" opacity=".85"/>
-<line x1="343.6" y1="153.5" x2="343.6" y2="160.1" stroke="var(--rise)" stroke-width="1"/>
-<rect x="341.3" y="154.7" width="4.6" height="4.2" fill="var(--rise)" opacity=".85"/>
-<polyline points="11.7,41.3 129.7,173.8 137.1,124.1 203.4,245.6 240.3,161.6 255.1,190.0 282.0,150.1 287.1,157.2 299.3,134.1 306.7,176.4 321.4,147.2 336.2,176.0 343.6,154.7" class="ovl up" fill="none"/>
+<line x1="343.6" y1="150.6" x2="343.6" y2="160.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="341.3" y="152.4" width="4.6" height="6.5" fill="var(--rise)" opacity=".85"/>
+<polyline points="11.7,41.3 129.7,173.8 137.1,124.1 203.4,245.6 240.3,161.6 255.1,190.0 282.0,150.1 287.1,157.2 299.3,134.1 306.7,176.4 321.4,147.2 336.2,176.0 343.6,152.4" class="ovl up" fill="none"/>
 <line x1="347.2" y1="22" x2="347.2" y2="370" class="now"/>
 <text x="347.2" y="18" class="nowt">오늘</text>
 <circle cx="129.7" cy="173.8" r="2.6" class="hdot up"/>
@@ -340,7 +347,7 @@ LD는 원래 되돌림이 깊습니다.<br>
 <circle cx="336.2" cy="176.0" r="2.6" class="hdot up"/>
 <rect x="327.7" y="182.0" width="17.0" height="14" rx="3" class="hbg up"/>
 <text x="336.2" y="192.0" class="hbt">②</text>
-<polyline points="347.2,154.7 359.5,164.5 378.7,134.1 394.4,121.4 406.7,141.8 448.6,64.9 473.1,89.8 522.0,33.3" class="proj up" fill="none"/>
+<polyline points="347.2,152.4 359.5,164.5 378.7,134.1 394.4,121.4 406.7,141.8 448.6,64.9 473.1,89.8 522.0,33.3" class="proj up" fill="none"/>
 <circle cx="378.7" cy="134.1" r="3" class="dot up"/>
 <rect x="380.7" y="111.1" width="67.0" height="15" rx="3.5" class="bdg up"/>
 <text x="414.2" y="122.1" class="bdgt">7,217 돌파</text>
@@ -470,9 +477,9 @@ LD는 원래 되돌림이 깊습니다.<br>
 <rect x="326.5" y="150.9" width="4.6" height="9.6" fill="var(--fall)" opacity=".85"/>
 <line x1="336.2" y1="158.1" x2="336.2" y2="176.0" stroke="var(--rise)" stroke-width="1"/>
 <rect x="333.9" y="159.4" width="4.6" height="9.7" fill="var(--rise)" opacity=".85"/>
-<line x1="343.6" y1="153.5" x2="343.6" y2="160.1" stroke="var(--rise)" stroke-width="1"/>
-<rect x="341.3" y="154.7" width="4.6" height="4.2" fill="var(--rise)" opacity=".85"/>
-<polyline points="11.7,41.3 129.7,173.8 137.1,124.1 203.4,245.6 240.3,161.6 255.1,190.0 299.3,134.1 306.7,176.4 321.4,147.2 336.2,176.0 343.6,154.7" class="ovl flat" fill="none"/>
+<line x1="343.6" y1="150.6" x2="343.6" y2="160.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="341.3" y="152.4" width="4.6" height="6.5" fill="var(--rise)" opacity=".85"/>
+<polyline points="11.7,41.3 129.7,173.8 137.1,124.1 203.4,245.6 240.3,161.6 255.1,190.0 299.3,134.1 306.7,176.4 321.4,147.2 336.2,176.0 343.6,152.4" class="ovl flat" fill="none"/>
 <line x1="347.2" y1="22" x2="347.2" y2="370" class="now"/>
 <text x="347.2" y="18" class="nowt">오늘</text>
 <circle cx="203.4" cy="245.6" r="2.6" class="hdot flat"/>
@@ -490,7 +497,7 @@ LD는 원래 되돌림이 깊습니다.<br>
 <circle cx="336.2" cy="176.0" r="2.6" class="hdot flat"/>
 <rect x="319.7" y="182.0" width="33.0" height="14" rx="3" class="hbg flat"/>
 <text x="336.2" y="192.0" class="hbt">C초기</text>
-<polyline points="347.2,154.7 363.0,137.3 406.7,205.2 448.6,152.5 487.0,180.9 522.0,122.8" class="proj flat" fill="none"/>
+<polyline points="347.2,152.4 363.0,137.3 406.7,205.2 448.6,152.5 487.0,180.9 522.0,122.8" class="proj flat" fill="none"/>
 <circle cx="363.0" cy="137.3" r="3" class="dot flat"/>
 <rect x="365.0" y="114.3" width="18.0" height="15" rx="3.5" class="bdg flat"/>
 <text x="374.0" y="125.3" class="bdgt">B</text>
@@ -611,9 +618,9 @@ LD는 원래 되돌림이 깊습니다.<br>
 <rect x="326.5" y="150.9" width="4.6" height="9.6" fill="var(--fall)" opacity=".85"/>
 <line x1="336.2" y1="158.1" x2="336.2" y2="176.0" stroke="var(--rise)" stroke-width="1"/>
 <rect x="333.9" y="159.4" width="4.6" height="9.7" fill="var(--rise)" opacity=".85"/>
-<line x1="343.6" y1="153.5" x2="343.6" y2="160.1" stroke="var(--rise)" stroke-width="1"/>
-<rect x="341.3" y="154.7" width="4.6" height="4.2" fill="var(--rise)" opacity=".85"/>
-<polyline points="11.7,41.3 129.7,173.8 137.1,124.1 203.4,245.6 240.3,161.6 255.1,190.0 299.3,134.1 306.7,176.4 321.4,147.2 336.2,176.0 343.6,154.7" class="ovl down" fill="none"/>
+<line x1="343.6" y1="150.6" x2="343.6" y2="160.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="341.3" y="152.4" width="4.6" height="6.5" fill="var(--rise)" opacity=".85"/>
+<polyline points="11.7,41.3 129.7,173.8 137.1,124.1 203.4,245.6 240.3,161.6 255.1,190.0 299.3,134.1 306.7,176.4 321.4,147.2 336.2,176.0 343.6,152.4" class="ovl down" fill="none"/>
 <line x1="347.2" y1="22" x2="347.2" y2="370" class="now"/>
 <text x="347.2" y="18" class="nowt">오늘</text>
 <circle cx="203.4" cy="245.6" r="2.6" class="hdot down"/>
@@ -631,7 +638,7 @@ LD는 원래 되돌림이 깊습니다.<br>
 <circle cx="336.2" cy="176.0" r="2.6" class="hdot down"/>
 <rect x="319.7" y="182.0" width="33.0" height="14" rx="3" class="hbg down"/>
 <text x="336.2" y="192.0" class="hbt">Y초기</text>
-<polyline points="347.2,154.7 359.5,144.8 385.7,205.2 403.2,176.5 443.4,270.8 457.3,243.1 490.5,338.3 522.0,230.0" class="proj down" fill="none"/>
+<polyline points="347.2,152.4 359.5,144.8 385.7,205.2 403.2,176.5 443.4,270.8 457.3,243.1 490.5,338.3 522.0,230.0" class="proj down" fill="none"/>
 <circle cx="385.7" cy="205.2" r="3" class="dot down"/>
 <rect x="387.7" y="211.2" width="18.0" height="15" rx="3.5" class="bdg down"/>
 <text x="396.7" y="222.2" class="bdgt">a</text>
@@ -749,9 +756,9 @@ LD는 원래 되돌림이 깊습니다.<br>
 <rect x="326.5" y="150.9" width="4.6" height="9.6" fill="var(--fall)" opacity=".85"/>
 <line x1="336.2" y1="158.1" x2="336.2" y2="176.0" stroke="var(--rise)" stroke-width="1"/>
 <rect x="333.9" y="159.4" width="4.6" height="9.7" fill="var(--rise)" opacity=".85"/>
-<line x1="343.6" y1="153.5" x2="343.6" y2="160.1" stroke="var(--rise)" stroke-width="1"/>
-<rect x="341.3" y="154.7" width="4.6" height="4.2" fill="var(--rise)" opacity=".85"/>
-<polyline points="11.7,41.3 33.8,94.1 41.2,54.4 129.7,173.8 137.1,124.1 203.4,245.6 240.3,161.6 255.1,190.0 299.3,134.1 306.7,176.4 321.4,147.2 336.2,176.0 343.6,154.7" class="ovl down" fill="none"/>
+<line x1="343.6" y1="150.6" x2="343.6" y2="160.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="341.3" y="152.4" width="4.6" height="6.5" fill="var(--rise)" opacity=".85"/>
+<polyline points="11.7,41.3 33.8,94.1 41.2,54.4 129.7,173.8 137.1,124.1 203.4,245.6 240.3,161.6 255.1,190.0 299.3,134.1 306.7,176.4 321.4,147.2 336.2,176.0 343.6,152.4" class="ovl down" fill="none"/>
 <line x1="347.2" y1="22" x2="347.2" y2="370" class="now"/>
 <text x="347.2" y="18" class="nowt">오늘</text>
 <circle cx="33.8" cy="94.1" r="2.6" class="hdot down"/>
@@ -781,7 +788,7 @@ LD는 원래 되돌림이 깊습니다.<br>
 <circle cx="336.2" cy="176.0" r="2.6" class="hdot down"/>
 <rect x="319.7" y="182.0" width="33.0" height="14" rx="3" class="hbg down"/>
 <text x="336.2" y="192.0" class="hbt">C초기</text>
-<polyline points="347.2,154.7 357.7,143.8 380.4,182.3 394.4,158.2 434.6,236.2 452.1,206.4 487.0,260.4 522.0,184.9" class="proj down" fill="none"/>
+<polyline points="347.2,152.4 357.7,143.8 380.4,182.3 394.4,158.2 434.6,236.2 452.1,206.4 487.0,260.4 522.0,184.9" class="proj down" fill="none"/>
 <circle cx="380.4" cy="182.3" r="3" class="dot down"/>
 <rect x="382.4" y="188.3" width="18.0" height="15" rx="3.5" class="bdg down"/>
 <text x="391.4" y="199.3" class="bdgt">i</text>
@@ -812,12 +819,12 @@ LD는 원래 되돌림이 깊습니다.<br>
 <text x="527.0" y="137.5" class="reft reft">7,217</text>
 <line x1="8" y1="245.6" x2="522.0" y2="245.6" class="key"/>
 <text x="527.0" y="249.0" class="reft keyt">5,263</text>
-<line x1="8" y1="147.2" x2="522.0" y2="147.2" class="mark brk"/>
-<rect x="11" y="131.2" width="81.6" height="14" rx="3" class="mkb brk"/>
-<text x="51.8" y="141.7" class="mkt">LD 무효 6,954</text>
+<line x1="8" y1="134.1" x2="522.0" y2="134.1" class="mark brk"/>
+<rect x="11" y="118.1" width="61.8" height="14" rx="3" class="mkb brk"/>
+<text x="41.9" y="128.6" class="mkt">무효 7,217</text>
 <line x1="8" y1="176.4" x2="522.0" y2="176.4" class="mark brk"/>
-<rect x="11" y="160.4" width="81.6" height="14" rx="3" class="mkb brk"/>
-<text x="51.8" y="170.9" class="mkt">1차 이탈 6,401</text>
+<rect x="11" y="160.4" width="88.2" height="14" rx="3" class="mkb brk"/>
+<text x="55.1" y="170.9" class="mkt">(i) 종점 6,401</text>
 <line x1="11.7" y1="41.3" x2="11.7" y2="62.7" stroke="var(--fall)" stroke-width="1"/>
 <rect x="9.4" y="44.9" width="4.6" height="9.1" fill="var(--fall)" opacity=".85"/>
 <line x1="19.1" y1="46.3" x2="19.1" y2="60.0" stroke="var(--rise)" stroke-width="1"/>
@@ -908,9 +915,9 @@ LD는 원래 되돌림이 깊습니다.<br>
 <rect x="326.5" y="150.9" width="4.6" height="9.6" fill="var(--fall)" opacity=".85"/>
 <line x1="336.2" y1="158.1" x2="336.2" y2="176.0" stroke="var(--rise)" stroke-width="1"/>
 <rect x="333.9" y="159.4" width="4.6" height="9.7" fill="var(--rise)" opacity=".85"/>
-<line x1="343.6" y1="153.5" x2="343.6" y2="160.1" stroke="var(--rise)" stroke-width="1"/>
-<rect x="341.3" y="154.7" width="4.6" height="4.2" fill="var(--rise)" opacity=".85"/>
-<polyline points="11.7,41.3 33.8,94.1 41.2,54.4 129.7,173.8 137.1,124.1 203.4,245.6 240.3,161.6 255.1,190.0 299.3,134.1 306.7,176.4 321.4,147.2 336.2,176.0 343.6,154.7" class="ovl bear" fill="none"/>
+<line x1="343.6" y1="150.6" x2="343.6" y2="160.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="341.3" y="152.4" width="4.6" height="6.5" fill="var(--rise)" opacity=".85"/>
+<polyline points="11.7,41.3 33.8,94.1 41.2,54.4 129.7,173.8 137.1,124.1 203.4,245.6 240.3,161.6 255.1,190.0 299.3,134.1 306.7,176.4 321.4,147.2 336.2,176.0 343.6,152.4" class="ovl bear" fill="none"/>
 <line x1="347.2" y1="22" x2="347.2" y2="370" class="now"/>
 <text x="347.2" y="18" class="nowt">오늘</text>
 <circle cx="33.8" cy="94.1" r="2.6" class="hdot bear"/>
@@ -937,37 +944,34 @@ LD는 원래 되돌림이 깊습니다.<br>
 <circle cx="299.3" cy="134.1" r="2.6" class="hdot bear"/>
 <rect x="282.8" y="113.1" width="33.0" height="14" rx="3" class="hbg bear"/>
 <text x="299.3" y="123.1" class="hbt">c=②</text>
+<circle cx="306.7" cy="176.4" r="2.6" class="hdot bear"/>
+<rect x="290.2" y="182.4" width="33.0" height="14" rx="3" class="hbg bear"/>
+<text x="306.7" y="192.4" class="hbt">(i)</text>
 <circle cx="336.2" cy="176.0" r="2.6" class="hdot bear"/>
-<rect x="319.7" y="182.0" width="33.0" height="14" rx="3" class="hbg bear"/>
-<text x="336.2" y="192.0" class="hbt">③초기</text>
-<polyline points="347.2,154.7 354.2,149.9 370.0,178.1 389.2,147.4 424.1,262.7 441.6,218.7 466.1,334.0 485.3,270.8 522.0,376.0" class="proj bear" fill="none"/>
-<circle cx="354.2" cy="149.9" r="3" class="dot bear"/>
-<rect x="356.2" y="126.9" width="18.0" height="15" rx="3.5" class="bdg bear"/>
-<text x="365.2" y="137.9" class="bdgt">4</text>
-<circle cx="370.0" cy="178.1" r="3" class="dot bear"/>
-<rect x="372.0" y="184.1" width="32.0" height="15" rx="3.5" class="bdg bear"/>
-<text x="388.0" y="195.1" class="bdgt">(i)</text>
-<circle cx="389.2" cy="147.4" r="3" class="dot bear"/>
-<rect x="391.2" y="124.4" width="39.0" height="15" rx="3.5" class="bdg bear"/>
-<text x="410.7" y="135.4" class="bdgt">(ii)</text>
-<circle cx="424.1" cy="262.7" r="3" class="dot bear"/>
-<rect x="426.1" y="268.7" width="46.0" height="15" rx="3.5" class="bdg bear"/>
-<text x="449.1" y="279.7" class="bdgt">(iii)</text>
-<circle cx="441.6" cy="218.7" r="3" class="dot bear"/>
-<rect x="443.6" y="195.7" width="39.0" height="15" rx="3.5" class="bdg bear"/>
-<text x="463.1" y="206.7" class="bdgt">(iv)</text>
-<circle cx="466.1" cy="334.0" r="3" class="dot bear"/>
-<rect x="468.1" y="340.0" width="46.0" height="15" rx="3.5" class="bdg bear"/>
-<text x="491.1" y="351.0" class="bdgt">(v)=③</text>
-<circle cx="485.3" cy="270.8" r="3" class="dot bear"/>
-<rect x="487.3" y="247.8" width="18.0" height="15" rx="3.5" class="bdg bear"/>
-<text x="496.3" y="258.8" class="bdgt">④</text>
+<rect x="315.7" y="182.0" width="41.0" height="14" rx="3" class="hbg bear"/>
+<text x="336.2" y="192.0" class="hbt">(ii)</text>
+<polyline points="347.2,152.4 359.5,146.7 404.9,257.6 424.1,215.3 452.1,326.2 473.1,270.8 522.0,376.0" class="proj bear" fill="none"/>
+<circle cx="359.5" cy="146.7" r="3" class="dot bear"/>
+<rect x="361.5" y="123.7" width="53.0" height="15" rx="3.5" class="bdg bear"/>
+<text x="388.0" y="134.7" class="bdgt">c=(ii)</text>
+<circle cx="404.9" cy="257.6" r="3" class="dot bear"/>
+<rect x="406.9" y="263.6" width="46.0" height="15" rx="3.5" class="bdg bear"/>
+<text x="429.9" y="274.6" class="bdgt">(iii)</text>
+<circle cx="424.1" cy="215.3" r="3" class="dot bear"/>
+<rect x="426.1" y="192.3" width="39.0" height="15" rx="3.5" class="bdg bear"/>
+<text x="445.6" y="203.3" class="bdgt">(iv)</text>
+<circle cx="452.1" cy="326.2" r="3" class="dot bear"/>
+<rect x="454.1" y="332.2" width="46.0" height="15" rx="3.5" class="bdg bear"/>
+<text x="477.1" y="343.2" class="bdgt">(v)=③</text>
+<circle cx="473.1" cy="270.8" r="3" class="dot bear"/>
+<rect x="475.1" y="247.8" width="18.0" height="15" rx="3.5" class="bdg bear"/>
+<text x="484.1" y="258.8" class="bdgt">④</text>
 <circle cx="522.0" cy="376.0" r="3" class="dot bear"/>
 <rect x="462.0" y="382.0" width="60.0" height="15" rx="3.5" class="bdg bear"/>
 <text x="492.0" y="393.0" class="bdgt">⑤ 2,830</text>
 <path d="M 522.0 380.0 l -5 9 l 10 0 z" class="arw bear"/></svg>
-  <div class="scount">③파 = <b>정규 임펄스 5분절</b> (i)-(ii)-(iii)-(iv)-(v) · 그중 <b>(i)이 리딩 다이애고널</b>(5다리, 현재 4다리)</div>
-  <div class="starget">LD 5파 6,294~6,409 → (ii) 6,881~7,026 → (iii) 5,679~5,013 → ③ 4,641~4,097 · 무효 6,954</div>
+  <div class="scount">③파 = <b>정규 임펄스 5분절</b> · <b>(i) 8/19 종료</b> → 현재 <b>(ii) 정규 플랫</b>(a-b-c) 진행</div>
+  <div class="starget">(ii) c 목표 6,963 → (iii) 5,734~5,086 → ③ 4,189 · 무효 7,217</div>
 </figure></div>
 <div class="legend">
 <span><i style="background:var(--rise)"></i>양봉</span><span><i style="background:var(--fall)"></i>음봉</span><span>실선 = 각 시나리오의 파동 카운트</span>
@@ -978,7 +982,7 @@ LD는 원래 되돌림이 깊습니다.<br>
 <span><i style="background:var(--gold)"></i>5,263 분류선</span>
 </div>
 
-<div class="panel"><h2>지지·이탈 사다리 — 라이브 6,807.78 기준</h2>
+<div class="panel"><h2>지지·이탈 사다리 — 라이브 6,851.38 기준</h2>
 <table>
 <tr><th class="n">레벨</th><th class="n">라이브 대비</th><th>정체</th><th>발동 시</th></tr>
 <tr><td class="n"><b>6,759.86</b></td><td class="n">−0.7%</td><td>①의 (iv)파 저점</td>
