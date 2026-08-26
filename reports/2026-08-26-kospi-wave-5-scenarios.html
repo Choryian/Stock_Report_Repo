@@ -3,18 +3,21 @@
 :root{--bg:#f3f4f7;--surface:#fff;--surface-2:#eceff4;--border:#d7dbe3;--ink:#1b2030;--muted:#666f83;
 --navy:#1a2744;--gold:#9c7a2e;--grid:#e6e9ef;
 --up:#1c7a4d;--flat:#9c6f13;--down:#b8283a;--bear:#7d1f2c;--hist:#5b6478;
+--rise:#c0392b;--fall:#2456a6;
 --okbg:#e8f5ee;--okln:#a9d3bb;--badbg:#fcebec;--badln:#eab3b9;
 --shadow:0 1px 2px rgba(20,24,38,.04),0 8px 24px -12px rgba(20,24,38,.12);}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
 --bg:#0f1220;--surface:#171b2c;--surface-2:#1e2337;--border:#2c3350;--ink:#e8eaf3;--muted:#9aa3bf;
 --navy:#151d33;--gold:#c9a85a;--grid:#262c46;
 --up:#4fbd88;--flat:#d9ab4a;--down:#e5717f;--bear:#f08a96;--hist:#8e97ae;
+--rise:#e0645a;--fall:#6f9fe0;
 --okbg:#122a20;--okln:#2c5a41;--badbg:#2c1418;--badln:#5c2730;
 --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px -12px rgba(0,0,0,.5);}}
 :root[data-theme="dark"]{
 --bg:#0f1220;--surface:#171b2c;--surface-2:#1e2337;--border:#2c3350;--ink:#e8eaf3;--muted:#9aa3bf;
 --navy:#151d33;--gold:#c9a85a;--grid:#262c46;
 --up:#4fbd88;--flat:#d9ab4a;--down:#e5717f;--bear:#f08a96;--hist:#8e97ae;
+--rise:#e0645a;--fall:#6f9fe0;
 --okbg:#122a20;--okln:#2c5a41;--badbg:#2c1418;--badln:#5c2730;
 --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px -12px rgba(0,0,0,.5);}
 *{box-sizing:border-box}
@@ -30,7 +33,7 @@ padding-bottom:8px;margin-bottom:13px;flex-wrap:wrap;gap:6px}
 h1{font-size:23px;font-weight:800;margin:0 0 8px;line-height:1.35}
 .sub{font-size:14px;color:#c4cbdc;margin-bottom:11px;max-width:80ch}
 .meta{font-size:12px;color:#8f9ab8;display:flex;gap:18px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(370px,1fr));gap:14px;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(520px,1fr));gap:14px;margin-bottom:22px}
 .card{margin:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;
 box-shadow:var(--shadow);padding:13px 14px 11px;border-top:4px solid var(--border)}
 .card.up{border-top-color:var(--up)}.card.flat{border-top-color:var(--flat)}
@@ -64,7 +67,9 @@ border-top:1px solid var(--border);line-height:1.45}
 .key{stroke:var(--gold);stroke-width:1.5;stroke-dasharray:5 3}
 .reft{font-size:9.5px;fill:var(--muted);font-variant-numeric:tabular-nums}
 .keyt{fill:var(--gold);font-weight:700}
-.hist{stroke:var(--hist);stroke-width:1.7;stroke-linejoin:round;opacity:.75}
+.ovl{stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round;fill:none}
+.ovl.up{stroke:var(--up)}.ovl.flat{stroke:var(--flat)}
+.ovl.down{stroke:var(--down)}.ovl.bear{stroke:var(--bear)}
 .now{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 3;opacity:.6}
 .nowt{font-size:9.5px;fill:var(--muted);text-anchor:middle}
 .proj{stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:7 4}
@@ -127,7 +132,7 @@ min-width:26px;text-align:center}
 <span class="cat">Market Strategy | Elliott Wave · 시나리오 경로</span></div>
 <h1>코스피 5개 시나리오 — 앞으로의 경로</h1>
 <p class="sub">6/19~7/29 하락의 파동 구조에서 도출된 다섯 갈래입니다.
-다섯 차트의 <b>회색 실측선은 완전히 동일</b>합니다 — 가격은 사실이니까요. 다른 것은 그 위에 붙는 <b>파동 라벨</b>입니다. 같은 로그 축(3,700~9,800)을 씁니다.
+다섯 차트의 <b>캔들(6/19~오늘)은 완전히 동일</b>합니다 — 가격은 사실이니까요. 다른 것은 그 위에 얹힌 <b>파동선과 라벨</b>입니다. 같은 로그 축(3,700~9,800)을 씁니다.
 금색 파선 <b>5,263</b>을 깨느냐가 실무상 유일한 분류축입니다.</p>
 <div class="meta"><span>정점 9,385.59 (6/19)</span><span>저점 5,262.77 (7/29)</span>
 <span>반등 정점 7,216.62 (8/18)</span><span>라이브 6,807.78 (8/26 장중)</span></div>
@@ -187,55 +192,147 @@ min-width:26px;text-align:center}
     <span class="sprob">43%</span>
   </figcaption>
   <div class="smeta"><span class="wv">현재 ②파</span><span class="br hold">5,263 방어</span></div>
-  <svg viewBox="0 0 440 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S1 경로"><line x1="8" y1="38.2" x2="382.0" y2="38.2" class="ref"/>
-<text x="387.0" y="41.6" class="reft reft">9,386 전고</text>
-<line x1="8" y1="112.1" x2="382.0" y2="112.1" class="ref"/>
-<text x="387.0" y="115.5" class="reft reft">7,217</text>
-<line x1="8" y1="200.9" x2="382.0" y2="200.9" class="key"/>
-<text x="387.0" y="204.3" class="reft keyt">5,263</text>
-<line x1="8" y1="145.8" x2="382.0" y2="145.8" class="mark sup"/>
-<rect x="11" y="129.8" width="81.6" height="14" rx="3" class="mkb sup"/>
-<text x="51.8" y="140.3" class="mkt">1차 지지 6,401</text>
-<line x1="8" y1="181.9" x2="382.0" y2="181.9" class="mark sup"/>
-<rect x="11" y="165.9" width="81.6" height="14" rx="3" class="mkb sup"/>
-<text x="51.8" y="176.4" class="mkt">최종 한계 5,631</text>
-<polyline points="8.0,38.2 23.3,80.3 28.4,48.6 89.6,143.7 94.7,104.1 140.6,200.9 166.1,134.0 176.3,156.7 206.9,112.1 212.0,145.8 222.2,122.5 232.4,145.5 232.4,128.5" class="hist" fill="none"/>
-<line x1="232.4" y1="22" x2="232.4" y2="300" class="now"/>
-<text x="232.4" y="18" class="nowt">오늘</text>
-<circle cx="89.6" cy="143.7" r="2.6" class="hdot up"/>
-<rect x="81.1" y="149.7" width="17.0" height="14" rx="3" class="hbg up"/>
-<text x="89.6" y="159.7" class="hbt">W</text>
-<circle cx="94.7" cy="104.1" r="2.6" class="hdot up"/>
-<rect x="86.2" y="83.1" width="17.0" height="14" rx="3" class="hbg up"/>
-<text x="94.7" y="93.1" class="hbt">X</text>
-<circle cx="140.6" cy="200.9" r="2.6" class="hdot up"/>
-<rect x="132.1" y="206.9" width="17.0" height="14" rx="3" class="hbg up"/>
-<text x="140.6" y="216.9" class="hbt">Y</text>
-<circle cx="166.1" cy="134.0" r="2.6" class="hdot up"/>
-<rect x="157.6" y="113.0" width="17.0" height="14" rx="3" class="hbg up"/>
-<text x="166.1" y="123.0" class="hbt">i</text>
-<circle cx="176.3" cy="156.7" r="2.6" class="hdot up"/>
-<rect x="163.8" y="162.7" width="25.0" height="14" rx="3" class="hbg up"/>
-<text x="176.3" y="172.7" class="hbt">ii</text>
-<circle cx="206.9" cy="112.1" r="2.6" class="hdot up"/>
-<rect x="190.4" y="91.1" width="33.0" height="14" rx="3" class="hbg up"/>
-<text x="206.9" y="101.1" class="hbt">v=①</text>
-<circle cx="232.4" cy="145.5" r="2.6" class="hdot up"/>
-<rect x="223.9" y="151.5" width="17.0" height="14" rx="3" class="hbg up"/>
-<text x="232.4" y="161.5" class="hbt">②</text>
-<polyline points="232.4,128.5 247.4,136.4 268.3,112.1 310.2,57.0 337.1,76.8 382.0,31.8" class="proj up" fill="none"/>
-<circle cx="268.3" cy="112.1" r="3" class="dot up"/>
-<rect x="270.3" y="89.1" width="67.0" height="15" rx="3.5" class="bdg up"/>
-<text x="303.8" y="100.1" class="bdgt">7,217 돌파</text>
-<circle cx="310.2" cy="57.0" r="3" class="dot up"/>
-<rect x="312.2" y="34.0" width="18.0" height="15" rx="3.5" class="bdg up"/>
-<text x="321.2" y="45.0" class="bdgt">③</text>
-<circle cx="337.1" cy="76.8" r="3" class="dot up"/>
-<rect x="339.1" y="81.8" width="18.0" height="15" rx="3.5" class="bdg up"/>
-<text x="348.1" y="92.8" class="bdgt">④</text>
-<circle cx="382.0" cy="31.8" r="3" class="dot up"/>
-<rect x="364.0" y="8.8" width="18.0" height="15" rx="3.5" class="bdg up"/>
-<text x="373.0" y="19.8" class="bdgt">⑤</text></svg>
+  <svg viewBox="0 0 580 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S1 경로"><line x1="8" y1="41.3" x2="522.0" y2="41.3" class="ref"/>
+<text x="527.0" y="44.7" class="reft reft">9,386 전고</text>
+<line x1="8" y1="134.1" x2="522.0" y2="134.1" class="ref"/>
+<text x="527.0" y="137.5" class="reft reft">7,217</text>
+<line x1="8" y1="245.6" x2="522.0" y2="245.6" class="key"/>
+<text x="527.0" y="249.0" class="reft keyt">5,263</text>
+<line x1="8" y1="176.4" x2="522.0" y2="176.4" class="mark sup"/>
+<rect x="11" y="160.4" width="81.6" height="14" rx="3" class="mkb sup"/>
+<text x="51.8" y="170.9" class="mkt">1차 지지 6,401</text>
+<line x1="8" y1="221.7" x2="522.0" y2="221.7" class="mark sup"/>
+<rect x="11" y="205.7" width="81.6" height="14" rx="3" class="mkb sup"/>
+<text x="51.8" y="216.2" class="mkt">최종 한계 5,631</text>
+<line x1="11.7" y1="41.3" x2="11.7" y2="62.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="9.4" y="44.9" width="4.6" height="9.1" fill="var(--fall)" opacity=".85"/>
+<line x1="19.1" y1="46.3" x2="19.1" y2="60.0" stroke="var(--rise)" stroke-width="1"/>
+<rect x="16.8" y="51.6" width="4.6" height="6.3" fill="var(--rise)" opacity=".85"/>
+<line x1="26.4" y1="49.3" x2="26.4" y2="88.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="24.2" y="52.8" width="4.6" height="36.0" fill="var(--fall)" opacity=".85"/>
+<line x1="33.8" y1="73.1" x2="33.8" y2="94.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="31.5" y="77.5" width="4.6" height="4.8" fill="var(--rise)" opacity=".85"/>
+<line x1="41.2" y1="54.4" x2="41.2" y2="68.3" stroke="var(--rise)" stroke-width="1"/>
+<rect x="38.9" y="58.8" width="4.6" height="9.1" fill="var(--rise)" opacity=".85"/>
+<line x1="48.6" y1="61.5" x2="48.6" y2="92.1" stroke="var(--fall)" stroke-width="1"/>
+<rect x="46.3" y="63.5" width="4.6" height="16.5" fill="var(--fall)" opacity=".85"/>
+<line x1="55.9" y1="69.4" x2="55.9" y2="88.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="53.6" y="77.2" width="4.6" height="2.5" fill="var(--rise)" opacity=".85"/>
+<line x1="63.3" y1="71.3" x2="63.3" y2="91.4" stroke="var(--fall)" stroke-width="1"/>
+<rect x="61.0" y="72.5" width="4.6" height="12.0" fill="var(--fall)" opacity=".85"/>
+<line x1="70.7" y1="91.7" x2="70.7" y2="115.0" stroke="var(--fall)" stroke-width="1"/>
+<rect x="68.4" y="100.6" width="4.6" height="12.9" fill="var(--fall)" opacity=".85"/>
+<line x1="78.1" y1="91.7" x2="78.1" y2="126.3" stroke="var(--rise)" stroke-width="1"/>
+<rect x="75.8" y="93.8" width="4.6" height="15.6" fill="var(--rise)" opacity=".85"/>
+<line x1="85.4" y1="83.5" x2="85.4" y2="105.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="83.1" y="89.5" width="4.6" height="5.9" fill="var(--fall)" opacity=".85"/>
+<line x1="92.8" y1="99.7" x2="92.8" y2="125.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="90.5" y="101.3" width="4.6" height="11.9" fill="var(--fall)" opacity=".85"/>
+<line x1="100.2" y1="107.0" x2="100.2" y2="135.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="97.9" y="122.7" width="4.6" height="9.9" fill="var(--fall)" opacity=".85"/>
+<line x1="107.6" y1="118.4" x2="107.6" y2="141.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="105.3" y="121.1" width="4.6" height="9.3" fill="var(--fall)" opacity=".85"/>
+<line x1="114.9" y1="110.9" x2="114.9" y2="123.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="112.6" y="118.0" width="4.6" height="3.6" fill="var(--fall)" opacity=".85"/>
+<line x1="122.3" y1="119.1" x2="122.3" y2="155.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="120.0" y="124.6" width="4.6" height="30.1" fill="var(--fall)" opacity=".85"/>
+<line x1="129.7" y1="145.8" x2="129.7" y2="173.8" stroke="var(--rise)" stroke-width="1"/>
+<rect x="127.4" y="152.1" width="4.6" height="4.5" fill="var(--rise)" opacity=".85"/>
+<line x1="137.1" y1="124.1" x2="137.1" y2="140.7" stroke="var(--rise)" stroke-width="1"/>
+<rect x="134.8" y="130.8" width="4.6" height="9.9" fill="var(--rise)" opacity=".85"/>
+<line x1="144.4" y1="145.0" x2="144.4" y2="158.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="142.1" y="146.8" width="4.6" height="7.2" fill="var(--fall)" opacity=".85"/>
+<line x1="151.8" y1="154.3" x2="151.8" y2="172.5" stroke="var(--fall)" stroke-width="1"/>
+<rect x="149.5" y="163.3" width="4.6" height="6.8" fill="var(--fall)" opacity=".85"/>
+<line x1="159.2" y1="153.2" x2="159.2" y2="174.9" stroke="var(--rise)" stroke-width="1"/>
+<rect x="156.9" y="157.8" width="4.6" height="10.3" fill="var(--rise)" opacity=".85"/>
+<line x1="166.6" y1="136.6" x2="166.6" y2="155.5" stroke="var(--fall)" stroke-width="1"/>
+<rect x="164.3" y="142.2" width="4.6" height="13.0" fill="var(--fall)" opacity=".85"/>
+<line x1="173.9" y1="139.4" x2="173.9" y2="150.3" stroke="var(--rise)" stroke-width="1"/>
+<rect x="171.6" y="140.0" width="4.6" height="6.7" fill="var(--rise)" opacity=".85"/>
+<line x1="181.3" y1="144.8" x2="181.3" y2="162.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="179.0" y="144.8" width="4.6" height="16.0" fill="var(--fall)" opacity=".85"/>
+<line x1="188.7" y1="154.7" x2="188.7" y2="167.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="186.4" y="154.7" width="4.6" height="2.6" fill="var(--fall)" opacity=".85"/>
+<line x1="196.1" y1="175.7" x2="196.1" y2="199.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="193.8" y="176.5" width="4.6" height="21.4" fill="var(--fall)" opacity=".85"/>
+<line x1="203.4" y1="186.1" x2="203.4" y2="245.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="201.1" y="194.1" width="4.6" height="25.6" fill="var(--fall)" opacity=".85"/>
+<line x1="210.8" y1="200.6" x2="210.8" y2="227.0" stroke="var(--fall)" stroke-width="1"/>
+<rect x="208.5" y="218.5" width="4.6" height="5.5" fill="var(--fall)" opacity=".85"/>
+<line x1="218.2" y1="164.0" x2="218.2" y2="221.8" stroke="var(--rise)" stroke-width="1"/>
+<rect x="215.9" y="165.9" width="4.6" height="54.2" fill="var(--rise)" opacity=".85"/>
+<line x1="225.6" y1="176.9" x2="225.6" y2="186.4" stroke="var(--fall)" stroke-width="1"/>
+<rect x="223.3" y="178.8" width="4.6" height="5.6" fill="var(--fall)" opacity=".85"/>
+<line x1="232.9" y1="177.1" x2="232.9" y2="194.6" stroke="var(--rise)" stroke-width="1"/>
+<rect x="230.6" y="178.8" width="4.6" height="1.1" fill="var(--rise)" opacity=".85"/>
+<line x1="240.3" y1="161.6" x2="240.3" y2="168.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="238.0" y="165.4" width="4.6" height="1.1" fill="var(--fall)" opacity=".85"/>
+<line x1="247.7" y1="168.2" x2="247.7" y2="185.5" stroke="var(--fall)" stroke-width="1"/>
+<rect x="245.4" y="172.2" width="4.6" height="10.1" fill="var(--fall)" opacity=".85"/>
+<line x1="255.1" y1="175.6" x2="255.1" y2="190.0" stroke="var(--fall)" stroke-width="1"/>
+<rect x="252.8" y="178.4" width="4.6" height="5.9" fill="var(--fall)" opacity=".85"/>
+<line x1="262.4" y1="176.8" x2="262.4" y2="185.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="260.1" y="181.7" width="4.6" height="1.1" fill="var(--fall)" opacity=".85"/>
+<line x1="269.8" y1="176.2" x2="269.8" y2="186.9" stroke="var(--rise)" stroke-width="1"/>
+<rect x="267.5" y="179.5" width="4.6" height="5.9" fill="var(--rise)" opacity=".85"/>
+<line x1="277.2" y1="162.0" x2="277.2" y2="175.7" stroke="var(--rise)" stroke-width="1"/>
+<rect x="274.9" y="166.7" width="4.6" height="7.6" fill="var(--rise)" opacity=".85"/>
+<line x1="284.6" y1="150.1" x2="284.6" y2="157.8" stroke="var(--rise)" stroke-width="1"/>
+<rect x="282.3" y="154.4" width="4.6" height="2.0" fill="var(--rise)" opacity=".85"/>
+<line x1="291.9" y1="144.3" x2="291.9" y2="152.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="289.6" y="145.0" width="4.6" height="1.1" fill="var(--fall)" opacity=".85"/>
+<line x1="299.3" y1="134.1" x2="299.3" y2="155.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="297.0" y="138.4" width="4.6" height="13.0" fill="var(--fall)" opacity=".85"/>
+<line x1="306.7" y1="164.8" x2="306.7" y2="176.4" stroke="var(--fall)" stroke-width="1"/>
+<rect x="304.4" y="169.4" width="4.6" height="3.1" fill="var(--fall)" opacity=".85"/>
+<line x1="314.1" y1="149.7" x2="314.1" y2="165.6" stroke="var(--rise)" stroke-width="1"/>
+<rect x="311.8" y="152.3" width="4.6" height="9.0" fill="var(--rise)" opacity=".85"/>
+<line x1="321.4" y1="147.2" x2="321.4" y2="158.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="319.1" y="149.2" width="4.6" height="7.9" fill="var(--rise)" opacity=".85"/>
+<line x1="328.8" y1="150.7" x2="328.8" y2="162.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="326.5" y="150.9" width="4.6" height="9.6" fill="var(--fall)" opacity=".85"/>
+<line x1="336.2" y1="158.1" x2="336.2" y2="176.0" stroke="var(--rise)" stroke-width="1"/>
+<rect x="333.9" y="159.4" width="4.6" height="9.7" fill="var(--rise)" opacity=".85"/>
+<line x1="343.6" y1="153.5" x2="343.6" y2="160.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="341.3" y="154.7" width="4.6" height="4.2" fill="var(--rise)" opacity=".85"/>
+<polyline points="11.7,41.3 129.7,173.8 137.1,124.1 203.4,245.6 240.3,161.6 255.1,190.0 282.0,150.1 287.1,157.2 299.3,134.1 306.7,176.4 321.4,147.2 336.2,176.0 343.6,154.7" class="ovl up" fill="none"/>
+<line x1="347.2" y1="22" x2="347.2" y2="370" class="now"/>
+<text x="347.2" y="18" class="nowt">오늘</text>
+<circle cx="129.7" cy="173.8" r="2.6" class="hdot up"/>
+<rect x="121.2" y="179.8" width="17.0" height="14" rx="3" class="hbg up"/>
+<text x="129.7" y="189.8" class="hbt">W</text>
+<circle cx="137.1" cy="124.1" r="2.6" class="hdot up"/>
+<rect x="128.6" y="103.1" width="17.0" height="14" rx="3" class="hbg up"/>
+<text x="137.1" y="113.1" class="hbt">X</text>
+<circle cx="203.4" cy="245.6" r="2.6" class="hdot up"/>
+<rect x="194.9" y="251.6" width="17.0" height="14" rx="3" class="hbg up"/>
+<text x="203.4" y="261.6" class="hbt">Y</text>
+<circle cx="240.3" cy="161.6" r="2.6" class="hdot up"/>
+<rect x="231.8" y="140.6" width="17.0" height="14" rx="3" class="hbg up"/>
+<text x="240.3" y="150.6" class="hbt">i</text>
+<circle cx="255.1" cy="190.0" r="2.6" class="hdot up"/>
+<rect x="242.6" y="196.0" width="25.0" height="14" rx="3" class="hbg up"/>
+<text x="255.1" y="206.0" class="hbt">ii</text>
+<circle cx="299.3" cy="134.1" r="2.6" class="hdot up"/>
+<rect x="282.8" y="113.1" width="33.0" height="14" rx="3" class="hbg up"/>
+<text x="299.3" y="123.1" class="hbt">v=①</text>
+<circle cx="336.2" cy="176.0" r="2.6" class="hdot up"/>
+<rect x="327.7" y="182.0" width="17.0" height="14" rx="3" class="hbg up"/>
+<text x="336.2" y="192.0" class="hbt">②</text>
+<polyline points="347.2,154.7 364.7,164.5 389.2,134.1 438.1,64.9 469.6,89.8 522.0,33.3" class="proj up" fill="none"/>
+<circle cx="389.2" cy="134.1" r="3" class="dot up"/>
+<rect x="391.2" y="111.1" width="67.0" height="15" rx="3.5" class="bdg up"/>
+<text x="424.7" y="122.1" class="bdgt">7,217 돌파</text>
+<circle cx="438.1" cy="64.9" r="3" class="dot up"/>
+<rect x="440.1" y="41.9" width="18.0" height="15" rx="3.5" class="bdg up"/>
+<text x="449.1" y="52.9" class="bdgt">③</text>
+<circle cx="469.6" cy="89.8" r="3" class="dot up"/>
+<rect x="471.6" y="94.8" width="18.0" height="15" rx="3.5" class="bdg up"/>
+<text x="480.6" y="105.8" class="bdgt">④</text>
+<circle cx="522.0" cy="33.3" r="3" class="dot up"/>
+<rect x="504.0" y="10.3" width="18.0" height="15" rx="3.5" class="bdg up"/>
+<text x="513.0" y="21.3" class="bdgt">⑤</text></svg>
   <div class="scount">하락 W-X-Y(3분절) · 반등 ①파 = <b>5분절</b> i-ii-iii-iv-v → 현재 ②파(ⓐ-ⓑ-ⓒ)</div>
   <div class="starget">1차 지지 6,401 · 최종 5,631 · 무효 5,263</div>
 </figure>
@@ -245,49 +342,141 @@ min-width:26px;text-align:center}
     <span class="sprob">8%</span>
   </figcaption>
   <div class="smeta"><span class="wv">현재 B파</span><span class="br hold">5,263 방어</span></div>
-  <svg viewBox="0 0 440 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S2 경로"><line x1="8" y1="38.2" x2="382.0" y2="38.2" class="ref"/>
-<text x="387.0" y="41.6" class="reft reft">9,386 전고</text>
-<line x1="8" y1="112.1" x2="382.0" y2="112.1" class="ref"/>
-<text x="387.0" y="115.5" class="reft reft">7,217</text>
-<line x1="8" y1="200.9" x2="382.0" y2="200.9" class="key"/>
-<text x="387.0" y="204.3" class="reft keyt">5,263</text>
-<line x1="8" y1="145.8" x2="382.0" y2="145.8" class="mark brk"/>
-<rect x="11" y="129.8" width="81.6" height="14" rx="3" class="mkb brk"/>
-<text x="51.8" y="140.3" class="mkt">1차 이탈 6,401</text>
-<line x1="8" y1="183.1" x2="382.0" y2="183.1" class="mark sup"/>
-<rect x="11" y="167.1" width="75.0" height="14" rx="3" class="mkb sup"/>
-<text x="48.5" y="177.6" class="mkt">C 하한 5,606</text>
-<polyline points="8.0,38.2 23.3,80.3 28.4,48.6 89.6,143.7 94.7,104.1 140.6,200.9 166.1,134.0 176.3,156.7 206.9,112.1 212.0,145.8 222.2,122.5 232.4,145.5 232.4,128.5" class="hist" fill="none"/>
-<line x1="232.4" y1="22" x2="232.4" y2="300" class="now"/>
-<text x="232.4" y="18" class="nowt">오늘</text>
-<circle cx="140.6" cy="200.9" r="2.6" class="hdot flat"/>
-<rect x="132.1" y="206.9" width="17.0" height="14" rx="3" class="hbg flat"/>
-<text x="140.6" y="216.9" class="hbt">A</text>
-<circle cx="166.1" cy="134.0" r="2.6" class="hdot flat"/>
-<rect x="157.6" y="113.0" width="17.0" height="14" rx="3" class="hbg flat"/>
-<text x="166.1" y="123.0" class="hbt">a</text>
-<circle cx="176.3" cy="156.7" r="2.6" class="hdot flat"/>
-<rect x="167.8" y="162.7" width="17.0" height="14" rx="3" class="hbg flat"/>
-<text x="176.3" y="172.7" class="hbt">b</text>
-<circle cx="206.9" cy="112.1" r="2.6" class="hdot flat"/>
-<rect x="190.4" y="91.1" width="33.0" height="14" rx="3" class="hbg flat"/>
-<text x="206.9" y="101.1" class="hbt">c=B</text>
-<circle cx="232.4" cy="145.5" r="2.6" class="hdot flat"/>
-<rect x="215.9" y="151.5" width="33.0" height="14" rx="3" class="hbg flat"/>
-<text x="232.4" y="161.5" class="hbt">C초기</text>
-<polyline points="232.4,128.5 245.9,114.7 283.3,168.7 319.2,126.7 352.1,149.4 382.0,103.1" class="proj flat" fill="none"/>
-<circle cx="245.9" cy="114.7" r="3" class="dot flat"/>
-<rect x="247.9" y="91.7" width="18.0" height="15" rx="3.5" class="bdg flat"/>
-<text x="256.9" y="102.7" class="bdgt">B</text>
-<circle cx="283.3" cy="168.7" r="3" class="dot flat"/>
-<rect x="285.3" y="173.7" width="18.0" height="15" rx="3.5" class="bdg flat"/>
-<text x="294.3" y="184.7" class="bdgt">C</text>
-<circle cx="319.2" cy="126.7" r="3" class="dot flat"/>
-<rect x="321.2" y="103.7" width="18.0" height="15" rx="3.5" class="bdg flat"/>
-<text x="330.2" y="114.7" class="bdgt">D</text>
-<circle cx="352.1" cy="149.4" r="3" class="dot flat"/>
-<rect x="354.1" y="154.4" width="18.0" height="15" rx="3.5" class="bdg flat"/>
-<text x="363.1" y="165.4" class="bdgt">E</text></svg>
+  <svg viewBox="0 0 580 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S2 경로"><line x1="8" y1="41.3" x2="522.0" y2="41.3" class="ref"/>
+<text x="527.0" y="44.7" class="reft reft">9,386 전고</text>
+<line x1="8" y1="134.1" x2="522.0" y2="134.1" class="ref"/>
+<text x="527.0" y="137.5" class="reft reft">7,217</text>
+<line x1="8" y1="245.6" x2="522.0" y2="245.6" class="key"/>
+<text x="527.0" y="249.0" class="reft keyt">5,263</text>
+<line x1="8" y1="176.4" x2="522.0" y2="176.4" class="mark brk"/>
+<rect x="11" y="160.4" width="81.6" height="14" rx="3" class="mkb brk"/>
+<text x="51.8" y="170.9" class="mkt">1차 이탈 6,401</text>
+<line x1="8" y1="223.3" x2="522.0" y2="223.3" class="mark sup"/>
+<rect x="11" y="207.3" width="75.0" height="14" rx="3" class="mkb sup"/>
+<text x="48.5" y="217.8" class="mkt">C 하한 5,606</text>
+<line x1="11.7" y1="41.3" x2="11.7" y2="62.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="9.4" y="44.9" width="4.6" height="9.1" fill="var(--fall)" opacity=".85"/>
+<line x1="19.1" y1="46.3" x2="19.1" y2="60.0" stroke="var(--rise)" stroke-width="1"/>
+<rect x="16.8" y="51.6" width="4.6" height="6.3" fill="var(--rise)" opacity=".85"/>
+<line x1="26.4" y1="49.3" x2="26.4" y2="88.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="24.2" y="52.8" width="4.6" height="36.0" fill="var(--fall)" opacity=".85"/>
+<line x1="33.8" y1="73.1" x2="33.8" y2="94.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="31.5" y="77.5" width="4.6" height="4.8" fill="var(--rise)" opacity=".85"/>
+<line x1="41.2" y1="54.4" x2="41.2" y2="68.3" stroke="var(--rise)" stroke-width="1"/>
+<rect x="38.9" y="58.8" width="4.6" height="9.1" fill="var(--rise)" opacity=".85"/>
+<line x1="48.6" y1="61.5" x2="48.6" y2="92.1" stroke="var(--fall)" stroke-width="1"/>
+<rect x="46.3" y="63.5" width="4.6" height="16.5" fill="var(--fall)" opacity=".85"/>
+<line x1="55.9" y1="69.4" x2="55.9" y2="88.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="53.6" y="77.2" width="4.6" height="2.5" fill="var(--rise)" opacity=".85"/>
+<line x1="63.3" y1="71.3" x2="63.3" y2="91.4" stroke="var(--fall)" stroke-width="1"/>
+<rect x="61.0" y="72.5" width="4.6" height="12.0" fill="var(--fall)" opacity=".85"/>
+<line x1="70.7" y1="91.7" x2="70.7" y2="115.0" stroke="var(--fall)" stroke-width="1"/>
+<rect x="68.4" y="100.6" width="4.6" height="12.9" fill="var(--fall)" opacity=".85"/>
+<line x1="78.1" y1="91.7" x2="78.1" y2="126.3" stroke="var(--rise)" stroke-width="1"/>
+<rect x="75.8" y="93.8" width="4.6" height="15.6" fill="var(--rise)" opacity=".85"/>
+<line x1="85.4" y1="83.5" x2="85.4" y2="105.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="83.1" y="89.5" width="4.6" height="5.9" fill="var(--fall)" opacity=".85"/>
+<line x1="92.8" y1="99.7" x2="92.8" y2="125.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="90.5" y="101.3" width="4.6" height="11.9" fill="var(--fall)" opacity=".85"/>
+<line x1="100.2" y1="107.0" x2="100.2" y2="135.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="97.9" y="122.7" width="4.6" height="9.9" fill="var(--fall)" opacity=".85"/>
+<line x1="107.6" y1="118.4" x2="107.6" y2="141.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="105.3" y="121.1" width="4.6" height="9.3" fill="var(--fall)" opacity=".85"/>
+<line x1="114.9" y1="110.9" x2="114.9" y2="123.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="112.6" y="118.0" width="4.6" height="3.6" fill="var(--fall)" opacity=".85"/>
+<line x1="122.3" y1="119.1" x2="122.3" y2="155.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="120.0" y="124.6" width="4.6" height="30.1" fill="var(--fall)" opacity=".85"/>
+<line x1="129.7" y1="145.8" x2="129.7" y2="173.8" stroke="var(--rise)" stroke-width="1"/>
+<rect x="127.4" y="152.1" width="4.6" height="4.5" fill="var(--rise)" opacity=".85"/>
+<line x1="137.1" y1="124.1" x2="137.1" y2="140.7" stroke="var(--rise)" stroke-width="1"/>
+<rect x="134.8" y="130.8" width="4.6" height="9.9" fill="var(--rise)" opacity=".85"/>
+<line x1="144.4" y1="145.0" x2="144.4" y2="158.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="142.1" y="146.8" width="4.6" height="7.2" fill="var(--fall)" opacity=".85"/>
+<line x1="151.8" y1="154.3" x2="151.8" y2="172.5" stroke="var(--fall)" stroke-width="1"/>
+<rect x="149.5" y="163.3" width="4.6" height="6.8" fill="var(--fall)" opacity=".85"/>
+<line x1="159.2" y1="153.2" x2="159.2" y2="174.9" stroke="var(--rise)" stroke-width="1"/>
+<rect x="156.9" y="157.8" width="4.6" height="10.3" fill="var(--rise)" opacity=".85"/>
+<line x1="166.6" y1="136.6" x2="166.6" y2="155.5" stroke="var(--fall)" stroke-width="1"/>
+<rect x="164.3" y="142.2" width="4.6" height="13.0" fill="var(--fall)" opacity=".85"/>
+<line x1="173.9" y1="139.4" x2="173.9" y2="150.3" stroke="var(--rise)" stroke-width="1"/>
+<rect x="171.6" y="140.0" width="4.6" height="6.7" fill="var(--rise)" opacity=".85"/>
+<line x1="181.3" y1="144.8" x2="181.3" y2="162.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="179.0" y="144.8" width="4.6" height="16.0" fill="var(--fall)" opacity=".85"/>
+<line x1="188.7" y1="154.7" x2="188.7" y2="167.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="186.4" y="154.7" width="4.6" height="2.6" fill="var(--fall)" opacity=".85"/>
+<line x1="196.1" y1="175.7" x2="196.1" y2="199.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="193.8" y="176.5" width="4.6" height="21.4" fill="var(--fall)" opacity=".85"/>
+<line x1="203.4" y1="186.1" x2="203.4" y2="245.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="201.1" y="194.1" width="4.6" height="25.6" fill="var(--fall)" opacity=".85"/>
+<line x1="210.8" y1="200.6" x2="210.8" y2="227.0" stroke="var(--fall)" stroke-width="1"/>
+<rect x="208.5" y="218.5" width="4.6" height="5.5" fill="var(--fall)" opacity=".85"/>
+<line x1="218.2" y1="164.0" x2="218.2" y2="221.8" stroke="var(--rise)" stroke-width="1"/>
+<rect x="215.9" y="165.9" width="4.6" height="54.2" fill="var(--rise)" opacity=".85"/>
+<line x1="225.6" y1="176.9" x2="225.6" y2="186.4" stroke="var(--fall)" stroke-width="1"/>
+<rect x="223.3" y="178.8" width="4.6" height="5.6" fill="var(--fall)" opacity=".85"/>
+<line x1="232.9" y1="177.1" x2="232.9" y2="194.6" stroke="var(--rise)" stroke-width="1"/>
+<rect x="230.6" y="178.8" width="4.6" height="1.1" fill="var(--rise)" opacity=".85"/>
+<line x1="240.3" y1="161.6" x2="240.3" y2="168.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="238.0" y="165.4" width="4.6" height="1.1" fill="var(--fall)" opacity=".85"/>
+<line x1="247.7" y1="168.2" x2="247.7" y2="185.5" stroke="var(--fall)" stroke-width="1"/>
+<rect x="245.4" y="172.2" width="4.6" height="10.1" fill="var(--fall)" opacity=".85"/>
+<line x1="255.1" y1="175.6" x2="255.1" y2="190.0" stroke="var(--fall)" stroke-width="1"/>
+<rect x="252.8" y="178.4" width="4.6" height="5.9" fill="var(--fall)" opacity=".85"/>
+<line x1="262.4" y1="176.8" x2="262.4" y2="185.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="260.1" y="181.7" width="4.6" height="1.1" fill="var(--fall)" opacity=".85"/>
+<line x1="269.8" y1="176.2" x2="269.8" y2="186.9" stroke="var(--rise)" stroke-width="1"/>
+<rect x="267.5" y="179.5" width="4.6" height="5.9" fill="var(--rise)" opacity=".85"/>
+<line x1="277.2" y1="162.0" x2="277.2" y2="175.7" stroke="var(--rise)" stroke-width="1"/>
+<rect x="274.9" y="166.7" width="4.6" height="7.6" fill="var(--rise)" opacity=".85"/>
+<line x1="284.6" y1="150.1" x2="284.6" y2="157.8" stroke="var(--rise)" stroke-width="1"/>
+<rect x="282.3" y="154.4" width="4.6" height="2.0" fill="var(--rise)" opacity=".85"/>
+<line x1="291.9" y1="144.3" x2="291.9" y2="152.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="289.6" y="145.0" width="4.6" height="1.1" fill="var(--fall)" opacity=".85"/>
+<line x1="299.3" y1="134.1" x2="299.3" y2="155.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="297.0" y="138.4" width="4.6" height="13.0" fill="var(--fall)" opacity=".85"/>
+<line x1="306.7" y1="164.8" x2="306.7" y2="176.4" stroke="var(--fall)" stroke-width="1"/>
+<rect x="304.4" y="169.4" width="4.6" height="3.1" fill="var(--fall)" opacity=".85"/>
+<line x1="314.1" y1="149.7" x2="314.1" y2="165.6" stroke="var(--rise)" stroke-width="1"/>
+<rect x="311.8" y="152.3" width="4.6" height="9.0" fill="var(--rise)" opacity=".85"/>
+<line x1="321.4" y1="147.2" x2="321.4" y2="158.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="319.1" y="149.2" width="4.6" height="7.9" fill="var(--rise)" opacity=".85"/>
+<line x1="328.8" y1="150.7" x2="328.8" y2="162.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="326.5" y="150.9" width="4.6" height="9.6" fill="var(--fall)" opacity=".85"/>
+<line x1="336.2" y1="158.1" x2="336.2" y2="176.0" stroke="var(--rise)" stroke-width="1"/>
+<rect x="333.9" y="159.4" width="4.6" height="9.7" fill="var(--rise)" opacity=".85"/>
+<line x1="343.6" y1="153.5" x2="343.6" y2="160.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="341.3" y="154.7" width="4.6" height="4.2" fill="var(--rise)" opacity=".85"/>
+<polyline points="11.7,41.3 129.7,173.8 137.1,124.1 203.4,245.6 240.3,161.6 255.1,190.0 299.3,134.1 306.7,176.4 321.4,147.2 336.2,176.0 343.6,154.7" class="ovl flat" fill="none"/>
+<line x1="347.2" y1="22" x2="347.2" y2="370" class="now"/>
+<text x="347.2" y="18" class="nowt">오늘</text>
+<circle cx="203.4" cy="245.6" r="2.6" class="hdot flat"/>
+<rect x="194.9" y="251.6" width="17.0" height="14" rx="3" class="hbg flat"/>
+<text x="203.4" y="261.6" class="hbt">A</text>
+<circle cx="240.3" cy="161.6" r="2.6" class="hdot flat"/>
+<rect x="231.8" y="140.6" width="17.0" height="14" rx="3" class="hbg flat"/>
+<text x="240.3" y="150.6" class="hbt">a</text>
+<circle cx="255.1" cy="190.0" r="2.6" class="hdot flat"/>
+<rect x="246.6" y="196.0" width="17.0" height="14" rx="3" class="hbg flat"/>
+<text x="255.1" y="206.0" class="hbt">b</text>
+<circle cx="299.3" cy="134.1" r="2.6" class="hdot flat"/>
+<rect x="282.8" y="113.1" width="33.0" height="14" rx="3" class="hbg flat"/>
+<text x="299.3" y="123.1" class="hbt">c=B</text>
+<circle cx="336.2" cy="176.0" r="2.6" class="hdot flat"/>
+<rect x="319.7" y="182.0" width="33.0" height="14" rx="3" class="hbg flat"/>
+<text x="336.2" y="192.0" class="hbt">C초기</text>
+<polyline points="347.2,154.7 363.0,137.3 406.7,205.2 448.6,152.5 487.0,180.9 522.0,122.8" class="proj flat" fill="none"/>
+<circle cx="363.0" cy="137.3" r="3" class="dot flat"/>
+<rect x="365.0" y="114.3" width="18.0" height="15" rx="3.5" class="bdg flat"/>
+<text x="374.0" y="125.3" class="bdgt">B</text>
+<circle cx="406.7" cy="205.2" r="3" class="dot flat"/>
+<rect x="408.7" y="210.2" width="18.0" height="15" rx="3.5" class="bdg flat"/>
+<text x="417.7" y="221.2" class="bdgt">C</text>
+<circle cx="448.6" cy="152.5" r="3" class="dot flat"/>
+<rect x="450.6" y="129.5" width="18.0" height="15" rx="3.5" class="bdg flat"/>
+<text x="459.6" y="140.5" class="bdgt">D</text>
+<circle cx="487.0" cy="180.9" r="3" class="dot flat"/>
+<rect x="489.0" y="185.9" width="18.0" height="15" rx="3.5" class="bdg flat"/>
+<text x="498.0" y="196.9" class="bdgt">E</text></svg>
   <div class="scount">하락 전체 = 삼각형의 A파(3분절) · 반등 B파 = <b>3분절</b> a-b-c → C파 초기</div>
   <div class="starget">1차 이탈 6,401 · C 하한 5,606 · 5,263 방어</div>
 </figure>
@@ -297,37 +486,129 @@ min-width:26px;text-align:center}
     <span class="sprob">12%</span>
   </figcaption>
   <div class="smeta"><span class="wv">현재 X파</span><span class="br brk">5,263 이탈</span></div>
-  <svg viewBox="0 0 440 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S3 경로"><line x1="8" y1="38.2" x2="382.0" y2="38.2" class="ref"/>
-<text x="387.0" y="41.6" class="reft reft">9,386 전고</text>
-<line x1="8" y1="112.1" x2="382.0" y2="112.1" class="ref"/>
-<text x="387.0" y="115.5" class="reft reft">7,217</text>
-<line x1="8" y1="200.9" x2="382.0" y2="200.9" class="key"/>
-<text x="387.0" y="204.3" class="reft keyt">5,263</text>
-<line x1="8" y1="145.8" x2="382.0" y2="145.8" class="mark brk"/>
-<rect x="11" y="129.8" width="81.6" height="14" rx="3" class="mkb brk"/>
-<text x="51.8" y="140.3" class="mkt">1차 이탈 6,401</text>
-<polyline points="8.0,38.2 23.3,80.3 28.4,48.6 89.6,143.7 94.7,104.1 140.6,200.9 166.1,134.0 176.3,156.7 206.9,112.1 212.0,145.8 222.2,122.5 232.4,145.5 232.4,128.5" class="hist" fill="none"/>
-<line x1="232.4" y1="22" x2="232.4" y2="300" class="now"/>
-<text x="232.4" y="18" class="nowt">오늘</text>
-<circle cx="140.6" cy="200.9" r="2.6" class="hdot down"/>
-<rect x="132.1" y="206.9" width="17.0" height="14" rx="3" class="hbg down"/>
-<text x="140.6" y="216.9" class="hbt">W</text>
-<circle cx="166.1" cy="134.0" r="2.6" class="hdot down"/>
-<rect x="157.6" y="113.0" width="17.0" height="14" rx="3" class="hbg down"/>
-<text x="166.1" y="123.0" class="hbt">a</text>
-<circle cx="176.3" cy="156.7" r="2.6" class="hdot down"/>
-<rect x="167.8" y="162.7" width="17.0" height="14" rx="3" class="hbg down"/>
-<text x="176.3" y="172.7" class="hbt">b</text>
-<circle cx="206.9" cy="112.1" r="2.6" class="hdot down"/>
-<rect x="190.4" y="91.1" width="33.0" height="14" rx="3" class="hbg down"/>
-<text x="206.9" y="101.1" class="hbt">c=X</text>
-<circle cx="232.4" cy="145.5" r="2.6" class="hdot down"/>
-<rect x="215.9" y="151.5" width="33.0" height="14" rx="3" class="hbg down"/>
-<text x="232.4" y="161.5" class="hbt">Y초기</text>
-<polyline points="232.4,128.5 245.9,120.6 277.3,176.0 295.2,155.7 343.1,274.8 382.0,188.5" class="proj down" fill="none"/>
-<circle cx="343.1" cy="274.8" r="3" class="dot down"/>
-<rect x="345.1" y="280.8" width="18.0" height="15" rx="3.5" class="bdg down"/>
-<text x="354.1" y="291.8" class="bdgt">Y</text></svg>
+  <svg viewBox="0 0 580 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S3 경로"><line x1="8" y1="41.3" x2="522.0" y2="41.3" class="ref"/>
+<text x="527.0" y="44.7" class="reft reft">9,386 전고</text>
+<line x1="8" y1="134.1" x2="522.0" y2="134.1" class="ref"/>
+<text x="527.0" y="137.5" class="reft reft">7,217</text>
+<line x1="8" y1="245.6" x2="522.0" y2="245.6" class="key"/>
+<text x="527.0" y="249.0" class="reft keyt">5,263</text>
+<line x1="8" y1="176.4" x2="522.0" y2="176.4" class="mark brk"/>
+<rect x="11" y="160.4" width="81.6" height="14" rx="3" class="mkb brk"/>
+<text x="51.8" y="170.9" class="mkt">1차 이탈 6,401</text>
+<line x1="11.7" y1="41.3" x2="11.7" y2="62.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="9.4" y="44.9" width="4.6" height="9.1" fill="var(--fall)" opacity=".85"/>
+<line x1="19.1" y1="46.3" x2="19.1" y2="60.0" stroke="var(--rise)" stroke-width="1"/>
+<rect x="16.8" y="51.6" width="4.6" height="6.3" fill="var(--rise)" opacity=".85"/>
+<line x1="26.4" y1="49.3" x2="26.4" y2="88.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="24.2" y="52.8" width="4.6" height="36.0" fill="var(--fall)" opacity=".85"/>
+<line x1="33.8" y1="73.1" x2="33.8" y2="94.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="31.5" y="77.5" width="4.6" height="4.8" fill="var(--rise)" opacity=".85"/>
+<line x1="41.2" y1="54.4" x2="41.2" y2="68.3" stroke="var(--rise)" stroke-width="1"/>
+<rect x="38.9" y="58.8" width="4.6" height="9.1" fill="var(--rise)" opacity=".85"/>
+<line x1="48.6" y1="61.5" x2="48.6" y2="92.1" stroke="var(--fall)" stroke-width="1"/>
+<rect x="46.3" y="63.5" width="4.6" height="16.5" fill="var(--fall)" opacity=".85"/>
+<line x1="55.9" y1="69.4" x2="55.9" y2="88.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="53.6" y="77.2" width="4.6" height="2.5" fill="var(--rise)" opacity=".85"/>
+<line x1="63.3" y1="71.3" x2="63.3" y2="91.4" stroke="var(--fall)" stroke-width="1"/>
+<rect x="61.0" y="72.5" width="4.6" height="12.0" fill="var(--fall)" opacity=".85"/>
+<line x1="70.7" y1="91.7" x2="70.7" y2="115.0" stroke="var(--fall)" stroke-width="1"/>
+<rect x="68.4" y="100.6" width="4.6" height="12.9" fill="var(--fall)" opacity=".85"/>
+<line x1="78.1" y1="91.7" x2="78.1" y2="126.3" stroke="var(--rise)" stroke-width="1"/>
+<rect x="75.8" y="93.8" width="4.6" height="15.6" fill="var(--rise)" opacity=".85"/>
+<line x1="85.4" y1="83.5" x2="85.4" y2="105.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="83.1" y="89.5" width="4.6" height="5.9" fill="var(--fall)" opacity=".85"/>
+<line x1="92.8" y1="99.7" x2="92.8" y2="125.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="90.5" y="101.3" width="4.6" height="11.9" fill="var(--fall)" opacity=".85"/>
+<line x1="100.2" y1="107.0" x2="100.2" y2="135.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="97.9" y="122.7" width="4.6" height="9.9" fill="var(--fall)" opacity=".85"/>
+<line x1="107.6" y1="118.4" x2="107.6" y2="141.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="105.3" y="121.1" width="4.6" height="9.3" fill="var(--fall)" opacity=".85"/>
+<line x1="114.9" y1="110.9" x2="114.9" y2="123.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="112.6" y="118.0" width="4.6" height="3.6" fill="var(--fall)" opacity=".85"/>
+<line x1="122.3" y1="119.1" x2="122.3" y2="155.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="120.0" y="124.6" width="4.6" height="30.1" fill="var(--fall)" opacity=".85"/>
+<line x1="129.7" y1="145.8" x2="129.7" y2="173.8" stroke="var(--rise)" stroke-width="1"/>
+<rect x="127.4" y="152.1" width="4.6" height="4.5" fill="var(--rise)" opacity=".85"/>
+<line x1="137.1" y1="124.1" x2="137.1" y2="140.7" stroke="var(--rise)" stroke-width="1"/>
+<rect x="134.8" y="130.8" width="4.6" height="9.9" fill="var(--rise)" opacity=".85"/>
+<line x1="144.4" y1="145.0" x2="144.4" y2="158.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="142.1" y="146.8" width="4.6" height="7.2" fill="var(--fall)" opacity=".85"/>
+<line x1="151.8" y1="154.3" x2="151.8" y2="172.5" stroke="var(--fall)" stroke-width="1"/>
+<rect x="149.5" y="163.3" width="4.6" height="6.8" fill="var(--fall)" opacity=".85"/>
+<line x1="159.2" y1="153.2" x2="159.2" y2="174.9" stroke="var(--rise)" stroke-width="1"/>
+<rect x="156.9" y="157.8" width="4.6" height="10.3" fill="var(--rise)" opacity=".85"/>
+<line x1="166.6" y1="136.6" x2="166.6" y2="155.5" stroke="var(--fall)" stroke-width="1"/>
+<rect x="164.3" y="142.2" width="4.6" height="13.0" fill="var(--fall)" opacity=".85"/>
+<line x1="173.9" y1="139.4" x2="173.9" y2="150.3" stroke="var(--rise)" stroke-width="1"/>
+<rect x="171.6" y="140.0" width="4.6" height="6.7" fill="var(--rise)" opacity=".85"/>
+<line x1="181.3" y1="144.8" x2="181.3" y2="162.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="179.0" y="144.8" width="4.6" height="16.0" fill="var(--fall)" opacity=".85"/>
+<line x1="188.7" y1="154.7" x2="188.7" y2="167.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="186.4" y="154.7" width="4.6" height="2.6" fill="var(--fall)" opacity=".85"/>
+<line x1="196.1" y1="175.7" x2="196.1" y2="199.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="193.8" y="176.5" width="4.6" height="21.4" fill="var(--fall)" opacity=".85"/>
+<line x1="203.4" y1="186.1" x2="203.4" y2="245.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="201.1" y="194.1" width="4.6" height="25.6" fill="var(--fall)" opacity=".85"/>
+<line x1="210.8" y1="200.6" x2="210.8" y2="227.0" stroke="var(--fall)" stroke-width="1"/>
+<rect x="208.5" y="218.5" width="4.6" height="5.5" fill="var(--fall)" opacity=".85"/>
+<line x1="218.2" y1="164.0" x2="218.2" y2="221.8" stroke="var(--rise)" stroke-width="1"/>
+<rect x="215.9" y="165.9" width="4.6" height="54.2" fill="var(--rise)" opacity=".85"/>
+<line x1="225.6" y1="176.9" x2="225.6" y2="186.4" stroke="var(--fall)" stroke-width="1"/>
+<rect x="223.3" y="178.8" width="4.6" height="5.6" fill="var(--fall)" opacity=".85"/>
+<line x1="232.9" y1="177.1" x2="232.9" y2="194.6" stroke="var(--rise)" stroke-width="1"/>
+<rect x="230.6" y="178.8" width="4.6" height="1.1" fill="var(--rise)" opacity=".85"/>
+<line x1="240.3" y1="161.6" x2="240.3" y2="168.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="238.0" y="165.4" width="4.6" height="1.1" fill="var(--fall)" opacity=".85"/>
+<line x1="247.7" y1="168.2" x2="247.7" y2="185.5" stroke="var(--fall)" stroke-width="1"/>
+<rect x="245.4" y="172.2" width="4.6" height="10.1" fill="var(--fall)" opacity=".85"/>
+<line x1="255.1" y1="175.6" x2="255.1" y2="190.0" stroke="var(--fall)" stroke-width="1"/>
+<rect x="252.8" y="178.4" width="4.6" height="5.9" fill="var(--fall)" opacity=".85"/>
+<line x1="262.4" y1="176.8" x2="262.4" y2="185.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="260.1" y="181.7" width="4.6" height="1.1" fill="var(--fall)" opacity=".85"/>
+<line x1="269.8" y1="176.2" x2="269.8" y2="186.9" stroke="var(--rise)" stroke-width="1"/>
+<rect x="267.5" y="179.5" width="4.6" height="5.9" fill="var(--rise)" opacity=".85"/>
+<line x1="277.2" y1="162.0" x2="277.2" y2="175.7" stroke="var(--rise)" stroke-width="1"/>
+<rect x="274.9" y="166.7" width="4.6" height="7.6" fill="var(--rise)" opacity=".85"/>
+<line x1="284.6" y1="150.1" x2="284.6" y2="157.8" stroke="var(--rise)" stroke-width="1"/>
+<rect x="282.3" y="154.4" width="4.6" height="2.0" fill="var(--rise)" opacity=".85"/>
+<line x1="291.9" y1="144.3" x2="291.9" y2="152.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="289.6" y="145.0" width="4.6" height="1.1" fill="var(--fall)" opacity=".85"/>
+<line x1="299.3" y1="134.1" x2="299.3" y2="155.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="297.0" y="138.4" width="4.6" height="13.0" fill="var(--fall)" opacity=".85"/>
+<line x1="306.7" y1="164.8" x2="306.7" y2="176.4" stroke="var(--fall)" stroke-width="1"/>
+<rect x="304.4" y="169.4" width="4.6" height="3.1" fill="var(--fall)" opacity=".85"/>
+<line x1="314.1" y1="149.7" x2="314.1" y2="165.6" stroke="var(--rise)" stroke-width="1"/>
+<rect x="311.8" y="152.3" width="4.6" height="9.0" fill="var(--rise)" opacity=".85"/>
+<line x1="321.4" y1="147.2" x2="321.4" y2="158.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="319.1" y="149.2" width="4.6" height="7.9" fill="var(--rise)" opacity=".85"/>
+<line x1="328.8" y1="150.7" x2="328.8" y2="162.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="326.5" y="150.9" width="4.6" height="9.6" fill="var(--fall)" opacity=".85"/>
+<line x1="336.2" y1="158.1" x2="336.2" y2="176.0" stroke="var(--rise)" stroke-width="1"/>
+<rect x="333.9" y="159.4" width="4.6" height="9.7" fill="var(--rise)" opacity=".85"/>
+<line x1="343.6" y1="153.5" x2="343.6" y2="160.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="341.3" y="154.7" width="4.6" height="4.2" fill="var(--rise)" opacity=".85"/>
+<polyline points="11.7,41.3 129.7,173.8 137.1,124.1 203.4,245.6 240.3,161.6 255.1,190.0 299.3,134.1 306.7,176.4 321.4,147.2 336.2,176.0 343.6,154.7" class="ovl down" fill="none"/>
+<line x1="347.2" y1="22" x2="347.2" y2="370" class="now"/>
+<text x="347.2" y="18" class="nowt">오늘</text>
+<circle cx="203.4" cy="245.6" r="2.6" class="hdot down"/>
+<rect x="194.9" y="251.6" width="17.0" height="14" rx="3" class="hbg down"/>
+<text x="203.4" y="261.6" class="hbt">W</text>
+<circle cx="240.3" cy="161.6" r="2.6" class="hdot down"/>
+<rect x="231.8" y="140.6" width="17.0" height="14" rx="3" class="hbg down"/>
+<text x="240.3" y="150.6" class="hbt">a</text>
+<circle cx="255.1" cy="190.0" r="2.6" class="hdot down"/>
+<rect x="246.6" y="196.0" width="17.0" height="14" rx="3" class="hbg down"/>
+<text x="255.1" y="206.0" class="hbt">b</text>
+<circle cx="299.3" cy="134.1" r="2.6" class="hdot down"/>
+<rect x="282.8" y="113.1" width="33.0" height="14" rx="3" class="hbg down"/>
+<text x="299.3" y="123.1" class="hbt">c=X</text>
+<circle cx="336.2" cy="176.0" r="2.6" class="hdot down"/>
+<rect x="319.7" y="182.0" width="33.0" height="14" rx="3" class="hbg down"/>
+<text x="336.2" y="192.0" class="hbt">Y초기</text>
+<polyline points="347.2,154.7 363.0,144.8 399.7,214.3 420.6,188.8 476.6,338.3 522.0,230.0" class="proj down" fill="none"/>
+<circle cx="476.6" cy="338.3" r="3" class="dot down"/>
+<rect x="478.6" y="344.3" width="18.0" height="15" rx="3.5" class="bdg down"/>
+<text x="487.6" y="355.3" class="bdgt">Y</text></svg>
   <div class="scount">하락 전체 = 복합조정의 W(3분절) · 반등 X파 = <b>3분절</b> a-b-c → Y파 초기</div>
   <div class="starget">1차 이탈 6,401 → 5,263 관통 → Y 4,047</div>
 </figure>
@@ -337,49 +618,141 @@ min-width:26px;text-align:center}
     <span class="sprob">22%</span>
   </figcaption>
   <div class="smeta"><span class="wv">현재 B파</span><span class="br brk">5,263 이탈</span></div>
-  <svg viewBox="0 0 440 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S4 경로"><line x1="8" y1="38.2" x2="382.0" y2="38.2" class="ref"/>
-<text x="387.0" y="41.6" class="reft reft">9,386 전고</text>
-<line x1="8" y1="112.1" x2="382.0" y2="112.1" class="ref"/>
-<text x="387.0" y="115.5" class="reft reft">7,217</text>
-<line x1="8" y1="200.9" x2="382.0" y2="200.9" class="key"/>
-<text x="387.0" y="204.3" class="reft keyt">5,263</text>
-<line x1="8" y1="145.8" x2="382.0" y2="145.8" class="mark brk"/>
-<rect x="11" y="129.8" width="81.6" height="14" rx="3" class="mkb brk"/>
-<text x="51.8" y="140.3" class="mkt">1차 이탈 6,401</text>
-<polyline points="8.0,38.2 23.3,80.3 28.4,48.6 89.6,143.7 94.7,104.1 140.6,200.9 166.1,134.0 176.3,156.7 206.9,112.1 212.0,145.8 222.2,122.5 232.4,145.5 232.4,128.5" class="hist" fill="none"/>
-<line x1="232.4" y1="22" x2="232.4" y2="300" class="now"/>
-<text x="232.4" y="18" class="nowt">오늘</text>
-<circle cx="23.3" cy="80.3" r="2.6" class="hdot down"/>
-<rect x="14.8" y="86.3" width="17.0" height="14" rx="3" class="hbg down"/>
-<text x="23.3" y="96.3" class="hbt">1</text>
-<circle cx="28.4" cy="48.6" r="2.6" class="hdot down"/>
-<rect x="19.9" y="27.6" width="17.0" height="14" rx="3" class="hbg down"/>
-<text x="28.4" y="37.6" class="hbt">2</text>
-<circle cx="89.6" cy="143.7" r="2.6" class="hdot down"/>
-<rect x="81.1" y="149.7" width="17.0" height="14" rx="3" class="hbg down"/>
-<text x="89.6" y="159.7" class="hbt">3</text>
-<circle cx="94.7" cy="104.1" r="2.6" class="hdot down"/>
-<rect x="86.2" y="83.1" width="17.0" height="14" rx="3" class="hbg down"/>
-<text x="94.7" y="93.1" class="hbt">4</text>
-<circle cx="140.6" cy="200.9" r="2.6" class="hdot down"/>
-<rect x="132.1" y="206.9" width="17.0" height="14" rx="3" class="hbg down"/>
-<text x="140.6" y="216.9" class="hbt">5</text>
-<circle cx="166.1" cy="134.0" r="2.6" class="hdot down"/>
-<rect x="157.6" y="113.0" width="17.0" height="14" rx="3" class="hbg down"/>
-<text x="166.1" y="123.0" class="hbt">a</text>
-<circle cx="176.3" cy="156.7" r="2.6" class="hdot down"/>
-<rect x="167.8" y="162.7" width="17.0" height="14" rx="3" class="hbg down"/>
-<text x="176.3" y="172.7" class="hbt">b</text>
-<circle cx="206.9" cy="112.1" r="2.6" class="hdot down"/>
-<rect x="190.4" y="91.1" width="33.0" height="14" rx="3" class="hbg down"/>
-<text x="206.9" y="101.1" class="hbt">c=B</text>
-<circle cx="232.4" cy="145.5" r="2.6" class="hdot down"/>
-<rect x="215.9" y="151.5" width="33.0" height="14" rx="3" class="hbg down"/>
-<text x="232.4" y="161.5" class="hbt">C초기</text>
-<polyline points="232.4,128.5 244.4,119.8 275.8,168.7 293.7,148.1 349.1,212.7 382.0,152.5" class="proj down" fill="none"/>
-<circle cx="349.1" cy="212.7" r="3" class="dot down"/>
-<rect x="351.1" y="218.7" width="18.0" height="15" rx="3.5" class="bdg down"/>
-<text x="360.1" y="229.7" class="bdgt">C</text></svg>
+  <svg viewBox="0 0 580 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S4 경로"><line x1="8" y1="41.3" x2="522.0" y2="41.3" class="ref"/>
+<text x="527.0" y="44.7" class="reft reft">9,386 전고</text>
+<line x1="8" y1="134.1" x2="522.0" y2="134.1" class="ref"/>
+<text x="527.0" y="137.5" class="reft reft">7,217</text>
+<line x1="8" y1="245.6" x2="522.0" y2="245.6" class="key"/>
+<text x="527.0" y="249.0" class="reft keyt">5,263</text>
+<line x1="8" y1="176.4" x2="522.0" y2="176.4" class="mark brk"/>
+<rect x="11" y="160.4" width="81.6" height="14" rx="3" class="mkb brk"/>
+<text x="51.8" y="170.9" class="mkt">1차 이탈 6,401</text>
+<line x1="11.7" y1="41.3" x2="11.7" y2="62.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="9.4" y="44.9" width="4.6" height="9.1" fill="var(--fall)" opacity=".85"/>
+<line x1="19.1" y1="46.3" x2="19.1" y2="60.0" stroke="var(--rise)" stroke-width="1"/>
+<rect x="16.8" y="51.6" width="4.6" height="6.3" fill="var(--rise)" opacity=".85"/>
+<line x1="26.4" y1="49.3" x2="26.4" y2="88.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="24.2" y="52.8" width="4.6" height="36.0" fill="var(--fall)" opacity=".85"/>
+<line x1="33.8" y1="73.1" x2="33.8" y2="94.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="31.5" y="77.5" width="4.6" height="4.8" fill="var(--rise)" opacity=".85"/>
+<line x1="41.2" y1="54.4" x2="41.2" y2="68.3" stroke="var(--rise)" stroke-width="1"/>
+<rect x="38.9" y="58.8" width="4.6" height="9.1" fill="var(--rise)" opacity=".85"/>
+<line x1="48.6" y1="61.5" x2="48.6" y2="92.1" stroke="var(--fall)" stroke-width="1"/>
+<rect x="46.3" y="63.5" width="4.6" height="16.5" fill="var(--fall)" opacity=".85"/>
+<line x1="55.9" y1="69.4" x2="55.9" y2="88.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="53.6" y="77.2" width="4.6" height="2.5" fill="var(--rise)" opacity=".85"/>
+<line x1="63.3" y1="71.3" x2="63.3" y2="91.4" stroke="var(--fall)" stroke-width="1"/>
+<rect x="61.0" y="72.5" width="4.6" height="12.0" fill="var(--fall)" opacity=".85"/>
+<line x1="70.7" y1="91.7" x2="70.7" y2="115.0" stroke="var(--fall)" stroke-width="1"/>
+<rect x="68.4" y="100.6" width="4.6" height="12.9" fill="var(--fall)" opacity=".85"/>
+<line x1="78.1" y1="91.7" x2="78.1" y2="126.3" stroke="var(--rise)" stroke-width="1"/>
+<rect x="75.8" y="93.8" width="4.6" height="15.6" fill="var(--rise)" opacity=".85"/>
+<line x1="85.4" y1="83.5" x2="85.4" y2="105.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="83.1" y="89.5" width="4.6" height="5.9" fill="var(--fall)" opacity=".85"/>
+<line x1="92.8" y1="99.7" x2="92.8" y2="125.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="90.5" y="101.3" width="4.6" height="11.9" fill="var(--fall)" opacity=".85"/>
+<line x1="100.2" y1="107.0" x2="100.2" y2="135.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="97.9" y="122.7" width="4.6" height="9.9" fill="var(--fall)" opacity=".85"/>
+<line x1="107.6" y1="118.4" x2="107.6" y2="141.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="105.3" y="121.1" width="4.6" height="9.3" fill="var(--fall)" opacity=".85"/>
+<line x1="114.9" y1="110.9" x2="114.9" y2="123.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="112.6" y="118.0" width="4.6" height="3.6" fill="var(--fall)" opacity=".85"/>
+<line x1="122.3" y1="119.1" x2="122.3" y2="155.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="120.0" y="124.6" width="4.6" height="30.1" fill="var(--fall)" opacity=".85"/>
+<line x1="129.7" y1="145.8" x2="129.7" y2="173.8" stroke="var(--rise)" stroke-width="1"/>
+<rect x="127.4" y="152.1" width="4.6" height="4.5" fill="var(--rise)" opacity=".85"/>
+<line x1="137.1" y1="124.1" x2="137.1" y2="140.7" stroke="var(--rise)" stroke-width="1"/>
+<rect x="134.8" y="130.8" width="4.6" height="9.9" fill="var(--rise)" opacity=".85"/>
+<line x1="144.4" y1="145.0" x2="144.4" y2="158.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="142.1" y="146.8" width="4.6" height="7.2" fill="var(--fall)" opacity=".85"/>
+<line x1="151.8" y1="154.3" x2="151.8" y2="172.5" stroke="var(--fall)" stroke-width="1"/>
+<rect x="149.5" y="163.3" width="4.6" height="6.8" fill="var(--fall)" opacity=".85"/>
+<line x1="159.2" y1="153.2" x2="159.2" y2="174.9" stroke="var(--rise)" stroke-width="1"/>
+<rect x="156.9" y="157.8" width="4.6" height="10.3" fill="var(--rise)" opacity=".85"/>
+<line x1="166.6" y1="136.6" x2="166.6" y2="155.5" stroke="var(--fall)" stroke-width="1"/>
+<rect x="164.3" y="142.2" width="4.6" height="13.0" fill="var(--fall)" opacity=".85"/>
+<line x1="173.9" y1="139.4" x2="173.9" y2="150.3" stroke="var(--rise)" stroke-width="1"/>
+<rect x="171.6" y="140.0" width="4.6" height="6.7" fill="var(--rise)" opacity=".85"/>
+<line x1="181.3" y1="144.8" x2="181.3" y2="162.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="179.0" y="144.8" width="4.6" height="16.0" fill="var(--fall)" opacity=".85"/>
+<line x1="188.7" y1="154.7" x2="188.7" y2="167.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="186.4" y="154.7" width="4.6" height="2.6" fill="var(--fall)" opacity=".85"/>
+<line x1="196.1" y1="175.7" x2="196.1" y2="199.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="193.8" y="176.5" width="4.6" height="21.4" fill="var(--fall)" opacity=".85"/>
+<line x1="203.4" y1="186.1" x2="203.4" y2="245.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="201.1" y="194.1" width="4.6" height="25.6" fill="var(--fall)" opacity=".85"/>
+<line x1="210.8" y1="200.6" x2="210.8" y2="227.0" stroke="var(--fall)" stroke-width="1"/>
+<rect x="208.5" y="218.5" width="4.6" height="5.5" fill="var(--fall)" opacity=".85"/>
+<line x1="218.2" y1="164.0" x2="218.2" y2="221.8" stroke="var(--rise)" stroke-width="1"/>
+<rect x="215.9" y="165.9" width="4.6" height="54.2" fill="var(--rise)" opacity=".85"/>
+<line x1="225.6" y1="176.9" x2="225.6" y2="186.4" stroke="var(--fall)" stroke-width="1"/>
+<rect x="223.3" y="178.8" width="4.6" height="5.6" fill="var(--fall)" opacity=".85"/>
+<line x1="232.9" y1="177.1" x2="232.9" y2="194.6" stroke="var(--rise)" stroke-width="1"/>
+<rect x="230.6" y="178.8" width="4.6" height="1.1" fill="var(--rise)" opacity=".85"/>
+<line x1="240.3" y1="161.6" x2="240.3" y2="168.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="238.0" y="165.4" width="4.6" height="1.1" fill="var(--fall)" opacity=".85"/>
+<line x1="247.7" y1="168.2" x2="247.7" y2="185.5" stroke="var(--fall)" stroke-width="1"/>
+<rect x="245.4" y="172.2" width="4.6" height="10.1" fill="var(--fall)" opacity=".85"/>
+<line x1="255.1" y1="175.6" x2="255.1" y2="190.0" stroke="var(--fall)" stroke-width="1"/>
+<rect x="252.8" y="178.4" width="4.6" height="5.9" fill="var(--fall)" opacity=".85"/>
+<line x1="262.4" y1="176.8" x2="262.4" y2="185.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="260.1" y="181.7" width="4.6" height="1.1" fill="var(--fall)" opacity=".85"/>
+<line x1="269.8" y1="176.2" x2="269.8" y2="186.9" stroke="var(--rise)" stroke-width="1"/>
+<rect x="267.5" y="179.5" width="4.6" height="5.9" fill="var(--rise)" opacity=".85"/>
+<line x1="277.2" y1="162.0" x2="277.2" y2="175.7" stroke="var(--rise)" stroke-width="1"/>
+<rect x="274.9" y="166.7" width="4.6" height="7.6" fill="var(--rise)" opacity=".85"/>
+<line x1="284.6" y1="150.1" x2="284.6" y2="157.8" stroke="var(--rise)" stroke-width="1"/>
+<rect x="282.3" y="154.4" width="4.6" height="2.0" fill="var(--rise)" opacity=".85"/>
+<line x1="291.9" y1="144.3" x2="291.9" y2="152.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="289.6" y="145.0" width="4.6" height="1.1" fill="var(--fall)" opacity=".85"/>
+<line x1="299.3" y1="134.1" x2="299.3" y2="155.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="297.0" y="138.4" width="4.6" height="13.0" fill="var(--fall)" opacity=".85"/>
+<line x1="306.7" y1="164.8" x2="306.7" y2="176.4" stroke="var(--fall)" stroke-width="1"/>
+<rect x="304.4" y="169.4" width="4.6" height="3.1" fill="var(--fall)" opacity=".85"/>
+<line x1="314.1" y1="149.7" x2="314.1" y2="165.6" stroke="var(--rise)" stroke-width="1"/>
+<rect x="311.8" y="152.3" width="4.6" height="9.0" fill="var(--rise)" opacity=".85"/>
+<line x1="321.4" y1="147.2" x2="321.4" y2="158.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="319.1" y="149.2" width="4.6" height="7.9" fill="var(--rise)" opacity=".85"/>
+<line x1="328.8" y1="150.7" x2="328.8" y2="162.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="326.5" y="150.9" width="4.6" height="9.6" fill="var(--fall)" opacity=".85"/>
+<line x1="336.2" y1="158.1" x2="336.2" y2="176.0" stroke="var(--rise)" stroke-width="1"/>
+<rect x="333.9" y="159.4" width="4.6" height="9.7" fill="var(--rise)" opacity=".85"/>
+<line x1="343.6" y1="153.5" x2="343.6" y2="160.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="341.3" y="154.7" width="4.6" height="4.2" fill="var(--rise)" opacity=".85"/>
+<polyline points="11.7,41.3 33.8,94.1 41.2,54.4 129.7,173.8 137.1,124.1 203.4,245.6 240.3,161.6 255.1,190.0 299.3,134.1 306.7,176.4 321.4,147.2 336.2,176.0 343.6,154.7" class="ovl down" fill="none"/>
+<line x1="347.2" y1="22" x2="347.2" y2="370" class="now"/>
+<text x="347.2" y="18" class="nowt">오늘</text>
+<circle cx="33.8" cy="94.1" r="2.6" class="hdot down"/>
+<rect x="25.3" y="100.1" width="17.0" height="14" rx="3" class="hbg down"/>
+<text x="33.8" y="110.1" class="hbt">1</text>
+<circle cx="41.2" cy="54.4" r="2.6" class="hdot down"/>
+<rect x="32.7" y="33.4" width="17.0" height="14" rx="3" class="hbg down"/>
+<text x="41.2" y="43.4" class="hbt">2</text>
+<circle cx="129.7" cy="173.8" r="2.6" class="hdot down"/>
+<rect x="121.2" y="179.8" width="17.0" height="14" rx="3" class="hbg down"/>
+<text x="129.7" y="189.8" class="hbt">3</text>
+<circle cx="137.1" cy="124.1" r="2.6" class="hdot down"/>
+<rect x="128.6" y="103.1" width="17.0" height="14" rx="3" class="hbg down"/>
+<text x="137.1" y="113.1" class="hbt">4</text>
+<circle cx="203.4" cy="245.6" r="2.6" class="hdot down"/>
+<rect x="194.9" y="251.6" width="17.0" height="14" rx="3" class="hbg down"/>
+<text x="203.4" y="261.6" class="hbt">5</text>
+<circle cx="240.3" cy="161.6" r="2.6" class="hdot down"/>
+<rect x="231.8" y="140.6" width="17.0" height="14" rx="3" class="hbg down"/>
+<text x="240.3" y="150.6" class="hbt">a</text>
+<circle cx="255.1" cy="190.0" r="2.6" class="hdot down"/>
+<rect x="246.6" y="196.0" width="17.0" height="14" rx="3" class="hbg down"/>
+<text x="255.1" y="206.0" class="hbt">b</text>
+<circle cx="299.3" cy="134.1" r="2.6" class="hdot down"/>
+<rect x="282.8" y="113.1" width="33.0" height="14" rx="3" class="hbg down"/>
+<text x="299.3" y="123.1" class="hbt">c=B</text>
+<circle cx="336.2" cy="176.0" r="2.6" class="hdot down"/>
+<rect x="319.7" y="182.0" width="33.0" height="14" rx="3" class="hbg down"/>
+<text x="336.2" y="192.0" class="hbt">C초기</text>
+<polyline points="347.2,154.7 361.2,143.8 397.9,205.2 418.9,179.2 483.6,260.4 522.0,184.9" class="proj down" fill="none"/>
+<circle cx="483.6" cy="260.4" r="3" class="dot down"/>
+<rect x="485.6" y="266.4" width="18.0" height="15" rx="3.5" class="bdg down"/>
+<text x="494.6" y="277.4" class="bdgt">C</text></svg>
   <div class="scount">하락 1-2-3-4-5 = A파(<b>5분절</b>) · 반등 B파 = <b>3분절</b> a-b-c → C파 초기</div>
   <div class="starget">1차 이탈 6,401 → 5,263 관통 → C 5,047</div>
 </figure>
@@ -389,61 +762,153 @@ min-width:26px;text-align:center}
     <span class="sprob">15%</span>
   </figcaption>
   <div class="smeta"><span class="wv">현재 2파</span><span class="br brk">5,263 이탈</span></div>
-  <svg viewBox="0 0 440 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S5 경로"><line x1="8" y1="38.2" x2="382.0" y2="38.2" class="ref"/>
-<text x="387.0" y="41.6" class="reft reft">9,386 전고</text>
-<line x1="8" y1="112.1" x2="382.0" y2="112.1" class="ref"/>
-<text x="387.0" y="115.5" class="reft reft">7,217</text>
-<line x1="8" y1="200.9" x2="382.0" y2="200.9" class="key"/>
-<text x="387.0" y="204.3" class="reft keyt">5,263</text>
-<line x1="8" y1="145.8" x2="382.0" y2="145.8" class="mark brk"/>
-<rect x="11" y="129.8" width="81.6" height="14" rx="3" class="mkb brk"/>
-<text x="51.8" y="140.3" class="mkt">1차 이탈 6,401</text>
-<polyline points="8.0,38.2 23.3,80.3 28.4,48.6 89.6,143.7 94.7,104.1 140.6,200.9 166.1,134.0 176.3,156.7 206.9,112.1 212.0,145.8 222.2,122.5 232.4,145.5 232.4,128.5" class="hist" fill="none"/>
-<line x1="232.4" y1="22" x2="232.4" y2="300" class="now"/>
-<text x="232.4" y="18" class="nowt">오늘</text>
-<circle cx="23.3" cy="80.3" r="2.6" class="hdot bear"/>
-<rect x="14.8" y="86.3" width="17.0" height="14" rx="3" class="hbg bear"/>
-<text x="23.3" y="96.3" class="hbt">1</text>
-<circle cx="28.4" cy="48.6" r="2.6" class="hdot bear"/>
-<rect x="19.9" y="27.6" width="17.0" height="14" rx="3" class="hbg bear"/>
-<text x="28.4" y="37.6" class="hbt">2</text>
-<circle cx="89.6" cy="143.7" r="2.6" class="hdot bear"/>
-<rect x="81.1" y="149.7" width="17.0" height="14" rx="3" class="hbg bear"/>
-<text x="89.6" y="159.7" class="hbt">3</text>
-<circle cx="94.7" cy="104.1" r="2.6" class="hdot bear"/>
-<rect x="86.2" y="83.1" width="17.0" height="14" rx="3" class="hbg bear"/>
-<text x="94.7" y="93.1" class="hbt">4</text>
-<circle cx="140.6" cy="200.9" r="2.6" class="hdot bear"/>
-<rect x="132.1" y="206.9" width="17.0" height="14" rx="3" class="hbg bear"/>
-<text x="140.6" y="216.9" class="hbt">5</text>
-<circle cx="166.1" cy="134.0" r="2.6" class="hdot bear"/>
-<rect x="157.6" y="113.0" width="17.0" height="14" rx="3" class="hbg bear"/>
-<text x="166.1" y="123.0" class="hbt">a</text>
-<circle cx="176.3" cy="156.7" r="2.6" class="hdot bear"/>
-<rect x="167.8" y="162.7" width="17.0" height="14" rx="3" class="hbg bear"/>
-<text x="176.3" y="172.7" class="hbt">b</text>
-<circle cx="206.9" cy="112.1" r="2.6" class="hdot bear"/>
-<rect x="190.4" y="91.1" width="33.0" height="14" rx="3" class="hbg bear"/>
-<text x="206.9" y="101.1" class="hbt">c=②</text>
-<circle cx="232.4" cy="145.5" r="2.6" class="hdot bear"/>
-<rect x="215.9" y="151.5" width="33.0" height="14" rx="3" class="hbg bear"/>
-<text x="232.4" y="161.5" class="hbt">③초기</text>
-<polyline points="232.4,128.5 244.4,120.6 301.2,274.8 326.6,221.0 382.0,306.0" class="proj bear" fill="none"/>
-<circle cx="301.2" cy="274.8" r="3" class="dot bear"/>
-<rect x="303.2" y="280.8" width="25.0" height="15" rx="3.5" class="bdg bear"/>
-<text x="315.7" y="291.8" class="bdgt">3파</text>
-<circle cx="326.6" cy="221.0" r="3" class="dot bear"/>
-<rect x="328.6" y="198.0" width="25.0" height="15" rx="3.5" class="bdg bear"/>
-<text x="341.1" y="209.0" class="bdgt">4파</text>
-<circle cx="382.0" cy="306.0" r="3" class="dot bear"/>
-<rect x="315.0" y="312.0" width="67.0" height="15" rx="3.5" class="bdg bear"/>
-<text x="348.5" y="323.0" class="bdgt">5파 2,830</text>
-<path d="M 382.0 310.0 l -5 9 l 10 0 z" class="arw bear"/></svg>
+  <svg viewBox="0 0 580 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S5 경로"><line x1="8" y1="41.3" x2="522.0" y2="41.3" class="ref"/>
+<text x="527.0" y="44.7" class="reft reft">9,386 전고</text>
+<line x1="8" y1="134.1" x2="522.0" y2="134.1" class="ref"/>
+<text x="527.0" y="137.5" class="reft reft">7,217</text>
+<line x1="8" y1="245.6" x2="522.0" y2="245.6" class="key"/>
+<text x="527.0" y="249.0" class="reft keyt">5,263</text>
+<line x1="8" y1="176.4" x2="522.0" y2="176.4" class="mark brk"/>
+<rect x="11" y="160.4" width="81.6" height="14" rx="3" class="mkb brk"/>
+<text x="51.8" y="170.9" class="mkt">1차 이탈 6,401</text>
+<line x1="11.7" y1="41.3" x2="11.7" y2="62.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="9.4" y="44.9" width="4.6" height="9.1" fill="var(--fall)" opacity=".85"/>
+<line x1="19.1" y1="46.3" x2="19.1" y2="60.0" stroke="var(--rise)" stroke-width="1"/>
+<rect x="16.8" y="51.6" width="4.6" height="6.3" fill="var(--rise)" opacity=".85"/>
+<line x1="26.4" y1="49.3" x2="26.4" y2="88.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="24.2" y="52.8" width="4.6" height="36.0" fill="var(--fall)" opacity=".85"/>
+<line x1="33.8" y1="73.1" x2="33.8" y2="94.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="31.5" y="77.5" width="4.6" height="4.8" fill="var(--rise)" opacity=".85"/>
+<line x1="41.2" y1="54.4" x2="41.2" y2="68.3" stroke="var(--rise)" stroke-width="1"/>
+<rect x="38.9" y="58.8" width="4.6" height="9.1" fill="var(--rise)" opacity=".85"/>
+<line x1="48.6" y1="61.5" x2="48.6" y2="92.1" stroke="var(--fall)" stroke-width="1"/>
+<rect x="46.3" y="63.5" width="4.6" height="16.5" fill="var(--fall)" opacity=".85"/>
+<line x1="55.9" y1="69.4" x2="55.9" y2="88.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="53.6" y="77.2" width="4.6" height="2.5" fill="var(--rise)" opacity=".85"/>
+<line x1="63.3" y1="71.3" x2="63.3" y2="91.4" stroke="var(--fall)" stroke-width="1"/>
+<rect x="61.0" y="72.5" width="4.6" height="12.0" fill="var(--fall)" opacity=".85"/>
+<line x1="70.7" y1="91.7" x2="70.7" y2="115.0" stroke="var(--fall)" stroke-width="1"/>
+<rect x="68.4" y="100.6" width="4.6" height="12.9" fill="var(--fall)" opacity=".85"/>
+<line x1="78.1" y1="91.7" x2="78.1" y2="126.3" stroke="var(--rise)" stroke-width="1"/>
+<rect x="75.8" y="93.8" width="4.6" height="15.6" fill="var(--rise)" opacity=".85"/>
+<line x1="85.4" y1="83.5" x2="85.4" y2="105.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="83.1" y="89.5" width="4.6" height="5.9" fill="var(--fall)" opacity=".85"/>
+<line x1="92.8" y1="99.7" x2="92.8" y2="125.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="90.5" y="101.3" width="4.6" height="11.9" fill="var(--fall)" opacity=".85"/>
+<line x1="100.2" y1="107.0" x2="100.2" y2="135.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="97.9" y="122.7" width="4.6" height="9.9" fill="var(--fall)" opacity=".85"/>
+<line x1="107.6" y1="118.4" x2="107.6" y2="141.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="105.3" y="121.1" width="4.6" height="9.3" fill="var(--fall)" opacity=".85"/>
+<line x1="114.9" y1="110.9" x2="114.9" y2="123.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="112.6" y="118.0" width="4.6" height="3.6" fill="var(--fall)" opacity=".85"/>
+<line x1="122.3" y1="119.1" x2="122.3" y2="155.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="120.0" y="124.6" width="4.6" height="30.1" fill="var(--fall)" opacity=".85"/>
+<line x1="129.7" y1="145.8" x2="129.7" y2="173.8" stroke="var(--rise)" stroke-width="1"/>
+<rect x="127.4" y="152.1" width="4.6" height="4.5" fill="var(--rise)" opacity=".85"/>
+<line x1="137.1" y1="124.1" x2="137.1" y2="140.7" stroke="var(--rise)" stroke-width="1"/>
+<rect x="134.8" y="130.8" width="4.6" height="9.9" fill="var(--rise)" opacity=".85"/>
+<line x1="144.4" y1="145.0" x2="144.4" y2="158.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="142.1" y="146.8" width="4.6" height="7.2" fill="var(--fall)" opacity=".85"/>
+<line x1="151.8" y1="154.3" x2="151.8" y2="172.5" stroke="var(--fall)" stroke-width="1"/>
+<rect x="149.5" y="163.3" width="4.6" height="6.8" fill="var(--fall)" opacity=".85"/>
+<line x1="159.2" y1="153.2" x2="159.2" y2="174.9" stroke="var(--rise)" stroke-width="1"/>
+<rect x="156.9" y="157.8" width="4.6" height="10.3" fill="var(--rise)" opacity=".85"/>
+<line x1="166.6" y1="136.6" x2="166.6" y2="155.5" stroke="var(--fall)" stroke-width="1"/>
+<rect x="164.3" y="142.2" width="4.6" height="13.0" fill="var(--fall)" opacity=".85"/>
+<line x1="173.9" y1="139.4" x2="173.9" y2="150.3" stroke="var(--rise)" stroke-width="1"/>
+<rect x="171.6" y="140.0" width="4.6" height="6.7" fill="var(--rise)" opacity=".85"/>
+<line x1="181.3" y1="144.8" x2="181.3" y2="162.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="179.0" y="144.8" width="4.6" height="16.0" fill="var(--fall)" opacity=".85"/>
+<line x1="188.7" y1="154.7" x2="188.7" y2="167.9" stroke="var(--fall)" stroke-width="1"/>
+<rect x="186.4" y="154.7" width="4.6" height="2.6" fill="var(--fall)" opacity=".85"/>
+<line x1="196.1" y1="175.7" x2="196.1" y2="199.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="193.8" y="176.5" width="4.6" height="21.4" fill="var(--fall)" opacity=".85"/>
+<line x1="203.4" y1="186.1" x2="203.4" y2="245.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="201.1" y="194.1" width="4.6" height="25.6" fill="var(--fall)" opacity=".85"/>
+<line x1="210.8" y1="200.6" x2="210.8" y2="227.0" stroke="var(--fall)" stroke-width="1"/>
+<rect x="208.5" y="218.5" width="4.6" height="5.5" fill="var(--fall)" opacity=".85"/>
+<line x1="218.2" y1="164.0" x2="218.2" y2="221.8" stroke="var(--rise)" stroke-width="1"/>
+<rect x="215.9" y="165.9" width="4.6" height="54.2" fill="var(--rise)" opacity=".85"/>
+<line x1="225.6" y1="176.9" x2="225.6" y2="186.4" stroke="var(--fall)" stroke-width="1"/>
+<rect x="223.3" y="178.8" width="4.6" height="5.6" fill="var(--fall)" opacity=".85"/>
+<line x1="232.9" y1="177.1" x2="232.9" y2="194.6" stroke="var(--rise)" stroke-width="1"/>
+<rect x="230.6" y="178.8" width="4.6" height="1.1" fill="var(--rise)" opacity=".85"/>
+<line x1="240.3" y1="161.6" x2="240.3" y2="168.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="238.0" y="165.4" width="4.6" height="1.1" fill="var(--fall)" opacity=".85"/>
+<line x1="247.7" y1="168.2" x2="247.7" y2="185.5" stroke="var(--fall)" stroke-width="1"/>
+<rect x="245.4" y="172.2" width="4.6" height="10.1" fill="var(--fall)" opacity=".85"/>
+<line x1="255.1" y1="175.6" x2="255.1" y2="190.0" stroke="var(--fall)" stroke-width="1"/>
+<rect x="252.8" y="178.4" width="4.6" height="5.9" fill="var(--fall)" opacity=".85"/>
+<line x1="262.4" y1="176.8" x2="262.4" y2="185.8" stroke="var(--fall)" stroke-width="1"/>
+<rect x="260.1" y="181.7" width="4.6" height="1.1" fill="var(--fall)" opacity=".85"/>
+<line x1="269.8" y1="176.2" x2="269.8" y2="186.9" stroke="var(--rise)" stroke-width="1"/>
+<rect x="267.5" y="179.5" width="4.6" height="5.9" fill="var(--rise)" opacity=".85"/>
+<line x1="277.2" y1="162.0" x2="277.2" y2="175.7" stroke="var(--rise)" stroke-width="1"/>
+<rect x="274.9" y="166.7" width="4.6" height="7.6" fill="var(--rise)" opacity=".85"/>
+<line x1="284.6" y1="150.1" x2="284.6" y2="157.8" stroke="var(--rise)" stroke-width="1"/>
+<rect x="282.3" y="154.4" width="4.6" height="2.0" fill="var(--rise)" opacity=".85"/>
+<line x1="291.9" y1="144.3" x2="291.9" y2="152.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="289.6" y="145.0" width="4.6" height="1.1" fill="var(--fall)" opacity=".85"/>
+<line x1="299.3" y1="134.1" x2="299.3" y2="155.7" stroke="var(--fall)" stroke-width="1"/>
+<rect x="297.0" y="138.4" width="4.6" height="13.0" fill="var(--fall)" opacity=".85"/>
+<line x1="306.7" y1="164.8" x2="306.7" y2="176.4" stroke="var(--fall)" stroke-width="1"/>
+<rect x="304.4" y="169.4" width="4.6" height="3.1" fill="var(--fall)" opacity=".85"/>
+<line x1="314.1" y1="149.7" x2="314.1" y2="165.6" stroke="var(--rise)" stroke-width="1"/>
+<rect x="311.8" y="152.3" width="4.6" height="9.0" fill="var(--rise)" opacity=".85"/>
+<line x1="321.4" y1="147.2" x2="321.4" y2="158.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="319.1" y="149.2" width="4.6" height="7.9" fill="var(--rise)" opacity=".85"/>
+<line x1="328.8" y1="150.7" x2="328.8" y2="162.6" stroke="var(--fall)" stroke-width="1"/>
+<rect x="326.5" y="150.9" width="4.6" height="9.6" fill="var(--fall)" opacity=".85"/>
+<line x1="336.2" y1="158.1" x2="336.2" y2="176.0" stroke="var(--rise)" stroke-width="1"/>
+<rect x="333.9" y="159.4" width="4.6" height="9.7" fill="var(--rise)" opacity=".85"/>
+<line x1="343.6" y1="153.5" x2="343.6" y2="160.1" stroke="var(--rise)" stroke-width="1"/>
+<rect x="341.3" y="154.7" width="4.6" height="4.2" fill="var(--rise)" opacity=".85"/>
+<polyline points="11.7,41.3 33.8,94.1 41.2,54.4 129.7,173.8 137.1,124.1 203.4,245.6 240.3,161.6 255.1,190.0 299.3,134.1 306.7,176.4 321.4,147.2 336.2,176.0 343.6,154.7" class="ovl bear" fill="none"/>
+<line x1="347.2" y1="22" x2="347.2" y2="370" class="now"/>
+<text x="347.2" y="18" class="nowt">오늘</text>
+<circle cx="33.8" cy="94.1" r="2.6" class="hdot bear"/>
+<rect x="25.3" y="100.1" width="17.0" height="14" rx="3" class="hbg bear"/>
+<text x="33.8" y="110.1" class="hbt">1</text>
+<circle cx="41.2" cy="54.4" r="2.6" class="hdot bear"/>
+<rect x="32.7" y="33.4" width="17.0" height="14" rx="3" class="hbg bear"/>
+<text x="41.2" y="43.4" class="hbt">2</text>
+<circle cx="129.7" cy="173.8" r="2.6" class="hdot bear"/>
+<rect x="121.2" y="179.8" width="17.0" height="14" rx="3" class="hbg bear"/>
+<text x="129.7" y="189.8" class="hbt">3</text>
+<circle cx="137.1" cy="124.1" r="2.6" class="hdot bear"/>
+<rect x="128.6" y="103.1" width="17.0" height="14" rx="3" class="hbg bear"/>
+<text x="137.1" y="113.1" class="hbt">4</text>
+<circle cx="203.4" cy="245.6" r="2.6" class="hdot bear"/>
+<rect x="194.9" y="251.6" width="17.0" height="14" rx="3" class="hbg bear"/>
+<text x="203.4" y="261.6" class="hbt">5</text>
+<circle cx="240.3" cy="161.6" r="2.6" class="hdot bear"/>
+<rect x="231.8" y="140.6" width="17.0" height="14" rx="3" class="hbg bear"/>
+<text x="240.3" y="150.6" class="hbt">a</text>
+<circle cx="255.1" cy="190.0" r="2.6" class="hdot bear"/>
+<rect x="246.6" y="196.0" width="17.0" height="14" rx="3" class="hbg bear"/>
+<text x="255.1" y="206.0" class="hbt">b</text>
+<circle cx="299.3" cy="134.1" r="2.6" class="hdot bear"/>
+<rect x="282.8" y="113.1" width="33.0" height="14" rx="3" class="hbg bear"/>
+<text x="299.3" y="123.1" class="hbt">c=②</text>
+<circle cx="336.2" cy="176.0" r="2.6" class="hdot bear"/>
+<rect x="319.7" y="182.0" width="33.0" height="14" rx="3" class="hbg bear"/>
+<text x="336.2" y="192.0" class="hbt">③초기</text>
+<polyline points="347.2,154.7 361.2,144.8 427.6,338.3 457.3,270.8 522.0,376.0" class="proj bear" fill="none"/>
+<circle cx="427.6" cy="338.3" r="3" class="dot bear"/>
+<rect x="429.6" y="344.3" width="25.0" height="15" rx="3.5" class="bdg bear"/>
+<text x="442.1" y="355.3" class="bdgt">3파</text>
+<circle cx="457.3" cy="270.8" r="3" class="dot bear"/>
+<rect x="459.3" y="247.8" width="25.0" height="15" rx="3.5" class="bdg bear"/>
+<text x="471.8" y="258.8" class="bdgt">4파</text>
+<circle cx="522.0" cy="376.0" r="3" class="dot bear"/>
+<rect x="455.0" y="382.0" width="67.0" height="15" rx="3.5" class="bdg bear"/>
+<text x="488.5" y="393.0" class="bdgt">5파 2,830</text>
+<path d="M 522.0 380.0 l -5 9 l 10 0 z" class="arw bear"/></svg>
   <div class="scount">하락 1-2-3-4-5 = ①파(<b>5분절</b>) · 반등 ②파 = <b>3분절</b> a-b-c → ③파 초기</div>
   <div class="starget">1차 이탈 6,401 → 5,263 관통 → 3파 4,047</div>
 </figure></div>
 <div class="legend">
-<span><i style="background:var(--hist)"></i>실측 (6/19~8/25)</span>
+<span><i style="background:var(--rise)"></i>양봉</span><span><i style="background:var(--fall)"></i>음봉</span><span>실선 = 각 시나리오의 파동 카운트</span>
 <span><i style="background:var(--up)"></i>S1 상승</span>
 <span><i style="background:var(--flat)"></i>S2 횡보</span>
 <span><i style="background:var(--down)"></i>S3·S4 하락</span>
