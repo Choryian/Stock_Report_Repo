@@ -101,6 +101,25 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .box.bad{background:var(--badbg);border-color:var(--badln)}
 .box b{display:block;margin-bottom:5px;font-size:13px}
 
+
+.tldr{background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--gold);
+border-radius:12px;box-shadow:var(--shadow);padding:18px 20px 15px;margin-bottom:24px}
+.tldr-h{font-size:17px;font-weight:800;margin-bottom:5px}
+.tldr-sub{font-size:13.5px;color:var(--muted);margin:0 0 14px;max-width:92ch;line-height:1.6}
+.lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:11px}
+.ln{border:1px solid var(--border);border-radius:9px;padding:11px 13px;background:var(--surface-2)}
+.ln.p1{border-left:4px solid var(--gold)}
+.ln.p2{border-left:4px solid var(--up)}
+.ln.p3{border-left:4px solid var(--down)}
+.lnk{font-size:10.5px;letter-spacing:.4px;font-weight:700;color:var(--muted);text-transform:uppercase}
+.lnv{font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.15;margin-top:2px}
+.ln.p1 .lnv{color:var(--gold)}.ln.p2 .lnv{color:var(--up)}.ln.p3 .lnv{color:var(--down)}
+.lnd{font-size:13px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;margin-bottom:6px}
+.lnt{font-size:12.5px;line-height:1.6;color:var(--ink)}
+.tldr-foot{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px;padding-top:11px;
+border-top:1px solid var(--border);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tldr-foot b{color:var(--ink)}
+.tldr-foot .sep{opacity:.4}
 .secttl{font-size:17px;margin:22px 0 12px;padding-bottom:7px;border-bottom:2px solid var(--navy)}
 .stem{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;
 padding:10px 13px;font-size:14px;font-variant-numeric:tabular-nums;margin-bottom:10px}
@@ -146,6 +165,44 @@ border-left:3px solid var(--gold);line-height:1.4}
 <span>반등 정점 7,216.62 (8/18)</span><span>라이브 6,831.95 (8/26 14:57 장중)</span></div>
 </div></header>
 <div class="wrap">
+
+<div class="tldr">
+<div class="tldr-h">단기 관전 — 지금 지켜볼 가격선</div>
+<p class="tldr-sub">현재 <b>6,831.95</b> · 결정 박스 <b>6,400.81 ~ 7,216.62</b>(폭 12.7%).
+아래 세 선이 순서대로 판정합니다. 어느 카운트도 base로 확정할 만큼 벌어지지 않았습니다.</p>
+<div class="lines">
+  <div class="ln p1">
+    <div class="lnk">① 최근접 · 규율 안</div>
+    <div class="lnv">6,954.12</div>
+    <div class="lnd">+1.8%</div>
+    <div class="lnt"><b>RC1(리딩 다이애고널) 사망선.</b> 4파 고점이 2파 고점을 넘으면 즉시 무효
+    — 2-4 추세선이 하향해야 수렴하기 때문입니다. 오늘 고가 6,887.18로 <b>67p</b> 남았습니다.
+    <b>이 분석에서 유일하게 R2 근접규율(−8%) 안에 든 선</b>입니다.</div>
+  </div>
+  <div class="ln p2">
+    <div class="lnk">② 방향 관문 · 상방</div>
+    <div class="lnv">7,216.62</div>
+    <div class="lnd">+5.6%</div>
+    <div class="lnt"><b>반등 정점. 종가 돌파 시 반등 연장(70.9%)이 확정</b>되고 S1이 base로 승격합니다.
+    <b>단 S2·S4·S5는 죽지 않습니다</b> — 각각 8,360 / 8,293 / 9,386까지 여유가 있어,
+    진짜 강세 확정선은 <b>8,300대</b>입니다.</div>
+  </div>
+  <div class="ln p3">
+    <div class="lnk">③ 방향 관문 · 하방</div>
+    <div class="lnv">6,400.81</div>
+    <div class="lnd">−6.3%</div>
+    <div class="lnt"><b>8/19·8/25 쌍바닥(8.01p 차) + ①파의 38.2% 되돌림 6,397</b>(4.1p 일치).
+    이탈 시 반등 종료(RC3)와 S3·S4·S5가 동시에 확인됩니다.
+    다섯 시나리오가 공유하는 첫 관문입니다.</div>
+  </div>
+</div>
+<div class="tldr-foot">
+<span><b>S1</b> 47%</span><span><b>S2</b> 7%</span><span><b>S3</b> 11%</span><span><b>S4</b> 21%</span><span><b>S5</b> 14%</span>
+<span class="sep">|</span>
+<span>5,263 방어 <b>54%</b> · 이탈 <b>46%</b></span><span class="sep">|</span>
+<span>신고가 복귀 <b>86%</b> · 강세장 종료 <b>14%</b></span>
+</div>
+</div>
 
 <h2 class="secttl">1 · 코스피 하락 파동 분석 (9,385 → 5,262)과 향후 시나리오</h2>
 <div class="panel">
@@ -1069,19 +1126,41 @@ border-left:3px solid var(--gold);line-height:1.4}
 <div class="panel">
 <table>
 <tr><th>시나리오</th><th>하락 카운트</th><th>반등 카운트</th><th>현재 파동</th><th class="n">5,263</th><th class="n">다음 목표</th><th class="n">무효화선</th><th class="n">확률</th></tr>
-<tr><td><b>S1</b> 조정 완료 → 새 상승</td><td>W-X-Y (3분절)</td><td><b>5분절</b> i~v</td><td>②파</td><td class="n">방어</td><td class="n">8,777 ↑</td><td class="n">5,263 (−22.7%)</td><td class="n"><b>43%</b></td></tr>
-<tr><td><b>S2</b> 대형 삼각형</td><td>A (3분절)</td><td>3분절 a-b-c</td><td>B파</td><td class="n">방어</td><td class="n">수개월 횡보</td><td class="n">8,360 / 5,263</td><td class="n">8%</td></tr>
-<tr><td><b>S3</b> 복합조정</td><td>W (3분절)</td><td>3분절 a-b-c</td><td><b>X파</b></td><td class="n">이탈</td><td class="n">4,047</td><td class="n">느슨</td><td class="n">12%</td></tr>
-<tr><td><b>S4</b> 대형 지그재그</td><td><b>1-2-3-4-5</b></td><td>3분절 a-b-c</td><td>B파</td><td class="n">이탈</td><td class="n">5,047~4,047</td><td class="n"><b>8,293 (+21.8%)</b></td><td class="n"><b>22%</b></td></tr>
-<tr><td><b>S5</b> 하락 임펄스</td><td><b>1-2-3-4-5</b></td><td>3분절 a-b-c</td><td>2파</td><td class="n">이탈</td><td class="n">4,189 → 2,830</td><td class="n">9,386 (+37.9%)</td><td class="n">15%</td></tr>
+<tr><td><b>S1</b> 조정 완료 → 새 상승</td><td>W-X-Y (3분절)</td><td><b>5분절</b> i~v</td><td>②파</td><td class="n">방어</td><td class="n">8,777 ↑</td><td class="n">5,263 (−22.7%)</td><td class="n"><b>47%</b></td></tr>
+<tr><td><b>S2</b> 대형 삼각형</td><td>A (3분절)</td><td>3분절 a-b-c</td><td>B파</td><td class="n">방어</td><td class="n">수개월 횡보</td><td class="n">8,360 / 5,263</td><td class="n">7%</td></tr>
+<tr><td><b>S3</b> 복합조정</td><td>W (3분절)</td><td>3분절 a-b-c</td><td><b>X파</b></td><td class="n">이탈</td><td class="n">4,047</td><td class="n">느슨</td><td class="n">11%</td></tr>
+<tr><td><b>S4</b> 대형 지그재그</td><td><b>1-2-3-4-5</b></td><td>3분절 a-b-c</td><td>B파</td><td class="n">이탈</td><td class="n">5,047~4,047</td><td class="n"><b>8,293 (+21.8%)</b></td><td class="n"><b>21%</b></td></tr>
+<tr><td><b>S5</b> 하락 임펄스</td><td><b>1-2-3-4-5</b></td><td>3분절 a-b-c</td><td>2파</td><td class="n">이탈</td><td class="n">4,189 → 2,830</td><td class="n">9,386 (+37.9%)</td><td class="n">14%</td></tr>
 </table>
+
+<h3 class="sub3">두 축 결합 — P(S, RC)</h3>
+<p class="lead">시나리오 S1~S5(하락 축)와 반등 카운트 RC1~RC3(반등 축)를 결합했습니다.
+<b>하드 제약 하나 — RC3(반등이 완결된 조정)는 S1과 배타적</b>입니다. S1은 반등이 동인파여야 하기 때문입니다.
+약세 시나리오에서 RC1·RC2는 "B·X·②의 <b>a파</b>가 아직 진행 중"을 뜻하며, 그러면 반등이 8,293~9,386까지 연장됩니다.</p>
+<table>
+<tr><th></th><th class="n">RC1 다이애고널</th><th class="n">RC2 정상 임펄스</th><th class="n">RC3 조정 완결</th><th class="n">합</th></tr>
+<tr><td><b>S1</b> 조정완료→새상승</td><td class="n">20.7%</td><td class="n"><b>26.3%</b></td><td class="n">✗ 0%</td><td class="n"><b>47%</b></td></tr>
+<tr><td><b>S2</b> 삼각형</td><td class="n">1.4%</td><td class="n">1.8%</td><td class="n">3.9%</td><td class="n">7%</td></tr>
+<tr><td><b>S3</b> 복합조정</td><td class="n">2.2%</td><td class="n">2.8%</td><td class="n">6.1%</td><td class="n">11%</td></tr>
+<tr><td><b>S4</b> 지그재그</td><td class="n">4.2%</td><td class="n">5.3%</td><td class="n"><b>11.6%</b></td><td class="n">21%</td></tr>
+<tr><td><b>S5</b> 하락임펄스</td><td class="n">2.8%</td><td class="n">3.5%</td><td class="n">7.7%</td><td class="n">14%</td></tr>
+<tr class="hl"><td><b>합</b></td><td class="n"><b>31.3%</b></td><td class="n"><b>39.6%</b></td><td class="n"><b>29.2%</b></td><td class="n">100%</td></tr>
+</table>
+<div class="notes">
+<p><b>정합성 점검</b> — 결합이 낳은 RC 주변확률 31.3 / 39.6 / 29.2는 8/25 원 배분 33.5 / 42.1 / 24.4와
+근사합니다(RC3만 +4.8%p). 두 축이 크게 어긋나지 않는다는 뜻입니다.
+<b>이중계산 제거</b> — 기존 S1 43%는 반등 근거(가중 50)를 이미 흡수한 값이었고, "8/19 겹침" 논거가
+라벨 의존적임을 인정해 <b>반등 임펄스 적격성 배점을 3:8 → 5:7로 완화</b>한 뒤 재산정한 것이 S1 47%입니다.</p>
+<p><b>파생 확률</b> — 7,216.62 상향 돌파 <b>70.9%</b> · 반등이 8/18에 이미 종료 <b>29.2%</b> ·
+5,262.77 방어 <b>54%</b> / 이탈 <b>46%</b> · 결국 신고가 복귀 <b>86%</b> · 강세장 종료(S5) <b>14%</b>.</p>
+</div>
 </div>
 
 <h2 class="secttl">4 · 다섯 시나리오의 경로</h2>
 <div class="grid"><figure class="card up">
   <figcaption>
     <span class="sid">S1</span><span class="sname">조정 완료 → 새 상승</span>
-    <span class="sprob">43%</span>
+    <span class="sprob">47%</span>
   </figcaption>
   <div class="smeta"><span class="wv">현재 ②파</span><span class="br hold">5,263 방어</span></div>
   <svg viewBox="0 0 580 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S1 경로"><line x1="8" y1="41.3" x2="522.0" y2="41.3" class="ref"/>
@@ -1237,7 +1316,7 @@ border-left:3px solid var(--gold);line-height:1.4}
 <figure class="card flat">
   <figcaption>
     <span class="sid">S2</span><span class="sname">대형 삼각형</span>
-    <span class="sprob">8%</span>
+    <span class="sprob">7%</span>
   </figcaption>
   <div class="smeta"><span class="wv">현재 B파</span><span class="br hold">5,263 방어</span></div>
   <svg viewBox="0 0 580 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S2 경로"><line x1="8" y1="41.3" x2="522.0" y2="41.3" class="ref"/>
@@ -1381,7 +1460,7 @@ border-left:3px solid var(--gold);line-height:1.4}
 <figure class="card down">
   <figcaption>
     <span class="sid">S3</span><span class="sname">복합조정 → Y파</span>
-    <span class="sprob">12%</span>
+    <span class="sprob">11%</span>
   </figcaption>
   <div class="smeta"><span class="wv">현재 X파</span><span class="br brk">5,263 이탈</span></div>
   <svg viewBox="0 0 580 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S3 경로"><line x1="8" y1="41.3" x2="522.0" y2="41.3" class="ref"/>
@@ -1519,7 +1598,7 @@ border-left:3px solid var(--gold);line-height:1.4}
 <figure class="card down">
   <figcaption>
     <span class="sid">S4</span><span class="sname">대형 지그재그 → C파</span>
-    <span class="sprob">22%</span>
+    <span class="sprob">21%</span>
   </figcaption>
   <div class="smeta"><span class="wv">현재 B파</span><span class="br brk">5,263 이탈</span></div>
   <svg viewBox="0 0 580 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S4 경로"><line x1="8" y1="41.3" x2="522.0" y2="41.3" class="ref"/>
@@ -1675,7 +1754,7 @@ border-left:3px solid var(--gold);line-height:1.4}
 <figure class="card bear">
   <figcaption>
     <span class="sid">S5</span><span class="sname">하락 임펄스 → 3파</span>
-    <span class="sprob">15%</span>
+    <span class="sprob">14%</span>
   </figcaption>
   <div class="smeta"><span class="wv">현재 2파</span><span class="br brk">5,263 이탈</span></div>
   <svg viewBox="0 0 580 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="S5 경로"><line x1="8" y1="41.3" x2="522.0" y2="41.3" class="ref"/>
@@ -1870,11 +1949,11 @@ border-left:3px solid var(--gold);line-height:1.4}
 </table></div>
 
 <div class="split">
-<div class="box ok"><b>5,263 방어 — 51%</b>
-S1(43) + S2(8). 저점이 이미 최종이거나, 가격이 아니라 <b>시간</b>으로 조정이 이어집니다.
+<div class="box ok"><b>5,263 방어 — 54%</b>
+S1(47) + S2(7). 저점이 이미 최종이거나, 가격이 아니라 <b>시간</b>으로 조정이 이어집니다.
 S2는 상승이 아니라 수개월 수축 횡보라는 점에 유의하십시오.</div>
-<div class="box bad"><b>5,263 이탈 — 49%</b>
-S3(12) + S4(22) + S5(15). 세 경로의 1차 목표가 <b>5,047~4,047</b>에 겹칩니다.
+<div class="box bad"><b>5,263 이탈 — 46%</b>
+S3(11) + S4(21) + S5(14). 세 경로의 1차 목표가 <b>5,047~4,047</b>에 겹칩니다.
 여기서 멈추면 조정, 가속하면 S5(추세전환)로 넘어갑니다.</div>
 </div>
 
