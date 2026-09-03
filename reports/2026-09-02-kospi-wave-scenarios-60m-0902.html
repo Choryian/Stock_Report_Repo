@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>코스피 3대 파동 시나리오 — 9/2 조정 연장 반영 (60분봉 실측)</title>
+<meta name="description" content="2026-09-02 코스피가 6,562.72(-3.99%)로 급락하며 MA20을 8/25 이후 처음 이탈했다. 8/18 이후 조정은 8/25에 끝난 것이 아니라 W-X-Y 복합형으로 연장 중이며, 거래량 321.2M(20일평균 99%)를 동반한 하락이라 성격도 달라졌다. 확률은 정상 임펄스 37.6%, (A)-(B)-(C) 조정 32.6%, 리딩 다이애고널 29.8%로 재산정됐다.">
+<meta name="author" content="Chory &amp; Rochet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --bg:#f3f4f7; --surface:#ffffff; --surface-2:#eceff4; --border:#d7dbe3;
+    --ink:#1b2030; --muted:#666f83;
+    --navy:#1a2744; --gold:#9c7a2e; --burgundy:#8b2635;
+    --up:#c0392b; --down:#2456a6;
+    --ok:#1c7a4d; --ok-bg:#e8f5ee; --ok-line:#a9d3bb;
+    --warn:#9c6f13; --warn-bg:#fbf0dc; --warn-line:#e6c982;
+    --bad:#b8283a; --bad-bg:#fcebec; --bad-line:#eab3b9;
+    --s2:#6b4fa8;
+    --grid:#e3e6ec; --daysep:#c7cbd6; --shadow: 0 1px 2px rgba(20,24,38,.04), 0 8px 24px -12px rgba(20,24,38,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0f1220; --surface:#171b2c; --surface-2:#1e2337; --border:#2c3350;
+      --ink:#e8eaf3; --muted:#9aa3bf;
+      --navy:#1a2744; --gold:#c9a85a; --burgundy:#d98d9a;
+      --up:#e0645a; --down:#6f9fe0;
+      --ok:#4fbd88; --ok-bg:#122a20; --ok-line:#2c5a41;
+      --warn:#d9ab4a; --warn-bg:#2c2413; --warn-line:#5c4a20;
+      --bad:#e5717f; --bad-bg:#2c1418; --bad-line:#5c2730;
+      --s2:#a98fd8;
+      --grid:#262c46; --daysep:#333a58; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0f1220; --surface:#171b2c; --surface-2:#1e2337; --border:#2c3350;
+    --ink:#e8eaf3; --muted:#9aa3bf;
+    --navy:#1a2744; --gold:#c9a85a; --burgundy:#d98d9a;
+    --up:#e0645a; --down:#6f9fe0;
+    --ok:#4fbd88; --ok-bg:#122a20; --ok-line:#2c5a41;
+    --warn:#d9ab4a; --warn-bg:#2c2413; --warn-line:#5c4a20;
+    --bad:#e5717f; --bad-bg:#2c1418; --bad-line:#5c2730;
+    --s2:#a98fd8;
+    --grid:#262c46; --daysep:#333a58; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Noto Sans KR','Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+    line-height:1.6; font-size:15px;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px 64px;}
+
+  header.mast{background:var(--navy);color:#eef1f8;padding:30px 0 24px;margin-bottom:22px;}
+  header.mast .wrap{padding-bottom:0;}
+  .brandline{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--gold);padding-bottom:9px;margin-bottom:15px;flex-wrap:wrap;gap:6px;}
+  .brandline .name{font-size:14px;letter-spacing:2.5px;font-weight:700;color:var(--gold);}
+  .brandline .cat{font-size:11.5px;color:#a9b2c9;letter-spacing:.5px;}
+  h1{font-size:24px;font-weight:800;margin:0 0 8px;text-wrap:balance;line-height:1.35;}
+  .sub{font-size:14.5px;color:#c4cbdc;margin-bottom:12px;max-width:70ch;}
+  .meta{font-size:12px;color:#8f9ab8;display:flex;gap:16px;flex-wrap:wrap;font-variant-numeric:tabular-nums;}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px;}
+  @media (max-width:820px){.cards{grid-template-columns:1fr;}}
+  .card{
+    text-align:left; cursor:pointer; background:var(--surface); border:1px solid var(--border);
+    border-radius:10px; padding:14px 16px; box-shadow:var(--shadow);
+    border-top:4px solid var(--border); transition:border-color .15s, transform .1s;
+    font-family:inherit; color:var(--ink);
+  }
+  .card:hover{transform:translateY(-1px);}
+  .card:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+  .card .tag{font-size:10.5px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:4px;display:flex;justify-content:space-between;align-items:baseline;}
+  .card h3{font-size:14.5px;margin:0 0 8px;line-height:1.4;}
+  .card .pct{font-size:19px;font-weight:800;letter-spacing:0;font-variant-numeric:tabular-nums;}
+  .card.sc1 .pct{color:var(--gold);} .card.sc2 .pct{color:var(--s2);} .card.sc3 .pct{color:var(--ok);}
+  .pbar{display:flex;height:8px;border-radius:99px;overflow:hidden;margin:16px 0 6px;background:var(--surface-2);}
+  .pbar i{display:block;}
+  .pbar-legend{display:flex;flex-wrap:wrap;gap:16px;font-size:12.5px;color:var(--muted);margin-bottom:20px;}
+  .pbar-legend span{display:inline-flex;align-items:center;gap:6px;}
+  .pbar-legend b{color:var(--ink);font-variant-numeric:tabular-nums;}
+  .sw{width:10px;height:10px;border-radius:3px;display:inline-block;}
+  .lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:14px;}
+  .lbox{border:1px solid var(--border);border-radius:8px;padding:11px 13px;background:var(--surface);}
+  .lbox .lt{font-size:11px;letter-spacing:.5px;font-weight:700;margin-bottom:5px;}
+  .lbox .lv{font-size:17px;font-weight:800;font-variant-numeric:tabular-nums;}
+  .lbox .ld{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.5;}
+  .lbox.cf{border-left:4px solid var(--ok);} .lbox.cf .lt{color:var(--ok);}
+  .lbox.rj{border-left:4px solid var(--bad);} .lbox.rj .lt{color:var(--bad);}
+  table.ev{width:100%;border-collapse:collapse;font-size:13px;}
+  table.ev th{text-align:left;font-size:11px;letter-spacing:.3px;text-transform:uppercase;color:var(--muted);padding:6px 9px;border-bottom:1px solid var(--border);}
+  table.ev th.n,table.ev td.n{text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  table.ev td{padding:8px 9px;border-bottom:1px solid var(--border);vertical-align:top;}
+  table.ev tr:last-child td{border-bottom:none;}
+  table.ev .why{color:var(--muted);font-size:12px;}
+  .best{font-weight:800;}
+  .chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:99px;border:1px solid;}
+  .chip.ok{color:var(--ok);background:var(--ok-bg);border-color:var(--ok-line);}
+  .chip.warn{color:var(--warn);background:var(--warn-bg);border-color:var(--warn-line);}
+  .chip.bad{color:var(--bad);background:var(--bad-bg);border-color:var(--bad-line);}
+  .card.sc1{border-top-color:var(--warn);}
+  .card.sc2{border-top-color:var(--s2);}
+  .card.sc3{border-top-color:var(--ok);}
+  .card[aria-pressed="true"]{border-color:var(--gold); box-shadow:var(--shadow), 0 0 0 2px var(--gold) inset;}
+
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px;margin-bottom:18px;}
+  /* 156봉이 촘촘하므로 차트 패널만 넓은 화면에서 확장한다 (본문 폭은 유지).
+     뷰포트가 좁아져도 넘치지 않도록 min() 으로 상한을 건다. */
+  @media (min-width:1320px){
+    .panel.chart-panel{
+      width: min(1400px, calc(100vw - 48px));
+      margin-left: calc(50% - min(700px, calc(50vw - 24px)));
+    }
+  }
+  .panel h2{font-size:17px;margin:0 0 4px;color:var(--ink);}
+  .panel .panel-sub{font-size:13px;color:var(--muted);margin-bottom:14px;}
+
+  .chart-scroll{overflow-x:auto;}
+  svg.chart{display:block;background:var(--surface);width:100%;height:auto;font-family:'Noto Sans KR','Segoe UI','Malgun Gothic',sans-serif;}
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:12.5px;color:var(--muted);}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .legend i{width:16px;height:3px;display:inline-block;border-radius:2px;}
+  .legend .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+
+  table.rules{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:4px;}
+  table.rules th{text-align:left;font-weight:600;color:var(--muted);font-size:11.5px;letter-spacing:.3px;text-transform:uppercase;padding:6px 10px;border-bottom:1px solid var(--border);}
+  table.rules td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:top;}
+  table.rules tr:last-child td{border-bottom:none;}
+  .rule-name{font-weight:600;white-space:nowrap;}
+  .rule-detail{color:var(--muted);font-size:12.8px;}
+
+  .verdict-box{border-radius:8px;padding:14px 16px;font-size:14px;margin-top:14px;border:1px solid;}
+  .verdict-box.ok{background:var(--ok-bg);border-color:var(--ok-line);color:var(--ink);}
+  .verdict-box.warn{background:var(--warn-bg);border-color:var(--warn-line);color:var(--ink);}
+  .verdict-box.bad{background:var(--bad-bg);border-color:var(--bad-line);color:var(--ink);}
+  .verdict-box b{color:var(--ink);}
+
+  .foot{margin-top:28px;border-top:2px solid var(--navy);padding-top:14px;font-size:11.5px;color:var(--muted);}
+  .foot .b{font-weight:700;color:var(--ink);letter-spacing:1.5px;font-size:12px;margin-bottom:5px;}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="brandline">
+      <span class="name">CHORY &amp; ROCHET</span>
+      <span class="cat">Market Strategy | Elliott Wave · 시나리오 오버레이</span>
+    </div>
+    <h1>7/29 저점 이후 3대 파동 시나리오 — 조정이 끝나지 않고 연장되고 있다</h1>
+    <p class="sub"><b>9/2 갱신</b> — 코스피가 <b>6,562.72(−3.99%)</b>로 급락하며 MA20을 8/25 이후 처음 이탈했다. 8/18 이후 조정은 8/25에 끝난 것이 아니라 <b>W-X-Y 복합형으로 연장</b> 중이다(W 807.80p → X 72.7% 되돌림 → Y 진행). 거래량 321.2M(20일평균 99%)를 동반한 하락이라 8/24·8/25의 무기력한 하락과 성격이 다르고, S3가 32.6%로 되살아났다. 다만 어느 판별선도 종가로 저촉되지 않아 3안 모두 생존한다.</p>
+    <div class="meta">
+      <span>데이터: KS11 60분봉 · 156개 봉</span>
+      <span>저점: 5,262.77 (7/29 13:00)</span>
+      <span>확정 종가: 6,562.72 (9/2, −3.99%)</span>
+      <span>확률: S1 29.8% · S2 37.6% · S3 32.6%</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="cards" role="tablist" aria-label="파동 시나리오 선택">
+    <button class="card sc1" id="tab-1" role="tab" aria-pressed="false" onclick="selectScenario(1)">
+      <div class="tag"><span>시나리오 1</span><span class="pct">29.8%</span></div>
+      <h3>리딩 다이애고널 · 현재 4파</h3>
+      <span class="chip warn">⚠ 규칙 통과 · 기하 상충</span>
+    </button>
+    <button class="card sc2" id="tab-2" role="tab" aria-pressed="false" onclick="selectScenario(2)">
+      <div class="tag"><span>시나리오 2</span><span class="pct">37.6%</span></div>
+      <h3>정상 임펄스 · 3파의 (ii) 조정</h3>
+      <span class="chip ok">✓ 재배치로 성립 · 조건부</span>
+    </button>
+    <button class="card sc3" id="tab-3" role="tab" aria-pressed="false" onclick="selectScenario(3)">
+      <div class="tag"><span>시나리오 3</span><span class="pct">32.6%</span></div>
+      <h3>(A)-(B)-(C) 조정 · (C) 5분절 진행</h3>
+      <span class="chip warn">⚠ 규칙 통과 · C/A 균형 이탈</span>
+    </button>
+  </div>
+
+  <div class="pbar" role="img" aria-label="시나리오 확률 30.5 / 37.0 / 32.6 퍼센트">
+    <i style="width:29.8%;background:var(--gold)"></i>
+    <i style="width:37.6%;background:var(--s2)"></i>
+    <i style="width:32.6%;background:var(--ok)"></i>
+  </div>
+  <div class="pbar-legend">
+    <span><i class="sw" style="background:var(--gold)"></i>S1 다이애고널 <b>29.8%</b></span>
+    <span><i class="sw" style="background:var(--s2)"></i>S2 정상 임펄스 <b>37.6%</b></span>
+    <span><i class="sw" style="background:var(--ok)"></i>S3 (A)-(B)-(C) <b>32.6%</b></span>
+    <span>· 9/2 급락으로 <b>S3 +8.2%p</b> 반등, 강세 2안 <b>67.4%</b></span>
+  </div>
+
+  <div class="panel chart-panel">
+    <h2 id="chart-heading">차트</h2>
+    <p class="panel-sub" id="chart-sub"></p>
+
+    <div class="chart-scroll">
+      <svg class="chart" id="svg" viewBox="0 0 1240 660" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <g id="gridGroup"></g>
+        <g id="daysepGroup"></g>
+        <g id="candleGroup"></g>
+        <g id="dateGroup"></g>
+        <g id="overlayGroup"></g>
+      </svg>
+    </div>
+
+    <div class="legend">
+      <span><i style="background:var(--up)"></i>양봉(종가&gt;시가)</span>
+      <span><i style="background:var(--down)"></i>음봉(종가&lt;시가)</span>
+      <span><span class="dot" id="legendDot" style="background:var(--gold)"></span><span id="legendText">파동 경로</span></span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2 id="lines-heading">핵심 라인</h2>
+    <p class="panel-sub" id="lines-sub"></p>
+    <div class="lines" id="lines-box"></div>
+  </div>
+
+  <div class="panel">
+    <h2>확률 산정 근거</h2>
+    <p class="panel-sub">5개 기준에 가중치를 두고 0~10점으로 채점한 뒤 정규화했다. 엘리어트 확률 배분은 본질적으로 판단이 개입하므로, 배점을 그대로 공개해 다르게 보실 여지를 남겼다.</p>
+    <div style="overflow-x:auto">
+    <table class="ev">
+      <thead><tr><th>기준</th><th class="n">가중</th><th class="n">S1</th><th class="n">S2</th><th class="n">S3</th><th>근거</th></tr></thead>
+      <tbody>
+                <tr><td>절대규칙 통과</td><td class="n">20</td><td class="n best">8</td><td class="n best">8</td><td class="n">4</td><td class="why">S1·S2 4파/(ii)가 연장 중이나 한계선 미저촉이라 규칙 유지(완결 전제 흔들려 9→8) · S3 failed third 지속</td></tr>
+        <tr><td>기하·비율 정합</td><td class="n">25</td><td class="n">2</td><td class="n best">7</td><td class="n">4</td><td class="why">S1 쐐기 발산 심화(복원 불가) · S2 (iii) 개시 지연 · S3 C/A 0.54 + 다이애고널 구제 필요</td></tr>
+        <tr><td>거래량 증거</td><td class="n">20</td><td class="n">4</td><td class="n">4</td><td class="n best">6</td><td class="why"><b>반전</b> — 9/2 급락에 거래량 99% 동반(외인 1.9조·기관 2.0조 순매도). 8/24·8/25의 무기력한 하락과 성격이 다름</td></tr>
+        <tr><td>추세지표(MA)</td><td class="n">15</td><td class="n">3</td><td class="n">3</td><td class="n best">8</td><td class="why"><b>MA20 이탈</b>(8/25 이후 처음) · MA120 −5.47%로 이격 확대 · MA60 −9.70%. MA200(+8.70%)만 남음</td></tr>
+        <tr><td>내부 분절 구조</td><td class="n">20</td><td class="n best">7</td><td class="n best">7</td><td class="n">5</td><td class="why">S1·S2 조정이 W-X-Y 복합형으로 연장(조정파 성격은 유지) · S3 3분절 연쇄로 다이애고널 가능성 상승</td></tr>
+        <tr><td><b>가중 합계</b></td><td class="n">100</td><td class="n"><b>4.75</b></td><td class="n"><b>6.00</b></td><td class="n"><b>5.20</b></td><td class="why"><b>정규화 → 29.8% / 37.6% / 32.6%</b> (이전 33.5/42.1/24.4)</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2 id="rules-heading">규칙 대조</h2>
+    <p class="panel-sub" id="rules-sub"></p>
+    <table class="rules">
+      <thead><tr><th>규칙</th><th>대상 분절</th><th>실측</th><th>판정</th></tr></thead>
+      <tbody id="rules-body"></tbody>
+    </table>
+    <div class="verdict-box" id="verdict-box"></div>
+  </div>
+
+  <div class="foot">
+    <div class="b">CHORY &amp; ROCHET — RESEARCH CENTER</div>
+    <p>데이터: KOSPI 지수 60분봉 실측(^KS11, Yahoo Finance), 2026-07-28 09:00~2026-08-24 14:00 (114봉, 장중 09:00~15:00대). 8/24 마지막 봉(14:00)은 세션 진행 중 스냅샷이라 향후 갱신될 수 있다. 세 시나리오는 상호 배타적 해석이며 본 자료는 매매 권유가 아니다. 규칙 판정은 엘리어트 파동 절대규칙(R1 파동2 100%초과 금지 · R2 파동3 최단금지 · R3 파동4-파동1 겹침 금지, 다이애고널 예외) 및 조정파 겹침 허용 관례에 근거한다.</p>
+  </div>
+</div>
+
+<script>
+  // ---- 60-minute price data (O,H,L,C), 2026-07-28 09:00 ~ 2026-08-24 14:00 ----
+  const data = [
+    ["07/28 09:00",6400.27,6413.57,6212.06,6218.19],
+    ["07/28 10:00",6221.81,6260.89,6162.56,6162.56],
+    ["07/28 11:00",6157.96,6197.19,6069.49,6086.81],
+    ["07/28 12:00",6085.59,6137.05,6031.38,6121.13],
+    ["07/28 13:00",6117.60,6117.60,6040.70,6079.95],
+    ["07/28 14:00",6085.91,6118.80,6014.89,6019.06],
+    ["07/29 09:00",6089.11,6228.52,6022.12,6087.74],
+    ["07/29 10:00",6089.73,6128.03,5732.69,5734.64],
+    ["07/29 11:00",5729.02,5762.78,5573.48,5573.48],
+    ["07/29 12:00",5575.83,5686.61,5527.17,5531.56],
+    ["07/29 13:00",5531.56,5540.93,5262.77,5489.48],
+    ["07/29 14:00",5489.77,5681.92,5471.30,5634.66],
+    ["07/30 09:00",5681.77,5740.72,5547.41,5648.44],
+    ["07/30 10:00",5665.84,5976.82,5636.65,5901.60],
+    ["07/30 11:00",5894.12,5952.74,5665.06,5677.62],
+    ["07/30 12:00",5679.06,5705.55,5593.80,5640.63],
+    ["07/30 13:00",5641.78,5669.90,5551.76,5575.17],
+    ["07/30 14:00",5576.06,5678.72,5552.14,5609.33],
+    ["07/31 09:00",5657.79,6485.62,5629.76,6485.00],
+    ["07/31 10:00",6484.59,6548.64,6318.36,6367.96],
+    ["07/31 11:00",6373.84,6397.74,6289.90,6392.52],
+    ["07/31 12:00",6397.62,6426.42,6361.34,6386.05],
+    ["07/31 13:00",6386.41,6513.95,6360.16,6505.22],
+    ["07/31 14:00",6504.52,6620.25,6491.59,6620.25],
+    ["08/03 09:00",6358.27,6393.00,6231.66,6361.81],
+    ["08/03 10:00",6360.41,6377.07,6257.46,6341.52],
+    ["08/03 11:00",6341.69,6387.09,6306.15,6319.01],
+    ["08/03 12:00",6315.58,6319.16,6262.70,6269.22],
+    ["08/03 13:00",6269.00,6306.71,6231.45,6231.45],
+    ["08/03 14:00",6232.71,6281.60,6230.35,6251.59],
+    ["08/04 09:00",6351.38,6389.40,6093.06,6093.61],
+    ["08/04 10:00",6096.79,6339.44,6080.25,6318.07],
+    ["08/04 11:00",6318.44,6318.44,6208.19,6215.80],
+    ["08/04 12:00",6215.67,6236.91,6155.62,6196.18],
+    ["08/04 13:00",6189.83,6212.76,6139.88,6190.88],
+    ["08/04 14:00",6196.62,6335.28,6143.97,6330.48],
+    ["08/05 09:00",6603.48,6674.66,6577.89,6611.88],
+    ["08/05 10:00",6609.58,6641.71,6540.27,6629.93],
+    ["08/05 11:00",6635.01,6656.56,6564.27,6592.71],
+    ["08/05 12:00",6589.33,6641.27,6589.33,6630.67],
+    ["08/05 13:00",6630.57,6649.22,6591.24,6636.63],
+    ["08/05 14:00",6632.55,6657.04,6613.43,6637.73],
+    ["08/06 09:00",6478.75,6550.94,6328.94,6347.83],
+    ["08/06 10:00",6348.51,6349.13,6238.32,6290.04],
+    ["08/06 11:00",6290.21,6360.12,6275.58,6330.92],
+    ["08/06 12:00",6335.79,6359.51,6294.71,6321.08],
+    ["08/06 13:00",6314.80,6336.18,6290.06,6325.61],
+    ["08/06 14:00",6325.25,6354.45,6257.81,6305.52],
+    ["08/07 09:00",6365.07,6415.60,6264.00,6341.84],
+    ["08/07 10:00",6346.56,6352.25,6158.73,6219.27],
+    ["08/07 11:00",6217.68,6262.30,6203.72,6237.83],
+    ["08/07 12:00",6241.84,6272.13,6205.80,6205.80],
+    ["08/07 13:00",6205.65,6261.38,6199.08,6227.05],
+    ["08/07 14:00",6226.65,6270.38,6225.77,6244.07],
+    ["08/10 09:00",6306.33,6394.06,6264.62,6295.04],
+    ["08/10 10:00",6297.45,6330.43,6268.08,6302.85],
+    ["08/10 11:00",6300.04,6328.19,6264.94,6303.17],
+    ["08/10 12:00",6303.17,6312.92,6286.66,6301.46],
+    ["08/10 13:00",6301.13,6311.01,6232.45,6245.21],
+    ["08/10 14:00",6239.98,6315.71,6239.98,6292.77],
+    ["08/11 09:00",6240.06,6278.34,6213.78,6261.50],
+    ["08/11 10:00",6261.19,6377.38,6227.48,6353.24],
+    ["08/11 11:00",6346.54,6361.46,6307.63,6346.19],
+    ["08/11 12:00",6348.33,6397.86,6344.61,6377.70],
+    ["08/11 13:00",6378.43,6405.81,6371.10,6375.05],
+    ["08/11 14:00",6374.41,6393.23,6338.69,6353.65],
+    ["08/12 09:00",6438.50,6509.04,6413.50,6465.56],
+    ["08/12 10:00",6469.33,6583.90,6464.24,6569.33],
+    ["08/12 11:00",6567.40,6625.82,6542.95,6615.99],
+    ["08/12 12:00",6613.77,6668.43,6612.56,6617.10],
+    ["08/12 13:00",6617.56,6640.97,6585.17,6591.18],
+    ["08/12 14:00",6591.47,6604.42,6543.33,6587.92],
+    ["08/13 09:00",6773.92,6895.63,6773.92,6828.78],
+    ["08/13 10:00",6825.37,6859.16,6808.77,6850.68],
+    ["08/13 11:00",6853.64,6861.51,6803.57,6849.30],
+    ["08/13 12:00",6850.64,6867.48,6824.05,6864.33],
+    ["08/13 13:00",6862.14,6882.95,6812.83,6832.63],
+    ["08/13 14:00",6837.89,6852.05,6759.86,6772.38],
+    ["08/14 09:00",6995.67,7010.86,6895.98,6910.07],
+    ["08/14 10:00",6905.22,6905.82,6848.43,6876.21],
+    ["08/14 11:00",6878.34,6931.10,6878.34,6881.74],
+    ["08/14 12:00",6881.56,6926.30,6877.33,6906.52],
+    ["08/14 13:00",6904.08,6958.27,6888.19,6936.57],
+    ["08/14 14:00",6937.86,6974.29,6900.79,6971.70],
+    ["08/18 09:00",7127.77,7216.62,7102.65,7153.60],
+    ["08/18 10:00",7152.17,7177.65,7035.85,7063.85],
+    ["08/18 11:00",7064.94,7091.89,6894.59,6938.52],
+    ["08/18 12:00",6937.83,6961.66,6866.40,6925.06],
+    ["08/18 13:00",6927.06,6971.41,6894.84,6963.86],
+    ["08/18 14:00",6960.47,6960.47,6829.08,6829.99],
+    ["08/19 09:00",6528.77,6528.77,6400.81,6489.95],
+    ["08/19 10:00",6489.59,6614.39,6484.72,6547.84],
+    ["08/19 11:00",6543.55,6543.55,6484.73,6493.38],
+    ["08/19 12:00",6493.40,6510.92,6476.25,6483.42],
+    ["08/19 13:00",6481.37,6507.30,6464.98,6478.74],
+    ["08/19 14:00",6477.21,6517.94,6460.28,6460.52],
+    ["08/20 09:00",6680.34,6798.59,6600.09,6790.39],
+    ["08/20 10:00",6792.31,6885.91,6779.08,6854.58],
+    ["08/20 11:00",6854.85,6902.46,6821.13,6841.94],
+    ["08/20 12:00",6844.88,6879.96,6831.08,6867.90],
+    ["08/20 13:00",6867.85,6904.55,6835.18,6836.74],
+    ["08/20 14:00",6838.34,6858.36,6789.88,6790.42],
+    ["08/21 09:00",6759.95,6912.15,6742.44,6845.16],
+    ["08/21 10:00",6839.54,6916.11,6795.62,6885.60],
+    ["08/21 11:00",6883.64,6938.52,6864.68,6935.01],
+    ["08/21 12:00",6931.36,6939.21,6889.71,6908.49],
+    ["08/21 13:00",6902.46,6920.00,6870.75,6906.56],
+    ["08/21 14:00",6906.50,6954.12,6900.84,6905.04],
+    ["08/24 09:00",6881.07,6884.57,6775.23,6847.60],
+    ["08/24 10:00",6848.05,6849.96,6744.49,6744.70],
+    ["08/24 11:00",6747.15,6786.07,6710.00,6746.84],
+    ["08/24 12:00",6750.17,6751.57,6656.07,6666.14],
+    ["08/24 13:00",6668.95,6723.31,6659.98,6703.24],
+    ["08/24 14:00",6702.26,6738.90,6677.66,6693.62],
+    ["08/25 09:00",6535.93,6568.65,6408.82,6565.31],
+    ["08/25 10:00",6562.68,6601.92,6488.51,6564.49],
+    ["08/25 11:00",6567.16,6587.95,6526.87,6543.98],
+    ["08/25 12:00",6544.22,6636.83,6541.69,6609.89],
+    ["08/25 13:00",6610.29,6693.51,6607.71,6667.02],
+    ["08/25 14:00",6667.70,6742.17,6664.01,6713.63],
+    ["08/26 09:00",6727.25,6829.88,6704.10,6714.67],
+    ["08/26 10:00",6710.71,6777.88,6710.71,6759.33],
+    ["08/26 11:00",6760.89,6878.94,6744.48,6841.91],
+    ["08/26 12:00",6843.27,6887.18,6835.47,6884.62],
+    ["08/26 13:00",6880.45,6885.94,6852.46,6852.46],
+    ["08/26 14:00",6853.50,6866.16,6801.18,6832.91],
+    ["08/27 09:00",6996.12,6996.12,6843.66,6865.65],
+    ["08/27 10:00",6862.92,6936.84,6841.88,6919.53],
+    ["08/27 11:00",6921.47,6970.19,6917.95,6955.94],
+    ["08/27 12:00",6952.92,6963.66,6918.74,6927.90],
+    ["08/27 13:00",6928.16,6936.27,6891.74,6899.01],
+    ["08/27 14:00",6900.15,6910.29,6869.41,6881.24],
+    ["08/28 09:00",6846.54,6901.78,6805.01,6847.40],
+    ["08/28 10:00",6848.16,6862.46,6814.48,6836.75],
+    ["08/28 11:00",6835.50,6859.03,6826.70,6842.23],
+    ["08/28 12:00",6846.01,6860.14,6801.34,6849.04],
+    ["08/28 13:00",6843.87,6846.63,6817.41,6822.00],
+    ["08/28 14:00",6820.41,6823.87,6781.73,6790.42],
+    ["08/31 09:00",6613.58,6712.25,6547.76,6631.82],
+    ["08/31 10:00",6633.03,6652.54,6602.50,6639.93],
+    ["08/31 11:00",6641.95,6680.66,6635.66,6680.66],
+    ["08/31 12:00",6681.15,6728.79,6678.19,6685.61],
+    ["08/31 13:00",6680.98,6768.90,6670.05,6757.26],
+    ["08/31 14:00",6757.50,6808.07,6753.17,6763.87],
+    ["09/01 09:00",6784.29,6830.20,6732.47,6830.20],
+    ["09/01 10:00",6828.40,6857.35,6780.02,6787.06],
+    ["09/01 11:00",6786.26,6816.62,6756.20,6793.54],
+    ["09/01 12:00",6792.49,6820.50,6782.39,6815.08],
+    ["09/01 13:00",6816.82,6843.62,6813.08,6814.71],
+    ["09/01 14:00",6811.18,6850.55,6789.19,6839.61],
+    ["09/02 09:00",6625.47,6694.57,6625.47,6663.73],
+    ["09/02 10:00",6660.18,6685.73,6618.11,6629.32],
+    ["09/02 11:00",6631.04,6645.35,6612.56,6618.59],
+    ["09/02 12:00",6622.19,6631.55,6586.45,6589.09],
+    ["09/02 13:00",6586.93,6591.16,6568.25,6575.53],
+    ["09/02 14:00",6576.32,6619.30,6560.35,6574.81]
+  ];
+
+  const dayFirstIdx = [0,6,12,18,24,30,36,42,48,54,60,66,72,78,84,90,96,102,108];
+
+  const yMax=7600, yMin=5100, topM=46, bottom=530, left=62, step=7.37;
+  const y = p => topM + (yMax-p)/(yMax-yMin)*(bottom-topM);
+  const x = i => left + i*step;
+  const chartRight = x(data.length-1) + 35;
+
+  const svgNS = "http://www.w3.org/2000/svg";
+  const el = (tag,attrs,parent) => {
+    const n = document.createElementNS(svgNS,tag);
+    for(const k in attrs) n.setAttribute(k, attrs[k]);
+    if(parent) parent.appendChild(n);
+    return n;
+  };
+
+  const grid = document.getElementById('gridGroup');
+  const daysep = document.getElementById('daysepGroup');
+  const candles = document.getElementById('candleGroup');
+  const dates = document.getElementById('dateGroup');
+  const overlay = document.getElementById('overlayGroup');
+
+  // gridlines
+  [5200,5600,6000,6400,6800,7200,7600].forEach(p=>{
+    el('line',{x1:left,x2:chartRight,y1:y(p),y2:y(p),stroke:'var(--grid)','stroke-width':1},grid);
+    el('text',{x:left-9,y:y(p)+5,'text-anchor':'end','font-size':16,fill:'var(--muted)'},grid).textContent = p.toLocaleString();
+  });
+  el('line',{x1:left,x2:chartRight,y1:bottom,y2:bottom,stroke:'var(--border)','stroke-width':1.2},grid);
+
+  // day separators + date labels
+  dayFirstIdx.forEach(i=>{
+    if(i>0) el('line',{x1:x(i)-step/2,x2:x(i)-step/2,y1:topM,y2:bottom,stroke:'var(--daysep)','stroke-width':1,'stroke-dasharray':'3,3'},daysep);
+    const label = data[i][0].slice(0,5);
+    el('text',{x:x(i),y:bottom+24,'text-anchor':'middle','font-size':15,fill:'var(--muted)',transform:`rotate(-52 ${x(i)} ${bottom+24})`},dates).textContent = label;
+  });
+
+  // candles
+  data.forEach((d,i)=>{
+    const [,o,h,l,c] = d;
+    const up = c>=o;
+    const color = up ? 'var(--up)' : 'var(--down)';
+    el('line',{x1:x(i),x2:x(i),y1:y(h),y2:y(l),stroke:color,'stroke-width':1.2},candles);
+    const yo=y(o), yc=y(c);
+    el('rect',{x:x(i)-2.3,y:Math.min(yo,yc),width:4.6,height:Math.max(1.2,Math.abs(yc-yo)),fill:color},candles);
+  });
+
+  // ---- pivots (indices into `data`, confirmed against 60m extremes) ----
+  const P = {
+    P0:{i:10, p:5262.77},  // 07/29 13:00 저점
+    P1:{i:23, p:6620.25},  // 07/31 14:00 고점
+    P2:{i:31, p:6080.25},  // 08/04 10:00 저점
+    P3:{i:36, p:6674.66},  // 08/05 09:00 고점
+    P4:{i:49, p:6158.73},  // 08/07 10:00 저점
+    P5:{i:84, p:7216.62},  // 08/18 09:00 고점
+    P6:{i:90, p:6400.81},  // 08/19 09:00 저점
+    P7:{i:107,p:6954.12},  // 08/21 14:00 고점
+    P8:{i:114,p:6408.82},  // 08/25 09:00 저 = W 종점
+    X1:{i:126,p:6996.12},  // 08/27 09:00 = X 고 (W의 72.7% 되돌림)
+    Y1:{i:138,p:6547.76},  // 08/31 09:00 = Y-a 저
+    Y2:{i:145,p:6857.35},  // 09/01 10:00 = Y-b 고
+    P9:{i:155,p:6560.35},  // 09/02 = Y-c 진행 (일봉 확정저 6,558.30)
+    // a파 내부 5분절 (시나리오3 개정)
+    A1:{i:13, p:5976.82},  // 07/30 10:00
+    A2:{i:16, p:5551.76},  // 07/30 13:00
+    // c파 내부 5분절 (시나리오3 개정)
+    C1:{i:54, p:6394.06},  // 08/10 09:00
+    C2:{i:60, p:6213.78},  // 08/11 09:00
+    C3:{i:78, p:7010.86},  // 08/14 09:00
+    C4:{i:79, p:6848.43},  // 08/14 10:00
+    // 대각선 1파 내부 5분절 (시나리오1 개정)
+    D1:{i:11, p:5681.92},  // 07/29 14:00
+    D3:{i:19, p:6548.64},  // 07/31 10:00
+    D4:{i:20, p:6289.90}   // 07/31 11:00
+  };
+  const pt = k => [x(P[k].i), y(P[k].p)];
+  const pathFrom = keys => keys.map((k,idx)=>{
+    const [px,py]=pt(k);
+    return (idx===0?'M':'L')+px.toFixed(1)+','+py.toFixed(1);
+  }).join(' ');
+  const extend = (kA,kB,targetX) => {
+    const [x1,y1]=pt(kA), [x2,y2]=pt(kB);
+    const slope=(y2-y1)/(x2-x1);
+    return [targetX, y2+(targetX-x2)*slope];
+  };
+
+  function clearOverlay(){ overlay.innerHTML=''; }
+
+  const PX_NOW = 6562.72;   // 2026-09-02 확정 종가
+  // 시나리오별 핵심 라인 : [종류, 값, 설명]
+  const KEY = {
+    1:[['확정',7216.62,'3파 고점 돌파 = 5파 진행 확정. 선행 관문 넥라인 6,954.12 는 8/27 종가 돌파 실패(+5.96%로 멀어짐)'],
+       ['기각',6158.73,'4파가 2파 종점 침범 = 대각선 규칙 위반']],
+    2:[['확정',7516.21,'3파가 1파 초과 = 최단금지 확보. 선행 관문 넥라인 6,954.12(8/27 실패) + 일거래량 464M(9/2 321.2M)'],
+       ['기각',6158.73,'3파 시점 붕괴 = 카운트 사망']],
+    3:[['확정',6400.81,'이탈 시 (C) 하락 재개 확증. 8/25 8.01p 남기고 지지했으나 9/2 급락으로 재접근 중(−2.47%)'],
+       ['기각',7216.62,'(B) 고점 상회 = 조정 종료, 강세 전환']]
+  };
+
+  // 핵심 라인을 차트에 굵게 표시
+  function drawKeyLines(n){
+    KEY[n].forEach(([kind,v,])=>{
+      const col = kind==='확정' ? 'var(--ok)' : 'var(--bad)';
+      const yy=y(v);
+      el('line',{x1:left,x2:chartRight,y1:yy,y2:yy,stroke:col,'stroke-width':2.6,opacity:0.9},overlay);
+      const pct=((v/PX_NOW-1)*100).toFixed(2);
+      // 확정선은 왼쪽, 기각선은 오른쪽에 라벨을 두어 충돌을 피한다
+      const isCf = kind==='확정';
+      const above = v > PX_NOW;   // 현재가 위 라인은 라벨을 선 위에 둬 아래쪽 파동라벨과 겹치지 않게
+      const t=el('text',Object.assign({'font-size':15.5,fill:col,'font-weight':800},
+        isCf ? {x:left+8,y:yy-9} : {x:chartRight-6,y:above?yy-9:yy+22,'text-anchor':'end'}),overlay);
+      t.textContent=`${isCf?'▲ 확정선':'▼ 기각선'} ${v.toLocaleString(undefined,{minimumFractionDigits:2})} (${pct>0?'+':''}${pct}%)`;
+    });
+  }
+
+  function drawScenario1(){
+    const color='var(--gold)';
+    const warnCol='var(--bad)';
+
+    // wave-5 target zone (7,216.62 ~ 7,458.70)
+    const tzTop=y(7458.70), tzBot=y(7216.62);
+    el('rect',{x:x(P.P5.i),y:tzTop,width:chartRight-x(P.P5.i),height:tzBot-tzTop,fill:color,opacity:0.16},overlay);
+    el('text',{x:x(P.P5.i)+8,y:tzTop-9,'font-size':15,fill:color,'font-weight':700},overlay).textContent='5파 목표역 7,216.62 ~ 7,458.70';
+
+    // wedge trendlines: 1-3 and 2-4
+    const up=extend('P1','P5',chartRight), lo=extend('P4','P6',chartRight);
+    el('line',{x1:x(P.P1.i),y1:y(P.P1.p),x2:up[0],y2:up[1],stroke:color,'stroke-width':1.6,'stroke-dasharray':'6,4'},overlay);
+    el('line',{x1:x(P.P4.i),y1:y(P.P4.p),x2:lo[0],y2:lo[1],stroke:color,'stroke-width':1.6,'stroke-dasharray':'6,4'},overlay);
+    // 봉이 촘촘해져 선 위에 두면 파동 라벨과 겹치므로 좌상단 빈 공간에 범례로 모은다
+    el('text',{x:left+8,y:topM+16,'font-size':14,fill:color,'font-weight':700},overlay).textContent='1-3선 +9.78p/봉';
+    el('text',{x:left+8,y:topM+34,'font-size':14,fill:color,'font-weight':700},overlay).textContent='2-4선 +3.85p/봉 → 발산(수렴 불가)';
+
+    // actual price path at sub-wave resolution
+    el('path',{d:pathFrom(['P0','D1','A2','D3','D4','P1']),fill:'none',stroke:color,'stroke-width':2.8},overlay);
+    el('path',{d:pathFrom(['P1','P2','P3','P4']),fill:'none',stroke:color,'stroke-width':2.8},overlay);
+    el('path',{d:pathFrom(['P4','C1','C2','C3','C4','P5']),fill:'none',stroke:color,'stroke-width':2.8},overlay);
+    el('path',{d:pathFrom(['P5','P6','P7','P8','X1','Y1','Y2','P9']),fill:'none',stroke:color,'stroke-width':2.8},overlay);
+    // projected wave 5
+    const [p8x,p8y]=pt('P9');
+    el('path',{d:`M${p8x},${p8y} L${p8x+18},${y(6820)} L${chartRight-25},${y(7340)}`,fill:'none',stroke:color,'stroke-width':2.4,'stroke-dasharray':'8,5'},overlay);
+
+    // small sub-wave labels
+    const sub={D1:'①',A2:'②',D3:'③',D4:'④',P2:'Ⓐ',P3:'Ⓑ',C1:'①',C2:'②',C3:'③',C4:'④',P6:'Ⓐ',P7:'Ⓑ'};
+    const sdy={D1:-12,A2:22,D3:-12,D4:22,P2:22,P3:-12,C1:-12,C2:22,C3:-12,C4:22,P6:22,P7:-12};
+    Object.keys(sub).forEach(k=>{
+      const [px,py]=pt(k);
+      el('circle',{cx:px,cy:py,r:4,fill:color},overlay);
+      el('text',{x:px,y:py+sdy[k],'text-anchor':'middle','font-size':14,'font-weight':700,fill:color},overlay).textContent=sub[k];
+    });
+
+    // degree labels
+    const big={P0:['0',30],P1:['1 ⑤',-17],P4:['2 Ⓒ',30],P5:['3 ⑤',-17],P8:['W',32],X1:['X',-17],P9:['Y 진행',32]};
+    Object.keys(big).forEach(k=>{
+      const [px,py]=pt(k); const [txt,d]=big[k];
+      el('circle',{cx:px,cy:py,r:7,fill:color},overlay);
+      el('text',{x:px,y:py+d,'text-anchor':'middle','font-size':20,'font-weight':800,fill:color},overlay).textContent=txt;
+    });
+    el('text',{x:chartRight-30,y:y(7340)-14,'text-anchor':'end','font-size':20,'font-weight':800,fill:color},overlay).textContent='5?';
+
+    // degree brackets
+    const by1=bottom+58, by2=bottom+66;
+    const seg=(a,b)=>[x(P[a].i),x(P[b].i)];
+    [[seg('P0','P1'),'1파 — 5분절'],[seg('P1','P4'),'2파 — 러닝 플랫'],
+     [seg('P4','P5'),'3파 — 5분절'],[seg('P5','P9'),'4파 연장 : W-X-Y 복합조정 진행']].forEach(([[a,b],txt])=>{
+      el('path',{d:`M${a},${by1} L${a},${by2} L${b},${by2} L${b},${by1}`,fill:'none',stroke:color,'stroke-width':1.8},overlay);
+      el('text',{x:(a+b)/2,y:by2+22,'text-anchor':'middle','font-size':15,'font-weight':800,fill:color},overlay).textContent=txt;
+    });
+  }
+
+  function drawScenario2(){
+    const color='var(--s2)';
+    const warnCol='var(--bad)';
+
+    // (iii) minimum requirement = (i) top (참고선)
+    el('line',{x1:left,x2:chartRight,y1:y(P.P5.p),y2:y(P.P5.p),stroke:color,'stroke-width':1.3,'stroke-dasharray':'4,5',opacity:0.75},overlay);
+    el('text',{x:chartRight-6,y:y(P.P5.p)-9,'text-anchor':'end','font-size':14,fill:color,'font-weight':700},overlay).textContent='(iii) 최소요건 7,216.62 (참고)';
+
+    // price path
+    el('path',{d:pathFrom(['P0','D1','A2','D3','D4','P1']),fill:'none',stroke:color,'stroke-width':2.8},overlay);
+    el('path',{d:pathFrom(['P1','P2','P3','P4']),fill:'none',stroke:color,'stroke-width':2.8},overlay);
+    el('path',{d:pathFrom(['P4','C1','C2','C3','C4','P5']),fill:'none',stroke:color,'stroke-width':2.8},overlay);
+    el('path',{d:pathFrom(['P5','P6','P7','P8','X1','Y1','Y2','P9']),fill:'none',stroke:color,'stroke-width':2.8},overlay);
+
+    // projected (iii) — steep rally off the top
+    const [p8x,p8y]=pt('P9');
+    el('path',{d:`M${p8x},${p8y} L${p8x+16},${y(6900)} L${chartRight-42},${y(7560)}`,fill:'none',stroke:color,'stroke-width':2.6,'stroke-dasharray':'8,5'},overlay);
+    el('path',{d:`M${chartRight-52},${y(7440)} L${chartRight-42},${y(7560)} L${chartRight-62},${y(7545)}`,fill:color,stroke:'none'},overlay);
+    el('text',{x:chartRight-6,y:y(7480),'text-anchor':'end','font-size':15,fill:color,'font-weight':800},overlay).textContent='(iii) 목표 8,112 (1.618×)';
+    el('text',{x:chartRight-6,y:y(7480)+20,'text-anchor':'end','font-size':13.5,fill:'var(--muted)'},overlay).textContent='※ 차트 범위 밖 · 거래량 확인 조건부';
+
+    // sub-wave labels
+    const sub={D1:'①',A2:'②',D3:'③',D4:'④',P2:'Ⓐ',P3:'Ⓑ',C1:'i-①',C2:'i-②',C3:'i-③',C4:'i-④',P6:'ⓐ',P7:'ⓑ'};
+    const sdy={D1:-12,A2:22,D3:-12,D4:22,P2:22,P3:-12,C1:-12,C2:22,C3:-12,C4:22,P6:22,P7:-12};
+    Object.keys(sub).forEach(k=>{
+      const [px,py]=pt(k);
+      el('circle',{cx:px,cy:py,r:4,fill:color},overlay);
+      el('text',{x:px,y:py+sdy[k],'text-anchor':'middle','font-size':13,'font-weight':700,fill:color},overlay).textContent=sub[k];
+    });
+
+    // degree labels
+    const big={P0:['0',30],P1:['1 ⑤',-17],P4:['2 Ⓒ',30],P5:['(i)',-17],P8:['W',32],X1:['X',-17],P9:['Y 진행',32]};
+    Object.keys(big).forEach(k=>{
+      const [px,py]=pt(k); const [txt,d]=big[k];
+      el('circle',{cx:px,cy:py,r:7,fill:color},overlay);
+      el('text',{x:px,y:py+d,'text-anchor':'middle','font-size':20,'font-weight':800,fill:color},overlay).textContent=txt;
+    });
+
+    // brackets
+    const by1=bottom+58, by2=bottom+66;
+    const seg=(a,b)=>[x(P[a].i),x(P[b].i)];
+    [[seg('P0','P1'),'1파'],[seg('P1','P4'),'2파 — 러닝 플랫'],
+     [seg('P4','P9'),'3파 진행 : (i) 완료 → (ii) W-X-Y 로 연장 중 → (iii) 지연']].forEach(([[a,b],txt])=>{
+      el('path',{d:`M${a},${by1} L${a},${by2} L${b},${by2} L${b},${by1}`,fill:'none',stroke:color,'stroke-width':1.8},overlay);
+      el('text',{x:(a+b)/2,y:by2+22,'text-anchor':'middle','font-size':15,'font-weight':800,fill:color},overlay).textContent=txt;
+    });
+  }
+
+  function drawScenario3(){
+    const color='var(--ok)';
+    const cCol='var(--burgundy)';
+    // off-chart (A) wave arrow near P0
+    const [p0x,p0y]=pt('P0');
+    el('line',{x1:x(0),x2:p0x-16,y1:p0y,y2:p0y,stroke:color,'stroke-width':2.4},overlay);
+    el('path',{d:`M${x(0)+12},${p0y-5} L${x(0)},${p0y} L${x(0)+12},${p0y+5}`,fill:'none',stroke:color,'stroke-width':2.4},overlay);
+    el('text',{x:x(0),y:p0y-17,'font-size':15,fill:color,'font-weight':700},overlay).textContent='◀ (A) 5,262.77';
+
+    el('text',{x:left+8,y:y(P.P5.p)-32,'font-size':14,fill:color,'font-weight':700},overlay).textContent='(B) 고점 = (A)폭의 47.4% 되돌림';
+
+    // actual price path, sub-wave resolution
+    el('path',{d:pathFrom(['P0','A1','A2','P1','P2','P3']),fill:'none',stroke:color,'stroke-width':2.8},overlay);
+    el('path',{d:pathFrom(['P3','P4']),fill:'none',stroke:color,'stroke-width':2.8},overlay);
+    el('path',{d:pathFrom(['P4','C1','C2','C3','C4','P5']),fill:'none',stroke:color,'stroke-width':2.8},overlay);
+    // (C) already underway
+    el('path',{d:pathFrom(['P5','P6','P7','P8','X1','Y1','Y2','P9']),fill:'none',stroke:cCol,'stroke-width':2.8},overlay);
+
+    // internal 5-wave numerals for a and c
+    const sub = {A1:'①',A2:'②',P1:'③',P2:'④',C1:'①',C2:'②',C3:'③',C4:'④'};
+    const subDy = {A1:-12,A2:22,P1:-12,P2:22,C1:-12,C2:22,C3:-12,C4:22};
+    Object.keys(sub).forEach(k=>{
+      const [px,py]=pt(k);
+      el('circle',{cx:px,cy:py,r:4,fill:color},overlay);
+      el('text',{x:px,y:py+subDy[k],'text-anchor':'middle','font-size':14,'font-weight':700,fill:color},overlay).textContent=sub[k];
+    });
+
+    // degree-level labels
+    const big = {P0:['(B) 시작',30,color],P3:['a ⑤',-16,color],P4:['b',30,color],P5:['c ⑤',-16,color]};
+    Object.keys(big).forEach(k=>{
+      const [px,py]=pt(k); const [txt,d,col]=big[k];
+      el('circle',{cx:px,cy:py,r:7,fill:col},overlay);
+      el('text',{x:px,y:py+d,'text-anchor':'middle','font-size':20,'font-weight':800,fill:col},overlay).textContent=txt;
+    });
+    // (C) is an impulse → sub-waves are ①②③④⑤, not ⓐⓑⓒ
+    const cLab = {P6:['①',30],P7:['②',-16],P8:['③ 실패',34],X1:['④?',-16],P9:['⑤? 진행',32]};
+    Object.keys(cLab).forEach(k=>{
+      const [px,py]=pt(k); const [txt,d]=cLab[k];
+      el('circle',{cx:px,cy:py,r:7,fill:cCol},overlay);
+      el('text',{x:px,y:py+d,'text-anchor':'middle','font-size':19,'font-weight':800,fill:cCol},overlay).textContent=txt;
+    });
+    // ③ projection
+    const [q8x,q8y]=pt('P8');
+    el('circle',{cx:q8x,cy:q8y,r:13,fill:'none',stroke:cCol,'stroke-width':2.4},overlay);
+    el('text',{x:chartRight-6,y:y(6100),'text-anchor':'end','font-size':14.5,fill:cCol,'font-weight':800},overlay).textContent='③이 ①종점 6,400.81 미달 (+8.01p)';
+    el('text',{x:chartRight-6,y:y(5990),'text-anchor':'end','font-size':14,fill:cCol,'font-weight':700},overlay).textContent='= failed third → 임펄스 C 불가';
+    el('text',{x:chartRight-6,y:y(5880),'text-anchor':'end','font-size':13.5,fill:cCol,'font-weight':700,opacity:0.85},overlay).textContent='엔딩 다이애고널 구제 시에만 존속';
+
+    // a / b / c brackets under axis
+    const by1=bottom+58, by2=bottom+66;
+    const seg = (kA,kB) => [x(P[kA].i), x(P[kB].i)];
+    const groups = [
+      [seg('P0','P3'), 'a — 5파 임펄스', color],
+      [seg('P3','P4'), 'b', color],
+      [seg('P4','P5'), 'c — 5파 임펄스', color],
+      [seg('P5','P9'), '(C) 엔딩 다이애고널 가능성 : ③ 실패 후 ④⑤ 전개 중?', cCol]
+    ];
+    groups.forEach(([[a,b],txt,col])=>{
+      el('path',{d:`M${a},${by1} L${a},${by2} L${b},${by2} L${b},${by1}`,fill:'none',stroke:col,'stroke-width':1.8},overlay);
+      el('text',{x:(a+b)/2,y:by2+22,'text-anchor':'middle','font-size':15,'font-weight':800,fill:col},overlay).textContent=txt;
+    });
+  }
+
+  // ---- scenario metadata (headings / rule tables / verdicts) ----
+  const info = {
+    1: {
+      heading: "시나리오 1 — 리딩 다이애고널 (5-3-5-3-5), 현재 4파 조정",
+      sub: "Chory 재카운트 반영. 0→1(5분절)→2(러닝 플랫)→3(5분절)→4(진행) 구조. 5파 완성 시 이 전체가 상위 1파가 되고, 이후 상위 2파 조정으로 이어진다는 해석.",
+      legendText: "리딩 다이애고널 0-1-2-3-4 + 5파 투영", legendColor: "var(--gold)",
+      draw: drawScenario1,
+      rows: [
+        ["1파 = 5분절", "5,262.77→6,620.25 (①5,681.92 ②5,551.76 ③6,548.64 ④6,289.90 ⑤6,620.25)", "1,357.48p", "ok", "5분절 성립"],
+        ["2파 = 러닝 플랫 ★", "Ⓐ6,080.25 Ⓑ6,674.66 Ⓒ6,158.73", "Ⓑ가 Ⓐ의 110.1%(시점 초과) + Ⓒ가 Ⓐ저점 미달", "ok", "러닝 플랫 확정 — 최강세 조정형"],
+        ["R1 2파 ≤100% 되돌림", "2파 461.52 vs 1파 1,357.48", "34.0% 되돌림", "ok", "통과"],
+        ["R2 3파가 1파 종점 초과", "3파 종점 7,216.62 vs 1파 종점 6,620.25", "+596.37p 초과", "ok", "통과"],
+        ["R3 4파가 2파 종점 미돌파", "4파저 6,408.82(8/25) vs 2파 종점 6,158.73", "여유 250.09p (+4.06%)", "ok", "통과"],
+        ["★ 9/2 4파 연장 확인", "W 7,216.62→6,408.82 / X →6,996.12 / Y 진행", "8/25 완결이 아니라 W-X-Y 복합조정. X는 W의 72.7% 되돌림(정상역)", "warn", "5파 개시 지연 — 완결 전제 철회"],
+        ["쐐기 기하 vs 파동 길이", "1-3선 +9.78p/봉 vs 2-4선 +3.85p/봉", "8/25 저점으로 2-4선 기울기가 5.90→3.85로 하락, 갭 3.87→5.93p/봉", "bad", "발산 심화 — 최대 약점"],
+        ["수축형 복원 가능성", "4파 종점이 6,559.57 이상 필요", "8/25 저 6,408.82로 더 낮게 확정", "bad", "복원 불가"]
+      ],
+      verdict: ["bad","<b>9/2 갱신 — 4파 완결 전제를 철회한다.</b> 조정은 8/25에 끝나지 않았고 <b>W-X-Y 복합형으로 연장</b> 중이다(W 807.80p → X 72.7% 되돌림 → Y 진행). 8/27 넥라인 6,954.12 종가 돌파 실패로 강세 확증 기회가 소멸했고, 9/2 −3.99% 급락은 거래량 99%를 동반해 성격도 달라졌다. <b>쐐기 발산이라는 최대 약점은 그대로이고 4파 저점만 계속 낮아지고 있다.</b> 무효화선 6,158.73 까지 −6.16%."]
+    },
+    2: {
+      heading: "시나리오 2 — 정상 임펄스 (계위 재배치), 3파의 (ii) 조정 중",
+      sub: "Chory 재배치 반영. 시나리오1의 3파·4파를 상위 3파의 (i)·(ii)로 한 계위 내려 읽으면, 구 시나리오2를 죽였던 R3 겹침이 해소된다. 성립 조건은 (ii) 종료 후 거래량을 동반한 강한 (iii) 상승.",
+      legendText: "정상 임펄스 1-2-3 (3파 내부 (i)-(ii)-(iii))", legendColor: "var(--s2)",
+      draw: drawScenario2,
+      rows: [
+        ["R3 겹침 문제 해소 ★", "6,400.81의 라벨 변경", "'4파'→'3파의 (ii)'. R3는 동일 계위 4파에만 적용되므로 하위 (ii)의 1파 영역 진입은 무규제", "ok", "위반 소멸 — 재배치의 핵심"],
+        ["R1 2파 ≤100%", "2파 461.52 vs 1파 1,357.48", "34.0% (러닝 플랫)", "ok", "통과"],
+        ["3파 시점 유지", "(ii)저 6,400.81 vs 3파 시점 6,158.73", "여유 242.08p", "ok", "통과"],
+        ["(ii) 되돌림 심도", "(ii) 807.80 vs (i) 1,057.89", "76.4%(8/25 저 6,408.82 기준) — 깊지만 100% 미만", "ok", "통과"],
+        ["★ 9/2 (ii) 연장 확인", "W-X-Y 복합조정으로 전환", "(ii)가 8/25에 안 끝나고 연장. Y≈W 목표 6,188.32 는 3파시점 6,158.73 보다 +29.59p 위", "warn", "(iii) 지연 — 한계선 근접"],
+        ["거래량 성격 반전 ★", "9/2 −3.99% 에 거래량 321.2M (20일평균 99%)", "8/24·8/25 무기력한 하락(79%·74%)과 달리 힘이 실림. 외인 1.9조·기관 2.0조 동반 순매도", "bad", "조정파 우위 근거 약화"],
+        ["(iii) 확인 문턱", "미충족 — 대기 상태", "일거래량 464M 이상 + 종가 7,216.62 돌파. 8/25 286.8M은 문턱의 62%", "warn", "미확인 — 성립의 관문"],
+        ["넥라인 검정 실패", "8/27 장중 6,996.12 로 넥라인 6,954.12 상회", "종가 6,912.37 로 미돌파. 시가=고가 약세캔들. 이중바닥 확정 무산", "bad", "강세 확증 기회 소멸"],
+        ["R2 3파 최단금지", "3파가 1파(1,357.48p)보다 길어야 안전", "3파 종점 &gt; 7,516.21 필요", "warn", "(iii) 전개에 종속"]
+      ],
+      verdict: ["warn","<b>9/2 갱신 — 여전히 최유력(37.6%)이나 근거가 약해졌다.</b> (ii)가 8/25에 완결되지 않고 W-X-Y로 연장되면서 (iii) 개시가 계속 지연되고 있다. 넥라인 6,954.12 종가 돌파 실패, MA20 이탈, 거래량 동반 급락이 겹쳤다. <b>다만 Y≈W 목표 6,188.32 가 3파 시점 6,158.73 보다 29.59p 위</b>라, 이 가설대로 흘러도 카운트는 아슬아슬하게 생존한다. (iii) 확인 문턱은 여전히 거래량 464M + 종가 7,216.62 돌파."]
+    },
+    3: {
+      heading: "시나리오 3 — (A)-(B)-(C) 조정 · (B)는 단순 지그재그 5-3-5",
+      sub: "a·c가 각각 5분절 임펄스로 확인되어 단순 지그재그(5-3-5)로 카운트. 5분절은 a·c의 내부(한 계위 아래)이며, (B) 자체는 최상위에서 3분절(또는 W-X-Y)로 조정파 요건을 지킨다. (B)는 8/18 7,216.62에서 완성.",
+      legendText: "(B) 지그재그 a-b-c (녹색) + (C) 진행 (자주색)", legendColor: "var(--ok)",
+      draw: drawScenario3,
+      rows: [
+        ["a파 = 5분절 임펄스", "5,262.77→6,674.66 (①5,976.82 ②5,551.76 ③6,620.25 ④6,080.25 ⑤6,674.66)", "R1 59.5% · R2 ③최장 · R3 ④6,080.25&gt;①5,976.82 무겹침", "ok", "유효 임펄스 (3규칙 전부 PASS)"],
+        ["c파 = 5분절 임펄스", "6,158.73→7,216.62 (①6,394.06 ②6,213.78 ③7,010.86 ④6,848.43 ⑤7,216.62)", "R1 76.6% · R2 ③최장 · R3 ④6,848.43&gt;①6,394.06 무겹침", "ok", "유효 임펄스 (3규칙 전부 PASS)"],
+        ["지그재그 5-3-5 구조", "a(5파) - b(3파) - c(5파)", "b 되돌림 36.5%, c/a = 0.749", "ok", "교과서적 지그재그"],
+        ["c/a 비율", "a 1,411.89 / c 1,057.89", "0.749 — 통상역 0.618~1.618 내", "ok", "정상 (구 카운트 0.44 이상치 해소)"],
+        ["b파 플랫 여부 검정", "6,674.66→6,158.73 내부", "내부 b 되돌림 40.6% (플랫 요건 90%+ 미달)", "warn", "플랫 아님 — 지그재그"],
+        ["(B) 자체 분절 수 ★", "최상위 계위에서 (B)를 몇 개로 세는가", "문턱 6~7.5%에서 7분절(=W-X-Y 이중지그재그) · 8.5%↑에서 3분절. 5분절로는 읽히지 않음", "ok", "3 또는 3의 조합 — 조정파 요건 충족"],
+        ["되돌림 등가성 (교대지침)", "구간 내 3개 되돌림 심도", "7.11% / 8.16% / 7.73% — 편차 1.04%p", "ok", "등가 반복 = 복합조정형, 임펄스 교대지침과는 배치"],
+        ["★ ③ 실패 유지 + 구제경로 부상", "임펄스 요건 : ③은 ①종점 6,400.81 하회 필수", "8/25 장중저 6,408.82 (+8.01p 미달)로 failed third 확정. 단 8/27 ④?·9/2 ⑤? 로 3분절 연쇄가 이어져 <b>엔딩 다이애고널</b> 형태에 근접", "warn", "임펄스 C 불가, 다이애고널로는 생존"],
+        ["3분절 재해석", "a 815.81 → b 553.31(67.8%) → c 545.30(66.8%)", "3분절 완결형 + 절단형 c. C파는 5분절이어야 하므로 정면 충돌", "bad", "(C) 개시 해석과 배치"],
+        ["잔존 구제 경로", "(C)가 엔딩 다이애고널(3-3-3-3-3)이면 ①이 3분절 가능", "이 경우 존속하나 C가 더 얕아져 C/A 균형 문제 심화", "warn", "구제 가능하나 복잡도↑"],
+        ["③ 확인 / 무효화", "③ 진행 검증", "확인 = 종가 6,400.81 이탈(−4.72%) · 무효 = 종가 7,216.62 상회(+7.42%)", "warn", "8/25 1차 검정에서 지지 실패"],
+        ["③·(C) 목표", "피보나치 확장", "③ 1.618×① = 5,634 · (C) 0.5~0.618×A = 5,155~4,669 (No.010 목표대 4,825~5,000과 정합)", "warn", "하락 여지 큼"],
+        ["C/A 균형 문제 ★", "지그재그 통상 C ≈ A", "A 4,122.82p인데 목표 C는 2,217~2,548p = A의 0.54~0.62 → 확실히 짧음", "warn", "균형 이탈 — 이 카운트의 약점"],
+        ["C=A 가 봉쇄되는 이유", "C=1.0×A → 종점 3,093.80", "Primary[1] 정점 3,316 하회 = No.010 경성 무효화선 붕괴. C 상한은 A의 94.6%", "ok", "완전균형은 산술적으로 불가"],
+        ["짧은 C의 상위 근거", "Primary[4]가 [3]의 61.8% 되돌림", "목표 4,997 → C/A=0.538이 자동 도출. (A)가 레버리지 오버슈팅 이상치인 점도 근거", "ok", "임의 가정 아님 — 상위 피보나치가 강제"],
+        ["분절 수 판별 — 결론 ★", "7,216.62→6,400.81→6,954.12→6,408.82 (3개 다리 완결)", "8/25 6,400.81 지지 후 반전으로 <b>3분절 조정</b> 쪽으로 판정. Chory 예견 적중", "bad", "S1·S2 유리, S3 불리"]
+      ],
+      verdict: ["warn","<b>9/2 갱신 — 32.6%로 반등(+8.2%p).</b> ③이 ①종점을 못 깬 failed third 는 그대로여서 <b>임펄스 C 는 여전히 불가</b>하다. 그러나 8/27 ④?, 9/2 ⑤? 로 3분절 연쇄가 이어지며 <b>엔딩 다이애고널(3-3-3-3-3)</b> 구제 경로에 부합해가고 있다. MA20 이탈·거래량 동반 하락도 이 안에 유리하다. 재확인선은 6,400.81(−2.47%), 무효화는 7,216.62 종가 상회."]
+    }
+  };
+
+  function selectScenario(n){
+    [1,2,3].forEach(k=> document.getElementById('tab-'+k).setAttribute('aria-pressed', k===n ? 'true':'false'));
+    const d = info[n];
+    clearOverlay();
+    drawKeyLines(n);
+    d.draw();
+
+    // 핵심 라인 패널
+    const lb=document.getElementById('lines-box');
+    lb.innerHTML = KEY[n].map(([kind,v,why])=>{
+      const pct=((v/PX_NOW-1)*100).toFixed(2);
+      return `<div class="lbox ${kind==='확정'?'cf':'rj'}">
+        <div class="lt">${kind==='확정'?'▲ 확정선':'▼ 기각선'}</div>
+        <div class="lv">${v.toLocaleString(undefined,{minimumFractionDigits:2})} <span style="font-size:13px;font-weight:600;color:var(--muted)">(${pct>0?'+':''}${pct}%)</span></div>
+        <div class="ld">${why}</div></div>`;
+    }).join('');
+    document.getElementById('lines-heading').textContent = d.heading.split('—')[0].trim() + ' · 핵심 라인';
+    document.getElementById('lines-sub').textContent = `2026-08-25 확정 종가 6,562.72 기준. 차트에도 굵은 실선(초록=확정 / 빨강=기각)으로 표시된다.`;
+    document.getElementById('chart-heading').textContent = d.heading;
+    document.getElementById('chart-sub').textContent = d.sub;
+    document.getElementById('legendDot').style.background = d.legendColor;
+    document.getElementById('legendText').textContent = d.legendText;
+    document.getElementById('rules-heading').textContent = d.heading + " · 규칙 대조";
+    document.getElementById('rules-sub').textContent = "각 분절을 엘리어트 절대규칙과 대조한 결과.";
+
+    const body = document.getElementById('rules-body');
+    body.innerHTML = "";
+    d.rows.forEach(r=>{
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td class="rule-name">${r[0]}</td><td class="rule-detail">${r[1]}</td><td class="rule-detail">${r[2]}</td><td><span class="chip ${r[3]}">${r[3]==='ok'?'✓':r[3]==='warn'?'⚠':'✕'} ${r[4]}</span></td>`;
+      body.appendChild(tr);
+    });
+
+    const vbox = document.getElementById('verdict-box');
+    vbox.className = 'verdict-box ' + d.verdict[0];
+    vbox.innerHTML = d.verdict[1];
+  }
+
+  selectScenario(3);
+</script>
+
+</body>
+</html>
