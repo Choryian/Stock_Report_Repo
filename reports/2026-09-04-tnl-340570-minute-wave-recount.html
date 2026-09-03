@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>티앤엘 (A340570) · Minute 파동 재카운팅 — Chory &amp; Rochet</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fafafa;color:#1a1a1a;line-height:1.65;
+ font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;font-size:14.5px}
+.container{max-width:880px;margin:28px auto;background:#fff;border-radius:12px;
+ box-shadow:0 1px 3px rgba(0,0,0,.06),0 8px 32px rgba(0,0,0,.05);padding:40px 48px}
+@media(max-width:640px){.container{padding:24px 18px;margin:0;border-radius:0}}
+h1{font-size:24px;font-weight:600;margin:0 0 6px;letter-spacing:-.01em}
+h1 .code{font-size:14px;color:#888;font-weight:400;letter-spacing:.02em}
+.subtitle{font-size:13px;color:#777;line-height:1.7;margin-bottom:22px}
+h2{font-size:18px;font-weight:600;margin:38px 0 14px;padding-bottom:9px;border-bottom:1px solid #e6e6e2}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:#444}
+p{margin:10px 0}
+.lead{font-size:14px;color:#555;background:#fafaf7;border-left:3px solid #d4d4cc;padding:12px 16px;border-radius:0 5px 5px 0}
+.muted{color:#888;font-size:12.5px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0 8px}
+@media(max-width:640px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+.stat{background:#f5f5f2;border-radius:8px;padding:14px 16px}
+.stat .k{font-size:11px;color:#888;letter-spacing:.02em}
+.stat .v{font-size:21px;font-weight:600;margin-top:3px;font-variant-numeric:tabular-nums}
+.stat .d{font-size:11.5px;color:#777;margin-top:2px}
+table{width:100%;border-collapse:collapse;margin:12px 0 6px;font-size:13.2px}
+th,td{text-align:left;padding:8px 11px;border-bottom:1px solid #eeeeea;vertical-align:top}
+thead th{background:#f7f7f5;font-size:11.5px;font-weight:700;color:#666;letter-spacing:.02em;white-space:nowrap}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.hl td{background:#fdfaf1}
+tr.warn td{background:#fdf6f4}
+.up{color:#c8364d} .dn{color:#2c5fb7}
+.check{color:#2e7d4f;font-weight:700} .x{color:#b42318;font-weight:700}
+.inval{color:#b42318;font-weight:600}
+.key-pivot{background:rgba(232,184,74,.28);padding:1px 5px;border-radius:3px;font-weight:600;font-variant-numeric:tabular-nums}
+.nested{background:#fdf8ec;border:1px solid #f0e3c2;border-radius:8px;padding:16px 20px;margin:18px 0;font-size:13.8px;line-height:1.75}
+.callout{background:#f4f8fb;border-left:3px solid #3d7ea6;border-radius:0 6px 6px 0;padding:14px 18px;margin:16px 0;font-size:13.5px;line-height:1.75}
+.warnbox{background:#fdf6f4;border-left:3px solid #b42318;border-radius:0 6px 6px 0;padding:14px 18px;margin:16px 0;font-size:13.3px;line-height:1.75}
+.chart-wrap{border:1px solid #ececea;border-radius:8px;padding:8px;margin:16px 0 4px;overflow-x:auto;background:#fff}
+.chart-wrap svg{display:block;min-width:640px}
+.s-primary,.s-alt,.s-invalid{border-left:4px solid;border-radius:0 7px 7px 0;padding:13px 18px;margin:11px 0;background:#fbfbf9}
+.s-primary{border-color:#b8860b} .s-alt{border-color:#1570ef} .s-invalid{border-color:#b42318}
+.s-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.s-name{font-weight:600;font-size:14.5px}
+.badge{font-size:12px;font-weight:700;padding:2px 10px;border-radius:20px;background:#eee;color:#444;white-space:nowrap}
+.s-primary .badge{background:#b8860b;color:#fff} .s-alt .badge{background:#1570ef;color:#fff} .s-invalid .badge{background:#b42318;color:#fff}
+.s-primary p,.s-alt p,.s-invalid p{margin:7px 0 0;font-size:13.2px}
+td.conv{background:#fdfaf1;vertical-align:middle;text-align:center;font-size:13px}
+.grade{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:3px;vertical-align:middle}
+.gA{background:#e4f0e8;color:#2e7d4f} .gB{background:#e8eef7;color:#2c5fb7} .gC{background:#f7efe2;color:#8a6414} .gN{background:#f2eded;color:#b42318}
+footer{margin-top:36px;padding-top:20px;border-top:1px solid #e6e6e2;font-size:11.8px;color:#888;line-height:1.75}
+footer .sig{font-size:13px;color:#555;margin-top:14px}
+@media print{body{background:#fff}.container{box-shadow:none;margin:0;max-width:100%;padding:0}h2,h3,table,.chart-wrap{break-inside:avoid}}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+</head>
+<body>
+<div class="container">
+
+<h1>티앤엘 파동 재카운팅 <span class="code">A340570 · KOSDAQ 우량기업부</span></h1>
+<p class="subtitle">
+발행 · Chory &amp; Rochet &nbsp;|&nbsp; 분석일 · 2026-09-04 &nbsp;|&nbsp; Minute 계위 무효화 판정 · (3)파 내부 재분할 · 시나리오 3안 · 실행 전략<br>
+기준 시세 · 2026-09-02 종가 29,900원 (9/3 이후 미확보) &nbsp;|&nbsp; 직전 보고서 · 2026-08-14 「2Q26 실적·밸류에이션·다계위 파동」
+</p>
+
+<div class="stats-grid">
+  <div class="stat"><div class="k">기준가 (9/2 종가)</div><div class="v">29,900</div><div class="d">8/14 32,200 대비 −7.1%</div></div>
+  <div class="stat"><div class="k">8/7 고점 대비</div><div class="v">−19.3%</div><div class="d">35,800 → 28,900 (확인 저점)</div></div>
+  <div class="stat"><div class="k">되돌림률</div><div class="v">63.7%</div><div class="d">0.618~2/3 구간 · 2파 정합</div></div>
+  <div class="stat"><div class="k">2026E PER</div><div class="v">7.1배</div><div class="d">EV/EBIT 4.7배 · 실질 무차입</div></div>
+</div>
+
+<p class="lead">
+<b>결론부터.</b> 8월 14일 보고서의 Minute 카운트(i-ii-iii-iv, v 대기)는 <b>무효화됐다</b>. 8월 하순 28,900원이 wave i 고점 30,518원을 5.3% 하회하면서 임펄스 절대규칙 R3(4파는 1파 영역을 침범할 수 없다)를 위반했기 때문이다.
+다만 이것은 <b>상위 계위의 붕괴가 아니라 계위의 재설정</b>이다. 7/21 24,976 → 8/7 35,800 구간 전체를 Intermediate (3)파의 <b>내부 1파</b>로 격하하면, 현재 하락은 <b>(3)파의 2파</b>가 되고 28,900은 1파의 63.7% 되돌림 — 2파로서 교과서적인 깊이다.
+Cycle III(무효화 21,813)과 Intermediate (3)(무효화 24,976)은 <b>그대로 살아 있다</b>. 바뀐 것은 우리가 파동의 어디쯤 서 있는지에 대한 추정이며, 결론은 <b>생각보다 이른 국면</b>이라는 것이다.
+</p>
+
+<div class="nested">
+<b>중첩 위치 진술 (Nested Position Statement) — 9/4 개정</b><br>
+Cycle III (초기·진행) ⊃ Intermediate (3) (초기·진행) ⊃ <b>Minute 2 (조정 · 완성 임박 또는 완성)</b><br>
+<span class="muted">직전(8/14): Cycle III ⊃ Intermediate (3) ⊃ Minute iv — 한 계위 아래로 재설정됐다.</span><br><br>
+<b>핵심 무효화 위계</b> — Cycle <span class="key-pivot">21,813</span> &lt; Intermediate <span class="key-pivot">24,976</span> &lt; Minute <span class="key-pivot">27,292</span><br>
+<span class="muted">Minute 무효화선이 30,518 → 27,292로 <b>내려갔다</b>. 허용 조정폭이 넓어진 것이지 구조가 나빠진 것이 아니다.</span>
+</div>
+
+<div class="warnbox">
+<b>데이터 고지 — 이 보고서를 읽기 전에</b><br>
+본 세션은 KRX·네이버 금융·통관 API에 대한 직접 접근이 차단된 원격 환경에서 작성됐다. 8/14 이후 일봉은 <b>공개 검색 결과로 교차 확인한 종가 중심의 부분 복원</b>이며, 일별 거래량·RSI·8월 통관 실적은 <b>확보하지 못했다</b>.
+따라서 본 보고서는 ① 8/14 보고서의 확정 데이터를 기준선으로 삼고 ② 그 이후 <b>검증 가능한 가격 사실</b>만으로 카운트의 유효/무효를 판정하는 데 범위를 한정했다.
+아래 §1의 데이터 등급표에서 각 수치의 신뢰도를 명시했으며, <b>C등급 이하 수치에는 매매 판단을 걸지 않았다</b>. 거래량·모멘텀 게이트는 이번 판에서 <b>생략</b>했다(추정으로 채우지 않았다).
+</div>
+
+<h2>1. 데이터 원장 — 무엇을 알고, 무엇을 모르는가</h2>
+
+<table>
+<thead><tr><th>일자</th><th class="num">종가</th><th class="num">고가</th><th class="num">저가</th><th>등급</th><th>근거</th></tr></thead>
+<tbody>
+<tr><td>2026-07-21</td><td class="num">24,976</td><td class="num">—</td><td class="num">24,976</td><td><span class="grade gA">A</span></td><td>8/14 보고서 KRX 일봉 실측 · Intermediate (2) 저점</td></tr>
+<tr><td>2026-07-27</td><td class="num">30,518</td><td class="num">30,518</td><td class="num">—</td><td><span class="grade gA">A</span></td><td>8/14 보고서 실측</td></tr>
+<tr><td>2026-07-30</td><td class="num">27,228</td><td class="num">—</td><td class="num">27,228</td><td><span class="grade gA">A</span></td><td>8/14 보고서 실측</td></tr>
+<tr class="hl"><td>2026-08-07</td><td class="num">35,800</td><td class="num">35,800</td><td class="num">—</td><td><span class="grade gA">A</span></td><td>8/14 보고서 실측 · <b>구간 최고점</b></td></tr>
+<tr><td>2026-08-10</td><td class="num">30,900</td><td class="num">—</td><td class="num">30,900</td><td><span class="grade gA">A</span></td><td>8/14 보고서 실측</td></tr>
+<tr><td>2026-08-14</td><td class="num">32,200</td><td class="num">34,000</td><td class="num">31,050</td><td><span class="grade gA">A</span></td><td>8/14 14:14 장중 · 반기보고서 공시일</td></tr>
+<tr><td>2026-08-21</td><td class="num">29,700</td><td class="num">—</td><td class="num">—</td><td><span class="grade gC">C</span></td><td>단일 출처(8/24 시세의 "전일 종가")</td></tr>
+<tr class="hl"><td>8월 하순 (일자 미확정)</td><td class="num">—</td><td class="num">—</td><td class="num">28,900</td><td><span class="grade gC">C</span></td><td>복수 출처의 "52주 최저가" · <b>구간 최저점</b></td></tr>
+<tr><td>2026-08-24</td><td class="num">31,200</td><td class="num">—</td><td class="num">—</td><td><span class="grade gC">C</span></td><td>단일 출처</td></tr>
+<tr><td>2026-08-31</td><td class="num">31,750</td><td class="num">—</td><td class="num">—</td><td><span class="grade gC">C</span></td><td>9/1 등락률(−1,100원, −3.46%) 역산</td></tr>
+<tr><td>2026-09-01</td><td class="num">30,650</td><td class="num">—</td><td class="num">—</td><td><span class="grade gB">B</span></td><td>복수 출처 일치 + <b>시총 4,925억과 정합</b> (아래 검산)</td></tr>
+<tr class="hl"><td>2026-09-02</td><td class="num">29,900</td><td class="num">31,250</td><td class="num">29,650</td><td><span class="grade gB">B</span></td><td>종가·등락(−750, −2.45%)·고저 모두 확보 · <b>기준가</b></td></tr>
+<tr class="warn"><td>2026-09-03</td><td class="num">미확보</td><td class="num">미확보</td><td class="num">미확보</td><td><span class="grade gN">N/A</span></td><td>KOSDAQ 지수 −1.71% (본사 9/3 마감 보고서) — 추가 하락 가능성 존재</td></tr>
+</tbody>
+</table>
+
+<div class="callout">
+<b>검산 — 9/1 종가 30,650원이 맞다는 증거.</b> 포털이 표시한 시가총액 약 4,925억원을 30,650원으로 나누면 발행주식수 16,068,000주가 나온다. 8/14 보고서가 사용한 <b>무상증자 신주 포함 16,070,120주</b>와 오차 0.01%다.
+8월 중순만 해도 포털 시총은 신주 미상장분이 빠진 2,601억이었는데, 이제 신주가 반영됐다. <b>9/2 종가 29,900원 기준 실질 시총은 4,805억원</b>이다.
+</div>
+
+<p class="muted">
+확보하지 못한 항목 — ① 8/15~9/3 일별 거래량 ② 8월 관세청 통관 실적(HS 3005.90) ③ 9/3 종가 ④ 28,900 저점의 정확한 일자와 그날의 거래량. ②는 8/14 보고서가 3분기 검증의 핵심 트리거로 지목했던 항목이므로, 확보되는 즉시 본 카운트의 확률 배분을 갱신해야 한다.
+</p>
+
+<h2>2. 8/14 카운트는 왜 무효인가 — 규칙 R3 위반</h2>
+
+<p>8월 14일 보고서의 Minute 카운트와, 그 카운트가 명시했던 무효화 조건을 그대로 옮기면 다음과 같다.</p>
+
+<table>
+<thead><tr><th>파동</th><th>구간</th><th class="num">가격</th><th>당시 판정</th><th>현재 판정</th></tr></thead>
+<tbody>
+<tr><td>i</td><td>07.21 → 07.27</td><td class="num">24,976 → 30,518</td><td>+22.2%</td><td>유효 (레이블만 변경)</td></tr>
+<tr><td>ii</td><td>07.27 → 07.30</td><td class="num">30,518 → 27,228</td><td>i의 59.4% 되돌림</td><td>유효 (레이블만 변경)</td></tr>
+<tr><td>iii</td><td>07.30 → 08.07</td><td class="num">27,228 → 35,800</td><td>i의 1.547배</td><td>유효 (레이블만 변경)</td></tr>
+<tr class="warn"><td>iv</td><td>08.07 → 진행</td><td class="num">35,800 → 30,900</td><td>R3 통과 (여유 382원)</td><td><span class="x">무효</span> — 저점이 28,900까지 확장</td></tr>
+<tr class="warn"><td>v</td><td>미개시</td><td class="num">목표 37,578~41,006</td><td>대기</td><td><span class="x">폐기</span></td></tr>
+</tbody>
+</table>
+
+<p>
+8/14 보고서는 <b>"iv 저점 30,900 &gt; i 고점 30,518, 겹침 없음 — ✓ 통과 (여유 382원, 1.3%)"</b>이라고 적으면서, 동시에 무효화선을 <span class="key-pivot">30,518</span>로 명시했다.
+382원은 이 종목의 하루 변동폭(8/14 하루에만 9.5%)에 비하면 사실상 없는 여유였고, 8월 하순 <b>28,900원</b>은 그 선을 1,618원(5.3%) 아래로 관통했다.
+</p>
+
+<div class="callout">
+<b>엘리어트 절대규칙 R3</b> — 임펄스에서 4파의 종점은 1파의 종점 영역을 침범할 수 없다(선물·레버리지 상품의 예외 제외).
+따라서 <b>iv 저점 28,900 &lt; i 고점 30,518</b>은 해석의 여지 없이 "24,976에서 시작한 5파 임펄스가 iv를 조정 중"이라는 카운트를 <b>산술적으로 폐기</b>한다.
+카운트가 틀렸을 때 할 일은 결론을 지키기 위해 규칙을 늘리는 것이 아니라, <b>규칙을 지키기 위해 계위를 옮기는 것</b>이다.
+</div>
+
+<h2>3. 재카운팅 — 한 계위 아래로 내리면 모든 것이 맞는다</h2>
+
+<p>
+무효화된 것은 "24,976 → 35,800이 <b>미완의</b> 5파"라는 가정이다. 이 구간을 <b>완결된</b> 5파(한 계위 아래, Minuette)로 격하하면 구조가 즉시 복구된다.
+그러면 24,976 → 35,800은 Intermediate (3)파의 <b>내부 1파</b>가 되고, 35,800 → 28,900은 <b>내부 2파</b>가 된다.
+</p>
+
+<div class="chart-wrap">
+<svg viewBox="0 0 870 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="티앤엘 Minute 계위 재카운팅 차트">
+  <rect x="0" y="0" width="870" height="340" fill="#fff"/>
+  <text x="14" y="20" font-size="12" font-weight="700" fill="#444">Minute 재카운팅 · 일봉 2026.07.21~09.02 — Intermediate (3) 내부 1-2파</text>
+
+  <!-- 2파 허용대 (0.618 ~ 0.786) -->
+  <rect x="62" y="185.4" width="746" height="37.3" fill="rgba(232,184,74,.16)"/>
+  <text x="300" y="216" font-size="9" fill="#8a6414">2파 정상 허용대 .618~.786</text>
+
+  <!-- guides -->
+  <line x1="62" y1="48.4" x2="808" y2="48.4" stroke="#c8364d" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="62" y="44" font-size="9.5" fill="#c8364d">35,800 — 내부 1파 고점</text>
+  <line x1="62" y1="102.4" x2="808" y2="102.4" stroke="#bbb" stroke-width=".8" stroke-dasharray="2,3"/>
+  <text x="66" y="99" font-size="9" fill="#999">33,164 (.618 반등)</text>
+  <line x1="62" y1="119.1" x2="808" y2="119.1" stroke="#bbb" stroke-width=".8" stroke-dasharray="2,3"/>
+  <text x="66" y="116" font-size="9" fill="#999">32,350 (.50 반등) — 2파 종료 확증대</text>
+  <line x1="62" y1="133.1" x2="808" y2="133.1" stroke="#bbb" stroke-width=".8" stroke-dasharray="2,3"/>
+  <text x="66" y="130" font-size="9" fill="#999">31,665 (.382 반등)</text>
+  <line x1="62" y1="156.6" x2="808" y2="156.6" stroke="#b42318" stroke-width=".9" stroke-dasharray="6,3"/>
+  <text x="66" y="169" font-size="9" fill="#b42318">30,518 이탈</text>
+  <line x1="62" y1="185.4" x2="808" y2="185.4" stroke="#bbb" stroke-width=".8" stroke-dasharray="2,3"/>
+  <text x="66" y="182" font-size="9" fill="#999">29,111 (.618)</text>
+  <line x1="62" y1="222.7" x2="808" y2="222.7" stroke="#b8860b" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="804" y="219" font-size="9" fill="#8a6414" text-anchor="end">27,292 (.786) — 2파 최후 방어선</text>
+  <line x1="62" y1="270.1" x2="808" y2="270.1" stroke="#b42318" stroke-width="1.2"/>
+  <text x="66" y="282" font-size="9.5" fill="#b42318" font-weight="700">24,976 ★ Intermediate (3) 무효화</text>
+
+  <!-- price path -->
+  <polyline points="62.0,270.1 155.2,156.6 225.2,224.0 365.1,48.4 388.4,148.8 481.6,122.1 598.2,173.3 621.5,189.7 644.8,142.6 761.4,131.3 784.7,153.9 808.0,169.2"
+    fill="none" stroke="#1a1a1a" stroke-width="1.9" stroke-linejoin="round"/>
+
+  <!-- nodes -->
+  <circle cx="62" cy="270.1" r="3.4" fill="#2e7d4f"/><text x="62" y="262" font-size="10" fill="#2e7d4f" font-weight="700" text-anchor="middle">0</text>
+  <circle cx="155.2" cy="156.6" r="3" fill="#666"/>
+  <circle cx="225.2" cy="224" r="3" fill="#666"/><text x="225.2" y="240" font-size="9.5" fill="#666" text-anchor="middle">27,228</text>
+  <circle cx="365.1" cy="48.4" r="4" fill="#c8364d"/><text x="365.1" y="40" font-size="11" fill="#c8364d" font-weight="700" text-anchor="middle">1 · 35,800</text>
+  <circle cx="621.5" cy="189.7" r="4" fill="#b8860b"/><text x="636" y="207" font-size="11" fill="#8a6414" font-weight="700" text-anchor="middle">2 · 28,900?</text>
+  <circle cx="808" cy="169.2" r="3.6" fill="#1a1a1a"/><text x="800" y="182" font-size="9.5" fill="#1a1a1a" text-anchor="end">29,900 (9/2)</text>
+
+  <!-- projected wave 3 -->
+  <line x1="808" y1="169.2" x2="852" y2="60" stroke="#2e7d4f" stroke-width="1.6" stroke-dasharray="5,4"/>
+  <text x="852" y="52" font-size="10.5" fill="#2e7d4f" font-weight="700" text-anchor="end">3?</text>
+
+  <!-- x axis -->
+  <line x1="62" y1="300" x2="808" y2="300" stroke="#ddd"/>
+  <text x="62" y="313" font-size="9" fill="#999">07.21</text>
+  <text x="225" y="313" font-size="9" fill="#999">07.30</text>
+  <text x="365" y="313" font-size="9" fill="#999">08.07</text>
+  <text x="505" y="313" font-size="9" fill="#999">08.17</text>
+  <text x="645" y="313" font-size="9" fill="#999">08.24</text>
+  <text x="800" y="313" font-size="9" fill="#999">09.02</text>
+  <text x="14" y="332" font-size="9" fill="#aaa">모든 가격은 2026-08-06 권리락(1:1 무상증자) 조정 기준 · 8/15 이후 구간은 §1 데이터 등급표 참조</text>
+</svg>
+</div>
+
+<h3>재카운팅 검증</h3>
+
+<table>
+<thead><tr><th>검증 항목</th><th class="num">수치</th><th>판정</th></tr></thead>
+<tbody>
+<tr><td>내부 1파 크기 (24,976 → 35,800)</td><td class="num">10,824원 (+43.3%)</td><td>—</td></tr>
+<tr class="hl"><td>2파 되돌림 (35,800 → 28,900)</td><td class="num">6,900원 / <b>63.7%</b></td><td><span class="check">✓</span> 0.618~2/3 구간 — 2파 최빈값</td></tr>
+<tr><td>R1 — 2파가 1파 시작점(24,976)을 넘어 되돌리지 않을 것</td><td class="num">28,900 &gt; 24,976 (여유 15.7%)</td><td><span class="check">✓ 통과</span></td></tr>
+<tr><td>교대 원칙 — Intermediate (2)는 74.9% 깊은 조정이었음</td><td class="num">Minute 2 = 63.7%</td><td><span class="check">✓</span> 계위가 다르므로 위반 아님</td></tr>
+<tr><td>Intermediate (3) 확증 조건 — (1) 고점 34,415 돌파</td><td class="num">35,800 &gt; 34,415</td><td><span class="check">✓</span> 8/7에 이미 충족 · <b>여전히 유효</b></td></tr>
+<tr class="warn"><td>내부 1파의 3-4-5 세분</td><td class="num">27,228 → 35,800 연속 상승</td><td><span class="x">보류</span> — 일봉 해상도로 분할 불가, 60분봉 필요</td></tr>
+</tbody>
+</table>
+
+<p>
+마지막 줄이 이 재카운팅의 유일한 약점이다. 27,228에서 35,800까지 6거래일 연속 상승 구간의 내부 iii-iv-v를 일봉으로는 나눌 수 없다.
+8/1~8/5 사이 어딘가에 내부 iv에 해당하는 눌림이 있었을 것으로 <b>추정</b>하지만, 확인하려면 60분봉이 필요하다.
+이 세분이 성립하지 않으면 안 A는 안 C(3파 구조 = a-b-c)로 넘어간다. 8/14 보고서가 코스피 분석에서 60분봉을 동원했던 것과 같은 이유로, <b>다음 판에서는 티앤엘도 60분봉으로 내려가야 한다</b>.
+</p>
+
+<h2>4. 시나리오 3안</h2>
+
+<div class="s-primary">
+<div class="s-head"><span class="s-name">안 A · Minute 2파 완성 (또는 완성 임박) — Intermediate (3) 내부 3파 대기</span><span class="badge">60%</span></div>
+<p>28,900이 (3)파 내부 2파의 저점. 63.7% 되돌림은 2파의 최빈 구간이고, 8/31 31,750까지의 반등은 2파 종료 후 3파 초입의 첫 시도로 읽힌다. 9/1~9/2의 재하락(30,650 → 29,900)은 9/2 코스피 −3.99% 급락에 동조한 <b>지수발 재시험</b>이며, 티앤엘은 그날 −2.45%로 지수보다 덜 빠졌다.</p>
+<p><b>확증 조건</b> — <span class="key-pivot">31,665</span>(.382) 회복이 1차 신호, <span class="key-pivot">32,350~33,164</span>(.50~.618) <b>종가</b> 회복이 2파 종료 확증. 그 위 <span class="key-pivot">35,800</span> 돌파 시 3파 본격화.</p>
+<p><b>목표</b> — 1.0x 39,724 / 1.272x 42,668 / 1.618x <b>46,413</b>. Intermediate 계위 목표(42,392 / 45,366)와 <b>42,400~42,700 및 45,400~46,400에서 재차 합류</b>한다.</p>
+</div>
+
+<div class="s-alt">
+<div class="s-head"><span class="s-name">안 B · 2파 연장 — 확대 플랫 또는 삼각수렴</span><span class="badge">25%</span></div>
+<p>28,900이 2파의 <b>a</b>파에 불과하고, 8/24~8/31의 31,200~31,750 반등이 <b>b</b>, 현재 진행 중인 하락이 <b>c</b>. 이 경우 목표는 <span class="key-pivot">27,292</span>(.786) 부근이며, 시간상으로는 9월 중순까지 소모된다.</p>
+<p><b>징후</b> — 반등이 31,665를 넘지 못하고 되말리는 패턴이 반복될 때. 9/3 KOSDAQ −1.71% 이후 28,900을 종가로 이탈하면 이 안이 메인으로 승격된다.</p>
+<p><b>결과적 차이</b> — 안 A와 방향은 같고 <b>진입 가격과 시점만 다르다</b>. 그래서 매수는 반드시 분할이어야 한다.</p>
+</div>
+
+<div class="s-invalid">
+<div class="s-head"><span class="s-name">안 C · 리딩 다이애고널 / B파 — Cycle II 연장</span><span class="badge">15%</span></div>
+<p>24,976 → 35,800이 애초에 5파가 아니라 <b>3파 구조(a-b-c)</b>였고, Intermediate (3)파 자체가 성립하지 않는 경우. 그렇다면 7~8월 랠리는 Cycle II 조정 내부의 B파(또는 X파)였고, 조정은 W-X-Y로 연장 중이다.</p>
+<p><b>트리거</b> — <span class="key-pivot">24,976</span> <b>종가</b> 이탈. 이때 목표는 21,813 재시험이며, 그마저 이탈하면 Cycle 카운트 전면 재작성.</p>
+<p><b>반증</b> — 8/7 35,800이 Intermediate (1) 고점 34,415를 <b>돌파</b>했다는 사실. 지그재그의 B파는 통상 A파를 되돌리는 데 그치지 개시 고점을 넘지 않는다. 이것이 안 C의 확률을 15%로 누르는 근거다.</p>
+</div>
+
+<h2>5. 피보나치 지도 — 지지·저항 한 장</h2>
+
+<table>
+<thead><tr><th>레벨</th><th class="num">가격</th><th class="num">현재가 대비</th><th>성격</th><th>계위</th></tr></thead>
+<tbody>
+<tr><td>1.618x 확장</td><td class="num">46,413</td><td class="num up">+55.2%</td><td>3파 메인 목표 · Intermediate 45,366과 합류</td><td>Minute → Intermediate</td></tr>
+<tr class="hl"><td>1.272x 확장</td><td class="num">42,668</td><td class="num up">+42.7%</td><td><b>합류대</b> — Intermediate 1.382x 42,392 + 2026E PER 10배 42,230</td><td>3중 합류</td></tr>
+<tr><td>1.0x 확장</td><td class="num">39,724</td><td class="num up">+32.9%</td><td>3파 최소 목표</td><td>Minute</td></tr>
+<tr><td>구간 고점</td><td class="num">35,800</td><td class="num up">+19.7%</td><td>내부 1파 고점 · 돌파 시 3파 확증</td><td>Minute</td></tr>
+<tr><td>.618 반등</td><td class="num">33,164</td><td class="num up">+10.9%</td><td>2파 종료 확증대 상단</td><td>Minute</td></tr>
+<tr class="hl"><td>.50 반등</td><td class="num">32,350</td><td class="num up">+8.2%</td><td><b>2파 종료 확증 · 종가 기준</b></td><td>Minute</td></tr>
+<tr><td>.382 반등</td><td class="num">31,665</td><td class="num up">+5.9%</td><td>1차 회복 신호</td><td>Minute</td></tr>
+<tr class="warn"><td>구 무효화선</td><td class="num">30,518</td><td class="num up">+2.1%</td><td>구 카운트 i 고점 — <b>이미 이탈, 이제는 저항</b></td><td>—</td></tr>
+<tr class="hl"><td class="num">— 현재 29,900 —</td><td class="num">29,900</td><td class="num">0.0%</td><td>9/2 종가 · 2파 허용대 내부</td><td>—</td></tr>
+<tr><td>.618 되돌림</td><td class="num">29,111</td><td class="num dn">−2.6%</td><td>1차 지지 · 이미 하회 경험</td><td>Minute</td></tr>
+<tr class="hl"><td>2/3 되돌림</td><td class="num">28,580</td><td class="num dn">−4.4%</td><td><b>2차 매수대</b> — 확인 저점 28,900 직하</td><td>Minute</td></tr>
+<tr><td>.786 되돌림</td><td class="num">27,292</td><td class="num dn">−8.7%</td><td><b>2파 최후 방어선</b> · 이탈 시 안 B→C 전환 검토</td><td>Minute</td></tr>
+<tr class="warn"><td>Intermediate 무효화</td><td class="num">24,976</td><td class="num dn">−16.5%</td><td><b>중기 손절</b> — (3)파 부정</td><td>Intermediate</td></tr>
+<tr class="warn"><td>Cycle 무효화</td><td class="num">21,813</td><td class="num dn">−27.0%</td><td><b>전체 재카운트</b></td><td>Cycle</td></tr>
+</tbody>
+</table>
+
+<h2>6. 밸류에이션 교차검증 — 파동 매수대가 PER 6.5~7.1배</h2>
+
+<p>
+8/14 보고서의 2026E 기본 시나리오(매출 2,003억 +22.0%, 영업이익 806억 +73.9%, 순이익 679억, EPS 4,223원)를 그대로 적용해 파동 레벨을 멀티플로 환산하면 다음과 같다.
+발행주식수는 16,070,120주, 순현금은 1,042억원(2026.06 기준)이다.
+</p>
+
+<table>
+<thead><tr><th>파동 레벨</th><th class="num">주가</th><th class="num">실질 시총</th><th class="num">EV</th><th class="num">2026E PER</th><th class="num">EV/EBIT</th><th class="num">배당수익률</th></tr></thead>
+<tbody>
+<tr class="warn"><td>Intermediate 무효화</td><td class="num">24,976</td><td class="num">4,014억</td><td class="num">2,972억</td><td class="num">5.91배</td><td class="num">3.69배</td><td class="num">3.04%</td></tr>
+<tr><td>2파 최후 방어 (.786)</td><td class="num">27,292</td><td class="num">4,386억</td><td class="num">3,344억</td><td class="num">6.46배</td><td class="num">4.15배</td><td class="num">2.78%</td></tr>
+<tr class="hl"><td>2차 매수대 (2/3)</td><td class="num">28,580</td><td class="num">4,593억</td><td class="num">3,551억</td><td class="num">6.77배</td><td class="num">4.41배</td><td class="num">2.66%</td></tr>
+<tr class="hl"><td><b>현재가</b></td><td class="num">29,900</td><td class="num">4,805억</td><td class="num">3,763억</td><td class="num"><b>7.08배</b></td><td class="num"><b>4.67배</b></td><td class="num">2.54%</td></tr>
+<tr><td>2파 종료 확증대</td><td class="num">32,350</td><td class="num">5,199억</td><td class="num">4,157억</td><td class="num">7.66배</td><td class="num">5.16배</td><td class="num">2.35%</td></tr>
+<tr><td>내부 1파 고점</td><td class="num">35,800</td><td class="num">5,753억</td><td class="num">4,711억</td><td class="num">8.48배</td><td class="num">5.85배</td><td class="num">2.12%</td></tr>
+<tr><td>3중 합류대</td><td class="num">42,668</td><td class="num">6,857억</td><td class="num">5,815억</td><td class="num">10.10배</td><td class="num">7.21배</td><td class="num">1.78%</td></tr>
+<tr><td>1.618x 확장</td><td class="num">46,413</td><td class="num">7,459억</td><td class="num">6,417억</td><td class="num">10.99배</td><td class="num">7.96배</td><td class="num">1.64%</td></tr>
+</tbody>
+</table>
+
+<div class="callout">
+<b>파동과 멀티플이 같은 말을 한다.</b> 8/14 보고서는 32,200원에서 2026E PER 7.6배·EV/EBIT 5.1배라고 적었다. 7주 뒤 주가는 −7.1%인데 실적 추정은 그대로이므로, 지금은 <b>PER 7.1배·EV/EBIT 4.7배</b>다.
+파동상 2차 매수대(28,580)와 최후 방어선(27,292)은 각각 <b>EV/EBIT 4.4배와 4.2배</b> — 순현금이 시총의 21.7%인 실질 무차입 기업, 영업이익률 44.6%, 영업이익 YoY +150%를 기록한 기업에 붙는 값으로는 설명하기 어려운 수준이다.
+즉 <b>안 B(2파 연장, 27,292까지)가 현실화되더라도 그것은 밸류에이션 훼손이 아니라 매수 기회의 확대</b>다. 반대로 안 C(24,976 이탈)가 현실화되면 PER 5.9배가 되는데, 그 정도 가격은 <b>실적 추정 자체가 틀렸다는 뜻</b>이므로 파동이 아니라 펀더멘털로 대응해야 한다.
+</div>
+
+<h2>7. 실행 전략</h2>
+
+<h3>분할 매수 — 3단계</h3>
+<table>
+<thead><tr><th>차수</th><th class="num">비중</th><th class="num">가격대</th><th>조건</th></tr></thead>
+<tbody>
+<tr><td>1차</td><td class="num">30%</td><td class="num">29,100 ~ 29,900</td><td>현재가 ~ .618 되돌림. <b>이미 도달</b> — 안 A(60%)에 거는 최소 포지션</td></tr>
+<tr class="hl"><td>2차</td><td class="num">40%</td><td class="num">28,580 ~ 28,900</td><td>2/3 되돌림 ~ 확인 저점. <b>주력 구간</b> — 안 A·B 모두에서 유효</td></tr>
+<tr><td>3차</td><td class="num">30%</td><td class="num">27,292 ~ 27,600</td><td>.786 최후 방어선. 안 B 현실화 시에만 집행</td></tr>
+</tbody>
+</table>
+
+<h3>손절 위계 — 이탈 시 행동</h3>
+<table>
+<thead><tr><th class="num">레벨</th><th>계위</th><th>행동</th></tr></thead>
+<tbody>
+<tr><td class="num">27,292 종가 이탈</td><td>Minute</td><td>추가 매수 <b>중단</b>. 3차분 보류하고 카운트 재검토(안 B → C 전환 여부)</td></tr>
+<tr class="warn"><td class="num">24,976 종가 이탈</td><td>Intermediate</td><td><b>중기 손절</b> — (3)파 부정. 전량 정리 후 Cycle II 연장 시나리오로 재진입 대기</td></tr>
+<tr class="warn"><td class="num">21,813 종가 이탈</td><td>Cycle</td><td>전체 카운트 폐기. 대세 하락 재개 가정, 재진입 금지</td></tr>
+</tbody>
+</table>
+
+<h3>분할 익절 — 4단계 25%씩</h3>
+<table>
+<thead><tr><th>차수</th><th class="num">목표가</th><th class="num">29,900 대비</th><th>근거</th></tr></thead>
+<tbody>
+<tr><td>1차 25%</td><td class="num">35,800</td><td class="num up">+19.7%</td><td>내부 1파 고점 — 돌파 실패 시 안 C 재점검 지점</td></tr>
+<tr><td>2차 25%</td><td class="num">39,724</td><td class="num up">+32.9%</td><td>3파 1.0x 최소 목표</td></tr>
+<tr class="hl"><td>3차 25%</td><td class="num">42,668</td><td class="num up">+42.7%</td><td><b>3중 합류대</b> — 파동 1.272x + Intermediate 1.382x + PER 10배</td></tr>
+<tr><td>4차 25%</td><td class="num">46,413</td><td class="num up">+55.2%</td><td>1.618x 황금비 확장 · Intermediate 45,366 상회</td></tr>
+</tbody>
+</table>
+
+<div class="nested">
+<b>운용 요지</b><br>
+<b>강점</b> — ① 상위 두 계위(Cycle III, Intermediate (3))가 무효화 없이 살아 있다 ② 2파 되돌림 63.7%는 교과서적 깊이이고 무효화선(24,976)까지 15.7% 여유가 있다 ③ 파동 매수대가 PER 6.5~6.8배로 밸류에이션과 충돌하지 않는다 ④ 파동·피보나치·PER 세 방법이 42,400~42,700에서 다시 합류한다.<br><br>
+<b>약점</b> — ① <b>일봉 해상도로 내부 1파의 3-4-5 세분을 확인하지 못했다</b> — 안 C(15%)가 남는 이유 ② 8/15 이후 거래량·모멘텀 데이터 부재로 수급 확증을 걸지 못했다 ③ 8월 통관 실적 미확보 — 3분기 재고 이연 48.4억의 검증이 아직 안 됐다 ④ 9/3 종가 미확보 상태에서 KOSDAQ이 −1.71% 하락했다 ⑤ 성장이 미국 수출 단일 축이고 환율은 1,503 → 1,420원 역풍.<br><br>
+<b>결론</b> — 8/14의 "31,350~32,900에서 1차 30%" 지시는 <b>가격대를 29,100~29,900으로 하향 조정</b>한다. 추격 금지 원칙은 유지하되, 이번에는 <b>아래로 벌어진 거리가 기회</b>다. 확증 트리거는 32,350 종가 회복이며, 그 전까지는 2차·3차 매수분을 남겨 둔다.
+</div>
+
+<h2>8. 다음 판에서 반드시 채울 것</h2>
+<table>
+<thead><tr><th>항목</th><th>왜 필요한가</th><th>영향</th></tr></thead>
+<tbody>
+<tr><td><b>60분봉 (7/30~8/07)</b></td><td>내부 1파의 iii-iv-v 세분 확인</td><td>확인 시 안 A 60% → 75%, 안 C 15% → 5%</td></tr>
+<tr><td><b>8/15~9/3 일별 OHLCV</b></td><td>28,900 저점의 정확한 일자·거래량, 2파의 내부 a-b-c 구조</td><td>안 A vs 안 B 판별의 핵심</td></tr>
+<tr><td><b>8월 관세청 통관 (HS 3005.90)</b></td><td>3Q 재고 이연 48.4억이 출하로 전환됐는지</td><td>2026E EPS 4,223원 추정의 유지/수정</td></tr>
+<tr><td>거래량 게이트</td><td>3파는 최대 거래량을 동반해야 함</td><td>32,350 회복의 진위 판별</td></tr>
+</tbody>
+</table>
+
+<p class="muted">
+※ 사용자의 로컬 <code>Stock Data</code> 폴더(<code>fdr_KRX_p1d_340570.csv</code>)를 이 세션에 올려 주시면 위 4개 항목 중 1·2·4를 즉시 채워 카운트 확률을 재산정할 수 있습니다.
+</p>
+
+<footer>
+<p><b>면책</b> — 본 보고서는 정보 제공 목적으로 작성되었으며 특정 종목의 매수·매도를 권유하지 않습니다. 엘리어트 파동 카운트는 확률적 해석이며 대안 카운트를 병기했습니다. 투자에 따른 모든 위험과 결과는 투자자 본인에게 귀속됩니다.</p>
+<p><b>데이터 출처 및 한계</b> — 7/21~8/14 일봉 및 2026E 실적 추정: 본사 2026-08-14 보고서(DART 반기보고서 접수번호 20260814001345 + 관세청 통관 회귀 기반). 8/15 이후 시세: 공개 웹 검색 결과의 교차 확인값으로, §1 데이터 등급표에 A/B/C 등급을 명시했습니다. <b>본 세션은 KRX·네이버 금융·관세청 API에 직접 접근할 수 없는 원격 환경에서 작성되었으며, 일별 거래량·RSI·8월 통관 실적·9/3 종가는 확보하지 못했습니다.</b> 해당 지표에는 매매 판단을 걸지 않았고 추정치로 대체하지도 않았습니다.</p>
+<p><b>주가 기준</b> — 2026-09-02 종가 29,900원. 모든 가격은 2026-08-06 권리락(1:1 무상증자, 조정계수 0.5058) 조정 기준. 발행주식수 16,070,120주 기준 실질 시총 4,805억원.</p>
+<p class="sig">발행 · <b>Chory &amp; Rochet</b> · The T&amp;L Report · Vol. II No. 5</p>
+<p class="muted">PRINT · 브라우저에서 Ctrl+P (Cmd+P) → PDF로 저장</p>
+</footer>
+
+</div>
+</body></html>
