@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-09-10 일일 마감 정리 및 익일 준비</title>
+<style>
+  :root{
+    --up:#d92027; --down:#1863d6; --bg:#f7f7f8; --card:#ffffff;
+    --line:#e2e2e6; --ink:#1c1c20; --sub:#5c5c66; --accent:#0b6b5e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    font-size:15px;line-height:1.65;}
+  .wrap{max-width:960px;margin:0 auto;padding:20px 16px 60px;}
+  header{border-bottom:3px solid var(--ink);padding-bottom:14px;margin-bottom:8px;}
+  h1{font-size:21px;margin:0 0 6px;}
+  h2{font-size:17px;margin:30px 0 10px;padding-left:9px;border-left:5px solid var(--accent);}
+  h3{font-size:15px;margin:18px 0 7px;color:var(--accent);}
+  .meta{font-size:13px;color:var(--sub);}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 15px;margin:12px 0;}
+  .lead{background:#fff8e8;border:1px solid #f0dca8;border-radius:10px;padding:14px 15px;font-size:15px;}
+  .up{color:var(--up);font-weight:600;}
+  .down{color:var(--down);font-weight:600;}
+  .tag{display:inline-block;background:#eef3f2;color:var(--accent);border:1px solid #cfe3df;
+    border-radius:999px;padding:1px 9px;font-size:12px;margin:2px 4px 2px 0;}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0;}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:center;vertical-align:top;}
+  th{background:#f0f0f3;font-weight:600;}
+  td.l,th.l{text-align:left;}
+  ul{margin:6px 0 6px 2px;padding-left:20px;}
+  li{margin:3px 0;}
+  .fire{color:var(--up);font-weight:700;}
+  .warn{background:#fdecec;border:1px solid #f2b8b8;border-radius:8px;padding:10px 12px;margin:10px 0;}
+  .ok{background:#e9f5f1;border:1px solid #bfe2d8;border-radius:8px;padding:10px 12px;margin:10px 0;}
+  footer{margin-top:40px;border-top:1px solid var(--line);padding-top:14px;font-size:13px;color:var(--sub);}
+  .small{font-size:12.5px;color:var(--sub);}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>2026-09-10 (목) 일일 시황 마감 정리 및 익일 트레이딩 준비</h1>
+  <div class="meta">발행: <strong>Chory &amp; Rochet</strong> · 데이터 기준 정규장 마감(15:30 KST) · 자동 생성 루틴</div>
+</header>
+
+<div class="lead">
+<strong>[한 줄 요약] 혼조·차익실현 장세 — 유가 $100·미 금리 4.85% 이중 악재로 장중 6,900선 붕괴했으나 저가매수·연기금 유입으로 낙폭 대부분 만회, KOSPI 7,000선 종가 사수(전약후강).</strong><br>
+키워드: <span class="tag">국제유가 100달러</span><span class="tag">미10년 4.85%</span><span class="tag">반도체지수 리밸런싱(외인 −2.5조 왜곡)</span><span class="tag">코스닥 상대강세</span><span class="tag">선물옵션 동시만기</span>
+</div>
+
+<h2>1. 지수 · 수급 · 환율 · 금리</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">지표</th><th>종가</th><th>전일대비</th><th>비고</th></tr>
+<tr><td class="l">KOSPI</td><td>7,033.92</td><td class="down">−17.72 (−0.25%)</td><td class="l">장중 저가 ~6,896(−2.2%)까지 급락 후 낙폭 만회. 전약후강</td></tr>
+<tr><td class="l">KOSDAQ</td><td>836.92</td><td class="up">+6.55 (+0.79%)</td><td class="l">중소형·테마 순환매로 코스피 대비 <strong>+1.04%p 우위</strong></td></tr>
+<tr><td class="l">원/달러</td><td>1,339.2</td><td class="down">+3.1원 (원화 약세)</td><td class="l">유가·금리 부담. 1,400 트리거까지는 여유</td></tr>
+<tr><td class="l">미 10년물</td><td>4.8%대</td><td class="down">장중 4.857%(9/9)</td><td class="l">베어 스티프닝. 4.75% 상회 지속</td></tr>
+<tr><td class="l">WTI(10월)</td><td>$96.05</td><td class="up">+3.25%</td><td class="l">브렌트 $101.21(+3.36%), 두바이 현물 $122.01(+11.2%). 5/22 이후 최고</td></tr>
+<tr><td class="l">美 증시(9/9)</td><td>—</td><td class="down">S&amp;P −0.48% / 다우 −0.77%</td><td class="l">유가·금리 발작. AI·반도체만 상대적 선방(TSMC 8월 매출 사상최대)</td></tr>
+</table>
+</div>
+
+<h3>수급 (KOSPI, 마감 확정 기준)</h3>
+<ul>
+<li><strong>외국인 −2조4,921억</strong> — 단, 이날 <strong>KRX 반도체지수 정기변경(개별종목 비중상한 20%)</strong> 시행으로 삼성전자·SK하이닉스에 약 1.45조 규모 기계적 매도 출회. <span class="small">방향성 순매도 규모는 표면 수치보다 훨씬 작음 — 추세 매도로 해석 금지.</span></li>
+<li>기관 <span class="up">+4,615억</span> / 개인 <span class="up">+3,622억</span> — 저가매수 유입이 낙폭 만회 견인</li>
+<li>KOSDAQ(11시 잠정치): 기관 +4,434억 · 개인 +518억 · 외국인 −4,901억 → 종가 +0.79% 마감으로 오후 수급 개선 추정 <span class="small">(최종 확정치 미확인)</span></li>
+<li>9월물 <strong>선물·옵션 동시만기일</strong> + 지수 정기변경 겹쳐 장중 변동성 확대</li>
+</ul>
+<p class="small">※ 수급 정확성 룰: 외인 −2.5조는 리밸런싱 왜곡분이 대부분이며, 순수 방향성 매도치는 별도 확인 필요.</p>
+
+<h2>2. 섹터 4분류</h2>
+<div class="scroll">
+<table>
+<tr><th>분류</th><th class="l">섹터 / 내용</th></tr>
+<tr><td class="up">강세</td><td class="l">정유·석유·LPG·중동테마(유가 $100 수혜), 반도체 장비(주성엔지니어링·제주반도체·HPSP 장중강세), 건설(GS건설·대우건설 — 자사주 소각), 로봇(로보티즈)</td></tr>
+<tr><td class="accent" style="color:var(--accent);font-weight:600">신규 부상</td><td class="l">건설 — 최근 부진하다 당일 반등(GS건설 +4.8%, 대우건설 자사주 소각 공시). 삼성전자우 20만원 첫 돌파(배당·주주환원 프레임)</td></tr>
+<tr><td class="down">약세 지속</td><td class="l">조선(한화오션 −3.0%, HD현대중공업 −2.2%, 삼성중공업), 2차전지(삼성SDI −2.3%, 에코프로비엠 −4%대), 전선(대한전선·대한광통신)</td></tr>
+<tr><td class="l">상대강도</td><td class="l">반도체 대형주: 리밸런싱 매물 소화하며 <strong>강보합권 마감</strong>(삼성전자 −0.19%, SK하이닉스 −0.16%) — 장중 저가 대비 급반등, 저가매수 확인. 원전은 변동성(두산에너빌리티 −2.0%, 한전기술 장중 −4.9%→종가 +1.3%)</td></tr>
+</table>
+</div>
+<div class="warn"><strong>StockMatrix 테마 라이프사이클 데이터 수집 실패</strong>(API 429 지속). 아래 테마 매핑은 당일 가격·뉴스 기반 추정치이며, 라이프사이클 단계 점수는 미반영.</div>
+
+<h2>3. 주도 테마 &amp; 주도주 (대장 / 2등 / 소외)</h2>
+
+<h3>① 정유·석유·중동 (유가 $100 돌파 — 당일 최강 테마)</h3>
+<ul>
+<li>대장: <strong>흥구석유(024060)</strong> +20.0% (14,510) — 장중 상한가 터치</li>
+<li>2등: 한국석유(004090) +20%대 · 중앙에너비스 · 한국ANKOR유전</li>
+<li>소외: SK이노베이션(096770) −0.3% (정제마진 기대 vs 실적 부담 상충), S-Oil</li>
+</ul>
+
+<h3>② 반도체 장비·소부장 (대형주 리밸런싱 회피 수요 + TSMC 훈풍)</h3>
+<ul>
+<li>대장: <strong>주성엔지니어링(036930)</strong> +7.0% (221,000) — 거래대금 상위, 장중 고가 239,500</li>
+<li>2등: 제주반도체(080220) +5.1% · 한미반도체(042700) +1.0% (장중 고가 266,000) · HPSP(403870) 장중 6만 터치</li>
+<li>소외: 원익IPS · 유진테크 · 이오테크닉스 (상대적 미반응)</li>
+</ul>
+
+<h3>③ 건설·주주환원 (자사주 소각 촉매)</h3>
+<ul>
+<li>대장: <strong>GS건설(006360)</strong> +4.8% (37,250)</li>
+<li>2등: 대우건설(047040) +1.5% (주식소각 결정 공시) · HDC현대산업개발</li>
+<li>소외: 현대건설 · DL이앤씨 (지수 약세에 눌림)</li>
+</ul>
+<p class="small">개별 재료주 극단 양극화: 카프로 +60%대, 샘표·프리티·금호타이어(+8.2%) 등 단기 자금 쏠림 — 추격 부적합.</p>
+
+<h2>4. 특징주 · 위험 신호</h2>
+<ul>
+<li><strong>신규 주도주</strong>: 흥구석유·한국석유(유가 테마 첫 급등), 주성엔지니어링(장비 대장 복귀)</li>
+<li><strong>연속 주도주</strong>: 우리기술(032820) — 전일 +20% 후 당일 +2.0% 추가, 원전 SMR 기대</li>
+<li><strong>단발성/차익실현</strong>: 에코프로비엠·알테오젠 — 전일 급등(+9%/+7%) 후 −4%대 반락</li>
+<li class="fire"><strong>위험 신호</strong>: ① 유가 테마 상한가 근접주(흥구석유·한국석유) 변동성 극단 — 종가 추격 금지 ② 조선주 이익 실현 지속(한화오션 IR 예정) ③ 효성 회계처리기준 위반 검찰 고발 공시 ④ 테라뷰(950250) 현저한 시황변동 조회공시 요구</li>
+</ul>
+
+<h2>5. 뉴스 · 공시 핵심</h2>
+<ul>
+<li><strong>[매크로]</strong> 국제유가 배럴당 $100 재돌파 — 미-이란 무력충돌 격화, 사우디 석유시설 인근 타격, 호르무즈 긴장. 백악관 "호르무즈 완전 개방" 주장했으나 시장 불신. 종가 기준 7/23 이후 최고.</li>
+<li><strong>[매크로]</strong> 미 10년물 국채금리 장중 4.857% — 8월 고용 서프라이즈(+16.2만, 컨센 3배) 후 9월 FOMC 인상 경계. CME 페드워치 9월 인상 확률 58%대.</li>
+<li><strong>[정책]</strong> 국무총리 "11월 인도분 원유 확보 선제 대응" — 중동 사태 물가·성장 리스크 대응.</li>
+<li><strong>[한은]</strong> 9월 통화신용정책보고서 — 올해 코스피 변동성 4대 원인 중 하나로 "국외(홍콩발) 레버리지 투자"를 지목.</li>
+<li><strong>[기업]</strong> 대우건설 주식소각(자사주 소각) 결정 + 주총 소집 / 삼성바이오로직스·대한해운 단일판매·공급계약 / SKC·제이앤티씨 타법인 지분 취득.</li>
+</ul>
+
+<h2>6. 익일(9/11) 트레이딩 시나리오</h2>
+<div class="scroll">
+<table>
+<tr><th>시나리오</th><th class="l">전제 / 대응</th></tr>
+<tr><td class="up">A. 강세 갭</td><td class="l">미 8월 CPI(한국시간 9/11 밤) 예상 부합·하회 + 유가 진정($95 이탈) → 반도체 장비·저PBR 대형주 눌림목 매수. 7,100 회복 시 7,216.62 관문 재도전.</td></tr>
+<tr><td>B. 보합 출발</td><td class="l">미 ±0.5% 이내 + 유가 $100 부근 유지 → 전일 강세 테마(정유·반도체 장비) 순환매 대응, 신규 편입은 눌림 확인 후. 코스닥 상대강세 지속 여부 관찰.</td></tr>
+<tr><td class="down">C. 약세 갭</td><td class="l">CPI 상회 or 유가 $102↑ or 미10년 4.9%↑ → 현금비중 확대. 6,954.12(넥라인) 종가 이탈 시 S2(정상 임펄스) 훼손 → 방어주·낙폭과대 우량주로 한정. 6,900 하회 지속 시 관망.</td></tr>
+</table>
+</div>
+<p class="small">외부변수(미 CPI·유가·금리)는 예측이 아닌 대응 영역 — 베팅 사이즈로 조절.</p>
+
+<h2>7. Tier 1 관심종목 (진입 / 손절 / 1차 목표)</h2>
+<div class="scroll">
+<table>
+<tr><th class="l">종목(코드)</th><th>종가</th><th>진입가</th><th>손절가</th><th>1차 목표</th><th class="l">근거</th></tr>
+<tr>
+  <td class="l">주성엔지니어링(036930)</td><td>221,000</td><td>212,000~222,000</td><td class="down">196,000</td><td class="up">239,500</td>
+  <td class="l">반도체 장비 대장 복귀, 거래대금 상위. 당일 저가 198,200 하회 시 손절.</td>
+</tr>
+<tr>
+  <td class="l">한미반도체(042700)</td><td>253,000</td><td>245,000~254,000</td><td class="down">235,000</td><td class="up">266,000</td>
+  <td class="l">HBM TC본더, 장중 고가 266,000 저항. TSMC 매출 사상최대 수혜.</td>
+</tr>
+<tr>
+  <td class="l">GS건설(006360)</td><td>37,250</td><td>35,600~37,300</td><td class="down">34,500</td><td class="up">39,500</td>
+  <td class="l">건설 반등 주도, 자사주 소각 촉매(대우건설 동반). 당일 저가 34,650 지지.</td>
+</tr>
+<tr>
+  <td class="l">삼성전자우(005935)</td><td>203,000</td><td>196,000~203,500</td><td class="down">191,000</td><td class="up">213,000</td>
+  <td class="l">20만원 첫 돌파, 배당·주주환원 프레임. 우선주 저평가 메우기.</td>
+</tr>
+</table>
+</div>
+<p class="small">진입 밴드는 전일 종가를 포함(갭 상·하 모두 대응). 손절 미준수 시 Tier 1 자격 상실.</p>
+
+<h2>8. 모니터링 포인트 (매크로 · 시간대 · 리스크)</h2>
+<h3>예정 이벤트 — 익일 루틴 재검증 대상</h3>
+<ul>
+<li><strong>미국 8월 CPI</strong> — 발표 2026-09-11(금) 21:30 KST, 미 노동통계국(BLS). 근원 전월비·전년비가 9월 FOMC(9/16~17) 인상 여부 좌우. <span class="small">※ 발생·수치는 익일 장전 루틴에서 재확인.</span></li>
+<li><strong>미국 8월 PPI</strong> — 통상 CPI 전일(9/10 밤~9/11 새벽) 발표분 확인 필요.</li>
+<li><strong>미-이란/호르무즈</strong> — 유조선 추가 피격·미군기지 보복 여부 상시. 호르무즈 "정식 재개방" 실측 없음.</li>
+<li><strong>9월 FOMC</strong> — 2026-09-16~17(FOMC), 미 동부시간. 이번 주 CPI·PPI가 프리뷰.</li>
+<li>한국: 9월 금통위 일정 확인 필요(통상 하순), 국고채 3/10년 스프레드 점검.</li>
+</ul>
+<h3>주요 시간대</h3>
+<ul>
+<li>08:00~09:00 미 CPI 반응(9/11 밤 발표 → 9/12 장에 반영) · 유가 아시아 시간대 흐름 · 원/달러 개장</li>
+<li>09:00 시초가 5분 → 10:00 추세 → 11:30 외인·기관 잠정 → 13:00 오후장 → 15:20 동시호가</li>
+</ul>
+<h3>리스크</h3>
+<ul>
+<li>유가 고착화(고유가 지속 기간) → 한국 물가·무역수지·한은 인하 경로 동시 악화</li>
+<li>미 금리 4.9% 상단 돌파 시 성장주·2차전지 밸류에이션 추가 압박</li>
+<li>선물옵션 만기 다음날 프로그램 매물 되돌림 가능성</li>
+</ul>
+
+<h2>9. 파동 시나리오 체크 (§10)</h2>
+<p class="small">근거 카운트: 2026-09-08 코스피 3대 파동 시나리오 리포트(S1 리딩 다이애고널 / S2 정상 임펄스·(iii) 개시 / S3 ABC 조정) + 2026-08-26 5개 시나리오 경로.</p>
+<div class="scroll">
+<table>
+<tr><th class="l">축</th><th>계층</th><th class="l">값 (당일)</th><th>발동</th></tr>
+<tr><td class="l">AI 반도체 이익</td><td>원인</td><td class="l">SEMI −0.15 (c1 +0.57 / c2 −0.86) · 상위 41분위. 배열: 국내 수급 주도, 지속성 의문</td><td>×</td></tr>
+<tr><td class="l">미-이란·유가</td><td>원인</td><td class="l">WTI $96.05 (+3.25%) · 브렌트 $101.21 (+3.36%) · 두바이 $122.01 (+11.2%)</td><td class="fire">○</td></tr>
+<tr><td class="l">금리</td><td>원인·전달</td><td class="l">미 10년물 장중 4.857% (4.8%대), 베어 스티프닝 지속</td><td class="fire">○</td></tr>
+<tr><td class="l">원/달러·외인</td><td>전달</td><td class="l">원/달러 1,339.2 (+3.1원) · 외인 코스피 −2.49조(대부분 지수 리밸런싱 기계적 매도)</td><td>×</td></tr>
+<tr><td class="l">신용잔고</td><td>증폭</td><td class="l">8월 말 대비 진정세(한은 보고서). 당일 융자잔고·반대매매 실측 수치 미확보</td><td>×<span class="small"> (데이터 제약)</span></td></tr>
+</table>
+</div>
+
+<div class="warn">
+<strong>[발동] 미-이란·유가 — WTI $96.05 / 브렌트 $101.21 → 축2 원인 악재. 물가·금리·한은 경로 동시 압박, S3(하락 재개)·S4/S5 꼬리 리스크 가중 요인.</strong><br>
+<strong>[발동] 금리 — 미 10년물 4.857% → 축3(현 최약 축, 3/3 악화) 심화. 강세 카운트 상한 규칙 유지.</strong>
+</div>
+
+<h3>판정선 — 종가 확인</h3>
+<div class="scroll">
+<table>
+<tr><th>레벨</th><th class="l">성격</th><th>당일 종가 대비</th><th>상태</th></tr>
+<tr><td>7,216.62</td><td class="l">8/18 반등정점 · S2 (iii) 확정 관문</td><td>−182.7p (미도달)</td><td>미발동</td></tr>
+<tr><td>6,954.12</td><td class="l">9/8 신 넥라인 (RC1 무효선)</td><td class="l">장중 ~6,896 이탈했으나 <strong>종가 7,033.92로 방어</strong></td><td class="up">종가 방어 (S2 구조 유효)</td></tr>
+<tr><td>6,400.81</td><td class="l">8/19·8/25 쌍바닥 · 하방 관문</td><td>+633p</td><td>미발동</td></tr>
+<tr><td>5,262.77</td><td class="l">7/29 대저점 (절대)</td><td>+1,771p</td><td>미발동</td></tr>
+</table>
+</div>
+
+<h3>breadth</h3>
+<div class="ok">코스피 −0.25% vs 코스닥 +0.79% → 코스닥 <strong>+1.04%p 우위</strong>. "반도체 쏠림 경보"(코스닥이 −2%p 이상 뒤처질 때)와 반대 방향 — breadth 양호, 중소형·테마 순환 활발. 강세 카운트 가중 상한은 축3 규칙에서만 유지.</div>
+
+<h3>확률 재산정 (5대 이슈 중 2개 발동 → 규칙 C 발동)</h3>
+<div class="scroll">
+<table>
+<tr><th>시나리오</th><th>9/8 기준</th><th>9/10 재산정</th><th class="l">근거</th></tr>
+<tr><td class="l">S1 리딩 다이애고널 (5파 개시)</td><td>36.2%</td><td>35%</td><td class="l">변동 미미. 수축 쐐기 기하 상충 유지</td></tr>
+<tr><td class="l">S2 정상 임펄스 · 3파의 (iii) 개시</td><td>46.2%</td><td>43%</td><td class="l">넥라인 6,954 <strong>종가 방어</strong>·대규모 기계적 매도 흡수·코스닥 강세로 구조 유효하나, 유가·금리 2개 발동으로 관문(7,216) 도달 난도 상승 → 소폭 하향</td></tr>
+<tr><td class="l">S3 ABC 조정 · 하락 재개</td><td>17.6%</td><td>22%</td><td class="l">유가 $100·미10년 4.85% 이중 악재로 조정 재개 확률 소폭 상향. 단 6,400.81 무이탈로 확정은 아님</td></tr>
+</table>
+</div>
+<p class="small">5시나리오 관점: 5,262.77 방어 유효(방어 54%/이탈 46% 대체로 유지). 매크로 악화로 S4(지그재그)·S5(하락 임펄스) 꼬리 리스크 소폭 확대되나, 판정선 무이탈 → <strong>배분 대체로 유지 + S2→S3 소폭 이전</strong>.</p>
+<p class="small">동인 부호(9/5 주간 기준): 우호 5 · 혼조 3 · 악화 7 · 최강 축4(원/달러·외인, 2/3) · <strong>최약 축3(금리, 3/3 악화 — 강세 카운트 상한 발동 중)</strong>. 당일 유가·금리 값 악화는 주말 로드맵 리뷰에서 부호 재판정 예정.</p>
+
+<footer>
+본 보고서는 자동화 루틴(kr-daily-close-next-day)에 의해 생성된 시황 정리 자료이며 투자 권유가 아닙니다.
+가격·수급 수치는 마감 시점 언론 보도 및 공개 데이터 기준으로, 최종 확정치와 차이가 있을 수 있습니다.
+StockMatrix 테마 라이프사이클 데이터는 API 장애(429)로 이번 회차 미수집.<br><br>
+발행: <strong>Chory &amp; Rochet</strong> · 2026-09-10
+</footer>
+</div>
+</body>
+</html>
