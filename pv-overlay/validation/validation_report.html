@@ -1,0 +1,81 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<title>가격·거래량 오버레이 통계 검증</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.3/plotly.min.js"></script>
+<style>
+body{margin:0;padding:20px 24px 40px;background:#f6f6f4;color:#0b0b0b;font:14px/1.55 "Malgun Gothic",system-ui,sans-serif;max-width:1180px}
+h1{font-size:20px;margin:0 0 4px} h2{font-size:16px;margin:0 0 8px} .sub{color:#52514e;font-size:13px;margin-bottom:14px}
+.panel{background:#fcfcfb;border:1px solid #e3e2dd;border-radius:8px;padding:14px 16px;margin-bottom:14px}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:5px 8px;border-bottom:1px solid #eeede9;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left} th{color:#52514e;font-weight:500}
+.m{color:#8a8985;font-size:11px} .verdict{padding:10px 12px;border-left:4px solid;border-radius:6px;margin:8px 0;font-size:13px}
+.rej{border-color:#d03b3b;background:rgba(208,59,59,.06)} .ok{border-color:#0ca30c;background:rgba(12,163,12,.06)} .warn{border-color:#fab219;background:rgba(250,178,25,.08)}
+ul{margin:6px 0 0 18px;padding:0} li{margin-bottom:4px} .foot{font-size:12px;color:#8a8985;margin-top:18px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px}
+.tile{background:#fcfcfb;border:1px solid #e3e2dd;border-radius:8px;padding:10px 12px} .tile .k{font-size:12px;color:#8a8985} .tile .v{font-size:20px;font-weight:600} .tile .s{font-size:12px;color:#52514e}
+</style></head><body>
+<h1>가격·거래량 동일축 오버레이 — 통계 검증 (귀무모형 대조)</h1>
+<div class="sub">유니버스 716종목 (5년 이상·최근 250일 평균 거래대금 ≥ 10억원·분할 미조정 의심 제외) · 기간 2015-01-01 ~ 2026-09-11 · 평활 MA10 · 국면 k=10 · 패널 357,362행(매주 수요일 표본) · 수익률은 같은 날 횡단면 평균 차감(시장 조정) 로그수익</div>
+
+<div class="tiles">
+ <div class="tile"><div class="k">T1 스윙 고점 표본</div><div class="v">4,870</div><div class="s">±60일 최고가 & 120일 최저 대비 1.5배↑</div></div>
+ <div class="tile"><div class="k">거래량선 정점이 가격 정점 −5~−40일에 위치</div><div class="v">26.6%</div><div class="s">귀무 N1 29.9% · N2 30.2%</div></div>
+ <div class="tile"><div class="k">거래량선 정점이 가격 정점 0~+9일에 위치</div><div class="v">43.6%</div><div class="s">귀무 N1 8.2% · N2 8.7%</div></div>
+ <div class="tile"><div class="k">Q1(가격↑거래량↑) 60일 초과수익</div><div class="v">-0.66%</div><div class="s">귀무 -0.34% · 잔여 -0.32%</div></div>
+</div>
+
+<div class="panel">
+<h2>T1. 거래량선 정점 → 가격 정점 시차</h2>
+<div class="sub">가격 스윙 고점마다 [−80, +20]일 창에서 MA10 거래량이 최대인 날의 상대 위치. 음수 = 거래량선이 가격보다 먼저 정점. 귀무 N1 = 거래량 계열을 무작위 원형 시프트(≥250일) · N2 = 블록 부트스트랩 랜덤워크 가격 + 실제 거래량. 두 귀무 모두 같은 탐지 절차를 통과했으므로 "탐지 아티팩트" 수준을 보여준다.</div>
+<div id="c1" style="height:360px"></div>
+<div class="verdict rej"><b>판정: "거래량선 정점 선행" 가설 기각.</b> 선행 밴드(−5~−40일) 점유율 실측 26.6% vs 귀무 29.9%/30.2% — 귀무보다 오히려 낮다. 실측 분포의 유일한 초과는 <b>0~+9일 밴드 (43.6% vs 8.2%)</b>, 즉 <b>클라이맥스 거래량은 가격 정점과 동시</b>(MA10 지연으로 0~9일 뒤에 찍힘)다. 주성엔지니어링의 "5주 선행"은 이 종목·이 기준일에서만 관측된 개별 사례로 일반화 불가.</div>
+</div>
+
+<div class="panel">
+<h2>T2. 4국면 이후 20 / 60일 시장조정 초과수익</h2>
+<div class="sub">국면 = sign(Cₜ−Cₜ₋₁₀) × sign(MA10Vₜ−MA10Vₜ₋₁₀). 귀무 N1 = 거래량만 시프트(가격 방향은 실제 유지) → 국면 차이 중 순수 가격 평균회귀 몫. 잔여 = 실측 − 귀무 = 거래량 정보의 기여. [ ] = 종목 클러스터 부트스트랩 95% CI.</div>
+<div id="c2" style="height:340px"></div>
+<table><thead><tr><th>국면</th><th>n</th><th>20일 실측 [CI]</th><th>20일 귀무</th><th>20일 잔여</th><th>60일 실측 [CI]</th><th>60일 귀무</th><th>60일 잔여</th><th>20일 승률</th></tr></thead><tbody><tr><td>Q1 가격↑ 거래량↑</td><td>98,190</td><td>-0.18%<span class='m'> [-0.30%, -0.06%]</span></td><td>-0.04%</td><td><b>-0.14%</b></td><td>-0.66%<span class='m'> [-0.99%, -0.34%]</span></td><td>-0.34%</td><td><b>-0.32%</b></td><td>43.3%</td></tr><tr><td>Q2 가격↑ 거래량↓</td><td>75,246</td><td>+0.10%<span class='m'> [-0.00%, +0.20%]</span></td><td>-0.07%</td><td><b>+0.17%</b></td><td>+0.22%<span class='m'> [+0.01%, +0.45%]</span></td><td>-0.23%</td><td><b>+0.45%</b></td><td>44.8%</td></tr><tr><td>Q3 가격↓ 거래량↑</td><td>65,149</td><td>+0.23%<span class='m'> [+0.13%, +0.31%]</span></td><td>+0.04%</td><td><b>+0.19%</b></td><td>+0.64%<span class='m'> [+0.39%, +0.92%]</span></td><td>+0.32%</td><td><b>+0.32%</b></td><td>46.2%</td></tr><tr><td>Q4 가격↓ 거래량↓</td><td>118,777</td><td>-0.04%<span class='m'> [-0.12%, +0.05%]</span></td><td>+0.07%</td><td><b>-0.11%</b></td><td>+0.05%<span class='m'> [-0.15%, +0.30%]</span></td><td>+0.21%</td><td><b>-0.16%</b></td><td>44.1%</td></tr></tbody></table>
+<div class="verdict warn"><b>판정: 거래량 정보는 있으나 방향이 통설과 반대.</b> Q1(가격↑거래량↑, "참여 확대 상승")이 4국면 중 <b>최악</b>(60일 -0.66%, CI 상단도 음수), Q3(가격↓거래량↑, "분산·투매")가 <b>최선</b>(60일 +0.64%). 귀무를 차감한 잔여도 같은 부호(Q1 -0.32%, Q3 +0.32%) — 거래량 상승은 가격 평균회귀를 <b>증폭</b>시킨다. 사내 QS 검증("거래량 급증·OBV 상승은 매수 근거 금지")과 정합. 크기는 60일 ±0.3%p 수준으로 단독 전략 엣지는 아니며 필터 용도.</div>
+</div>
+
+<div class="panel">
+<h2>T3. 60일 모멘텀 5분위 × 60일 거래량비 3분위 이중정렬 (얇은 상승 vs 참여 상승)</h2>
+<div class="sub">거래량비 = log(MA10Vₜ / MA10Vₜ₋₆₀) — 오버레이의 "거래량지수"를 60일 롤링 기준일로 체계화한 것. 모멘텀 최상위 행에서 좌(얇음)와 우(참여)를 비교.</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px"><div><b>20일 초과수익</b><table><thead><tr><th>60일 모멘텀 \ 60일 거래량비</th><th>하위 ⅓ (얇음)</th><th>중간 ⅓</th><th>상위 ⅓ (참여)</th></tr></thead><tbody><tr><td>모멘텀 최하위 (Q1)</td><td style='background:rgba(227,73,72,0.29)'>+0.24%<span class='m'> n=40,029</span></td><td style='background:rgba(227,73,72,0.46)'>+0.39%<span class='m'> n=20,448</span></td><td style='background:rgba(227,73,72,0.44)'>+0.38%<span class='m'> n=11,261</span></td></tr><tr><td>모멘텀 하위 (Q2)</td><td style='background:rgba(227,73,72,0.55)'>+0.47%<span class='m'> n=31,714</span></td><td style='background:rgba(227,73,72,0.36)'>+0.31%<span class='m'> n=26,429</span></td><td style='background:rgba(227,73,72,0.14)'>+0.12%<span class='m'> n=13,227</span></td></tr><tr><td>모멘텀 중간 (Q3)</td><td style='background:rgba(227,73,72,0.29)'>+0.24%<span class='m'> n=23,765</span></td><td style='background:rgba(227,73,72,0.31)'>+0.26%<span class='m'> n=28,547</span></td><td style='background:rgba(227,73,72,0.17)'>+0.14%<span class='m'> n=19,060</span></td></tr><tr><td>모멘텀 상위 (Q4)</td><td style='background:rgba(42,120,214,0.01)'>-0.03%<span class='m'> n=15,499</span></td><td style='background:rgba(227,73,72,0.28)'>+0.24%<span class='m'> n=26,597</span></td><td style='background:rgba(42,120,214,0.05)'>-0.10%<span class='m'> n=29,274</span></td></tr><tr><td>모멘텀 최상위 (Q5)</td><td style='background:rgba(42,120,214,0.42)'>-0.88%<span class='m'> n=8,163</span></td><td style='background:rgba(42,120,214,0.16)'>-0.32%<span class='m'> n=16,865</span></td><td style='background:rgba(42,120,214,0.55)'>-1.14%<span class='m'> n=46,484</span></td></tr></tbody></table></div><div><b>60일 초과수익</b><table><thead><tr><th>60일 모멘텀 \ 60일 거래량비</th><th>하위 ⅓ (얇음)</th><th>중간 ⅓</th><th>상위 ⅓ (참여)</th></tr></thead><tbody><tr><td>모멘텀 최하위 (Q1)</td><td style='background:rgba(227,73,72,0.05)'>+0.10%<span class='m'> n=40,029</span></td><td style='background:rgba(227,73,72,0.14)'>+0.28%<span class='m'> n=20,448</span></td><td style='background:rgba(227,73,72,0.23)'>+0.48%<span class='m'> n=11,261</span></td></tr><tr><td>모멘텀 하위 (Q2)</td><td style='background:rgba(227,73,72,0.55)'>+1.14%<span class='m'> n=31,714</span></td><td style='background:rgba(227,73,72,0.41)'>+0.86%<span class='m'> n=26,429</span></td><td style='background:rgba(227,73,72,0.21)'>+0.43%<span class='m'> n=13,227</span></td></tr><tr><td>모멘텀 중간 (Q3)</td><td style='background:rgba(227,73,72,0.34)'>+0.70%<span class='m'> n=23,765</span></td><td style='background:rgba(227,73,72,0.31)'>+0.65%<span class='m'> n=28,547</span></td><td style='background:rgba(227,73,72,0.26)'>+0.55%<span class='m'> n=19,060</span></td></tr><tr><td>모멘텀 상위 (Q4)</td><td style='background:rgba(227,73,72,0.15)'>+0.32%<span class='m'> n=15,499</span></td><td style='background:rgba(227,73,72,0.28)'>+0.58%<span class='m'> n=26,597</span></td><td style='background:rgba(42,120,214,0.03)'>-0.15%<span class='m'> n=29,274</span></td></tr><tr><td>모멘텀 최상위 (Q5)</td><td style='background:rgba(42,120,214,0.38)'>-1.70%<span class='m'> n=8,163</span></td><td style='background:rgba(42,120,214,0.17)'>-0.77%<span class='m'> n=16,865</span></td><td style='background:rgba(42,120,214,0.55)'>-2.47%<span class='m'> n=46,484</span></td></tr></tbody></table></div></div>
+<div class="verdict warn"><b>판정: "얇은 상승은 나쁘고 참여 상승은 좋다"는 Wyckoff식 통설 미지지.</b> 모멘텀 최상위에서 얇은 상승(거래량비 하위) − 참여 상승(상위) 차이 = 20일 +0.26% [-0.27%, +0.72%], 60일 +0.76% [-0.15%, +1.58%] — 부호는 오히려 얇은 상승이 덜 나쁘고, CI는 0을 포함(유의 아님). 강한 상승 + 거래량 급증 조합이 가장 크게 되돌린다(60일 -2.47%). 반대로 모멘텀 최하위 + 거래량 급증(투매)은 60일 +0.48%로 같은 행에서 가장 양호 — Q3 결과와 정합.</div>
+</div>
+
+<div class="panel">
+<h2>종합 — 오버레이 차트를 어떻게 읽을 것인가</h2>
+<ul>
+<li><b>거래량선이 가격선 위로 치솟는 구간(효율비 급락, Q1)</b>은 "지속 신호"가 아니라 <b>되돌림 경고</b>다. 거래량선 정점은 가격 정점과 동시에 오므로(선행 아님) 미리 알려주지는 않지만, 정점 이후 거래량선이 꺾이는 것은 확인 신호로 쓸 수 있다.</li>
+<li><b>가격 하락 + 거래량선 상승(Q3)</b>은 통계적으로 가장 양호한 후속 수익 — 투매·클라이맥스 해석이 데이터로 지지된다. 단, 크기는 작다.</li>
+<li><b>얇은 상승(Q2)</b>을 소진 신호로 단정하지 말 것. 데이터는 참여 상승보다 오히려 덜 되돌린다고 말한다.</li>
+<li>모든 효과는 60일 기준 ±0.3~0.8%p, 종목 클러스터 CI가 0 근처인 항목이 많다. <b>단독 예측 지표가 아니라 파동 카운트·가격 규율의 확인/부정 필터</b>로 제한.</li>
+</ul>
+<div style="font-size:12px;color:#52514e;margin-top:8px">한계: 선행수익 오버랩(주간 표본으로 완화, 완전 제거 아님) · 생존 편향(현재 상장·유동성 기준 사후 선택) · 2015~2026 단일 표본기간 · 유니버스 716종목은 유동성 필터 결과(코스닥 소형주 다수 제외).</div>
+</div>
+<div class="foot">Chory &amp; Rochet · 생성 2026-09-15 15:17 · 스크립트 validate_pv_overlay.py / make_validation_report.py · 소요 85s</div>
+
+<script>
+const L=["-80~-76", "-75~-71", "-70~-66", "-65~-61", "-60~-56", "-55~-51", "-50~-46", "-45~-41", "-40~-36", "-35~-31", "-30~-26", "-25~-21", "-20~-16", "-15~-11", "-10~-6", "-5~-1", "0~4", "5~9", "10~14", "15~19"];
+Plotly.newPlot('c1',[
+ {type:'bar',name:'실측',x:L,y:[5.26, 2.42, 2.3, 2.34, 2.11, 2.42, 1.99, 2.38, 2.4, 2.71, 2.24, 3.2, 3.88, 5.11, 5.83, 7.39, 21.4, 22.18, 0.92, 1.5],marker:{color:'#2a78d6'},hovertemplate:'%{x}일: %{y:.1f}%<extra>실측</extra>'},
+ {type:'bar',name:'귀무 N1 (거래량 시프트)',x:L,y:[10.96, 5.33, 5.05, 4.58, 4.59, 4.5, 4.41, 4.37, 4.29, 4.36, 4.23, 4.18, 3.98, 3.99, 4.1, 3.95, 3.98, 4.25, 4.26, 10.64],marker:{color:'#eb6834'},hovertemplate:'%{x}일: %{y:.1f}%<extra>N1</extra>'},
+ {type:'bar',name:'귀무 N2 (랜덤워크 가격)',x:L,y:[10.66, 5.25, 4.86, 4.58, 4.3, 4.54, 4.63, 4.22, 4.05, 4.43, 4.18, 4.26, 4.09, 3.9, 4.28, 4.46, 4.26, 4.43, 4.22, 10.4],marker:{color:'#1baf7a'},hovertemplate:'%{x}일: %{y:.1f}%<extra>N2</extra>'},
+],{barmode:'group',bargap:0.25,paper_bgcolor:'#fcfcfb',plot_bgcolor:'#fcfcfb',font:{family:'"Malgun Gothic",system-ui',size:12},margin:{l:50,r:20,t:10,b:60},
+   legend:{orientation:'h',x:0,y:1.08},xaxis:{title:'거래량선 정점 위치 (가격 정점 기준, 거래일)',gridcolor:'#eeede9'},yaxis:{title:'점유율 (%)',gridcolor:'#eeede9',zeroline:false},hovermode:'x unified'},{responsive:true,displaylogo:false});
+const Q=['Q1 가격↑거래량↑','Q2 가격↑거래량↓','Q3 가격↓거래량↑','Q4 가격↓거래량↓'];
+const r20=[-0.1768540680577471, 0.09931971846346081, 0.22502839846648984, -0.040146541204145035], r60=[-0.6588508590040779, 0.22125998066781688, 0.6426107913643689, 0.05201501042864006];
+const n20=[-0.040627281622681255, -0.07049133644209286, 0.03617325144415515, 0.0681833719455629], n60=[-0.33980620660972527, -0.22550948292984818, 0.31942990576030855, 0.21359728069146244];
+const e20=[[0.12641232861465473, 0.11203187828214017], [0.10391372533843996, 0.09597015463361862], [0.09744488805919548, 0.08383808785563311], [0.08431955959558497, 0.08834553378693538]];
+const e60=[[0.3298384464994219, 0.3182323806456946], [0.21429778284560516, 0.23322319973833144], [0.25100139414833916, 0.28225819589232914], [0.20557829151011553, 0.2448466777391063]];
+Plotly.newPlot('c2',[
+ {type:'bar',name:'20일 실측',x:Q,y:r20,marker:{color:'#2a78d6'},error_y:{type:'data',symmetric:false,array:e20.map(e=>e[1]),arrayminus:e20.map(e=>e[0]),color:'#0b0b0b',thickness:1},hovertemplate:'%{y:+.2f}%<extra>20일 실측</extra>'},
+ {type:'bar',name:'20일 귀무',x:Q,y:n20,marker:{color:'#9ec5f4'},hovertemplate:'%{y:+.2f}%<extra>20일 귀무</extra>'},
+ {type:'bar',name:'60일 실측',x:Q,y:r60,marker:{color:'#eb6834'},error_y:{type:'data',symmetric:false,array:e60.map(e=>e[1]),arrayminus:e60.map(e=>e[0]),color:'#0b0b0b',thickness:1},hovertemplate:'%{y:+.2f}%<extra>60일 실측</extra>'},
+ {type:'bar',name:'60일 귀무',x:Q,y:n60,marker:{color:'#f5c4ae'},hovertemplate:'%{y:+.2f}%<extra>60일 귀무</extra>'},
+],{barmode:'group',bargap:0.3,paper_bgcolor:'#fcfcfb',plot_bgcolor:'#fcfcfb',font:{family:'"Malgun Gothic",system-ui',size:12},margin:{l:50,r:20,t:10,b:40},
+   legend:{orientation:'h',x:0,y:1.08},xaxis:{gridcolor:'#eeede9'},yaxis:{title:'시장조정 초과수익 (%)',gridcolor:'#eeede9',zeroline:true,zerolinecolor:'#8a8985'},hovermode:'x unified'},{responsive:true,displaylogo:false});
+</script></body></html>

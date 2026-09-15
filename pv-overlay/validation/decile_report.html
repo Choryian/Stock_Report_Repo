@@ -1,0 +1,85 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<title>효율비 크기 검증 (T4)</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.3/plotly.min.js"></script>
+<style>
+body{margin:0;padding:20px 24px 40px;background:#f6f6f4;color:#0b0b0b;font:14px/1.55 "Malgun Gothic",system-ui,sans-serif;max-width:1180px}
+h1{font-size:20px;margin:0 0 4px} h2{font-size:16px;margin:0 0 8px} .sub{color:#52514e;font-size:13px;margin-bottom:14px}
+.panel{background:#fcfcfb;border:1px solid #e3e2dd;border-radius:8px;padding:14px 16px;margin-bottom:14px}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums;margin-top:6px}
+th,td{padding:5px 8px;border-bottom:1px solid #eeede9;text-align:right;white-space:nowrap} th:first-child,td:first-child{text-align:left} th{color:#52514e;font-weight:500}
+.m{color:#8a8985;font-size:11px} .verdict{padding:10px 12px;border-left:4px solid;border-radius:6px;margin:8px 0;font-size:13px}
+.ok{border-color:#0ca30c;background:rgba(12,163,12,.06)} .warn{border-color:#fab219;background:rgba(250,178,25,.08)} .rej{border-color:#d03b3b;background:rgba(208,59,59,.06)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:14px}
+.tile{background:#fcfcfb;border:1px solid #e3e2dd;border-radius:8px;padding:10px 12px} .tile .k{font-size:12px;color:#8a8985} .tile .v{font-size:20px;font-weight:600} .tile .s{font-size:12px;color:#52514e}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px} ul{margin:6px 0 0 18px;padding:0} li{margin-bottom:4px} .foot{font-size:12px;color:#8a8985;margin-top:18px}
+</style></head><body>
+<h1>효율비 크기 검증 (T4) — 부호가 아니라 분위로 자르면</h1>
+<div class="sub">유니버스 716종목 · 패널 357,362행(매주 수요일) · 2015~2026 · 시장조정(횡단면 평균 차감) 로그 초과수익 · [ ] = 종목 클러스터 부트스트랩 95% CI · 효율비₆₀ = log(Cₜ/Cₜ₋₆₀) − log(MA10Vₜ/MA10Vₜ₋₆₀)</div>
+
+<div class="tiles">
+ <div class="tile"><div class="k">효율비 최하위 10% (거래량선 ≫ 가격선)</div><div class="v">-1.79%</div><div class="s">60일 · 나머지 9개 분위 평균 +0.20%</div></div>
+ <div class="tile"><div class="k">효율비 D10−D1 스프레드</div><div class="v">+1.92%</div><div class="s">CI [+1.26%, +2.52%]</div></div>
+ <div class="tile"><div class="k">Q1 내부 거래량 상승폭 최상위 vs 최하위</div><div class="v">-1.86%</div><div class="s">Spearman -0.90 · CI [-2.42%, -1.28%]</div></div>
+ <div class="tile"><div class="k">모멘텀 최상위 안에서 효율비 최저 vs 나머지</div><div class="v">-4.11%</div><div class="s">vs -1.43% (모멘텀 통제 후 −2.5%p 추가)</div></div>
+</div>
+
+<div class="panel">
+<h2>T4a. 60일 효율비 · 모멘텀 · 거래량비 각각 10분위 → 60일 초과수익</h2>
+<div id="c1" style="height:360px"></div>
+<table><thead><tr><th>변수</th><th>D1</th><th>D2</th><th>D3</th><th>D4</th><th>D5</th><th>D6</th><th>D7</th><th>D8</th><th>D9</th><th>D10</th><th>Spearman</th><th>D10−D1 [CI]</th></tr></thead><tbody>
+<tr><td>효율비₆₀ (낮음 = 거래량 앞섬)</td><td>-1.79%</td><td>-0.37%</td><td>+0.20%</td><td>-0.01%</td><td>+0.31%</td><td>+0.34%</td><td>+0.34%</td><td>+0.43%</td><td>+0.42%</td><td>+0.13%</td><td>+0.70</td><td>+1.92% [+1.26%, +2.52%]</td></tr>
+<tr><td>모멘텀₆₀ 단독</td><td>-0.43%</td><td>+0.86%</td><td>+0.91%</td><td>+0.91%</td><td>+0.73%</td><td>+0.56%</td><td>+0.35%</td><td>+0.10%</td><td>-0.89%</td><td>-3.06%</td><td>-0.61</td><td>-2.62% [-3.49%, -1.70%]</td></tr>
+<tr><td>거래량비₆₀ 단독</td><td>+0.30%</td><td>+0.55%</td><td>+0.33%</td><td>+0.44%</td><td>+0.29%</td><td>+0.61%</td><td>+0.34%</td><td>-0.12%</td><td>-0.54%</td><td>-2.19%</td><td>-0.59</td><td>-2.49% [-3.13%, -1.91%]</td></tr>
+</tbody></table>
+<div class="verdict ok"><b>판정: 신호는 극단에 몰려 있고, 한쪽 방향이다.</b> 효율비 최하위 10%(거래량선이 가격선을 크게 앞지른 상태)만 -1.79%로 뚜렷이 나쁘고, D2~D10은 -0.37%~+0.43%로 평평하다. 즉 "효율비가 높을수록 좋다"가 아니라 <b>"효율비가 극단적으로 낮으면 나쁘다"</b>는 경고형 지표. 거래량비 단독 D10(-2.19%)이 이 효과의 원천이며, 모멘텀 단독 D10(-3.06%)은 한국 시장의 알려진 1~3개월 반전 효과.</div>
+</div>
+
+<div class="panel">
+<h2>모멘텀을 통제해도 남는가</h2>
+<b>모멘텀 5분위 내부 효율비 5분위 — 60일 초과수익 (모멘텀 통제 후 거래량 정보만의 몫)</b><table><thead><tr><th></th><th>효율비 최저 (거래량≫가격)</th><th>2</th><th>3</th><th>4</th><th>효율비 최고 (가격≫거래량)</th></tr></thead><tbody><tr><td>모멘텀 최하위</td><td style='background:rgba(42,120,214,0.01)'>-0.05%<span class='m'> n=14,535</span></td><td style='background:rgba(227,73,72,0.08)'>+0.21%<span class='m'> n=14,284</span></td><td style='background:rgba(227,73,72,0.06)'>+0.14%<span class='m'> n=14,175</span></td><td style='background:rgba(227,73,72,0.23)'>+0.60%<span class='m'> n=14,284</span></td><td style='background:rgba(227,73,72,0.06)'>+0.16%<span class='m'> n=14,460</span></td></tr><tr><td>하위</td><td style='background:rgba(227,73,72,0.17)'>+0.44%<span class='m'> n=14,486</span></td><td style='background:rgba(227,73,72,0.35)'>+0.90%<span class='m'> n=14,078</span></td><td style='background:rgba(227,73,72,0.35)'>+0.91%<span class='m'> n=14,296</span></td><td style='background:rgba(227,73,72,0.33)'>+0.86%<span class='m'> n=14,078</span></td><td style='background:rgba(227,73,72,0.55)'>+1.42%<span class='m'> n=14,432</span></td></tr><tr><td>중간</td><td style='background:rgba(227,73,72,0.20)'>+0.52%<span class='m'> n=14,491</span></td><td style='background:rgba(227,73,72,0.27)'>+0.69%<span class='m'> n=14,072</span></td><td style='background:rgba(227,73,72,0.22)'>+0.57%<span class='m'> n=14,302</span></td><td style='background:rgba(227,73,72,0.21)'>+0.53%<span class='m'> n=14,072</span></td><td style='background:rgba(227,73,72,0.35)'>+0.89%<span class='m'> n=14,435</span></td></tr><tr><td>상위</td><td style='background:rgba(42,120,214,0.09)'>-0.65%<span class='m'> n=14,486</span></td><td style='background:rgba(227,73,72,0.11)'>+0.27%<span class='m'> n=14,078</span></td><td style='background:rgba(227,73,72,0.19)'>+0.50%<span class='m'> n=14,296</span></td><td style='background:rgba(227,73,72,0.22)'>+0.57%<span class='m'> n=14,078</span></td><td style='background:rgba(227,73,72,0.17)'>+0.44%<span class='m'> n=14,432</span></td></tr><tr><td>최상위</td><td style='background:rgba(42,120,214,0.55)'>-4.11%<span class='m'> n=14,529</span></td><td style='background:rgba(42,120,214,0.18)'>-1.38%<span class='m'> n=14,095</span></td><td style='background:rgba(42,120,214,0.24)'>-1.77%<span class='m'> n=14,344</span></td><td style='background:rgba(42,120,214,0.14)'>-1.07%<span class='m'> n=14,095</span></td><td style='background:rgba(42,120,214,0.20)'>-1.53%<span class='m'> n=14,449</span></td></tr></tbody></table>
+<div class="verdict ok"><b>남는다.</b> 모멘텀 최상위 5분위 안에서 효율비 최저 셀 -4.11% vs 같은 행 나머지 평균 -1.43% — 가격 모멘텀이 같아도 거래량이 과도하게 붙은 상승은 60일 뒤 약 2.5%p 더 되돌린다. 모멘텀 상위(4분위)에서도 최저 셀만 음수(-0.65%). 반대로 모멘텀 하위·중간 행에서는 효율비가 높을수록(거래량 없이 조용히 오른 종목) 다소 좋다(+1.42%, +0.89%).</div>
+</div>
+
+<div class="panel">
+<h2>T4b. 국면 내부에서 거래량선 변화 크기(10일) 5분위 → 60일 초과수익</h2>
+<div id="c2" style="height:340px"></div>
+<table><thead><tr><th>국면 · 정렬변수</th><th>Q1 (작음)</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5 (큼)</th><th>Spearman</th><th>Q5−Q1 [CI]</th></tr></thead><tbody>
+<tr><td>Q1 가격↑거래량↑ · 거래량선 상승폭</td><td>-0.16%</td><td>+0.19%</td><td>-0.36%</td><td>-0.94%</td><td>-2.01%</td><td>-0.90</td><td>-1.86% [-2.42%, -1.28%]</td></tr>
+<tr><td>Q3 가격↓거래량↑ · 거래량선 상승폭</td><td>+0.50%</td><td>+0.95%</td><td>+0.46%</td><td>+0.73%</td><td>+0.69%</td><td>+0.10</td><td>+0.19% [-0.39%, +0.68%]</td></tr>
+<tr><td>Q2 가격↑거래량↓ · 거래량선 하락폭</td><td>+0.16%</td><td>+0.08%</td><td>+0.33%</td><td>+0.62%</td><td>-0.01%</td><td>-0.10</td><td>-0.16% [-0.67%, +0.43%]</td></tr>
+<tr><td>Q4 가격↓거래량↓ · 거래량선 하락폭</td><td>+0.38%</td><td>+0.35%</td><td>+0.28%</td><td>+0.01%</td><td>-0.74%</td><td>-1.00</td><td>-1.11% [-1.50%, -0.73%]</td></tr>
+</tbody></table>
+<div class="verdict ok"><b>Q1 경고는 크기에 비례한다.</b> 거래량선 상승폭 최하위 -0.16% → 최상위 -2.01%, Spearman -0.90, 단조. 거래량선이 가격선 위로 얼마나 치솟았는지가 되돌림 크기를 예고한다.</div>
+<div class="verdict warn"><b>Q3 기회는 크기와 무관하다.</b> +0.46%~+0.95%로 평평(Spearman +0.10). "투매가 클수록 반등이 크다"는 성립하지 않고, 하락 중 거래량이 늘고 있다는 사실 자체만 완만한 플러스.</div>
+<div class="verdict warn"><b>Q4 부수 발견.</b> 하락 중 거래량이 크게 마를수록 나쁘다(+0.38% → -0.74%, Spearman -1.00) — "관심 이탈이 심할수록 하락 지속". 2·4파 조정을 "거래량 감소 = 건전"으로 읽는 관행과 충돌하므로 파동 판정 시 주의.</div>
+</div>
+
+<div class="panel">
+<h2>결론 — 지표의 자리</h2>
+<ul>
+<li>오버레이 지표는 <b>역발상 경고 필터로 확정</b>. 핵심 사용법 하나: <b>거래량선이 가격선을 크게 앞지른 상태(효율비 최하위 10%, 또는 Q1에서 거래량선 10일 상승폭 상위 20%)는 60일 −1.8~−2.0%, 모멘텀 통제 후에도 −2.5%p 추가 되돌림</b>. 크기에 비례하므로 임계값 설정이 가능하다.</li>
+<li>가격이 거래량을 앞서는 쪽(효율비 높음)은 대체로 무해~소폭 긍정. "얇은 상승 = 위험"은 폐기.</li>
+<li>Q3(하락 중 거래량 증가)는 완만한 플러스지만 크기 정보가 없어 진입 트리거보다는 "투매 국면 진입 금지 해제" 정도.</li>
+<li>단독 알파 전략이 아니라 HA 스크리너·엘리어트 5파/B파 판정에 <b>부정 필터</b>로 얹는 것이 자리다. 다음 검증 후보: 파동 위치(3파 vs 5파) 조건부, 고정 앵커(파동 시작점) 버전.</li>
+</ul>
+<div style="font-size:12px;color:#52514e;margin-top:8px">한계는 T1~T3과 동일(오버랩·생존편향·단일 표본기간·유동성 필터). 분위는 날짜별 횡단면 기준이라 시장 전체가 과열/침체인 시기에는 절대 임계값과 다를 수 있음.</div>
+</div>
+<div class="foot">Chory &amp; Rochet · 생성 2026-09-15 15:41 · validate_pv_deciles.py / make_decile_report.py · 소요 53s</div>
+
+<script>
+const D=['D1','D2','D3','D4','D5','D6','D7','D8','D9','D10'];
+Plotly.newPlot('c1',[
+ {type:'bar',name:'효율비₆₀ (낮음=거래량 앞섬)',x:D,y:[-1.789, -0.37, 0.204, -0.008, 0.307, 0.344, 0.344, 0.433, 0.421, 0.132],marker:{color:'#2a78d6'},hovertemplate:'%{y:+.2f}%<extra>효율비</extra>'},
+ {type:'bar',name:'모멘텀₆₀ 단독',x:D,y:[-0.434, 0.858, 0.906, 0.908, 0.727, 0.556, 0.347, 0.102, -0.889, -3.058],marker:{color:'#eb6834'},hovertemplate:'%{y:+.2f}%<extra>모멘텀</extra>'},
+ {type:'bar',name:'거래량비₆₀ 단독',x:D,y:[0.301, 0.546, 0.333, 0.442, 0.294, 0.613, 0.339, -0.125, -0.541, -2.19],marker:{color:'#1baf7a'},hovertemplate:'%{y:+.2f}%<extra>거래량비</extra>'},
+],{barmode:'group',bargap:0.25,paper_bgcolor:'#fcfcfb',plot_bgcolor:'#fcfcfb',font:{family:'"Malgun Gothic",system-ui',size:12},margin:{l:50,r:20,t:10,b:40},
+   legend:{orientation:'h',x:0,y:1.08},xaxis:{title:'횡단면 10분위 (D1 = 최저)',gridcolor:'#eeede9'},yaxis:{title:'60일 초과수익 (%)',gridcolor:'#eeede9',zeroline:true,zerolinecolor:'#8a8985'},hovermode:'x unified'},{responsive:true,displaylogo:false});
+const Q=['Q1 작음','Q2','Q3','Q4','Q5 큼'];
+Plotly.newPlot('c2',[
+ {type:'bar',name:'Q1 가격↑거래량↑ · 상승폭',x:Q,y:[-0.155, 0.187, -0.363, -0.941, -2.012],marker:{color:'#e34948'},hovertemplate:'%{y:+.2f}%<extra>Q1</extra>'},
+ {type:'bar',name:'Q3 가격↓거래량↑ · 상승폭',x:Q,y:[0.504, 0.954, 0.463, 0.733, 0.69],marker:{color:'#2a78d6'},hovertemplate:'%{y:+.2f}%<extra>Q3</extra>'},
+ {type:'bar',name:'Q2 가격↑거래량↓ · 하락폭',x:Q,y:[0.159, 0.076, 0.326, 0.621, -0.005],marker:{color:'#eda100'},hovertemplate:'%{y:+.2f}%<extra>Q2</extra>'},
+ {type:'bar',name:'Q4 가격↓거래량↓ · 하락폭',x:Q,y:[0.377, 0.354, 0.278, 0.011, -0.735],marker:{color:'#8a8985'},hovertemplate:'%{y:+.2f}%<extra>Q4</extra>'},
+],{barmode:'group',bargap:0.25,paper_bgcolor:'#fcfcfb',plot_bgcolor:'#fcfcfb',font:{family:'"Malgun Gothic",system-ui',size:12},margin:{l:50,r:20,t:10,b:40},
+   legend:{orientation:'h',x:0,y:1.08},xaxis:{title:'국면 내부 거래량선 10일 변화 크기 5분위',gridcolor:'#eeede9'},yaxis:{title:'60일 초과수익 (%)',gridcolor:'#eeede9',zeroline:true,zerolinecolor:'#8a8985'},hovermode:'x unified'},{responsive:true,displaylogo:false});
+</script></body></html>

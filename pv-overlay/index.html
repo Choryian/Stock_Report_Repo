@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PV Overlay Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.3/plotly.min.js"></script>
+<style>
+  :root{
+    color-scheme:light;
+    --surface-0:#f6f6f4; --surface-1:#fcfcfb; --border:#e3e2dd; --grid:#eeede9;
+    --text-primary:#0b0b0b; --text-secondary:#52514e; --text-muted:#8a8985;
+    --up:#e34948; --down:#2a78d6; --vol:#4a3aa7; --eff:#1baf7a;
+    --q1:#e34948; --q2:#eda100; --q3:#2a78d6; --q4:#8a8985;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--surface-0);color:var(--text-primary);font:13px/1.45 "Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;display:flex;flex-direction:column}
+  header{display:flex;align-items:center;gap:14px;padding:10px 18px;background:var(--surface-1);border-bottom:1px solid var(--border)}
+  header h1{font-size:16px;margin:0}
+  header .sub{color:var(--text-secondary);font-size:12px}
+  header .sp{flex:1}
+  header a{color:var(--text-secondary);font-size:12px;text-decoration:none;margin-left:10px}
+  main{flex:1;display:grid;grid-template-columns:460px 1fr;min-height:0}
+  aside{border-right:1px solid var(--border);background:var(--surface-1);display:flex;flex-direction:column;min-height:0}
+  .filters{padding:10px 12px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;font-size:12px}
+  .filters label{display:flex;flex-direction:column;gap:2px;color:var(--text-secondary)}
+  .filters input,.filters select{font:inherit;padding:3px 6px;border:1px solid var(--border);border-radius:4px;background:#fff}
+  .filters .row{grid-column:1/-1;display:flex;gap:12px;align-items:center;color:var(--text-secondary)}
+  .cnt{padding:4px 12px;font-size:11px;color:var(--text-muted);border-bottom:1px solid var(--border)}
+  .tblwrap{flex:1;overflow:auto;min-height:0}
+  table{border-collapse:collapse;width:100%;font-size:12px;font-variant-numeric:tabular-nums}
+  th,td{padding:4px 6px;border-bottom:1px solid var(--grid);text-align:right;white-space:nowrap}
+  th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){text-align:left}
+  th{position:sticky;top:0;background:var(--surface-1);color:var(--text-secondary);font-weight:500;cursor:pointer;z-index:1}
+  th:hover{color:var(--text-primary)}
+  tbody tr{cursor:pointer} tbody tr:hover{background:#f3f2ee} tbody tr.sel{background:#ecebff}
+  .nm{font-weight:600} .cd{color:var(--text-muted);font-size:11px}
+  .pos{color:var(--up)} .neg{color:var(--down)}
+  .b{display:inline-block;padding:0 5px;border-radius:4px;font-size:10.5px;font-weight:700;line-height:16px}
+  .b.w2{background:#fee2e2;color:#b91c1c} .b.w1{background:#fef3c7;color:#b45309} .b.w0{background:#f1f5f9;color:#64748b}
+  .b.w5{background:#b91c1c;color:#fff} .b.q5{background:#dcfce7;color:#166534}
+  .b.q{color:#fff} .b.q.q1{background:var(--q1)} .b.q.q2{background:var(--q2)} .b.q.q3{background:var(--q3)} .b.q.q4{background:var(--q4)}
+  section{display:flex;flex-direction:column;min-height:0;overflow:auto;padding:12px 16px 24px}
+  .shead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .shead h2{font-size:18px;margin:0}
+  .shead .meta{color:var(--text-secondary);font-size:12px}
+  .pvsum{margin:8px 0 10px;padding:8px 10px;border-radius:8px;background:#f8f7ff;border:1px solid #e4e0f7;font-size:12px}
+  .pvsum b{color:var(--vol)}
+  .controls{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:12px;padding:8px 10px;background:var(--surface-1);border:1px solid var(--border);border-radius:8px}
+  .controls label{display:flex;align-items:center;gap:5px;color:var(--text-secondary)}
+  .controls select,.controls input[type=date]{font:inherit;padding:2px 5px;border:1px solid var(--border);border-radius:4px;background:#fff}
+  .controls button{font:inherit;font-size:11px;padding:2px 7px;border:1px solid var(--border);border-radius:4px;background:#fff;cursor:pointer}
+  .controls button:hover{background:#f3f2ee}
+  .tiles,.controls,.quad,.pvsum,.shead{flex:none}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:10px 0}
+  .tile{background:var(--surface-1);border:1px solid var(--border);border-radius:8px;padding:8px 10px}
+  .tile .k{font-size:11px;color:var(--text-muted)} .tile .v{font-size:18px;font-weight:600;font-variant-numeric:tabular-nums} .tile .s{font-size:11px;color:var(--text-secondary)}
+  #chart{flex:none;width:100%;height:720px;background:var(--surface-1);border:1px solid var(--border);border-radius:8px}
+  .quad{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;font-size:12px;margin-top:10px}
+  .quad div{padding:6px 9px;border-radius:6px;border-left:4px solid}
+  .quad .n{font-weight:600} .quad .d{color:var(--text-secondary)}
+  .empty{color:var(--text-muted);padding:40px;text-align:center}
+  @media (max-width:1000px){ main{grid-template-columns:1fr} aside{max-height:45vh} }
+</style>
+</head>
+<body>
+<header>
+  <h1>가격·거래량 동일축 오버레이 대시보드</h1>
+  <span class="sub" id="hsub">로딩…</span>
+  <span class="sp"></span>
+  <a href="validation/anchor_report.html" target="_blank">검증 T6</a>
+  <a href="validation/wave_report.html" target="_blank">T5</a>
+  <a href="validation/decile_report.html" target="_blank">T4</a>
+  <a href="validation/validation_report.html" target="_blank">T1~3</a>
+  <a href="index.html" id="ai60" target="_blank">AI인프라 60</a>
+</header>
+<main>
+<aside>
+  <div class="filters">
+    <label>검색 (코드·종목명)<input id="f-q" type="text" placeholder="예: 주성 / 036930"></label>
+    <label>시장<select id="f-mk"><option value="">전체</option><option>KOSPI</option><option>KOSDAQ</option></select></label>
+    <label>PV 거래량 경고<select id="f-pv"><option value="">전체</option><option value="2">경고만</option><option value="12">주의 이상</option><option value="w5">5파+경고</option><option value="q5">조용한 5파</option><option value="0">경고 없음</option></select></label>
+    <label>국면<select id="f-quad"><option value="">전체</option><option value="1">Q1 가격↑거래량↑</option><option value="2">Q2 가격↑거래량↓</option><option value="3">Q3 가격↓거래량↑</option><option value="4">Q4 가격↓거래량↓</option></select></label>
+    <label>Minute 파동<select id="f-mw"><option value="">전체</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="?">미정</option></select></label>
+    <label>최소 거래대금(억)<select id="f-amt"><option value="0">0</option><option value="1">1</option><option value="10" selected>10</option><option value="50">50</option><option value="100">100</option><option value="500">500</option></select></label>
+    <div class="row"><label style="flex-direction:row"><input id="f-flag" type="checkbox" checked> 관리·정지·동전주 제외</label><label style="flex-direction:row"><input id="f-haspv" type="checkbox" checked> PV 산출 종목만</label></div>
+  </div>
+  <div class="cnt" id="cnt"></div>
+  <div class="tblwrap"><table id="t"><thead><tr>
+    <th data-k="code">코드</th><th data-k="name">종목</th><th data-k="price">현재가</th><th data-k="chg">등락</th><th data-k="amount">거래대금</th>
+    <th data-k="eff_pct" title="효율비60 횡단면 백분위 — 낮을수록 거래량이 가격을 앞섬(되돌림 경고)">효율%</th><th data-k="quad">국면</th><th data-k="mw">Minute</th><th data-k="warn">PV</th>
+  </tr></thead><tbody id="tb"></tbody></table></div>
+</aside>
+<section id="detail"><div class="empty">좌측에서 종목을 클릭하세요 (↑↓ 키로 이동)</div></section>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+// 로컬 serve.py(:8790)면 API, 그 외(GitHub Pages·file://)면 미리 생성한 정적 JSON (build_static.py)
+const STATIC = /[?&]static=1/.test(location.search) || !(location.protocol === 'http:' && /^(localhost|127\.)/.test(location.hostname));
+const URL_LIST = STATIC ? 'data/pv_list.json' : '/api/list';
+const URL_STOCK = c => STATIC ? `data/stocks/${c}.json` : `/api/stock/${c}?start=2024-01-01`;
+const fmt = n => Number(n).toLocaleString('ko-KR');
+const pct = x => (x >= 0 ? '+' : '') + (x * 100).toFixed(1) + '%';
+const fmtAmt = a => { if (!a) return '-'; const e = a / 1e8; return e >= 10000 ? (e / 10000).toFixed(1) + '조' : Math.round(e) + '억'; };
+const QUAD = {1:{name:'Q1 참여확대 상승', color:'#e34948', a:0.09}, 2:{name:'Q2 얇은 상승', color:'#eda100', a:0.11},
+              3:{name:'Q3 분산·투매', color:'#2a78d6', a:0.10}, 4:{name:'Q4 관심이탈 하락', color:'#8a8985', a:0.13}};
+let STOCKS = [], VIEW = [], SORT = {k:'amount', dir:-1}, CUR = null, D = null;
+const CTRL = {base:'2026-01-01', mode:'A', win:10, k:10, axis:'log', range:'60', shade:true, closeLine:false};
+
+// ───────── 리스트 ─────────
+async function init(){
+  if (STATIC) $('ai60').href = 'ai60/index.html';
+  const j = await (await fetch(URL_LIST)).json();
+  STOCKS = j.stocks;
+  $('hsub').textContent = `${j.count.toLocaleString()}종목 · 데이터 ${j.as_of} · 리스트 생성 ${j.generated} · Chory & Rochet`;
+  ['f-q','f-mk','f-pv','f-quad','f-mw','f-amt','f-flag','f-haspv'].forEach(id => $(id).addEventListener('input', apply));
+  document.querySelectorAll('#t th').forEach(th => th.addEventListener('click', () => {
+    const k = th.dataset.k; SORT.dir = SORT.k === k ? -SORT.dir : (['code','name'].includes(k) ? 1 : -1); SORT.k = k; render(); }));
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+    const i = VIEW.findIndex(s => s.code === CUR); const j = Math.max(0, Math.min(VIEW.length - 1, i + (e.key === 'ArrowDown' ? 1 : -1)));
+    if (VIEW[j]) { select(VIEW[j].code); e.preventDefault(); }
+  });
+  apply();
+  const h = location.hash.replace('#', '');
+  if (h && STOCKS.some(s => s.code === h)) select(h);
+  window.addEventListener('hashchange', () => { const c = location.hash.replace('#',''); if (c && c !== CUR && STOCKS.some(s => s.code === c)) select(c); });
+}
+function apply(){
+  const q = $('f-q').value.trim().toLowerCase(), mk = $('f-mk').value, pvf = $('f-pv').value, qd = $('f-quad').value, mw = $('f-mw').value;
+  const minAmt = +$('f-amt').value * 1e8, noflag = $('f-flag').checked, haspv = $('f-haspv').checked;
+  VIEW = STOCKS.filter(s => {
+    const p = s.pv || {};
+    if (q && !(s.code.includes(q) || (s.name || '').toLowerCase().includes(q))) return false;
+    if (mk && s.market !== mk) return false;
+    if (minAmt && (s.amount || 0) < minAmt) return false;
+    if (noflag && s.flag) return false;
+    if (haspv && !s.pv) return false;
+    if (qd && String(p.quad) !== qd) return false;
+    if (mw){ const w = s.minute?.wave ?? '?'; if (String(w) !== mw) return false; }
+    if (pvf){ const w = p.warn ?? -1;
+      if (pvf === '2' && w !== 2) return false; if (pvf === '12' && w < 1) return false;
+      if (pvf === 'w5' && !p.w5_warn) return false; if (pvf === 'q5' && !p.quiet5) return false;
+      if (pvf === '0' && w !== 0) return false; }
+    return true;
+  });
+  render();
+}
+function sv(s, k){
+  if (k === 'eff_pct') return s.pv?.eff_pct ?? 9; if (k === 'quad') return s.pv?.quad ?? 9; if (k === 'warn') return (s.pv?.w5_warn ? 3 : s.pv?.warn ?? -1);
+  if (k === 'mw') return s.minute?.wave ?? '~'; return s[k] ?? (typeof s[k] === 'number' ? -1 : '');
+}
+function pvBadge(p){
+  if (!p || p.eff_pct == null) return `<span class="b w0">-</span>`;
+  const pc = Math.round(p.eff_pct * 100);
+  if (p.w5_warn) return `<span class="b w5">5파+경고</span>`;
+  if (p.quiet5) return `<span class="b q5">조용한5파</span>`;
+  return `<span class="b ${p.warn === 2 ? 'w2' : p.warn === 1 ? 'w1' : 'w0'}">${p.warn === 2 ? '경고' : p.warn === 1 ? '주의' : '—'}</span>`;
+}
+function render(){
+  VIEW.sort((a, b) => { const x = sv(a, SORT.k), y = sv(b, SORT.k); return x < y ? -SORT.dir : x > y ? SORT.dir : 0; });
+  $('cnt').textContent = `${VIEW.length.toLocaleString()}종목 표시 · 정렬 ${SORT.k} ${SORT.dir > 0 ? '▲' : '▼'}`;
+  $('tb').innerHTML = VIEW.map(s => { const p = s.pv || {}; const mw = s.minute?.wave ?? '?', md = s.minute?.dir === 'up' ? '↑' : s.minute?.dir === 'down' ? '↓' : '';
+    return `<tr data-code="${s.code}" class="${s.code === CUR ? 'sel' : ''}"><td class="cd">${s.code}</td><td class="nm">${s.name}</td>
+    <td>${fmt(s.price)}</td><td class="${(s.chg || 0) >= 0 ? 'pos' : 'neg'}">${s.chg != null ? pct(s.chg) : '-'}</td><td>${fmtAmt(s.amount)}</td>
+    <td>${p.eff_pct != null ? Math.round(p.eff_pct * 100) + '%' : '-'}</td><td>${p.quad ? `<span class="b q q${p.quad}">Q${p.quad}</span>` : '-'}</td>
+    <td>${mw}${md}</td><td>${pvBadge(p)}</td></tr>`; }).join('');
+  document.querySelectorAll('#tb tr').forEach(tr => tr.addEventListener('click', () => select(tr.dataset.code)));
+}
+
+// ───────── 상세 ─────────
+async function select(code){
+  CUR = code; location.hash = code;
+  document.querySelectorAll('#tb tr').forEach(tr => tr.classList.toggle('sel', tr.dataset.code === code));
+  document.querySelector(`#tb tr[data-code="${code}"]`)?.scrollIntoView({block:'nearest'});
+  const s = STOCKS.find(x => x.code === code); const p = s.pv;
+  const rule = !p ? '' : p.w5_warn ? 'Minute 5파 + 거래량 경고 — 검증상 60일 −3.8%: 신규진입 금지·익절 우선'
+    : p.quiet5 ? '조용한 5파(Q1·거래량선 상승폭 하위⅓) — 검증상 +1.8%: 홀드 후보, 거래량 붙으면 익절'
+    : p.warn === 2 ? '거래량선이 가격선을 크게 앞섬 — 검증상 60일 −2~−3%p 되돌림 경고 (파동 위치 무관, 3파 면제 없음)'
+    : p.warn === 1 ? '거래량 앞섬 주의 단계 — 추가 거래량 유입 시 경고 전환'
+    : p.quad === 3 ? '가격↓거래량↑ — 검증상 완만한 플러스(+0.6%), 투매 국면 진입금지 해제' : '거래량 경고 없음';
+  $('detail').innerHTML = `
+    <div class="shead"><h2>${s.name} <span class="cd">${s.code}</span></h2>
+      <span class="meta">${s.market || ''} · ${s.sector || ''} · 현재가 ${fmt(s.price)} <span class="${(s.chg||0)>=0?'pos':'neg'}">${s.chg != null ? pct(s.chg) : ''}</span> · 거래대금 ${fmtAmt(s.amount)} · ${s.as_of}${s.minute ? ` · Minute ${s.minute.wave ?? '?'}파 ${s.minute.dir === 'up' ? '↑' : '↓'} ${s.minute.state || ''} (conf ${s.minute.conf ?? '-'})` : ''}</span></div>
+    ${p ? `<div class="pvsum"><b>PV 오버레이</b> ${pvBadge(p)} · 효율비60 백분위 <b>${Math.round(p.eff_pct*100)}%</b> · ${p.quad_name} · 거래량선 10일 ${(p.dv10*100).toFixed(0)}%${p.dv_pct != null ? ` (Q1내 ${Math.round(p.dv_pct*100)}%)` : ''} · 앵커 ${p.anchor} 이후 가격 ×${p.price_idx} / 거래량 ×${p.vol_idx ?? '-'} / 효율비 ${p.eff_anchor ?? '-'}<br><span style="color:#555">${rule}</span></div>` : `<div class="pvsum">PV 지표 미산출 (거래량 결측·거래정지 구간)</div>`}
+    <div class="controls">
+      <label>기준일 <input type="date" id="c-base" value="${CTRL.base}"></label>
+      <button id="c-anchor" title="Minute 현재 파동 시작일" ${p?.anchor ? '' : 'disabled'}>파동시작 ${p?.anchor || ''}</button>
+      <button id="c-60">60일 전</button><button id="c-ytd">연초</button>
+      <label>방식 <select id="c-mode"><option value="A" ${CTRL.mode==='A'?'selected':''}>A 평활</option><option value="B" ${CTRL.mode==='B'?'selected':''}>B 누적</option></select></label>
+      <label>평활 <select id="c-win">${[1,5,10,20].map(v=>`<option ${CTRL.win==v?'selected':''}>${v}</option>`).join('')}</select></label>
+      <label>국면 k <select id="c-k">${[5,10,20].map(v=>`<option ${CTRL.k==v?'selected':''}>${v}</option>`).join('')}</select></label>
+      <label>축 <select id="c-axis"><option value="log" ${CTRL.axis==='log'?'selected':''}>로그</option><option value="linear" ${CTRL.axis==='linear'?'selected':''}>선형</option></select></label>
+      <label>구간 <select id="c-range"><option value="60" ${CTRL.range==='60'?'selected':''}>기준일 −60일~</option><option value="250" ${CTRL.range==='250'?'selected':''}>최근 1년</option><option value="all" ${CTRL.range==='all'?'selected':''}>전체(2024~)</option></select></label>
+      <label><input type="checkbox" id="c-shade" ${CTRL.shade?'checked':''}> 국면 음영</label>
+      <label><input type="checkbox" id="c-close" ${CTRL.closeLine?'checked':''}> 종가선</label>
+    </div>
+    <div class="tiles" id="tiles"></div>
+    <div id="chart"></div>
+    <div class="quad">
+      <div style="border-color:var(--q1);background:rgba(227,73,72,.07)"><div class="n">Q1 가격↑ 거래량↑</div><div class="d">검증: 60일 −0.7% (최악). 거래량선 상승폭 클수록 나쁨(−2.0%). 3파 면제 없음.</div></div>
+      <div style="border-color:var(--q2);background:rgba(237,161,0,.08)"><div class="n">Q2 가격↑ 거래량↓ (얇은 상승)</div><div class="d">검증: +0.2%. "얇은 상승=소진" 통설 미지지. 무해.</div></div>
+      <div style="border-color:var(--q3);background:rgba(42,120,214,.08)"><div class="n">Q3 가격↓ 거래량↑ (투매)</div><div class="d">검증: +0.6% (최선). 크기와 무관. 진입금지 해제 정도.</div></div>
+      <div style="border-color:var(--q4);background:rgba(138,137,133,.1)"><div class="n">Q4 가격↓ 거래량↓</div><div class="d">검증: 0%. 단 거래량 급감할수록 나쁨(−0.7%) — "조정 중 거래량 감소=건전" 주의.</div></div>
+    </div>`;
+  const bind = (id, key, get) => $(id).addEventListener('change', () => { CTRL[key] = get(); draw(); });
+  bind('c-base', 'base', () => $('c-base').value); bind('c-mode', 'mode', () => $('c-mode').value);
+  bind('c-win', 'win', () => +$('c-win').value); bind('c-k', 'k', () => +$('c-k').value);
+  bind('c-axis', 'axis', () => $('c-axis').value); bind('c-range', 'range', () => $('c-range').value);
+  bind('c-shade', 'shade', () => $('c-shade').checked); bind('c-close', 'closeLine', () => $('c-close').checked);
+  $('c-anchor').addEventListener('click', () => { CTRL.base = p.anchor; $('c-base').value = p.anchor; draw(); });
+  $('c-60').addEventListener('click', () => { if (!D) return; const i = Math.max(0, D.date.length - 61); CTRL.base = D.date[i]; $('c-base').value = CTRL.base; draw(); });
+  $('c-ytd').addEventListener('click', () => { CTRL.base = D ? D.date[D.date.length-1].slice(0,4) + '-01-01' : '2026-01-01'; $('c-base').value = CTRL.base; draw(); });
+  D = null; $('chart').innerHTML = '<div class="empty">차트 로딩…</div>';
+  try { D = await (await fetch(URL_STOCK(code))).json(); } catch(e){ $('chart').innerHTML = '<div class="empty">데이터 로드 실패</div>'; return; }
+  if (CUR !== code) return;
+  draw();
+}
+
+// ───────── 계산·차트 (template.html 과 동일 산식) ─────────
+function movAvg(arr, n){ const out = new Array(arr.length).fill(null); let s = 0;
+  for (let i = 0; i < arr.length; i++){ s += arr[i]; if (i >= n) s -= arr[i-n]; if (i >= n-1) out[i] = s / n; } return out; }
+function compute(){
+  const N = D.date.length; let b = D.date.findIndex(d => d >= CTRL.base); if (b < 0) b = N - 1;
+  const n = CTRL.win, k = CTRL.k, c = D.c, v = D.v, vs = movAvg(v, n), C0 = c[b];
+  const volIdx = new Array(N).fill(null);
+  if (CTRL.mode === 'A'){ const V0 = vs[b]; for (let i = 0; i < N; i++) if (vs[i] != null && V0) volIdx[i] = vs[i] / V0; }
+  else { const pre = v.slice(Math.max(0, b-60), b); const avg = pre.length ? pre.reduce((a,x)=>a+x,0)/pre.length : 0; let cum = 0;
+    for (let i = b; i < N; i++){ cum += v[i]; volIdx[i] = avg ? cum / (avg * (i - b + 1)) : null; } }
+  const priceIdx = c.map(x => x / C0), volLine = volIdx.map(x => x == null ? null : x * C0), eff = priceIdx.map((p,i) => volIdx[i] == null ? null : p / volIdx[i]);
+  const quad = new Array(N).fill(null);
+  for (let i = Math.max(b, k); i < N; i++){ if (vs[i] == null || vs[i-k] == null) continue; const up = c[i] >= c[i-k], vu = vs[i] >= vs[i-k]; quad[i] = up ? (vu ? 1 : 2) : (vu ? 3 : 4); }
+  return {b, n, k, vs, C0, volIdx, priceIdx, volLine, eff, quad, N};
+}
+function draw(){
+  if (!D || !D.date.length) return;
+  if (!document.querySelector('#chart .plotly')) $('chart').innerHTML = '';
+  const R = compute(); const {b, n, vs, C0, volIdx, priceIdx, volLine, eff, quad, N} = R;
+  let s0 = 0; if (CTRL.range === '60') s0 = Math.max(0, b - 60); else if (CTRL.range === '250') s0 = Math.max(0, N - 250);
+  const idx = []; for (let i = s0; i < N; i++) idx.push(i);
+  const x = idx.map(i => D.date[i]), pick = a => idx.map(i => a[i]);
+  const tickvals = [], ticktext = [];
+  for (let j = 0; j < idx.length; j++){ const i = idx[j]; if (j === 0 || D.date[i].slice(0,7) !== D.date[idx[j-1]].slice(0,7)){ tickvals.push(D.date[i]); ticktext.push(D.date[i].slice(2,7)); } }
+  const upC = 'rgb(227,73,72)', dnC = 'rgb(42,120,214)', volLabel = CTRL.mode === 'A' ? `거래량선 A (MA${n})` : '거래량선 B (누적)';
+  const traces = [
+    { type:'candlestick', x, open:pick(D.o), high:pick(D.h), low:pick(D.l), close:pick(D.c), name:'가격 (캔들)', yaxis:'y',
+      increasing:{line:{color:upC, width:1}, fillcolor:upC}, decreasing:{line:{color:dnC, width:1}, fillcolor:dnC}, hoverinfo:'skip' },
+    { type:'scatter', mode:'lines', x, y:pick(D.c), name:'종가', yaxis:'y', line:{color:'#52514e', width:1}, visible: CTRL.closeLine ? true : 'legendonly',
+      customdata: idx.map(i => [priceIdx[i], quad[i] ? QUAD[quad[i]].name : '—']), hovertemplate:'종가 %{y:,.0f} (가격지수 ×%{customdata[0]:.2f})<br>국면 %{customdata[1]}<extra></extra>' },
+    { type:'scatter', mode:'lines', x, y:pick(volLine), name:volLabel, yaxis:'y', line:{color:'#4a3aa7', width:2}, connectgaps:false,
+      customdata: idx.map(i => [volIdx[i], vs[i]]), hovertemplate:'거래량선 %{y:,.0f} (거래량지수 ×%{customdata[0]:.2f}, 평활V %{customdata[1]:,.0f})<extra></extra>' },
+    { type:'scatter', mode:'lines', x, y:pick(eff), name:'효율비 (가격지수÷거래량지수)', yaxis:'y2', line:{color:'#1baf7a', width:2}, connectgaps:false, hovertemplate:'효율비 %{y:.2f}<extra></extra>' },
+    { type:'bar', x, y:pick(D.v), name:'거래량', yaxis:'y3', marker:{color: idx.map(i => D.c[i] >= D.o[i] ? 'rgba(227,73,72,.45)' : 'rgba(42,120,214,.45)')}, hovertemplate:'거래량 %{y:,.0f}<extra></extra>' },
+  ];
+  const shapes = [];
+  if (CTRL.shade){ let run = null; const flush = () => { if (!run) return; const q = QUAD[run.q];
+      shapes.push({type:'rect', xref:'x', yref:'paper', x0:D.date[run.s], x1:D.date[run.e], y0:0, y1:1, fillcolor:q.color, opacity:q.a, line:{width:0}, layer:'below'}); run = null; };
+    for (const i of idx){ const q = quad[i]; if (q == null){ flush(); continue; } if (run && run.q === q) run.e = i; else { flush(); run = {q, s:i, e:i}; } } flush(); }
+  shapes.push({type:'line', xref:'x', yref:'paper', x0:D.date[b], x1:D.date[b], y0:0, y1:1, line:{color:'#0b0b0b', width:1, dash:'dot'}});
+  shapes.push({type:'line', xref:'paper', yref:'y', x0:0, x1:1, y0:C0, y1:C0, line:{color:'#8a8985', width:1, dash:'dash'}});
+  shapes.push({type:'line', xref:'paper', yref:'y2', x0:0, x1:1, y0:1, y1:1, line:{color:'#8a8985', width:1, dash:'dash'}});
+  const last = N - 1, lg = v => CTRL.axis === 'log' ? Math.log10(v) : v;
+  const annotations = [
+    {x:D.date[b], y:1, xref:'x', yref:'paper', text:`기준일 ${D.date[b]} · 종가 ${fmt(C0)}`, showarrow:false, xanchor:'left', yanchor:'top', font:{size:11, color:'#52514e'}, bgcolor:'rgba(252,252,251,.8)'},
+    ...(volLine[last] ? [{x:D.date[last], y:lg(volLine[last]), xref:'x', yref:'y', text:volLabel, showarrow:false, xanchor:'left', xshift:6, font:{size:11, color:'#4a3aa7'}}] : []),
+    {x:D.date[last], y:lg(D.c[last]), xref:'x', yref:'y', text:'가격', showarrow:false, xanchor:'left', xshift:6, font:{size:11, color:'#0b0b0b'}},
+  ];
+  const layout = {
+    paper_bgcolor:'#fcfcfb', plot_bgcolor:'#fcfcfb', font:{family:'"Malgun Gothic",system-ui,sans-serif', size:12, color:'#0b0b0b'},
+    margin:{l:66, r:110, t:8, b:36}, hovermode:'x unified', hoverlabel:{bgcolor:'#fcfcfb', bordercolor:'#e3e2dd', font:{size:12}},
+    legend:{orientation:'h', x:0, y:1.02, yanchor:'bottom', font:{size:11}},
+    xaxis:{type:'category', anchor:'y3', tickvals, ticktext, gridcolor:'#eeede9', showspikes:true, spikemode:'across', spikethickness:1, spikecolor:'#8a8985', spikedash:'dot'},
+    yaxis:{domain:[0.42,1], type:CTRL.axis, title:{text:'가격축 (원) — 거래량선도 같은 축', font:{size:11, color:'#52514e'}}, gridcolor:'#eeede9', tickformat:',d', zeroline:false},
+    yaxis2:{domain:[0.19,0.39], type:'log', title:{text:'효율비', font:{size:11, color:'#52514e'}}, gridcolor:'#eeede9', zeroline:false},
+    yaxis3:{domain:[0,0.16], title:{text:'거래량', font:{size:11, color:'#52514e'}}, gridcolor:'#eeede9', tickformat:'.2s', zeroline:false},
+    shapes, annotations, bargap:0.2,
+  };
+  Plotly.react('chart', traces, layout, {responsive:true, displaylogo:false, modeBarButtonsToRemove:['lasso2d','select2d','autoScale2d']});
+  const pI = priceIdx[last], vI = volIdx[last], e = eff[last], q = quad[last], days = last - b + 1;
+  const dist = {1:0,2:0,3:0,4:0}; for (let i = b; i < N; i++) if (quad[i]) dist[quad[i]]++;
+  $('tiles').innerHTML = `
+    <div class="tile"><div class="k">기준일 종가</div><div class="v">${fmt(C0)}</div><div class="s">${D.date[b]} · 경과 ${days}거래일</div></div>
+    <div class="tile"><div class="k">최근 종가 (${D.date[last]})</div><div class="v">${fmt(D.c[last])}</div><div class="s ${pI>=1?'pos':'neg'}">가격지수 ×${pI.toFixed(2)} (${pct(pI-1)})</div></div>
+    <div class="tile"><div class="k">거래량지수 (${CTRL.mode==='A'?'MA'+n:'누적'})</div><div class="v">${vI != null ? '×'+vI.toFixed(2) : '-'}</div><div class="s">${volLine[last] ? fmt(Math.round(volLine[last]))+'원 환산' : ''}</div></div>
+    <div class="tile"><div class="k">효율비</div><div class="v">${e != null ? e.toFixed(2) : '-'}</div><div class="s">${e == null ? '' : e > 1 ? '가격이 거래량보다 앞섬' : '거래량이 가격보다 앞섬 ⚠'}</div></div>
+    <div class="tile"><div class="k">현재 국면 (k=${CTRL.k})</div><div class="v" style="font-size:15px;color:${q?QUAD[q].color:'#8a8985'}">${q?QUAD[q].name:'—'}</div><div class="s">${[1,2,3,4].map(j=>`<span class="b q q${j}">Q${j}</span> ${dist[j]}`).join(' ')}</div></div>`;
+}
+init();
+</script>
+</body>
+</html>
