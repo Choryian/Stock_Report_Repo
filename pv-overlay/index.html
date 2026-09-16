@@ -138,6 +138,8 @@ async function init(){
     if (VIEW[j]) { select(VIEW[j].code); e.preventDefault(); }
   });
   apply();
+  // ?update=1 — 공개 페이지의 폴백 링크로 열렸을 때 자동으로 업데이트 시작 (로컬 서버 전용)
+  if (!STATIC && /[?&]update=1/.test(location.search)){ $('upd-pub').checked = /[?&]publish=1/.test(location.search); history.replaceState(null, '', location.pathname + location.hash); setTimeout(startUpdate, 300); }
   const h = location.hash.replace('#', '');
   if (h && STOCKS.some(s => s.code === h)) select(h);
   window.addEventListener('hashchange', () => { const c = location.hash.replace('#',''); if (c && c !== CUR && STOCKS.some(s => s.code === c)) select(c); });
@@ -323,7 +325,8 @@ async function startUpdate(){
       <div class="st err">로컬 서버(${LOCAL})에 연결할 수 없습니다.</div>
       <div>이 페이지는 정적 사이트라 스스로 데이터를 받을 수 없습니다. 데이터가 있는 PC에서 아래를 실행한 뒤 다시 누르세요:</div>
       <div class="log">C:\\Users\\USER\\Documents\\PV_Overlay\\run_dashboard.bat   (또는 python serve.py)</div>
-      <div style="margin-top:6px;color:var(--text-muted)">서버가 뜨면 localhost:8790 대시보드에서도 같은 버튼으로 실행할 수 있습니다.</div>`);
+      <div style="margin-top:6px;color:var(--text-muted)">브라우저가 공개 페이지→localhost 호출을 막는 경우(로컬 네트워크 접근 권한 거부 등)에는 아래 링크로 로컬 대시보드를 열면 자동으로 업데이트가 시작됩니다.</div>
+      <div style="margin-top:6px"><a href="${LOCAL}/dashboard.html?update=1${publish ? '&publish=1' : ''}" target="_blank" style="color:var(--vol);font-weight:600">↗ 로컬 대시보드에서 업데이트 실행</a></div>`);
     return;
   }
   pollUpdate();
