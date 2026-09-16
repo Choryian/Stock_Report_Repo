@@ -49,7 +49,7 @@
   .nm{font-weight:600} .cd{color:var(--text-muted);font-size:11px}
   .pos{color:var(--up)} .neg{color:var(--down)}
   .b{display:inline-block;padding:0 5px;border-radius:4px;font-size:10.5px;font-weight:700;line-height:16px}
-  .b.w2{background:#fee2e2;color:#b91c1c} .b.w1{background:#fef3c7;color:#b45309} .b.w0{background:#f1f5f9;color:#64748b}
+  .b.w2{background:#fee2e2;color:#b91c1c} .b.w1{background:#fef3c7;color:#b45309} .b.w0{background:#f1f5f9;color:#64748b} .b.vn{background:#e0f2fe;color:#0c4a6e}
   .b.w5{background:#b91c1c;color:#fff} .b.q5{background:#dcfce7;color:#166534}
   .b.q{color:#fff} .b.q.q1{background:var(--q1)} .b.q.q2{background:var(--q2)} .b.q.q3{background:var(--q3)} .b.q.q4{background:var(--q4)}
   section{display:flex;flex-direction:column;min-height:0;overflow:auto;padding:12px 16px 24px}
@@ -93,7 +93,7 @@
   <div class="filters">
     <label>검색 (코드·종목명)<input id="f-q" type="text" placeholder="예: 주성 / 036930"></label>
     <label>시장<select id="f-mk"><option value="">전체</option><option>KOSPI</option><option>KOSDAQ</option></select></label>
-    <label>PV 거래량 경고<select id="f-pv"><option value="">전체</option><option value="2">경고만</option><option value="12">주의 이상</option><option value="w5">5파+경고</option><option value="q5">조용한 5파</option><option value="0">경고 없음</option></select></label>
+    <label>PV 판정<select id="f-pv"><option value="">전체</option><option value="strong">강경고 (거래량 앞섬 × 과신장)</option><option value="hot">과열 (모멘텀 상위10%)</option><option value="volnorm">거래량 정상화 예상 (가격 중립)</option><option value="w5">5파+거래량 앞섬</option><option value="q5">조용한 5파</option><option value="none">해당 없음</option></select></label>
     <label>국면<select id="f-quad"><option value="">전체</option><option value="1">Q1 가격↑거래량↑</option><option value="2">Q2 가격↑거래량↓</option><option value="3">Q3 가격↓거래량↑</option><option value="4">Q4 가격↓거래량↓</option></select></label>
     <label>Minute 파동<select id="f-mw"><option value="">전체</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="?">미정</option></select></label>
     <label>최소 거래대금(억)<select id="f-amt"><option value="0">0</option><option value="1">1</option><option value="10" selected>10</option><option value="50">50</option><option value="100">100</option><option value="500">500</option></select></label>
@@ -102,7 +102,7 @@
   <div class="cnt" id="cnt"></div>
   <div class="tblwrap"><table id="t"><thead><tr>
     <th data-k="code">코드</th><th data-k="name">종목</th><th data-k="price">현재가</th><th data-k="chg">등락</th><th data-k="amount">거래대금</th>
-    <th data-k="eff_pct" title="효율비60 횡단면 백분위 — 낮을수록 거래량이 가격을 앞섬(되돌림 경고)">효율%</th><th data-k="quad">국면</th><th data-k="mw">Minute</th><th data-k="warn">PV</th>
+    <th data-k="eff_pct" title="효율비60 횡단면 백분위 — 낮을수록 거래량이 가격을 앞섬">효율%</th><th data-k="mom_pct" title="60일 모멘텀 횡단면 백분위 — 높을수록 이미 많이 오름(과신장)">모멘%</th><th data-k="quad">국면</th><th data-k="mw">Minute</th><th data-k="warn" title="강경고=효율 하위10%×모멘 상위30% / 과열=모멘 상위10% / 거래량정상화=효율 하위10%만">PV</th>
   </tr></thead><tbody id="tb"></tbody></table></div>
 </aside>
 <section id="detail"><div class="empty">좌측에서 종목을 클릭하세요 (↑↓ 키로 이동)</div></section>
@@ -156,24 +156,26 @@ function apply(){
     if (haspv && !s.pv) return false;
     if (qd && String(p.quad) !== qd) return false;
     if (mw){ const w = s.minute?.wave ?? '?'; if (String(w) !== mw) return false; }
-    if (pvf){ const w = p.warn ?? -1;
-      if (pvf === '2' && w !== 2) return false; if (pvf === '12' && w < 1) return false;
-      if (pvf === 'w5' && !p.w5_warn) return false; if (pvf === 'q5' && !p.quiet5) return false;
-      if (pvf === '0' && w !== 0) return false; }
+    if (pvf){ const lv = p.level ?? 'none';
+      if (pvf === 'w5' && !p.w5_warn) return false; else if (pvf === 'q5' && !p.quiet5) return false;
+      else if (pvf !== 'w5' && pvf !== 'q5' && lv !== pvf) return false; }
     return true;
   });
   render();
 }
 function sv(s, k){
-  if (k === 'eff_pct') return s.pv?.eff_pct ?? 9; if (k === 'quad') return s.pv?.quad ?? 9; if (k === 'warn') return (s.pv?.w5_warn ? 3 : s.pv?.warn ?? -1);
+  if (k === 'mom_pct') return s.pv?.mom_pct ?? -1; if (k === 'eff_pct') return s.pv?.eff_pct ?? 9; if (k === 'quad') return s.pv?.quad ?? 9;
+  if (k === 'warn'){ const p = s.pv || {}; return p.w5_warn ? 4 : ({strong:3, hot:2, volnorm:1}[p.level] ?? (p.level ? 0 : -1)); }
   if (k === 'mw') return s.minute?.wave ?? '~'; return s[k] ?? (typeof s[k] === 'number' ? -1 : '');
 }
 function pvBadge(p){
   if (!p || p.eff_pct == null) return `<span class="b w0">-</span>`;
-  const pc = Math.round(p.eff_pct * 100);
-  if (p.w5_warn) return `<span class="b w5">5파+경고</span>`;
-  if (p.quiet5) return `<span class="b q5">조용한5파</span>`;
-  return `<span class="b ${p.warn === 2 ? 'w2' : p.warn === 1 ? 'w1' : 'w0'}">${p.warn === 2 ? '경고' : p.warn === 1 ? '주의' : '—'}</span>`;
+  // T7 2축: 강경고(거래량 앞섬×과신장 −3.1%) / 과열(모멘텀 상위10% −2.2%) / 거래량정상화(가격 중립) / —
+  if (p.w5_warn) return `<span class="b w5" title="Minute 5파 + 거래량 앞섬 (60일 −3.8%)">5파+거래량</span>`;
+  if (p.quiet5) return `<span class="b q5" title="조용한 5파 (홀드 후보 +1.8%)">조용한5파</span>`;
+  const L = {strong:['w2','강경고','거래량 앞섬 × 가격 과신장 — 60일 −3.1%, 거래량 ⅓로 급감'], hot:['w1','과열','60일 모멘텀 상위10% — 60일 −2.2%'],
+             volnorm:['vn','거래량정상화','거래량 앞섬이나 가격 미과신장 — 가격 중립, 거래량만 급감']}[p.level];
+  return L ? `<span class="b ${L[0]}" title="${L[2]}">${L[1]}</span>` : `<span class="b w0">—</span>`;
 }
 function render(){
   VIEW.sort((a, b) => { const x = sv(a, SORT.k), y = sv(b, SORT.k); return x < y ? -SORT.dir : x > y ? SORT.dir : 0; });
@@ -181,7 +183,7 @@ function render(){
   $('tb').innerHTML = VIEW.map(s => { const p = s.pv || {}; const mw = s.minute?.wave ?? '?', md = s.minute?.dir === 'up' ? '↑' : s.minute?.dir === 'down' ? '↓' : '';
     return `<tr data-code="${s.code}" class="${s.code === CUR ? 'sel' : ''}"><td class="cd">${s.code}</td><td class="nm">${s.name}</td>
     <td>${fmt(s.price)}</td><td class="${(s.chg || 0) >= 0 ? 'pos' : 'neg'}">${s.chg != null ? pct(s.chg) : '-'}</td><td>${fmtAmt(s.amount)}</td>
-    <td>${p.eff_pct != null ? Math.round(p.eff_pct * 100) + '%' : '-'}</td><td>${p.quad ? `<span class="b q q${p.quad}">Q${p.quad}</span>` : '-'}</td>
+    <td>${p.eff_pct != null ? Math.round(p.eff_pct * 100) + '%' : '-'}</td><td>${p.mom_pct != null ? Math.round(p.mom_pct * 100) + '%' : '-'}</td><td>${p.quad ? `<span class="b q q${p.quad}">Q${p.quad}</span>` : '-'}</td>
     <td>${mw}${md}</td><td>${pvBadge(p)}</td></tr>`; }).join('');
   document.querySelectorAll('#tb tr').forEach(tr => tr.addEventListener('click', () => select(tr.dataset.code)));
 }
@@ -194,13 +196,14 @@ async function select(code){
   const s = STOCKS.find(x => x.code === code); const p = s.pv;
   const rule = !p ? '' : p.w5_warn ? 'Minute 5파 + 거래량 경고 — 검증상 60일 −3.8%: 신규진입 금지·익절 우선'
     : p.quiet5 ? '조용한 5파(Q1·거래량선 상승폭 하위⅓) — 검증상 +1.8%: 홀드 후보, 거래량 붙으면 익절'
-    : p.warn === 2 ? '거래량선이 가격선을 크게 앞섬 — 검증상 60일 −2~−3%p 되돌림 경고 (파동 위치 무관, 3파 면제 없음)'
-    : p.warn === 1 ? '거래량 앞섬 주의 단계 — 추가 거래량 유입 시 경고 전환'
+    : p.level === 'strong' ? '강경고: 거래량이 가격을 크게 앞선 데다 가격이 이미 많이 오른 상태 — 검증상 60일 −3.1% (모멘텀 상위10%면 −4.6%), 거래량 ⅓로 급감. 클라이맥스 후 되돌림 패턴, 파동 위치 무관'
+    : p.level === 'hot' ? '과열: 60일 모멘텀 상위 10% — 검증상 60일 −2.2%. 거래량 조건 없이도 되돌림 성향'
+    : p.level === 'volnorm' ? '거래량 정상화 예상: 거래량이 가격을 앞섰지만 가격은 과신장 아님 — 검증상 가격 중립(−0.0%), 거래량만 ⅓로 식음. 매도 근거 아님'
     : p.quad === 3 ? '가격↓거래량↑ — 검증상 완만한 플러스(+0.6%), 투매 국면 진입금지 해제' : '거래량 경고 없음';
   $('detail').innerHTML = `
     <div class="shead"><h2>${s.name} <span class="cd">${s.code}</span></h2>
       <span class="meta">${s.market || ''} · ${s.sector || ''} · 현재가 ${fmt(s.price)} <span class="${(s.chg||0)>=0?'pos':'neg'}">${s.chg != null ? pct(s.chg) : ''}</span> · 거래대금 ${fmtAmt(s.amount)} · ${s.as_of}${s.minute ? ` · Minute ${s.minute.wave ?? '?'}파 ${s.minute.dir === 'up' ? '↑' : '↓'} ${s.minute.state || ''} (conf ${s.minute.conf ?? '-'})` : ''}</span></div>
-    ${p ? `<div class="pvsum"><b>PV 오버레이</b> ${pvBadge(p)} · 효율비60 백분위 <b>${Math.round(p.eff_pct*100)}%</b> · ${p.quad_name} · 거래량선 10일 ${(p.dv10*100).toFixed(0)}%${p.dv_pct != null ? ` (Q1내 ${Math.round(p.dv_pct*100)}%)` : ''} · 앵커 ${p.anchor} 이후 가격 ×${p.price_idx} / 거래량 ×${p.vol_idx ?? '-'} / 효율비 ${p.eff_anchor ?? '-'}<br><span style="color:#555">${rule}</span></div>` : `<div class="pvsum">PV 지표 미산출 (거래량 결측·거래정지 구간)</div>`}
+    ${p ? `<div class="pvsum"><b>PV 오버레이</b> ${pvBadge(p)} · 효율비60 백분위 <b>${Math.round(p.eff_pct*100)}%</b> · 60일 모멘텀 ${(p.mom60*100).toFixed(0)}% (백분위 <b>${Math.round((p.mom_pct??0)*100)}%</b>) · ${p.quad_name} · 거래량선 10일 ${(p.dv10*100).toFixed(0)}%${p.dv_pct != null ? ` (Q1내 ${Math.round(p.dv_pct*100)}%)` : ''} · 앵커 ${p.anchor} 이후 가격 ×${p.price_idx} / 거래량 ×${p.vol_idx ?? '-'} / 효율비 ${p.eff_anchor ?? '-'}<br><span style="color:#555">${rule}</span></div>` : `<div class="pvsum">PV 지표 미산출 (거래량 결측·거래정지 구간)</div>`}
     <div class="controls">
       <label>기준일 <input type="date" id="c-base" value="${CTRL.base}"></label>
       <button id="c-anchor" title="Minute 현재 파동 시작일" ${p?.anchor ? '' : 'disabled'}>파동시작 ${p?.anchor || ''}</button>
