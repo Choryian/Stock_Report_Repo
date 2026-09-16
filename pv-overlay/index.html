@@ -20,6 +20,17 @@
   header h1{font-size:16px;margin:0}
   header .sub{color:var(--text-secondary);font-size:12px}
   header .sp{flex:1}
+  header .upd{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-secondary)}
+  header .upd button{font:inherit;font-size:12px;font-weight:600;padding:4px 10px;border:1px solid var(--vol);border-radius:6px;background:#fff;color:var(--vol);cursor:pointer}
+  header .upd button:hover{background:#f3f1ff} header .upd button:disabled{opacity:.55;cursor:default}
+  #updpanel{position:fixed;right:16px;top:52px;width:440px;max-width:calc(100vw - 32px);background:var(--surface-1);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);padding:12px 14px;font-size:12px;z-index:50}
+  #updpanel .t{font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+  #updpanel .t button{font:inherit;font-size:11px;border:1px solid var(--border);background:#fff;border-radius:4px;padding:1px 7px;cursor:pointer}
+  #updpanel .log{max-height:220px;overflow:auto;background:#f6f6f4;border-radius:6px;padding:6px 8px;font-family:Consolas,monospace;font-size:11px;white-space:pre-wrap;color:var(--text-secondary)}
+  #updpanel .st{margin:6px 0;color:var(--text-primary)}
+  #updpanel .ok{color:#166534} #updpanel .err{color:#b91c1c}
+  .spin{display:inline-block;width:10px;height:10px;border:2px solid #c9c4f0;border-top-color:var(--vol);border-radius:50%;animation:sp 0.8s linear infinite;vertical-align:-1px;margin-right:4px}
+  @keyframes sp{to{transform:rotate(360deg)}}
   header a{color:var(--text-secondary);font-size:12px;text-decoration:none;margin-left:10px}
   main{flex:1;display:grid;grid-template-columns:460px 1fr;min-height:0}
   aside{border-right:1px solid var(--border);background:var(--surface-1);display:flex;flex-direction:column;min-height:0}
@@ -68,6 +79,8 @@
 <header>
   <h1>가격·거래량 동일축 오버레이 대시보드</h1>
   <span class="sub" id="hsub">로딩…</span>
+  <span class="upd"><button id="btn-upd" title="KRX 최신 일봉 수신 → PV 리스트 재계산 → 공개 사이트 발행">⟳ 데이터 업데이트</button>
+    <label title="체크 시 GitHub Pages(공개 주소)에도 발행"><input type="checkbox" id="upd-pub" checked> 공개 발행</label></span>
   <span class="sp"></span>
   <a href="validation/anchor_report.html" target="_blank">검증 T6</a>
   <a href="validation/wave_report.html" target="_blank">T5</a>
@@ -288,6 +301,48 @@ function draw(){
     <div class="tile"><div class="k">효율비</div><div class="v">${e != null ? e.toFixed(2) : '-'}</div><div class="s">${e == null ? '' : e > 1 ? '가격이 거래량보다 앞섬' : '거래량이 가격보다 앞섬 ⚠'}</div></div>
     <div class="tile"><div class="k">현재 국면 (k=${CTRL.k})</div><div class="v" style="font-size:15px;color:${q?QUAD[q].color:'#8a8985'}">${q?QUAD[q].name:'—'}</div><div class="s">${[1,2,3,4].map(j=>`<span class="b q q${j}">Q${j}</span> ${dist[j]}`).join(' ')}</div></div>`;
 }
+// ───────── 데이터 업데이트 (로컬 serve.py 파이프라인 트리거) ─────────
+// 공개 페이지(GitHub Pages)는 정적이라 스스로 갱신 못 함 → PC에서 떠 있는 localhost:8790 서버를 CORS로 호출.
+const LOCAL = 'http://localhost:8790';
+const UPD_BASE = STATIC ? LOCAL : '';
+let updTimer = null;
+function updPanel(html){ let p = $('updpanel'); if (!p){ p = document.createElement('div'); p.id = 'updpanel'; document.body.appendChild(p); } p.innerHTML = html; return p; }
+function closeUpd(){ $('updpanel')?.remove(); if (updTimer){ clearInterval(updTimer); updTimer = null; } }
+async function startUpdate(){
+  const publish = $('upd-pub').checked;
+  const msg = ['KRX 최신 일봉을 받아 PV 리스트를 다시 계산합니다.', publish ? '공개 사이트(choryian.github.io)에도 발행합니다 (git push).' : '', '',
+    '· KRX OpenAPI는 장 마감 후 당일분이 열립니다 — 장중에는 전 거래일까지 반영', '· 소요 약 2~4분', '', '진행할까요?'].join(String.fromCharCode(10));
+  if (!confirm(msg)) return;
+  $('btn-upd').disabled = true;
+  try {
+    const r = await fetch(UPD_BASE + '/api/update', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({publish})});
+    if (r.status === 409){ updPanel(`<div class="t">데이터 업데이트 <button onclick="closeUpd()">닫기</button></div><div class="st">이미 실행 중입니다 — 진행 상황을 표시합니다.</div>`); }
+  } catch(e){
+    $('btn-upd').disabled = false;
+    updPanel(`<div class="t">데이터 업데이트 <button onclick="closeUpd()">닫기</button></div>
+      <div class="st err">로컬 서버(${LOCAL})에 연결할 수 없습니다.</div>
+      <div>이 페이지는 정적 사이트라 스스로 데이터를 받을 수 없습니다. 데이터가 있는 PC에서 아래를 실행한 뒤 다시 누르세요:</div>
+      <div class="log">C:\\Users\\USER\\Documents\\PV_Overlay\\run_dashboard.bat   (또는 python serve.py)</div>
+      <div style="margin-top:6px;color:var(--text-muted)">서버가 뜨면 localhost:8790 대시보드에서도 같은 버튼으로 실행할 수 있습니다.</div>`);
+    return;
+  }
+  pollUpdate();
+}
+async function pollUpdate(){
+  const render = st => {
+    const running = st.running;
+    const head = running ? `<span class="spin"></span>${st.step}` : (st.ok ? `<span class="ok">✔ 완료</span> — 데이터 ${st.as_of_before || '?'} → <b>${st.as_of_after || '?'}</b>${st.published ? ' · 공개 사이트 발행됨 (반영 1~2분)' : ''}` : `<span class="err">✖ ${st.step}</span>`);
+    const tail = !running && st.ok ? (STATIC
+        ? `<div style="margin-top:8px"><button onclick="location.reload()" style="font:inherit;padding:3px 9px;border:1px solid var(--vol);border-radius:5px;background:#fff;color:var(--vol);cursor:pointer">새로고침 (발행 반영 후)</button> <span style="color:var(--text-muted)">GitHub Pages 반영까지 1~2분 걸립니다. 헤더의 데이터 날짜가 바뀌면 반영된 것입니다.</span></div>`
+        : `<div style="margin-top:8px"><button onclick="location.reload()" style="font:inherit;padding:3px 9px;border:1px solid var(--vol);border-radius:5px;background:#fff;color:var(--vol);cursor:pointer">새로고침</button></div>`) : '';
+    updPanel(`<div class="t">데이터 업데이트 <button onclick="closeUpd()">닫기</button></div><div class="st">${head}</div><div class="log">${(st.log || []).map(l => l.replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]))).join(String.fromCharCode(10))}</div>${tail}`);
+    if (!running){ $('btn-upd').disabled = false; if (updTimer){ clearInterval(updTimer); updTimer = null; } if (st.ok && !STATIC) setTimeout(() => location.reload(), 1500); }
+  };
+  const tick = async () => { try { render(await (await fetch(UPD_BASE + '/api/update/status')).json()); } catch(e){ /* 서버 재시작 등 — 다음 틱 */ } };
+  await tick();
+  if (!updTimer) updTimer = setInterval(tick, 2000);
+}
+$('btn-upd').addEventListener('click', startUpdate);
 init();
 </script>
 </body>
