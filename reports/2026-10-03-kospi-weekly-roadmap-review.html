@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>코스피 주간 로드맵 &amp; 파동 리뷰 — 10회차 (2026-W40)</title>
+<meta name="description" content="코스피 10회차 주간 로드맵·파동 리뷰. W39 발행공백 소급 포함, base=K2(미완 확장플랫, 28%) 유지 확정, R1 7,028·확인선1 7,069.18 돌파 후 재이탈(whipsaw), 다음주 한글날 휴장·삼성전자 10/7 잠정실적.">
+<style>
+  :root {
+    --ink:#0f172a; --sub:#475569; --line:#e2e8f0; --bg:#f8fafc;
+    --green:#059669; --blue:#1d4ed8; --purple:#7c3aed; --amber:#b45309; --red:#b91c1c;
+    --hl:#fef3c7; --hlbd:#f59e0b;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:28px; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,'Noto Sans KR','Apple SD Gothic Neo',sans-serif; line-height:1.65; }
+  .wrap { max-width:980px; margin:0 auto; }
+  header { border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:8px; }
+  h1 { font-size:23px; margin:0 0 6px; }
+  .meta { font-size:12.5px; color:var(--sub); }
+  .brand { float:right; font-size:12px; color:var(--sub); font-style:italic; }
+  .issue { display:inline-block; background:#e0e7ff; border:1px solid #6366f1;
+    color:#3730a3; font-size:11.5px; font-weight:700; padding:2px 8px; border-radius:4px; margin-left:6px; }
+  section { background:#fff; border:1px solid var(--line); border-radius:10px;
+    padding:20px 24px; margin-top:18px; box-shadow:0 1px 3px rgba(0,0,0,.04); }
+  h2 { font-size:17px; margin:0 0 4px; display:flex; align-items:center; gap:8px; }
+  h2 .n { display:inline-flex; width:26px; height:26px; border-radius:50%;
+    background:var(--ink); color:#fff; font-size:13px; align-items:center; justify-content:center; }
+  h3 { font-size:14px; margin:16px 0 6px; }
+  .lead { font-size:13px; color:var(--sub); margin:0 0 14px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; margin:6px 0 4px; }
+  th,td { border:1px solid var(--line); padding:7px 9px; text-align:center; vertical-align:top; }
+  th { background:#f1f5f9; font-weight:700; }
+  td.l { text-align:left; }
+  .up { color:var(--green); font-weight:700; }
+  .down { color:var(--red); font-weight:700; }
+  .verdict { background:#fffbeb; border-left:4px solid var(--hlbd); padding:12px 16px;
+    border-radius:4px; font-size:13.5px; margin:10px 0; }
+  .redteam { background:#fef2f2; border-left:4px solid #ef4444; padding:12px 16px;
+    border-radius:4px; font-size:13px; margin:12px 0; }
+  .rulebox { background:#f5f3ff; border-left:4px solid var(--purple); padding:12px 16px;
+    border-radius:4px; font-size:12.5px; margin:12px 0; }
+  .fixbox { background:#fff7ed; border-left:4px solid #fb923c; padding:12px 16px;
+    border-radius:4px; font-size:13px; margin:12px 0; }
+  ul { margin:8px 0; padding-left:20px; font-size:13px; } li { margin:3px 0; }
+  .tag { display:inline-block; font-size:11px; font-weight:700; padding:1px 7px; border-radius:10px; white-space:nowrap; }
+  .t-done { background:#dcfce7; color:#166534; } .t-prog { background:#dbeafe; color:#1e40af; }
+  .t-up { background:#fee2e2; color:#991b1b; } .t-watch { background:#f3e8ff; color:#6b21a8; }
+  .t-hold { background:#f1f5f9; color:#334155; } .t-fix { background:#ffedd5; color:#9a3412; }
+  .scn { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:10px; }
+  .scn .c { border:1px solid var(--line); border-radius:8px; padding:12px; font-size:12.5px; }
+  .scn .c h4 { margin:0 0 6px; font-size:13.5px; }
+  .scn .a { border-top:3px solid var(--green); } .scn .b { border-top:3px solid var(--blue); }
+  .scn .cc { border-top:3px solid var(--red); }
+  .note { font-size:11.5px; color:var(--sub); margin-top:6px; }
+  .basrow { background:#fffbeb; font-weight:700; }
+  .small { font-size:12px; }
+  code { font-size:12px; background:#f1f5f9; padding:1px 4px; border-radius:3px; }
+  footer { font-size:11px; color:var(--sub); text-align:center; margin-top:22px; padding-top:12px; border-top:1px solid var(--line); }
+  @media(max-width:680px){ .scn{grid-template-columns:1fr;} }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="brand">Chory &amp; Rochet</span>
+  <h1>코스피 주간 로드맵 &amp; 파동 리뷰 <span class="issue">10회차 (2026-W40)</span></h1>
+  <div class="meta">
+    작성 기준일 2026-10-01(목, 선제작성) · 발행일 2026-10-03(토) · 기준 종가 <strong>2026-09-30(수) 6,838.04</strong>(10/1 장중 ≈6,893, 진행중·미확정 참고치) · 대상 거래주 09-19(공백주 W39 소급)~09-30(수, W39+W40) · 가이드 대상주 10-05(월)~10-08(목), 10-09(금) 한글날 휴장 ·
+    연계: <em>9회차 (2026-09-18, W38)</em> → <em>W39 발행공백(2026-09-21~09-25)</em> → 본 회차
+  </div>
+</header>
+
+<p style="font-size:12px;color:#334155;background:#f1f5f9;border:1px solid #cbd5e1;border-radius:6px;padding:10px 14px;margin-top:14px;">
+  <strong>§0 연속성 고지 — 회차 번호와 계보.</strong> <code>Stock_Report_Repo/reports/</code> 폴더의 <code>*-kospi-weekly-roadmap-review.html</code> 9개 파일을 전수 조회(2026-10-01)한 결과 마지막 정규 발행은 <strong>9회차(2026-09-18, W38)</strong>다.
+  그 다음 주(<strong>W39, 2026-09-21~09-25</strong>)는 발행 공백이었다 — 플레이북 §0 발행이력의 구 표기("9 09-05 W36")는 이미 9회차 본문에서 stale로 정정됐던 항목이며, 본 회차에서 플레이북 자체를 갱신한다.
+  따라서 <strong>본 회차는 10회차(W40)이며, W39 한 주 치 가격·수급 데이터를 소급 포함</strong>한다. 판정 프레임은 9회차의 채택 카운트(K1~K5 R7 랭킹)를 그대로 승계한다.
+</p>
+
+<p style="font-size:12px;color:#7c2d12;background:#fff7ed;border:1px solid #fb923c;border-radius:6px;padding:10px 14px;margin-top:10px;">
+  <strong>이번 주의 핵심 — 「관문 하나를 넘었다가 다시 반납했다(whipsaw).」</strong> 9/18 종가 6,894.23 → 9/23 종가 <strong>7,080.92</strong>로 레거시 레벨 R1(7,028.00)과 1차 확인선(7,069.18)을 종가 기준 돌파했으나, 추석 연휴(9/24~27) 직후 재개장일 9/28 <strong>−2.70%</strong>를 기점으로 사흘 연속 반납해 9/30 <strong>6,838.04</strong>로 마감했다(9/18 대비 −0.81%). 등록된 구조적 판별선(7,216.62·6,439.49)은 양쪽 모두 종가 기준 미저촉 — <strong>R7-3에 따라 구조 가중은 불변</strong>이다.
+  원/달러는 1,383.3→1,352.8로 반락해 동인 지도 악화가 8→7로 완화됐으나, <strong>R7-3 비대칭 조항상 동인 지도 변화는 약세 가중 하향 근거로 쓸 수 없어</strong> 약세 하한 50%는 유지한다. <strong>[2026-10-03 Chory 결재] 본 판정은 최종 확정됐다</strong>(§3 참조).
+</p>
+
+<!-- 1. 로드맵 변경 로그 -->
+<section>
+  <h2><span class="n">1</span> 로드맵 변경 로그 + 시장 동인 지도</h2>
+  <p class="lead">『상승추세 변수 로드맵 2026 H2』 레인별 발생·결과 — 「예정」 항목은 전건 WebSearch·마감 보도로 실재·결과를 검증한 뒤 기재했다.</p>
+  <table>
+    <thead><tr><th>레인</th><th>항목</th><th>상태</th><th>이번 주 변동 / 결과 (출처)</th></tr></thead>
+    <tbody>
+      <tr><td>파동</td><td class="l">상승추세 재도전 — R1(7,028.00)·확인선1(7,069.18)</td><td><span class="tag t-fix">돌파 후 재이탈 (whipsaw)</span></td>
+        <td class="l">9/23 종가 7,080.92로 두 레벨 모두 종가 기준 돌파했으나, 9/28 재개장일 −2.70%(6,889.74)로 즉시 재이탈. 9/30 6,838.04 마감. 구조적 무효화선(7,216.62·6,439.49)은 미저촉이라 K1~K5 확률은 불변</td></tr>
+      <tr><td>연휴</td><td class="l">★ 추석 연휴(9/24~27) + 9/28 정상개장 여부</td><td><span class="tag t-done">✓ 확인 — 정상개장</span></td>
+        <td class="l">추석 연휴는 9/24(목)~9/27(일) 4일. <strong>9/28(월)은 대체공휴일·임시공휴일 지정 없이 정상 개장</strong>(WebSearch 재검증: "2026년 추석 연휴는 9월 24~27일 나흘이며, 28일은 대체공휴일이 아닌 정상 근무일"). Yahoo Finance 일봉에도 9/28 정상 거래 데이터 존재 — 9회차의 "임시공휴일 지정 시 10/19 이월" 조건문은 <strong>미발동, 시간스톱 10/16 그대로 유지</strong></td></tr>
+      <tr><td>매크로</td><td class="l">9월 수출 (산업부 발표, 10/1)</td><td><span class="tag t-done">✓ 발생</span></td>
+        <td class="l"><strong>1,209.4억달러(+83.5% YoY, 역대 최대)</strong>, 반도체 수출 <strong>603억달러(+262.8% YoY, 단일품목 최초 600억 돌파)</strong>. AI 반도체 P×Q 테제의 펀더멘털 배경을 강화하나, R7-3에 따라 가격 판별선에 자동 반영하지 않는다. <em>출처: 머니투데이·뉴스핌·파이낸셜뉴스 10/1</em></td></tr>
+      <tr><td>외환</td><td class="l">원/달러</td><td><span class="tag t-done">반락 (혼조로 완화)</span></td>
+        <td class="l"><strong>1,352.8원(9/30)</strong> — 9/18 1,383.3원 대비 −30.5원(원화 +2.2%). 9/4 저점 1,350.4원에는 아직 못 미쳐 완전한 우호 복귀는 아님. 4-1 부호를 「악화 → 혼조」로 완화(아래 동인 지도)</td></tr>
+      <tr><td>신용</td><td class="l">신용융자잔고</td><td><span class="tag t-done">축소 지속 (우호)</span></td>
+        <td class="l">반대매매 속출로 신용융자잔액이 <strong>6개월여 만에 30조원 아래로</strong> 추가 하락. 9/18 25조6,204억(9/15 기준) 대비 축소 흐름 지속. <em>출처: 뉴시스·newspim 9/30</em></td></tr>
+      <tr><td>수급</td><td class="l">외국인</td><td><span class="tag t-up">3거래일 연속 대량 순매도</span></td>
+        <td class="l">9/28 −3조2,263억 · 9/29 −3조801억 · 9/30 −2조2,747억, <strong>3거래일 합계 −8조5,811억원</strong>. 같은 구간 개인은 9/28 +2조6,054억·9/29 +1조5,013억·9/30 +1조4,544억으로 방어. 「역대 최대 수출 실적」과 「외국인 대량매도」가 공존 — 가격 반등을 외국인 복귀로 역해석 금지(R4)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>시장 동인 지도 — 15개 동인 부호 재판정 (§0.4 주간 의무)</h3>
+  <table>
+    <thead><tr><th>축</th><th>동인</th><th>9/5</th><th>9/18</th><th>10/3</th><th>근거(이번 주 실측, 부호 변경분은 각주)</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="3">축1<br>AI반도체</td><td class="l">1-1 빅테크 capex 가이던스</td><td>⚠ 악화</td><td>⚠ 악화</td><td>⚠ 악화</td><td class="l">유지. 증가율 51→13→5% 수치 변경 없음</td></tr>
+      <tr><td class="l">1-2 HBM/DRAM 가격</td><td>↑ 우호</td><td>↑ 우호</td><td>↑ 우호</td><td class="l">유지·강화(참고). 9월 반도체 수출 603억달러(+262.8%, 역대최대)로 메모리 슈퍼사이클 지속 확인</td></tr>
+      <tr><td class="l">1-3 엔비디아·브로드컴</td><td>혼조</td><td>혼조</td><td>혼조</td><td class="l">유지. 브로드컴 Q4 AI가이던스 상향(217억달러) vs 전체 수익성 우려 병존, NVDA 강세</td></tr>
+      <tr><td rowspan="3">축2<br>유가·지정학</td><td class="l">2-1 호르무즈 통행</td><td>⚠ 악화</td><td>⚠ 악화</td><td>⚠ 악화</td><td class="l">유지. 신규 해소 실측 없음</td></tr>
+      <tr><td class="l">2-2 중재 구도</td><td>혼조</td><td>혼조</td><td>혼조</td><td class="l">유지</td></tr>
+      <tr><td class="l">2-3 러-우 · 유가 수준</td><td>⚠ 악화</td><td>⚠ 악화</td><td>⚠ 악화</td><td class="l">유지. WTI 약 $90선 유지(10/1 $90.42)</td></tr>
+      <tr><td rowspan="3">축3<br>금리</td><td class="l">3-1 미 물가·고용·FOMC</td><td>⚠ 악화</td><td>⚠ 악화</td><td>⚠ 악화</td><td class="l">유지. FOMC 매파 스탠스 지속, 10/2 미 9월 NFP 결과 다음 주 반영분 확인 필요</td></tr>
+      <tr><td class="l">3-2 한국 물가 (← 유가)</td><td>⚠ 악화</td><td>⚠ 악화</td><td>⚠ 악화</td><td class="l">유지. 유가 $90대 지속</td></tr>
+      <tr><td class="l">3-3 미 국채 수급</td><td>⚠ 악화</td><td>⚠ 악화</td><td>⚠ 악화</td><td class="l">유지(심화 관측). 미 10년물 10/1 기준 5%대 관측(환율 전망 리포트), 베어 스티프닝 지속</td></tr>
+      <tr><td rowspan="3">축4<br>원달러·외인</td><td class="l">4-1 달러인덱스·엔화</td><td>↑ 우호</td><td>⚠ 악화</td><td><strong style="color:#7c3aed">혼조 (완화)</strong></td><td class="l"><strong>전환.</strong> 원/달러 1,383.3(9/18) → 1,352.8(9/30), −30.5원. 9/4 저점(1,350.4) 대비는 아직 소폭 위 — 완전 우호 복귀 아님</td></tr>
+      <tr><td class="l">4-2 한미 금리차</td><td>혼조</td><td>⚠ 악화</td><td>⚠ 악화</td><td class="l">유지. 역전폭 변경 없음(미 3.75~4.00% vs 한은 3.00%)</td></tr>
+      <tr><td class="l">4-3 주주환원 제도 촉매</td><td>↑ 우호</td><td>↑ 우호</td><td>↑ 우호</td><td class="l">유지</td></tr>
+      <tr><td rowspan="3">축5<br>신용</td><td class="l">5-1 자기강화 루프</td><td>⚠ 재축적</td><td>↓ 축소(우호)</td><td>↓ 축소(우호)</td><td class="l">유지·강화. 신용융자잔액 6개월여 만에 30조원 아래로 추가 축소(9/30 보도)</td></tr>
+      <tr><td class="l">5-2 레버리지 ETF 규제</td><td>↓ 억제</td><td>↓ 억제</td><td>↓ 억제</td><td class="l">유지</td></tr>
+      <tr><td class="l">5-3 신용한도·반대매매</td><td>↓ 정상화</td><td>↓ 정상화</td><td>↓ 정상화</td><td class="l">유지. 반대매매 지속으로 정상화 심화</td></tr>
+    </tbody>
+  </table>
+  <table style="margin-top:10px;">
+    <thead><tr><th>갱신일</th><th>우호</th><th>혼조</th><th>중립</th><th>악화</th><th>최강 축</th><th>최약 축</th><th>규칙 발동</th></tr></thead>
+    <tbody>
+      <tr><td>2026-09-05</td><td>5</td><td>3</td><td>0</td><td>7</td><td>축4 (2/3 우호)</td><td>축3 (3/3 악화)</td><td>축3 3/3 → 강세 상한</td></tr>
+      <tr><td>2026-09-18</td><td>5</td><td>2</td><td>0</td><td><strong style="color:#b91c1c">8</strong></td><td>축5 (3/3 우호)</td><td>축3 (3/3 악화)</td><td>「악화 ≥ 8」 최초 발동 + 축3 3/3(2회 연속)</td></tr>
+      <tr class="basrow"><td>2026-10-03</td><td>5</td><td>3</td><td>0</td><td>7</td><td>축5 (3/3 우호)</td><td>축3 (3/3 악화, 3회 연속)</td><td>악화 8→7 완화(4-1), 단 <strong>약세 하한 하향 금지</strong>(아래 각주)</td></tr>
+    </tbody>
+  </table>
+  <p class="note">집계 근거(10/3): 우호 5(1-2·4-3·5-1·5-2·5-3) / 혼조 3(1-3·2-2·<strong>4-1</strong>) / 악화 7(1-1·2-1·2-3·3-1·3-2·3-3·4-2). 4-1(원/달러)만 악화→혼조로 완화돼 악화 총계가 8→7이 됐다.
+  <strong>R1·R7-3 적용(중요):</strong> 이 변화는 <strong>원/달러의 "반등"(가격 되돌림)에서 비롯된 것</strong>이며, R7-3은 "동인 지도·수급 변화는 확률 자체를 바꾸지 않으며, 그 비대칭 조항상 이를 약세 가중 하향의 근거로도 쓸 수 없다"고 명시한다. 따라서 악화 8→7 완화를 근거로 9/18에 고정한 <strong>약세 하한 50%(K2+K3+K4)를 낮추지 않는다</strong> — 등록 판별선(7,216.62/6,439.49)의 종가 저촉만이 확률을 바꾼다. 축3은 3/3 악화가 <strong>3회 연속(9/5·9/18·10/3)</strong>으로 이어져 강세 카운트 상한도 유지된다.</p>
+
+  <h3>R3 — thesis.json exit-trigger 점검</h3>
+  <p class="note">신규 발화 0건. 「KOSPI 깊은 조정(ATH −20% 이상)」 트리거만 발화 지속 상태(종가 ATH 9,114.55 대비 약 −25.0%, 이미 regime correction·halt_new_buy에 반영돼 있어 추가 조치 없음). 「반도체 Fwd EPS revision −10%」는 이번 주도 데이터 미확보 — unknown≠pass로 다음 회차 이월.</p>
+</section>
+
+<!-- 2. 주간 코스피 실측 -->
+<section>
+  <h2><span class="n">2</span> 주간 코스피 실측 (2026-09-19 ~ 09-30, W39 공백 소급 포함)</h2>
+  <p class="lead">출처: Yahoo Finance <code>^KS11</code> 일봉(OHLCV) 직접 수신 + 뉴스핌·서울신문·머니투데이·이투데이 마감시황 수급 확정치 교차대조(마감 수급 정확성 룰 준수, 장중 헤드라인 추정 미사용). 10/1(목) 장중가는 미확정 참고치.</p>
+  <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 6px 4px;overflow-x:auto;">
+  <svg viewBox="0 0 900 350" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;min-width:700px;font-family:-apple-system,'Noto Sans KR',sans-serif;">
+<line x1="70" y1="267.4" x2="850" y2="267.4" stroke="#eef2f6"/><text x="62" y="271.4" font-size="10" fill="#64748b" text-anchor="end">6,800</text>
+<line x1="70" y1="216.9" x2="850" y2="216.9" stroke="#eef2f6"/><text x="62" y="220.9" font-size="10" fill="#64748b" text-anchor="end">6,900</text>
+<line x1="70" y1="166.3" x2="850" y2="166.3" stroke="#eef2f6"/><text x="62" y="170.3" font-size="10" fill="#64748b" text-anchor="end">7,000</text>
+<line x1="70" y1="115.8" x2="850" y2="115.8" stroke="#eef2f6"/><text x="62" y="119.8" font-size="10" fill="#64748b" text-anchor="end">7,100</text>
+<line x1="70" y1="65.3" x2="850" y2="65.3" stroke="#eef2f6"/><text x="62" y="69.3" font-size="10" fill="#64748b" text-anchor="end">7,200</text>
+<line x1="70" y1="131.4" x2="850" y2="131.4" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4,3"/><text x="852" y="134.4" font-size="9.5" fill="#7c3aed">확인선1 7,069.18</text>
+<line x1="70" y1="56.9" x2="850" y2="56.9" stroke="#b91c1c" stroke-width="1" stroke-dasharray="4,3"/><text x="852" y="59.9" font-size="9.5" fill="#b91c1c">K2/K3 무효화 7,216.62</text>
+<line x1="70" y1="248.2" x2="850" y2="248.2" stroke="#1d4ed8" stroke-width="1" stroke-dasharray="4,3"/><text x="852" y="251.2" font-size="9.5" fill="#1d4ed8">9/30 종가 6,838.04</text>
+<line x1="120" y1="152.3" x2="120" y2="197.5" stroke="#059669" stroke-width="7" stroke-linecap="round" opacity="0.85"/>
+<line x1="104" y1="197.5" x2="120" y2="197.5" stroke="#059669" stroke-width="2"/>
+<circle cx="120" cy="162.4" r="5" fill="#fff" stroke="#059669" stroke-width="2.5"/>
+<text x="120" y="142.3" font-size="10" fill="#0f172a" text-anchor="middle" font-weight="700">7,007.72</text>
+<text x="120" y="211.5" font-size="10" fill="#059669" text-anchor="middle">+1.65%</text>
+<text x="120" y="336" font-size="11" fill="#334155" text-anchor="middle">09/21(월)</text>
+<line x1="230" y1="79.7" x2="230" y2="173.3" stroke="#059669" stroke-width="7" stroke-linecap="round" opacity="0.85"/>
+<line x1="214" y1="84.8" x2="230" y2="84.8" stroke="#059669" stroke-width="2"/>
+<circle cx="230" cy="157.3" r="5" fill="#fff" stroke="#059669" stroke-width="2.5"/>
+<text x="230" y="69.7" font-size="10" fill="#0f172a" text-anchor="middle" font-weight="700">7,017.91</text>
+<text x="230" y="187.3" font-size="10" fill="#059669" text-anchor="middle">+0.15%</text>
+<text x="230" y="336" font-size="11" fill="#334155" text-anchor="middle">09/22(화)</text>
+<line x1="340" y1="88.5" x2="340" y2="158.8" stroke="#059669" stroke-width="7" stroke-linecap="round" opacity="0.85"/>
+<line x1="324" y1="88.5" x2="340" y2="88.5" stroke="#059669" stroke-width="2"/>
+<circle cx="340" cy="125.4" r="5" fill="#fff" stroke="#059669" stroke-width="2.5"/>
+<text x="340" y="78.5" font-size="10" fill="#0f172a" text-anchor="middle" font-weight="700">7,080.92</text>
+<text x="340" y="172.8" font-size="10" fill="#059669" text-anchor="middle">+0.90%</text>
+<text x="340" y="303.9" font-size="9.5" fill="#64748b" text-anchor="middle">R1·확인선1 종가돌파</text>
+<text x="340" y="336" font-size="11" fill="#334155" text-anchor="middle">09/23(수)</text>
+<text x="395" y="190" font-size="10.5" fill="#94a3b8" text-anchor="middle" font-style="italic">추석 연휴</text>
+<text x="395" y="203" font-size="9.5" fill="#94a3b8" text-anchor="middle">9/24~27</text>
+<line x1="450" y1="133.0" x2="450" y2="222.1" stroke="#b91c1c" stroke-width="7" stroke-linecap="round" opacity="0.85"/>
+<line x1="434" y1="137.1" x2="450" y2="137.1" stroke="#b91c1c" stroke-width="2"/>
+<circle cx="450" cy="222.0" r="5" fill="#fff" stroke="#b91c1c" stroke-width="2.5"/>
+<text x="450" y="123.0" font-size="10" fill="#0f172a" text-anchor="middle" font-weight="700">6,889.74</text>
+<text x="450" y="236.1" font-size="10" fill="#b91c1c" text-anchor="middle">−2.70%</text>
+<text x="450" y="303.9" font-size="9.5" fill="#64748b" text-anchor="middle">재개장일 재이탈</text>
+<text x="450" y="336" font-size="11" fill="#334155" text-anchor="middle">09/28(월)</text>
+<line x1="560" y1="217.7" x2="560" y2="276.0" stroke="#b91c1c" stroke-width="7" stroke-linecap="round" opacity="0.85"/>
+<line x1="544" y1="244.9" x2="560" y2="244.9" stroke="#b91c1c" stroke-width="2"/>
+<circle cx="560" cy="231.6" r="5" fill="#fff" stroke="#b91c1c" stroke-width="2.5"/>
+<text x="560" y="207.7" font-size="10" fill="#0f172a" text-anchor="middle" font-weight="700">6,870.81</text>
+<text x="560" y="290.0" font-size="10" fill="#b91c1c" text-anchor="middle">−0.27%</text>
+<text x="560" y="336" font-size="11" fill="#334155" text-anchor="middle">09/29(화)</text>
+<line x1="670" y1="183.7" x2="670" y2="258.1" stroke="#b91c1c" stroke-width="7" stroke-linecap="round" opacity="0.85"/>
+<line x1="654" y1="194.9" x2="670" y2="194.9" stroke="#b91c1c" stroke-width="2"/>
+<circle cx="670" cy="248.2" r="5" fill="#fff" stroke="#b91c1c" stroke-width="2.5"/>
+<text x="670" y="173.7" font-size="10" fill="#0f172a" text-anchor="middle" font-weight="700">6,838.04</text>
+<text x="670" y="272.1" font-size="10" fill="#b91c1c" text-anchor="middle">−0.48%</text>
+<text x="670" y="336" font-size="11" fill="#334155" text-anchor="middle">09/30(수)</text>
+<line x1="780" y1="213.4" x2="780" y2="285.0" stroke="#059669" stroke-width="7" stroke-linecap="round" opacity="0.5" stroke-dasharray="3,2"/>
+<line x1="764" y1="260.1" x2="780" y2="260.1" stroke="#059669" stroke-width="2" opacity="0.5"/>
+<circle cx="780" cy="220.4" r="5" fill="#fff" stroke="#059669" stroke-width="2.5" opacity="0.6"/>
+<text x="780" y="203.4" font-size="10" fill="#64748b" text-anchor="middle" font-weight="700">≈6,893(진행중)</text>
+<text x="780" y="299.0" font-size="9.5" fill="#64748b" text-anchor="middle">10/1 미확정 참고</text>
+<text x="780" y="336" font-size="11" fill="#334155" text-anchor="middle">10/01(목)</text>
+<text x="70" y="24" font-size="11" fill="#475569">KOSPI 일봉 2026-09-19~10-01 (막대=시가·고저, 점=종가, 색=전일대비) · 9/18 종가 6,894.23 → 9/30 종가 6,838.04 (−0.81%)</text>
+</svg>
+  </div>
+  <p class="note">9/21 +1.65%(기관 +1조4,924억·개인 −2조9,790억) → 9/22 +0.15%(외인 +756억·기관 −1,191억) → 9/23 <strong>+0.90%, 종가 7,080.92로 R1(7,028.00)·확인선1(7,069.18) 모두 종가 돌파</strong>(장중고 7,153.99, 기관 +317억) → 추석 연휴(9/24~27) → 9/28 <strong>−2.70%(즉시 재이탈, 외인 −3조2,263억·기관 −1조174억)</strong> → 9/29 −0.27%(외인 −3조801억) → 9/30 −0.48%(외인 −2조2,747억·기관 −8,586억). 9/28~30 외국인 3거래일 합계 <strong>−8조5,811억원</strong>.</p>
+
+  <table style="margin-top:14px;">
+    <thead><tr><th>날짜</th><th>시가</th><th>고가</th><th>저가</th><th>종가</th><th>등락</th><th>거래량(천)</th><th>외국인(억원)</th><th>기관(억원)</th><th>개인(억원)</th></tr></thead>
+    <tbody>
+      <tr><td>9/21(월)</td><td>6,938.34</td><td>7,027.58</td><td>6,938.34</td><td>7,007.72</td><td class="up">+1.65%</td><td>246,100</td><td>확정치 보류(매체 편차, 각주②)</td><td class="up">+14,924</td><td class="down">−29,790</td></tr>
+      <tr><td>9/22(화)</td><td>7,161.61</td><td>7,171.44</td><td>6,986.27</td><td>7,017.91</td><td class="up">+0.15%</td><td>264,300</td><td class="up">+756</td><td class="down">−1,191</td><td class="down">−16,089</td></tr>
+      <tr class="basrow"><td>9/23(수)</td><td>7,153.99</td><td>7,153.99</td><td>7,014.98</td><td>7,080.92</td><td class="up">+0.90%</td><td>237,000</td><td class="down">−510</td><td class="up">+317</td><td class="down">−14,397</td></tr>
+      <tr><td colspan="9" style="color:#94a3b8;font-style:italic;">9/24~9/27 추석 연휴(4일) 휴장</td></tr>
+      <tr><td>9/28(월)</td><td>7,057.86</td><td>7,065.90</td><td>6,889.68</td><td>6,889.74</td><td class="down">−2.70%</td><td>230,000</td><td class="down">−32,263</td><td class="down">−10,174</td><td class="up">+26,054</td></tr>
+      <tr><td>9/29(화)</td><td>6,844.41</td><td>6,898.36</td><td>6,782.99</td><td>6,870.81</td><td class="down">−0.27%</td><td>221,700</td><td class="down">−30,801</td><td class="down">−598</td><td class="up">+15,013</td></tr>
+      <tr><td>9/30(수)</td><td>6,943.47</td><td>6,965.64</td><td>6,818.39</td><td>6,838.04</td><td class="down">−0.48%</td><td>286,000</td><td class="down">−22,747</td><td class="down">−8,586</td><td class="up">+14,544</td></tr>
+      <tr style="color:#94a3b8;"><td>10/1(목, 참고)</td><td>6,814.49</td><td>6,906.95</td><td>6,765.06</td><td>≈6,893(진행중)</td><td class="up">+0.8%(진행중)</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p class="note">각주②: 9/21 외국인 수급은 매체 간 수치 편차로 단일 확정치를 채택하지 않고 보류하며(장중 추정치가 아니라 확정치 간 불일치로 인한 보류), 기관·개인만 확정 인용한다.</p>
+
+  <h3>직전 회차(9/18 리뷰) 판정선 대조 — §6 연속성</h3>
+  <table>
+    <thead><tr><th>방향</th><th>선</th><th>9/18 의미</th><th>9/19~9/30 실측 (종가 기준)</th><th>판정</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="2">상방(레거시/관측)</td><td>7,028.00 (R1)</td><td class="l">base A-3 무효화선(이미 사망, 관측용 저항 재분류 상정 중)</td><td class="l">9/23 종가 7,080.92로 상회(+0.75%) → <strong>9/28 재이탈</strong></td><td><span class="tag t-fix">돌파→반납</span></td></tr>
+      <tr><td>7,069.18 (확인선1)</td><td class="l">K1 「(2) 종료」 1차 확인 / P3 시한 2026-10-16</td><td class="l">9/23 종가 7,080.92로 상회 → <strong>9/28 재이탈</strong>. P3 조건은 시한 전 조기 충족(승인), 단 안착 실패 병기</td><td><span class="tag t-fix">조기충족·미안착</span></td></tr>
+      <tr><td rowspan="2">상방(구조)</td><td>7,171.52 (확인선2)</td><td class="l">K1 (1) 재확인</td><td class="l">9/22 장중고 7,171.44(−0.08p 미달), 9/23 장중고 7,153.99 — <strong>종가·장중 모두 미달</strong></td><td><span class="tag t-hold">미발동</span></td></tr>
+      <tr><td>7,216.62 (K2/K3 base 무효화)</td><td class="l">약세 대안군(K2·K3) 전부 사망선</td><td class="l">9/22~23 장중고 최대 7,171.44 — <strong>−45.18p 미달</strong></td><td><span class="tag t-hold">미발동</span></td></tr>
+      <tr><td rowspan="2">하방(구조)</td><td>6,582.20 (K1 (2)후보저점)</td><td class="l">종가 이탈 시 (2) 재개</td><td class="l">최저 종가 6,838.04(9/30) — +255.84p 여유</td><td><span class="tag t-done">방어</span></td></tr>
+      <tr><td>6,439.49 (K1 기각선 = ② Y종점)</td><td class="l">채택 카운트(K1) 기각선</td><td class="l">최저 종가 6,838.04 — +398.55p(+5.82%) 여유</td><td><span class="tag t-hold">미발동</span></td></tr>
+    </tbody>
+  </table>
+  <p class="note"><strong>9/18 시나리오의 적중 여부:</strong> 9/18 리뷰는 전술 시나리오 A(25%, 확인시도)/B(50%, 박스권)/C(25%, 재이탈)를 등록했다. 실제로는 최고 가중이던 <strong>B(50%)가 아니라 A(25%, 가중순위 2위)가 9/23 종가로 실현</strong>됐다가 9/28부터 되돌려 9/30 기준으로는 다시 B의 박스권(6,582.20~7,069.18) 안으로 복귀했다 — R9 각주 참조.</p>
+</section>
+
+<!-- 3. 파동 카운트 판정 -->
+<section>
+  <h2><span class="n">3</span> 파동 카운트 판정 — 10회차 확정 (2026-10-03 Chory 결재)
+    <a href="https://choryian.github.io/Stock_Report_Repo/reports/2026-09-18-kospi-weekly-roadmap-review.html" target="_blank" rel="noopener"
+       style="margin-left:auto;font-size:11.5px;font-weight:600;color:#1d4ed8;text-decoration:none;border:1px solid #bfdbfe;background:#eff6ff;padding:3px 10px;border-radius:6px;white-space:nowrap;">↗ 직전 리뷰 (09-18)</a>
+  </h2>
+
+  <div class="fixbox">
+    <strong>프레임 정정 — "Cycle 5 / 목표 10,000~12,000"은 이미 폐기 상태.</strong> 인계된 구프레임("No.002 Recount 기준 Cycle 3=8,933·Cycle 4=7,442·Cycle 5 진행·목표 10,000~12,000")을 금주 재검증한 결과, 이는 <strong>2026-07-29 방법론 개혁 때 공식 폐기된 구세대 정보</strong>다. 실제 대정점은 9,385.59(6/19)이며 9,000~12,000 목표는 7월 붕괴로 이미 무효화됐다. 현재 유효한 단일 소스는 <code>market_regime.json</code>의 K1~K5 체계이며, 아래 §3은 그 체계를 그대로 승계해 재검증한다.
+  </div>
+
+  <p class="lead">현행 프레임 = 2026-09-11 채택 카운트(① 임펄스 5,262.77→7,216.62 · ② W-X-Y →6,439.49 · ③ 진행: (1) 7,171.52 · (2) 후보 6,582.20 → (3) 시도중) + 약세 대안군(K2·K3·K4). 계위 기준점 2026-07-29 저 5,262.77. 모든 비율은 <strong>로그 눈금</strong>(R8-4).</p>
+
+  <div class="rulebox">
+    <strong>R7-3 기록 의무 — 이번 회차 등록 판별선 전체와 종가 저촉 사실</strong><br>
+    <strong>정적 트리거 8종:</strong> 상방 7,028.00(레거시)·7,284.41·7,570.62 / 하방 6,158.73·6,080.25·6,043.72·5,480·5,262.77 — 레거시 R1(7,028.00)만 <strong>9/23 저촉(돌파) 후 9/28 재이탈</strong>, 나머지 전부 9/19~9/30 종가 미저촉.<br>
+    <strong>파동 핵심선 2종:</strong> 상방 7,216.62(K2·K3 무효화) / 하방 6,439.49(K1 기각선) — <strong>둘 다 미저촉</strong>.<br>
+    <strong>관측선(확인 사다리):</strong> 7,069.18(확인선1) — <strong>9/23 저촉(돌파) 후 9/28 재이탈</strong>. 7,171.52(확인선2) — 미저촉(최근접 9/22 장중 −0.08p).<br>
+    <strong>적용:</strong> 7,028.00과 7,069.18의 "돌파 후 반납"은 레거시·관측 레벨에 한정되며, 구조적 무효화선(7,216.62/6,439.49)이 미저촉이므로 <strong>R7-3에 따라 K1~K5 확률은 ±0%p 불변</strong>이다. 다만 이 왕복은 9/18에 상정된 "R1=50% 로그되돌림 관측용 저항" 재분류안에 실증을 더했다(아래 결정 기록 참조).
+  </div>
+
+  <h3>R7 카운트 랭킹 — 무효화선 근접순 (기준 2026-09-30 종가 6,838.04)</h3>
+  <table>
+    <thead><tr><th>순위</th><th>카운트</th><th>방향</th><th>무효화 가격</th><th>현재가 대비</th><th>R2 ±8%</th><th>9/18 확률</th><th>10/3 확률</th><th>변경 사유</th><th>정의모드</th><th>ambiguity</th></tr></thead>
+    <tbody>
+      <tr class="basrow"><td>1</td><td class="l"><strong>K2 — ② 미완 확장플랫, C파 진행 ★base</strong></td><td>약세</td><td><strong>7,216.62</strong></td><td><strong>+5.54%</strong></td><td class="up">적격</td><td>28%</td><td><strong>28%</strong></td><td class="l">R7-3 — 무저촉, 불변</td><td>swing_proxy</td><td rowspan="5">multiple_viable</td></tr>
+      <tr><td>1</td><td class="l">K3 (A)(B)(C)의 (C) / 하락임펄스 (iii)</td><td>약세</td><td>7,216.62</td><td>+5.54%</td><td class="up">적격</td><td>16%</td><td><strong>16%</strong></td><td class="l">R7-3 — 무저촉, 불변</td><td>swing_proxy</td></tr>
+      <tr><td>3</td><td class="l"><strong>K1 채택 카운트 존속 — ③(2) 완료후보 6,582.20 → (3) 시도중</strong></td><td>강세</td><td>6,439.49</td><td>−5.82%</td><td class="up">적격</td><td>41%</td><td><strong>41%</strong></td><td class="l">R7-3 — 무저촉, 불변. P3 조기충족(9/23)·미안착(9/28) 병기</td><td>structure_proxy</td></tr>
+      <tr><td>3</td><td class="l">K4 수축삼각형 E 진행</td><td>중립·약세</td><td>7,216.62 / 6,439.49</td><td>+5.54 / −5.82%</td><td class="up">적격</td><td>6%</td><td><strong>6%</strong></td><td class="l">R7-3 — 무저촉, 불변</td><td>swing_proxy</td></tr>
+      <tr><td>5</td><td class="l">K5 변형T (존속 내부 함정변형)</td><td>강세→약세</td><td>8,777</td><td>+28.37%</td><td class="down">부적격</td><td>9%</td><td><strong>9%</strong></td><td class="l">R2 부적격, 관측용</td><td>swing_proxy</td></tr>
+    </tbody>
+  </table>
+  <p class="note">합계 100%. 존속경로(K1+K5)=50 / 이탈경로(K2+K3+K4)=50 — 9/18과 동일, R7-3 기계적 적용으로 불변. <strong>R7 base = K2 유지</strong>(9/18 시점 거리차 1.92%p → 10/3 시점 0.28%p로 더 좁아졌으나 여전히 K2가 근소하게 최근접). ambiguity=multiple_viable이므로 R5(더 방어적인 쪽이 현금밴드를 정한다)를 그대로 우선 적용하고 비중 확대 근거로 쓰지 않는다.</p>
+
+  <h3>P1~P4 반증가능 예측 — 실측 채점</h3>
+  <table>
+    <thead><tr><th>#</th><th>예측</th><th>채점</th></tr></thead>
+    <tbody>
+      <tr><td>P1 (base K2)</td><td class="l">2026-10-16까지 종가가 7,216.62 불상회</td><td class="l"><strong>진행중·생존</strong>. 최근접 9/23 종가 7,080.92(−1.88%p). 시한 13일 남음</td></tr>
+      <tr><td>P2 (K1 기각선)</td><td class="l">6,439.49 종가 이탈 시 K1 기각</td><td class="l"><strong>진행중·생존</strong>. 최근접 9/30 종가 6,838.04(+5.82%p 여유)</td></tr>
+      <tr><td>P3 (K1 시간스톱)</td><td class="l">2026-10-16까지 7,069.18 종가 돌파 없으면 K1 '(2) 완료'→'(2) 미완' 강등</td><td class="l"><strong>조건 충족(조기달성, 9/23 종가 7,080.92)</strong> — 강등 불필요, 단 9/28 재이탈로 "돌파 후 미안착" 병기</td></tr>
+      <tr><td>P4 (연휴 갭)</td><td class="l">9/28 시가 갭 ±2% 초과 시 즉시 채점</td><td class="l"><strong>미발동</strong>(갭 −0.33%, ±2% 미달) — 기본 채점(A/B/C) 적용, 결과 A 실현(§2 참조)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>하드룰 체크리스트 (P-7)</h3>
+  <table>
+    <thead><tr><th>구간</th><th>규칙</th><th>판정</th><th>판별 가격</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="5" class="l">① 완결 임펄스(8/18 완성, 과거사실 불변)</td><td class="l">R1 2파≤100%</td><td>pass</td><td class="l">(2)=5,551.76 &gt; 0=5,262.77</td><td class="l">겹침 없음</td></tr>
+      <tr><td class="l">R2 3파 최단금지(로그)</td><td>pass(3파최장)</td><td class="l">log w1=0.127/w3=0.176/w5=0.159</td><td class="l">3파가 최장</td></tr>
+      <tr><td class="l">R3 4파-1파 겹침</td><td>pass</td><td class="l">4파저 6,158.73 &gt; 1파고 5,976.82(+181.91p)</td><td class="l">미겹침</td></tr>
+      <tr><td class="l">R4 조정파 3분절</td><td>pass(4파)/unknown(2파)</td><td class="l">4파 a6,080.25/b6,674.66(110.1%)/c6,158.73</td><td class="l">러닝플랫 3분절 확인(structure_proxy)</td></tr>
+      <tr><td class="l">R5 추진파 5분절</td><td>pass(3파)/unknown(5파)</td><td class="l">3파 i5,678.72~v6,620.25</td><td class="l">5파 세부 미검증, swing_proxy 영역</td></tr>
+      <tr><td rowspan="2" class="l">③ 진행중 임펄스(조기단계, 과잉라벨 금지 R8-9)</td><td class="l">R1 2파(=③(2))≤100%</td><td>조건부 pass</td><td class="l">(2)후보 6,582.20 &gt; ②종점 6,439.49</td><td class="l">되돌림 검정집합 전체(① 구간 732.03p=7,171.52−6,439.49): 50%=6,805.50(미지지)·61.8%=6,719.12(=A경로 기각선, 9/14 이탈 기록)·<strong>78.6%=6,595.94(근접지지, (2)저 6,582.20과 13.74p차)</strong>·100%=6,439.49(미지지=K1 기각선 자체). 78.6% 근접 단독이 아니라 ⓐ 깊은되돌림 ⓑ 반전캔들구조(단일거래일 급반전) ⓒ 통상 지그재그역(50~61.8%) 이탈 3계열 confluence로 K2 근거 구성(8-8 준수)</td></tr>
+      <tr><td class="l">R4·R5 ((1),(3) 각각)</td><td>unknown((3) 미완성)</td><td class="l">(1)=7,171.52 내부 세분 미검증</td><td class="l">swing_proxy, 8-11 원칙상 unknown≠pass</td></tr>
+    </tbody>
+  </table>
+
+  <div class="redteam">
+    <strong>적대적 약세 관점 (R4 레드팀, 의무 1문단)</strong><br>
+    "지금이 상단이라면": ③의 (1) 7,171.52(9/8)가 7/29 이후 최고치였고, 9/23 재시도(장중고 7,153.99)마저 넘지 못한 채 반납됐다 — 2회 연속 상단 실패(failed retest)다. 축3(금리)이 3/3 악화로 3회 연속(9/5·9/18·10/3) 유지되는 가운데, 9/28~30 외국인이 3거래일 연속 합계 −8조5,811억원을 순매도한 점은 "9월 수출·반도체 역대 최대 실적인데 외국인은 파는" 괴리다. §0.5 R4가 금지하는 "강세 서사로의 역해석"을 걸어야 하는 전형적 신호이며, K2+K3=44%가 이미 이 관점을 구조가중에 반영하고 있다.
+  </div>
+
+  <div class="verdict">
+    <strong>판정 확정 (2026-10-03, Chory 결재) — base = K2 「② 미완 확장플랫, C파 진행」(약세) 유지, 무효화 7,216.62(+5.54%), 확률 28%, 시간스톱 2026-10-16, ambiguity=multiple_viable.</strong><br>
+    ① K1~K5 구조가중(41/28/16/6/9) 전체 <strong>불변 확정</strong> — 9/19~9/30 구간 중 구조적 등록 판별선(7,216.62·6,439.49) 종가 무저촉(R7-3 기계적 적용).<br>
+    ② 레거시 R1(7,028.00)·확인선1(7,069.18)의 "돌파 후 반납"(9/23→9/28)은 K1의 조기 (2)완료 승인(P3)을 확정시켰으나 안착에는 실패했다 — K1의 지위(채택 카운트, 41%)는 유지하되 "(3) 본격 개시"를 확증하지 않는다.<br>
+    ③ R1(7,028.00) 역할 재분류("base 무효화선" → "50% 로그되돌림 관측용 저항")는 이번 구간의 돌파-반납 실측으로 근거가 보강됐다 — <strong>[2026-10-03 Chory 결재] 재분류 승인 확정.</strong> 이후 R1은 관측용 레벨로만 표기한다.<br>
+    ④ regime=correction · score 32.0 · label 조정심화 · cash_offset 18 · risk_tilt −1 · risk_baseline 5,480 · halt_new_buy=true — <strong>전부 불변 확정.</strong> 변경 근거(등록 판별선 종가 저촉)가 없다.<br>
+    ⑤ 시한 2026-10-16까지 7,216.62 또는 6,439.49 중 하나가 종가로 저촉되면 즉시 재판정하며, 6,439.49 이탈 시 R6에 따라 24시간 내 긴급 재카운트를 발행한다.
+  </div>
+
+  <h3>R9 스코어보드 각주</h3>
+  <p class="note">최근 8회 base 적중률 3/4(75%, 표본 하한) · 평균 실현 가중순위 1.25. 직전 회차(9회차, weekly-2026-09-19 엔트리)의 구조적 base(K2, P1) 판정은 시한(10/16) 미도달로 <strong>"open" 유지, 10회차로 승계</strong>. 동 엔트리의 전술 콜(A/B/C)은 <strong>"A 실현(가중순위 2위, 1위였던 B는 미실현)"</strong>으로 신규 종결 기록한다. 10회차 base 선기록: K2, 28%, 무효화 7,216.62, 시한 2026-10-16(9회차와 동일 구조 승계). backfill 집계(No.001~005, 0/5)는 롤링과 분리 표기. R1 약세 하한 추가 상향 트리거(3연속 하락 또는 33% 미만)는 미발동.</p>
+</section>
+
+<!-- 4. 다음주 가이드 -->
+<section>
+  <h2><span class="n">4</span> 다음 주(2026-10-05~10-09) 트레이딩 가이드</h2>
+  <p class="lead">다음 주는 <strong>10/9(금) 한글날 KRX 전 시장 휴장</strong>으로 거래일 4일(월~목)이다.</p>
+
+  <div class="scn">
+    <div class="c a"><h4>A. 재돌파 시도 (30%)</h4>
+      <p>7,069.18 재돌파 → 7,171.52 → 7,216.62 순차. 돌파 시 R2(7,284.41) 재도전.</p>
+      <p class="note">신규매수 동결(halt_new_buy) 유지. 7,216.62 <strong>종가</strong> 돌파 전까지 베팅 금지 — K2(base) 생존 중.</p></div>
+    <div class="c b"><h4>B. 박스권 등락 (45%)</h4>
+      <p>6,582.20~7,069.18 범위 등락. 10/9 연휴 앞두고 거래량 위축 가능.</p>
+      <p class="note">현상 유지. halt_new_buy·cash_offset 18 그대로.</p></div>
+    <div class="c cc"><h4>C. 재이탈 심화 (25%)</h4>
+      <p>6,582.20 이탈 → 6,439.49 시험.</p>
+      <p class="note">6,439.49 <strong>종가 이탈 시 즉시 R6 24h 내 긴급 재카운트 발행</strong>(K1 기각·K2 확증·regime risk_off 재판정 상정).</p></div>
+  </div>
+  <p class="note">5파 절단(truncation) 경로(R8-6): ①의 3파가 연장형(최장)이었던 구조상, 향후 ③가 상위 임펄스의 "3파" 역할이라면 ④·⑤에서 평시보다 높은 절단 확률을 사전 등록한다 — ③ 자체가 미완성인 현 단계에서 ⑤ 목표를 확정 상단으로 과신하지 않는다.</p>
+
+  <h3>4대 변수 매핑</h3>
+  <table>
+    <thead><tr><th>변수</th><th>현재 부호</th><th>코스피 경로 함의</th></tr></thead>
+    <tbody>
+      <tr><td class="l">AI반도체 이익</td><td class="l">혼조(1-1 악화·1-2 우호·1-3 혼조)</td><td class="l">9월 수출 반도체 603억달러 기록은 펀더멘털 우호, capex 증가율 둔화 전망은 그대로 — 가격 판별선 우선</td></tr>
+      <tr><td class="l">미-이란·유가</td><td class="l">2/3 악화</td><td class="l">WTI $90선 상방 압력 지속</td></tr>
+      <tr><td class="l">금리</td><td class="l"><strong>3/3 악화 3회 연속(9/5·9/18·10/3)</strong></td><td class="l">최약축, 강세 카운트 상한 유지</td></tr>
+      <tr><td class="l">원달러·외국인</td><td class="l">4-1 혼조로 완화·4-2 악화</td><td class="l">원화 1,352.8로 반락했으나 외국인 3일 연속 대량매도(−8.6조) — 반등을 외국인 복귀로 역해석 금지(R4)</td></tr>
+      <tr><td class="l">신용잔고</td><td class="l">2/3 우호, 5-1 축소 심화</td><td class="l">레버리지 리스크 완화 지속</td></tr>
+    </tbody>
+  </table>
+
+  <h3>주중 핵심 일정 (WebSearch 실재 검증 완료)</h3>
+  <table>
+    <thead><tr><th>날짜</th><th>이벤트</th><th>검증</th></tr></thead>
+    <tbody>
+      <tr><td>10/2(금, 금주)</td><td class="l">미 9월 비농업고용(NFP) 발표</td><td class="l">통상 월초 첫 금요일, 결과는 10/5 개장 전 반영 완료 상태로 다음 주 시작</td></tr>
+      <tr><td>10/5(월)</td><td class="l">—</td><td class="l">평시 개장</td></tr>
+      <tr class="basrow"><td>10/7(수)</td><td class="l"><strong>삼성전자 3분기 잠정실적 발표</strong> — 컨센서스 영업이익 약 107~114조원 안팎(fnnews 9/28 보도 111.28조·SK하이닉스 78.06조 합산 전망 포함), AI반도체 수출 호조(9월 반도체 수출 603억달러, +262.8%)와 직결되는 핵심 촉매</td><td class="l">WebSearch 교차검증 완료(이투데이·fnnews 등 복수 매체 10/7 일치)</td></tr>
+      <tr><td>10/8(목)</td><td class="l">KRX 월간 파생상품(선물·옵션) 동시만기(통상 둘째 목요일)</td><td class="l">쿼드러플위칭 아님(분기월 3·6·9·12월에 한정), 변동성 확대 가능</td></tr>
+      <tr><td><strong>10/9(금)</strong></td><td class="l"><strong>한글날 — KRX 전 시장(코스피·코스닥·코넥스·채권) 휴장</strong></td><td class="l">WebSearch 재검증 완료</td></tr>
+      <tr><td>10/16(목)</td><td class="l"><strong>K2(base) P1 시한 / K1 P3 승격판정 시한</strong></td><td class="l">본 회차 §3 참조</td></tr>
+      <tr><td>10/27~28(미 현지)</td><td class="l">FOMC(10월), 결과 반영은 10/29 새벽 KST</td><td class="l">다음 2주 뒤 일정, 캘린더 선등재</td></tr>
+      <tr><td>10/29~30</td><td class="l">삼성전자 3분기 확정실적 + 사업부별 컨퍼런스콜(HBM 공급계획 등)</td><td class="l">10/7 잠정실적과는 별개 행사, WebSearch 확인</td></tr>
+    </tbody>
+  </table>
+
+  <h3>결론</h3>
+  <p>구조 가중 불변 확정(K1 41/K2 28/K3 16/K4 6/K5 9), base=K2(조건부 최근접, ambiguity=multiple_viable). 지난 주 반등은 등록 판별선을 종가로 넘지 못한 실패 재시도이자, 전술적으로는 "가장 낮은 확률 축(A, 25%)"이 실현됐다가 되돌려진 패턴이다. regime_score 32.0·correction·조정심화·cash_offset 18·risk_tilt −1·halt_new_buy=true 전부 불변 확정 — 변경 근거(등록 판별선 종가 저촉)가 없다. 10/16 시한까지 7,216.62/6,439.49 양쪽 중 하나가 저촉되면 즉시 재판정한다.</p>
+</section>
+
+<section>
+  <h2><span class="n">5</span> 보조 결정 기록 (2026-10-03 Chory 결재 완료)</h2>
+  <ul>
+    <li><strong>파동 카운트 최종 판정</strong> — base=K2 유지, K1~K5 확률(41/28/16/6/9) 확정. §3 참조.</li>
+    <li><strong>R1(7,028.00) 역할 재분류</strong> — "base 무효화선"에서 "50% 로그되돌림 관측용 저항"으로 전환 승인 확정.</li>
+    <li><strong>인계 메모리 정정</strong> — "Cycle 3/4/5, 목표 10,000~12,000" 프레임은 2026-07-29부로 폐기된 구세대 정보임을 재확인·기록(§3 정정 박스).</li>
+    <li><strong>갭 점수표 신설 안건(EWY·시간외 어닝쇼크)</strong> — us-overnight-kr-open 루틴 소관으로 별도 처리 중(본 회차는 재상정만 하고 실행하지 않음).</li>
+  </ul>
+</section>
+
+<footer>
+  Chory &amp; Rochet 리서치센터 · 코스피 주간 로드맵 &amp; 파동 리뷰 10회차 · 발행 2026-10-03<br>
+  본 보고서는 투자 참고자료이며 투자 권유가 아닙니다. 모든 수치는 발행 시점 기준이며 사후 변경될 수 있습니다.
+</footer>
+
+</div>
+</body>
+</html>
