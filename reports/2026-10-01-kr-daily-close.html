@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-10-01 일일 시황 정리 및 익일 준비 | Chory &amp; Rochet</title>
+<style>
+  :root{
+    --bull:#d32f2f; --bear:#1565c0; --neutral:#555;
+    --bg:#f7f8fa; --card:#ffffff; --border:#e2e5ea; --ink:#1a1d23; --sub:#6b7280;
+    --accent:#8a6d3b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0; background:var(--bg); color:var(--ink);
+    font-family:"Pretendard","Noto Sans KR",-apple-system,BlinkMacSystemFont,"Malgun Gothic",sans-serif;
+    line-height:1.6; font-size:15px;
+  }
+  .wrap{max-width:860px; margin:0 auto; padding:20px 16px 60px;}
+  header.top{
+    background:linear-gradient(135deg,#1a1d23,#33363f); color:#fff; border-radius:14px;
+    padding:24px 20px; margin-bottom:18px;
+  }
+  header.top .tag{font-size:12px; letter-spacing:.12em; opacity:.75; text-transform:uppercase;}
+  header.top h1{font-size:21px; margin:8px 0 6px; line-height:1.4;}
+  header.top .meta{font-size:12.5px; opacity:.85; display:flex; flex-wrap:wrap; gap:10px;}
+  .onesum{
+    background:#fff3e0; border:1px solid #f0c987; border-radius:12px; padding:16px 18px; margin-bottom:18px;
+  }
+  .onesum .label{font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.06em;}
+  .onesum p{margin:8px 0 0; font-size:15.5px; font-weight:600;}
+  .onesum .kw{margin-top:8px; font-size:13px; color:var(--sub);}
+  section{
+    background:var(--card); border:1px solid var(--border); border-radius:12px;
+    padding:18px 18px 16px; margin-bottom:14px;
+  }
+  section h2{
+    font-size:15.5px; margin:0 0 12px; padding-bottom:8px; border-bottom:2px solid var(--ink);
+    display:flex; align-items:center; gap:6px;
+  }
+  section h2 .num{
+    background:var(--ink); color:#fff; border-radius:6px; width:22px; height:22px;
+    display:inline-flex; align-items:center; justify-content:center; font-size:12px;
+  }
+  table{width:100%; border-collapse:collapse; font-size:13px; margin:8px 0;}
+  th,td{border:1px solid var(--border); padding:7px 8px; text-align:center;}
+  th{background:#f1f3f6; font-weight:700; font-size:12.5px;}
+  td.left{text-align:left;}
+  .up{color:var(--bull); font-weight:700;}
+  .down{color:var(--bear); font-weight:700;}
+  .flat{color:var(--neutral); font-weight:700;}
+  .pill{
+    display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:20px; margin-left:4px;
+  }
+  .pill.on{background:#ffe3e3; color:var(--bull);}
+  .pill.off{background:#e8edf5; color:var(--bear);}
+  .box{background:#f7f8fa; border-left:4px solid var(--ink); border-radius:6px; padding:10px 12px; margin:10px 0; font-size:13.5px;}
+  .box.alert{border-left-color:var(--bull); background:#fff5f5;}
+  .box.note{border-left-color:#8a6d3b; background:#fffaf0;}
+  ul{padding-left:18px; margin:8px 0;}
+  li{margin-bottom:5px; font-size:13.8px;}
+  .scenario{border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin-bottom:10px;}
+  .scenario.A{border-left:5px solid var(--bull);}
+  .scenario.B{border-left:5px solid #9e9e9e;}
+  .scenario.C{border-left:5px solid var(--bear);}
+  .scenario h3{margin:0 0 6px; font-size:14px;}
+  .theme-block{border:1px solid var(--border); border-radius:8px; padding:10px 12px; margin-bottom:8px;}
+  .theme-block .tname{font-weight:700; font-size:13.5px; margin-bottom:4px;}
+  .theme-block .role{font-size:12.5px; color:var(--sub);}
+  .riskname{color:var(--bear); font-weight:700;}
+  footer{
+    text-align:center; font-size:12px; color:var(--sub); margin-top:22px; padding-top:14px; border-top:1px solid var(--border);
+  }
+  footer b{color:var(--ink);}
+  .scroll-x{overflow-x:auto;}
+  @media (max-width:480px){
+    section{padding:14px 12px;}
+    table{font-size:11.8px;}
+    header.top h1{font-size:18px;}
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="tag">Daily Market Close &middot; KOSPI / KOSDAQ</div>
+  <h1>2026-10-01(목) 일일 시황 정리 및 익일 준비</h1>
+  <div class="meta">
+    <span>발행: <b>Chory &amp; Rochet</b></span>
+    <span>마감 기준 확정치</span>
+    <span>10월 첫 거래일</span>
+  </div>
+</header>
+
+<div class="onesum">
+  <div class="label">① 한 줄 요약</div>
+  <p>마이크론 실적·국내 반도체 수출 사상 최대치가 고금리·외인 매도 부담을 눌러 반도체 쌍끌이 반등 &mdash; 코스피 +1.95%(6,971.35), 코스닥 +4.48%(894.29)로 4거래일 만에 동반 급반등.</p>
+  <div class="kw">키워드: 반도체 실적 모멘텀 · 기관 주도 방어(코스피) · 외인 5거래일 연속 매도 지속</div>
+</div>
+
+<section>
+  <h2><span class="num">2</span>지수 &middot; 수급</h2>
+  <div class="scroll-x">
+  <table>
+    <tr><th>지수</th><th>종가</th><th>등락</th><th>등락률</th><th>특이사항</th></tr>
+    <tr><td class="left">KOSPI</td><td>6,971.35</td><td class="up">+133.31</td><td class="up">+1.95%</td><td class="left">6,814.49 하락 출발→장중 6,765.06 저점→후반 급반등, 종가 사실상 고점(장중 6,971.36)</td></tr>
+    <tr><td class="left">KOSDAQ</td><td>894.29</td><td class="up">+38.38</td><td class="up">+4.48%</td><td class="left">3개월 만에 최고치, 코스피 대비 +2.5%p 아웃퍼폼</td></tr>
+  </table>
+  </div>
+
+  <table>
+    <tr><th>시장</th><th>외국인</th><th>기관</th><th>개인</th></tr>
+    <tr><td class="left">KOSPI</td><td class="down">-5,430억 (5거래일 연속 순매도)</td><td class="up">+3,340억</td><td class="down">-1조4,310억</td></tr>
+    <tr><td class="left">KOSDAQ</td><td class="up">+2,290억</td><td class="up">+5,680억</td><td class="down">-7,770억 (8거래일 만에 순매도 전환)</td></tr>
+  </table>
+  <div class="box">
+    <b>전일 대비 수급 해석:</b> 코스피 외국인은 9/25~9/30 4거래일 연속 매도(3거래일 누적 -8조9,660억 수준)에 이어 오늘도 매도(-5,430억)했으나, 직전 장중 한때 -6,580억까지 벌어졌던 매도 규모가 종가 기준으로는 소폭 축소. <b>기관 홀로 매수하며 지수를 방어한 전형적 "기관 주도 상승"</b> 패턴. 반면 코스닥은 외국인·기관이 동반 순매수로 돌아서며 개인이 8거래일 만에 차익실현(순매도)에 나선 점이 대조적 &mdash; 반도체 소부장 중심의 <b>위험선호 복귀</b> 신호.
+  </div>
+
+  <table>
+    <tr><th>구분</th><th>수치</th><th>전일/전거래일 대비</th></tr>
+    <tr><td class="left">원/달러 환율</td><td class="down">1,358.4원</td><td class="down">+5.6원(+0.41%), 사흘 만에 반등, 장중 1,363.0원</td></tr>
+    <tr><td class="left">국고채 3년</td><td>4.010%</td><td class="up">-0.1bp</td></tr>
+    <tr><td class="left">국고채 10년</td><td>4.436%</td><td class="down">+2.9bp</td></tr>
+    <tr><td class="left">美 국채 10년</td><td>장중 5.3%대(24년만 최고)</td><td class="down">제퍼슨 연준 부의장 "속도조절" 발언에 진정, 뉴욕 강보합 마감</td></tr>
+    <tr><td class="left">WTI / 브렌트유</td><td>$92.87 / $102.31</td><td class="down">+2.71% / +4.4%(중국 석유제품 수출중단+美 중동 병력증원)</td></tr>
+    <tr><td class="left">다우 / S&amp;P500 / 나스닥</td><td>50,926.56 / 7,666.45 / 26,871.xx</td><td class="up">+0.04% / +0.19% / +0.04% (강보합)</td></tr>
+  </table>
+  <div class="box note">
+    9월 수출 1,209.4억달러(월 기준 사상 최대, 전년比 +83.5%) · 반도체 수출 603억달러(전년比 +262.8%, 전체 수출 비중 49.9%) &mdash; 장중 발표돼 반등 트리거로 작용.
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">3</span>섹터 정리</h2>
+  <b>업종 상승 Top</b>
+  <table>
+    <tr><th>업종</th><th>등락률</th><th>비고</th></tr>
+    <tr><td class="left">의료/정밀</td><td class="up">+5.65%</td><td class="left">전 업종 중 최고 상승</td></tr>
+    <tr><td class="left">제약</td><td class="up">+2.89%</td><td class="left">바이오 모멘텀(알테오젠 등) 동반</td></tr>
+    <tr><td class="left">전기/전자</td><td class="up">+2.84%</td><td class="left">반도체 대형주 견인</td></tr>
+    <tr><td class="left">증권</td><td class="up">+2.70%</td><td class="left">거래대금 증가 수혜</td></tr>
+  </table>
+  <div class="box">
+    <b>Breadth 체크(§10 연동):</b> 코스닥이 코스피보다 +2.5%p 더 상승 &mdash; "코스피 상승 중 코스닥이 2%p 이상 뒤처지면 반도체 쏠림 경보" 기준과 정반대로, 오히려 코스닥 아웃퍼폼. 반도체 쏠림 경보 <span class="pill off">미발동</span>, 중소형 반도체 소부장까지 자금이 고르게 유입된 건강한 반등으로 판단.
+  </div>
+  <b>테마 라이프사이클 변화(StockMatrix TLI, 2026-10-01 기준)</b>
+  <ul>
+    <li><b>Peak(정점, 77개)</b>: 스페이스X 82점(+6), 은행 80점(+8), 모바일게임/스마트폰/모바일솔루션 각 77점 &mdash; 과열권, 분할 매도 관점 유지</li>
+    <li><b>Growth(성장, 4개)</b>: 모더나 57점, 애플페이 55점, 마켓컬리 55점, 모듈러주택 54점</li>
+    <li><b>Emerging(초기, 21개)</b>: 방산 59점, 제습기 57점, 두나무 56점, 조선 53점(+2) &mdash; 최우선 관찰군</li>
+    <li><b>Decline(쇠퇴)</b>: 0개 (품질 게이트 통과 테마 기준)</li>
+    <li><b>Surging(급등)</b>: 양자컴퓨팅 66점(+10, Emerging)</li>
+  </ul>
+  <div class="box note">
+    TLI는 뉴스·검색 기반 지수라 당일 반도체 주가 급등과는 괴리가 있을 수 있음(정규화 결함 유의). 오늘 실제 주도 섹터는 업종 등락률·개별 종목 실측(아래 §4)을 1차 근거로 삼았다.
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">4</span>주도 테마 &amp; 주도주</h2>
+  <div class="theme-block">
+    <div class="tname">[테마1] 반도체 소부장 (실측 급등, 당일 핵심 주도)</div>
+    <div class="role">대장: <b>리노공업 +10.90%</b> &middot; 2등: <b>원익IPS +9.13%</b>, 이오테크닉스 +8.46% &middot; 소외(후속 후보): 주성엔지니어링 +3.66%</div>
+  </div>
+  <div class="theme-block">
+    <div class="tname">[테마2] 반도체 대형주 (지수 견인)</div>
+    <div class="role">대장: <b>SK하이닉스 1,833,000원(+3.21%)</b> &middot; 2등: 삼성전자 276,000원(+2.79%) &middot; 동반: 삼성전자우 204,500원(+4.76%, 상대 강세)</div>
+  </div>
+  <div class="theme-block">
+    <div class="tname">[테마3] 이차전지 / 로봇 (순환 반등)</div>
+    <div class="role">대장: <b>에코프로 +5.58%</b> &middot; 2등: 에코프로비엠 +5.13% &middot; 소외: 레인보우로보틱스 +5.02%(로봇 테마 순환 편입 시도)</div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">5</span>특징주</h2>
+  <b>신규/연속 주도주</b>
+  <ul>
+    <li><b>리노공업·원익IPS·이오테크닉스</b>: 반도체 장비·소부장 동반 2자릿수~한 자릿수 후반 급등 &mdash; 메모리 업황 개선 기대의 2차 수혜 구간 진입, 익일 눌림목 매수 관점</li>
+    <li><b>알테오젠 +4.13%</b>: 제약 업종 강세(+2.89%) 속 바이오 대형주 동반 상승</li>
+  </ul>
+  <b>위험 신호(추격 금지) 종목</b>
+  <ul>
+    <li><span class="riskname">코스모로보틱스</span>: 전날 하한가(-) 마감 후 하루 만에 +21.94% 반등 &mdash; 서울경찰청, 자본시장법 위반 혐의로 수사 중(9/29). 변동성 극심, 신규 추격 금지.</li>
+    <li><span class="riskname">썸에이지</span>: 불성실공시법인 지정 + 게임 서비스 종료 공지 &mdash; 상장폐지 위기 경고, 보유·신규 모두 회피.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">6</span>뉴스 &middot; 공시 핵심</h2>
+  <ul>
+    <li><b>[검증완료]</b> 마이크론 분기 실적 발표(9/30 현지시간, D-1 예정 이벤트였음) &rarr; <b>사상 최대 분기 실적 + HBM 완판 발표로 확정</b>. 당초 "실적 경계감으로 상승 동력 잠식" 우려가 있었으나, 실제로는 호실적이 반도체주 반등의 직접 트리거가 됨.</li>
+    <li><b>[검증완료]</b> 9월 수출입 통계 발표(10/1 예정) &rarr; <b>사상 최대(1,209.4억달러, +83.5%)로 확정 발표</b>, 반도체 비중 49.9%.</li>
+    <li>미 국채 금리 급등에 따른 글로벌 변동성 확대 국면에서 <b>필립 제퍼슨 연준 부의장</b>(Fed Vice Chair)이 버지니아대 연설에서 긴축 속도조절을 시사해 장중 진정 &mdash; 연준 의장은 Kevin Warsh(2026-05-22 취임)이며, 이번 발언자는 제퍼슨 부의장임을 명확히 함.</li>
+    <li>중국 석유제품 수출 중단 + 美 중동 추가 병력 증원 소식으로 국제유가 급등(WTI +2.71%, 브렌트 +4.4%) &mdash; 지정학 리스크 재부상, §10 연동 확인 필요.</li>
+    <li>DART 당일 주요공시: 금양(회사분할 정정), GST(자기주식 처분), 쏘카(자사주 신탁 해지), 다보링크·케이쓰리아이·더코디(유상증자/전환사채, 소형주 다수) &mdash; 시장 전체에 영향을 줄 대형 공시는 부재.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">7</span>익일(10/2 금) 시나리오</h2>
+  <div class="scenario A">
+    <h3>A. 상승 갭 (반도체 모멘텀 연장)</h3>
+    <p>뉴욕 강보합 마감(S&amp;P +0.19%) + 반도체 소부장 수급 공백 메우기 지속 시, 코스피 7,000선 재도전. 단 유가 급등·美 10년물 고공행진이 재부각되면 상단이 제한될 수 있어 <b>추격보다 리노공업·원익IPS 등 기존 주도주 눌림목 매수</b> 우선.</p>
+  </div>
+  <div class="scenario B">
+    <h3>B. 보합 출발 (혼조 지속)</h3>
+    <p>미 증시가 사실상 강보합(±0.2% 이내)으로 마감한 만큼 가장 가능성 높은 경로. 외국인 코스피 매도(5거래일 연속)가 멈추는지 여부가 관건 &mdash; 멈추면 상승 전환, 지속되면 기관 단독 방어 구간 유지.</p>
+  </div>
+  <div class="scenario C">
+    <h3>C. 하락 갭 (유가·금리 재충격)</h3>
+    <p>WTI·브렌트 급등(중동 지정학 리스크)과 미국채 10년물 5%대 고착이 동시에 재부각되면 밸류에이션 부담 복귀. 이 경우 반도체 소부장 차익실현 우려 확대, 방어주·낙폭과대 우량주 중심 대응, 현금 비중 확대 권고.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">8</span>Tier 1 관심종목</h2>
+  <div class="scroll-x">
+  <table>
+    <tr><th>종목</th><th>당일 종가(등락률)</th><th>진입가</th><th>손절가</th><th>1차 목표</th><th>근거</th></tr>
+    <tr><td class="left">삼성전자(005930)</td><td class="up">276,000원(+2.79%)</td><td>271,000~277,500</td><td>262,000</td><td>295,000</td><td class="left">반도체 대형 쌍끌이 반등 선두</td></tr>
+    <tr><td class="left">SK하이닉스(000660)</td><td class="up">1,833,000원(+3.21%)</td><td>1,790,000~1,835,000</td><td>1,720,000</td><td>1,950,000</td><td class="left">HBM 수혜 핵심, 마이크론 훈풍 직수혜</td></tr>
+    <tr><td class="left">원익IPS(240810)</td><td class="up">143,500원(+9.13% 추정)</td><td>138,000~144,500</td><td>130,000</td><td>155,000</td><td class="left">반도체 장비 2등주, 9/23 전고점(144,100) 재돌파 시도</td></tr>
+    <tr><td class="left">리노공업(058470)</td><td class="up">81,400원(+10.90% 추정)</td><td>76,000~82,000</td><td>72,500</td><td>88,000</td><td class="left">소부장 당일 대장, 거래량 동반 급등</td></tr>
+    <tr><td class="left">이오테크닉스(039030)</td><td class="up">563,900원(+8.46% 추정)</td><td>525,000~565,000</td><td>500,000</td><td>600,000</td><td class="left">레이저 장비, 반도체 후공정 수혜</td></tr>
+  </table>
+  </div>
+  <div class="box note">추정 종가는 전일(9/30) 종가 × 당일 등락률로 환산한 근사치이며, 실제 체결가와 소폭 오차가 있을 수 있음.</div>
+
+  <b>Tier 2 (조건부 매수)</b>
+  <ul>
+    <li>주성엔지니어링 &mdash; 단기 과열(3일 연속 상승), 되돌림 시 분할 매수</li>
+    <li>에코프로 / 에코프로비엠 &mdash; 이차전지 반등 지속성 확인 후 진입</li>
+    <li>레인보우로보틱스 / 알테오젠 &mdash; 테마 순환 2차 후보</li>
+  </ul>
+  <b>Tier 3 (모니터링)</b>
+  <ul>
+    <li>은행 테마(TLI 80점, Peak) &mdash; 과열 신호, 신규 진입보다 차익실현 관점</li>
+    <li>스페이스X 테마(TLI 82점, Peak) &mdash; 변동성 확대 가능, 관망</li>
+    <li>조선(TLI 53점, Emerging, 7일 뉴스량 128건) &mdash; 초기 부상 확인 중</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">9</span>모니터링 포인트</h2>
+  <ul>
+    <li><b>10/3(토) 개천절 / 10/5(월) 대체공휴일 휴장</b> &mdash; 익일 10/2(금)이 이번 주 사실상 마지막 거래일, 주말 리스크 관리 유의.</li>
+    <li><b>10/8(목)</b>: 삼성전자 3분기 잠정실적 발표 (영업이익 110조원 돌파 전망 기사 존재 &mdash; 공식 발표 전 추정치이므로 과신 금지)</li>
+    <li><b>10/22(수)</b>: 한국은행 금융통화위원회 본회의(기준금리 심의)</li>
+    <li><b>10/27~28</b>: 미 FOMC 정례회의</li>
+    <li>중동 지정학 리스크(美 중동 병력 증원 + 중국 석유제품 수출중단) &mdash; 유가 추가 급등 시 밸류에이션 압박 경로로 재부각 가능, 매일 WTI·브렌트 종가 확인 필요</li>
+    <li>외국인 코스피 5거래일 연속 순매도 지속 여부 &mdash; 매도 전환/둔화 신호가 다음 상승 지속성의 핵심 변수</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">10</span>파동 시나리오 체크</h2>
+  <div class="scroll-x">
+  <table>
+    <tr><th>축</th><th>계층</th><th>값(전일비)</th><th>발동</th></tr>
+    <tr><td class="left">AI 반도체 이익</td><td>원인</td><td class="left">SEMI +1.60 (c1 국내RS +2.68 / c2 미국SOX +0.52) &mdash; 배열: 정상 강세(국내·미국 동반)</td><td><span class="pill on">○ 강세확인</span> 최고분위, 20일 승률 68%</td></tr>
+    <tr><td class="left">미-이란·유가</td><td>원인</td><td class="left">WTI $92.87(+2.71%) / 브렌트 $102.31(+4.4%) &mdash; 中 석유제품 수출중단+美 중동 병력증원</td><td><span class="pill on">○ 재악화</span> WTI 90달러 상회</td></tr>
+    <tr><td class="left">금리</td><td>원인·전달</td><td class="left">국고 3년 4.010%(-0.1bp)/10년 4.436%(+2.9bp), 美10년 장중 5.3%대(24년만 최고, 제퍼슨 발언에 진정)</td><td><span class="pill on">○ 밸류에이션 압박</span> 美10년 4.75% 기준 큰 폭 상회</td></tr>
+    <tr><td class="left">원/달러·외인</td><td>전달</td><td class="left">1,358.4원(+5.6원), 외국인 코스피 -5,430억(5거래일 연속)</td><td><span class="pill off">× 미발동</span> 1,400원 재상회 전</td></tr>
+    <tr><td class="left">신용잔고</td><td>증폭</td><td class="left">신용융자잔고 약 32.8조원(9/25 기준), 반대매매 9/25 37억원(미수금比 0.4%, 낮은 수준)</td><td><span class="pill on">△ 부분발동</span> 잔고는 32조 상회, 반대매매는 안정적</td></tr>
+  </table>
+  </div>
+  <div class="box alert">
+    <b>[발동]</b> 미-이란·유가 &mdash; WTI $92.87 → 유가 재악화 조건(90달러 상회) 충족, 지정학 리스크 재점화<br>
+    <b>[발동]</b> 금리 &mdash; 美 10년물 5%대 고착 → 밸류에이션 압박 경로 유지
+  </div>
+  <p><b>판정선 확인(종가 기준)</b>: 7,216.62(상, 미도달 &middot; 격차 -245.27p) / 6,400.81(하, 미도달 &middot; 여유 +570.54p) / 5,262.77(절대하단, 여유 큼) &mdash; <span class="pill off">판정선 자체는 미발동</span></p>
+  <div class="box note">
+    <b>재산정 규칙 해당:</b> 5대 이슈 중 유가·금리 2개 축이 동시 발동했으나, AI 반도체 이익 축(SEMI +1.60, 최고분위 강세확인)이 동시에 상쇄 방향으로 작용하는 혼재 국면. 판정선 자체는 미발동 상태라 S1~S5 / RC2~RC3 배분을 임의로 변경하지 않고 <b>직전 배분을 유지</b>하되, 익일 WTI·미10년 금리 추이를 우선 확인한 뒤 주간 로드맵 리뷰에서 정식 재점검할 것을 권고.
+  </div>
+</section>
+
+<footer>
+  본 보고서는 투자 참고 자료이며 투자 권유가 아닙니다. 모든 투자 판단과 책임은 투자자 본인에게 있습니다.<br>
+  발행: <b>Chory &amp; Rochet</b> &middot; 2026-10-01 장마감 기준
+</footer>
+
+</div>
+</body>
+</html>
