@@ -260,18 +260,20 @@ function drawScatter(){
   ctx.textBaseline='bottom'; ctx.textAlign='left'; ctx.fillText('저변동 · 언더퍼폼',m.l+6,m.t+ph-4); ctx.textAlign='right'; ctx.fillText('고변동 · 언더퍼폼',W-m.r-6,m.t+ph-4);
   PTS=[]; const c1=css('--s1'), c2=css('--s2'), c3=css('--s3'), surf=css('--surface'); const col=r=>r.mkt==='KOSPI'?c1:r.mkt==='KOSDAQ'?c2:c3;
   const clip=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const RMIN=2.6, RMAX=16, mcs=VIEW.map(r=>r.mcap).filter(v=>v!=null&&v>0), mcCap=mcs.length?pct(mcs,.98):0;
+  const rad=v=>(v==null||v<=0||!mcCap)?RMIN:RMIN+Math.sqrt(Math.min(v,mcCap)/mcCap)*(RMAX-RMIN);
   VIEW.forEach(r=>{const v=xv(r), yv=g(r,'rel'); if(v==null||!isFinite(v)||(xm.log&&v<=0))return;
-    const cx=clip(X(v),m.l,m.l+pw), cy=clip(Y(yv),m.t,m.t+ph), clipped=cx!==X(v)||cy!==Y(yv);
-    PTS.push({x:cx,y:cy,r});
-    ctx.beginPath(); ctx.arc(cx,cy,3.2,0,Math.PI*2);
+    const cx=clip(X(v),m.l,m.l+pw), cy=clip(Y(yv),m.t,m.t+ph), clipped=cx!==X(v)||cy!==Y(yv), rr=rad(r.mcap);
+    PTS.push({x:cx,y:cy,r,rad:rr});
+    ctx.beginPath(); ctx.arc(cx,cy,rr,0,Math.PI*2);
     if(clipped){ctx.strokeStyle=col(r);ctx.lineWidth=1.2;ctx.stroke();}
-    else {ctx.fillStyle=col(r); ctx.globalAlpha=.72; ctx.fill(); ctx.globalAlpha=1;}
+    else {ctx.fillStyle=col(r); ctx.globalAlpha=.6; ctx.fill(); ctx.globalAlpha=1; ctx.strokeStyle=col(r); ctx.globalAlpha=.9; ctx.lineWidth=1; ctx.stroke(); ctx.globalAlpha=1;}
   });
   if(S.sel){const p=PTS.find(p=>p.r.code===S.sel); if(p){ctx.beginPath();ctx.arc(p.x,p.y,7,0,Math.PI*2);ctx.strokeStyle=surf;ctx.lineWidth=4;ctx.stroke();ctx.strokeStyle=css('--ink');ctx.lineWidth=2;ctx.stroke();
     ctx.fillStyle=css('--ink');ctx.font='bold 12px system-ui';ctx.textAlign='left';ctx.textBaseline='bottom';ctx.fillText(p.r.name,p.x+9,p.y-6);}}
-  document.getElementById('scnote').textContent=`벤치마크 ${bn} 기준. 축 범위는 0.5~99.5 백분위로 제한, 범위 밖 종목은 테두리 원으로 가장자리에 표시. 좌상 사분면(음영) = 벤치마크보다 덜 흔들리면서 더 오른 종목. 표시 ${PTS.length.toLocaleString()}종목.`;
+  document.getElementById('scnote').textContent=`벤치마크 ${bn} 기준. 축 범위는 0.5~99.5 백분위로 제한, 범위 밖 종목은 테두리 원으로 가장자리에 표시. 좌상 사분면(음영) = 벤치마크보다 덜 흔들리면서 더 오른 종목. 점 크기 = 시가총액(ETF는 순자산), 상위 2% 구간은 동일 크기로 상한. 표시 ${PTS.length.toLocaleString()}종목.`;
 }
-function nearest(e){const b=cv.getBoundingClientRect(), mx=e.clientX-b.left, my=e.clientY-b.top; let best=null,bd=144; for(const p of PTS){const d=(p.x-mx)**2+(p.y-my)**2; if(d<bd){bd=d;best=p;}} return {best,b};}
+function nearest(e){const b=cv.getBoundingClientRect(), mx=e.clientX-b.left, my=e.clientY-b.top; let best=null,bd=Infinity; for(const p of PTS){const d=(p.x-mx)**2+(p.y-my)**2, th=(Math.max(12,(p.rad||3.2)+3))**2; if(d<th&&d<bd){bd=d;best=p;}} return {best,b};}
 cv.addEventListener('mousemove',e=>{
   const {best,b}=nearest(e); if(!best){tip.style.display='none';return;}
   const r=best.r;
