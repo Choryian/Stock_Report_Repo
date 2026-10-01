@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-10-02 미국 야간 시황 및 한국 개장 대응 | Chory &amp; Rochet</title>
+<style>
+  :root{
+    --bull:#d32f2f; --bear:#1565c0; --neutral:#555;
+    --bg:#f7f8fa; --card:#ffffff; --border:#e2e5ea; --ink:#1a1d23; --sub:#6b7280;
+    --accent:#c4622e;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0; background:var(--bg); color:var(--ink);
+    font-family:"Pretendard","Noto Sans KR",-apple-system,BlinkMacSystemFont,"Malgun Gothic",sans-serif;
+    line-height:1.6; font-size:15px;
+  }
+  .wrap{max-width:860px; margin:0 auto; padding:20px 16px 60px;}
+  header.top{
+    background:linear-gradient(135deg,#1a1d23,#33363f); color:#fff; border-radius:14px;
+    padding:24px 20px; margin-bottom:18px;
+  }
+  header.top .tag{font-size:12px; letter-spacing:.12em; opacity:.75; text-transform:uppercase;}
+  header.top h1{font-size:21px; margin:8px 0 6px; line-height:1.4;}
+  header.top .meta{font-size:12.5px; opacity:.85; display:flex; flex-wrap:wrap; gap:10px;}
+  .onesum{
+    background:#fff3e0; border:1px solid #f0c987; border-radius:12px; padding:16px 18px; margin-bottom:18px;
+  }
+  .onesum .label{font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.06em;}
+  .onesum p{margin:8px 0 0; font-size:15.5px; font-weight:600;}
+  .onesum .kw{margin-top:8px; font-size:13px; color:var(--sub);}
+  .gapscore{display:inline-flex; align-items:center; gap:8px; margin-top:10px; font-size:13px; background:#fff; border:1px solid var(--border); border-radius:20px; padding:4px 12px;}
+  .gapscore b{font-size:18px; color:var(--accent);}
+  section{
+    background:var(--card); border:1px solid var(--border); border-radius:12px;
+    padding:18px 18px 16px; margin-bottom:14px;
+  }
+  section h2{
+    font-size:15.5px; margin:0 0 12px; padding-bottom:8px; border-bottom:2px solid var(--ink);
+    display:flex; align-items:center; gap:6px;
+  }
+  section h2 .num{
+    background:var(--ink); color:#fff; border-radius:6px; width:22px; height:22px;
+    display:inline-flex; align-items:center; justify-content:center; font-size:12px;
+  }
+  table{width:100%; border-collapse:collapse; font-size:13px; margin:8px 0;}
+  th,td{border:1px solid var(--border); padding:7px 8px; text-align:center;}
+  th{background:#f1f3f6; font-weight:700; font-size:12.5px;}
+  td.left{text-align:left;}
+  .up{color:var(--bull); font-weight:700;}
+  .down{color:var(--bear); font-weight:700;}
+  .flat{color:var(--neutral); font-weight:700;}
+  .pill{display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:20px; margin-left:4px;}
+  .pill.on{background:#ffe3e3; color:var(--bull);}
+  .pill.off{background:#e8edf5; color:var(--bear);}
+  .box{background:#f7f8fa; border-left:4px solid var(--ink); border-radius:6px; padding:10px 12px; margin:10px 0; font-size:13.5px;}
+  .box.alert{border-left-color:var(--bull); background:#fff5f5;}
+  .box.note{border-left-color:var(--accent); background:#fff7f0;}
+  ul{padding-left:18px; margin:8px 0;}
+  li{margin-bottom:5px; font-size:13.8px;}
+  .scenario{border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin-bottom:10px;}
+  .scenario.A{border-left:5px solid var(--bull);}
+  .scenario.B{border-left:5px solid #9e9e9e;}
+  .scenario.C{border-left:5px solid var(--bear);}
+  .scenario h3{margin:0 0 6px; font-size:14px;}
+  .theme-block{border:1px solid var(--border); border-radius:8px; padding:10px 12px; margin-bottom:8px;}
+  .theme-block .tname{font-weight:700; font-size:13.5px; margin-bottom:4px;}
+  .theme-block .role{font-size:12.5px; color:var(--sub);}
+  .riskname{color:var(--bear); font-weight:700;}
+  .cp{border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:6px; font-size:13.3px;}
+  .cp b.time{color:var(--accent);}
+  footer{text-align:center; font-size:12px; color:var(--sub); margin-top:22px; padding-top:14px; border-top:1px solid var(--border);}
+  footer b{color:var(--ink);}
+  .scroll-x{overflow-x:auto;}
+  @media (max-width:480px){
+    section{padding:14px 12px;}
+    table{font-size:11.5px;}
+    header.top h1{font-size:18px;}
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="tag">US Overnight &amp; KR Open Playbook &middot; KOSPI / KOSDAQ</div>
+  <h1>2026-10-02(금) 미국 야간 시황 및 한국 개장 대응</h1>
+  <div class="meta">
+    <span>발행: <b>Chory &amp; Rochet</b></span>
+    <span>美 10/1(목) 정규장 마감 기준</span>
+    <span>전일(10/1) 마감 보고서 인계 반영</span>
+  </div>
+</header>
+
+<div class="onesum">
+  <div class="label">① 한 줄 요약</div>
+  <p>미 지수는 10년물 금리가 24년 만의 고점(장중 5.34%)을 찍고 되밀리며 보합 마감했지만, 반도체 장비·파운드리주(AMAT +4.31%, LRCX +5.12%, ASML +4.17%, AMD +4.69%)가 마이크론 실적 훈풍을 타고 2차 랠리 &mdash; 다만 한국 ADR(KB·신한·포스코·LG디스플레이·쿠팡)은 일제히 약세로 전일 급등 이후 차익실현 신호.</p>
+  <div class="kw">키워드: 반도체 장비 2차 랠리 · 美10년물 5%대 고착(밸류에이션 압박 지속) · 한국 ADR 동반 약세(차익실현 경계)</div>
+  <div class="gapscore">갭 점수 <b>+3</b> / -10~+10 &middot; 시나리오 B(보합, 반도체 소부장 쏠림) 우선</div>
+</div>
+
+<section>
+  <h2><span class="num">2</span>미국 3대 지수 &middot; 매크로</h2>
+  <div class="scroll-x">
+  <table>
+    <tr><th>지수</th><th>종가</th><th>등락</th><th>등락률</th></tr>
+    <tr><td class="left">다우존스</td><td>50,926.56</td><td class="up">+20.51</td><td class="up">+0.04%</td></tr>
+    <tr><td class="left">S&amp;P500</td><td>7,666.45</td><td class="up">+14.91</td><td class="up">+0.19%</td></tr>
+    <tr><td class="left">나스닥종합</td><td>26,871.60</td><td class="up">+10.54</td><td class="up">+0.04%</td></tr>
+    <tr><td class="left">러셀2000</td><td>-</td><td class="up">-</td><td class="up">약 +0.8%</td></tr>
+  </table>
+  </div>
+  <table>
+    <tr><th>지표</th><th>수치</th><th>비고</th></tr>
+    <tr><td class="left">VIX</td><td class="up">16.34 (+1.9%)</td><td class="left">여전히 낮은 절대 수준, 패닉 아님</td></tr>
+    <tr><td class="left">美 10년물</td><td class="down">종가 약 5.24~5.30%</td><td class="left">장중 5.34%(2002년 이후 최고) 터치 후 반락, 밸류에이션 압박 지속</td></tr>
+    <tr><td class="left">달러인덱스(DXY)</td><td class="up">101.91 (+0.45%)</td><td class="left">달러 강세 유지, 원화 등 신흥국 통화 부담</td></tr>
+    <tr><td class="left">WTI / 금 / 구리</td><td>$90.42 / $4,182 / $6.56</td><td class="left">WTI 전일比 -2.6% 숨고르기(中 석유제품 수출중단 이슈 완화), 금 +0.6% 견조</td></tr>
+    <tr><td class="left">BTC / ETH</td><td>$83,566 / $2,684</td><td class="left">24시간 보합권(각각 -0.1% / +0.3%)</td></tr>
+  </table>
+  <div class="box note">
+    장중 美 국채 10년물 발작적 급등(5.34%, 24년 만의 최고)에도 지수가 보합권에서 방어한 점은 긍정적이나, 금리 수준 자체는 여전히 밸류에이션에 구조적 부담 &mdash; 성장주·고PER 섹터는 눌림목 접근이 안전.
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">3</span>섹터 &middot; 종목 (한국 영향 중심)</h2>
+  <b>SOX(필라델피아 반도체지수)</b>
+  <div class="box">
+    10/1 정규장 SOX 정확한 종가는 소스 간 불일치로 확정치 미확보. 다만 구성 핵심종목이 일제히 +3~5%대 급등(아래 표)해 지수 자체도 상당폭 상승 마감했을 것으로 추정 &mdash; <b>확정 수치는 개장 전 재확인 필요</b>.
+  </div>
+  <div class="scroll-x">
+  <table>
+    <tr><th>종목</th><th>종가</th><th>등락률</th><th>비고</th></tr>
+    <tr><td class="left">AMAT(어플라이드)</td><td>$454.71</td><td class="up">+4.31%</td><td class="left">장비주 2차 랠리 선두</td></tr>
+    <tr><td class="left">LRCX(램리서치)</td><td>$307.65</td><td class="up">+5.12%</td><td class="left">장비주 최대폭 상승</td></tr>
+    <tr><td class="left">ASML</td><td>$1,714.88</td><td class="up">+4.17%</td><td class="left">노광장비 강세</td></tr>
+    <tr><td class="left">AMD</td><td>$477.57</td><td class="up">+4.69%</td><td class="left">AI 반도체 동반 강세</td></tr>
+    <tr><td class="left">TSM</td><td>$428.91</td><td class="up">+2.85%</td><td class="left">파운드리 수요 기대</td></tr>
+    <tr><td class="left">NVDA</td><td>$230.36</td><td class="up">+0.84%</td><td class="left">상대적으로 완만한 강세</td></tr>
+    <tr><td class="left">MU(마이크론)</td><td>$1,053.98</td><td class="down">-2.61%</td><td class="left">FY26 4Q 실적·가이던스 모두 어닝비트(EPS $33.42 vs 컨센 $31.16, 매출 $54.23B)했으나 "뉴스에 팔기" &mdash; 1Q 매출 가이던스 $61.5B도 컨센 상회에도 주가는 약세</td></tr>
+  </table>
+  </div>
+  <b>한국 ADR / 매그니피센트7 (주의 신호)</b>
+  <div class="scroll-x">
+  <table>
+    <tr><th>종목</th><th>등락률</th><th>비고</th></tr>
+    <tr><td class="left">KB금융 ADR</td><td class="down">-0.16%</td><td class="left">전일 급등 뒤 숨고르기</td></tr>
+    <tr><td class="left">신한 ADR</td><td class="down">-0.30%</td><td class="left">동반 약세</td></tr>
+    <tr><td class="left">POSCO홀딩스 ADR</td><td class="down">-0.37%</td><td class="left">동반 약세</td></tr>
+    <tr><td class="left">LG디스플레이 ADR</td><td class="down">-1.36%</td><td class="left">낙폭 상대적으로 큼</td></tr>
+    <tr><td class="left">쿠팡(CPNG)</td><td class="down">-2.80%</td><td class="left">낙폭 최대</td></tr>
+    <tr><td class="left">META</td><td class="down">-1.84%</td><td class="left">빅테크 내 유일 큰 폭 약세</td></tr>
+    <tr><td class="left">AAPL/MSFT/GOOG/AMZN/TSLA</td><td class="up">+0.6~+1.1%</td><td class="left">완만한 동반 강세</td></tr>
+  </table>
+  </div>
+  <div class="box alert">
+    <b>[주의]</b> 한국 ADR 5종목 전부 약세는 전일(10/1) 코스피 +1.95%·코스닥 +4.48% 급등에 대한 외국인 차익실현 신호로 해석 가능 &mdash; 반도체 장비주 강세만으로 갭상승을 단정하면 안 되는 핵심 근거.
+  </div>
+  <b>방산 / 원전·전력</b>
+  <ul>
+    <li>LMT $533.88(보합권), RTX $185.74(+0.05%, 사실상 보합) &mdash; 방산은 뚜렷한 모멘텀 부재, 중립</li>
+    <li>VST $137~142 박스권(사실상 보합), CEG +1.42% &mdash; 원전·전력 테마는 완만한 긍정 유지</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">4</span>매크로 이벤트 &middot; 어닝</h2>
+  <ul>
+    <li><b>[검증]</b> 美 정부 셧다운 우려 &mdash; 9/2 양원 통과한 임시예산안(H.R.6500, 12/11까지 효력)으로 10/1 회계연도 개시 시점 셧다운은 <b>발생하지 않음</b>으로 확인. 10월 시장 리스크에서 제외.</li>
+    <li><b>[오늘 발표 예정]</b> 美 9월 비농업고용(NFP) &mdash; 10/2(금) 21:30 KST 발표. 컨센서스 +8.8만명, 실업률 4.1% 유지 전망. <b>한국 정규장 마감 이후 발표</b>라 당일 장중 직접 영향은 제한적이나, 서프라이즈 시 월요일(10/6, 추석 연휴 전후 일정 재확인 필요) 갭에 영향 가능 &mdash; 주말 체크리스트 반영.</li>
+    <li>연준 인사 다수 연설 주간(바킨·콜린스·월러·제퍼슨·보먼·윌리엄스·쿡·로건) &mdash; 긴축 속도조절 기조 재확인이 주 테마, 10Y 급등 진정에 기여.</li>
+    <li>마이크론 FY26 4분기 실적(9/30 발표, 전일 보고서에서 검증완료) &mdash; 이번 보고서 신규 확인사항: EPS·매출 모두 큰 폭 어닝비트 + 1Q 가이던스 $61.5B(컨센 상회)에도 주가는 "뉴스에 팔기"로 약세, 반면 일본·대만 장비·소부장株로 수혜가 확산(어드반테스트 +8%, 레이저텍 +10%, 닛케이 +2.8%) &mdash; <b>수혜의 중심이 메모리 본체주에서 장비·소부장 밸류체인으로 이동</b>한 점이 한국 개장 대응의 핵심 시사점.</li>
+    <li>FOMC 정례회의: 10/27~28 예정(변동 없음).</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">5</span>한국 섹터 &middot; 테마 매핑</h2>
+  <div class="theme-block">
+    <div class="tname">[최우선] 반도체 장비·소부장 (해외 2차 랠리 직결)</div>
+    <div class="role">대장: <b>원익IPS</b> &middot; 2등: 이오테크닉스, 동진쎄미켐 &middot; 소외: 주성엔지니어링, 피에스케이 &mdash; AMAT·LRCX·ASML 동시 급등이 전일 급등주(리노공업·원익IPS·이오테크닉스)의 연장 모멘텀을 지지. 단, 전일 이미 8~11% 급등해 단기 과열 &mdash; 추격보다 눌림목.</div>
+  </div>
+  <div class="theme-block">
+    <div class="tname">반도체 대형주(메모리·HBM)</div>
+    <div class="role">대장: <b>SK하이닉스</b> &middot; 2등: 삼성전자 &middot; 소외: 한미반도체 &mdash; 마이크론 가이던스 호조는 구조적 호재이나 MU 주가 자체 약세·ADR 차익실현 신호와 겹쳐 갭상승 폭은 제한적일 가능성.</div>
+  </div>
+  <div class="theme-block">
+    <div class="tname">원전 (완만한 긍정 유지)</div>
+    <div class="role">대장: <b>두산에너빌리티</b> &middot; 2등: 한전기술 &middot; 소외: 한전 &mdash; VST·CEG 박스권 상단 유지, 급격한 가속 신호는 없음.</div>
+  </div>
+  <div class="theme-block">
+    <div class="tname">방산 (중립, 모멘텀 소강)</div>
+    <div class="role">대장: 한화에어로스페이스 &middot; 2등: LIG넥스원 &middot; 소외: 현대로템 &mdash; LMT·RTX 보합권, 전일 테마 TLI Emerging(59점) 단계 유지 중이나 오늘 해외발 추가 자극 없음.</div>
+  </div>
+  <div class="box note">
+    <b>전일 Tier 1 인계 확인:</b> 삼성전자·SK하이닉스·원익IPS·리노공업·이오테크닉스 5종 모두 미장에서 동일 섹터(반도체 장비·메모리) 우호적 흐름 확인 &mdash; 연속성 유지. 다만 ADR 약세로 전면 갭상승보다는 "장비주 중심 선별 강세" 가능성에 무게.
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">6</span>환율 &middot; NDF</h2>
+  <table>
+    <tr><th>구분</th><th>수치</th><th>비고</th></tr>
+    <tr><td class="left">원/달러 (전일 KRX 종가)</td><td>1,358.4원</td><td class="left">10/1 마감, +5.6원(+0.41%)</td></tr>
+    <tr><td class="left">원/달러 NDF(1개월, 참고)</td><td>약 1,355~1,360원 박스권</td><td class="left">DXY +0.45% 강세에도 네고 물량에 상단 제한 &mdash; 급격한 갭 유발 신호는 아님</td></tr>
+    <tr><td class="left">USD/JPY</td><td>약 158.3엔</td><td class="left">엔화 약세 지속, 일본 수출주·반도체 장비주(어드반테스트 등) 상대적 수혜</td></tr>
+    <tr><td class="left">USD/CNY</td><td>약 6.70위안</td><td class="left">위안화 안정적 박스권</td></tr>
+  </table>
+  <div class="box">
+    환율·NDF만 보면 큰 폭 갭을 유발할 신호는 없음 &mdash; 달러 강세(DXY +0.45%)와 원화 NDF 박스권이 상쇄되는 모습. 갭 방향성은 결국 반도체 장비주 수급과 ADR 차익실현 압력의 힘겨루기에 좌우될 전망.
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">7</span>한국 개장 시나리오</h2>
+  <div class="scenario B">
+    <h3>B. 보합 출발, 반도체 장비·소부장 쏠림 (갭 점수 +3, 1순위)</h3>
+    <p>지수 자체는 美 보합 마감 + ADR 차익실현 신호로 ±0.5% 내 보합 출발 가능성이 가장 높다. 다만 반도체 장비주(AMAT·LRCX·ASML) 해외 급등이 원익IPS·이오테크닉스 등 국내 소부장 수급에 선별적으로 반영될 전망 &mdash; 지수보다 업종 내 쏠림을 우선 체크. 전일 급등주는 추격보다 눌림목 매수, 신규 자금은 소부장 내 미급등 2선주(주성엔지니어링·피에스케이 등) 순환 여부 확인.</p>
+  </div>
+  <div class="scenario A">
+    <h3>A. 갭상승 연장 (장비주 모멘텀이 지수까지 견인, 갭 점수 +6↑ 시)</h3>
+    <p>개장 전 동시호가에서 외국인 선물 순매수·반도체 장비·소부장 전반 강세가 확인되면 코스피 7,000선 재돌파 시도. 이 경우에도 리노공업 등 3일 연속 급등주는 신규 진입보다 보유분 일부 차익실현 후 재진입 전략이 안전.</p>
+  </div>
+  <div class="scenario C">
+    <h3>C. 갭하락 (ADR 약세·금리 재부각 시, 갭 점수 -3↓)</h3>
+    <p>美 10년물이 개장 전 5.3%대로 재차 치솟거나 ADR 약세가 국내 외국인 매도 확대로 이어지면 코스피 -0.5~-1% 갭하락 가능. 전일 외국인 코스피 5거래일 연속 순매도가 6거래일째 이어지는지가 핵심 트리거 &mdash; 이 경우 전일 급등주(리노공업·원익IPS 등) 차익실현 가속 우려, 방어적 포지션(원전·대형 메모리 위주) 전환 권고.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">8</span>Tier 1 관심종목</h2>
+  <div class="scroll-x">
+  <table>
+    <tr><th>종목</th><th>전일 종가(등락률)</th><th>시초가 대응(진입)</th><th>손절가</th><th>1차 목표</th><th>미장 근거</th></tr>
+    <tr><td class="left">SK하이닉스(000660)</td><td class="up">1,833,000원(+3.21%)</td><td>1,790,000~1,835,000</td><td>1,720,000</td><td>1,950,000</td><td class="left">마이크론 가이던스 호조·HBM 수요 구조적 유지</td></tr>
+    <tr><td class="left">삼성전자(005930)</td><td class="up">276,000원(+2.79%)</td><td>271,000~277,500</td><td>262,000</td><td>295,000</td><td class="left">반도체 대형 쌍끌이, 10/8 3Q잠정실적 D-6 접근</td></tr>
+    <tr><td class="left">원익IPS(240810)</td><td class="up">143,500원(+9.13%)</td><td>138,000~144,500 (추격 자제)</td><td>130,000</td><td>155,000</td><td class="left">AMAT+4.31%·LRCX+5.12% 해외 장비주 2차 랠리 직결</td></tr>
+    <tr><td class="left">이오테크닉스(039030)</td><td class="up">563,900원(+8.46%)</td><td>525,000~565,000</td><td>500,000</td><td>600,000</td><td class="left">레이저 후공정 장비, 해외 장비주 동반 강세 수혜</td></tr>
+    <tr><td class="left">리노공업(058470)</td><td class="up">81,400원(+10.90%)</td><td>76,000~82,000 (신규 추격 금지)</td><td>72,500</td><td>88,000</td><td class="left">소부장 대장이나 3거래일 연속 급등 &middot; 단기 과열 극심, 되돌림시 분할매수로 한정</td></tr>
+  </table>
+  </div>
+  <div class="box note">전일 종가·등락률은 2026-10-01 KRX 확정치. 원익IPS·리노공업·이오테크닉스는 이미 큰 폭 급등한 상태이므로 시초가 갭상승 시 신규 추격을 자제하고 제시된 진입 구간(눌림목)에서만 분할 접근할 것.</div>
+  <b>Tier 2 (조건부)</b>
+  <ul>
+    <li>주성엔지니어링·피에스케이 &mdash; 장비주 테마 내 상대적 미급등 2선주, 순환매 확인 후 진입</li>
+    <li>두산에너빌리티 / 한전기술 &mdash; 원전 테마 완만한 긍정 지속, 조정 시 분할 매수</li>
+  </ul>
+  <b>Tier 3 (모니터링)</b>
+  <ul>
+    <li>쿠팡·LG디스플레이 등 ADR 약세 종목군 &mdash; 외국인 차익실현 확산 여부 관찰, 코스피 금융·대형 소비재 동반 약세 가능성 체크</li>
+    <li>한화에어로스페이스 등 방산 &mdash; 해외 모멘텀 소강, 신규 촉매 대기</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">9</span>시간대별 체크포인트</h2>
+  <div class="cp"><b class="time">08:00~08:50</b> 시간외 단일가·코스피200 야간선물 흐름 확인(정규 수치 미확보, 개장 전 재확인 필요), 원/달러 NDF 추가 변동 체크</div>
+  <div class="cp"><b class="time">08:30~09:00</b> 동시호가 예상가, 특히 원익IPS·이오테크닉스·SK하이닉스 호가 쏠림 여부로 장비주발 강세 확산 정도 1차 판단</div>
+  <div class="cp"><b class="time">09:00</b> 시초가 확인 &mdash; 코스피 ±0.5% 이내면 시나리오 B 확정, 반도체 장비주 중심 거래대금 집중도 체크</div>
+  <div class="cp"><b class="time">09:30~10:00</b> 추세 확정 구간 &mdash; 장비주 2선주(주성엔지니어링 등) 순환매 진입 여부, 전일 급등주 되돌림 폭 확인</div>
+  <div class="cp"><b class="time">11:00</b> 외국인 잠정 순매수 발표 &mdash; 6거래일 연속 순매도 지속 여부가 오후장 분수령(사수 실패 시 C 시나리오 경계)</div>
+  <div class="cp"><b class="time">13:00</b> 오후장 재점검 &mdash; 美 NFP 발표(21:30 KST)를 앞둔 포지션 축소 경계감 여부, WTI·금 추가 변동</div>
+  <div class="cp"><b class="time">21:30</b> 美 9월 비농업고용(NFP) 발표 &mdash; 컨센서스 +8.8만명/실업률 4.1%, 한국 정규장 마감 이후라 직접 영향은 제한적이나 주말 리뷰 반영 필수</div>
+</section>
+
+<footer>
+  본 보고서는 투자 참고 자료이며 투자 권유가 아닙니다. 모든 투자 판단과 책임은 투자자 본인에게 있습니다.<br>
+  발행: <b>Chory &amp; Rochet</b> &middot; 2026-10-02 개장 전 기준 (美 10/1 정규장 마감 데이터)
+</footer>
+
+</div>
+</body>
+</html>
