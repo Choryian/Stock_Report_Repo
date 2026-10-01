@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>주간 섹터·테마 모니터 보고서 (2026-09-30)</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+    background: #fafaf7; color: #2c2c2a; margin: 0; padding: 0;
+    font-size: 14px; line-height: 1.6;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+  header { border-bottom: 1px solid #d3d1c7; padding-bottom: 16px; margin-bottom: 28px; }
+  h1 { font-size: 22px; font-weight: 500; margin: 0 0 6px; }
+  .subtitle { font-size: 13px; color: #5f5e5a; }
+  h2 { font-size: 17px; font-weight: 500; margin: 32px 0 14px; }
+  h3 { font-size: 14px; font-weight: 500; margin: 20px 0 10px; color: #444441; }
+  section { margin-bottom: 28px; }
+  .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .summary-card { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 8px; padding: 14px; }
+  .summary-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+  .summary-label { font-size: 12px; font-weight: 500; }
+  .summary-value { font-size: 22px; font-weight: 500; margin-left: auto; }
+  .summary-list { padding-top: 8px; border-top: 0.5px solid #d3d1c7; }
+  .summary-item { font-size: 12px; color: #5f5e5a; line-height: 1.7; display: flex; justify-content: space-between; }
+  .summary-item span:last-child { color: #888780; font-size: 11px; }
+  .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: middle; }
+  .chart-container { position: relative; width: 100%; height: 480px; background: #fff; border: 0.5px solid #d3d1c7; border-radius: 8px; padding: 16px; }
+  .legend-row { display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; color: #5f5e5a; margin-bottom: 12px; }
+  .legend-item { display: flex; align-items: center; gap: 4px; }
+  .matrix-table { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; border: 0.5px solid #d3d1c7; border-radius: 8px; overflow: hidden; }
+  .matrix-table th { text-align: left; font-weight: 500; color: #5f5e5a; padding: 10px 8px; border-bottom: 0.5px solid #b4b2a9; font-size: 11px; background: #f1efe8; }
+  .matrix-table td { padding: 10px 8px; border-bottom: 0.5px solid #d3d1c7; vertical-align: middle; }
+  .matrix-table tr:last-child td { border-bottom: none; }
+  .sector-name { font-weight: 500; }
+  .sector-mcap { font-size: 11px; color: #888780; }
+  .stage-bar { display: flex; height: 18px; border-radius: 4px; overflow: hidden; min-width: 200px; }
+  .stage-segment { display: flex; align-items: center; justify-content: center; font-size: 10px; color: white; font-weight: 500; min-width: 18px; }
+  .bar-meta { font-size: 11px; color: #888780; margin-top: 4px; display: flex; gap: 12px; }
+  .verdict-pill { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 500; white-space: nowrap; }
+  .signal-num { font-variant-numeric: tabular-nums; font-weight: 500; text-align: right; }
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .movers-card { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 8px; padding: 14px; }
+  .mover-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 0.5px solid #f1efe8; font-size: 12px; }
+  .mover-row:last-child { border-bottom: none; }
+  .mover-name { font-weight: 500; }
+  .mover-stage { font-size: 10px; color: #888780; margin-left: 6px; }
+  .mover-change { font-variant-numeric: tabular-nums; font-weight: 500; }
+  .quad-labels { position: absolute; font-size: 11px; font-weight: 500; color: #888780; pointer-events: none; }
+  .ql-tl { top: 24px; left: 24px; }
+  .ql-tr { top: 24px; right: 24px; }
+  .ql-bl { bottom: 24px; left: 24px; }
+  .ql-br { bottom: 24px; right: 24px; }
+  footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #d3d1c7; font-size: 11px; color: #888780; }
+  .empty-state { padding: 16px; color: #888780; font-size: 12px; text-align: center; background: #fff; border: 0.5px dashed #d3d1c7; border-radius: 8px; }
+  .top3-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .top3-card { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 8px; padding: 16px; }
+  .top3-card h3 { margin: 0 0 4px; }
+  .top3-meta { font-size: 11px; color: #888780; margin-bottom: 12px; }
+  .top3-item { padding: 10px 0; border-bottom: 0.5px solid #f1efe8; }
+  .top3-item:last-child { border-bottom: none; }
+  .top3-rank-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .top3-rank { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: #f1efe8; font-size: 11px; font-weight: 500; color: #444441; }
+  .top3-name { font-weight: 500; font-size: 14px; }
+  .top3-quad-pill { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 500; color: white; margin-left: 4px; }
+  .top3-detail { font-size: 11px; color: #5f5e5a; line-height: 1.6; padding-left: 30px; }
+  .top3-detail .num { font-variant-numeric: tabular-nums; font-weight: 500; color: #444441; }
+  .confidence-banner { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f1efe8; border-radius: 8px; margin-bottom: 16px; font-size: 12px; }
+  .confidence-grade { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; color: white; font-weight: 500; font-size: 16px; }
+  .confidence-text { flex: 1; }
+  .confidence-text .label { font-weight: 500; font-size: 13px; color: #2c2c2a; }
+  .confidence-text .meta { font-size: 11px; color: #5f5e5a; margin-top: 2px; }
+  .disclaimer { background: #faeeda; border-left: 3px solid #BA7517; padding: 12px 14px; margin: 12px 0 16px; font-size: 12px; color: #444441; line-height: 1.6; border-radius: 0 4px 4px 0; }
+  .disclaimer b { color: #854F0B; }
+  .disclaimer .small { font-size: 11px; color: #5f5e5a; display: block; margin-top: 4px; }
+  .stock-tag { display: inline-block; padding: 1px 6px; background: #f1efe8; border-radius: 3px; font-size: 10px; color: #5f5e5a; margin-right: 4px; }
+  .track-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+  .track-stat { background: #f1efe8; border-radius: 8px; padding: 12px; }
+  .track-stat-label { font-size: 11px; color: #5f5e5a; }
+  .track-stat-value { font-size: 20px; font-weight: 500; color: #2c2c2a; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .track-stat-meta { font-size: 11px; color: #888780; margin-top: 2px; }
+  .track-table { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; border: 0.5px solid #d3d1c7; border-radius: 8px; overflow: hidden; }
+  .track-table th { text-align: left; font-weight: 500; color: #5f5e5a; padding: 8px 6px; border-bottom: 0.5px solid #b4b2a9; font-size: 11px; background: #f1efe8; }
+  .track-table td { padding: 8px 6px; border-bottom: 0.5px solid #d3d1c7; vertical-align: middle; font-variant-numeric: tabular-nums; }
+  .track-table tr:last-child td { border-bottom: none; }
+  .pending-badge { display: inline-block; padding: 1px 6px; background: #f1efe8; color: #888780; border-radius: 3px; font-size: 10px; }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JN4GMS3HSY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JN4GMS3HSY');
+</script>
+<script defer src="../assets/report-header.js"></script>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>주간 섹터·테마 모니터 보고서 (2026-09-30)</h1>
+  <div class="subtitle">Chory &amp; Rochet 리서치센터 · 분석일 2026-09-30 · 벤치마크 KOSPI 200 합성지수 · 유효 섹터 27개 · StockMatrix 추적 테마 42개</div>
+</header>
+
+<section>
+  <h2>1. 사분면 분포</h2>
+  <div style="font-size:11px; color:#888780; margin-bottom:10px;">※ 이 보고서는 표시 범위가 절마다 다른 3단 구조다 — ① 1·2절(사분면 분포·RRG)은 시총 상위 18개 섹터만, ② 3절(통합 매트릭스)은 StockMatrix 테마가 1개 이상 매핑된 섹터 중 시총 상위군(이번 주 15개)만, ③ "핵심 인사이트"와 "다음 주 Top3"는 매핑 여부·시총 순위와 무관하게 전체 유효 섹터 27개 전부를 대상으로 산출한다. 따라서 종이·목재처럼 ①·② 어디에도 안 보이지만 ③에만 등장하는 섹터가 있고, 증권·보험처럼 ①(사분면)에는 있지만 테마 매핑이 없어 ②(매트릭스)에는 빠지는 섹터도 있다 — 모두 누락이 아니라 절마다 다른 집계 범위 때문이다.</div>
+  <div class="summary-grid">
+  
+    <div class="summary-card">
+      <div class="summary-head">
+        <span class="legend-dot" style="background:#1D9E75;"></span>
+        <span class="summary-label" style="color:#0F6E56;">Leading</span>
+        <span class="summary-value">1</span>
+      </div>
+      <div class="summary-list">
+      
+        <div class="summary-item"><span>전기·전자</span><span>4.3천조</span></div>
+      
+      </div>
+    </div>
+  
+    <div class="summary-card">
+      <div class="summary-head">
+        <span class="legend-dot" style="background:#BA7517;"></span>
+        <span class="summary-label" style="color:#854F0B;">Weakening</span>
+        <span class="summary-value">0</span>
+      </div>
+      <div class="summary-list">
+      
+      </div>
+    </div>
+  
+    <div class="summary-card">
+      <div class="summary-head">
+        <span class="legend-dot" style="background:#378ADD;"></span>
+        <span class="summary-label" style="color:#185FA5;">Improving</span>
+        <span class="summary-value">10</span>
+      </div>
+      <div class="summary-list">
+      
+        <div class="summary-item"><span>기타금융업</span><span>596조</span></div>
+      
+        <div class="summary-item"><span>기계·장비</span><span>224조</span></div>
+      
+        <div class="summary-item"><span>화학</span><span>193조</span></div>
+      
+        <div class="summary-item"><span>금속</span><span>104조</span></div>
+      
+        <div class="summary-item"><span>일반서비스</span><span>94조</span></div>
+      
+        <div class="summary-item"><span>증권</span><span>76조</span></div>
+      
+        <div class="summary-item"><span>운송·창고</span><span>55조</span></div>
+      
+        <div class="summary-item"><span>건설</span><span>47조</span></div>
+      
+        <div class="summary-item"><span>전기·가스</span><span>31조</span></div>
+      
+        <div class="summary-item"><span>의료·정밀기기</span><span>22조</span></div>
+      
+      </div>
+    </div>
+  
+    <div class="summary-card">
+      <div class="summary-head">
+        <span class="legend-dot" style="background:#888780;"></span>
+        <span class="summary-label" style="color:#444441;">Lagging</span>
+        <span class="summary-value">7</span>
+      </div>
+      <div class="summary-list">
+      
+        <div class="summary-item"><span>운송장비·부품</span><span>510조</span></div>
+      
+        <div class="summary-item"><span>제약</span><span>181조</span></div>
+      
+        <div class="summary-item"><span>IT 서비스</span><span>166조</span></div>
+      
+        <div class="summary-item"><span>유통</span><span>148조</span></div>
+      
+        <div class="summary-item"><span>보험</span><span>137조</span></div>
+      
+        <div class="summary-item"><span>음식료·담배</span><span>52조</span></div>
+      
+        <div class="summary-item"><span>통신</span><span>44조</span></div>
+      
+      </div>
+    </div>
+  
+  </div>
+</section>
+
+<section>
+  <h2>2. RRG (Relative Rotation Graph)</h2>
+  <div class="legend-row">
+    <span class="legend-item"><span class="legend-dot" style="background:#1D9E75;"></span>Leading</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#BA7517;"></span>Weakening</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#378ADD;"></span>Improving</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#888780;"></span>Lagging</span>
+    <span style="margin-left: auto; color:#888780;">시총 가중 마커 · 4주 trail</span>
+  </div>
+  <div class="chart-container">
+    <div class="quad-labels ql-tl">← Improving</div>
+    <div class="quad-labels ql-tr">Leading →</div>
+    <div class="quad-labels ql-bl">← Lagging</div>
+    <div class="quad-labels ql-br">Weakening →</div>
+    <canvas id="rrgChart" role="img" aria-label="섹터 RRG 차트">18개 섹터의 RRG 산점도, 4주 trail 포함</canvas>
+  </div>
+</section>
+
+<section>
+  <h2>3. 섹터 ↔ 테마 통합 매트릭스</h2>
+  <table class="matrix-table">
+    <thead>
+      <tr>
+        <th style="width:24px;"></th>
+        <th>섹터</th>
+        <th style="width:280px;">테마 라이프사이클 (E/G/P/D)</th>
+        <th style="width:60px; text-align:right;">7d</th>
+        <th style="width:65px; text-align:right;">신호</th>
+        <th style="width:140px;">종합 판정</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+      <tr>
+        <td><span class="legend-dot" style="background:#1D9E75;" title="Leading"></span></td>
+        <td>
+          <div class="sector-name">전기·전자</div>
+          <div class="sector-mcap">4.3천조 · Leading</div>
+        </td>
+        <td>
+          <div class="stage-bar">
+            <div class="stage-segment" style="background:#378ADD; width:14.285714285714285%;" title="Emerging">1</div>
+            
+            <div class="stage-segment" style="background:#BA7517; width:85.71428571428571%;" title="Peak">6</div>
+            
+          </div>
+          <div class="bar-meta">
+            <span>7개</span>
+            <span style="color:#378ADD;">E 1</span>
+            
+            <span style="color:#BA7517;">P 6</span>
+            
+          </div>
+        </td>
+        <td class="signal-num" style="color:#0F6E56;">+5.3</td>
+        <td class="signal-num" style="color:#0F6E56;">+18</td>
+        <td><span class="verdict-pill" style="background:rgba(29,158,117,0.15); color:#1D9E75;">강한 매수 일치</span></td>
+      </tr>
+    
+      <tr>
+        <td><span class="legend-dot" style="background:#378ADD;" title="Improving"></span></td>
+        <td>
+          <div class="sector-name">기타금융업</div>
+          <div class="sector-mcap">596조 · Improving</div>
+        </td>
+        <td>
+          <div class="stage-bar">
+            
+            
+            <div class="stage-segment" style="background:#BA7517; width:100.0%;" title="Peak">1</div>
+            
+          </div>
+          <div class="bar-meta">
+            <span>1개</span>
+            
+            
+            <span style="color:#BA7517;">P 1</span>
+            
+          </div>
+        </td>
+        <td class="signal-num" style="color:#0F6E56;">+8.0</td>
+        <td class="signal-num" style="color:#0F6E56;">+21</td>
+        <td><span class="verdict-pill" style="background:rgba(29,158,117,0.15); color:#1D9E75;">강한 매수 일치</span></td>
+      </tr>
+    
+      <tr>
+        <td><span class="legend-dot" style="background:#888780;" title="Lagging"></span></td>
+        <td>
+          <div class="sector-name">운송장비·부품</div>
+          <div class="sector-mcap">510조 · Lagging</div>
+        </td>
+        <td>
+          <div class="stage-bar">
+            <div class="stage-segment" style="background:#378ADD; width:66.66666666666666%;" title="Emerging">2</div>
+            
+            <div class="stage-segment" style="background:#BA7517; width:33.33333333333333%;" title="Peak">1</div>
+            
+          </div>
+          <div class="bar-meta">
+            <span>3개</span>
+            <span style="color:#378ADD;">E 2</span>
+            
+            <span style="color:#BA7517;">P 1</span>
+            
+          </div>
+        </td>
+        <td class="signal-num" style="color:#0F6E56;">+2.3</td>
+        <td class="signal-num" style="color:#0F6E56;">+20</td>
+        <td><span class="verdict-pill" style="background:rgba(55,138,221,0.15); color:#378ADD;">테마 회복, 섹터 지연</span></td>
+      </tr>
+    
+      <tr>
+        <td><span class="legend-dot" style="background:#378ADD;" title="Improving"></span></td>
+        <td>
+          <div class="sector-name">기계·장비</div>
+          <div class="sector-mcap">224조 · Improving</div>
+        </td>
+        <td>
+          <div class="stage-bar">
+            <div class="stage-segment" style="background:#378ADD; width:25.0%;" title="Emerging">1</div>
+            
+            <div class="stage-segment" style="background:#BA7517; width:75.0%;" title="Peak">3</div>
+            
+          </div>
+          <div class="bar-meta">
+            <span>4개</span>
+            <span style="color:#378ADD;">E 1</span>
+            
+            <span style="color:#BA7517;">P 3</span>
+            
+          </div>
+        </td>
+        <td class="signal-num" style="color:#0F6E56;">+3.0</td>
+        <td class="signal-num" style="color:#0F6E56;">+15</td>
+        <td><span class="verdict-pill" style="background:rgba(29,158,117,0.15); color:#1D9E75;">강한 매수 일치</span></td>
+      </tr>
+    
+      <tr>
+        <td><span class="legend-dot" style="background:#378ADD;" title="Improving"></span></td>
+        <td>
+          <div class="sector-name">화학</div>
+          <div class="sector-mcap">193조 · Improving</div>
+        </td>
+        <td>
+          <div class="stage-bar">
+            <div class="stage-segment" style="background:#378ADD; width:50.0%;" title="Emerging">1</div>
+            
+            <div class="stage-segment" style="background:#BA7517; width:50.0%;" title="Peak">1</div>
+            
+          </div>
+          <div class="bar-meta">
+            <span>2개</span>
+            <span style="color:#378ADD;">E 1</span>
+            
+            <span style="color:#BA7517;">P 1</span>
+            
+          </div>
+        </td>
+        <td class="signal-num" style="color:#A32D2D;">-1.0</td>
+        <td class="signal-num" style="color:#0F6E56;">+10</td>
+        <td><span class="verdict-pill" style="background:rgba(29,158,117,0.15); color:#1D9E75;">강한 매수 일치</span></td>
+      </tr>
+    
+      <tr>
+        <td><span class="legend-dot" style="background:#888780;" title="Lagging"></span></td>
+        <td>
+          <div class="sector-name">제약</div>
+          <div class="sector-mcap">181조 · Lagging</div>
+        </td>
+        <td>
+          <div class="stage-bar">
+            <div class="stage-segment" style="background:#378ADD; width:33.33333333333333%;" title="Emerging">1</div>
+            <div class="stage-segment" style="background:#1D9E75; width:33.33333333333333%;" title="Growth">1</div>
+            <div class="stage-segment" style="background:#BA7517; width:33.33333333333333%;" title="Peak">1</div>
+            
+          </div>
+          <div class="bar-meta">
+            <span>3개</span>
+            <span style="color:#378ADD;">E 1</span>
+            <span style="color:#1D9E75;">G 1</span>
+            <span style="color:#BA7517;">P 1</span>
+            
+          </div>
+        </td>
+        <td class="signal-num" style="color:#0F6E56;">+0.3</td>
+        <td class="signal-num" style="color:#0F6E56;">+19</td>
+        <td><span class="verdict-pill" style="background:rgba(55,138,221,0.15); color:#378ADD;">테마 회복, 섹터 지연</span></td>
+      </tr>
+    
+      <tr>
+        <td><span class="legend-dot" style="background:#888780;" title="Lagging"></span></td>
+        <td>
+          <div class="sector-name">IT 서비스</div>
+          <div class="sector-mcap">166조 · Lagging</div>
+        </td>
+        <td>
+          <div class="stage-bar">
+            <div class="stage-segment" style="background:#378ADD; width:33.33333333333333%;" title="Emerging">2</div>
+            <div class="stage-segment" style="background:#1D9E75; width:16.666666666666664%;" title="Growth">1</div>
+            <div class="stage-segment" style="background:#BA7517; width:50.0%;" title="Peak">3</div>
+            
+          </div>
+          <div class="bar-meta">
+            <span>6개</span>
+            <span style="color:#378ADD;">E 2</span>
+            <span style="color:#1D9E75;">G 1</span>
+            <span style="color:#BA7517;">P 3</span>
+            
+          </div>
+        </td>
+        <td class="signal-num" style="color:#0F6E56;">+5.0</td>
+        <td class="signal-num" style="color:#0F6E56;">+24</td>
+        <td><span class="verdict-pill" style="background:rgba(55,138,221,0.15); color:#378ADD;">테마 회복, 섹터 지연</span></td>
+      </tr>
+    
+      <tr>
+        <td><span class="legend-dot" style="background:#888780;" title="Lagging"></span></td>
+        <td>
+          <div class="sector-name">유통</div>
+          <div class="sector-mcap">148조 · Lagging</div>
+        </td>
+        <td>
+          <div class="stage-bar">
+            
+            
+            <div class="stage-segment" style="background:#BA7517; width:100.0%;" title="Peak">2</div>
+            
+          </div>
+          <div class="bar-meta">
+            <span>2개</span>
+            
+            
+            <span style="color:#BA7517;">P 2</span>
+            
+          </div>
+        </td>
+        <td class="signal-num" style="color:#0F6E56;">+0.5</td>
+        <td class="signal-num" style="color:#5F5E5A;">+6</td>
+        <td><span class="verdict-pill" style="background:rgba(136,135,128,0.15); color:#888780;">중립</span></td>
+      </tr>
+    
+      <tr>
+        <td><span class="legend-dot" style="background:#378ADD;" title="Improving"></span></td>
+        <td>
+          <div class="sector-name">금속</div>
+          <div class="sector-mcap">104조 · Improving</div>
+        </td>
+        <td>
+          <div class="stage-bar">
+            
+            <div class="stage-segment" style="background:#1D9E75; width:50.0%;" title="Growth">1</div>
+            <div class="stage-segment" style="background:#BA7517; width:50.0%;" title="Peak">1</div>
+            
+          </div>
+          <div class="bar-meta">
+            <span>2개</span>
+            
+            <span style="color:#1D9E75;">G 1</span>
+            <span style="color:#BA7517;">P 1</span>
+            
+          </div>
+        </td>
+        <td class="signal-num" style="color:#0F6E56;">+5.5</td>
+        <td class="signal-num" style="color:#0F6E56;">+28</td>
+        <td><span class="verdict-pill" style="background:rgba(29,158,117,0.15); color:#1D9E75;">강한 매수 일치</span></td>
+      </tr>
+    
+      <tr>
+        <td><span class="legend-dot" style="background:#378ADD;" title="Improving"></span></td>
+        <td>
+          <div class="sector-name">일반서비스</div>
+          <div class="sector-mcap">94조 · Improving</div>
+        </td>
+        <td>
+          <div class="stage-bar">
+            <div class="stage-segment" style="background:#378ADD; width:66.66666666666666%;" title="Emerging">2</div>
+            
+            <div class="stage-segment" style="background:#BA7517; width:33.33333333333333%;" title="Peak">1</div>
+            
+          </div>
+          <div class="bar-meta">
+            <span>3개</span>
+            <span style="color:#378ADD;">E 2</span>
+            
+            <span style="color:#BA7517;">P 1</span>
+            
+          </div>
+        </td>
+        <td class="signal-num" style="color:#0F6E56;">+2.0</td>
+        <td class="signal-num" style="color:#0F6E56;">+19</td>
+        <td><span class="verdict-pill" style="background:rgba(29,158,117,0.15); color:#1D9E75;">강한 매수 일치</span></td>
+      </tr>
+    
+      <tr>
+        <td><span class="legend-dot" style="background:#888780;" title="Lagging"></span></td>
+        <td>
+          <div class="sector-name">음식료·담배</div>
+          <div class="sector-mcap">52조 · Lagging</div>
+        </td>
+        <td>
+          <div class="stage-bar">
+            
+            <div class="stage-segment" style="background:#1D9E75; width:33.33333333333333%;" title="Growth">1</div>
+            <div class="stage-segment" style="background:#BA7517; width:66.66666666666666%;" title="Peak">2</div>
+            
+          </div>
+          <div class="bar-meta">
+            <span>3개</span>
+            
+            <span style="color:#1D9E75;">G 1</span>
+            <span style="color:#BA7517;">P 2</span>
+            
+          </div>
+        </td>
+        <td class="signal-num" style="color:#A32D2D;">-2.7</td>
+        <td class="signal-num" style="color:#5F5E5A;">+8</td>
+        <td><span class="verdict-pill" style="background:rgba(136,135,128,0.15); color:#888780;">중립</span></td>
+      </tr>
+    
+      <tr>
+        <td><span class="legend-dot" style="background:#378ADD;" title="Improving"></span></td>
+        <td>
+          <div class="sector-name">의료·정밀기기</div>
+          <div class="sector-mcap">22조 · Improving</div>
+        </td>
+        <td>
+          <div class="stage-bar">
+            <div class="stage-segment" style="background:#378ADD; width:100.0%;" title="Emerging">1</div>
+            
+            
+            
+          </div>
+          <div class="bar-meta">
+            <span>1개</span>
+            <span style="color:#378ADD;">E 1</span>
+            
+            
+            
+          </div>
+        </td>
+        <td class="signal-num" style="color:#A32D2D;">-6.0</td>
+        <td class="signal-num" style="color:#5F5E5A;">+8</td>
+        <td><span class="verdict-pill" style="background:rgba(29,158,117,0.15); color:#1D9E75;">강한 매수 일치</span></td>
+      </tr>
+    
+      <tr>
+        <td><span class="legend-dot" style="background:#378ADD;" title="Improving"></span></td>
+        <td>
+          <div class="sector-name">오락·문화</div>
+          <div class="sector-mcap">20조 · Improving</div>
+        </td>
+        <td>
+          <div class="stage-bar">
+            
+            
+            <div class="stage-segment" style="background:#BA7517; width:100.0%;" title="Peak">1</div>
+            
+          </div>
+          <div class="bar-meta">
+            <span>1개</span>
+            
+            
+            <span style="color:#BA7517;">P 1</span>
+            
+          </div>
+        </td>
+        <td class="signal-num" style="color:#0F6E56;">+1.0</td>
+        <td class="signal-num" style="color:#5F5E5A;">+7</td>
+        <td><span class="verdict-pill" style="background:rgba(29,158,117,0.15); color:#1D9E75;">강한 매수 일치</span></td>
+      </tr>
+    
+      <tr>
+        <td><span class="legend-dot" style="background:#378ADD;" title="Improving"></span></td>
+        <td>
+          <div class="sector-name">미분류</div>
+          <div class="sector-mcap">11조 · Improving</div>
+        </td>
+        <td>
+          <div class="stage-bar">
+            
+            
+            <div class="stage-segment" style="background:#BA7517; width:100.0%;" title="Peak">1</div>
+            
+          </div>
+          <div class="bar-meta">
+            <span>1개</span>
+            
+            
+            <span style="color:#BA7517;">P 1</span>
+            
+          </div>
+        </td>
+        <td class="signal-num" style="color:#0F6E56;">+6.0</td>
+        <td class="signal-num" style="color:#0F6E56;">+17</td>
+        <td><span class="verdict-pill" style="background:rgba(29,158,117,0.15); color:#1D9E75;">강한 매수 일치</span></td>
+      </tr>
+    
+      <tr>
+        <td><span class="legend-dot" style="background:#378ADD;" title="Improving"></span></td>
+        <td>
+          <div class="sector-name">기타금융</div>
+          <div class="sector-mcap">6조 · Improving</div>
+        </td>
+        <td>
+          <div class="stage-bar">
+            <div class="stage-segment" style="background:#378ADD; width:50.0%;" title="Emerging">1</div>
+            
+            <div class="stage-segment" style="background:#BA7517; width:50.0%;" title="Peak">1</div>
+            
+          </div>
+          <div class="bar-meta">
+            <span>2개</span>
+            <span style="color:#378ADD;">E 1</span>
+            
+            <span style="color:#BA7517;">P 1</span>
+            
+          </div>
+        </td>
+        <td class="signal-num" style="color:#A32D2D;">-2.0</td>
+        <td class="signal-num" style="color:#5F5E5A;">+8</td>
+        <td><span class="verdict-pill" style="background:rgba(29,158,117,0.15); color:#1D9E75;">강한 매수 일치</span></td>
+      </tr>
+    
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>4. 테마 변동 Top 10</h2>
+  <div class="twocol">
+    <div class="movers-card">
+      <h3 style="color:#0F6E56;">상승 Top 10 (7일)</h3>
+      
+        
+          <div class="mover-row">
+            <div><span class="mover-name">SI(시스템통합)</span><span class="mover-stage">[Peak]</span></div>
+            <span class="mover-change" style="color:#0F6E56;">+16</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">양자컴퓨팅</span><span class="mover-stage">[Emerging]</span></div>
+            <span class="mover-change" style="color:#0F6E56;">+10</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">은행</span><span class="mover-stage">[Peak]</span></div>
+            <span class="mover-change" style="color:#0F6E56;">+8</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">2차전지(장비)</span><span class="mover-stage">[Peak]</span></div>
+            <span class="mover-change" style="color:#0F6E56;">+8</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">전기차</span><span class="mover-stage">[Peak]</span></div>
+            <span class="mover-change" style="color:#0F6E56;">+7</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">2차전지</span><span class="mover-stage">[Peak]</span></div>
+            <span class="mover-change" style="color:#0F6E56;">+7</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">2차전지(전고체)</span><span class="mover-stage">[Peak]</span></div>
+            <span class="mover-change" style="color:#0F6E56;">+7</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">유리 기판</span><span class="mover-stage">[Emerging]</span></div>
+            <span class="mover-change" style="color:#0F6E56;">+6</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">스페이스X(SpaceX)</span><span class="mover-stage">[Peak]</span></div>
+            <span class="mover-change" style="color:#0F6E56;">+6</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">스마트폰</span><span class="mover-stage">[Peak]</span></div>
+            <span class="mover-change" style="color:#0F6E56;">+6</span>
+          </div>
+        
+      
+    </div>
+    <div class="movers-card">
+      <h3 style="color:#A32D2D;">하락 Top 10 (7일)</h3>
+      
+        
+          <div class="mover-row">
+            <div><span class="mover-name">마켓컬리(kurly)</span><span class="mover-stage">[Growth]</span></div>
+            <span class="mover-change" style="color:#A32D2D;">-8</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">방산</span><span class="mover-stage">[Emerging]</span></div>
+            <span class="mover-change" style="color:#A32D2D;">-6</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">공기청정기</span><span class="mover-stage">[Peak]</span></div>
+            <span class="mover-change" style="color:#A32D2D;">-6</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">MLCC(적층세라믹콘덴서)</span><span class="mover-stage">[Emerging]</span></div>
+            <span class="mover-change" style="color:#A32D2D;">-5</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">두나무(Dunamu)</span><span class="mover-stage">[Emerging]</span></div>
+            <span class="mover-change" style="color:#A32D2D;">-4</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">딥페이크(deepfake)</span><span class="mover-stage">[Emerging]</span></div>
+            <span class="mover-change" style="color:#A32D2D;">-2</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">화이자(PFIZER)</span><span class="mover-stage">[Emerging]</span></div>
+            <span class="mover-change" style="color:#A32D2D;">-2</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">모더나(MODERNA)</span><span class="mover-stage">[Growth]</span></div>
+            <span class="mover-change" style="color:#A32D2D;">-2</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">백화점</span><span class="mover-stage">[Peak]</span></div>
+            <span class="mover-change" style="color:#A32D2D;">-2</span>
+          </div>
+        
+          <div class="mover-row">
+            <div><span class="mover-name">CXL(컴퓨트익스프레스링크)</span><span class="mover-stage">[Emerging]</span></div>
+            <span class="mover-change" style="color:#A32D2D;">-1</span>
+          </div>
+        
+      
+    </div>
+  </div>
+</section>
+
+
+
+<section>
+  <h2>6. 핵심 인사이트</h2>
+  <ul style="padding-left: 20px; color: #444441;">
+    
+    <li style="margin-bottom: 8px;"><b>가장 강한 매수 일치</b>: <b>일반서비스</b> (시총 94조, Improving, 테마 3개, 신호 +19). E2 G0 P1 분포로 Peak 중심의 무거운 섹터.</li>
+    
+    <li style="margin-bottom: 8px;"><b>회복 후보</b> (3개): <b>운송장비·부품</b>, <b>제약</b>, <b>IT 서비스</b>. 섹터 지수는 약하지만 안에 Emerging/Growth 테마가 부상 중 — 차세대 주도주 후보군.</li>
+    
+    <li style="margin-bottom: 8px;"><b>정점 의심</b>: <b>증권</b> (시총 76조). 섹터는 강세이지만 테마 모멘텀이 식고 있어 차익실현 검토 구간.</li>
+    
+    <li style="margin-bottom: 8px;"><b>회피</b> (3개): 보험, 통신, 종이·목재. RRG상 Lagging/Weakening 사분면 + (매핑된 테마가 있는 경우) 테마 모멘텀 약세로 신규 진입 부적절. ※ 보험·종이·목재는 StockMatrix 매핑 테마 0개 — "테마 약세"가 아니라 RRG 사분면만의 판정이며, 아래 "다음 주 Top3"에는 이 두 섹터가 RS-Ratio 절대순위 1·3위로 동시에 등장한다. Top3는 사분면·모멘텀 방향과 무관하게 RS-Ratio 수준만으로 뽑는 백테스트 규칙이라 §6의 질적 회피 판단과 기준이 다르다 — 바로 아래 카드의 각주 참조.</li>
+    
+    <li style="margin-bottom: 8px;"><b>주간 모멘텀 1위 테마</b>: <b>SI(시스템통합)</b> (Peak, score 68, +16). 7일 동안 가장 빠르게 가속 중.</li>
+    
+  </ul>
+</section>
+
+<section>
+  <h2>다음 주 모멘텀 우세 후보</h2>
+  <div class="confidence-banner">
+    <span class="confidence-grade" style="background:#BA7517;">2</span>
+    <div class="confidence-text">
+      <div class="label">신뢰도 낮음 (5단계 중 2) · 시장 환경 4주 -3.1%</div>
+      <div class="meta">약세장 + Top-Bottom 격차 24.6 · 약세장에서는 모든 신호 효과 약화. 신중 접근.</div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <b>⚠️ 단기 예측의 한계</b> · 1주 단위 가격은 random walk에 가까워 본질적으로 예측이 어렵습니다.
+    <span class="small">
+      • <b>섹터 Top 3</b>은 RS-Ratio 기반 백테스트(50주)로 검증: IC +0.032, Top-Bottom Sharpe +2.32, 양의 적중률 58% (4번 중 약 2.3번 성공)<br>
+      • <b>테마 Top 3</b>은 휴리스틱(Stage + change7d)이며 백테스트되지 않았습니다 — 참고용<br>
+      • Momentum Score 기반 추천은 백테스트에서 음수 spread 확인되어 의도적으로 제외했습니다 (단기 반전 효과)<br>
+      • <b>섹터 Top 3는 §6 핵심 인사이트의 질적 판단(회피/정점의심 등)과 다른 기준을 씁니다.</b> Top3는 사분면·모멘텀 방향과 무관하게 RS-Ratio 절대순위만으로 선정되어, 1위 종이·목재(Weakening, 매핑 테마 0개)·3위 보험(Lagging, 매핑 테마 0개, Momentum -20.0)처럼 §6에서 "회피"로 분류된 섹터가 동시에 포함될 수 있습니다. 이 둘은 RS-Ratio는 높지만 Momentum이 뚜렷한 음수(-19.9 / -20.0)라 추세 추종이 아닌 상대강도 순위 신호로만 해석할 것 — 신규 매수 신호로 과잉해석 금지<br>
+      • 본 정보는 투자 권유가 아니며, 모든 매매 결정은 본인 책임입니다
+    </span>
+  </div>
+
+  <div class="top3-grid">
+    <div class="top3-card">
+      <h3>섹터 Top 3 <span style="font-size:11px; font-weight:400; color:#888780;">RS-Ratio 기준</span></h3>
+      <div class="top3-meta">백테스트 검증 시그널 · 시장 대비 평균 +1.15%/주 (50주 표본)</div>
+      
+      <div class="top3-item">
+        <div class="top3-rank-row">
+          <span class="top3-rank">1</span>
+          <span class="top3-name">종이·목재</span>
+          <span class="top3-quad-pill" style="background:#BA7517;">Weakening</span>
+        </div>
+        <div class="top3-detail">
+          시총 <span class="num">3조</span> ·
+          RS-Ratio <span class="num">113.8</span> ·
+          RS-Mom <span class="num">99.3</span><br>
+          Position <span class="num">100.0</span> ·
+          Momentum <span class="num">-19.9</span> ·
+          매핑 테마 <span class="num">0</span>개
+        </div>
+      </div>
+      
+      <div class="top3-item">
+        <div class="top3-rank-row">
+          <span class="top3-rank">2</span>
+          <span class="top3-name">전기·전자</span>
+          <span class="top3-quad-pill" style="background:#1D9E75;">Leading</span>
+        </div>
+        <div class="top3-detail">
+          시총 <span class="num">4277조</span> ·
+          RS-Ratio <span class="num">111.7</span> ·
+          RS-Mom <span class="num">100.1</span><br>
+          Position <span class="num">85.6</span> ·
+          Momentum <span class="num">29.5</span> ·
+          매핑 테마 <span class="num">7</span>개
+        </div>
+      </div>
+      
+      <div class="top3-item">
+        <div class="top3-rank-row">
+          <span class="top3-rank">3</span>
+          <span class="top3-name">보험</span>
+          <span class="top3-quad-pill" style="background:#888780;">Lagging</span>
+        </div>
+        <div class="top3-detail">
+          시총 <span class="num">137조</span> ·
+          RS-Ratio <span class="num">97.2</span> ·
+          RS-Mom <span class="num">99.7</span><br>
+          Position <span class="num">95.0</span> ·
+          Momentum <span class="num">-20.0</span> ·
+          매핑 테마 <span class="num">0</span>개
+        </div>
+      </div>
+      
+    </div>
+    <div class="top3-card">
+      <h3>테마 Top 3 <span style="font-size:11px; font-weight:400; color:#BA7517;">휴리스틱 (검증 ✗)</span></h3>
+      <div class="top3-meta">Stage Emerging/Growth/Reigniting + change7d &gt; 0</div>
+      
+      <div class="top3-item">
+        <div class="top3-rank-row">
+          <span class="top3-rank">1</span>
+          <span class="top3-name">양자컴퓨팅</span>
+          <span class="top3-quad-pill" style="background:#378ADD;">Emerging</span>
+        </div>
+        <div class="top3-detail">
+          score <span class="num">66</span> ·
+          7d <span class="num" style="color:#0F6E56;">+10</span> ·
+          종목 <span class="num">0</span>개<br>
+          
+        </div>
+      </div>
+      
+      <div class="top3-item">
+        <div class="top3-rank-row">
+          <span class="top3-rank">2</span>
+          <span class="top3-name">유리 기판</span>
+          <span class="top3-quad-pill" style="background:#378ADD;">Emerging</span>
+        </div>
+        <div class="top3-detail">
+          score <span class="num">53</span> ·
+          7d <span class="num" style="color:#0F6E56;">+6</span> ·
+          종목 <span class="num">21</span>개<br>
+          <span class="stock-tag">에프엔에스테크</span><span class="stock-tag">SKC</span><span class="stock-tag">와이엠티</span>
+        </div>
+      </div>
+      
+      <div class="top3-item">
+        <div class="top3-rank-row">
+          <span class="top3-rank">3</span>
+          <span class="top3-name">제습기</span>
+          <span class="top3-quad-pill" style="background:#378ADD;">Emerging</span>
+        </div>
+        <div class="top3-detail">
+          score <span class="num">57</span> ·
+          7d <span class="num" style="color:#0F6E56;">+4</span> ·
+          종목 <span class="num">8</span>개<br>
+          <span class="stock-tag">쿠쿠홈시스</span><span class="stock-tag">코웨이</span><span class="stock-tag">삼성전자</span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <h2>자체 검증 누적</h2>
+  <div class="track-grid">
+    <div class="track-stat">
+      <div class="track-stat-label">기록 주 수</div>
+      <div class="track-stat-value">4</div>
+      <div class="track-stat-meta">평가 완료 2주</div>
+    </div>
+    <div class="track-stat">
+      <div class="track-stat-label">섹터 적중률</div>
+      <div class="track-stat-value">
+        0.0%
+      </div>
+      <div class="track-stat-meta">Top 3 평균 초과수익 양수 비율</div>
+    </div>
+    <div class="track-stat">
+      <div class="track-stat-label">섹터 평균 초과수익</div>
+      <div class="track-stat-value" style="color:#A32D2D;">
+        -8.74%
+      </div>
+      <div class="track-stat-meta">5거래일, 벤치마크 대비</div>
+    </div>
+    <div class="track-stat">
+      <div class="track-stat-label">테마 적중률</div>
+      <div class="track-stat-value">
+        0.0%
+      </div>
+      <div class="track-stat-meta">Top 3 평균 초과수익 -11.28%</div>
+    </div>
+  </div>
+
+  
+  <table class="track-table">
+    <thead>
+      <tr>
+        <th style="width:90px;">기록일</th>
+        <th style="width:60px;">시장</th>
+        <th style="width:50px;">신뢰도</th>
+        <th>섹터 Top 3</th>
+        <th style="width:90px;">섹터 초과수익</th>
+        <th style="width:90px;">테마 초과수익</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td>2026-09-30</td>
+        <td><span class="pending-badge">bear</span></td>
+        <td>2/5</td>
+        <td>종이·목재, 전기·전자, 보험</td>
+        <td>
+          
+          
+            <span class="pending-badge">평가 대기</span>
+          
+        </td>
+        <td>
+          
+          
+            <span class="pending-badge">평가 대기</span>
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-09-20</td>
+        <td><span class="pending-badge">sideways (KOSPI200 근사 4주 -0.5%, 60일 -17.7%; 9/18 +2.66% 반등, 연준 25bp 인상 소화)</span></td>
+        <td>2/5</td>
+        <td>전기·전자, 건설, 기타금융업</td>
+        <td>
+          
+          
+            <span class="pending-badge">평가 대기</span>
+          
+        </td>
+        <td>
+          
+          
+            <span class="pending-badge">평가 대기</span>
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-08-10</td>
+        <td><span class="pending-badge">bear-rebound (KOSPI 7주 연속 주간하락, 8/7 6,258.77)</span></td>
+        <td>2/5</td>
+        <td>보험, 제약, 음식료·담배</td>
+        <td>
+          
+          
+            
+            <span style="color:#A32D2D;">-9.92%</span>
+          
+        </td>
+        <td>
+          
+          
+            
+            <span style="color:#A32D2D;">-4.60%</span>
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td>2026-05-04</td>
+        <td><span class="pending-badge">bull</span></td>
+        <td>5/5</td>
+        <td>전기·전자, 기타금융, 건설</td>
+        <td>
+          
+          
+            
+            <span style="color:#A32D2D;">-7.56%</span>
+          
+        </td>
+        <td>
+          
+          
+            
+            <span style="color:#A32D2D;">-17.96%</span>
+          
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+  
+
+  
+  <div style="font-size:11px; color:#888780; margin-top:8px;">
+    누적 데이터가 충분히 쌓이려면 최소 4~6주 이상 필요합니다. 매주 보고서 생성 시 자동으로 갱신됩니다.
+  </div>
+  
+</section>
+
+
+<footer>
+  Chory &amp; Rochet 리서치센터 · 생성: 2026-10-01 13:29 KST · sector-theme-monitor v1.0 · 가격 데이터 기준일 2026-09-30(장중 발행이므로 전일 확정 종가 기준) · StockMatrix 테마 라이프사이클 데이터는 스킬 호출 시점인 2026-10-01 기준(일자 상이는 테마 데이터 특성상 불가피) · 섹터 Top3는 RS-Ratio 백테스트 검증(50주), 테마 Top3는 미검증 휴리스틱 · 자체 추적 2주 평가 결과 적중률 0% — 참고용이며 투자 권유 아님
+</footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+const arrowPlugin = {
+  id: 'rrgArrow',
+  afterDatasetsDraw(chart) {
+    const ctx = chart.ctx;
+    chart.data.datasets.forEach((ds, i) => {
+      const meta = chart.getDatasetMeta(i);
+      const points = meta.data;
+      if (points.length < 2) return;
+      const last = points[points.length - 1];
+      const prev = points[points.length - 2];
+      const dx = last.x - prev.x;
+      const dy = last.y - prev.y;
+      if (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5) return;
+      const angle = Math.atan2(dy, dx);
+      const r = (ds.pointRadius && ds.pointRadius[ds.pointRadius.length-1]) || 5;
+      const tipX = last.x - r * Math.cos(angle);
+      const tipY = last.y - r * Math.sin(angle);
+      const arrowLen = 9;
+      const aa = Math.PI / 7;
+      const x1 = tipX - arrowLen * Math.cos(angle - aa);
+      const y1 = tipY - arrowLen * Math.sin(angle - aa);
+      const x2 = tipX - arrowLen * Math.cos(angle + aa);
+      const y2 = tipY - arrowLen * Math.sin(angle + aa);
+      ctx.save();
+      ctx.fillStyle = ds.borderColor;
+      ctx.setLineDash([]);
+      ctx.beginPath();
+      ctx.moveTo(tipX, tipY);
+      ctx.lineTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    });
+  }
+};
+
+const datasets = [{"label": "전기·전자", "data": [{"x": 111.57, "y": 97.92}, {"x": 111.1, "y": 98.57}, {"x": 111.5, "y": 100.56}, {"x": 111.17, "y": 99.79}, {"x": 111.68, "y": 100.11}], "showLine": true, "borderColor": "#1D9E75", "backgroundColor": "#1D9E75", "pointRadius": [4, 0, 0, 0, 25], "pointHoverRadius": [6, 5, 5, 5, 27], "pointBackgroundColor": "#1D9E75", "pointBorderColor": "#1D9E75", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Leading", "pos": 85.6, "mom": 29.5, "mcap": 4277.3, "px_4w": 2.04, "px_12w": -23.1}}, {"label": "기타금융업", "data": [{"x": 92.92, "y": 99.32}, {"x": 94.08, "y": 99.47}, {"x": 94.47, "y": 99.13}, {"x": 95.11, "y": 101.08}, {"x": 94.35, "y": 101.43}], "showLine": true, "borderColor": "#378ADD", "backgroundColor": "#378ADD", "pointRadius": [4, 0, 0, 0, 5.962999999999999], "pointHoverRadius": [6, 5, 5, 5, 7.962999999999999], "pointBackgroundColor": "#378ADD", "pointBorderColor": "#378ADD", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Improving", "pos": 90.4, "mom": -3.2, "mcap": 596.3, "px_4w": -1.52, "px_12w": -14.79}}, {"label": "운송장비·부품", "data": [{"x": 84.32, "y": 103.44}, {"x": 84.11, "y": 101.43}, {"x": 83.55, "y": 98.54}, {"x": 84.08, "y": 99.04}, {"x": 83.82, "y": 99.5}], "showLine": true, "borderColor": "#888780", "backgroundColor": "#888780", "pointRadius": [4, 0, 0, 0, 5.095], "pointHoverRadius": [6, 5, 5, 5, 7.095], "pointBackgroundColor": "#888780", "pointBorderColor": "#888780", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Lagging", "pos": 44.4, "mom": -15.6, "mcap": 509.5, "px_4w": -10.04, "px_12w": -21.76}}, {"label": "기계·장비", "data": [{"x": 83.77, "y": 107.28}, {"x": 84.61, "y": 105.61}, {"x": 86.1, "y": 103.34}, {"x": 87.25, "y": 103.92}, {"x": 87.64, "y": 103.87}], "showLine": true, "borderColor": "#378ADD", "backgroundColor": "#378ADD", "pointRadius": [4, 0, 0, 0, 5], "pointHoverRadius": [6, 5, 5, 5, 7], "pointBackgroundColor": "#378ADD", "pointBorderColor": "#378ADD", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Improving", "pos": 65, "mom": -22.0, "mcap": 223.9, "px_4w": 0.91, "px_12w": -9.32}}, {"label": "화학", "data": [{"x": 89.5, "y": 102.91}, {"x": 90.84, "y": 103.51}, {"x": 90.76, "y": 101.3}, {"x": 91.14, "y": 101.69}, {"x": 91.71, "y": 102.21}], "showLine": true, "borderColor": "#378ADD", "backgroundColor": "#378ADD", "pointRadius": [4, 0, 0, 0, 5], "pointHoverRadius": [6, 5, 5, 5, 7], "pointBackgroundColor": "#378ADD", "pointBorderColor": "#378ADD", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Improving", "pos": 77.6, "mom": -20.7, "mcap": 192.8, "px_4w": -0.42, "px_12w": 8.16}}, {"label": "제약", "data": [{"x": 89.16, "y": 102.92}, {"x": 89.21, "y": 101.75}, {"x": 88.54, "y": 99.35}, {"x": 88.72, "y": 99.69}, {"x": 88.83, "y": 99.67}], "showLine": true, "borderColor": "#888780", "backgroundColor": "#888780", "pointRadius": [4, 0, 0, 0, 5], "pointHoverRadius": [6, 5, 5, 5, 7], "pointBackgroundColor": "#888780", "pointBorderColor": "#888780", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Lagging", "pos": 20, "mom": -21.7, "mcap": 180.7, "px_4w": -7.4, "px_12w": -4.72}}, {"label": "IT 서비스", "data": [{"x": 89.75, "y": 102.14}, {"x": 89.97, "y": 101.18}, {"x": 89.5, "y": 99.44}, {"x": 89.52, "y": 99.61}, {"x": 89.26, "y": 99.5}], "showLine": true, "borderColor": "#888780", "backgroundColor": "#888780", "pointRadius": [4, 0, 0, 0, 5], "pointHoverRadius": [6, 5, 5, 5, 7], "pointBackgroundColor": "#888780", "pointBorderColor": "#888780", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Lagging", "pos": 20, "mom": -26.5, "mcap": 166.2, "px_4w": -10.89, "px_12w": -7.88}}, {"label": "유통", "data": [{"x": 88.23, "y": 102.06}, {"x": 89.6, "y": 102.69}, {"x": 88.8, "y": 99.97}, {"x": 88.83, "y": 100.84}, {"x": 87.07, "y": 98.84}], "showLine": true, "borderColor": "#888780", "backgroundColor": "#888780", "pointRadius": [4, 0, 0, 0, 5], "pointHoverRadius": [6, 5, 5, 5, 7], "pointBackgroundColor": "#888780", "pointBorderColor": "#888780", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Lagging", "pos": 56.0, "mom": -13.3, "mcap": 147.7, "px_4w": -7.87, "px_12w": -18.71}}, {"label": "보험", "data": [{"x": 97.48, "y": 101.28}, {"x": 99.84, "y": 103.56}, {"x": 98.16, "y": 100.98}, {"x": 98.62, "y": 102.35}, {"x": 97.2, "y": 99.72}], "showLine": true, "borderColor": "#888780", "backgroundColor": "#888780", "pointRadius": [4, 0, 0, 0, 5], "pointHoverRadius": [6, 5, 5, 5, 7], "pointBackgroundColor": "#888780", "pointBorderColor": "#888780", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Lagging", "pos": 95.0, "mom": -20.0, "mcap": 137.2, "px_4w": -9.13, "px_12w": -12.37}}, {"label": "금속", "data": [{"x": 87.88, "y": 104.83}, {"x": 88.29, "y": 103.54}, {"x": 87.76, "y": 100.51}, {"x": 88.26, "y": 100.96}, {"x": 88.2, "y": 100.33}], "showLine": true, "borderColor": "#378ADD", "backgroundColor": "#378ADD", "pointRadius": [4, 0, 0, 0, 5], "pointHoverRadius": [6, 5, 5, 5, 7], "pointBackgroundColor": "#378ADD", "pointBorderColor": "#378ADD", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Improving", "pos": 54.3, "mom": -27.1, "mcap": 104.1, "px_4w": -8.69, "px_12w": -0.38}}, {"label": "일반서비스", "data": [{"x": 87.58, "y": 103.51}, {"x": 88.06, "y": 102.78}, {"x": 88.22, "y": 100.98}, {"x": 89.23, "y": 101.95}, {"x": 89.42, "y": 101.83}], "showLine": true, "borderColor": "#378ADD", "backgroundColor": "#378ADD", "pointRadius": [4, 0, 0, 0, 5], "pointHoverRadius": [6, 5, 5, 5, 7], "pointBackgroundColor": "#378ADD", "pointBorderColor": "#378ADD", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Improving", "pos": 20, "mom": -11.5, "mcap": 93.6, "px_4w": -2.92, "px_12w": -6.51}}, {"label": "증권", "data": [{"x": 83.95, "y": 100.85}, {"x": 84.33, "y": 100.6}, {"x": 84.14, "y": 99.02}, {"x": 84.54, "y": 100.26}, {"x": 84.18, "y": 100.23}], "showLine": true, "borderColor": "#378ADD", "backgroundColor": "#378ADD", "pointRadius": [4, 0, 0, 0, 5], "pointHoverRadius": [6, 5, 5, 5, 7], "pointBackgroundColor": "#378ADD", "pointBorderColor": "#378ADD", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Improving", "pos": 50.0, "mom": -14.1, "mcap": 75.9, "px_4w": -10.62, "px_12w": -23.54}}, {"label": "운송·창고", "data": [{"x": 90.97, "y": 101.72}, {"x": 91.52, "y": 101.11}, {"x": 91.34, "y": 100.0}, {"x": 91.85, "y": 101.04}, {"x": 91.76, "y": 100.78}], "showLine": true, "borderColor": "#378ADD", "backgroundColor": "#378ADD", "pointRadius": [4, 0, 0, 0, 5], "pointHoverRadius": [6, 5, 5, 5, 7], "pointBackgroundColor": "#378ADD", "pointBorderColor": "#378ADD", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Improving", "pos": 53.8, "mom": -23.9, "mcap": 54.7, "px_4w": -2.55, "px_12w": 5.74}}, {"label": "음식료·담배", "data": [{"x": 91.55, "y": 101.4}, {"x": 92.34, "y": 101.36}, {"x": 91.38, "y": 99.49}, {"x": 91.58, "y": 100.26}, {"x": 91.4, "y": 99.86}], "showLine": true, "borderColor": "#888780", "backgroundColor": "#888780", "pointRadius": [4, 0, 0, 0, 5], "pointHoverRadius": [6, 5, 5, 5, 7], "pointBackgroundColor": "#888780", "pointBorderColor": "#888780", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Lagging", "pos": 21.7, "mom": -29.9, "mcap": 52.5, "px_4w": -8.94, "px_12w": 1.69}}, {"label": "건설", "data": [{"x": 93.12, "y": 107.18}, {"x": 93.77, "y": 106.37}, {"x": 94.73, "y": 102.92}, {"x": 96.44, "y": 104.31}, {"x": 94.94, "y": 101.82}], "showLine": true, "borderColor": "#378ADD", "backgroundColor": "#378ADD", "pointRadius": [4, 0, 0, 0, 5], "pointHoverRadius": [6, 5, 5, 5, 7], "pointBackgroundColor": "#378ADD", "pointBorderColor": "#378ADD", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Improving", "pos": 65, "mom": -24.5, "mcap": 46.6, "px_4w": -8.38, "px_12w": -3.66}}, {"label": "통신", "data": [{"x": 91.8, "y": 101.73}, {"x": 91.9, "y": 101.19}, {"x": 90.84, "y": 99.62}, {"x": 90.96, "y": 99.62}, {"x": 90.58, "y": 98.78}], "showLine": true, "borderColor": "#888780", "backgroundColor": "#888780", "pointRadius": [4, 0, 0, 0, 5], "pointHoverRadius": [6, 5, 5, 5, 7], "pointBackgroundColor": "#888780", "pointBorderColor": "#888780", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Lagging", "pos": 65, "mom": -25.0, "mcap": 44.1, "px_4w": -7.89, "px_12w": -1.13}}, {"label": "전기·가스", "data": [{"x": 87.02, "y": 101.55}, {"x": 87.38, "y": 100.85}, {"x": 87.59, "y": 100.09}, {"x": 87.95, "y": 101.2}, {"x": 87.89, "y": 100.86}], "showLine": true, "borderColor": "#378ADD", "backgroundColor": "#378ADD", "pointRadius": [4, 0, 0, 0, 5], "pointHoverRadius": [6, 5, 5, 5, 7], "pointBackgroundColor": "#378ADD", "pointBorderColor": "#378ADD", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Improving", "pos": 15.5, "mom": -18.5, "mcap": 30.8, "px_4w": -7.93, "px_12w": -15.09}}, {"label": "의료·정밀기기", "data": [{"x": 87.2, "y": 103.0}, {"x": 87.32, "y": 101.84}, {"x": 87.61, "y": 99.48}, {"x": 88.14, "y": 100.26}, {"x": 89.12, "y": 101.92}], "showLine": true, "borderColor": "#378ADD", "backgroundColor": "#378ADD", "pointRadius": [4, 0, 0, 0, 5], "pointHoverRadius": [6, 5, 5, 5, 7], "pointBackgroundColor": "#378ADD", "pointBorderColor": "#378ADD", "borderWidth": 1.5, "borderDash": [4, 4], "tension": 0.2, "meta": {"quad": "Improving", "pos": 58.1, "mom": -15.3, "mcap": 22.5, "px_4w": 3.5, "px_12w": -11.57}}];
+new Chart(document.getElementById('rrgChart'), {
+  type: 'scatter',
+  data: { datasets },
+  plugins: [arrowPlugin],
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          title: ctx => ctx[0].dataset.label + ' (' + ctx[0].dataset.meta.quad + ')',
+          label: ctx => {
+            const m = ctx.dataset.meta;
+            return [
+              'RS-Ratio: ' + ctx.parsed.x.toFixed(1) + '  RS-Mom: ' + ctx.parsed.y.toFixed(1),
+              'Pos: ' + m.pos + '  Mom: ' + (m.mom>0?'+':'') + m.mom,
+              '시총: ' + m.mcap.toFixed(0) + '조원',
+              '4주: ' + (m.px_4w>0?'+':'') + m.px_4w.toFixed(1) + '%  12주: ' + (m.px_12w>0?'+':'') + m.px_12w.toFixed(1) + '%'
+            ];
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        type: 'linear', min: 80.5, max: 114.7,
+        title: { display: true, text: 'RS-Ratio (벤치마크 대비 상대강도)', font: { size: 12 } },
+        grid: {
+          color: ctx => ctx.tick.value === 100 ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.05)',
+          lineWidth: ctx => ctx.tick.value === 100 ? 1.5 : 0.5
+        }
+      },
+      y: {
+        type: 'linear', min: 95.9, max: 109.3,
+        title: { display: true, text: 'RS-Momentum (변화율)', font: { size: 12 } },
+        grid: {
+          color: ctx => ctx.tick.value === 100 ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.05)',
+          lineWidth: ctx => ctx.tick.value === 100 ? 1.5 : 0.5
+        }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
